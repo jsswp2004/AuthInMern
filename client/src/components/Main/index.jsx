@@ -11,19 +11,11 @@ const Main = () => {
   return (
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
-        {/* <div > */}
         <img src={logo} className="App-logo" alt="logo" />
-        {/* <h3 style={{ color: 'white', paddingTop: '5px', paddingLeft: '5px' }}>
-            {' '}
-            POEHR
-          </h3> */}
         <h3>POEHR</h3>
-        {/* </div> */}
 
         <div className={styles.header_navbar_container}>
-          {/* <div> */}{' '}
           <ul>
-            {/* style={{ marginBottom: '0px', verticalAlign: 'bottom' }} */}
             <li className="navbar-list">
               <Link to="/create">Registration</Link>
             </li>
@@ -37,26 +29,11 @@ const Main = () => {
               <a href="#about">About </a>
             </li>
           </ul>
-          {/* </div>{' '} */}
         </div>
         <div className={styles.navbar}>
-          {/* <ul>
-            
-            <li >
-              <Link to="/create">Registration</Link>
-            </li>
-            <li >
-              <Link to="/">Home</Link>
-            </li>
-            <li >
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li >
-              <a href="#about">About </a>
-            </li>
-          </ul> */}{' '}
-          <button className={styles.white_btn} onClick={handleLogout}>
-            Logout
+          <button className={styles.white_btn} onClick={handleLogout} >
+					  
+					  <i class="fa fa-sign-out-alt fa-lg" title="Log out" style={{ color: "red" }} aria-hidden="true"></i>
           </button>
         </div>
       </nav>
