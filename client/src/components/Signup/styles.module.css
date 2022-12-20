@@ -34,6 +34,39 @@
 	align-self: center;
 }
 
+.left h2 {
+	margin-top: 0;
+	color: white;
+	font-size: 20px;
+	align-self: center;
+}
+
+
+.left h3 {
+	margin-top: 0;
+	color: white;
+	font-size: 20px;
+	align-self: center;
+	padding-top: 20px;
+}
+
+.App_logo {
+	animation: App_logo_spin infinite 20s linear;
+	pointer-events: none;
+	padding: 2px;
+	width: 60px;
+	height: 60px;
+  }
+
+  @keyframes App_logo_spin {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(360deg);
+	}
+  }
+
 .right {
 	flex: 2;
 	display: flex;

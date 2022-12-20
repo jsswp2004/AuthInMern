@@ -71,11 +71,29 @@
 	border-bottom-right-radius: 10px;
 }
 
-.right h1 {
+.App_logo {
+	animation: App_logo_spin infinite 20s linear;
+	pointer-events: none;
+	padding: 2px;
+	width: 60px;
+	height: 60px;
+  }
+
+  @keyframes App_logo_spin {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(360deg);
+	}
+  }
+
+.right h3 {
 	margin-top: 0;
 	color: white;
-	font-size: 40px;
+	font-size: 20px;
 	align-self: center;
+	padding-top: 20px;
 }
 
 .white_btn,

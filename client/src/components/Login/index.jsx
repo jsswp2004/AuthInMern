@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
+import logo from '../shared/images/logoPOWER.png';
 
 const Login = () => {
   const [data, setData] = useState({ email: '', password: '' })
@@ -34,7 +35,7 @@ const Login = () => {
       <div className={styles.login_form_container}>
         <div className={styles.left}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
-            <h1>Login to Your Account</h1>
+            <h3>Login to Your Account</h3>
             <input
               type="email"
               placeholder="Email"
@@ -60,7 +61,8 @@ const Login = () => {
           </form>
         </div>
         <div className={styles.right}>
-          <h1>New Here?</h1>
+          <img src={logo} className={styles.App_logo} alt="logo" />
+          <h3>First time? Please sign up.</h3>
           <Link to="/signup">
             <button type="button" className={styles.white_btn}>
               Sign Up
