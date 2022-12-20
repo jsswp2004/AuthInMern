@@ -18,8 +18,20 @@
 .header_navbar_container {
 /* width: 100%; */
 /* margin-right: 80px; */
-float: right;
+/* float: right; */
 /* margin-left: 70%; */
+border: none;
+outline: none;
+/* padding: 5px; */
+/* border-radius: 10px; */
+width: auto;
+font-weight: bold;
+font-size: 14px;
+cursor: pointer;
+/* margin-right: 200px; */
+margin-left: 40px;
+/* position: absolute; */
+/* right: auto; */
 
 }
 /* .header-navbar {

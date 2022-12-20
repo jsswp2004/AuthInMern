@@ -39,9 +39,23 @@ const Main = () => {
           </ul>
           {/* </div>{' '} */}
         </div>
-        <div className={styles.white_btn}>
-          
-          <button  onClick={handleLogout}>
+        <div className={styles.navbar}>
+          {/* <ul>
+            
+            <li >
+              <Link to="/create">Registration</Link>
+            </li>
+            <li >
+              <Link to="/">Home</Link>
+            </li>
+            <li >
+              <Link to="/contact">Contact</Link>
+            </li>
+            <li >
+              <a href="#about">About </a>
+            </li>
+          </ul> */}{' '}
+          <button className={styles.white_btn} onClick={handleLogout}>
             Logout
           </button>
         </div>
