@@ -33,7 +33,7 @@ const Main = () => {
         <div className={styles.navbar}>
           <button className={styles.white_btn} onClick={handleLogout} >
 					  
-					  <i class="fa fa-sign-out-alt fa-lg" title="Log out" style={{ color: "red" }} aria-hidden="true"></i>
+					  <i className="fa fa-sign-out-alt fa-lg" title="Log out" style={{ color: "red" }} aria-hidden="true"></i>
           </button>
         </div>
       </nav>

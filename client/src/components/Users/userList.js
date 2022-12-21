@@ -68,7 +68,7 @@ export default function UserList() {
 
   // This method will delete a user
   async function deleteRecord(id) {
-    await fetch(`http://localhost:5002/user/${id}`, {
+    await fetch(`http://localhost:8080/user/${id}`, {
       method: 'DELETE',
     })
 

@@ -6,6 +6,7 @@ import { User, validate } from "../models/user.js";
 // const bcrypt = require("bcrypt");
 import bcrypt from "bcrypt";
 
+// This section validates the user login details.
 router.post("/", async (req, res) => {
 	try {
 		const { error } = validate(req.body);
@@ -29,7 +30,7 @@ router.post("/", async (req, res) => {
 });
 
 // This section will help you get a list of all the users.
-router.get("/user", async (req, res) => {
+router.get("/users", async (req, res) => {
 	try {
 		const users = await User.find();
 		res.status(200).send({ data: users, message: "Users fetched successfully" });

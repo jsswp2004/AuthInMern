@@ -58,9 +58,9 @@ import userRoutes from './routes/users.js'
 import authRoutes from './routes/auth.js'
 import recordRoutes from './routes/record.js'
 
-app.use(userRoutes)
-app.use(authRoutes)
-app.use(recordRoutes)
+app.use("/api/users",userRoutes)
+app.use("/api/auth",authRoutes)
+app.use("/api/records",recordRoutes)
 
 const port = process.env.PORT || 8080
 app.listen(port, console.log(`Listening on port ${port}...`))
