@@ -34,7 +34,7 @@ export default function Users() {
   // This method fetches the users from the database.
   useEffect(() => {
     async function getUsers() {
-      const response = await fetch(`http://localhost:8080/user/`)
+      const response = await fetch(`http://localhost:8080/api/users`)
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`
@@ -68,7 +68,7 @@ export default function Users() {
 
   // This method will delete a user
   async function deleteRecord(id) {
-    await fetch(`http://localhost:8080/user/${id}`, {
+    await fetch(`http://localhost:8080/api/users/${id}`, {
       method: 'DELETE',
     })
 
