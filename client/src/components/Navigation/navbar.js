@@ -1,7 +1,7 @@
 import React from 'react'
 // import LogoutIcon from '@mui/icons-material/Logout'
 // We import bootstrap to make our application look better.
-import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/css/bootstrap.css'
 
 import { Link } from 'react-router-dom'
 

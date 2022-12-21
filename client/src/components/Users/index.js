@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../navigation/navbar'
+import Navbar from '../Navigation/navbar'
 const User = (props) => (
   <tr>
     <td>{props.user.firstName}</td>
