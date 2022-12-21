@@ -1,6 +1,10 @@
-const router = require("express").Router();
-const { User, validate } = require("../models/user");
-const bcrypt = require("bcrypt");
+// const router = require("express").Router();
+import express from "express";
+const router = express.Router();
+// const { User, validate } = require("../models/user");
+import { User, validate } from "../models/user.js";
+// const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 router.post("/", async (req, res) => {
 	try {
@@ -24,4 +28,15 @@ router.post("/", async (req, res) => {
 	}
 });
 
-module.exports = router;
+// This section will help you get a list of all the users.
+router.get("/user", async (req, res) => {
+	try {
+		const users = await User.find();
+		res.status(200).send({ data: users, message: "Users fetched successfully" });
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+});
+
+// module.exports = router;
+export default router;
