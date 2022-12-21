@@ -1,6 +1,7 @@
 import styles from './styles.module.css'
 import logo from '../shared/images/logoPOWER.png'
 import { Link } from 'react-router-dom'
+import Navbar from './index02'
 
 const Main = () => {
   const handleLogout = () => {
@@ -37,6 +38,7 @@ const Main = () => {
           </button>
         </div>
       </nav>
+    
     </div>
   )
 }
