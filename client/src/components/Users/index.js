@@ -22,7 +22,7 @@ const User = (props) => (
   </tr>
 )
 
-export default function UserList() {
+export default function Users() {
   const [users, setUsers] = useState([])
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the input text
