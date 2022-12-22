@@ -17,7 +17,7 @@ app.use(cors());
 // routes
 app.use("/api/users", userRoutes);
 app.use("/api/login", authRoutes);
-app.use("/api/userlist", authRoutes);
+app.use("/api/userlist", userListRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, console.log(`Listening on port ${port}...`));

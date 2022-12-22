@@ -29,40 +29,39 @@ const Main = () => {
   const handleLogout = () => {
     localStorage.removeItem('token')
     window.location.reload()
-	}
-	const [data, setData] = useState()
+  }
+  const [data, setData] = useState()
 
   const [userRecords, setUsersRecords] = useState([])
 
   // This method fetches the records from the database.
   useEffect(() => {
-	  async function getRecords() {
-		  const url = 'http://localhost:8080/api/userlist'
-		  const { data: res } = await axios.get(url, data)
-		  window.location = '/'
-	  }
-	  getRecords()
-  }, [userRecords.length])
-	
+    async function getRecords() {
+      const url = 'http://localhost:8080/api/userlist'
+      const { data: res } = await axios.get(url, data)
+      window.location = '/'
+    }
+    getRecords()
+  }, [data, userRecords.length])
 
-    //   const response = await fetch(`http://localhost:8080/userlist/`)
- 
-//       if (!response.ok) {
-//         const message = `An error occurred: ${response.statusText}`
-//         window.alert(message)
-//         return
-//       }
+  //     const response = await fetch(`http://localhost:8080/userlist/`)
 
-//       const records = await response.json()
-//       setUsersRecords(records)
-//     }
+  //     if (!response.ok) {
+  //       const message = `An error occurred: ${response.statusText}`
+  //       window.alert(message)
+  //       return
+  //     }
 
-//     getRecords()
+  //     const records = await response.json()
+  //     setUsersRecords(records)
+  //   }
 
-//     return
-//   }, [userRecords.length]
-  
-//   )
+  //   getRecords()
+
+  //   return
+  // }, [userRecords.length]
+
+  // )
 
   // This method will delete a record
   async function deleteRecord(id) {
