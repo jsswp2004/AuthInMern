@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
 
 		const user = await User.findOne({ email: req.body.email });
 		if (user)
-			return res
+			return res 
 				.status(409)
 				.send({ message: "User with given email already Exist!" });
 
