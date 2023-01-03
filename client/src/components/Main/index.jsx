@@ -18,7 +18,7 @@ const Main = () => {
         <div className={styles.header}>
           <div className={styles.headerItem}>
             <img src={logo} className={styles.App_logo} alt="logo" />{' '}
-            <h3 style={{ color: 'white', marginTop: '0px', marginBottom:'0px', paddingTop: '5px' }}> POEHR</h3>
+            <h3 style={{color:'white' , marginTop: '0px', marginBottom: '0px', paddingTop:'10px', paddingLeft:'5px' }}> POEHR</h3>
           </div>
 
           <ul className={styles.navigation}>
