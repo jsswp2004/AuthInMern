@@ -13,15 +13,15 @@ const Main = () => {
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
         {/* <div className={styles.header_logo}> */}
-          <img src={logo} className={styles.App_logo} alt="logo" />
-          <h3 style={{ color: 'white'}}>
-            {' '}
-            POEHR
-          </h3>
+
         {/* </div> */}
-        <div className={styles.header_navbar}>
-          {' '}
-          <ul style={{ marginBottom: '0px', verticalAlign: 'bottom' }}>
+        <div className={styles.header}>
+          <div className={styles.headerItem}>
+            <img src={logo} className={styles.App_logo} alt="logo" />{' '}
+            <h3 style={{ color: 'white', marginTop: '0px', marginBottom:'0px', paddingTop: '5px' }}> POEHR</h3>
+          </div>
+
+          <ul className={styles.navigation}>
             <li className={styles.navbar_list}>
               <Link to="/create">Registration</Link>
             </li>
@@ -34,12 +34,15 @@ const Main = () => {
             <li className={styles.navbar_list}>
               <a href="#about">About </a>
             </li>
+            <li className={styles.navbar_list_exit}>
+              <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
+            </li>
           </ul>
-        </div>
 
-        <button className={styles.white_btn} onClick={handleLogout}>
-          <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
-        </button>
+          {/* <button className={styles.white_btn} onClick={handleLogout}>
+            <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
+          </button> */}
+        </div>
       </nav>
     </div>
   )
