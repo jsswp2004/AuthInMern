@@ -14,6 +14,7 @@ const Main = () => {
 					Logout
 				</button>
 			</nav>
+			
 		</div>
 	);
 };
