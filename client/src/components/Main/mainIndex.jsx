@@ -1,5 +1,6 @@
 import styles from './styles.module.css'
 import LogoutIcon from '@mui/icons-material/Logout'
+import logo from '../shared/images/logoPOWER.png'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
@@ -92,11 +93,16 @@ const Main = () => {
     // <div className='main_container'>
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
-        <h1>POEHR</h1>
-        <button className={styles.white_btn} >
+        <div className={styles.header_logo}>
+          <img src={logo} className={styles.App_logo} alt="poehr" />
+          <h1>POEHR</h1>
+        </div>
+        
+        <button className={styles.white_btn}>
           {/* Logout */}
-          <LogoutIcon className={styles.tooltip} onClick={handleLogout}>Log Out
-          <span className={styles.tooltiptext}>Exit</span>
+          <LogoutIcon className={styles.tooltip} onClick={handleLogout}>
+            Log Out
+            <span className={styles.tooltiptext}>Exit</span>
           </LogoutIcon>
         </button>
       </nav>
