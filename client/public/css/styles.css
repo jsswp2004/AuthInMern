@@ -1,98 +1,187 @@
 /*Main Page*/
 .navbar {
-	width: 100%;
-	height: 40px;
-	background-color: #535353;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  background-color: #535353;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar h3 {
-	color: white;
-	font-size: 20px;
-	margin-left: 0px;
-    margin-top: 10px;
-    margin-right: 0px;
-    margin-bottom: 0px;
+  color: white;
+  font-size: 20px;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-right: 0px;
+  margin-bottom: 0px;
 }
 
 .white_btn {
-	border: none;
-	outline: none;
-	padding: 5px 0;
-	background-color: red;
-	color: white;
-	border-radius: 20px;
-	width: 40px;
-	font-weight: bold;
-	font-size: 14px;
-	cursor: pointer;
-	margin-right: 20px;
+  border: none;
+  outline: none;
+  padding: 5px 0;
+  background-color: red;
+  color: white;
+  border-radius: 20px;
+  width: 40px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 20px;
 }
 
 .main_container {
-	width: 100%;
-	min-height: 100vh;
-	background-color: #f5f5f5;
-	display: flex;
-	/* align-items: center; */
-	justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
 }
 
 .tooltip {
-	position: relative;
-	display: inline-block;
-	border-bottom: 1px dotted black;
-  }
-  
-  .tooltip .tooltiptext {
-	visibility: hidden;
-	width: 120px;
-	background-color: black;
-	color: #fff;
-	text-align: center;
-	border-radius: 2px;
-	padding: 5px 0;
-  
-	/* Position the tooltip */
-	position: absolute;
-	z-index: 1;
-  }
-  
-  .tooltip:hover .tooltiptext {
-	visibility: visible;
-  }
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 5px 0;
 
-  .header_logo {
-	float: left;
-	width: 75%;
-	display: flex;
-	padding-top: 0px;
-	text-align: center;
-  }
-  
-  .App_logo {
-	animation: App_logo_spin infinite 20s linear;
-	/* max-height: 5vmin;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.header_logo {
+  float: left;
+  width: 75%;
+  display: flex;
+  padding-top: 0px;
+  text-align: center;
+}
+
+.App_logo {
+  animation: App_logo_spin infinite 20s linear;
+  /* max-height: 5vmin;
 	min-height: 4vmin; */
-	pointer-events: none;
-	/* max-width: 100%;
+  pointer-events: none;
+  /* max-width: 100%;
 	font-size: 0.5em; */
-	/* height: auto;  */
-	padding: 2px;
-	width: 40px;
-	height: 40px;
-	/* position:absolute; */
+  /* height: auto;  */
+  padding: 2px;
+  width: 40px;
+  height: 40px;
+  /* position:absolute; */
+}
+
+@keyframes App_logo_spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  @keyframes App_logo_spin {
-	from {
-	  transform: rotate(0deg);
-	}
-	to {
-	  transform: rotate(360deg);
-	}
+  to {
+    transform: rotate(360deg);
   }
+}
+
 /*Main Page End*/
+
+/*Grid css*/
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header header header"
+    "menu main main main main main main main"
+    "footer footer footer footer footer footer footer footer";
+  grid-template-columns: repeat(8, minmax(100px, 1fr));
+  /* repeat(10, 1fr); */
+  /* grid-template-rows:  repeat(3,auto); */
+  /* grid-auto-rows: minmax(10px, auto); */
+  column-gap: 2px;
+  row-gap: 1px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px;
+  /* height: 100vh;  */
+}
+
+.item1 {
+  grid-area: header;
+  grid-column: 1 / span all;
+  background-color: #eeeeee;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px 0;
+  margin: 0px;
+  display: flex;
+}
+
+.item2 {
+  grid-area: menu;
+  grid-row: 2 / span all;
+  background-color: #6d6d6c;
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  height: calc(100vh - 60px);
+}
+.item3 {
+  grid-area: main;
+  grid-column: 2 / span all;
+  top: 0%;
+  bottom: 0%;
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px 0;
+  margin: 0px;
+  height: calc(100vh - 110px);
+}
+/*Grid End*/
+
+/* table styles */
+.table .table-striped {
+  /* background-color: #fff;
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+	border-spacing: 0;*/
+  display: table;
+  table-layout: fixed;
+  width: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.trStyles {
+  /* width: auto; */
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: none;
+  /* display: flex; */
+}
+
+tbody tr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/* table styles end*/

@@ -42,9 +42,9 @@ const Main = () => {
     async function getRecords() {
       const url = 'http://localhost:8080/api/userlist'
       const { data: res } = await axios.get(url, data)
-    
-      const userList = res.data;
-      setUsersRecords(userList);
+
+      const userList = res.data
+      setUsersRecords(userList)
       // window.location = '/'
     }
 
@@ -62,7 +62,6 @@ const Main = () => {
   //   // An error occurred, so we will handle it here
   //   console.error(error);
   // });
-
 
   //     const response = await fetch(`http://localhost:8080/userlist/`)
 
@@ -108,36 +107,40 @@ const Main = () => {
 
   console.log(usersList())
   return (
-    <div className='main_container'>
-    {/* //<div className={styles.main_container}> */}
-      <nav className='navbar'>
-        <div className='header_logo'>
-          <img src={logo} className='App_logo' alt="poehr" />
-          <h3>POEHR</h3>
+    
+      <div className="grid-container">
+        <div className="item1">
+          <nav className="navbar">
+            <div className="header_logo">
+              <img src={logo} className="App_logo" alt="poehr" />
+              <h3>POEHR</h3>
+            </div>
+
+            <button className="white_btn">
+              {/* Logout */}
+              <LogoutIcon className="tooltip" onClick={handleLogout}>
+                <span className="tooltiptext">Exit</span>
+              </LogoutIcon>
+            </button>
+          </nav>
         </div>
-        
-        <button className='white_btn'>
-          {/* Logout */}
-          <LogoutIcon className='tooltip' onClick={handleLogout}>
-            
-            <span className='tooltiptext'>Exit</span>
-          </LogoutIcon>
-        </button>
-      </nav>
-      <div className="item3">
-        <table className="table table-striped" style={{ marginTop: 20 }}>
-          <thead>
-            <tr>
-              <th>FirstName</th>
-              <th>Lastname</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{usersList()}</tbody>
-        </table>
-      </div>
-    </div>
+        <div className="item2"></div>
+
+        <div className="item3">
+          <table className="table table-striped" style={{ marginTop: 20 }}>
+            <thead>
+              <tr>
+                <th>FirstName</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>{usersList()}</tbody>
+          </table>
+        </div>
+      </div> 
+    
   )
 }
 
