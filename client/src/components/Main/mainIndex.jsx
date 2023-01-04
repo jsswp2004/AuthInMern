@@ -1,7 +1,9 @@
 import styles from './styles.module.css'
+import LogoutIcon from '@mui/icons-material/Logout'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+
 // import Navbar from '../navigation/navbar'
 
 const Users = (props) => (
@@ -35,14 +37,14 @@ const Main = () => {
   const [userRecords, setUsersRecords] = useState([])
 
   // This method fetches the records from the database.
-  useEffect(() => {
-    async function getRecords() {
-      const url = 'http://localhost:8080/api/userlist'
-      const { data: res } = await axios.get(url, data)
-      window.location = '/'
-    }
-    getRecords()
-  }, [data, userRecords.length])
+  // useEffect(() => {
+  //   async function getRecords() {
+  //     const url = 'http://localhost:8080/api/userlist'
+  //     const { data: res } = await axios.get(url, data)
+  //     window.location = '/'
+  //   }
+  //   getRecords()
+  // }, [data, userRecords.length])
 
   //     const response = await fetch(`http://localhost:8080/userlist/`)
 
@@ -64,37 +66,41 @@ const Main = () => {
   // )
 
   // This method will delete a record
-  async function deleteRecord(id) {
-    await fetch(`http://localhost:8080/userlist/${id}`, {
-      method: 'DELETE',
-    })
+  // async function deleteRecord(id) {
+  //   await fetch(`http://localhost:8080/userlist/${id}`, {
+  //     method: 'DELETE',
+  //   })
 
-    const newRecords = userRecords.filter((el) => el._id !== id)
-    setUsersRecords(newRecords)
-  }
+  //   const newRecords = userRecords.filter((el) => el._id !== id)
+  //   setUsersRecords(newRecords)
+  // }
 
   // This method will map out the records on the table
-  function usersList() {
-    return userRecords.map((record) => {
-      return (
-        <Users
-          record={record}
-          deleteRecord={() => deleteRecord(record._id)}
-          key={record._id}
-        />
-      )
-    })
-  }
+  // function usersList() {
+  //   return userRecords.map((record) => {
+  //     return (
+  //       <Users
+  //         record={record}
+  //         deleteRecord={() => deleteRecord(record._id)}
+  //         key={record._id}
+  //       />
+  //     )
+  //   })
+  // }
 
   return (
+    // <div className='main_container'>
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
         <h1>POEHR</h1>
-        <button className={styles.white_btn} onClick={handleLogout}>
-          Logout
+        <button className={styles.white_btn} >
+          {/* Logout */}
+          <LogoutIcon className={styles.tooltip} onClick={handleLogout}>Log Out
+          <span className={styles.tooltiptext}>Exit</span>
+          </LogoutIcon>
         </button>
       </nav>
-      <div className="item3">
+      {/* <div className="item3">
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
@@ -106,7 +112,7 @@ const Main = () => {
           </thead>
           <tbody>{usersList()}</tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   )
 }

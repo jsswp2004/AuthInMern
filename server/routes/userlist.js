@@ -24,9 +24,10 @@ userlist.get("/", async (req, res) => {
 	// 	res.status(500).send({ message: "Internal Server Error" });
 	// }
     try {
-        const user = await User.find();
-        res.status(200).send({ data: user, message: "User list" });
-        console.log(user)
+        const users = await User.find();
+		res.status(200).send({ data: user, message: "User list" });
+		return(users)
+        // console.log(user)
     }
     catch (error) {
         res.status(500).send({ message: "Internal Server Error" });
