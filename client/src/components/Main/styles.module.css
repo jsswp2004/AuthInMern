@@ -59,3 +59,35 @@
   .tooltip:hover .tooltiptext {
 	visibility: visible;
   }
+
+
+  .header_logo {
+	float: left;
+	width: 75%;
+	display: flex;
+	padding-top: 3px;
+	text-align: center;
+  }
+  
+  .App_logo {
+	animation: App_logo_spin infinite 20s linear;
+	/* max-height: 5vmin;
+	min-height: 4vmin; */
+	pointer-events: none;
+	/* max-width: 100%;
+	font-size: 0.5em; */
+	/* height: auto;  */
+	padding: 2px;
+	width: 40px;
+	height: 40px;
+	/* position:absolute; */
+  }
+  
+  @keyframes App_logo_spin {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(360deg);
+	}
+  }
