@@ -45,7 +45,7 @@ const Main = () => {
     
       const userList = res.data;
       setUsersRecords(userList);
-      window.location = '/'
+      // window.location = '/'
     }
 
     getRecords()
@@ -106,7 +106,7 @@ const Main = () => {
     })
   }
 
-  console.log(userRecords)
+  console.log(usersList())
   return (
     <div className='main_container'>
     {/* //<div className={styles.main_container}> */}

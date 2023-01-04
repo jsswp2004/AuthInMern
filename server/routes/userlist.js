@@ -25,7 +25,7 @@ userlist.get("/", async (req, res) => {
 	// }
     try {
         const users = await User.find();
-		res.status(200).send({ data: user, message: "User list" });
+		res.status(200).send({ data: users, message: "User list" });
 		return(users)
         // console.log(users)
     }
