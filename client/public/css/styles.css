@@ -151,11 +151,34 @@
 /*Grid End*/
 
 /* table styles */
+.table {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+  }
+
+  .table td, .table th {
+	border: 1px solid #ddd;
+	padding: 8px;
+  }
+
+  .table tr:nth-child(even){background-color: #f2f2f2;}
+   .table tr:hover {background-color: #ddd;}
+
+   .table th {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: left;
+	background-color: #3097cf;
+	color: white;
+  }
 .table .table-striped {
   /* background-color: #fff;
-	border: 1px solid #ddd;
-	border-collapse: collapse;
+	
+
 	border-spacing: 0;*/
+  /* border: 1px solid rgb(75, 74, 74); */
+  border-collapse: collapse;
   display: table;
   table-layout: fixed;
   width: auto;
@@ -183,5 +206,12 @@ tbody tr {
   padding-left: 0px;
   padding-right: 0px;
 }
-
+thead tr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
 /* table styles end*/

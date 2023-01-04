@@ -116,18 +116,21 @@ const Main = () => {
               <h3>POEHR</h3>
             </div>
 
-            <button className="white_btn">
+            <button className="btn btn-danger btn-sm" onClick={handleLogout}>
               {/* Logout */}
-              <LogoutIcon className="tooltip" onClick={handleLogout}>
-                <span className="tooltiptext">Exit</span>
-              </LogoutIcon>
+              {/* <LogoutIcon className="tooltip" >
+                
+            </LogoutIcon> */}
+            <i class="fa fa-sign-out fa-sm" aria-hidden="true">
+              <span className="tooltiptext">Exit</span>
+              </i>
             </button>
           </nav>
         </div>
         <div className="item2"></div>
 
         <div className="item3">
-          <table className="table table-striped" style={{ marginTop: 20 }}>
+          <table className="table table-striped" >
             <thead>
               <tr>
                 <th>FirstName</th>
