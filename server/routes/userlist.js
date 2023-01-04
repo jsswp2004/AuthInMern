@@ -27,12 +27,13 @@ userlist.get("/", async (req, res) => {
         const users = await User.find();
 		res.status(200).send({ data: user, message: "User list" });
 		return(users)
-        // console.log(user)
+        // console.log(users)
     }
     catch (error) {
         res.status(500).send({ message: "Internal Server Error" });
     }
-    
+    // console.log(users)
+	// userlist()
 });
 
 module.exports = userlist;
