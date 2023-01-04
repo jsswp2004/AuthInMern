@@ -38,14 +38,31 @@ const Main = () => {
   const [userRecords, setUsersRecords] = useState([])
 
   // This method fetches the records from the database.
-  // useEffect(() => {
-  //   async function getRecords() {
-  //     const url = 'http://localhost:8080/api/userlist'
-  //     const { data: res } = await axios.get(url, data)
-  //     window.location = '/'
-  //   }
-  //   getRecords()
-  // }, [data, userRecords.length])
+  useEffect(() => {
+    async function getRecords() {
+      const url = 'http://localhost:8080/api/userlist'
+      const { data: res } = await axios.get(url, data)
+    
+      const userList = res.data;
+      setUsersRecords(userList);
+      window.location = '/'
+    }
+
+    getRecords()
+  }, [data, userRecords.length])
+
+  // axios.get('/api/users')
+  // .then(response => {
+  //   // The server-side script returned a successful response,
+  //   // so we can use the data to update the user list
+  //   const userList = response.data;
+  //   updateUserList(userList);
+  // })
+  // .catch(error => {
+  //   // An error occurred, so we will handle it here
+  //   console.error(error);
+  // });
+
 
   //     const response = await fetch(`http://localhost:8080/userlist/`)
 
@@ -67,46 +84,47 @@ const Main = () => {
   // )
 
   // This method will delete a record
-  // async function deleteRecord(id) {
-  //   await fetch(`http://localhost:8080/userlist/${id}`, {
-  //     method: 'DELETE',
-  //   })
+  async function deleteRecord(id) {
+    await fetch(`http://localhost:8080/userlist/${id}`, {
+      method: 'DELETE',
+    })
 
-  //   const newRecords = userRecords.filter((el) => el._id !== id)
-  //   setUsersRecords(newRecords)
-  // }
+    const newRecords = userRecords.filter((el) => el._id !== id)
+    setUsersRecords(newRecords)
+  }
 
   // This method will map out the records on the table
-  // function usersList() {
-  //   return userRecords.map((record) => {
-  //     return (
-  //       <Users
-  //         record={record}
-  //         deleteRecord={() => deleteRecord(record._id)}
-  //         key={record._id}
-  //       />
-  //     )
-  //   })
-  // }
+  function usersList() {
+    return userRecords.map((record) => {
+      return (
+        <Users
+          record={record}
+          deleteRecord={() => deleteRecord(record._id)}
+          key={record._id}
+        />
+      )
+    })
+  }
 
+  console.log(userRecords)
   return (
-    // <div className='main_container'>
-    <div className={styles.main_container}>
-      <nav className={styles.navbar}>
-        <div className={styles.header_logo}>
-          <img src={logo} className={styles.App_logo} alt="poehr" />
-          <h1>POEHR</h1>
+    <div className='main_container'>
+    {/* //<div className={styles.main_container}> */}
+      <nav className='navbar'>
+        <div className='header_logo'>
+          <img src={logo} className='App_logo' alt="poehr" />
+          <h3>POEHR</h3>
         </div>
         
-        <button className={styles.white_btn}>
+        <button className='white_btn'>
           {/* Logout */}
-          <LogoutIcon className={styles.tooltip} onClick={handleLogout}>
-            Log Out
-            <span className={styles.tooltiptext}>Exit</span>
+          <LogoutIcon className='tooltip' onClick={handleLogout}>
+            
+            <span className='tooltiptext'>Exit</span>
           </LogoutIcon>
         </button>
       </nav>
-      {/* <div className="item3">
+      <div className="item3">
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
@@ -118,7 +136,7 @@ const Main = () => {
           </thead>
           <tbody>{usersList()}</tbody>
         </table>
-      </div> */}
+      </div>
     </div>
   )
 }

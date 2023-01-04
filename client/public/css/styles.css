@@ -1,37 +1,98 @@
 /*Main Page*/
-.main_container {
-	width: 100%;
-	min-height: 100vh;
-	background-color: #f5f5f5;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 .navbar {
 	width: 100%;
-	height: 70px;
-	background-color: #3bb19b;
+	height: 40px;
+	background-color: #535353;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.navbar h1 {
+.navbar h3 {
 	color: white;
-	font-size: 25px;
-	margin-left: 20px;
+	font-size: 20px;
+	margin-left: 0px;
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
 
 .white_btn {
 	border: none;
 	outline: none;
-	padding: 12px 0;
-	background-color: white;
+	padding: 5px 0;
+	background-color: red;
+	color: white;
 	border-radius: 20px;
-	width: 120px;
+	width: 40px;
 	font-weight: bold;
 	font-size: 14px;
 	cursor: pointer;
 	margin-right: 20px;
 }
+
+.main_container {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #f5f5f5;
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 5px 0;
+  
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+	visibility: visible;
+  }
+
+
+  .header_logo {
+	float: left;
+	width: 75%;
+	display: flex;
+	padding-top: 0px;
+	text-align: center;
+  }
+  
+  .App_logo {
+	animation: App_logo_spin infinite 20s linear;
+	/* max-height: 5vmin;
+	min-height: 4vmin; */
+	pointer-events: none;
+	/* max-width: 100%;
+	font-size: 0.5em; */
+	/* height: auto;  */
+	padding: 2px;
+	width: 40px;
+	height: 40px;
+	/* position:absolute; */
+  }
+  
+  @keyframes App_logo_spin {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(360deg);
+	}
+  }
 /*Main Page End*/
