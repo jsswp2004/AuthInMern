@@ -17,7 +17,7 @@ export default function Navbar() {
             <Link to="/visitList">Schedule</Link>
           </li>
           <li className="body-navbarlist">
-            <Link to="/usersList">User List</Link>
+            <Link to="/userlist">User List</Link>
           </li>
         </ul>
         <div>
