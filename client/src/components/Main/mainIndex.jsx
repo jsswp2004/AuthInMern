@@ -49,6 +49,8 @@ const Main = () => {
     }
 
     getRecords()
+
+
   }, [data, userRecords.length])
 
   // axios.get('/api/users')
@@ -123,7 +125,7 @@ const Main = () => {
   //     setUsersRecords(newRecords)
   // }
 
-  useEffect(() => {
+  // useEffect(() => {
     // DELETE request using axios with async/await
     async function deleteRecord(id) {
         await axios.delete(`http://localhost:8080/api/userlist/${id}`)
@@ -133,12 +135,16 @@ const Main = () => {
         .catch(error => {
           console.log(error);
         });
+        // deleteRecord();
         const newRecords = userRecords.filter((el) => el._id !== id)
         setUsersRecords(newRecords)
+
     }
 
-    deleteRecord();
-});
+//     deleteRecord();
+//             const newRecords = userRecords.filter((el) => el._id !== id)
+//         setUsersRecords(newRecords)
+// }, [userRecords]);
 
   // This method will map out the records on the table
   function usersList() {
@@ -158,26 +164,20 @@ const Main = () => {
     
       <div className="grid-container">
         <div className="item1">
-          {/* <nav className="navbar"> */}
             <div className="header_logo">
               <img src={logo} className="App_logo" alt="poehr" />
               <h3>POEHR</h3>
             </div>
 
             <button className="btn btn-danger btn-sm btn-rounded" onClick={handleLogout}>
-              {/* Logout */}
-              {/* <LogoutIcon className="tooltip" >
-                
-            </LogoutIcon> */}
             <i className="fa fa-sign-out fa-lg" aria-hidden="true" title='Exit'>
-              {/* <span className="tooltiptext">Exit</span> */}
               </i>
             </button>
-          {/* </nav> */}
         </div>
         <div className="item2"></div>
 
-        <div className="item3">
+      <div className="item3">
+        <h3>Users</h3>
           <table className="table table-striped" >
             <thead>
               <tr>
