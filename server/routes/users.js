@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.put("/:userId", async (req, res) => {
+router.put("/edit/:userId", async (req, res) => {
     const userId = req.params._id;
     try {
         const user = await User.updateOne(userId);
