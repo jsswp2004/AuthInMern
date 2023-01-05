@@ -134,20 +134,20 @@ const Main = () => {
     setUsersRecords(newRecords)
   }
 
-  const [user, setUserData] = useState()
-  async function updateUser(id) {
-    await axios
-      .put(`http://localhost:8080/api/userlist/${id}`)
-      .then(() => {
-        console.log('update successful')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+  // const [user, setUserData] = useState()
+  // async function updateUser(id) {
+  //   await axios
+  //     .put(`http://localhost:8080/api/userlist/${id}`)
+  //     .then(() => {
+  //       console.log('update successful')
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
     
-    const newRecord = userRecords.filter((el) => el._id !== id)
-    setUserData(newRecord)
-  }
+  //   const newRecord = userRecords.filter((el) => el._id !== id)
+  //   setUserData(newRecord)
+  // }
 
   // This method will map out the records on the table
   function usersList() {
