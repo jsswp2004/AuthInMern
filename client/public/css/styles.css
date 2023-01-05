@@ -238,3 +238,42 @@ thead tr {
   padding-right: 0px;
 } */
 /* table styles end*/
+
+/*navbar css*/
+.body-navbar {
+  display: block;
+  margin: 0px;
+  font-weight: 200;
+  background-color: #6d6d6c;
+  /* min-width:10%; */
+  /* max-width:15%; */
+  /* height: 100vh; */
+  padding: 5px 5px;
+}
+
+.body-navbarlist {
+  display: block;
+  margin: 0px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  background-color: #6d6d6c;
+  padding: 0px 0px;
+  width: auto;
+}
+
+.header-bodynavbar {
+  height: auto;
+  /* width:auto; */
+  /* position:absolute; */
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.body-navbar a:link a:visited {
+   color: white;
+}
+
+/*navbar css end*/
