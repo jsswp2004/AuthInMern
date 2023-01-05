@@ -20,9 +20,9 @@ const EditUser = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/users";
-			const { data: res } = await axios.post(url, data);
-			navigate("/login");
+			const url = "http://localhost:8080/edit/:userId";
+			const { data: res } = await axios.put(url, data);
+			navigate("/edit");
 			console.log(res.message);
 		} catch (error) {
 			if (

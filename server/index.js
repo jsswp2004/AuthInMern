@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const connection = require("./db");
 const userRoutes = require("./routes/users");
+const editRoutes = require("./routes/edit");
 const authRoutes = require("./routes/login");
 const userListRoutes = require("./routes/userlist");
 
@@ -16,6 +17,7 @@ app.use(cors());
 
 // routes
 app.use("/api/users", userRoutes);
+app.use("/api/edit", editRoutes);
 app.use("/api/login", authRoutes);
 app.use("/api/userlist", userListRoutes);
 
