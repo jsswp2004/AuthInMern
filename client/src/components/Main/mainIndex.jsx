@@ -1,11 +1,8 @@
-import styles from './styles.module.css'
-import LogoutIcon from '@mui/icons-material/Logout'
 import logo from '../shared/images/logoPOWER.png'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
-// import Navbar from '../navigation/navbar'
+import Navbar from '../Navigation/navbar'
 
 const Users = (props) => (
   <tr>
@@ -49,8 +46,6 @@ const Main = () => {
     }
 
     getRecords()
-
-
   }, [data, userRecords.length])
 
   // axios.get('/api/users')
@@ -120,31 +115,39 @@ const Main = () => {
   //     .catch(error => {
   //       console.log(error);
   //     });
-    
+
   //     const newRecords = userRecords.filter((el) => el._id !== id)
   //     setUsersRecords(newRecords)
   // }
 
-  // useEffect(() => {
-    // DELETE request using axios with async/await
-    async function deleteRecord(id) {
-        await axios.delete(`http://localhost:8080/api/userlist/${id}`)
-        .then(() => {
-          console.log('delete successful');
-        })
-        .catch(error => {
-          console.log(error);
-        });
-        // deleteRecord();
-        const newRecords = userRecords.filter((el) => el._id !== id)
-        setUsersRecords(newRecords)
+  async function deleteRecord(id) {
+    await axios
+      .delete(`http://localhost:8080/api/userlist/${id}`)
+      .then(() => {
+        console.log('delete successful')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    
+    const newRecords = userRecords.filter((el) => el._id !== id)
+    setUsersRecords(newRecords)
+  }
 
-    }
-
-//     deleteRecord();
-//             const newRecords = userRecords.filter((el) => el._id !== id)
-//         setUsersRecords(newRecords)
-// }, [userRecords]);
+  const [user, setUserData] = useState()
+  async function updateUser(id) {
+    await axios
+      .put(`http://localhost:8080/api/userlist/${id}`)
+      .then(() => {
+        console.log('update successful')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    
+    const newRecord = userRecords.filter((el) => el._id !== id)
+    setUserData(newRecord)
+  }
 
   // This method will map out the records on the table
   function usersList() {
@@ -159,39 +162,45 @@ const Main = () => {
     })
   }
 
-  console.log(usersList())
+  // console.log(usersList())
   return (
-    
-      <div className="grid-container">
-        <div className="item1">
-            <div className="header_logo">
-              <img src={logo} className="App_logo" alt="poehr" />
-              <h3>POEHR</h3>
-            </div>
-
-            <button className="btn btn-danger btn-sm btn-rounded" onClick={handleLogout}>
-            <i className="fa fa-sign-out fa-lg" aria-hidden="true" title='Exit'>
-              </i>
-            </button>
+    <div className="grid-container">
+      <div className="item1">
+        <div className="header_logo">
+          <img src={logo} className="App_logo" alt="poehr" />
+          <h3>POEHR</h3>
         </div>
-        <div className="item2"></div>
+
+        <button
+          className="btn btn-danger btn-sm btn-rounded"
+          onClick={handleLogout}
+        >
+          <i
+            className="fa fa-sign-out fa-lg"
+            aria-hidden="true"
+            title="Exit"
+          ></i>
+        </button>
+      </div>
+      <div className="item2">
+        <Navbar/> 
+      </div>
 
       <div className="item3">
         <h3>Users</h3>
-          <table className="table table-striped" >
-            <thead>
-              <tr>
-                <th>FirstName</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>{usersList()}</tbody>
-          </table>
-        </div>
-      </div> 
-    
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>FirstName</th>
+              <th>Lastname</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>{usersList()}</tbody>
+        </table>
+      </div>
+    </div>
   )
 }
 
