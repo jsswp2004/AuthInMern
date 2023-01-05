@@ -110,18 +110,35 @@ const Main = () => {
   //   // window.location = '/'
   // }
 
-  async function deleteRecord(id) {
-    axios.delete(`http://localhost:8080/api/userlist/${id}`)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  // async function deleteRecord(id) {
+  //   axios.delete(`http://localhost:8080/api/userlist/${id}`)
+  //     .then(response => {
+  //       console.log(response);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
     
-      const newRecords = userRecords.filter((el) => el._id !== id)
-      setUsersRecords(newRecords)
-  }
+  //     const newRecords = userRecords.filter((el) => el._id !== id)
+  //     setUsersRecords(newRecords)
+  // }
+
+  useEffect(() => {
+    // DELETE request using axios with async/await
+    async function deleteRecord(id) {
+        await axios.delete(`http://localhost:8080/api/userlist/${id}`)
+        .then(() => {
+          console.log('delete successful');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+        const newRecords = userRecords.filter((el) => el._id !== id)
+        setUsersRecords(newRecords)
+    }
+
+    deleteRecord();
+});
 
   // This method will map out the records on the table
   function usersList() {
