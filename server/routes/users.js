@@ -24,16 +24,12 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.put("/edit/:userId", async (req, res) => {
-    const userId = req.params._id;
-    try {
-        const user = await User.updateOne(userId);
-        res.status(200).send({ data: user, message: "User updated" });
-        return (user)
-    }
-    catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
-    }
+router.put("/:userId", async (req, res) => {
+	User.findByIdAndUpdate(req.params.userId, req.body)
+		.then((user) => res.json({ msg: "User updated successfully" }))
+		.catch((err) =>
+			res.status(400).json({ error: "Unable to update the database" })
+		);
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams} from "react-router-dom";
 // import styles from "./styles.module01.css";
 
 const EditUser = () => {
@@ -12,28 +12,44 @@ const EditUser = () => {
 	});
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
+	const { id } = useParams();
 
-	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
+	useEffect(() => {
+		axios
+			.get(`http://localhost:8080/api/users/${id}`)
+			.then((res) => setData(
+				{
+					firstName: res.data.firstName,
+					lastName: res.data.lastName,
+					email: res.data.email,
+					password: res.data.password,
+				}))
+			.catch((err) => console.log('Update error'));
+	}, [id]);
+
+	const handleChange = (e) => {
+		setData({ ...data, [e.target.name]: e.target.value });
 	};
+
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			const url = "http://localhost:8080/edit/:userId";
-			const { data: res } = await axios.put(url, data);
-			navigate("/edit");
-			console.log(res.message);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
+		const data = {
+			firstName: data.firstName,
+			lastName: data.lastName,
+			email: data.email,
+			password: data.password,
+
+		};
+		axios
+			.put(`http://localhost:8080/api/users/${id}`, data)
+			.then((res) => {
+				navigate('/login/${id}');
+			})
+			.catch((err) => { console.log('Update error')};
 	};
+
 
 	return (
 		<div className="signup_container">
