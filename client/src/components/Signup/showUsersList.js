@@ -80,7 +80,6 @@ const ShowUsersList = () => {
           <thead className="thead-light">
             <tr>
               <th id="columnName">First Name</th>
-              {/* <th id="columnName">Middle Name</th> */}
               <th id="columnName">Last Name</th>
               <th id="columnName">Email</th>
               <th id="columnName">Role</th>
@@ -99,4 +98,4 @@ const ShowUsersList = () => {
   )
 }
 
-export default ShowUsersList
+export default ShowUsersList;
