@@ -1,7 +1,7 @@
-import styles from './styles.module.css'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import logo from '../../components/shared/images/logoPOWER.png'
+import Navbar from '../navigation/navbar'
 
 const Main = () => {
   const handleLogout = () => {
@@ -9,41 +9,48 @@ const Main = () => {
     window.location.reload()
   }
 
+
+
   return (
-    <div className={styles.main_container}>
-      <nav className={styles.navbar}>
-        {/* <div className={styles.header_logo}> */}
+    <div className="grid_container">
+      <div className="item1">
+        <nav className="navbar1">
+          <div className="header">
+            <div className="headerItem">
+              <img src={logo} className="App_logo" alt="logo" />{' '}
+              <h3 id="#header_logotext" className="h3">
+                {' '}
+                POEHR
+              </h3>
+            </div>
 
-        {/* </div> */}
-        <div className={styles.header}>
-          <div className={styles.headerItem}>
-            <img src={logo} className={styles.App_logo} alt="logo" />{' '}
-            <h3 style={{color:'white' , marginTop: '0px', marginBottom: '0px', paddingTop:'10px', paddingLeft:'5px' }}> POEHR</h3>
+            <ul className="navigation">
+              <li className="navbar_list" style={{color: "white"}}>
+                <Link to="/create">Registration</Link>
+              </li>
+              <li className="navbar_list">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="navbar_list">
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li className="navbar_list">
+                <a href="#about">About </a>
+              </li>
+              <li className="navbar_list_exit">
+                <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
+              </li>
+            </ul>
           </div>
+        </nav>
+      </div>
+      <div className="item2">
+        <Navbar />
+      </div>
+      <div className="item3">
+        TEST
 
-          <ul className={styles.navigation}>
-            <li className={styles.navbar_list}>
-              <Link to="/create">Registration</Link>
-            </li>
-            <li className={styles.navbar_list}>
-              <Link to="/">Home</Link>
-            </li>
-            <li className={styles.navbar_list}>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li className={styles.navbar_list}>
-              <a href="#about">About </a>
-            </li>
-            <li className={styles.navbar_list_exit}>
-              <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
-            </li>
-          </ul>
-
-          {/* <button className={styles.white_btn} onClick={handleLogout}>
-            <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
-          </button> */}
-        </div>
-      </nav>
+      </div>
     </div>
   )
 }
