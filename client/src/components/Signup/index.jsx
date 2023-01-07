@@ -10,7 +10,7 @@ const Signup = () => {
     role: '',
     email: '',
     password: '',
-    addedDate: new Date(),
+    addedDate: new Date().toISOString(),
   })
   const [error, setError] = useState('')
   const navigate = useNavigate()
