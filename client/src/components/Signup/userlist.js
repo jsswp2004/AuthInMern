@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom'
 
 const User = (props) => (
     <tr>
-      <td>{props.user.firstName}</td>
-      <td>{props.user.middleName}</td>
-      <td>{props.user.lastName}</td>
-      <td>{props.user.email}</td>
-      <td>{props.user.role}</td>
-      <td>{props.user.addedDate}</td>
-      <td>
+      <td id="columntable">{props.user.firstName}</td>
+      <td id="columntable">{props.user.middleName}</td>
+      <td id="columntable">{props.user.lastName}</td>
+      <td id="columntable">{props.user.email}</td>
+      <td id="columntable">{props.user.role}</td>
+      <td id="columntable">{props.user.addedDate}</td>
+      <td id="columntable">
         <Link className="btn btn-info btn-sm" to={`/edit/${props.user._id}`}>
-          <i className="fa fa-pencil-square-o" aria-hidden="true" />
+          <i className="fa fa-pencil-square-o fa-sm" aria-hidden="true" />
         </Link>{' '}
         <button
           className="btn btn-danger btn-sm"
@@ -20,7 +20,7 @@ const User = (props) => (
             props.deleteRecord(props.user._id)
           }}
         >
-          <i className="fa fa-trash-o" aria-hidden="true" />
+          <i className="fa fa-trash-o fa-sm" aria-hidden="true" />
         </button>
       </td>
     </tr>

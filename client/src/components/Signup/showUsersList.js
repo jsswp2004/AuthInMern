@@ -37,63 +37,61 @@ export default function ShowUsersList() {
 
   return (
     <div className="grid_container">
-    <div className="item1">
-      <nav className="navbar1">
-        <div className="header">
-          <div className="headerItem">
-            <img src={logo} className="App_logo" alt="logo" />{' '}
-            <h3 id="#header_logotext" className="h3">
-              {' '}
-              POEHR
-            </h3>
+      <div className="item1">
+        <nav className="navbar1">
+          <div className="header">
+            <div className="headerItem">
+              <img src={logo} className="App_logo" alt="logo" />{' '}
+              <h3 id="#header_logotext" className="h3">
+                {' '}
+                POEHR
+              </h3>
+            </div>
+
+            <ul className="navigation">
+              <li id="link" className="navbar_list" style={{ color: 'white' }}>
+                <Link to="/create">Registration</Link>
+              </li>
+              <li id="link" className="navbar_list">
+                <Link to="/">Home</Link>
+              </li>
+              <li id="link" className="navbar_list">
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li id="link" className="navbar_list">
+                <Link to="/about">About</Link>
+              </li>
+              <li id="link" className="navbar_list_exit">
+                <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
+              </li>
+            </ul>
           </div>
-
-          <ul className="navigation">
-            <li className="navbar_list" style={{color: "white"}}>
-              <Link to="/create">Registration</Link>
-            </li>
-            <li className="navbar_list">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="navbar_list">
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li className="navbar_list">
-              <a href="#about">About </a>
-            </li>
-            <li className="navbar_list_exit">
-              <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
-            </li>
-          </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>
+      <div className="item2">
+        <Navbar />
+      </div>
+      <div className="item3">
+        <h3>Users</h3>
+        <table className="table">
+          <thead  className="thead-light">
+            <tr>
+              <th id="columnName">First Name</th>
+              <th id="columnName">Middle Name</th>
+              <th id="columnName">Last Name</th>
+              <th id="columnName">Email</th>
+              <th id="columnName">Role</th>
+              <th id="columnName">Added Date</th>
+              <th id="columnName">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <User user={user} deleteRecord={deleteRecord} key={user._id} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div className="item2">
-      <Navbar />
-    </div>
-    <div className="item3">
-    <h3>Users</h3>
-      <table className="table">
-        <thead className="thead-light">
-          <tr>
-            <th>First Name</th>
-            <th>Middle Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Added Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <User user={user} deleteRecord={deleteRecord} key={user._id} />
-          ))}
-        </tbody>
-      </table>
-
-    </div>
-  </div>
-
   )
 }

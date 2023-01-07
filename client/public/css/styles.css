@@ -173,6 +173,10 @@
   margin: 0px;
   height: calc(100vh - 110px);
 }
+
+#link a:visited {
+  color: white;
+}
 /*Grid css end*/
 
 /*Navbar css*/
@@ -200,7 +204,7 @@
   left: 0px;
 }
 
-.body_navbarlist a:link a:visited {
+#link a:link a:visited {
   color: white;
 }
 
@@ -223,10 +227,23 @@
   font-size: 14px;
 }
 
+#columntable {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 0px;
+    padding-left: 2px;
+}
+
+#columnName {
+  padding-top: 2px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 2px;
+}
 .table td,
 .table th {
   border: 1px solid #ddd;
-  padding: 0px;
+  
 }
 
 thead tr {
