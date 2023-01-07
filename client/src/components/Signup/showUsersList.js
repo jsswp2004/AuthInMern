@@ -83,7 +83,7 @@ const ShowUsersList = () => {
               <th id="columnName">Last Name</th>
               <th id="columnName">Email</th>
               <th id="columnName">Role</th>
-              <th id="columnName">Added Date</th>
+              <th id="columnName">Date Added</th>
               <th id="columnName">Actions</th>
             </tr>
           </thead>

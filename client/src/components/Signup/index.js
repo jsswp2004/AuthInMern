@@ -1,17 +1,22 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { format } from 'date-fns'
 import styles from './styles.module.css'
 
 const Signup = () => {
+
+  const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   const [data, setData] = useState({
     firstName: '',
     lastName: '',
     role: '',
     email: '',
     password: '',
-    addedDate: new Date().toISOString(),
+    addedDate: dateAdded,
   })
+  
+  
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
@@ -94,6 +99,16 @@ const Signup = () => {
               onChange={handleChange}
               value={data.password}
               required
+              className={styles.input}
+            />
+            <input
+              type="text"
+              name="dateAdded"
+              onChange={handleChange}
+              value={dateAdded}
+              defaultValue={dateAdded}
+              required
+              readOnly
               className={styles.input}
             />
             {error && <div className={styles.error_msg}>{error}</div>}
