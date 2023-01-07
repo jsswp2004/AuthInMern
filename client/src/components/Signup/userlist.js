@@ -11,7 +11,7 @@ const User = (props) => (
       <td id="columntable">{props.user.role}</td>
       <td id="columntable">{props.user.addedDate}</td>
       <td id="columntable">
-        <Link className="btn btn-info btn-sm" to={`/edit/${props.user._id}`}>
+        <Link className="btn btn-info btn-sm" to={`/editUser/${props.user._id}`}>
           <i className="fa fa-pencil-square-o fa-sm" aria-hidden="true" />
         </Link>{' '}
         <button
@@ -25,6 +25,6 @@ const User = (props) => (
       </td>
     </tr>
   )
-    
+
 
 export default User

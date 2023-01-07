@@ -42,4 +42,15 @@ router.delete('/:id', (req, res) => {
     .catch((err) => res.status(404).json({ error: 'No such a user' }))
 })
 
+// @route GET api/users/:id
+// @description Update user
+// @access Public
+router.put('/:id', (req, res) => {
+  Book.findByIdAndUpdate(req.params.id, req.body)
+    .then(user => res.json({ msg: 'Updated successfully' }))
+    .catch(err =>
+      res.status(400).json({ error: 'Unable to update the Database' })
+    );
+});
+
 module.exports = router
