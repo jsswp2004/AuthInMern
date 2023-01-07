@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const User = (props) => (
     <tr>
       <td id="columntable">{props.user.firstName}</td>
-      <td id="columntable">{props.user.middleName}</td>
+      {/* <td id="columntable">{props.user.middleName}</td> */}
       <td id="columntable">{props.user.lastName}</td>
       <td id="columntable">{props.user.email}</td>
       <td id="columntable">{props.user.role}</td>

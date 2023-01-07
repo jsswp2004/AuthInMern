@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import User from './userlist'
 import axios from 'axios'
 import logo from '../../components/shared/images/logoPOWER.png'
@@ -6,12 +7,13 @@ import Navbar from '../navigation/navbar'
 import { Link } from 'react-router-dom'
 import LogoutIcon from '@mui/icons-material/Logout'
 
-export default function ShowUsersList() {
-  
+const ShowUsersList = () => {
+  let navigate = useNavigate()
   const handleLogout = () => {
     localStorage.removeItem('token')
-    window.location.reload()
+    navigate('/login')
   }
+
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function ShowUsersList() {
             </div>
 
             <ul className="navigation">
-              <li id="link" className="navbar_list" style={{ color: 'white' }}>
+              <li id="link" className="navbar_list">
                 <Link to="/create">Registration</Link>
               </li>
               <li id="link" className="navbar_list">
@@ -60,9 +62,9 @@ export default function ShowUsersList() {
                 <Link to="/contact">Contact</Link>
               </li>
               <li id="link" className="navbar_list">
-                <Link to="/about">About</Link>
+                <a href="#about">About </a>
               </li>
-              <li id="link" className="navbar_list_exit">
+              <li className="navbar_list_exit">
                 <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
               </li>
             </ul>
@@ -75,10 +77,10 @@ export default function ShowUsersList() {
       <div className="item3">
         <h3>Users</h3>
         <table className="table">
-          <thead  className="thead-light">
+          <thead className="thead-light">
             <tr>
               <th id="columnName">First Name</th>
-              <th id="columnName">Middle Name</th>
+              {/* <th id="columnName">Middle Name</th> */}
               <th id="columnName">Last Name</th>
               <th id="columnName">Email</th>
               <th id="columnName">Role</th>
@@ -96,3 +98,5 @@ export default function ShowUsersList() {
     </div>
   )
 }
+
+export default ShowUsersList

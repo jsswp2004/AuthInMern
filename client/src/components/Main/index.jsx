@@ -25,19 +25,19 @@ const Main = () => {
             </div>
 
             <ul className="navigation">
-              <li className="navbar_list" style={{color: "white"}}>
+              <li  id="link" className="navbar_list">
                 <Link to="/create">Registration</Link>
               </li>
-              <li className="navbar_list">
+              <li  id="link" className="navbar_list">
                 <Link to="/">Home</Link>
               </li>
-              <li className="navbar_list">
+              <li  id="link" className="navbar_list">
                 <Link to="/contact">Contact</Link>
               </li>
-              <li className="navbar_list">
+              <li  id="link" className="navbar_list">
                 <a href="#about">About </a>
               </li>
-              <li className="navbar_list_exit">
+              <li  className="navbar_list_exit">
                 <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
               </li>
             </ul>

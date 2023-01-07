@@ -10,6 +10,7 @@ const Signup = () => {
     role: '',
     email: '',
     password: '',
+    addedDate: new Date(),
   })
   const [error, setError] = useState('')
   const navigate = useNavigate()
