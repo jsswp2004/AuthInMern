@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import LogoutIcon from '@mui/icons-material/Logout'
 
 export default function ShowUsersList() {
+  
   const handleLogout = () => {
     localStorage.removeItem('token')
     window.location.reload()
