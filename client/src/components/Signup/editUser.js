@@ -56,7 +56,7 @@ function EditUser(props) {
         const url = `http://localhost:8081/api/users/${id}`;
         axios.put(url, data)
             .then((res) => {
-            setUser(res.data);
+            //setUser(res.data);
             navigate('/userList');
         })
             .catch((err) => {
