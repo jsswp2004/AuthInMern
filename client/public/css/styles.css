@@ -172,6 +172,9 @@
   padding: 0px 0;
   margin: 0px;
   height: calc(100vh - 110px);
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
 }
 
 #link a:visited {
@@ -265,3 +268,7 @@ thead tr {
   color: white;
 }
 /*table css end*/
+
+/*Form css*/
+
+/*Form end*/
