@@ -34,6 +34,15 @@ router.get('/', (req, res) => {
 })
 
 // @route GET api/users/:id
+// @description Get single user by id
+// @access Public
+router.get('/:id', (req, res) => {
+  User.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => res.status(404).json({ nouserfound: 'No User found' }));
+});
+
+// @route GET api/users/:id
 // @description Delete user by id
 // @access Public
 router.delete('/:id', (req, res) => {
@@ -46,7 +55,7 @@ router.delete('/:id', (req, res) => {
 // @description Update user
 // @access Public
 router.put('/:id', (req, res) => {
-  Book.findByIdAndUpdate(req.params.id, req.body)
+  User.findByIdAndUpdate(req.params.id, req.body)
     .then(user => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
       res.status(400).json({ error: 'Unable to update the Database' })
