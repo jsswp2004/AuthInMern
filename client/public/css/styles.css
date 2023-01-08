@@ -270,5 +270,22 @@ thead tr {
 /*table css end*/
 
 /*Form css*/
+.form-grid-container {
+  display: grid;
+  height: auto;
+  align-content: space-evenly;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  background-color: #6d6d6d;
+  padding: 5px;
+  border-radius: 5px;
+}
 
+.form-grid-container > div {
+  background-color: #ffffffcc;
+  text-align: left;
+  padding: 20px 5px;
+  font-size: 14px;
+  border-radius: 10px;
+}
 /*Form end*/

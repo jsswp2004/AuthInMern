@@ -75,7 +75,7 @@ const ShowUsersList = () => {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Users</h3>
+        <h3>Registered Users</h3>
         <table className="table">
           <thead className="thead-light">
             <tr>

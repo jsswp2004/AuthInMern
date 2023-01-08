@@ -98,71 +98,77 @@ function EditUser(props) {
       <div className="item3">
         <h3>Edit User</h3>
         <div className="item3A">
-          
-          <form onSubmit={onSubmit} style={{width:"50%"}}>
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                value={user.firstName}
-                onChange={onChange}
-                className="form-control"
-              />
+          <form onSubmit={onSubmit} style={{ width: '50%' }}>
+            <div className="form-grid-container">
+              <div>
+                <div className="form-group">
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={user.firstName}
+                    onChange={onChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={user.lastName}
+                    onChange={onChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="role">Role</label>
+                  <input
+                    type="text"
+                    name="role"
+                    value={user.role}
+                    onChange={onChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="text"
+                    name="email"
+                    value={user.email}
+                    onChange={onChange}
+                    className="form-control"
+                  />
+                </div>
+                {/* <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="text"
+                    name="password"
+                    value={user.password}
+                    onChange={onChange}
+                    className="form-control"
+                  />
+                </div> */}
+                <div className="form-group">
+                  <label htmlFor="addedDate">Added Date</label>
+                  <input
+                    type="text"
+                    name="addedDate"
+                    value={user.addedDate}
+                    onChange={onChange}
+                    className="form-control"
+                  />
+                </div>
+                <br />
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary">
+                    Update User
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={user.lastName}
-                onChange={onChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="role">Role</label>
-              <input
-                type="text"
-                name="role"
-                value={user.role}
-                onChange={onChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="text"
-                name="email"
-                value={user.email}
-                onChange={onChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="text"
-                name="password"
-                value={user.password}
-                onChange={onChange}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="addedDate">Added Date</label>
-              <input
-                type="text"
-                name="addedDate"
-                value={user.addedDate}
-                onChange={onChange}
-                className="form-control"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Update User
-            </button>
           </form>
         </div>
         <div className="item3B"></div>

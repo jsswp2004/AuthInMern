@@ -16,13 +16,7 @@ const Signup = () => {
     addedDate: dateAdded,
   })
   
-  
   const [error, setError] = useState('')
-  
-
-  // const handleChange = ({ currentTarget: input }) => {
-  //   setData({ ...data, [input.name]: input.value })
-  // }
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
@@ -44,27 +38,6 @@ const Signup = () => {
         setError(error.response.data.message)
       }
     }
-
-    // axios
-    //   .post('http://localhost:8081/api/users', data)
-    //   .then((res) => {
-    //     setData({
-    //       firstName: '',
-    //       lastName: '',
-    //       role: '',
-    //       email: '',
-    //       password: '',
-    //       addedDate: dateAdded,
-    //     })
-    //     navigate('/login')
-        
-    //     console.log(res.data.message)
-    //   })
-    //   .catch((err) => {
-    //     setError('Error in Signup')
-    //     console.log('Error in Signup')
-    //     console.log(err)
-    //   })
   }
       
   return (
@@ -131,7 +104,6 @@ const Signup = () => {
               name="dateAdded"
               onChange={handleChange}
               value={dateAdded}
-              // defaultValue={dateAdded}
               required
               readOnly
               className={styles.input}
