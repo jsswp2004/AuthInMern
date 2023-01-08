@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 import styles from './styles.module.css'
 
 const Signup = () => {
-
+  const navigate = useNavigate()
   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   const [data, setData] = useState({
     firstName: '',
@@ -18,10 +18,14 @@ const Signup = () => {
   
   
   const [error, setError] = useState('')
-  const navigate = useNavigate()
+  
 
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value })
+  // const handleChange = ({ currentTarget: input }) => {
+  //   setData({ ...data, [input.name]: input.value })
+  // }
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
@@ -40,8 +44,29 @@ const Signup = () => {
         setError(error.response.data.message)
       }
     }
-  }
 
+    // axios
+    //   .post('http://localhost:8081/api/users', data)
+    //   .then((res) => {
+    //     setData({
+    //       firstName: '',
+    //       lastName: '',
+    //       role: '',
+    //       email: '',
+    //       password: '',
+    //       addedDate: dateAdded,
+    //     })
+    //     navigate('/login')
+        
+    //     console.log(res.data.message)
+    //   })
+    //   .catch((err) => {
+    //     setError('Error in Signup')
+    //     console.log('Error in Signup')
+    //     console.log(err)
+    //   })
+  }
+      
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
@@ -106,7 +131,7 @@ const Signup = () => {
               name="dateAdded"
               onChange={handleChange}
               value={dateAdded}
-              defaultValue={dateAdded}
+              // defaultValue={dateAdded}
               required
               readOnly
               className={styles.input}
