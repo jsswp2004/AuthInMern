@@ -28,7 +28,7 @@ console.log(id)
           password: res.data.password,
           addedDate: res.data.addedDate,
         })
-        console.log(res.data.firstName, res.data.lastName, res.data.role, res.data.email, res.data.password, res.data.addedDate, res.data._id)
+      
       })
       .catch((err) => {
         console.log('Error from UpdateUserInfo')
