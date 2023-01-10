@@ -12,7 +12,10 @@ export default function Navbar() {
       <div className="header-bodynavbar">
         <ul className="body_navbar">
           <li id="link" className="body_navbarlist">
-            <Link to="/">Patient List</Link>
+            <Link to="/">Home</Link>
+          </li>
+          <li id="link" className="body_navbarlist">
+            <Link to="/patientlist">Patient List</Link>
           </li>
           <li id="link" className="body_navbarlist">
             <Link to="/createClient">Registration</Link>

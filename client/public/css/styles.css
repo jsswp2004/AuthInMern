@@ -176,6 +176,9 @@
   flex-direction: column;
   justify-content: space-between; */
 }
+.item3A {
+display: flex;
+}
 
 #link a:visited {
   color: white;
