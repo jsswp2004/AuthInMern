@@ -122,7 +122,7 @@ function ShowRecordList() {
           </label>
         </div>
 
-        <table className="table table-striped" style={{ marginTop: 20 }}>
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>MRN</th>
