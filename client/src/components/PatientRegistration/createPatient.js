@@ -68,7 +68,7 @@ const CreateRecord = (props) => {
           gender: '',
           race: '',
           dateOfBirth: '',
-          age: age,
+          age: '',
           language: '',
           address: '',
           city: '',
