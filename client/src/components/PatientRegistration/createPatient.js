@@ -44,7 +44,7 @@ const CreateRecord = (props) => {
   }
 
   console.log(record.firstName)
-  
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -84,7 +84,7 @@ const CreateRecord = (props) => {
   
     const racevalueChange = (event) => {
       setraceValue(event.target.value)
-      onChange({ race: event.target.value })
+      // onChange({ race: event.target.value })
       // onChange({ racevalue })
   }
   
@@ -109,17 +109,18 @@ const CreateRecord = (props) => {
       <div className="item3">
       <h3>Patient Registration</h3>
         <div className="item3A">
-        <form onSubmit={onSubmit}>   
+        <form novalidate onSubmit={onSubmit}>   
           <div className="form-grid-container">
             <div className="div-items">
-              <div className="form-group">
+              <div className="forms-group">
                 <div className="form-group">
                   <label htmlFor="firstName">Firstname </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="firstName"
-                    value={record.firstName}
+                      id="firstName"
+                      // value={record.firstName}
+                    defaultValue={record.firstName}
                     onChange={onChange}
                   />
                 </div>
@@ -128,7 +129,7 @@ const CreateRecord = (props) => {
                   <input
                     type="text"
                     id="middleName"
-                    value={record.middleName}
+                    defaultValue={record.middleName}
                     className="form-control"
                     onChange={onChange}
                   />
@@ -139,7 +140,7 @@ const CreateRecord = (props) => {
                     type="text"
                     className="form-control"
                     id="lastName"
-                    value={record.lastName}
+                    defaultValue={record.lastName}
                     onChange={onChange}
                   />
                 </div>
@@ -199,7 +200,7 @@ const CreateRecord = (props) => {
                   className="form-control"
                   id="medicalRecordNumber"
                   placeholder="Automatically generated"
-                  value={record.medicalRecordNumber}
+                  defaultValue={record.medicalRecordNumber}
                   readOnly
                   onChange={onChange}
                 />
