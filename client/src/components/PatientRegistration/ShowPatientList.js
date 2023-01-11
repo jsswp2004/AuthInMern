@@ -18,7 +18,7 @@ const RecordCard = (props) => (
     <td>{props.record.race}</td>
     <td>{props.record.addedDate}</td>
     <td>
-      <Link className="btn btn-info btn-sm" to={`/edit/${props.record._id}`}>
+      <Link className="btn btn-info btn-sm" to={`/editPatient/${props.record._id}`}>
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
       </Link>{' '}
       <button
@@ -127,7 +127,7 @@ function ShowRecordList() {
               <th>Gender</th>
               <th>Age</th>
               <th>Race</th>
-              <th>Added Date</th>
+              <th>Date Added</th>
               <th>Action</th>
             </tr>
           </thead>

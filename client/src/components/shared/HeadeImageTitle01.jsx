@@ -39,7 +39,7 @@ function HeaderImageTitle() {
         {' '}
         <ul style={{marginBottom:'0px', verticalAlign:'bottom'}}>
           <li className="navbar-list">
-            <Link to="/create">Registration</Link>
+            <Link to="/createPatient">Registration</Link>
           </li>
           <li className="navbar-list">
             <Link to="/">Home</Link>

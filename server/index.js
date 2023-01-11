@@ -6,6 +6,7 @@ const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const clientRoutes = require("./routes/clients");
 const recordRoutes = require("./routes/records");
+
 require('dotenv').config()
 
 // database connection

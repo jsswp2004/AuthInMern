@@ -28,7 +28,7 @@ function HeaderImageTitle() {
 
         <ul className="navigation">
           <li id="link" className="navbar_list">
-            <Link to="/create">Registration</Link>
+            <Link to="/createPatient">Registration</Link>
           </li>
           <li id="link" className="navbar_list">
             <Link to="/">Home</Link>

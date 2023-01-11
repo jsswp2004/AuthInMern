@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
@@ -11,17 +11,10 @@ import {
   States,
 } from '../listDictionaries/listData/listDictionariesData'
 
-const CreateRecord = (props) => {
-  //autocreate MRN
-  const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
-  //autocreate visit number
-  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-
-  // Define the state with useState hook
-  const navigate = useNavigate()
+function UpdateRecordInfo(props) {
   const [record, setRecord] = useState({
-    medicalRecordNumber: setMedicalRecordNumber,
-    visitNumber: setVisitNumber,
+    medicalRecordNumber:'',
+    visitNumber: '',
     firstName: '',
     lastName: '',
     middleName: '',
@@ -38,6 +31,37 @@ const CreateRecord = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
+  const { id } = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/records/${id}`)
+      .then((res) => {
+        setRecord({
+            medicalRecordNumber: res.data.medicalRecordNumber,
+            visitNumber: res.data.visitNumber,
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            middleName: res.data.middleName,
+            gender: res.data.gender,
+            race: res.data.race,
+            dateOfBirth: res.data.dateOfBirth,
+            age: res.data.age,
+            language: res.data.language,
+            address: res.data.address,
+            city: res.data.city,
+            zipCode: res.data.zipCode,
+            state: res.data.state,
+            email: res.data.email,
+            addedDate: res.data.addedDate,
+        })
+      })
+      .catch((err) => {
+        console.log('Error from UpdateRecordInfo')
+      })
+  }, [id])
+
   const onChange = (e) => {
     setRecord({ ...record, [e.target.name]: e.target.value })
   }
@@ -50,42 +74,44 @@ const CreateRecord = (props) => {
     age--
   }
   //save age to record.age
-  record.age = age
+  //will make this active if age is to be updated
+  // record.age = age
+
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    axios
-      .post('http://localhost:8081/api/records', record)
-      .then((res) => {
-        setRecord({
-          medicalRecordNumber: '',
-          visitNumber: '',
-          firstName: '',
-          lastName: '',
-          middleName: '',
-          gender: '',
-          race: '',
-          dateOfBirth: '',
-          age: '',
-          language: '',
-          address: '',
-          city: '',
-          zipCode: '',
-          state: '',
-          email: '',
-          addedDate: '',
-        })
+    const data = {
+        medicalRecordNumber: record.medicalRecordNumber,
+        visitNumber: record.visitNumber,
+        firstName: record.firstName,
+        lastName: record.lastName,
+        middleName: record.middleName,
+        gender: record.gender,
+        race: record.race,
+        dateOfBirth: record.dateOfBirth,
+        age: record.age,
+        language: record.language,
+        address: record.address,
+        city: record.city,
+        zipCode: record.zipCode,
+        state: record.state,
+        email: record.email,
+        addedDate: record.addedDate,
+    }
 
-        // Push to /
-        navigate('/patientlist')
+    axios
+      .put(`http://localhost:8081/api/records/${id}`, data)
+      .then((res) => {
+        // navigate(`/patientlist/${id}`)
+        navigate(`/patientlist`)
       })
       .catch((err) => {
-        console.log('Error in CreateRecord!')
+        console.log('Error in UpdateRecordInfo!')
       })
   }
 
-  //Race
+    //Race
   const racevalues = Race
   const [racevalue, setraceValue] = React.useState('')
 
@@ -118,7 +144,7 @@ const CreateRecord = (props) => {
   const statevalueChange = (event) => {
     setSelectedState(event.target.value)
   }
-  // console.log(record)
+  
   return (
     <div className="grid_container">
       <div className="item1">
@@ -128,7 +154,7 @@ const CreateRecord = (props) => {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Patient Registration</h3>
+        <h3>Edit Patient Registration</h3>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
@@ -320,7 +346,7 @@ const CreateRecord = (props) => {
                   }}
                 >
                   <input
-                    value="Add"
+                    value="Update"
                     type="submit"
                     className="btn btn-success"
                   />
@@ -334,4 +360,4 @@ const CreateRecord = (props) => {
   )
 }
 
-export default CreateRecord
+export default UpdateRecordInfo
