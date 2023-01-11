@@ -81,6 +81,14 @@ function ShowRecordList() {
     }
   })
 
+  function patientList() {
+    return filteredData.map((record) => {
+      return (
+        <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
+      )
+    })
+  }
+
 
   return (
     <div className="grid_container">
@@ -124,11 +132,12 @@ function ShowRecordList() {
             </tr>
           </thead>
           <tbody>
-          {records.length === 0
+          {/* {records.length === 0
           ? 'there is no record record!'
           : filteredData.map((record) => (
               <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
-            ))}
+            ))} */}
+            {patientList()}
           </tbody>
         </table>
       </div>

@@ -18,6 +18,8 @@ const CreateRecord = (props) => {
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
+        //calculating age
+
   // Define the state with useState hook
   const navigate = useNavigate()
   const [record, setRecord] = useState({
@@ -42,9 +44,15 @@ const CreateRecord = (props) => {
   const onChange = (e) => {
     setRecord({ ...record, [e.target.name]: e.target.value })
   }
-
+//calculate age
+  const today = new Date()
+  const birthDate = new Date(record.dateOfBirth)
+  var age = today.getFullYear() - birthDate.getFullYear()
+  const m = today.getMonth() - birthDate.getMonth()
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--
+}
   
-
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -52,22 +60,6 @@ const CreateRecord = (props) => {
       .post('http://localhost:8081/api/records', record)
       .then((res) => {
         setRecord({
-          // medicalRecordNumber:setMedicalRecordNumber,
-          // visitNumber: setVisitNumber,
-          // firstName: res.target.value,
-          // lastName: res.lastName,
-          // middleName: 'test',
-          // gender: 'test',
-          // race: 'test',
-          // dateOfBirth: '',
-          // age: '',
-          // language: '',
-          // address: '',
-          // city: '',
-          // zipCode: '',
-          // state: '',
-          // email: '',
-          // addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
           medicalRecordNumber:'',
           visitNumber: '',
           firstName: '',
@@ -76,7 +68,7 @@ const CreateRecord = (props) => {
           gender: '',
           race: '',
           dateOfBirth: '',
-          age: '',
+          age: age,
           language: '',
           address: '',
           city: '',
@@ -93,7 +85,7 @@ const CreateRecord = (props) => {
         console.log('Error in CreateRecord!')
       })
   }
-  console.log(record.gender)
+
     //Race
     const racevalues = Race
     const [racevalue, setraceValue] = React.useState('')
@@ -111,9 +103,23 @@ const CreateRecord = (props) => {
   
     const gendervalueChange = (event) => {
       setgenderValue(event.target.value)
-      onChange({ gendervalue })
-    }
+      // onChange({ gendervalue })
+  }
+  
+  const languagevalues = Language
+  const [selectedLanguage, setSelectedLanguage] = useState('')
 
+  const languagevalueChange = (event) => {
+    setSelectedLanguage(event.target.value)
+  }
+
+  const statevalues = States
+  const [selectedState, setSelectedState] = useState('')
+
+  const statevalueChange = (event) => {
+    setSelectedState(event.target.value)    
+  }
+console.log(record)
   return (
     <div className="grid_container">
       <div className="item1">
@@ -134,9 +140,9 @@ const CreateRecord = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                      id="firstName"
-                      // value={record.firstName}
-                    defaultValue={record.firstName}
+                    name="firstName"
+                    value={record.firstName}
+                    // defaultValue={record.firstName}
                     onChange={onChange}
                   />
                 </div>
@@ -144,7 +150,7 @@ const CreateRecord = (props) => {
                   <label htmlFor="middleName">Middlename</label>
                   <input
                     type="text"
-                    id="middleName"
+                    name="middleName"
                     defaultValue={record.middleName}
                     className="form-control"
                     onChange={onChange}
@@ -155,7 +161,7 @@ const CreateRecord = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    id="lastName"
+                    name="lastName"
                     defaultValue={record.lastName}
                     onChange={onChange}
                   />
@@ -166,7 +172,7 @@ const CreateRecord = (props) => {
                   <label htmlFor="dateOfBirth">Date of Birth</label>
                   <input
                     type="date"
-                    id="dateOfBirth"
+                    name="dateOfBirth"
                     value={record.dateOfBirth}
                     className="form-control"
                     onChange={onChange}
@@ -177,10 +183,9 @@ const CreateRecord = (props) => {
                     Gender
                     <select
                       className="form-control select"
-                      id="gender"
-                      value={gendervalue}
-                        onChange={gendervalueChange}
-                      // onChange={onChange}
+                      name="gender"
+                      value={record.gender}
+                        onChange={onChange}
                         
                     >
                       {gendervalues.map((genderval) => (
@@ -196,8 +201,8 @@ const CreateRecord = (props) => {
                     Race
                     <select
                       className="form-control select"
-                      id="race"
-                      value={racevalue}
+                      name="race"
+                      value={record.race}
                       onChange={onChange}
                     >
                       {racevalues.map((raceval) => (
@@ -214,9 +219,9 @@ const CreateRecord = (props) => {
                 <input
                   type="number"
                   className="form-control"
-                  id="medicalRecordNumber"
+                  name="medicalRecordNumber"
                   placeholder="Automatically generated"
-                  defaultValue={record.medicalRecordNumber}
+                  value={record.medicalRecordNumber}
                   readOnly
                   onChange={onChange}
                 />
@@ -226,7 +231,7 @@ const CreateRecord = (props) => {
                 <input
                   type="number"
                   className="form-control"
-                  id="visitNumber"
+                  name="visitNumber"
                   placeholder="Automatically generated"
                   value={record.visitNumber}
                   readOnly
@@ -238,15 +243,15 @@ const CreateRecord = (props) => {
                   Language
                   <select
                     className="form-control select"
-                    id="language"
-                    // value={selectedLanguage}
-                    // onChange={languagevalueChange}
+                    name="language"
+                    value={record.language}
+                    onChange={onChange}
                   >
-                    {/* {languagevalues.map((languageval) => (
+                    {languagevalues.map((languageval) => (
                       <option value={languageval.value}>
                         {languageval.label}
                       </option>
-                    ))} */}
+                    ))}
                   </select>
                 </label>
               </div>
@@ -255,9 +260,9 @@ const CreateRecord = (props) => {
                 <input
                   type="number"
                   className="form-control"
-                  id="age"
+                  name="age"
                   placeholder="Automatically generated"
-                  value={record.age}
+                  value={age}
                   readOnly
                   onChange={onChange}
                 />
@@ -265,10 +270,10 @@ const CreateRecord = (props) => {
             </div>
             <div className="div-items">
               <div className="form-group">
-                <label htmlFor="streetAddress">Address</label>
+                <label htmlFor="address">Address</label>
                 <input
                   type="text"
-                  id="streetAddress"
+                  name="address"
                   className="form-control"
                   value={record.address}
                   onChange={onChange}
@@ -277,7 +282,7 @@ const CreateRecord = (props) => {
               <div className="form-group">
                 <label htmlFor="city">City</label>
                 <input
-                  id="city"
+                  name="city"
                   className="form-control"
                   value={record.city}
                   onChange={onChange}
@@ -287,7 +292,7 @@ const CreateRecord = (props) => {
                 <label htmlFor="zipCode">Zip Code</label>
                 <input
                   type="number"
-                  id="zipCode"
+                  name="zipCode"
                   className="form-control"
                   value={record.zipCode}
                   onChange={onChange}
@@ -298,13 +303,13 @@ const CreateRecord = (props) => {
                   State
                   <select
                     className="form-control select"
-                    id="state"
-                    // value={selectedState}
-                    // onChange={statevalueChange}
+                    name="state"
+                    value={record.state}
+                    onChange={onChange}
                   >
-                    {/* {statevalues.map((stateval) => (
+                    {statevalues.map((stateval) => (
                       <option value={stateval.value}>{stateval.name}</option>
-                    ))} */}
+                    ))}
                   </select>
                 </label>
               </div>
