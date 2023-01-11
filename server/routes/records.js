@@ -2,9 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-
-// Load Record model
-const Client = require('../models/Clients');
+const { Record, validate } = require('../models/record');
 
 // @route GET api/records/test
 // @description tests records route
@@ -15,16 +13,16 @@ router.get('/test', (req, res) => res.send('record route testing!'));
 // @description Get all records
 // @access Public
 router.get('/', (req, res) => {
-  Client.find()
+  Record.find()
     .then(records => res.json(records))
-    .catch(err => res.status(404).json({ norecordsfound: 'No Books found' }));
+    .catch(err => res.status(404).json({ norecordsfound: 'No Records found' }));
 });
 
 // @route GET api/records/:id
 // @description Get single record by id
 // @access Public
 router.get('/:id', (req, res) => {
-  Client.findById(req.params.id)
+  Record.findById(req.params.id)
     .then(record => res.json(record))
     .catch(err => res.status(404).json({ norecordfound: 'No Record found' }));
 });
@@ -33,7 +31,7 @@ router.get('/:id', (req, res) => {
 // @description add/save record
 // @access Public
 router.post('/', (req, res) => {
-  Client.create(req.body)
+  Record.create(req.body)
     .then(record => res.json({ msg: 'Record added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this record' }));
 });
@@ -42,7 +40,7 @@ router.post('/', (req, res) => {
 // @description Update record
 // @access Public
 router.put('/:id', (req, res) => {
-    Client.findByIdAndUpdate(req.params.id, req.body)
+    Record.findByIdAndUpdate(req.params.id, req.body)
       .then(record => res.json({ msg: 'Updated successfully' }))
       .catch(err =>
         res.status(400).json({ error: 'Unable to update the Database' })
@@ -53,7 +51,7 @@ router.put('/:id', (req, res) => {
   // @description Delete record by id
   // @access Public
   router.delete('/:id', (req, res) => {
-    Client.findByIdAndRemove(req.params.id, req.body)
+    Record.findByIdAndRemove(req.params.id, req.body)
       .then(record => res.json({ mgs: 'Record entry deleted successfully' }))
       .catch(err => res.status(404).json({ error: 'No such a record' }));
   });

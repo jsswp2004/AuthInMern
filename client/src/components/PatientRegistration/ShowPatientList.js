@@ -16,6 +16,7 @@ const RecordCard = (props) => (
     <td>{props.record.gender}</td>
     <td>{props.record.age}</td>
     <td>{props.record.race}</td>
+    <td>{props.record.addedDate}</td>
     <td>
       <Link className="btn btn-info btn-sm" to={`/edit/${props.record._id}`}>
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
@@ -52,10 +53,21 @@ function ShowRecordList() {
       })
   }, [])
 
-  const recordList =
-    records.length === 0
-      ? 'there is no record record!'
-      : records.map((record, k) => <RecordCard record={record} key={k} />)
+  const deleteRecord = (id) => {
+    axios
+      .delete(`http://localhost:8081/api/records/${id}`)
+      .then((response) => {
+        setRecords(records.filter((el) => el._id !== id))
+      })
+      .catch((error) => {
+        console.log('Unable to delete record')
+      })
+  }
+
+  // const recordList =
+  //   records.length === 0
+  //     ? 'there is no record record!'
+  //     : records.map((record, k) => <RecordCard record={record} key={k} />)
 
   return (
     // <div className='ShowRecordList'>
@@ -134,10 +146,16 @@ function ShowRecordList() {
               <th>Gender</th>
               <th>Age</th>
               <th>Race</th>
+              <th>Added Date</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>{recordList}</tbody>
+          <tbody>
+            {/* {recordList} */}
+            {records.map((record) => (
+              <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

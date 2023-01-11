@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
-const clientSchema = new mongoose.Schema({
+const recordSchema = new mongoose.Schema({
     medicalRecordNumber:{ type: Number,required: true },
     visitNumber: { type: Number,required: true },
     firstName: { type:String,required: true },
@@ -29,7 +29,7 @@ const clientSchema = new mongoose.Schema({
 // 	return token;
 // };
 
-const Client = mongoose.model("client", clientSchema);
+const Record = mongoose.model("record", recordSchema);
 
 const validate = (data) => {
 	const schema = Joi.object({
@@ -53,6 +53,6 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
-module.exports = { Client, validate };
+module.exports = { Record, validate };
 
 
