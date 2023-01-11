@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-import styles from './styles.module.css'
+// import styles from './styles.module.css'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import {
@@ -51,7 +51,11 @@ const CreateRecord = (props) => {
   const m = today.getMonth() - birthDate.getMonth()
   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
     age--
-}
+  }
+  //save age to record.age
+  // console.log(age)
+  record.age = age
+  // console.log(record.age)
   
   const onSubmit = (e) => {
     e.preventDefault()
@@ -119,7 +123,7 @@ const CreateRecord = (props) => {
   const statevalueChange = (event) => {
     setSelectedState(event.target.value)    
   }
-console.log(record)
+// console.log(record)
   return (
     <div className="grid_container">
       <div className="item1">
@@ -262,7 +266,7 @@ console.log(record)
                   className="form-control"
                   name="age"
                   placeholder="Automatically generated"
-                  value={age}
+                  value={record.age}
                   readOnly
                   onChange={onChange}
                 />

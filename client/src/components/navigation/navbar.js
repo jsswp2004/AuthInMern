@@ -29,9 +29,9 @@ export default function Navbar() {
           <li id="link" className="body_navbarlist">
             <Link to="/usersList">User List</Link>
           </li>
-          <li id="link" className="body_navbarlist">
+          {/* <li id="link" className="body_navbarlist">
             <Link to="/createUser">Create User</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
