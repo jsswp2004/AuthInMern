@@ -18,7 +18,7 @@ const recordSchema = new mongoose.Schema({
     city: { type: String,required: false },
     zipCode: { type: Number,required: false },
     state: { type: String, required: false },
-    email: { type: String, required: true },
+    email: { type: String, required: false },
     addedDate: { type: String,required: true },
 });
 

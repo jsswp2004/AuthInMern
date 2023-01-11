@@ -42,6 +42,8 @@ function ShowRecordList() {
     setSearchInput(e.target.value)
   }
 
+
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/records')
@@ -64,55 +66,26 @@ function ShowRecordList() {
       })
   }
 
-  // const recordList =
-  //   records.length === 0
-  //     ? 'there is no record record!'
-  //     : records.map((record, k) => <RecordCard record={record} key={k} />)
+  var filteredData = records.filter((record) => {
+    if (searchInput === '') {
+      return record
+    } else {
+      
+      return record.medicalRecordNumber.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.visitNumber.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.firstName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.middleName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.lastName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.dateOfBirth.toString().toLowerCase().includes(searchInput.toLowerCase())
+        
+    }
+  })
+
 
   return (
-    // <div className='ShowRecordList'>
-    //   <div className='container'>
-    //     <div className='row'>
-    //       <div className='col-md-12'>
-    //         <br />
-    //         <h2 className='display-4 text-center'>Records List</h2>
-    //       </div>
-
-    //       <div className='col-md-11'>
-    //         <Link
-    //           to='/create-record'
-    //           className='btn btn-outline-warning float-right'
-    //         >
-    //           + Add New Record
-    //         </Link>
-    //         <br />
-    //         <br />
-    //         <hr />
-    //       </div>
-    //     </div>
-
-    //     <div className='list'>{recordList}</div>
-    //   </div>
-    //   </div>
-
     <div className="grid_container">
       <div className="item1">
         <Header />
-        {/* <div className="div-items" style={{ marginRight: 'auto' }}>
-          <h3>Patient List</h3>
-        </div>
-        <div className="div-items" style={{ float: 'right' }}>
-          <label htmlFor="search">
-            Search :{' '}
-            <input
-              id="search"
-              type="text"
-              placeholder="Search here"
-              onChange={handleChange}
-              value={searchInput}
-            />
-          </label>
-        </div> */}
       </div>
       <div className="item2">
         <Navbar />
@@ -122,7 +95,7 @@ function ShowRecordList() {
         <div className="item3A">
           <h3>Patient List</h3>
 
-          <label htmlFor="search">
+          <label htmlFor="search" className='searchLabel' >
             Search :{' '}
             <input
               id="search"
@@ -151,8 +124,9 @@ function ShowRecordList() {
             </tr>
           </thead>
           <tbody>
-            {/* {recordList} */}
-            {records.map((record) => (
+          {records.length === 0
+          ? 'there is no record record!'
+          : filteredData.map((record) => (
               <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
             ))}
           </tbody>

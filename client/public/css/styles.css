@@ -180,6 +180,10 @@
 display: flex;
 }
 
+.item3A h3 {
+  margin-bottom: 0px;
+  }
+  
 #link a:visited {
   color: white;
 }
@@ -298,3 +302,11 @@ thead tr {
   border-radius: 10px;
 }
 /*Form end*/
+
+/*search css*/
+.searchLabel {
+  
+    margin-left: auto;
+
+}
+/*search css end*/

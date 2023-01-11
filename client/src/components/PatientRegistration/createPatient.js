@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import styles from './styles.module.css'
@@ -12,84 +13,14 @@ import {
   States,
 } from '../listDictionaries/listData/listDictionariesData'
 
-const CreateClient = () => {
-  const [form, setForm] = useState({
-    medicalRecordNumber: '',
-    visitNumber: '',
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    gender: '',
-    race: '',
-    dateOfBirth: '',
-    age: '',
-    language: '',
-    address: '',
-    city: '',
-    zipCode: '',
-    state: '',
-  })
-    // These methods will update the state properties.
-    function updateForm(value) {
-      return setForm((prev) => {
-        return { ...prev, ...value }
-      })
-    }
-
-  // //autocreate MRN
-  // const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
-  // //autocreate visit number
-  // const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-  //calculating age
-  // const today = new Date()
-  // const birthDate = new Date(req.body.dateOfBirth)
-  // let age = today.getFullYear() - birthDate.getFullYear()
-  // const m = today.getMonth() - birthDate.getMonth()
-  // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  //   age--
-  // }
-  //
-  //Race
-  const racevalues = Race
-  const [racevalue, setraceValue] = React.useState('')
-
-  const racevalueChange = (event) => {
-    setraceValue(event.target.value)
-    updateForm({ race: event.target.value })
-  }
-  //Gender
-  const gendervalues = Gender
-  const [gendervalue, setgenderValue] = React.useState('')
-
-  const gendervalueChange = (event) => {
-    setgenderValue(event.target.value)
-    onChange({ gendervalue })
-  }
-  console.log(gendervalue)
-  //Language
-  const languagevalues = Language
-  const [selectedLanguage, setSelectedLanguage] = useState('')
-
-  const languagevalueChange = (event) => {
-    setSelectedLanguage(event.target.value)
-    updateForm({ language: event.target.value })
-  }
-  //State
-  const statevalues = States
-  const [selectedState, setSelectedState] = useState('')
-
-  const statevalueChange = (event) => {
-    setSelectedState(event.target.value)
-    updateForm({ state: event.target.value })
-  }
-
-  //Define the state
-  const navigate = useNavigate()
+const CreateRecord = (props) => {
   //autocreate MRN
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-  const [client, setClient] = useState({
+  // Define the state with useState hook
+  const navigate = useNavigate()
+  const [record, setRecord] = useState({
     medicalRecordNumber: setMedicalRecordNumber,
     visitNumber: setVisitNumber,
     firstName: '',
@@ -109,30 +40,63 @@ const CreateClient = () => {
   })
 
   const onChange = (e) => {
-    setClient({ ...client, [e.target.name]: e.target.value })
+    setRecord({ ...record, [e.target.name]: e.target.value })
   }
 
-  console.log(client.gender)
-
-  const [error, setError] = useState('')
-
-  const onSubmit = async (e) => {
+  console.log(record.firstName)
+  
+  const onSubmit = (e) => {
     e.preventDefault()
-    try {
-      const url = 'http://localhost:8081/api/clients'
-      const { data: res } = await axios.post(url, client)
-      navigate('/clients')
-      console.log(res.message)
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message)
-      }
-    }
+
+    axios
+      .post('http://localhost:8081/api/records', record)
+      .then((res) => {
+        setRecord({
+          medicalRecordNumber: setMedicalRecordNumber,
+          visitNumber: setVisitNumber,
+          firstName: '',
+          lastName: '',
+          middleName: '',
+          gender: '',
+          race: '',
+          dateOfBirth: '',
+          age: '',
+          language: '',
+          address: '',
+          city: '',
+          zipCode: '',
+          state: '',
+          email: '',
+          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+        })
+
+        // Push to /
+        navigate('/patientlist')
+      })
+      .catch((err) => {
+        console.log('Error in CreateRecord!')
+      })
   }
+  
+    //Race
+    const racevalues = Race
+    const [racevalue, setraceValue] = React.useState('')
+  
+    const racevalueChange = (event) => {
+      setraceValue(event.target.value)
+      onChange({ race: event.target.value })
+      // onChange({ racevalue })
+  }
+  
+  console.log(racevalue)
+    //Gender
+    const gendervalues = Gender
+    const [gendervalue, setgenderValue] = React.useState('')
+  
+    const gendervalueChange = (event) => {
+      setgenderValue(event.target.value)
+      onChange({ gendervalue })
+    }
 
   return (
     <div className="grid_container">
@@ -155,8 +119,8 @@ const CreateClient = () => {
                     type="text"
                     className="form-control"
                     id="firstName"
-                    value={form.firstName}
-                    onChange={(e) => updateForm({ firstName: e.target.value })}
+                    value={record.firstName}
+                    onChange={onChange}
                   />
                 </div>
                 <div className="form-group">
@@ -164,9 +128,9 @@ const CreateClient = () => {
                   <input
                     type="text"
                     id="middleName"
-                    value={form.middleName}
+                    value={record.middleName}
                     className="form-control"
-                    onChange={(e) => updateForm({ middleName: e.target.value })}
+                    onChange={onChange}
                   />
                 </div>
                 <div className="form-group">
@@ -175,8 +139,8 @@ const CreateClient = () => {
                     type="text"
                     className="form-control"
                     id="lastName"
-                    value={form.lastName}
-                    onChange={(e) => updateForm({ lastName: e.target.value })}
+                    value={record.lastName}
+                    onChange={onChange}
                   />
                 </div>
               </div>
@@ -186,11 +150,9 @@ const CreateClient = () => {
                   <input
                     type="date"
                     id="dateOfBirth"
-                    value={form.dateOfBirth}
+                    value={record.dateOfBirth}
                     className="form-control"
-                    onChange={(e) =>
-                      updateForm({ dateOfBirth: e.target.value })
-                    }
+                    onChange={onChange}
                   />
                 </div>
                 <div className="form-group">
@@ -219,7 +181,7 @@ const CreateClient = () => {
                       className="form-control select"
                       id="race"
                       value={racevalue}
-                      onChange={racevalueChange}
+                      onChange={onChange}
                     >
                       {racevalues.map((raceval) => (
                         <option value={raceval.value}>{raceval.label}</option>
@@ -237,11 +199,9 @@ const CreateClient = () => {
                   className="form-control"
                   id="medicalRecordNumber"
                   placeholder="Automatically generated"
-                  value={form.medicalRecordNumber}
+                  value={record.medicalRecordNumber}
                   readOnly
-                  onChange={(e) =>
-                    updateForm({ medicalRecordNumber: e.target.value })
-                  }
+                  onChange={onChange}
                 />
               </div>
               <div className="form-group">
@@ -251,9 +211,9 @@ const CreateClient = () => {
                   className="form-control"
                   id="visitNumber"
                   placeholder="Automatically generated"
-                  value={form.visitNumber}
+                  value={record.visitNumber}
                   readOnly
-                  onChange={(e) => updateForm({ visitNumber: e.target.value })}
+                  onChange={onChange}
                 />
               </div>
               <div className="form-group">
@@ -262,14 +222,14 @@ const CreateClient = () => {
                   <select
                     className="form-control select"
                     id="language"
-                    value={selectedLanguage}
-                    onChange={languagevalueChange}
+                    // value={selectedLanguage}
+                    // onChange={languagevalueChange}
                   >
-                    {languagevalues.map((languageval) => (
+                    {/* {languagevalues.map((languageval) => (
                       <option value={languageval.value}>
                         {languageval.label}
                       </option>
-                    ))}
+                    ))} */}
                   </select>
                 </label>
               </div>
@@ -280,9 +240,9 @@ const CreateClient = () => {
                   className="form-control"
                   id="age"
                   placeholder="Automatically generated"
-                  value={form.age}
+                  value={record.age}
                   readOnly
-                  onChange={(e) => updateForm({ age: e.target.value })}
+                  onChange={onChange}
                 />
               </div>
             </div>
@@ -293,8 +253,8 @@ const CreateClient = () => {
                   type="text"
                   id="streetAddress"
                   className="form-control"
-                  value={form.address}
-                  onChange={(e) => updateForm({ address: e.target.value })}
+                  value={record.address}
+                  onChange={onChange}
                 />
               </div>
               <div className="form-group">
@@ -302,8 +262,8 @@ const CreateClient = () => {
                 <input
                   id="city"
                   className="form-control"
-                  value={form.city}
-                  onChange={(e) => updateForm({ city: e.target.value })}
+                  value={record.city}
+                  onChange={onChange}
                 />
               </div>
               <div className="form-group">
@@ -312,8 +272,8 @@ const CreateClient = () => {
                   type="number"
                   id="zipCode"
                   className="form-control"
-                  value={form.zipCode}
-                  onChange={(e) => updateForm({ zipCode: e.target.value })}
+                  value={record.zipCode}
+                  onChange={onChange}
                 />
               </div>
               <div className="form-group">
@@ -322,12 +282,12 @@ const CreateClient = () => {
                   <select
                     className="form-control select"
                     id="state"
-                    value={selectedState}
-                    onChange={statevalueChange}
+                    // value={selectedState}
+                    // onChange={statevalueChange}
                   >
-                    {statevalues.map((stateval) => (
+                    {/* {statevalues.map((stateval) => (
                       <option value={stateval.value}>{stateval.name}</option>
-                    ))}
+                    ))} */}
                   </select>
                 </label>
               </div>
@@ -348,4 +308,4 @@ const CreateClient = () => {
   )
 }
 
-export default CreateClient
+export default CreateRecord
