@@ -43,7 +43,7 @@ const CreateRecord = (props) => {
     setRecord({ ...record, [e.target.name]: e.target.value })
   }
 
-  console.log(record.firstName)
+  
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -54,11 +54,11 @@ const CreateRecord = (props) => {
         setRecord({
           medicalRecordNumber: setMedicalRecordNumber,
           visitNumber: setVisitNumber,
-          firstName: '',
-          lastName: '',
-          middleName: '',
-          gender: '',
-          race: '',
+          firstName: res.target.value,
+          lastName: res.lastName,
+          middleName: 'test',
+          gender: 'test',
+          race: 'test',
           dateOfBirth: '',
           age: '',
           language: '',
@@ -77,7 +77,7 @@ const CreateRecord = (props) => {
         console.log('Error in CreateRecord!')
       })
   }
-  
+  console.log(record.gender)
     //Race
     const racevalues = Race
     const [racevalue, setraceValue] = React.useState('')
@@ -88,7 +88,7 @@ const CreateRecord = (props) => {
       // onChange({ racevalue })
   }
   
-  console.log(racevalue)
+  // console.log(racevalue)
     //Gender
     const gendervalues = Gender
     const [gendervalue, setgenderValue] = React.useState('')
@@ -109,7 +109,7 @@ const CreateRecord = (props) => {
       <div className="item3">
       <h3>Patient Registration</h3>
         <div className="item3A">
-        <form novalidate onSubmit={onSubmit}>   
+        <form noValidate onSubmit={onSubmit}>   
           <div className="form-grid-container">
             <div className="div-items">
               <div className="forms-group">
