@@ -36,7 +36,7 @@ const RecordCard = (props) => (
 function ShowRecordList() {
   const [records, setRecords] = useState([])
   const [searchInput, setSearchInput] = useState('')
-  //captures and sets value of the input text
+  //captures and sets value of the search input text
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
@@ -76,13 +76,19 @@ function ShowRecordList() {
         record.firstName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
         record.middleName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
         record.lastName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.dateOfBirth.toString().toLowerCase().includes(searchInput.toLowerCase())
+        record.dateOfBirth.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.addedDate.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.race.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.age.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        record.gender.toString().toLowerCase().includes(searchInput.toLowerCase())
         
     }
   })
 
   function patientList() {
-    return filteredData.map((record) => {
+    return filteredData
+    .sort((a, b) => (Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1))
+    .map((record) => {
       return (
         <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
       )
@@ -108,7 +114,7 @@ function ShowRecordList() {
             <input
               id="search"
               type="text"
-              placeholder="Search here"
+              placeholder="Search patients"
               onChange={handleChange}
               value={searchInput}
             />
