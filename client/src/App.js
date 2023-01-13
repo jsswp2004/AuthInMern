@@ -8,6 +8,7 @@ import CreateUser from './components/Signup/createUser'
 import CreatePatient from './components/PatientRegistration/createPatient'
 import EditPatient from './components/PatientRegistration/editPatient'
 import PatientList from './components/PatientRegistration/ShowPatientList'
+import VisitList from './components/PatientVisit/ShowVisitList'
 
 function App() {
   const user = localStorage.getItem('token')
@@ -18,7 +19,8 @@ function App() {
       <Route path="/signup" exact element={<Signup />} />
       <Route path="/createPatient" exact element={<CreatePatient />} />
       <Route path="/editPatient/:id" exact element={<EditPatient />} />
-      <Route path="/patientlist" exact element={<PatientList />} />      
+      <Route path="/patientlist" exact element={<PatientList />} /> 
+      <Route path="/visitlist" exact element={<VisitList />} /> 
       <Route path="/createUser" exact element={<CreateUser />} />
       <Route path="/login" exact element={<Login />} />
       <Route path="/usersList" exact element={<ShowUsersList />} />

@@ -18,7 +18,10 @@ const RecordCard = (props) => (
     <td>{props.record.race}</td>
     <td>{props.record.addedDate}</td>
     <td>
-      <Link className="btn btn-info btn-sm" to={`/editPatient/${props.record._id}`}>
+      <Link
+        className="btn btn-info btn-sm"
+        to={`/editPatient/${props.record._id}`}
+      >
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
       </Link>{' '}
       <button
@@ -41,8 +44,6 @@ function ShowRecordList() {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
-
-
 
   useEffect(() => {
     axios
@@ -70,31 +71,66 @@ function ShowRecordList() {
     if (searchInput === '') {
       return record
     } else {
-      
-      return record.medicalRecordNumber.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.visitNumber.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.firstName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.middleName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.lastName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.dateOfBirth.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.addedDate.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.race.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.age.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        record.gender.toString().toLowerCase().includes(searchInput.toLowerCase())
-        
+      return (
+        record.medicalRecordNumber
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.visitNumber
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.firstName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.middleName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.lastName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.dateOfBirth
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.addedDate
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.race
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.age
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.gender
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase())
+      )
     }
   })
 
   function patientList() {
     return filteredData
-    .sort((a, b) => (Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1))
-    .map((record) => {
-      return (
-        <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
+      .sort((a, b) =>
+        Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1,
       )
-    })
+      .map((record) => {
+        return (
+          <RecordCard
+            record={record}
+            deleteRecord={deleteRecord}
+            key={record._id}
+          />
+        )
+      })
   }
-
 
   return (
     <div className="grid_container">
@@ -109,7 +145,7 @@ function ShowRecordList() {
         <div className="item3A">
           <h3>Patient List</h3>
 
-          <label htmlFor="search" className='searchLabel' >
+          <label htmlFor="search" className="searchLabel">
             Search :{' '}
             <input
               id="search"
@@ -138,7 +174,7 @@ function ShowRecordList() {
             </tr>
           </thead>
           <tbody>
-          {/* {records.length === 0
+            {/* {records.length === 0
           ? 'there is no record record!'
           : filteredData.map((record) => (
               <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />

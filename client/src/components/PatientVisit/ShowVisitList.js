@@ -11,13 +11,15 @@ const VisitCard = (props) => (
     <td>{props.visit.firstName}</td>
     <td>{props.visit.middleName}</td>
     <td>{props.visit.lastName}</td>
-    {/* <td>{props.visit.dateOfBirth}</td>
-    <td>{props.visit.gender}</td>
-    <td>{props.visit.age}</td> */}
-    <td>{props.visit.race}</td>
+    <td>{props.visit.visitDate}</td>
+    <td>{props.visit.hourOfVisit}</td>
+    <td>{props.visit.email}</td>
     <td>{props.visit.addedDate}</td>
     <td>
-      <Link className="btn btn-info btn-sm" to={`/editPatient/${props.visit._id}`}>
+      <Link
+        className="btn btn-info btn-sm"
+        to={`/editPatient/${props.visit._id}`}
+      >
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
       </Link>{' '}
       <button
@@ -40,8 +42,6 @@ function ShowVisitList() {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
-
-
 
   useEffect(() => {
     axios
@@ -69,25 +69,46 @@ function ShowVisitList() {
     if (searchInput === '') {
       return visit
     } else {
-      
-      return visit.medicalRecordNumber.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        visit.visitNumber.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        visit.firstName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        visit.middleName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        visit.lastName.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
-        visit.dateOfBirth.toString().toLowerCase().includes(searchInput.toLowerCase())
-        
+      return (
+        visit.firstName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.middleName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.lastName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.visitDate
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.hourOfVisit
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.email
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.addedDate
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase())
+      )
     }
   })
 
   function patientList() {
     return filteredData.map((visit) => {
       return (
-        <VisitCard visit={visit} deleteRecord={deleteRecord} key={record._id} />
+        <VisitCard visit={visit} deleteRecord={deleteRecord} key={visit._id} />
       )
     })
   }
-
 
   return (
     <div className="grid_container">
@@ -100,9 +121,9 @@ function ShowVisitList() {
 
       <div className="item3">
         <div className="item3A">
-          <h3>Patient List</h3>
+          <h3>Patient Visits</h3>
 
-          <label htmlFor="search" className='searchLabel' >
+          <label htmlFor="search" className="searchLabel">
             Search :{' '}
             <input
               id="search"
@@ -113,32 +134,23 @@ function ShowVisitList() {
             />
           </label>
         </div>
-
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              {/* <th>MRN</th>
-              <th>Visit Number</th> */}
-              <th>FirstName</th>
-              <th>Middlename</th>
-              <th>Lastname</th>
-              {/* <th>DOB</th>
-              <th>Gender</th>
-              <th>Age</th>
-              <th>Race</th>
-              <th>Date Added</th> */}
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-          {/* {records.length === 0
-          ? 'there is no record record!'
-          : filteredData.map((record) => (
-              <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
-            ))} */}
-            {patientList()}
-          </tbody>
-        </table>
+        
+          <table className="table">
+            <thead>
+              <tr>
+                <th>FirstName</th>
+                <th>Middlename</th>
+                <th>Lastname</th>
+                <th>Visit Date</th>
+                <th>Time</th>
+                <th>Email</th>
+                <th>Date Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>{patientList()}</tbody>
+          </table>
+        
       </div>
     </div>
   )

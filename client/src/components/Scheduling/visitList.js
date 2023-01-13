@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { format } from 'date-fns'
+import { format, startOfMonth } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -74,6 +74,39 @@ export default function VisitList() {
   const previousMonth = newdate.getMonth()
   let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
   let daysOfPreviousMonth = getDaysInMonth(previousMonth, currentYear)
+  //#endregion
+  //
+  //#region captures and sets value of the search input text
+  const [searchInput, setSearchInput] = useState(
+    // moment(showDateValue).format('YYYY-MM-DD'),
+    format(showDateValue, 'yyyy-MM-dd'),
+  )
+  const handleChange = (e) => {
+    e.preventDefault()
+    setSearchInput(e.target.value)
+  }
+  //#endregion
+  //
+
+  //#region picks the date for the start of the month
+    // const dateSelected = moment(showDateValue).format('YYYY-MM-DD')
+  const dateSelected = format(showDateValue, 'yyyy-MM-dd')
+    
+    let startOfTheMonth = startOfMonth(dateSelected).format('YYYY-MM-DD')
+    //     moment(dateSelected)
+    // .startOf('month')
+    // .format('YYYY-MM-DD')
+    console.log(startOfTheMonth)
+  let startOfTheMonthDate = parseInt(moment(startOfTheMonth).format('D'))
+  //   console.log(startOfTheMonthDate + 3)
+  // picks the day number for the start of the month
+  let startOfTheMonthDayNumber = moment(startOfTheMonth).day()
+  //#endregion code for each monthly visit dates
+  //
+  //#region code for setting visits
+  const [visits, setVisits] = useState([])
+  
+
   //#endregion
   //
 
