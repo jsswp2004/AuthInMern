@@ -111,7 +111,7 @@ function ShowVisitList() {
   }
 
   return (
-    <div className="grid_container">
+    <div className="grid_container" style={{height:"100px;"}}>
       <div className="item1">
         <Header />
       </div>
@@ -134,7 +134,7 @@ function ShowVisitList() {
             />
           </label>
         </div>
-        
+        <div style={{ overflowY: "auto"}}>
           <table className="table">
             <thead>
               <tr>
@@ -150,7 +150,7 @@ function ShowVisitList() {
             </thead>
             <tbody>{patientList()}</tbody>
           </table>
-        
+          </div>
       </div>
     </div>
   )
