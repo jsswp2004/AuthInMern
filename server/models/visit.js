@@ -21,7 +21,9 @@ const visitSchema = new mongoose.Schema({
     email: { type: String, required: false },
     visitDate: { type: String, required: true },
     hourOfVisit: { type: String, required: true },
-    addedDate: { type: String,required: true },
+    addedDate: { type: String, required: true },
+    // provider: { type: mongoose.Schema.Types.ObjectId, ref: "provider" },
+    provider: { type: String, required: true },
 });
 
 
@@ -47,6 +49,7 @@ const validate = (data) => {
         visitDate: Joi.string().required().label("Visit Date"),
         hourOfVisit: Joi.string().required().label("Hour of Visit"),
         addedDate: Joi.string().required().label("Added Date"),
+        provider: Joi.string().required().label("Provider"),
 	});
 	return schema.validate(data);
 };
