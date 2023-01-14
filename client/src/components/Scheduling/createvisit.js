@@ -4,12 +4,7 @@ import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
-import {
-  Race,
-  Gender,
-  Language,
-  States,
-} from '../listDictionaries/listData/listDictionariesData'
+
 
 const CreateVisit = (props) => {
   // Define the state with useState hook
