@@ -233,7 +233,7 @@ body{
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0px 0;
   margin: 0px;
-  /* height: calc(100vh - 60px); */
+  height: calc(100vh - 60px);
   /* display: flex;
   flex-direction: column;
   justify-content: space-between; */
@@ -245,7 +245,64 @@ display: flex;
 .item3A h3 {
   margin-bottom: 0px;
   }
+
+  /* this is the wrapper for the table */
+.item3B {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  height: calc(100vh - 80px);
+  overflow: auto;
+
+} 
+
+.item3C {
+  display: flex;
+}
+
+.item3_grid_container {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header header header"
+    "main main main main main main main main"
+    "footer footer footer footer footer footer footer footer";
+  grid-template-columns: repeat(8, minmax(100px, 1fr));
+  column-gap: 2px;
+  row-gap: 1px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px;
+  height: calc(100vh - 10px);
   
+}
+
+.item3_grid_item1 {
+  grid-area: header;
+  grid-row: 1 / span all;
+  grid-column: 1 / span all;
+  background-color: #eeeeee;
+  /* text-align: center;
+  vertical-align: middle; */
+  /* padding: 0px 0;
+  margin: 0px;
+  display: flex; */
+}
+
+.item3_grid_item2 {
+  grid-area: main;
+  grid-row: 2 / span all;
+  grid-column: 1 / span all;
+}
+
+.item3_grid_item3 {
+  grid-area: footer;
+  grid-row: 3 / span all;
+  grid-column: 1 / span all;
+  display: flex;
+}
+
 #link a:visited {
   color: white;
 }
@@ -298,6 +355,7 @@ display: flex;
   /* height: 300px; */
   font-size: 14px;
   overflow: auto;
+  
 }
 
 .table-striped {
@@ -356,7 +414,6 @@ display: flex;
 .table td,
 .table th {
   border: 1px solid #ddd;
-  
 }
 
 thead tr {
@@ -376,6 +433,18 @@ thead tr {
   text-align: center;
   background-color: #535353;
   color: white;
+  
+  
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #535353;
+
+  
+  /* box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); */
 }
 /*table css end*/
 
@@ -407,3 +476,223 @@ thead tr {
 
 }
 /*search css end*/
+
+/*Date picker*/
+.customDatePickerWidth,
+.customDatePickerWidth > div.react-datepicker-wrapper,
+.customDatePickerWidth
+  > div
+  > div.react-datepicker__input-container
+  .customDatePickerWidth
+  > div
+  > div.react-datepicker__input-container
+  input {
+  width: 200px;
+  padding-left: 5px;
+  height: 40px;
+}
+
+* Start calendar css */
+.calendar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  /* border:1px;
+  border-color: #525252; */
+}
+.calendar-day {
+  grid-column-start: 2;
+  font-size: 14px;
+}
+
+.calendar-item {
+  width: auto;
+  /* height: auto; */
+  /* max-height: 150; */
+  border: 0px;
+  /* border-color: #525252; */
+  list-style-position: inside;
+  /* border-bottom: 1px solid #525252; */
+  margin: 0px;
+  /* font-size: small; */
+  /* height: 100vh; */
+}
+
+.calendar-item-monthly {
+  width: 220px;
+  height: 80px;
+  /* max-height: 150; */
+  /* border: 0px; */
+  /* border-color: #525252; */
+  list-style-position: inside;
+  /* border-bottom: 1px solid #525252; */
+  margin: 0px;
+  /* font-size: small; */
+  /* height: 100vh; */
+}
+
+#calendarDaily {
+  width: calc(100vw - 250px);
+  padding-left: 0px;
+  column-span: all;
+  /* text-align: center; */
+  /* height: auto; */
+  /* max-height: 150; */
+  /* border: 5px;
+  border-color: #525252;
+  list-style-position: inside;
+  border-bottom: 1px solid #525252;
+  margin: 2px; */
+  /* height: 100vh; */
+}
+
+#calendarDailyDate {
+  /* width: auto; */
+  text-align: center;
+}
+
+/* #calendarWeekly {
+  height: 100vh;
+}
+
+#calendarDaily {
+  height: 100vh;
+} */
+
+.calendar-wrapper {
+  width: auto;
+  /* height: auto; */
+}
+/*column-gap: 1rem;
+.weekday {
+  background: #eee;
+  
+}
+h1 .calendar {
+  text-align: center;
+}
+ul .calendar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* li {
+  list-style-position:inside;
+  border: 1px solid black;
+} */
+/* container {
+  color: #89E894
+} */
+
+/* datepicker */
+.weekday {
+  font-size: 14px;
+}
+.customDatePickerWidth,
+.customDatePickerWidth > div.react-datepicker-wrapper,
+.customDatePickerWidth
+  > div
+  > div.react-datepicker__input-container
+  .customDatePickerWidth
+  > div
+  > div.react-datepicker__input-container
+  input {
+  width: 200px;
+  padding-left: 5px;
+  height: 40px;
+}
+
+.grid-weeklycalcontainer {
+  display: grid;
+  grid-template-areas: "main main main main main main main";
+  /* grid-template-columns: auto auto auto auto auto auto auto; */
+  grid-template-columns: auto 16% 16% 16% 16% 16% auto;
+  /* repeat(10, 1fr); minmax(100px, 1fr)) */
+  grid-template-rows: repeat(6,auto);
+
+  align-content: space-evenly;
+
+  gap: 2px;
+}
+.grid-weeklycalcontainer > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  /* text-align: right; */
+  padding: 0px 0;
+  font-size: 30px;
+}
+/* padding: 10px; height: 400px; 
+background-color: #2196F3; 
+.grid-weeklycalcontainer > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+*/
+
+/* VisitListWeekly {
+  font-size: smaller;
+} */
+
+.weeklytd {
+  font-size: 14px;
+  width: auto;
+  /* height:fit-content; */
+  /* overflow: hidden; */
+  display: inline-flex;
+  /* white-space: nowrap; */
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 5px;
+  /* padding: 0px; */
+  /* justify-content: space-between; */
+  border-bottom-width: 0px;
+  /* background-color: white; */
+  /* float: right; */
+}
+
+/* table styles */
+.table .table-striped {
+  /* background-color: #fff;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  table-layout: fixed; */
+  width: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+/* tbody tr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+} */
+.trStyles {
+  /* width: auto; */
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: none;
+  /* display: flex; */
+
+}
+
+
+.weekdaydateItem {
+  /* float: "right"; */
+  margin-right: "10px";
+}

@@ -1,23 +1,43 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 
-const CreateVisit = (props) => {
-  // Define the state with useState hook
-  const navigate = useNavigate()
+function UpdateVisitInfo(props) {
   const [visit, setVisit] = useState({
     firstName: '',
     lastName: '',
-    middleName: '',      
-    visitDate: '',
-    hourOfVisit: '',
-    email: '',  
-    provider: '',
+    middleName: '',
+    email: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    visitDate: '',
+    provider: '',
   })
+
+  const { id } = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/visits/${id}`)
+      .then((res) => {
+        setVisit({
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          middleName: res.data.middleName,
+          email: res.data.email,
+          addedDate: res.data.addedDate,
+            visitDate: res.data.visitDate,
+          hourOfVisit: res.data.hourOfVisit,
+          provider: res.data.provider,
+        })
+      })
+      .catch((err) => {
+        console.log('Error from UpdateVisitInfo')
+      })
+  }, [id])
 
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
@@ -26,29 +46,27 @@ const CreateVisit = (props) => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    axios
-      .post('http://localhost:8081/api/visits', visit)
-      .then((res) => {
-        setVisit({
-          firstName: '',
-          lastName: '',
-          middleName: '',
-          visitDate: '',
-          hourOfVisit: '',
-          email: '',    
-          provider: '',
-          addedDate: '',
-        })
+    const data = {
+      firstName: visit.firstName,
+      lastName: visit.lastName,
+      middleName: visit.middleName,
+      email: visit.email,
+      addedDate: visit.addedDate,
+        visitDate: visit.visitDate,
+        hourOfVisit: visit.hourOfVisit,
+      provider: visit.provider,
+    }
 
-        // Push to /
-        navigate('/visitlist')
+    axios
+      .put(`http://localhost:8081/api/visits/${id}`, data)
+      .then((res) => {
+        navigate(`/visitlist`)
       })
       .catch((err) => {
-        console.log('Error in CreateVisit!')
+        console.log('Error in UpdateVisitInfo!')
       })
   }
 
-  // console.log(visit)
   return (
     <div className="grid_container">
       <div className="item1">
@@ -58,7 +76,7 @@ const CreateVisit = (props) => {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Visit Registration</h3>
+        <h3>Edit Visit</h3>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
@@ -71,7 +89,6 @@ const CreateVisit = (props) => {
                       className="form-control"
                       name="firstName"
                       value={visit.firstName}
-                      // defaultValue={visit.firstName}
                       onChange={onChange}
                     />
                   </div>
@@ -96,7 +113,7 @@ const CreateVisit = (props) => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="addedDate">Appointment Time</label>
+                    <label htmlFor="hourOfVisit">Appointment Time</label>
                     <input
                       name="hourOfVisit"
                       className="form-control"
@@ -169,4 +186,4 @@ const CreateVisit = (props) => {
   )
 }
 
-export default CreateVisit
+export default UpdateVisitInfo

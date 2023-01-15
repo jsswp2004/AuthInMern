@@ -14,11 +14,12 @@ const VisitCard = (props) => (
     <td>{props.visit.visitDate}</td>
     <td>{props.visit.hourOfVisit}</td>
     <td>{props.visit.email}</td>
+    <td>{props.visit.provider}</td>
     <td>{props.visit.addedDate}</td>
     <td>
       <Link
         className="btn btn-info btn-sm"
-        to={`/editPatient/${props.visit._id}`}
+        to={`/editVisit/${props.visit._id}`}
       >
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
       </Link>{' '}
@@ -54,6 +55,7 @@ function ShowVisitList() {
       })
   }, [])
 
+  
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/visits/${id}`)
@@ -94,6 +96,10 @@ function ShowVisitList() {
           .toString()
           .toLowerCase()
           .includes(searchInput.toLowerCase()) ||
+        visit.provider
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
         visit.addedDate
           .toString()
           .toLowerCase()
@@ -103,15 +109,23 @@ function ShowVisitList() {
   })
 
   function patientList() {
-    return filteredData.map((visit) => {
-      return (
-        <VisitCard visit={visit} deleteRecord={deleteRecord} key={visit._id} />
+    return filteredData
+      .sort((a, b) =>
+        Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
       )
-    })
+      .map((visit) => {
+        return (
+          <VisitCard
+            visit={visit}
+            deleteRecord={deleteRecord}
+            key={visit._id}
+          />
+        )
+      })
   }
 
   return (
-    <div className="grid_container" style={{height:"100px;"}}>
+    <div className="grid_container" style={{ height: '100px' }}>
       <div className="item1">
         <Header />
       </div>
@@ -134,7 +148,7 @@ function ShowVisitList() {
             />
           </label>
         </div>
-        <div style={{ overflowY: "auto"}}>
+        <div className="item3B" style={{ overflowY: 'auto' }}>
           <table className="table">
             <thead>
               <tr>
@@ -144,13 +158,14 @@ function ShowVisitList() {
                 <th>Visit Date</th>
                 <th>Time</th>
                 <th>Email</th>
+                <th>Provider</th>
                 <th>Date Created</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>{patientList()}</tbody>
           </table>
-          </div>
+        </div>
       </div>
     </div>
   )
