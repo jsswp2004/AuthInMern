@@ -346,6 +346,8 @@ display: flex;
 }
 /*Navbar css end*/
 
+
+
 /*table css*/
 
 .table {
@@ -492,7 +494,11 @@ thead tr {
   height: 40px;
 }
 
-* Start calendar css */
+/* Start calendar css */
+h5 {
+  background-color: white;
+  margin-bottom: 0px;
+}
 .calendar {
   width: 100%;
   display: grid;
@@ -549,6 +555,7 @@ thead tr {
 #calendarDailyDate {
   /* width: auto; */
   text-align: center;
+  margin-bottom: 0px;
 }
 
 /* #calendarWeekly {
