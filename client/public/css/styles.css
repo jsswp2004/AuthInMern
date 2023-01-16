@@ -537,6 +537,27 @@ h5 {
   /* height: 100vh; */
 }
 
+.calendar-item {
+  width: auto;
+  /* height: auto; */
+  /* max-height: 150; */
+  border: 0px;
+  /* border-color: #525252; */
+  list-style-position: inside;
+  /* border-bottom: 1px solid #525252; */
+  margin: 0px;
+  /* font-size: small; */
+  /* height: 100vh; */
+}
+
+.weekday {
+  font-size: 14px;
+}
+
+ul {
+  list-style-type: none; 
+}
+
 #calendarDaily {
   width: calc(100vw - 250px);
   padding-left: 0px;

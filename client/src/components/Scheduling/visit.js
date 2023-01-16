@@ -28,7 +28,7 @@ const Visit = (props) => (
     <td>
       <Link
         className="btn btn-info btn-sm"
-        to={`/visit/edit/${props.visit._id}`}
+        to={`/editVisit/${props.visit._id}`}
       >
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
       </Link>{' '}
@@ -36,7 +36,7 @@ const Visit = (props) => (
         size="sm"
         className="btn btn-danger btn-sm"
         onClick={() => {
-          props.deleteVisit(props.visit._id)
+          props.deleteRecord(props.visit._id)
         }}
       >
         <i className="fa fa-trash-o " aria-hidden="true" />

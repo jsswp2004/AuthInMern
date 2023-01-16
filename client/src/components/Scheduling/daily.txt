@@ -1,0 +1,48 @@
+          {/* daily calendar */}
+          <ul
+            className="calendar01"
+            id="calendarDaily"
+            style={{
+              display: selectViewValue === 'Daily' ? '' : 'none',
+              columnSpan: 'all',
+            }}
+          >
+            {/* weekdays */}
+            <li className="weekday" id="calendarDaily">
+
+            </li>
+            
+            <li
+              className="calendar-item calendar-day"
+              id="calendarDaily"
+              style={gridWeeklyStart}
+            >
+              <div id="calendarDailyDate">
+                <h5 style={{ marginBottom: '0px' }}>
+                  {format(new Date(showDateValue.toLocaleString()), 'PPP')}
+                </h5>
+              </div>
+
+              <div>
+                <table
+                  className="table table-striped"
+                  //
+                >
+                  <thead>
+                    <tr className="trStyles">
+                      <th>FirstName</th>
+                      <th>Middlename</th>
+                      <th>Lastname</th>
+                      <th>Visit Date</th>
+                      <th>Time</th>
+                      <th>Email</th>
+                      <th>Provider</th>
+                      <th>Date Created</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="trStyles">{patientList()}</tbody>
+                </table>
+              </div>
+            </li>
+          </ul>

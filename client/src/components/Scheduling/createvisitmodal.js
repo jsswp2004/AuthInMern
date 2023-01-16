@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-
+import {
+Hour
+} from '../listDictionaries/listData/listDictionariesData'
 
 const CreateVisit = (props) => {
   // Define the state with useState hook
@@ -17,7 +19,13 @@ const CreateVisit = (props) => {
     provider: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
+  const hourValues = Hour
+  const [hourvalue, sethourValue] = useState('')
 
+  const hourvalueChange = (event) => {
+    sethourValue(event.target.value)
+    // onChange({ gendervalue })
+  }
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
@@ -84,15 +92,32 @@ const CreateVisit = (props) => {
                 onChange={onChange}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="addedDate">Appointment Time</label>
+            {/* <div className="form-group">
+              <label htmlFor="hourOfVisit">Appointment Time</label>
               <input
                 name="hourOfVisit"
                 className="form-control"
                 value={visit.hourOfVisit}
                 onChange={onChange}
               />
-            </div>
+            </div> */}
+            <div className="form-group">
+                    <label htmlFor="hourOfVisit">
+                      Gender
+                      <select
+                        className="form-control select"
+                        name="hourOfVisit"
+                        value={visit.hourOfVisit}
+                        onChange={onChange}
+                      >
+                        {hourValues.map((hourval) => (
+                          <option value={hourval.value}>
+                            {hourval.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
           </div>
         </div>
         <div className="div-items">
@@ -118,7 +143,7 @@ const CreateVisit = (props) => {
           <div className="form-group">
             <label htmlFor="visitDate">Visit Date</label>
             <input
-              type="string"
+              type="date"
               name="visitDate"
               className="form-control"
               value={visit.visitDate}

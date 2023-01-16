@@ -129,7 +129,7 @@ const CreateVisit = (props) => {
                 <div className="form-group">
                   <label htmlFor="visitDate">Visit Date</label>
                   <input
-                    type="string"
+                    type="date"
                     name="visitDate"
                     className="form-control"
                     value={visit.visitDate}

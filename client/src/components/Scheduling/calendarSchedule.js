@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { format, startOfMonth } from 'date-fns'
+import { format, getDate, startOfMonth, getDay } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -13,10 +13,11 @@ import { Link } from 'react-router-dom'
 import {
   View,
   monthNames,
+
   // weekdays,
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
-import CreateVisit from '../Scheduling/createvisit'
+// import CreateVisit from '../Scheduling/createvisit'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
 //#region for visit component
 const VisitCard = (props) => (
@@ -65,7 +66,7 @@ export default function VisitList() {
   // console.log(visits)
   //#endregion
   //#region code for calendar view select dropdown
-  const [selectViewValue, setViewValue] = React.useState('Daily')
+  const [selectViewValue, setViewValue] = React.useState('Monthly')
   const viewValueChange = (event) => {
     setViewValue(event.target.value)
   }
@@ -92,23 +93,32 @@ export default function VisitList() {
   function getDaysInMonth(month, year) {
     return new Date(year, month, 0).getDate()
   }
+
   const [showDateValue, setShowDateValue] = useState(new Date())
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex]
-  let startOfTheMonth = startOfMonth(dateSelected)
+  let startOfTheMonth = startOfMonth(new Date(dateSelected))
+
   // .startOf('month')
   // .format('YYYY-MM-DD')
-  //   console.log(startOfTheMonth)
+  //   console.log(getDate(startOfTheMonth))
   const currentYear = newdate.getFullYear()
   const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
-  const previousMonth = newdate.getMonth()
-    let startOfTheMonthDate = parseInt(moment(startOfTheMonth).format('D'))
-    let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
-  //   console.log(startOfTheMonthDate + 3)
+  //   const previousMonth = newdate.getMonth()
+  let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
+  let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
+  // console.log(startOfTheMonthDate)
+  //     const today = new Date()
+  // const firstDateOfMonth = format(today, 'yyyy-MM-01')
+  //     console.log(firstDateOfMonth)
+  //     console.log(dateSelected)
 
-  let startOfTheMonthDayNumber = moment(startOfTheMonth).day()
+  let startOfTheMonthDayNumber = getDay(new Date(startOfTheMonth)) // moment(startOfTheMonth).day()
+  // console.log(startOfTheMonthDayNumber)
+  // console.log(getDay(new Date(startOfTheMonth)))
+
   const endOfThePreviousMonth = parseInt(
     moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
   )
@@ -117,6 +127,7 @@ export default function VisitList() {
     backgroundColor: ' #eeee',
     height: '100px',
   }
+
   const gridWeekly = {
     backgroundColor: ' #eeee',
     height: 'calc(100vh - 132px)',
@@ -126,6 +137,17 @@ export default function VisitList() {
     backgroundColor: ' #eeee',
     height: '100px',
   }
+  const previousMonth = newdate.getMonth()
+  let daysOfPreviousMonth = getDaysInMonth(previousMonth, currentYear)
+  let dayOfTheMonth = newdate.getDate()
+  let dayOfTheWeek = newdate.getDay() > 7 ? 1 : newdate.getDay()
+  let startDayOfTheWeek =
+    newdate === '2022-05-01' ? 1 : dayOfTheMonth - dayOfTheWeek
+  let startOfTheWeek =
+    startDayOfTheWeek < 1
+      ? daysOfPreviousMonth - (dayOfTheWeek - 1)
+      : startDayOfTheWeek
+
   //#endregion
   //#region captures and sets value of the search input text
   const [searchInput, setSearchInput] = useState(
@@ -143,12 +165,19 @@ export default function VisitList() {
     backgroundColor: ' #eeee',
     height: 'calc(100vh - 110px)',
   }
+
+  const gridWeeklyStartSun = {
+    gridColumnStart: dayOfSunday,
+    backgroundColor: ' #eeee',
+    height: 'calc(100vh - 132px)',
+  }
+
   //#endregion
   //#region for Modal
   const VisitModal = () => (
     <Modal show={show} onHide={handleClose} size="lg" centered>
       <Modal.Header closeButton>
-        <Modal.Title>Create Visit</Modal.Title>
+        <Modal.Title>Add a Visit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <CreateVisitModal />
@@ -178,10 +207,55 @@ export default function VisitList() {
   }
   //#endregion
   //#region for filtering data
-
+  var filterDataWithDate = visits.filter((visit) => {
+    return visit.visitDate === dateSelected
+  })
+  // console.log(filterDataWithDate)
   var filteredData = visits.filter((visit) => {
     if (searchInput === '') {
       return visit
+    } else {
+      return (
+        visit.firstName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.middleName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.lastName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.visitDate
+          .toString()
+          .toLowerCase()
+          //   .includes(new Date(visit.visitDate) === dateSelected)
+          .includes(searchInput.toLowerCase()) ||
+        visit.hourOfVisit
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.email
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.provider
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        visit.addedDate
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase())
+      )
+    }
+  })
+  var filteredDataDaily = filterDataWithDate.filter((visit) => {
+    if (searchInput === '') {
+      return visit
+      //.includes(visit.date === dateSelected)
     } else {
       return (
         visit.firstName
@@ -236,6 +310,27 @@ export default function VisitList() {
         )
       })
   }
+  function patientListDaily() {
+    return (
+      filterDataWithDate
+        //filteredDataDaily
+        //   .includes(new Date(showDateValue))
+        .sort((a, b) =>
+          Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
+        )
+
+        .map((visit) => {
+          return (
+            <VisitCard
+              visit={visit}
+              deleteRecord={deleteRecord}
+              key={visit._id}
+            />
+          )
+        })
+    )
+  }
+  // console.log(filteredDataDaily)
   //#endregion
   //#region for second day of the month
   const monthlyDay2 =
@@ -301,9 +396,8 @@ export default function VisitList() {
           />
         )
       })
-    }
-//#endregion
-  //
+  }
+  //#endregion
   //#region third day of the month
   const monthlyDay3 =
     startOfTheMonthDayNumber === 0
@@ -363,14 +457,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region fourth day of the month
   const monthlyDay4 =
     startOfTheMonthDayNumber === 0
@@ -430,22 +523,21 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
 
-  console.log(
-    visitListMonthlyDay4(),
-    visitMonthlyDay4,
-    monthlyDay4,
-    moment(monthlyDay4).format('dddd'),
-    'visitListMonthlyDay4',
-  )
+  //   console.log(
+  //     visitListMonthlyDay4(),
+  //     visitMonthlyDay4,
+  //     monthlyDay4,
+  //     moment(monthlyDay4).format('dddd'),
+  //     'visitListMonthlyDay4',
+  //   )
   //#endregion
-  //
   //#region fifth day of the month
   const monthlyDay5 =
     startOfTheMonthDayNumber === 0
@@ -495,7 +587,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -510,7 +602,6 @@ export default function VisitList() {
   //   'visitListMonthlyDay5',
   // )
   //#endregion
-  //
   //#region sixth day of the month
   const monthlyDay6 =
     startOfTheMonthDayNumber === 0
@@ -556,7 +647,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -572,7 +663,6 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region seventh day of the month
   const monthlyDay7 =
     startOfTheMonthDayNumber === 0
@@ -614,14 +704,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region eight day of the month
   const dateMonthly_08 = moment(monthlyDay2).add(7, 'days').format('YYYY-MM-DD')
   const monthlyDay8 =
@@ -664,22 +753,21 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
 
-  console.log(
-    visitListMonthlyDay8(),
-    visitListMonthlyDay8,
-    monthlyDay8,
-    moment(monthlyDay8).format('dddd'),
-    'visitListMonthlyDay8',
-  )
+  //   console.log(
+  //     visitListMonthlyDay8(),
+  //     visitListMonthlyDay8,
+  //     monthlyDay8,
+  //     moment(monthlyDay8).format('dddd'),
+  //     'visitListMonthlyDay8',
+  //   )
   //#endregion
-  //
   //#region ninth day of the month
   const dateMonthly_09 = moment(monthlyDay2).add(8, 'days').format('YYYY-MM-DD')
   const monthlyDay9 =
@@ -722,7 +810,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -737,7 +825,6 @@ export default function VisitList() {
   //   'visitListMonthlyDay9',
   // )
   //#endregion
-  //
   //#region ninth day of the month
   const dateMonthly_10 = moment(startOfTheMonth)
     .add(9, 'days')
@@ -782,14 +869,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region tenth day of the month
   const monthlyDay11 =
     startOfTheMonthDayNumber === 0
@@ -830,7 +916,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -846,7 +932,6 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region eleventh day of the month
   const dateMonthly_12 = moment(startOfTheMonth)
     .add(11, 'days')
@@ -890,7 +975,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -906,7 +991,6 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region twelfth day of the month
   const dateMonthly_13 = moment(monthlyDay2)
     .add(12, 'days')
@@ -950,7 +1034,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -966,7 +1050,6 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region thirteenth day of the month
   const dateMonthly_14 = moment(monthlyDay2)
     .add(13, 'days')
@@ -1010,14 +1093,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region fourteenth day of the month
   const dateMonthly_15 = moment(monthlyDay2)
     .add(14, 'days')
@@ -1061,14 +1143,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region fifteenth day of the month
   const dateMonthly_16 = moment(monthlyDay2)
     .add(15, 'days')
@@ -1112,7 +1193,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1120,7 +1201,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region sixteenth day of the month
   const dateMonthly_17 = moment(monthlyDay2)
     .add(16, 'days')
@@ -1164,7 +1244,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1172,7 +1252,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region seventeenth day of the month
   const dateMonthly_18 = moment(monthlyDay2)
     .add(17, 'days')
@@ -1216,7 +1295,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1224,7 +1303,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region eighteenth day of the month
   const dateMonthly_19 = moment(monthlyDay2)
     .add(18, 'days')
@@ -1268,7 +1346,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1276,7 +1354,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region nineteenth day of the month
   const dateMonthly_20 = moment(monthlyDay2)
     .add(19, 'days')
@@ -1320,7 +1397,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1328,7 +1405,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region twentieth day of the month
   const dateMonthly_21 = moment(monthlyDay2)
     .add(20, 'days')
@@ -1372,7 +1448,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1380,7 +1456,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region twenty-first day of the month
   const dateMonthly_22 = moment(monthlyDay2)
     .add(21, 'days')
@@ -1424,7 +1499,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1432,7 +1507,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region twenty-second day of the month
   const dateMonthly_23 = moment(monthlyDay2)
     .add(22, 'days')
@@ -1476,7 +1550,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1484,7 +1558,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region twenty-third day of the month
   const dateMonthly_24 = moment(monthlyDay2)
     .add(23, 'days')
@@ -1528,7 +1601,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1536,7 +1609,6 @@ export default function VisitList() {
   }
 
   //#endregion
-  //
   //#region twenty-fourth day of the month
   const dateMonthly_25 = moment(monthlyDay2)
     .add(24, 'days')
@@ -1580,14 +1652,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region twenty-fifth day of the month
   const dateMonthly_26 = moment(monthlyDay2)
     .add(25, 'days')
@@ -1631,14 +1702,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region twenty-sixth day of the month
   const dateMonthly_27 = moment(monthlyDay2)
     .add(26, 'days')
@@ -1682,14 +1752,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region twenty-seventh day of the month
   const dateMonthly_28 = moment(monthlyDay2)
     .add(27, 'days')
@@ -1733,14 +1802,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region twenty-eighth day of the month
   const dateMonthly_29 = moment(monthlyDay2)
     .add(28, 'days')
@@ -1784,14 +1852,13 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
   //#endregion
-  //
   //#region twenty-ninth day of the month
   const dateMonthly_30 = moment(monthlyDay2)
     .add(29, 'days')
@@ -1835,7 +1902,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1849,7 +1916,6 @@ export default function VisitList() {
   //   'visitListMonthlyDay30',
   // )
   //#endregion
-  //
   //#region thirtieth day of the month
   const dateMonthly_31 = moment(monthlyDay2)
     .add(30, 'days')
@@ -1893,7 +1959,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -1907,7 +1973,6 @@ export default function VisitList() {
   //   'visitListMonthlyDay31',
   // )
   //#endregion
-  //
   //#region thirty-first day of the month
   const dateMonthly_32 = moment(monthlyDay2)
     .add(31, 'days')
@@ -1955,21 +2020,20 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
-  console.log(
-    // visitListMonthlyDay32(),
-    // visitListMonthlyDay32,
-    monthlyDay32,
-    moment(monthlyDay32).format('dddd'),
-    // 'visitListMonthlyDay32',
-  )
+  //   console.log(
+  //     // visitListMonthlyDay32(),
+  //     // visitListMonthlyDay32,
+  //     monthlyDay32,
+  //     moment(monthlyDay32).format('dddd'),
+  //     // 'visitListMonthlyDay32',
+  //   )
   //#endregion
-  //
   //#region thirty-second day of the month
   const dateMonthly_33 = moment(monthlyDay2)
     .add(32, 'days')
@@ -2013,7 +2077,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -2027,7 +2091,6 @@ export default function VisitList() {
   //   'visitListMonthlyDay33',
   // )
   //#endregion
-  //
   //#region thirty-third day of the month
   const dateMonthly_34 = moment(monthlyDay2)
     .add(33, 'days')
@@ -2071,21 +2134,20 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
       })
   }
-  console.log(
-    // visitListMonthlyDay34(),
-    // visitMonthlyDay34[0].visitDate,
-    monthlyDay34,
-    // moment(monthlyDay34).format('dddd'),
-    // 'visitListMonthlyDay34'
-  )
+  //   console.log(
+  // visitListMonthlyDay34(),
+  // visitMonthlyDay34[0].visitDate,
+  // monthlyDay34,
+  // moment(monthlyDay34).format('dddd'),
+  // 'visitListMonthlyDay34'
+  //   )
   //#endregion
-  //
   //#region thirty-fourth day of the month
   const dateMonthly_35 = moment(monthlyDay2)
     .add(34, 'days')
@@ -2129,7 +2191,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -2144,7 +2206,6 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region thirty-fifth day of the month
   const dateMonthly_36 = moment(monthlyDay2)
     .add(35, 'days')
@@ -2188,7 +2249,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -2203,7 +2264,6 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region thirty-sixth day of the month
   const dateMonthly_37 = moment(monthlyDay2)
     .add(36, 'days')
@@ -2223,7 +2283,7 @@ export default function VisitList() {
       ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 6
       ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
-                  : ''
+      : ''
   const visitMonthlyDay37 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2235,7 +2295,7 @@ export default function VisitList() {
       return Object.values(el).toString().toLowerCase().includes(monthlyDay37)
     }
   })
-  console.log(visitMonthlyDay37)
+  //   console.log(visitMonthlyDay37)
   function visitListMonthlyDay37() {
     return [...visitMonthlyDay37]
       .sort((a, b) =>
@@ -2248,7 +2308,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -2263,7 +2323,6 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region thirty-seventh day of the month
   const dateMonthly_38 = moment(monthlyDay2)
     .add(37, 'days')
@@ -2307,7 +2366,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -2322,11 +2381,7 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //
   //#region thirty-eighth day of the month
-  const dateMonthly_39 = moment(monthlyDay2)
-    .add(38, 'days')
-    .format('YYYY-MM-DD')
   const monthlyDay39 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(38, 'days').format('YYYY-MM-DD')
@@ -2366,7 +2421,7 @@ export default function VisitList() {
         return (
           <VisitWeekly
             visit={visit}
-           deleteRecord={() =>deleteRecord(visit._id)}
+            deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
           />
         )
@@ -2381,9 +2436,222 @@ export default function VisitList() {
   // )
 
   //#endregion
-  //end of code for each monthly visit dates  
-    
-return (
+  //end of code for each monthly visit dates
+  //#region code for each weekly daily visit dates
+  const dateSelectedMonday = moment(showDateValue)
+    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
+    .format('YYYY-MM-DD')
+  const dateSelectedTuesday = moment(showDateValue)
+    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
+    .format('YYYY-MM-DD')
+  const dateSelectedWednesday = moment(showDateValue)
+    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
+    .format('YYYY-MM-DD')
+  const dateSelectedThursday = moment(showDateValue)
+    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 4), 'days')
+    .format('YYYY-MM-DD')
+  const dateSelectedFriday = moment(showDateValue)
+    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 5), 'days')
+    .format('YYYY-MM-DD')
+  //#endregion
+  //#region code for filtering visits with dates / this method will filter the table weekly
+  const filteredDataWeeklyMonday = visits.filter((el) => {
+    //if no input the return the with the original default date
+    if (searchInput === '') {
+      // return el
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedMonday)
+    }
+    //return the item which contains the user input
+    else {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedMonday)
+    }
+  })
+  const filteredDataWeeklyTuesday = visits.filter((el) => {
+    //if no input the return the with the original default date
+    if (searchInput === '') {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedTuesday)
+    }
+    //return the item which contains the user input
+    else {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedTuesday)
+    }
+  })
+  const filteredDataWeeklyWed = visits.filter((el) => {
+    //if no input the return the with the original default date
+    if (searchInput === '') {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedWednesday)
+    }
+    //return the item which contains the user input
+    else {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedWednesday)
+    }
+  })
+
+  const filteredDataWeeklyThursday = visits.filter((el) => {
+    //if no input the return the with the original default date
+    if (searchInput === '') {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedThursday)
+    }
+    //return the item which contains the user input
+    else {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedThursday)
+    }
+  })
+  const filteredDataWeeklyFri = visits.filter((el) => {
+    //if no input the return the with the original default date
+    if (searchInput === '') {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedFriday)
+    }
+    //return the item which contains the user input
+    else {
+      return Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(dateSelectedFriday)
+    }
+  })
+
+  const filteredDataMonthly = visits.filter((el) => {
+    // const date = '2022-11-10'
+    //if no input the return the with the original default date
+    if (searchInput === '') {
+      // return el
+      return Object.values(el).toString().toLowerCase()
+      // .filter((el) => el.visitDate === date)
+    }
+    //return the item which contains the user input
+    else {
+      return Object.values(el).toString().toLowerCase()
+      // .filter((el) => el.visitDate === date)
+    }
+  })
+  //#endregion
+  //#region code for each weekly visit dates
+  function visitListWeeklyMonday() {
+    return [...filteredDataWeeklyMonday]
+      .sort((a, b) =>
+        moment(a.visitDate + ', ' + a.hourOfVisit) >
+        moment(b.visitDate + ', ' + b.hourOfVisit)
+          ? 1
+          : -1,
+      )
+      .map((visit) => {
+        return (
+          <VisitWeekly
+            visit={visit}
+            deleteRecord={() => deleteRecord(visit._id)}
+            key={visit._id}
+          />
+        )
+      })
+  }
+
+  function visitListWeeklyTuesday() {
+    return [...filteredDataWeeklyTuesday]
+      .sort((a, b) =>
+        moment(a.visitDate + ', ' + a.hourOfVisit) >
+        moment(b.visitDate + ', ' + b.hourOfVisit)
+          ? 1
+          : -1,
+      )
+      .map((visit) => {
+        // console.log(moment(visit.visitDate + ', ' + visit.hourOfVisit))
+        return (
+          <VisitWeekly
+            visit={visit}
+            deleteRecord={() => deleteRecord(visit._id)}
+            key={visit._id}
+          />
+        )
+      })
+  }
+
+  function visitListWeeklyWednesday() {
+    return [...filteredDataWeeklyWed]
+      .sort((a, b) =>
+        moment(a.visitDate + ', ' + a.hourOfVisit) >
+        moment(b.visitDate + ', ' + b.hourOfVisit)
+          ? 1
+          : -1,
+      )
+      .map((visit) => {
+        return (
+          <VisitWeekly
+            visit={visit}
+            deleteRecord={() => deleteRecord(visit._id)}
+            key={visit._id}
+          />
+        )
+      })
+  }
+
+  function visitListWeeklyThursday() {
+    return [...filteredDataWeeklyThursday]
+      .sort((a, b) =>
+        moment(a.visitDate + ', ' + a.hourOfVisit) >
+        moment(b.visitDate + ', ' + b.hourOfVisit)
+          ? 1
+          : -1,
+      )
+      .map((visit) => {
+        return (
+          <VisitWeekly
+            visit={visit}
+            deleteRecord={() => deleteRecord(visit._id)}
+            key={visit._id}
+          />
+        )
+      })
+  }
+
+  function visitListWeeklyFriday() {
+    return [...filteredDataWeeklyFri]
+      .sort((a, b) =>
+        moment(a.visitDate + ', ' + a.hourOfVisit) >
+        moment(b.visitDate + ', ' + b.hourOfVisit)
+          ? 1
+          : -1,
+      )
+
+      .map((visit) => {
+        return (
+          <VisitWeekly
+            visit={visit}
+            deleteRecord={() => deleteRecord(visit._id)}
+            key={visit._id}
+          />
+        )
+      })
+  }
+  //#endregion
+  return (
     <div className="grid_container">
       <div className="item1">
         <Header></Header>
@@ -4030,102 +4298,6 @@ return (
                       <span style={{ float: 'right', marginRight: '10px' }}>
                         {' '}
                         {moment(monthlyDay32).format('D')}
-                        {/* {startOfTheMonthDayNumber === 0
-                          ? startOfTheMonthDate + 31
-                          : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 31 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            31 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            31 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            31 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            31 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            31 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''} */}
-                        {/* {' '} */}
-                        {/* {startOfTheMonthDayNumber === 0
-                          ? startOfTheMonthDate + 31 > daysOfTheMonth
-                            ? ''
-                            : startOfTheMonthDate + 31
-                          : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 31 - endOfThePreviousMonth >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth + 31 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              1 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              2 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              3 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              4 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              5 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              31 -
-                              endOfThePreviousMonth -
-                              5
-                          : ''} */}
                       </span>
                     </div>
                   </li>
@@ -4650,6 +4822,164 @@ return (
               </div>
             </div>
           </ul>
+          {/* weekly calendar */}
+          <ul
+            className="calendar01"
+            id="calendarWeekly"
+            style={{
+              display: selectViewValue === 'Weekly' ? '' : 'none',
+              paddingLeft: '0px',
+              marginBottom: '0px',
+            }}
+          >
+            <div style={{ display: 'block' }}>
+              <div className="grid-weeklycalcontainer">
+                <div>
+                  <li className="calendar-item weekday">
+                    <div>
+                      SUN{' '}
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {' '}
+                        {startOfTheWeek}{' '}
+                      </span>
+                    </div>
+                  </li>
+                  <li
+                    className="calendar-item calendar-day"
+                    style={gridWeeklyStartSun}
+                  ></li>
+                </div>
+                <div>
+                  <li className="calendar-item weekday">
+                    <div>
+                      MON
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 1 > daysOfPreviousMonth
+                          ? startOfTheWeek + 1 - daysOfPreviousMonth
+                          : startOfTheWeek + 1}
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                    <table className="table table-striped">
+                      <thead>
+                        <tr className="trStyles"></tr>
+                      </thead>
+                      <tbody className="trStyles">
+                        {visitListWeeklyMonday()}
+                      </tbody>
+                    </table>
+                  </li>
+                </div>
+                <div>
+                  <li className="calendar-item weekday">
+                    <div>
+                      TUE
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 2 > daysOfPreviousMonth
+                          ? startOfTheWeek + 2 - daysOfPreviousMonth
+                          : startOfTheWeek + 2}
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                    <table className="table table-striped">
+                      <thead>
+                        <tr className="trStyles"></tr>
+                      </thead>
+                      <tbody className="trStyles">
+                        {visitListWeeklyTuesday()}
+                      </tbody>
+                    </table>
+                  </li>
+                </div>
+                <div>
+                  <li className="calendar-item weekday">
+                    <div>
+                      WED
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {' '}
+                        {startOfTheWeek + 3 > daysOfPreviousMonth
+                          ? startOfTheWeek + 3 - daysOfPreviousMonth
+                          : startOfTheWeek + 3}{' '}
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                    <table className="table table-striped">
+                      <thead>
+                        <tr className="trStyles"></tr>
+                      </thead>
+                      <tbody className="trStyles">
+                        {visitListWeeklyWednesday()}
+                      </tbody>
+                    </table>
+                  </li>
+                </div>
+                <div>
+                  <li className="calendar-item weekday">
+                    <div>
+                      THU
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 4 > daysOfPreviousMonth
+                          ? startOfTheWeek + 4 - daysOfPreviousMonth
+                          : startOfTheWeek + 4}
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                    <table className="table table-striped">
+                      <thead>
+                        <tr className="trStyles"></tr>
+                      </thead>
+                      <tbody className="trStyles">
+                        {visitListWeeklyThursday()}
+                      </tbody>
+                    </table>
+                  </li>
+                </div>
+                <div>
+                  <li className="calendar-item weekday">
+                    <div>
+                      FRI
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 5 > daysOfPreviousMonth
+                          ? startOfTheWeek + 5 - daysOfPreviousMonth
+                          : startOfTheWeek + 5}
+                      </span>
+                    </div>
+                  </li>
+
+                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                    <table className="table table-striped">
+                      <thead>
+                        <tr className="trStyles"></tr>
+                      </thead>
+                      <tbody className="trStyles">
+                        {visitListWeeklyFriday()}
+                      </tbody>
+                    </table>
+                  </li>
+                </div>
+                <div>
+                  <li className="calendar-item weekday">
+                    <div>
+                      SAT
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 6 > daysOfPreviousMonth
+                          ? startOfTheWeek + 6 - daysOfPreviousMonth
+                          : startOfTheWeek + 6}
+                      </span>
+                    </div>
+                  </li>
+                  <li
+                    className="calendar-item calendar-day"
+                    style={gridWeekly}
+                  ></li>
+                </div>
+              </div>
+            </div>
+          </ul>
           {/* daily calendar */}
           <ul
             className="calendar01"
@@ -4660,11 +4990,7 @@ return (
             }}
           >
             {/* weekdays */}
-            <li className="weekday" id="calendarDaily">
-              {/* <h5 style={{ marginBottom: '0px', background: 'white' }}>
-                {nameOfTheDay}, {dayOfTheMonth}
-              </h5> */}
-            </li>
+            <li className="weekday" id="calendarDaily"></li>
             {/* calendar item */}
             <li
               className="calendar-item calendar-day"
@@ -4678,10 +5004,7 @@ return (
               </div>
 
               <div>
-                <table
-                  className="table table-striped"
-                  //
-                >
+                <table className="table table-striped">
                   <thead>
                     <tr className="trStyles">
                       <th>FirstName</th>
@@ -4695,7 +5018,8 @@ return (
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody className="trStyles">{patientList()}</tbody>
+                  {/* <tbody className="trStyles">{patientListDaily()}</tbody> */}
+                  <tbody className="trStyles">{patientListDaily()}</tbody>
                 </table>
               </div>
             </li>

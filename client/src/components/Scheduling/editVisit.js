@@ -60,7 +60,7 @@ function UpdateVisitInfo(props) {
     axios
       .put(`http://localhost:8081/api/visits/${id}`, data)
       .then((res) => {
-        navigate(`/visitlist`)
+        navigate(`/calendarSchedule`)
       })
       .catch((err) => {
         console.log('Error in UpdateVisitInfo!')
@@ -172,7 +172,7 @@ function UpdateVisitInfo(props) {
                   }}
                 >
                   <input
-                    value="Add"
+                    value="Update"
                     type="submit"
                     className="btn btn-success"
                   />

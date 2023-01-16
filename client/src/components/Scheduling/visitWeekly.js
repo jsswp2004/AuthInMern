@@ -27,7 +27,7 @@ const VisitWeekly = (props) => {
           {/* style={{ position: 'absolute', }} */}
           <Link
             // className="btn btn-info btn-sm"
-            to={`/visit/editVisit/${props.visit._id}`}
+            to={`/editVisit/${props.visit._id}`}
           >
             <i
               className="fa fa-pencil-square-o fa-sm"
@@ -40,7 +40,7 @@ const VisitWeekly = (props) => {
               className="fa fa-trash fa-sm"
               aria-hidden="true"
               onClick={() => {
-                props.deleteVisit(props.visit._id)
+                props.deleteRecord(props.visit._id)
               }}
               style={{ color: 'red', paddingTop: '5px' }}
               title="Delete"
