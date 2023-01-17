@@ -1200,8 +1200,8 @@ export default function VisitList() {
         )
       })
     }
-    console.log(visitMonthlyDay16)
-    console.log(monthlyDay16)
+    // console.log(visitMonthlyDay16)
+    // console.log(monthlyDay16)
   //#endregion
   //#region sixteenth day of the month
 //   const dateMonthly_17 = moment(monthlyDay2)
@@ -1520,9 +1520,9 @@ export default function VisitList() {
 
   //#endregion
   //#region twenty-second day of the month
-  const dateMonthly_23 = moment(monthlyDay2)
-    .add(22, 'days')
-    .format('YYYY-MM-DD')
+//   const dateMonthly_23 = moment(monthlyDay2)
+//     .add(22, 'days')
+//     .format('YYYY-MM-DD')
   const monthlyDay23 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
@@ -1568,7 +1568,7 @@ export default function VisitList() {
         )
       })
   }
-
+// console.log('monthlyDay23 = ', monthlyDay23)
   //#endregion
   //#region twenty-third day of the month
   const dateMonthly_24 = moment(monthlyDay2)
