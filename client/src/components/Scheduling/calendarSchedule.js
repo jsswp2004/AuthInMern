@@ -4,7 +4,7 @@ import { format, getDate, startOfMonth, getDay } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import Visit from '../Scheduling/visit'
+// import Visit from '../Scheduling/visit'
 import VisitWeekly from '../Scheduling/visitWeekly'
 import moment from 'moment'
 import Navbar from '../navigation/navbar'
@@ -36,7 +36,7 @@ const VisitCard = (props) => (
         to={`/editVisit/${props.visit._id}`}
       >
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
-      </Link>{' '}
+      </Link>
       <button
         className="btn btn-danger btn-sm"
         onClick={() => {
@@ -77,14 +77,14 @@ export default function VisitList() {
   const handleShow = () => setShow(true)
   //#endregion
   //#region code for Modal methods for creating visit
-  const [showVisit, setShowVisit] = useState(false)
-  const handleCloseVisit = () => setShowVisit(false)
-  const handleShowVisit = () => setShowVisit(true)
+//   const [showVisit, setShowVisit] = useState(false)
+//   const handleCloseVisit = () => setShowVisit(false)
+//   const handleShowVisit = () => setShowVisit(true)
   //#endregion
   //#region code for Modal methods for creating visit
-  const [showVisitWeekly, setShowVisitWeekly] = useState(false)
-  const handleCloseVisitWeekly = () => setShowVisitWeekly(false)
-  const handleShowVisitWeekly = () => setShowVisitWeekly(true)
+//   const [showVisitWeekly, setShowVisitWeekly] = useState(false)
+//   const handleCloseVisitWeekly = () => setShowVisitWeekly(false)
+//   const handleShowVisitWeekly = () => setShowVisitWeekly(true)
   //#endregion
   //#region months dropdown code
   const viewValues = View
@@ -98,7 +98,7 @@ export default function VisitList() {
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
   let monthIndex = newdate.getMonth()
-  let monthName = monthNames[monthIndex]
+  let monthName = monthNames[monthIndex].value
   let startOfTheMonth = startOfMonth(new Date(dateSelected))
 
   // .startOf('month')
@@ -2740,7 +2740,7 @@ export default function VisitList() {
               className="btn btn-info"
               role="button"
             >
-              {' '}
+              
               <i className="fa fa-search" aria-hidden="true"></i>
             </a>
           </div>
@@ -2750,7 +2750,7 @@ export default function VisitList() {
               // style={{ display: selectViewValue === 'Daily' ? '' : 'none' }}
               style={{ display: 'none' }}
             >
-              Search :{' '}
+              Search :
               <input
                 id="search"
                 type="text"
@@ -2779,9 +2779,9 @@ export default function VisitList() {
                 <div className="Sunday">
                   <li className="calendar-item weekday">
                     <div className="calendar-monthlyitem">
-                      SUN{' '}
+                      SUN
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate
                           : startOfTheMonthDayNumber === 1
@@ -2805,14 +2805,14 @@ export default function VisitList() {
                     style={gridMonthlyColumnStart}
                     // style={gridMonthly}
                   >
-                    <table className="table table-striped">
+                    {/* <table className="table table-striped">
                       <thead>
                         <tr className="trStyles"></tr>
                       </thead>
                       <tbody className="trStyles">
-                        {/* {visitListMonthlyDay1()} */}
+                        {visitListMonthlyDay1()}
                       </tbody>
-                    </table>
+                    </table> */}
                   </li>
                 </div>
                 <div className="Monday">
@@ -2895,7 +2895,7 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 3
                           : startOfTheMonthDayNumber === 1
@@ -2923,7 +2923,7 @@ export default function VisitList() {
                         <tr className="trStyles"></tr>
                       </thead>
                       <tbody className="trStyles">
-                        {visitListMonthlyDay4()}{' '}
+                        {visitListMonthlyDay4()}
                       </tbody>
                     </table>
                   </li>
@@ -3188,7 +3188,7 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 10
                           : startOfTheMonthDayNumber === 1
@@ -3549,7 +3549,7 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 17
                           : startOfTheMonthDayNumber === 1
@@ -3919,10 +3919,10 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {/* {startOfTheWeek + 24 > daysOfPreviousMonth
                           ? startOfTheWeek + 24 - daysOfPreviousMonth
-                          : startOfTheWeek + 24}{' '} */}
+                          : startOfTheWeek + 24} */}
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 24
                           : startOfTheMonthDayNumber === 1
@@ -4306,9 +4306,9 @@ export default function VisitList() {
                 <div className="FifthWednesday">
                   <li className="calendar-item weekday">
                     <div>
-                      WED{' '}
+                      WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {moment(monthlyDay32).format('D')}
                       </span>
                     </div>
@@ -4343,7 +4343,7 @@ export default function VisitList() {
                 <div className="FifthThursday">
                   <li className="calendar-item weekday">
                     <div>
-                      THU{' '}
+                      THU
                       <span style={{ float: 'right', marginRight: '10px' }}>
                         {moment(monthlyDay33).format('D')}
                       </span>
@@ -4535,7 +4535,7 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {moment(monthlyDay39).format('D')}
                       </span>
                     </div>
@@ -4849,10 +4849,10 @@ export default function VisitList() {
                 <div>
                   <li className="calendar-item weekday">
                     <div>
-                      SUN{' '}
+                      SUN
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
-                        {startOfTheWeek}{' '}
+                        
+                        {startOfTheWeek}
                       </span>
                     </div>
                   </li>
@@ -4910,10 +4910,10 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {' '}
+                        
                         {startOfTheWeek + 3 > daysOfPreviousMonth
                           ? startOfTheWeek + 3 - daysOfPreviousMonth
-                          : startOfTheWeek + 3}{' '}
+                          : startOfTheWeek + 3}
                       </span>
                     </div>
                   </li>
