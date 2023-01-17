@@ -5,6 +5,8 @@ import axios from 'axios'
 import {
 Hour
 } from '../listDictionaries/listData/listDictionariesData'
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 
 const CreateVisit = (props) => {
   // Define the state with useState hook
@@ -47,13 +49,36 @@ const CreateVisit = (props) => {
           addedDate: '',
         })
 
+        postMessage('Visit created!')
+
         // Push to /
-        navigate('/visitlist')
+        navigate('/visitList')
       })
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
   }
+
+  // const [show, setShow] = useState(false);
+  // function AlertDismissible() {
+    // const [show, setShow] = useState(false);
+  
+    // if (show) {
+    //   return (
+    //     <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+    //       <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+    //       <p>
+    //         Change this and that and try again. Duis mollis, est non commodo
+    //         luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+    //         Cras mattis consectetur purus sit amet fermentum.
+    //       </p>
+    //     </Alert>
+    //   );
+    // }
+  //   return <Button onClick={() => setShow(true)}>Show Alert</Button>;
+  // }
+
+  
 
   // console.log(visit)
   return (
@@ -160,15 +185,26 @@ const CreateVisit = (props) => {
               onChange={onChange}
             />
           </div>
+          {/* <AlertDismissible /> */}
           <div
             className="form-group"
+            
             style={{
               float: 'left',
               textAlign: 'left',
               paddingTop: '10px',
             }}
+            
           >
             <input value="Add" type="submit" className="btn btn-success" />
+            {/* <Alert variant="success" dismissible style={{ display: show ? 'false' : 'true' } }>
+          <Alert.Heading>Visit added!</Alert.Heading>
+          <p>
+            Change this and that and try again. Duis mollis, est non commodo
+            luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+            Cras mattis consectetur purus sit amet fermentum.
+          </p>
+        </Alert> */}
           </div>
         </div>
       </div>
