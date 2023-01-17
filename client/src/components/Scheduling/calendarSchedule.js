@@ -1154,7 +1154,7 @@ export default function VisitList() {
 //   const dateMonthly_16 = moment(monthlyDay2)
 //     .add(15, 'days')
 //     .format('YYYY-MM-DD')
-  console.log(startOfTheMonthDayNumber)
+//   console.log(startOfTheMonthDayNumber)
   const monthlyDay16 =
   startOfTheMonthDayNumber === 0
   ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
@@ -1200,8 +1200,8 @@ export default function VisitList() {
         )
       })
     }
-    // console.log(visitMonthlyDay16)
-    // console.log(monthlyDay16)
+    console.log(visitMonthlyDay16) 
+    console.log(monthlyDay16)
   //#endregion
   //#region sixteenth day of the month
 //   const dateMonthly_17 = moment(monthlyDay2)

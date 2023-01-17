@@ -665,7 +665,7 @@ background-color: #2196F3;
 } */
 
 .weeklytd {
-  font-size: 14px;
+  font-size: 12px;
   width: auto;
   /* height:fit-content; */
   /* overflow: hidden; */
@@ -678,7 +678,7 @@ background-color: #2196F3;
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 0px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
   /* padding: 0px; */
   /* justify-content: space-between; */
   border-bottom-width: 0px;
