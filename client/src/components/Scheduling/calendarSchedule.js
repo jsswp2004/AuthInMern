@@ -77,14 +77,14 @@ export default function VisitList() {
   const handleShow = () => setShow(true)
   //#endregion
   //#region code for Modal methods for creating visit
-//   const [showVisit, setShowVisit] = useState(false)
-//   const handleCloseVisit = () => setShowVisit(false)
-//   const handleShowVisit = () => setShowVisit(true)
+  //   const [showVisit, setShowVisit] = useState(false)
+  //   const handleCloseVisit = () => setShowVisit(false)
+  //   const handleShowVisit = () => setShowVisit(true)
   //#endregion
   //#region code for Modal methods for creating visit
-//   const [showVisitWeekly, setShowVisitWeekly] = useState(false)
-//   const handleCloseVisitWeekly = () => setShowVisitWeekly(false)
-//   const handleShowVisitWeekly = () => setShowVisitWeekly(true)
+  //   const [showVisitWeekly, setShowVisitWeekly] = useState(false)
+  //   const handleCloseVisitWeekly = () => setShowVisitWeekly(false)
+  //   const handleShowVisitWeekly = () => setShowVisitWeekly(true)
   //#endregion
   //#region months dropdown code
   const viewValues = View
@@ -207,114 +207,124 @@ export default function VisitList() {
   }
   //#endregion
   //#region for filtering data
-  var filterDataWithDate = visits.filter((visit) => {
-    return visit.visitDate === dateSelected
-  })
-  // console.log(filterDataWithDate)
-//   var filteredData = visits.filter((visit) => {
-//     if (searchInput === '') {
-//       return visit
-//     } else {
-//       return (
-//         visit.firstName
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.middleName
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.lastName
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.visitDate
-//           .toString()
-//           .toLowerCase()
-//           //   .includes(new Date(visit.visitDate) === dateSelected)
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.hourOfVisit
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.email
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.provider
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.addedDate
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase())
-//       )
-//     }
-//   })
-//   var filteredDataDaily = filterDataWithDate.filter((visit) => {
-//     if (searchInput === '') {
-//       return visit
-//       //.includes(visit.date === dateSelected)
-//     } else {
-//       return (
-//         visit.firstName
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.middleName
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.lastName
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.visitDate
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.hourOfVisit
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.email
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.provider
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase()) ||
-//         visit.addedDate
-//           .toString()
-//           .toLowerCase()
-//           .includes(searchInput.toLowerCase())
-//       )
-//     }
-//   })
+  // var filterDataWithDate = visits.filter((visit) => {
+  //   return visit //.visitDate === dateSelected
+  //   // .includes(new Date(dateSelected))
+  //   .includes(visit.visitDate === dateSelected)
+  // })
+  console.log(dateSelected)
+  const newTime = new Date(dateSelected)
+  console.log(format(newTime, 'yyyy-MM-dd'))
+    var filterDataWithDate = visits.filter((visit) => {
+      // if (searchInput === '') {
+      //   return visit
+      // } else {
+        return (
+          visit.visitDate
+          // .toString()
+          // .toLowerCase()
+          .includes(dateSelected)
+          //Object.values(visit.visitDate).includes(dateSelected)
+          // visit.firstName
+          //   .toString()
+          //   .toLowerCase()
+          //   .includes(searchInput.toLowerCase()) ||
+          // visit.middleName
+          //   .toString()
+          //   .toLowerCase()
+          //   .includes(searchInput.toLowerCase()) ||
+          // visit.lastName
+          //   .toString()
+          //   .toLowerCase()
+          //   .includes(searchInput.toLowerCase()) ||
+          // visit.visitDate
+          //   .toString()
+          //   .toLowerCase()
+          //   //   .includes(new Date(visit.visitDate) === dateSelected)
+          //   // .includes((a) => Date.parse(a.visitDate) === dateSelected) ||
+          //   .includes(searchInput.toLowerCase()) ||
+          // visit.hourOfVisit
+          //   .toString()
+          //   .toLowerCase()
+          //   .includes(searchInput.toLowerCase()) ||
+          // visit.email
+          //   .toString()
+          //   .toLowerCase()
+          //   .includes(searchInput.toLowerCase()) ||
+          // visit.provider
+          //   .toString()
+          //   .toLowerCase()
+          //   .includes(searchInput.toLowerCase()) ||
+          // visit.addedDate
+          //   .toString()
+          //   .toLowerCase()
+          //   .includes(searchInput.toLowerCase())
+        )
+      // }
+    })
+  //   var filteredDataDaily = filterDataWithDate.filter((visit) => {
+  //     if (searchInput === '') {
+  //       return visit
+  //       //.includes(visit.date === dateSelected)
+  //     } else {
+  //       return (
+  //         visit.firstName
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase()) ||
+  //         visit.middleName
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase()) ||
+  //         visit.lastName
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase()) ||
+  //         visit.visitDate
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase()) ||
+  //         visit.hourOfVisit
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase()) ||
+  //         visit.email
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase()) ||
+  //         visit.provider
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase()) ||
+  //         visit.addedDate
+  //           .toString()
+  //           .toLowerCase()
+  //           .includes(searchInput.toLowerCase())
+  //       )
+  //     }
+  //   })
   //#endregion
   //#region for patient list
-//   function patientList() {
-//     return filteredData
-//       .sort((a, b) =>
-//         Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
-//       )
-//       .map((visit) => {
-//         return (
-//           <VisitCard
-//             visit={visit}
-//             deleteRecord={deleteRecord}
-//             key={visit._id}
-//           />
-//         )
-//       })
-//   }
+  //   function patientList() {
+  //     return filteredData
+  //       .sort((a, b) =>
+  //         Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
+  //       )
+  //       .map((visit) => {
+  //         return (
+  //           <VisitCard
+  //             visit={visit}
+  //             deleteRecord={deleteRecord}
+  //             key={visit._id}
+  //           />
+  //         )
+  //       })
+  //   }
   function patientListDaily() {
-    return (
-      filterDataWithDate
+    return [...filterDataWithDate]
         //filteredDataDaily
-        //   .includes(new Date(showDateValue))
+        
+        // .includes(a => a.visitDate === format(new Date(dateSelected), 'yyyy-MM-dd'))
         .sort((a, b) =>
           Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
         )
@@ -328,9 +338,10 @@ export default function VisitList() {
             />
           )
         })
-    )
+        
+    
   }
-  // console.log(filteredDataDaily)
+  // console.log(filterDataWithDate)
   //#endregion
   //#region for second day of the month
   const monthlyDay2 =
@@ -826,9 +837,9 @@ export default function VisitList() {
   // )
   //#endregion
   //#region ninth day of the month
-//   const dateMonthly_10 = moment(startOfTheMonth)
-//     .add(9, 'days')
-//     .format('YYYY-MM-DD')
+  //   const dateMonthly_10 = moment(startOfTheMonth)
+  //     .add(9, 'days')
+  //     .format('YYYY-MM-DD')
   const monthlyDay10 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
@@ -933,9 +944,9 @@ export default function VisitList() {
 
   //#endregion
   //#region eleventh day of the month
-//   const dateMonthly_12 = moment(startOfTheMonth)
-//     .add(11, 'days')
-//     .format('YYYY-MM-DD')
+  //   const dateMonthly_12 = moment(startOfTheMonth)
+  //     .add(11, 'days')
+  //     .format('YYYY-MM-DD')
   const monthlyDay12 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
@@ -992,9 +1003,9 @@ export default function VisitList() {
 
   //#endregion
   //#region twelfth day of the month
-//   const dateMonthly_13 = moment(monthlyDay2)
-//     .add(12, 'days')
-//     .format('YYYY-MM-DD')
+  //   const dateMonthly_13 = moment(monthlyDay2)
+  //     .add(12, 'days')
+  //     .format('YYYY-MM-DD')
   const monthlyDay13 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
@@ -1051,9 +1062,9 @@ export default function VisitList() {
 
   //#endregion
   //#region thirteenth day of the month
-//   const dateMonthly_14 = moment(monthlyDay2)
-//     .add(13, 'days')
-//     .format('YYYY-MM-DD')
+  //   const dateMonthly_14 = moment(monthlyDay2)
+  //     .add(13, 'days')
+  //     .format('YYYY-MM-DD')
   const monthlyDay14 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
@@ -1101,9 +1112,9 @@ export default function VisitList() {
   }
   //#endregion
   //#region fourteenth day of the month
-//   const dateMonthly_15 = moment(monthlyDay2)
-//     .add(14, 'days')
-//     .format('YYYY-MM-DD')
+  //   const dateMonthly_15 = moment(monthlyDay2)
+  //     .add(14, 'days')
+  //     .format('YYYY-MM-DD')
   const monthlyDay15 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
@@ -1151,26 +1162,26 @@ export default function VisitList() {
   }
   //#endregion
   //#region fifteenth day of the month
-//   const dateMonthly_16 = moment(monthlyDay2)
-//     .add(15, 'days')
-//     .format('YYYY-MM-DD')
-//   console.log(startOfTheMonthDayNumber)
+  //   const dateMonthly_16 = moment(monthlyDay2)
+  //     .add(15, 'days')
+  //     .format('YYYY-MM-DD')
+  //   console.log(startOfTheMonthDayNumber)
   const monthlyDay16 =
-  startOfTheMonthDayNumber === 0
-  ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
-  : startOfTheMonthDayNumber === 1
-  ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
-  : startOfTheMonthDayNumber === 2
-  ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
-  : startOfTheMonthDayNumber === 3
-  ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
-  : startOfTheMonthDayNumber === 4
-  ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
-  : startOfTheMonthDayNumber === 5
-  ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
-  : startOfTheMonthDayNumber === 6
-  ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
-  : ''
+    startOfTheMonthDayNumber === 0
+      ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 1
+      ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 2
+      ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 3
+      ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 4
+      ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 5
+      ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 6
+      ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
+      : ''
   const visitMonthlyDay16 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1199,14 +1210,14 @@ export default function VisitList() {
           />
         )
       })
-    }
-    console.log(visitMonthlyDay16) 
-    console.log(monthlyDay16)
+  }
+  console.log(visitMonthlyDay16)
+  console.log(monthlyDay16)
   //#endregion
   //#region sixteenth day of the month
-//   const dateMonthly_17 = moment(monthlyDay2)
-//     .add(16, 'days')
-//     .format('YYYY-MM-DD')
+  //   const dateMonthly_17 = moment(monthlyDay2)
+  //     .add(16, 'days')
+  //     .format('YYYY-MM-DD')
   const monthlyDay17 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
@@ -1233,12 +1244,8 @@ export default function VisitList() {
     else {
       return Object.values(el).toString().toLowerCase().includes(monthlyDay17)
     }
-  }
- 
-    )
+  })
 
-    
-    
   function visitListMonthlyDay17() {
     return [...visitMonthlyDay17]
       .sort((a, b) =>
@@ -1256,13 +1263,13 @@ export default function VisitList() {
           />
         )
       })
-    }
-    
-    console.log(visitMonthlyDay17)
-    console.log(monthlyDay17)
+  }
 
-    // console.log(visits)
- 
+  // console.log(visitMonthlyDay17)
+  // console.log(monthlyDay17)
+
+  // console.log(visits)
+
   //#endregion
   //#region seventeenth day of the month
   const dateMonthly_18 = moment(monthlyDay2)
@@ -1367,9 +1374,9 @@ export default function VisitList() {
 
   //#endregion
   //#region nineteenth day of the month
-  const dateMonthly_20 = moment(monthlyDay2)
-    .add(19, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_20 = moment(monthlyDay2)
+  //   .add(19, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay20 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
@@ -1520,9 +1527,9 @@ export default function VisitList() {
 
   //#endregion
   //#region twenty-second day of the month
-//   const dateMonthly_23 = moment(monthlyDay2)
-//     .add(22, 'days')
-//     .format('YYYY-MM-DD')
+  //   const dateMonthly_23 = moment(monthlyDay2)
+  //     .add(22, 'days')
+  //     .format('YYYY-MM-DD')
   const monthlyDay23 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
@@ -1568,7 +1575,7 @@ export default function VisitList() {
         )
       })
   }
-// console.log('monthlyDay23 = ', monthlyDay23)
+  // console.log('monthlyDay23 = ', monthlyDay23)
   //#endregion
   //#region twenty-third day of the month
   const dateMonthly_24 = moment(monthlyDay2)
@@ -2740,7 +2747,6 @@ export default function VisitList() {
               className="btn btn-info"
               role="button"
             >
-              
               <i className="fa fa-search" aria-hidden="true"></i>
             </a>
           </div>
@@ -2781,7 +2787,6 @@ export default function VisitList() {
                     <div className="calendar-monthlyitem">
                       SUN
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate
                           : startOfTheMonthDayNumber === 1
@@ -2895,7 +2900,6 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 3
                           : startOfTheMonthDayNumber === 1
@@ -3188,7 +3192,6 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 10
                           : startOfTheMonthDayNumber === 1
@@ -3549,7 +3552,6 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 17
                           : startOfTheMonthDayNumber === 1
@@ -3919,7 +3921,6 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {/* {startOfTheWeek + 24 > daysOfPreviousMonth
                           ? startOfTheWeek + 24 - daysOfPreviousMonth
                           : startOfTheWeek + 24} */}
@@ -4308,7 +4309,6 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {moment(monthlyDay32).format('D')}
                       </span>
                     </div>
@@ -4535,7 +4535,6 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {moment(monthlyDay39).format('D')}
                       </span>
                     </div>
@@ -4851,7 +4850,6 @@ export default function VisitList() {
                     <div>
                       SUN
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {startOfTheWeek}
                       </span>
                     </div>
@@ -4910,7 +4908,6 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        
                         {startOfTheWeek + 3 > daysOfPreviousMonth
                           ? startOfTheWeek + 3 - daysOfPreviousMonth
                           : startOfTheWeek + 3}
@@ -4967,7 +4964,9 @@ export default function VisitList() {
                       <thead>
                         <tr className="trStyles"></tr>
                       </thead>
-                      <tbody className="trStyles">{visitListWeeklyFriday()}</tbody>
+                      <tbody className="trStyles">
+                        {visitListWeeklyFriday()}
+                      </tbody>
                     </table>
                   </li>
                 </div>

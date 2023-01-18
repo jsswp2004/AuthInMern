@@ -5,10 +5,10 @@ import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 
 const Main = () => {
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    window.location.reload()
-  }
+  // const handleLogout = () => {
+  //   localStorage.removeItem('token')
+  //   window.location.reload()
+  // }
 
 
 
