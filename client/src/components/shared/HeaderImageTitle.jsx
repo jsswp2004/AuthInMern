@@ -37,7 +37,7 @@ function HeaderImageTitle() {
             <Link to="/contact">Contact</Link>
           </li>
           <li id="link" className="navbar_list">
-            <a href="#about">About </a>
+          <Link to="/about">About</Link>
           </li>
           <li className="navbar_list_exit">
             <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>

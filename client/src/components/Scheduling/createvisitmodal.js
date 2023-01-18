@@ -49,7 +49,7 @@ const CreateVisit = (props) => {
           addedDate: '',
         })
 
-        postMessage('Visit created!')
+        // postMessage('Visit created!')
 
         // Push to /
         navigate('/visitList')

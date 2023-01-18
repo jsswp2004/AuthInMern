@@ -13,6 +13,7 @@ import VisitSchedule from './components/Scheduling/VisitScheduleList'
 import CalendarSchedule from './components/Scheduling/calendarSchedule'
 import CreateVisit from './components/Scheduling/createvisit'
 import EditVisit from './components/Scheduling/editVisit'
+import About from './components/Main/About'
 
 function App() {
   const user = localStorage.getItem('token')
@@ -33,6 +34,7 @@ function App() {
       <Route path="/login" exact element={<Login />} />
       <Route path="/usersList" exact element={<ShowUsersList />} />
       <Route path="/editUser/:id" exact element={<EditUser />} />
+      <Route path="/about" exact element={<About />} />
       <Route path="/" element={<Navigate replace to="/login" />} />
     </Routes>
   )
