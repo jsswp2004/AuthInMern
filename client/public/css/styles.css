@@ -445,12 +445,12 @@ display: flex;
 }
 .table td,
 .table th {
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
 }
 
 thead tr {
   background-color: #6d6d6d;
-  font-weight: 100;
+  font-weight: 50;
 }
 
 .table tr:nth-child(even) {
@@ -693,9 +693,33 @@ background-color: #2196F3;
 /* VisitListWeekly {
   font-size: smaller;
 } */
-
+.fa-trash {
+  padding-left: 5px;
+}
 .weeklytd {
   font-size: 12px;
+  /* width: justify; */
+  /* height:fit-content; */
+  /* overflow: hidden; */
+  display: inline-flex;
+  /* white-space: nowrap; */
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  /* margin-right: 5px; */
+  /* padding: 0px; */
+  /* justify-content: space-between; */
+  border-bottom-width: 0px;
+  /* background-color: white; */
+  /* float: right; */
+}
+
+.monthlytd {
+  font-size: 10px;
   width: auto;
   /* height:fit-content; */
   /* overflow: hidden; */
@@ -737,7 +761,7 @@ background-color: #2196F3;
   padding-right: 0px;
 } */
 .trStyles {
-  /* width: auto; */
+  width: auto;
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 0px;
@@ -745,6 +769,8 @@ background-color: #2196F3;
   padding-left: 0px;
   padding-right: 0px;
   border: none;
+  /* align-content: space-between; */
+
   /* display: flex; */
 
 }
