@@ -215,14 +215,14 @@ export default function VisitList() {
   console.log(dateSelected)
   const newTime = new Date(dateSelected)
   console.log(format(newTime, 'yyyy-MM-dd'))
-    var filterDataWithDate = visits.filter((visit) => {
+  const filterDataWithDate = visits.filter((visit) => {
       // if (searchInput === '') {
       //   return visit
       // } else {
         return (
           visit.visitDate
-          // .toString()
-          // .toLowerCase()
+          .toString()
+          .toLowerCase()
           .includes(dateSelected)
           //Object.values(visit.visitDate).includes(dateSelected)
           // visit.firstName
@@ -2509,19 +2509,22 @@ export default function VisitList() {
   })
   const filteredDataWeeklyWed = visits.filter((el) => {
     //if no input the return the with the original default date
-    if (searchInput === '') {
-      return Object.values(el)
-        .toString()
-        .toLowerCase()
-        .includes(dateSelectedWednesday)
-    }
+    // if (searchInput === '') {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedWednesday)
+    // }
     //return the item which contains the user input
-    else {
-      return Object.values(el)
+    // else {
+    return (
+      el.visitDate
+      // Object.values(el)
         .toString()
         .toLowerCase()
-        .includes(dateSelectedWednesday)
-    }
+      .includes(dateSelectedWednesday)
+      )
+    // }
   })
 
   const filteredDataWeeklyThursday = visits.filter((el) => {
