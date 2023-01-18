@@ -13,11 +13,8 @@ import { Link } from 'react-router-dom'
 import {
   View,
   monthNames,
-
-  // weekdays,
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
-// import CreateVisit from '../Scheduling/createvisit'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
 //#region for visit component
 const VisitCard = (props) => (
@@ -383,11 +380,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay2)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay2)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay2)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay2)
     }
   })
   function visitListMonthlyDay2() {
@@ -449,11 +450,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay3)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay3)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay3)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay3)
     }
   })
   function visitListMonthlyDay3() {
@@ -515,11 +520,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay4)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay4)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay4)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay4)
     }
   })
   function visitListMonthlyDay4() {
@@ -579,11 +588,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay5)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay5)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay5)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay5)
     }
   })
   function visitListMonthlyDay5() {
@@ -639,11 +652,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay6)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay6)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay6)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay6)
     }
   })
   function visitListMonthlyDay6() {
@@ -696,11 +713,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay7)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay7)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay7)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay7)
     }
   })
   function visitListMonthlyDay7() {
@@ -745,11 +766,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay8)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay8)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay8)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay8)
     }
   })
   function visitListMonthlyDay8() {
@@ -780,7 +805,7 @@ export default function VisitList() {
   //   )
   //#endregion
   //#region ninth day of the month
-  const dateMonthly_09 = moment(monthlyDay2).add(8, 'days').format('YYYY-MM-DD')
+  // const dateMonthly_09 = moment(monthlyDay2).add(8, 'days').format('YYYY-MM-DD')
   const monthlyDay9 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
@@ -802,11 +827,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay9)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay9)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay9)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay9)
     }
   })
   function visitListMonthlyDay9() {
@@ -861,11 +890,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay10)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay10)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay10)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay10)
     }
   })
   function visitListMonthlyDay10() {
@@ -908,11 +941,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay11)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay11)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay11)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay11)
     }
   })
   function visitListMonthlyDay11() {
@@ -967,11 +1004,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay12)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay12)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay12)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay12)
     }
   })
   function visitListMonthlyDay12() {
@@ -1026,11 +1067,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay13)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay13)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay13)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay13)
     }
   })
   function visitListMonthlyDay13() {
@@ -1085,11 +1130,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay14)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay14)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay14)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay14)
     }
   })
   function visitListMonthlyDay14() {
@@ -1135,11 +1184,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay15)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay15)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay15)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay15)
     }
   })
   function visitListMonthlyDay15() {
@@ -1186,11 +1239,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay16)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay16)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay16)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay16)
     }
   })
   function visitListMonthlyDay16() {
@@ -1211,8 +1268,8 @@ export default function VisitList() {
         )
       })
   }
-  console.log(visitMonthlyDay16)
-  console.log(monthlyDay16)
+  // console.log(visitMonthlyDay16)
+  // console.log(monthlyDay16)
   //#endregion
   //#region sixteenth day of the month
   //   const dateMonthly_17 = moment(monthlyDay2)
@@ -1237,12 +1294,23 @@ export default function VisitList() {
   const visitMonthlyDay17 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
-      // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay17)
+      return el.visitDate
+          .toString()
+          .toLowerCase()
+          .includes(monthlyDay17)
+      // return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay17)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay17)
+      return el.visitDate
+      .toString()
+      .toLowerCase()
+      .includes(monthlyDay17)
+      // return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay17)
     }
   })
 
@@ -1272,9 +1340,9 @@ export default function VisitList() {
 
   //#endregion
   //#region seventeenth day of the month
-  const dateMonthly_18 = moment(monthlyDay2)
-    .add(17, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_18 = moment(monthlyDay2)
+  //   .add(17, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay18 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
@@ -1295,11 +1363,17 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay18)
+      return el.visitDate
+      .toString()
+        .toLowerCase()
+        .includes(monthlyDay18)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay18)
+      return el.visitDate
+      .toString()
+        .toLowerCase()
+        .includes(monthlyDay18)
     }
   })
   function visitListMonthlyDay18() {
@@ -1323,9 +1397,9 @@ export default function VisitList() {
 
   //#endregion
   //#region eighteenth day of the month
-  const dateMonthly_19 = moment(monthlyDay2)
-    .add(18, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_19 = moment(monthlyDay2)
+  //   .add(18, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay19 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
@@ -1346,11 +1420,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay19)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay19)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay19)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay19)
     }
   })
   function visitListMonthlyDay19() {
@@ -1397,11 +1475,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay20)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay20)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay20)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay20)
     }
   })
   function visitListMonthlyDay20() {
@@ -1425,9 +1507,9 @@ export default function VisitList() {
 
   //#endregion
   //#region twentieth day of the month
-  const dateMonthly_21 = moment(monthlyDay2)
-    .add(20, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_21 = moment(monthlyDay2)
+  //   .add(20, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay21 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
@@ -1448,11 +1530,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay21)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay21)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay21)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay21)
     }
   })
   function visitListMonthlyDay21() {
@@ -1476,9 +1562,9 @@ export default function VisitList() {
 
   //#endregion
   //#region twenty-first day of the month
-  const dateMonthly_22 = moment(monthlyDay2)
-    .add(21, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_22 = moment(monthlyDay2)
+  //   .add(21, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay22 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
@@ -1499,11 +1585,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay22)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay22)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay22)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay22)
     }
   })
   function visitListMonthlyDay22() {
@@ -1550,11 +1640,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay23)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay23)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay23)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay23)
     }
   })
   function visitListMonthlyDay23() {
@@ -1578,9 +1672,9 @@ export default function VisitList() {
   // console.log('monthlyDay23 = ', monthlyDay23)
   //#endregion
   //#region twenty-third day of the month
-  const dateMonthly_24 = moment(monthlyDay2)
-    .add(23, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_24 = moment(monthlyDay2)
+  //   .add(23, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay24 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
@@ -1601,11 +1695,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay24)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay24)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay24)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay24)
     }
   })
   function visitListMonthlyDay24() {
@@ -1629,9 +1727,9 @@ export default function VisitList() {
 
   //#endregion
   //#region twenty-fourth day of the month
-  const dateMonthly_25 = moment(monthlyDay2)
-    .add(24, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_25 = moment(monthlyDay2)
+  //   .add(24, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay25 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
@@ -1652,11 +1750,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay25)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay25)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay25)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay25)
     }
   })
   function visitListMonthlyDay25() {
@@ -1679,9 +1781,9 @@ export default function VisitList() {
   }
   //#endregion
   //#region twenty-fifth day of the month
-  const dateMonthly_26 = moment(monthlyDay2)
-    .add(25, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_26 = moment(monthlyDay2)
+  //   .add(25, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay26 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
@@ -1702,11 +1804,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay26)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay26)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay26)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay26)
     }
   })
   function visitListMonthlyDay26() {
@@ -1729,9 +1835,9 @@ export default function VisitList() {
   }
   //#endregion
   //#region twenty-sixth day of the month
-  const dateMonthly_27 = moment(monthlyDay2)
-    .add(26, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_27 = moment(monthlyDay2)
+  //   .add(26, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay27 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
@@ -1752,11 +1858,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay27)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay27)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay27)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay27)
     }
   })
   function visitListMonthlyDay27() {
@@ -1779,9 +1889,9 @@ export default function VisitList() {
   }
   //#endregion
   //#region twenty-seventh day of the month
-  const dateMonthly_28 = moment(monthlyDay2)
-    .add(27, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_28 = moment(monthlyDay2)
+  //   .add(27, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay28 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
@@ -1802,11 +1912,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay28)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay28)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay28)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay28)
     }
   })
   function visitListMonthlyDay28() {
@@ -1829,9 +1943,9 @@ export default function VisitList() {
   }
   //#endregion
   //#region twenty-eighth day of the month
-  const dateMonthly_29 = moment(monthlyDay2)
-    .add(28, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_29 = moment(monthlyDay2)
+  //   .add(28, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay29 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
@@ -1852,11 +1966,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay29)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay29)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay29)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay29)
     }
   })
   function visitListMonthlyDay29() {
@@ -1879,9 +1997,9 @@ export default function VisitList() {
   }
   //#endregion
   //#region twenty-ninth day of the month
-  const dateMonthly_30 = moment(monthlyDay2)
-    .add(29, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_30 = moment(monthlyDay2)
+  //   .add(29, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay30 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
@@ -1902,11 +2020,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay30)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay30)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay30)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay30)
     }
   })
   function visitListMonthlyDay30() {
@@ -1936,9 +2058,9 @@ export default function VisitList() {
   // )
   //#endregion
   //#region thirtieth day of the month
-  const dateMonthly_31 = moment(monthlyDay2)
-    .add(30, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_31 = moment(monthlyDay2)
+  //   .add(30, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay31 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
@@ -1959,11 +2081,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay31)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay31)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay31)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay31)
     }
   })
   function visitListMonthlyDay31() {
@@ -1993,9 +2119,9 @@ export default function VisitList() {
   // )
   //#endregion
   //#region thirty-first day of the month
-  const dateMonthly_32 = moment(monthlyDay2)
-    .add(31, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_32 = moment(monthlyDay2)
+  //   .add(31, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay32 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD') >
@@ -2020,11 +2146,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay32)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay32)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay32)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay32)
     }
   })
   function visitListMonthlyDay32() {
@@ -2054,9 +2184,9 @@ export default function VisitList() {
   //   )
   //#endregion
   //#region thirty-second day of the month
-  const dateMonthly_33 = moment(monthlyDay2)
-    .add(32, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_33 = moment(monthlyDay2)
+  //   .add(32, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay33 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
@@ -2077,11 +2207,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay33)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay33)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay33)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay33)
     }
   })
   function visitListMonthlyDay33() {
@@ -2111,9 +2245,9 @@ export default function VisitList() {
   // )
   //#endregion
   //#region thirty-third day of the month
-  const dateMonthly_34 = moment(monthlyDay2)
-    .add(33, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_34 = moment(monthlyDay2)
+  //   .add(33, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay34 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
@@ -2134,11 +2268,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay34)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay34)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay34)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay34)
     }
   })
   function visitListMonthlyDay34() {
@@ -2168,9 +2306,9 @@ export default function VisitList() {
   //   )
   //#endregion
   //#region thirty-fourth day of the month
-  const dateMonthly_35 = moment(monthlyDay2)
-    .add(34, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_35 = moment(monthlyDay2)
+  //   .add(34, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay35 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
@@ -2191,11 +2329,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay35)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay35)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay35)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay35)
     }
   })
   function visitListMonthlyDay35() {
@@ -2226,9 +2368,9 @@ export default function VisitList() {
 
   //#endregion
   //#region thirty-fifth day of the month
-  const dateMonthly_36 = moment(monthlyDay2)
-    .add(35, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_36 = moment(monthlyDay2)
+  //   .add(35, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay36 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
@@ -2249,11 +2391,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay36)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay36)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay36)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay36)
     }
   })
   function visitListMonthlyDay36() {
@@ -2284,9 +2430,9 @@ export default function VisitList() {
 
   //#endregion
   //#region thirty-sixth day of the month
-  const dateMonthly_37 = moment(monthlyDay2)
-    .add(36, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_37 = moment(monthlyDay2)
+  //   .add(36, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay37 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(36, 'days').format('YYYY-MM-DD')
@@ -2307,11 +2453,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay37)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay37)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay37)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay37)
     }
   })
   //   console.log(visitMonthlyDay37)
@@ -2343,9 +2493,9 @@ export default function VisitList() {
 
   //#endregion
   //#region thirty-seventh day of the month
-  const dateMonthly_38 = moment(monthlyDay2)
-    .add(37, 'days')
-    .format('YYYY-MM-DD')
+  // const dateMonthly_38 = moment(monthlyDay2)
+  //   .add(37, 'days')
+  //   .format('YYYY-MM-DD')
   const monthlyDay38 =
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(37, 'days').format('YYYY-MM-DD')
@@ -2366,11 +2516,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay38)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay38)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay38)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay38)
     }
   })
   function visitListMonthlyDay38() {
@@ -2421,11 +2575,15 @@ export default function VisitList() {
     //if no input the return the with the original default date
     if (searchInput === '') {
       // return el
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay39)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay39)
     }
     //return the item which contains the user input
     else {
-      return Object.values(el).toString().toLowerCase().includes(monthlyDay39)
+      return el.visitDate
+      .toString()
+        .toLowerCase().includes(monthlyDay39)
     }
   })
   function visitListMonthlyDay39() {
@@ -2453,9 +2611,7 @@ export default function VisitList() {
   // moment(monthlyDay39).format('dddd'),
   // 'visitListMonthlyDay39'
   // )
-
   //#endregion
-  //end of code for each monthly visit dates
   //#region code for each weekly daily visit dates
   const dateSelectedMonday = moment(showDateValue)
     .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
@@ -2560,20 +2716,24 @@ export default function VisitList() {
     }
   })
 
-  const filteredDataMonthly = visits.filter((el) => {
-    // const date = '2022-11-10'
-    //if no input the return the with the original default date
-    if (searchInput === '') {
-      // return el
-      return Object.values(el).toString().toLowerCase()
-      // .filter((el) => el.visitDate === date)
-    }
-    //return the item which contains the user input
-    else {
-      return Object.values(el).toString().toLowerCase()
-      // .filter((el) => el.visitDate === date)
-    }
-  })
+  // const filteredDataMonthly = visits.filter((el) => {
+  //   // const date = '2022-11-10'
+  //   //if no input the return the with the original default date
+  //   if (searchInput === '') {
+  //     // return el
+  //     return el.visitDate
+  //     .toString()
+  //       .toLowerCase()
+  //     // .filter((el) => el.visitDate === date)
+  //   }
+  //   //return the item which contains the user input
+  //   else {
+  //     return el.visitDate
+  //     .toString()
+  //       .toLowerCase()
+  //     // .filter((el) => el.visitDate === date)
+  //   }
+  // })
   //#endregion
   //#region code for each weekly visit dates
   function visitListWeeklyMonday() {
