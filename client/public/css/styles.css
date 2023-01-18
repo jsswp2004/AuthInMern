@@ -276,6 +276,10 @@ display: flex;
   margin-bottom: 0px;
   }
 
+  .item3C h3 {
+    padding-left: 5px;
+    }
+
   /* this is the wrapper for the table */
 .item3B {
   display: flex;
