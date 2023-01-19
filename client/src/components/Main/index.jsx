@@ -21,7 +21,7 @@ const Main = () => {
         <Navbar />
       </div>
       <div className="item3">
-        <div className='HomepageGreeting'>
+        <div className='HomeGreeting'>
           <h1 >Welcome to POEHR</h1>
         </div>
         

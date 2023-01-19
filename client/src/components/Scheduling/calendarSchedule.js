@@ -336,7 +336,7 @@ export default function VisitList() {
 
         // .includes(a => a.visitDate === format(new Date(dateSelected), 'yyyy-MM-dd'))
         .sort((a, b) =>
-          Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
+          a.hourOfVisit > b.hourOfVisit ? 1 : -1,
         )
 
         .map((visit) => {
@@ -355,9 +355,9 @@ export default function VisitList() {
   //#region for second day of the month
   // console.log(format(addDays(startOfTheMonth,1),'yyyy-MM-dd'))
   // console.log(moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD'))
-  console.log(
-    format(subDays(endOfMonth(subMonths(newdate, 1)), 1), 'yyyy-MM-dd'),
-  )
+  // console.log(
+  //   format(subDays(endOfMonth(subMonths(newdate, 1)), 1), 'yyyy-MM-dd'),
+  // )
   // console.log(moment(dateSelected)
   //     .subtract(1, 'months')
   //     .endOf('month')
@@ -423,13 +423,16 @@ export default function VisitList() {
       return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
     }
   })
+  
   function visitListMonthlyDay2() {
     return [...visitMonthlyDay2]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+        // moment(a.visitDate + ', ' + a.hourOfVisit) >
+        // moment(b.visitDate + ', ' + b.hourOfVisit)
+        // // Date.parse(a.visitDate + ','+a.hourOfVisit) > Date.parse(b.visitDate + ','+ b.hourOfVisit) ? -1 : 1,
+        //   ? 1
+        //   : -1,
+          a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -440,7 +443,9 @@ export default function VisitList() {
           />
         )
       })
+    
   }
+  
   //#endregion
   //#region third day of the month
   const monthlyDay3 =
@@ -492,10 +497,7 @@ export default function VisitList() {
   function visitListMonthlyDay3() {
     return [...visitMonthlyDay3]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -558,10 +560,7 @@ export default function VisitList() {
   function visitListMonthlyDay4() {
     return [...visitMonthlyDay4]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -622,10 +621,7 @@ export default function VisitList() {
   function visitListMonthlyDay5() {
     return [...visitMonthlyDay5]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -682,10 +678,7 @@ export default function VisitList() {
   function visitListMonthlyDay6() {
     return [...visitMonthlyDay6]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -739,10 +732,7 @@ export default function VisitList() {
   function visitListMonthlyDay7() {
     return [...visitMonthlyDay7]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -788,10 +778,7 @@ export default function VisitList() {
   function visitListMonthlyDay8() {
     return [...visitMonthlyDay8]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -845,10 +832,7 @@ export default function VisitList() {
   function visitListMonthlyDay9() {
     return [...visitMonthlyDay9]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -904,10 +888,7 @@ export default function VisitList() {
   function visitListMonthlyDay10() {
     return [...visitMonthlyDay10]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -951,10 +932,7 @@ export default function VisitList() {
   function visitListMonthlyDay11() {
     return [...visitMonthlyDay11]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1010,10 +988,7 @@ export default function VisitList() {
   function visitListMonthlyDay12() {
     return [...visitMonthlyDay12]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1069,10 +1044,7 @@ export default function VisitList() {
   function visitListMonthlyDay13() {
     return [...visitMonthlyDay13]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1128,10 +1100,7 @@ export default function VisitList() {
   function visitListMonthlyDay14() {
     return [...visitMonthlyDay14]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1178,10 +1147,7 @@ export default function VisitList() {
   function visitListMonthlyDay15() {
     return [...visitMonthlyDay14]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1229,10 +1195,7 @@ export default function VisitList() {
   function visitListMonthlyDay16() {
     return [...visitMonthlyDay16]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1299,10 +1262,7 @@ export default function VisitList() {
   function visitListMonthlyDay17() {
     return [...visitMonthlyDay17]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1355,10 +1315,7 @@ export default function VisitList() {
   function visitListMonthlyDay18() {
     return [...visitMonthlyDay18]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1406,10 +1363,7 @@ export default function VisitList() {
   function visitListMonthlyDay19() {
     return [...visitMonthlyDay19]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1457,10 +1411,7 @@ export default function VisitList() {
   function visitListMonthlyDay20() {
     return [...visitMonthlyDay20]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1508,10 +1459,7 @@ export default function VisitList() {
   function visitListMonthlyDay21() {
     return [...visitMonthlyDay21]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1559,10 +1507,7 @@ export default function VisitList() {
   function visitListMonthlyDay22() {
     return [...visitMonthlyDay22]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1610,10 +1555,7 @@ export default function VisitList() {
   function visitListMonthlyDay23() {
     return [...visitMonthlyDay23]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1661,10 +1603,7 @@ export default function VisitList() {
   function visitListMonthlyDay24() {
     return [...visitMonthlyDay24]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1712,10 +1651,7 @@ export default function VisitList() {
   function visitListMonthlyDay25() {
     return [...visitMonthlyDay25]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1762,10 +1698,7 @@ export default function VisitList() {
   function visitListMonthlyDay26() {
     return [...visitMonthlyDay26]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1812,10 +1745,7 @@ export default function VisitList() {
   function visitListMonthlyDay27() {
     return [...visitMonthlyDay27]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1862,10 +1792,7 @@ export default function VisitList() {
   function visitListMonthlyDay28() {
     return [...visitMonthlyDay28]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1912,10 +1839,7 @@ export default function VisitList() {
   function visitListMonthlyDay29() {
     return [...visitMonthlyDay29]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -1962,10 +1886,7 @@ export default function VisitList() {
   function visitListMonthlyDay30() {
     return [...visitMonthlyDay30]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2019,10 +1940,7 @@ export default function VisitList() {
   function visitListMonthlyDay31() {
     return [...visitMonthlyDay31]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2080,10 +1998,7 @@ export default function VisitList() {
   function visitListMonthlyDay32() {
     return [...visitMonthlyDay32]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2137,10 +2052,7 @@ export default function VisitList() {
   function visitListMonthlyDay33() {
     return [...visitMonthlyDay33]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2194,10 +2106,7 @@ export default function VisitList() {
   function visitListMonthlyDay34() {
     return [...visitMonthlyDay34]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2251,10 +2160,7 @@ export default function VisitList() {
   function visitListMonthlyDay35() {
     return [...visitMonthlyDay35]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2309,10 +2215,7 @@ export default function VisitList() {
   function visitListMonthlyDay36() {
     return [...visitMonthlyDay36]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2368,10 +2271,7 @@ export default function VisitList() {
   function visitListMonthlyDay37() {
     return [...visitMonthlyDay37]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2426,10 +2326,7 @@ export default function VisitList() {
   function visitListMonthlyDay38() {
     return [...visitMonthlyDay38]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2481,10 +2378,7 @@ export default function VisitList() {
   function visitListMonthlyDay39() {
     return [...visitMonthlyDay39]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2631,10 +2525,7 @@ export default function VisitList() {
   function visitListWeeklyMonday() {
     return [...filteredDataWeeklyMonday]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2650,10 +2541,7 @@ export default function VisitList() {
   function visitListWeeklyTuesday() {
     return [...filteredDataWeeklyTuesday]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         // console.log(moment(visit.visitDate + ', ' + visit.hourOfVisit))
@@ -2670,10 +2558,7 @@ export default function VisitList() {
   function visitListWeeklyWednesday() {
     return [...filteredDataWeeklyWed]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2689,10 +2574,7 @@ export default function VisitList() {
   function visitListWeeklyThursday() {
     return [...filteredDataWeeklyThursday]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
       .map((visit) => {
         return (
@@ -2708,10 +2590,7 @@ export default function VisitList() {
   function visitListWeeklyFriday() {
     return [...filteredDataWeeklyFri]
       .sort((a, b) =>
-        moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
-          ? 1
-          : -1,
+a.hourOfVisit > b.hourOfVisit ? 1 : -1,
       )
 
       .map((visit) => {

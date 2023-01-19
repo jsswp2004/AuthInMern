@@ -88,10 +88,10 @@ export const days = [
 
 export const Hour = [
     { label: 'Select Hour', value: '00:00' },
-    { label: '9:00', value: '9:00' },
-    { label: '9:15', value: '9:15' },
-    { label: '9:30', value: '9:30' },
-    { label: '9:45', value: '9:45' },
+    { label: '09:00', value: '09:00' },
+    { label: '09:15', value: '09:15' },
+    { label: '09:30', value: '09:30' },
+    { label: '09:45', value: '09:45' },
     { label: '10:00', value: '10:00' },
     { label: '10:15', value: '10:15' },
     { label: '10:30', value: '10:30' },

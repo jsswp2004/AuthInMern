@@ -33,7 +33,33 @@ body{
   position: relative;
   /* border: 3px solid green;  */
 }
-
+.HomeGreeting {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  /* height: 100vh; */
+  /* width: 100%; */
+  /* background-color: #535353; */
+  /* color: white; */
+  /* font-size: 2rem;
+  font-weight: 700;*/
+  text-align: center; 
+  /* padding-top: 700px; */
+  /* margin: 0px;
+  margin: auto;
+  width: 60%; */
+  /* border: 3px solid #73AD21; */
+  /* padding: 10px; */
+  /* margin: 0;
+  position: absolute; */
+  padding-top: 20%;
+  /* left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  /* margin-left: 30px; */
+  /* margin-right: 30px; */
+}
 .HomepageGreeting h5{
   /* display: flex;
   flex-direction: column;
@@ -285,8 +311,14 @@ display: flex;
   margin-bottom: 0px;
   }
 
+  .item3C {    
+    padding-top: 2px;
+    }
+
+
   .item3C h3 {
     padding-left: 5px;
+    padding-top: 2px;
     }
 
   /* this is the wrapper for the table */
@@ -389,7 +421,10 @@ display: flex;
 }
 /*Navbar css end*/
 
-
+/* .Monday {
+  color: #ff0000;
+  overflow: auto;
+} */
 
 /*table css*/
 
@@ -399,7 +434,7 @@ display: flex;
   width: 100%;
   /* height: 300px; */
   font-size: 14px;
-  overflow: auto;
+  /* overflow: auto; */
   
 }
 
@@ -565,6 +600,7 @@ h5 {
   margin: 0px;
   /* font-size: small; */
   /* height: 100vh; */
+  overflow: auto;
 }
 
 .calendar-item-monthly {
@@ -764,6 +800,7 @@ background-color: #2196F3;
   width: auto;
   margin-top: 0px;
   margin-bottom: 0px;
+  /* overflow: scroll; */
 }
 /* tbody tr {
   margin-top: 0px;
@@ -782,6 +819,7 @@ background-color: #2196F3;
   padding-left: 0px;
   padding-right: 0px;
   border: none;
+  overflow: auto;
   /* align-content: space-between; */
 
   /* display: flex; */
