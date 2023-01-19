@@ -831,3 +831,35 @@ background-color: #2196F3;
   /* float: "right"; */
   margin-right: "10px";
 }
+
+/*dropdown */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  color: white;
+  text-decoration: underline;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  color:#535353;
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+
+
+

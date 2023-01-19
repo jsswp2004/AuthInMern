@@ -27,15 +27,15 @@ function HeaderImageTitle() {
         </div>
 
         <ul className="navigation">
-          <li id="link" className="navbar_list">
+          {/* <li id="link" className="navbar_list">
             <Link to="/createPatient">Registration</Link>
-          </li>
+          </li> */}
           <li id="link" className="navbar_list">
             <Link to="/">Home</Link>
           </li>
-          <li id="link" className="navbar_list">
+          {/* <li id="link" className="navbar_list">
             <Link to="/contact">Contact</Link>
-          </li>
+          </li> */}
           <li id="link" className="navbar_list">
           <Link to="/about">About</Link>
           </li>
