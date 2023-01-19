@@ -420,7 +420,11 @@ export default function VisitList() {
       return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
     }
   })
-
+console.log(moment(dateSelected)
+ .subtract(1, 'months')
+ .endOf('month')
+  .format('YYYY-MM-DD'))
+  console.log(format(subDays(endOfMonth(subMonths(newdate, 1)), 1), 'yyyy-MM-dd'))
   function visitListMonthlyDay2() {
     return [...visitMonthlyDay2]
       .sort((a, b) =>
