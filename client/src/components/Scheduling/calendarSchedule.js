@@ -519,34 +519,35 @@ export default function VisitList() {
   //#endregion
   //#region fourth day of the month
   const monthlyDay4 =
-    // startOfTheMonthDayNumber === 0
-    //   ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
-    //   : startOfTheMonthDayNumber === 1
-    //   ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
-    //   : startOfTheMonthDayNumber === 2
-    //   ? format(addDays(startOfTheMonth, 1), 'yyyy-MM-dd')
-    //   : startOfTheMonthDayNumber === 3
-    //   ? format(startOfTheMonth, 'yyy-MM-dd')
-    //   : startOfTheMonthDayNumber === 4
-    //   ? moment(dateSelected)
-    //       .subtract(1, 'months')
-    //       .endOf('month')
-    //       .subtract(0, 'days')
-    //       .format('YYYY-MM-DD')
-    //   : startOfTheMonthDayNumber === 5
-    //   ? moment(dateSelected)
-    //       .subtract(1, 'months')
-    //       .endOf('month')
-    //       .subtract(1, 'days')
-    //       .format('YYYY-MM-DD')
-    //   : startOfTheMonthDayNumber === 6
-    //   ? moment(dateSelected)
-    //       .subtract(1, 'months')
-    //       .endOf('month')
-    //       .subtract(2, 'days')
-    //       .format('YYYY-MM-DD')
-    //   : ''
     startOfTheMonthDayNumber === 0
+      ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 1
+      ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 2
+      ? format(addDays(startOfTheMonth, 1), 'yyyy-MM-dd')
+      : startOfTheMonthDayNumber === 3
+      ? format(startOfTheMonth, 'yyy-MM-dd')
+      : startOfTheMonthDayNumber === 4
+      ? moment(dateSelected)
+          .subtract(1, 'months')
+          .endOf('month')
+          .subtract(0, 'days')
+          .format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 5
+      ? moment(dateSelected)
+          .subtract(1, 'months')
+          .endOf('month')
+          .subtract(1, 'days')
+          .format('YYYY-MM-DD')
+      : startOfTheMonthDayNumber === 6
+      ? moment(dateSelected)
+          .subtract(1, 'months')
+          .endOf('month')
+          .subtract(2, 'days')
+          .format('YYYY-MM-DD')
+      : ''
+      const monthlyDay44 =  
+  startOfTheMonthDayNumber === 0
       ? format(addDays(startOfTheMonth, 3), 'yyyy-MM-dd')
       : startOfTheMonthDayNumber === 1
       ? format(addDays(startOfTheMonth, 2), 'yyyy-MM-dd')
@@ -586,7 +587,7 @@ export default function VisitList() {
         )
       })
   }
-
+  console.log(monthlyDay4)
   //   console.log(
   //     visitListMonthlyDay4(),
   //     visitMonthlyDay4,
