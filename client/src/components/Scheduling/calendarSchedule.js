@@ -2716,7 +2716,7 @@ a.hourOfVisit > b.hourOfVisit ? 1 : -1,
             <div style={{ display: 'block' }}>
               <div className="grid-weeklycalcontainer">
                 {/* First Sunday */}
-                <div className="Sunday">
+                <div className="Sunday ">
                   <li className="calendar-item weekday">
                     <div className="calendar-monthlyitem">
                       SUN
@@ -4217,17 +4217,17 @@ a.hourOfVisit > b.hourOfVisit ? 1 : -1,
                   >
                     <table
                       className="table table-striped"
-                      style={{
-                        display:
-                          moment(monthlyDay31).diff(
-                            moment(monthlyDay31)
-                              .endOf('month')
-                              .format('YYYY-MM-DD'),
-                            'days',
-                          ) <= 0
-                            ? 'flex'
-                            : 'none',
-                      }}
+                      // style={{
+                      //   display:
+                      //     moment(monthlyDay31).diff(
+                      //       moment(monthlyDay31)
+                      //         .endOf('month')
+                      //         .format('YYYY-MM-DD'),
+                      //       'days',
+                      //     ) <= 0
+                      //       ? 'flex'
+                      //       : 'none',
+                      // }}
                     >
                       <thead>
                         <tr className="trStyles"></tr>
