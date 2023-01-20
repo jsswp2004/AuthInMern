@@ -188,7 +188,7 @@ const ShowUsersList = () => {
                   <div className="child">First Name</div>
                   <div className="child sortdirection">
                     <i
-                      className="fa fa-angle-up fa-sm asc"
+                      className="fa fa-arrow-up fa-sm asc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('firstName')
@@ -196,7 +196,7 @@ const ShowUsersList = () => {
                       }}
                     />{' '}
                     <i
-                      className="fa fa-angle-down fa-sm dsc"
+                      className="fa fa-arrow-down fa-sm dsc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('firstName')
@@ -212,7 +212,7 @@ const ShowUsersList = () => {
                   <div className="child">Last Name</div>
                   <div className="child sortdirection">
                     <i
-                      className="fa fa-angle-up fa-sm asc"
+                      className="fa fa-arrow-up fa-sm asc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('lastName')
@@ -220,7 +220,7 @@ const ShowUsersList = () => {
                       }}
                     />{' '}
                     <i
-                      className="fa fa-angle-down fa-sm dsc"
+                      className="fa fa-arrow-down fa-sm dsc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('lastName')
@@ -235,7 +235,7 @@ const ShowUsersList = () => {
                   <div className="child">Email</div>
                   <div className="child sortdirection">
                     <i
-                      className="fa fa-angle-up fa-sm asc"
+                      className="fa fa-arrow-up fa-sm asc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('email')
@@ -243,7 +243,7 @@ const ShowUsersList = () => {
                       }}
                     />{' '}
                     <i
-                      className="fa fa-angle-down fa-sm dsc"
+                      className="fa fa-arrow-down fa-sm dsc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('email')
@@ -258,7 +258,7 @@ const ShowUsersList = () => {
                   <div className="child">Role</div>
                   <div className="child sortdirection">
                     <i
-                      className="fa fa-angle-up fa-sm asc"
+                      className="fa fa-arrow-up fa-sm asc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('role')
@@ -266,7 +266,7 @@ const ShowUsersList = () => {
                       }}
                     />{' '}
                     <i
-                      className="fa fa-angle-down fa-sm dsc"
+                      className="fa fa-arrow-down fa-sm dsc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('role')
@@ -281,7 +281,7 @@ const ShowUsersList = () => {
                   <div className="child">Date Added</div>
                   <div className="child sortdirection">
                     <i
-                      className="fa fa-angle-up fa-sm asc"
+                      className="fa fa-arrow-up fa-sm asc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('addedDate')
@@ -289,7 +289,7 @@ const ShowUsersList = () => {
                       }}
                     />{' '}
                     <i
-                      className="fa fa-angle-down fa-sm dsc"
+                      className="fa fa-arrow-down fa-sm dsc"
                       aria-hidden="true"
                       onClick={() => {
                         setSortedField('addedDate')

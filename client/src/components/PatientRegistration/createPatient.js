@@ -27,7 +27,7 @@ const CreateRecord = (props) => {
     middleName: '',
     gender: '',
     race: '',
-    dateOfBirth: '',
+    dateOfBirth: format(new Date(), 'yyyy-MM-dd'),
     age: '',
     language: '',
     address: '',
@@ -50,7 +50,7 @@ const CreateRecord = (props) => {
     age--
   }
   //save age to record.age
-  record.age = age
+  record.age = age.toString()
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -84,7 +84,7 @@ const CreateRecord = (props) => {
         console.log('Error in CreateRecord!')
       })
   }
-
+console.log(record)
   //Race
   const racevalues = Race
   const [racevalue, setraceValue] = React.useState('')
@@ -187,7 +187,7 @@ const CreateRecord = (props) => {
                         onChange={onChange}
                       >
                         {gendervalues.map((genderval) => (
-                          <option value={genderval.value}>
+                          <option key={genderval.value} value={genderval.value}>
                             {genderval.label}
                           </option>
                         ))}
@@ -204,7 +204,7 @@ const CreateRecord = (props) => {
                         onChange={onChange}
                       >
                         {racevalues.map((raceval) => (
-                          <option value={raceval.value}>{raceval.label}</option>
+                          <option key={raceval.value} value={raceval.value}>{raceval.label}</option>
                         ))}
                       </select>
                     </label>
@@ -246,7 +246,7 @@ const CreateRecord = (props) => {
                       onChange={onChange}
                     >
                       {languagevalues.map((languageval) => (
-                        <option value={languageval.value}>
+                        <option key={languageval.value}  value={languageval.value}>
                           {languageval.label}
                         </option>
                       ))}
@@ -306,7 +306,7 @@ const CreateRecord = (props) => {
                       onChange={onChange}
                     >
                       {statevalues.map((stateval) => (
-                        <option value={stateval.value}>{stateval.name}</option>
+                        <option key={stateval.value} value={stateval.value}>{stateval.name}</option>
                       ))}
                     </select>
                   </label>
