@@ -2945,9 +2945,19 @@ export default function VisitList() {
   // )
   //#endregion
   //#region code for each weekly daily visit dates
+
   const dateSelectedMonday = moment(showDateValue)
     .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
     .format('YYYY-MM-DD')
+    console.log(startDayOfTheWeek, 'startDayOfTheWeek')
+    console.log(dateSelectedMonday)
+  const dateSelectedMonday2 = format(showDateValue, 'yyyy-MM-dd')
+  const s = getDate(showDateValue) - (startDayOfTheWeek + 1)
+  console.log(s)
+  console.log(getDate(showDateValue), 'getDate()')
+  console.log(dateSelectedMonday2)
+  console.log(parseInt(dateSelectedMonday2), 'dateSelectedMonday2')
+  
   const dateSelectedTuesday = moment(showDateValue)
     .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
     .format('YYYY-MM-DD')
