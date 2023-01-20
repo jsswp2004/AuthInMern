@@ -9,6 +9,7 @@ import {
   endOfMonth,
   addDays,
   subDays,
+  startOfWeek,
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
@@ -367,42 +368,42 @@ export default function VisitList() {
   // .endOf('month')
   //   .format('YYYY-MM-DD'))
   // console.log(format(endOfMonth(subMonths(newdate, 1)),'yyyy-MM-dd'))
+  // const monthlyDay2 =
+    // startOfTheMonthDayNumber === 0
+    //   ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 1
+    //   ? moment(startOfTheMonth).format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 2
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 3
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(1, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 4
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(2, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 5
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(3, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 6
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(4, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : ''
   const monthlyDay2 =
-    startOfTheMonthDayNumber === 0
-      ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(1, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(2, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(3, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(4, 'days')
-          .format('YYYY-MM-DD')
-      : ''
-  const monthlyDay222 =
     startOfTheMonthDayNumber === 0
       ? format(addDays(startOfTheMonth, 1), 'yyyy-MM-dd')
       : startOfTheMonthDayNumber === 1
@@ -2949,14 +2950,21 @@ export default function VisitList() {
   const dateSelectedMonday = moment(showDateValue)
     .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
     .format('YYYY-MM-DD')
-    console.log(startDayOfTheWeek, 'startDayOfTheWeek')
-    console.log(dateSelectedMonday)
-  const dateSelectedMonday2 = format(showDateValue, 'yyyy-MM-dd')
-  const s = getDate(showDateValue) - (startDayOfTheWeek + 1)
-  console.log(s)
-  console.log(getDate(showDateValue), 'getDate()')
-  console.log(dateSelectedMonday2)
-  console.log(parseInt(dateSelectedMonday2), 'dateSelectedMonday2')
+    // console.log(startDayOfTheWeek, 'startDayOfTheWeek')
+    // console.log(dateSelectedMonday, 'dateSelectedMonday')
+  // const dateSelectedMonday = format(showDateValue, 'MM-dd-yyyy')
+  const dateSelectedMonday4 = addDays(showDateValue, (startDayOfTheWeek + 1))
+  // const dateSelectedMonday3 = new Date(dateSelectedMonday)
+  // const s = getDate(showDateValue) 
+  // const t = (startDayOfTheWeek + 1)
+  const u = getDate(showDateValue) - (startDayOfTheWeek + 1)
+  // console.log(s, t ,u)
+    console.log(u)
+  // console.log(getDate(showDateValue), 'getDate()')
+  console.log(dateSelectedMonday)
+  // console.log(dateSelectedMonday3)
+  // console.log(getDate(dateSelectedMonday2), 'getDate()')
+  
   
   const dateSelectedTuesday = moment(showDateValue)
     .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
