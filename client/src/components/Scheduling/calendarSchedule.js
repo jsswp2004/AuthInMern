@@ -2958,6 +2958,7 @@ export default function VisitList() {
   // const s = getDate(showDateValue) 
   // const t = (startDayOfTheWeek + 1)
   const u = getDate(showDateValue) - (startDayOfTheWeek + 1)
+  const dateSelectedMonday5 = subDays(showDateValue, (startDayOfTheWeek + 1))
   // console.log(s, t ,u)
     console.log(u)
   // console.log(getDate(showDateValue), 'getDate()')
