@@ -3164,11 +3164,12 @@ console.log(moment(dateSelected)
             }}
             className="form-control select"
             id="calendarView"
+            
             value={selectViewValue}
             onChange={viewValueChange}
           >
             {viewValues.map((viewval) => (
-              <option value={viewval.value}>{viewval.name}</option>
+              <option key={viewval.value} value={viewval.value}>{viewval.name}</option>
             ))}
           </select>
           {/* modal start */}

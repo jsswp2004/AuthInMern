@@ -40,9 +40,9 @@ export default function Navbar() {
             <Link to="/createUser">Create User</Link>
           </li> */}
 
-          <li class="body_navbarlist dropdown">
+          <li className="body_navbarlist dropdown">
             <span>Settings</span>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <a href="/usersList">User Profiles</a>
             </div>
           </li>
