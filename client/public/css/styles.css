@@ -59,6 +59,7 @@ body{
   transform: translate(-50%, -50%); */
   /* margin-left: 30px; */
   /* margin-right: 30px; */
+  background-image: url(./shared/images/aboutPageDoc.jpg);
 }
 .HomepageGreeting h5{
   /* display: flex;
@@ -88,12 +89,14 @@ body{
   margin-right: 30px;
 }
 
+
 .HomepageGreeting  .aboutPage1 {
   margin-left: 30px;
   margin-right: 30px;
   margin-top: 30px;
   width: 50%;
   text-align: justify;
+
 }
 .HomepageGreeting  .aboutPage2 {
   /* margin-left: 30px; */
