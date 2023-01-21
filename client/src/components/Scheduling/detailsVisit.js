@@ -77,7 +77,36 @@ function UpdateVisitInfo(props) {
       </div>
       <div className="item3">
         <h3>Visit Details</h3>
-        <div className="item3A">
+        <div style={{display:'flex', width:'50%'}}>
+          <div style={{width:'25%'}}>
+            {' '}
+            <div>
+              <h6>Patient Name </h6>
+              {visit.firstName} {visit.middleName} {visit.lastName}
+            </div>{' '}
+            <div>
+              <h6>Email</h6>
+              {visit.email}
+            </div>
+          </div>
+          <div style={{width:'25%'}}>
+            {' '}
+            <div>
+              <h6>Appointment Date & Time </h6>
+              {visit.visitDate} {visit.hourOfVisit}
+            </div>
+            <div>
+              <h6>Provider</h6>
+              {visit.provider}
+            </div>
+            <div>
+              <button className="btn btn-info">Print</button>
+            </div>
+          </div>
+        </div>
+
+        {/* form below is not being displayed */}
+        <div className="item3A" style={{ display: 'none' }}>
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
               <div className="div-items">
