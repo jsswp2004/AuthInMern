@@ -89,6 +89,15 @@ body{
   margin-right: 30px;
 }
 
+.btn-sm {
+  margin-left: 2px;
+  
+}
+
+.btn {
+ margin-left: 2px;
+  /* padding-right: 2px; */
+}
 
 .HomepageGreeting  .aboutPage1 {
   margin-left: 30px;

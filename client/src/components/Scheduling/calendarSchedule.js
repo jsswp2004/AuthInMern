@@ -10,8 +10,8 @@ import {
   addDays,
   subDays,
   startOfWeek,
-  previousSunday,
-  previousMonday,
+  // previousSunday,
+  // previousMonday,
   parseISO
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -49,6 +49,12 @@ const VisitCard = (props) => (
         to={`/editVisit/${props.visit._id}`}
       >
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
+      </Link>
+      <Link
+        className="btn btn-success btn-sm"
+        to={`/detailsVisit/${props.visit._id}`}
+      >
+        <i className="fa fa-clipboard" aria-hidden="true" />
       </Link>
       <button
         className="btn btn-danger btn-sm"

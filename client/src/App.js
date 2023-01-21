@@ -13,6 +13,7 @@ import VisitSchedule from './components/Scheduling/VisitScheduleList'
 import CalendarSchedule from './components/Scheduling/calendarSchedule'
 import CreateVisit from './components/Scheduling/createvisit'
 import EditVisit from './components/Scheduling/editVisit'
+import VisitDetails from './components/Scheduling/detailsVisit'
 import About from './components/Main/About'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
       <Route path="/createVisit" exact element={<CreateVisit />} />
       <Route path="/editVisit/:id" exact element={<EditVisit />} />
+      <Route path="/detailsVisit/:id" exact element={<VisitDetails />} />
       <Route path="/createUser" exact element={<CreateUser />} />
       <Route path="/login" exact element={<Login />} />
       <Route path="/usersList" exact element={<ShowUsersList />} />
