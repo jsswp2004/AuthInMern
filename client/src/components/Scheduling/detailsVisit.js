@@ -76,9 +76,9 @@ function UpdateVisitInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Visit Details</h3>
-        <div style={{display:'flex', width:'50%'}}>
-          <div style={{width:'25%'}}>
+        <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
+        <div className='patientDetails' >
+          <div className='patientDetailsDemographics'  >
             {' '}
             <div>
               <h6>Patient Name </h6>
@@ -89,7 +89,7 @@ function UpdateVisitInfo(props) {
               {visit.email}
             </div>
           </div>
-          <div style={{width:'25%'}}>
+          <div className='patientDetailsDemographics'>
             {' '}
             <div>
               <h6>Appointment Date & Time </h6>

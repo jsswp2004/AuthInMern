@@ -2,16 +2,15 @@
   height: 100vh;
 } */
 
-
-:root{
-  --body-margin:10px;
+:root {
+  --body-margin: 10px;
 }
-body{
-  margin:var(--body-margin);
+body {
+  margin: var(--body-margin);
 }
 
 /*Main page css*/
-.HomepageGreeting{
+.HomepageGreeting {
   display: flex;
   /* flex-direction: column;
   justify-content: center;
@@ -44,7 +43,7 @@ body{
   /* color: white; */
   /* font-size: 2rem;
   font-weight: 700;*/
-  text-align: center; 
+  text-align: center;
   /* padding-top: 700px; */
   /* margin: 0px;
   margin: auto;
@@ -61,7 +60,7 @@ body{
   /* margin-right: 30px; */
   background-image: url(./shared/images/aboutPageDoc.jpg);
 }
-.HomepageGreeting h5{
+.HomepageGreeting h5 {
   /* display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,33 +90,30 @@ body{
 
 .btn-sm {
   margin-left: 2px;
-  
 }
 
 .btn {
- margin-left: 2px;
+  margin-left: 2px;
   /* padding-right: 2px; */
 }
 
-.HomepageGreeting  .aboutPage1 {
+.HomepageGreeting .aboutPage1 {
   margin-left: 30px;
   margin-right: 30px;
   margin-top: 30px;
   width: 50%;
   text-align: justify;
-
 }
-.HomepageGreeting  .aboutPage2 {
+.HomepageGreeting .aboutPage2 {
   /* margin-left: 30px; */
   /* margin-right: 30px; */
   width: 50%;
   margin-right: 10px;
   position: relative;
-  
+
   /* top: 50%; */
   /* left: 50%; */
   /* transform: translate(-50%, -50%); */
-  
 }
 
 .About_img {
@@ -125,7 +121,6 @@ body{
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
-
 }
 .navbar1 {
   width: 100%;
@@ -159,12 +154,10 @@ body{
 }
 
 .headerItem h3 {
-
   margin-bottom: 0px;
 
   /* background: #535353; */
 }
-
 
 .h3 {
   color: white;
@@ -270,14 +263,13 @@ body{
     "menu footer footer footer footer footer footer footer";
   grid-template-columns: repeat(8, minmax(100px, 1fr));
   /* repeat(10, 1fr); */
-  grid-template-rows:  40px auto;
+  grid-template-rows: 40px auto;
   /* grid-auto-rows: minmax(10px, auto); */
   column-gap: 0px;
   row-gap: 0px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0px;
-  height: calc(100vh );
-  
+  height: calc(100vh);
 }
 
 .item1 {
@@ -287,7 +279,7 @@ body{
   text-align: center;
   vertical-align: middle;
   /* padding: 0px 0; */
- 
+
   margin: 0px;
   display: flex;
   /* height: 34px; */
@@ -321,24 +313,23 @@ body{
   justify-content: space-between; */
 }
 .item3A {
-display: flex;
+  display: flex;
 }
 
 .item3A h3 {
   margin-bottom: 0px;
-  }
+}
 
-  .item3C {    
-    padding-top: 2px;
-    }
+.item3C {
+  padding-top: 2px;
+}
 
+.item3C h3 {
+  padding-left: 5px;
+  padding-top: 2px;
+}
 
-  .item3C h3 {
-    padding-left: 5px;
-    padding-top: 2px;
-    }
-
-  /* this is the wrapper for the table */
+/* this is the wrapper for the table */
 .item3B {
   display: flex;
   flex-direction: column;
@@ -348,8 +339,7 @@ display: flex;
   padding: 0px;
   height: calc(100vh - 80px);
   overflow: auto;
-
-} 
+}
 
 .item3C {
   display: flex;
@@ -367,7 +357,6 @@ display: flex;
   background-color: #eeeeee;
   padding: 0px;
   height: calc(100vh - 10px);
-  
 }
 
 .item3_grid_item1 {
@@ -452,11 +441,9 @@ display: flex;
   /* height: 300px; */
   font-size: 14px;
   /* overflow: auto; */
-  
 }
 
 .table-striped {
-  
   margin-top: 0px;
   margin-bottom: 0px;
   /* overflow: auto; */
@@ -483,12 +470,12 @@ display: flex;
 
 .asc {
   /* float: right;  */
-  padding-right: '5px';
+  padding-right: "5px";
 }
 
 .dsc {
   /* float: right;  */
-  padding-right: '5px';
+  padding-right: "5px";
 }
 #columnName {
   /* display: flex; */
@@ -496,10 +483,10 @@ display: flex;
 }
 
 #columntable {
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-right: 0px;
-    padding-left: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 0px;
+  padding-left: 2px;
 }
 
 #columnName {
@@ -530,8 +517,6 @@ thead tr {
   text-align: center;
   background-color: #535353;
   color: white;
-  
-  
 }
 
 .table thead {
@@ -540,7 +525,6 @@ thead tr {
   z-index: 100;
   background-color: #535353;
 
-  
   /* box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); */
 }
 /*table css end*/
@@ -568,9 +552,7 @@ thead tr {
 
 /*search css*/
 .searchLabel {
-  
-    margin-left: auto;
-
+  margin-left: auto;
 }
 /*search css end*/
 
@@ -621,7 +603,7 @@ h5 {
 }
 
 .weekendDay {
-background-color: Red;
+  background-color: Red;
 }
 
 .calendar-item-monthly {
@@ -655,7 +637,7 @@ background-color: Red;
 }
 
 ul {
-  list-style-type: none; 
+  list-style-type: none;
 }
 
 #calendarDaily {
@@ -740,7 +722,7 @@ ul .calendar {
   /* grid-template-columns: auto auto auto auto auto auto auto; */
   grid-template-columns: auto 16% 16% 16% 16% 16% auto;
   /* repeat(10, 1fr); minmax(100px, 1fr)) */
-  grid-template-rows: repeat(6,auto);
+  grid-template-rows: repeat(6, auto);
 
   align-content: space-evenly;
 
@@ -846,9 +828,7 @@ background-color: #2196F3;
   /* align-content: space-between; */
 
   /* display: flex; */
-
 }
-
 
 .weekdaydateItem {
   /* float: "right"; */
@@ -869,10 +849,10 @@ background-color: #2196F3;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
-  color:#535353;
+  color: #535353;
   border-radius: 5px;
 }
 
@@ -880,9 +860,17 @@ background-color: #2196F3;
   display: block;
 }
 
+/*Patient Details Page*/
 
 
-
-
-
-
+.patientDetails {
+  display: flex;
+  width: 50%;
+  background-color: #eeee;
+  padding-left: 5px;
+}
+.patientDetailsDemographics {
+  width: 25%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
