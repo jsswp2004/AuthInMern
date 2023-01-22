@@ -4,6 +4,8 @@ import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
+import Button from "@material-ui/core/Button";
+import ReactToPrint from "react-to-print";
 
 function UpdateVisitInfo(props) {
   const [visit, setVisit] = useState({
@@ -100,8 +102,11 @@ function UpdateVisitInfo(props) {
               {visit.provider}
             </div>
             <div>
-              <button className="btn btn-info">Print</button>
+              <button className="btn btn-info printDetails">Print</button>
             </div>
+          </div>
+          <div className='patientDetailsDemographics' >
+
           </div>
         </div>
 
