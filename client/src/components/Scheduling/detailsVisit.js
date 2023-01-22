@@ -1,46 +1,45 @@
-import React, { useState, useEffect,  useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 // import Button from "@material-ui/core/Button";
-import { useReactToPrint } from 'react-to-print';
+import { useReactToPrint } from 'react-to-print'
 
 const PatientDetails = (props) => {
-  
+  return (
     // <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
-        <div className='patientDetails' >
-          <div className='patientDetailsDemographics'  >
-            {' '}
-            <div>
-              <h6>Patient Name </h6>
-              {props.visit.firstName} {props.visit.middleName} {props.visit.lastName}
-            </div>{' '}
-            <div>
-              <h6>Email</h6>
-              {props.visit.email}
-            </div>
-          </div>
-          <div className='patientDetailsDemographics'>
-            {' '}
-            <div>
-              <h6>Appointment Date & Time </h6>
-              {props.visit.visitDate} {props.visit.hourOfVisit}
-            </div>
-            <div>
-              <h6>Provider</h6>
-              {props.visit.provider}
-            </div>
-            <div>
-              <button className="btn btn-info printDetails">Print</button>
-            </div>
-          </div>
-          <div className='patientDetailsDemographics' >
-
-          </div>
+    <div className="patientDetails">
+      <div className="patientDetailsDemographics">
+        {' '}
+        <div>
+          <h6>Patient Name </h6>
+          {props.visit.firstName} {props.visit.middleName}{' '}
+          {props.visit.lastName}
+        </div>{' '}
+        <div>
+          <h6>Email</h6>
+          {props.visit.email}
         </div>
-  
+      </div>
+      <div className="patientDetailsDemographics">
+        {' '}
+        <div>
+          <h6>Appointment Date & Time </h6>
+          {props.visit.visitDate} {props.visit.hourOfVisit}
+        </div>
+        <div>
+          <h6>Provider</h6>
+          {props.visit.provider}
+        </div>
+        <div>
+          <button className="btn btn-info printDetails">Print</button>
+        </div>
+      </div>
+      <div className="patientDetailsDemographics"></div>
+    </div>
+  )
 }
 
 function UpdateVisitInfo(props) {
@@ -105,6 +104,10 @@ function UpdateVisitInfo(props) {
       })
   }
 
+  function patientDetailsInfo() {
+    return <PatientDetails visit={visit} key={visit._id} />
+  }
+
   return (
     <div className="grid_container">
       <div className="item1">
@@ -114,8 +117,12 @@ function UpdateVisitInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <PatientDetails visit={visit} key={visit._id} />
-        <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
+        <div>
+          <h5 className="patientDetailsTitle">Patient Visit Details</h5>
+          {patientDetailsInfo()}
+        </div>
+        {/* <PatientDetails visit={visit} key={visit._id} /> */}
+
         {/* <div className='patientDetails' >
           <div className='patientDetailsDemographics'  >
             {' '}
