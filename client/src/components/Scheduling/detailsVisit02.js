@@ -5,52 +5,51 @@ import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 // import Button from "@material-ui/core/Button";
-import { useReactToPrint } from 'react-to-print'
+import { ReactToPrint } from 'react-to-print'
+import { Button } from 'react-bootstrap'
 
-
-
-
-const PatientDetails = (props) => {
-  return (
-    // <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
-    <div className="patientDetails">
-      <div className="patientDetailsDemographics">
-        {' '}
-        <div>
-          <h6>Patient Name </h6>
-          {props.visit.firstName} {props.visit.middleName}{' '}
-          {props.visit.lastName}
-        </div>{' '}
-        <div>
-          <h6>Email</h6>
-          {props.visit.email}
+class PatientDetails extends React.Component {
+  // const PatientDetails = (props) => {
+  render() {
+    return (
+      // <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
+      <div className="patientDetails">
+        <div className="patientDetailsDemographics">
+          {' '}
+          <div>
+            <h6>Patient Name </h6>
+            {this.visit.firstName} {this.visit.middleName}{' '}
+            {this.visit.lastName}
+          </div>{' '}
+          <div>
+            <h6>Email</h6>
+            {this.visit.email}
+          </div>
         </div>
-      </div>
-      <div className="patientDetailsDemographics">
-        {' '}
-        <div>
-          <h6>Appointment Date & Time </h6>
-          {props.visit.visitDate} {props.visit.hourOfVisit}
-        </div>
-        <div>
-          <h6>Provider</h6>
-          {props.visit.provider}
-        </div>
-        {/* <div>
+        <div className="patientDetailsDemographics">
+          {' '}
+          <div>
+            <h6>Appointment Date & Time </h6>
+            {this.visit.visitDate} {this.visit.hourOfVisit}
+          </div>
+          <div>
+            <h6>Provider</h6>
+            {this.visit.provider}
+          </div>
+          {/* <div>
         button is placed at the bottom
           <button className="btn btn-info printDetails" onClick={handlePrint}>Print</button>
         </div> */}
+        </div>
+        <div className="patientDetailsDemographics"></div>
       </div>
-      <div className="patientDetailsDemographics"></div>
-    </div>
-  )
+    )
+  }
 }
 
 function UpdateVisitInfo(props) {
-  const componentRef = useRef()
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  })
+  let componentRef = useRef()
+
   const [visit, setVisit] = useState({
     firstName: '',
     lastName: '',
@@ -112,10 +111,9 @@ function UpdateVisitInfo(props) {
       })
   }
 
-  function patientDetailsInfo() {  
-
-    return (<PatientDetails visit={visit} key={visit._id}/>
-  )}
+  function patientDetailsInfo() {
+    return <PatientDetails visit={visit} key={visit._id} />
+  }
 
   return (
     <div className="grid_container">
@@ -130,9 +128,20 @@ function UpdateVisitInfo(props) {
           <h5 className="patientDetailsTitle">Patient Visit Details</h5>
           {patientDetailsInfo()}
         </div>
+        {/* <div>
+          <button className="btn btn-info printDetails" >Print</button>
+        </div> */}
         <div>
-          <button className="btn btn-info printDetails" onClick={handlePrint}>Print</button>
+          {/* button to trigger printing of target component */}
+          <ReactToPrint
+            trigger={() => <Button>Print this out!</Button>}
+            content={() => componentRef}
+          />
+
+          {/* component to be printed */}
+          <PatientDetails ref={(el) => (componentRef = el)} />
         </div>
+
         {/* <PatientDetails visit={visit} key={visit._id} /> */}
 
         {/* <div className='patientDetails' >
