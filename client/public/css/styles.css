@@ -1,13 +1,12 @@
-/* #root {
-  height: 100vh;
-} */
-
 :root {
   --body-margin: 10px;
 }
 body {
   margin: var(--body-margin);
 }
+/* #root {
+  height: 100vh;
+} */
 
 /*Main page css*/
 .HomepageGreeting {

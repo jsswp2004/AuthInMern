@@ -7,9 +7,6 @@ import Header from '../shared/Header'
 // import Button from "@material-ui/core/Button";
 import { useReactToPrint } from 'react-to-print'
 
-
-
-
 const PatientDetails = (props) => {
   return (
     // <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
@@ -112,10 +109,13 @@ function UpdateVisitInfo(props) {
       })
   }
 
-  function patientDetailsInfo() {  
-
-    return (<PatientDetails visit={visit} key={visit._id}/>
-  )}
+  function patientDetailsInfo() {
+    return (
+      <React.forwardRef>
+        <PatientDetails visit={visit} key={visit._id} />
+      </React.forwardRef>
+    )
+  }
 
   return (
     <div className="grid_container">
@@ -131,7 +131,9 @@ function UpdateVisitInfo(props) {
           {patientDetailsInfo()}
         </div>
         <div>
-          <button className="btn btn-info printDetails" onClick={handlePrint}>Print</button>
+          <button className="btn btn-info printDetails" onClick={handlePrint}>
+            Print
+          </button>
         </div>
         {/* <PatientDetails visit={visit} key={visit._id} /> */}
 
