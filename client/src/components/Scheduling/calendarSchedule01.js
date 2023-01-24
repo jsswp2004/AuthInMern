@@ -10,22 +10,64 @@ import {
   addDays,
   subDays,
   startOfWeek,
-  parseISO,
+  // previousSunday,
+  // previousMonday,
+  parseISO
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+// import Visit from '../Scheduling/visit'
 import VisitWeekly from '../Scheduling/visitWeekly'
 import moment from 'moment'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
+import { Link } from 'react-router-dom'
 import {
   View,
   monthNames,
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
-import VisitCard from './VisitCard'
+// import subMonths from 'date-fns/subMonths'
+// import endOfMonth from 'date-fns/endOfMonth'
+
+//#region for visit component
+const VisitCard = (props) => (
+  <tr>
+    <td>{props.visit.firstName}</td>
+    <td>{props.visit.middleName}</td>
+    <td>{props.visit.lastName}</td>
+    <td>{props.visit.visitDate}</td>
+    <td>{props.visit.hourOfVisit}</td>
+    <td>{props.visit.email}</td>
+    <td>{props.visit.provider}</td>
+    <td>{props.visit.addedDate}</td>
+    <td>
+      <Link
+        className="btn btn-info btn-sm"
+        to={`/editVisit/${props.visit._id}`}
+      >
+        <i className="fa fa-pencil-square-o" aria-hidden="true" />
+      </Link>
+      <Link
+        className="btn btn-success btn-sm"
+        to={`/detailsVisit/${props.visit._id}`}
+      >
+        <i className="fa fa-clipboard" aria-hidden="true" />
+      </Link>
+      <button
+        className="btn btn-danger btn-sm"
+        onClick={() => {
+          props.deleteRecord(props.visit._id)
+        }}
+      >
+        <i className="fa fa-trash-o" aria-hidden="true" />
+      </button>
+    </td>
+  </tr>
+)
+//#endregion
 
 export default function VisitList() {
   //#region code for setting state for visits
@@ -53,6 +95,16 @@ export default function VisitList() {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   //#endregion
+  //#region code for Modal methods for creating visit
+  //   const [showVisit, setShowVisit] = useState(false)
+  //   const handleCloseVisit = () => setShowVisit(false)
+  //   const handleShowVisit = () => setShowVisit(true)
+  //#endregion
+  //#region code for Modal methods for creating visit
+  //   const [showVisitWeekly, setShowVisitWeekly] = useState(false)
+  //   const handleCloseVisitWeekly = () => setShowVisitWeekly(false)
+  //   const handleShowVisitWeekly = () => setShowVisitWeekly(true)
+  //#endregion
   //#region months dropdown code
   const viewValues = View
   //#endregion
@@ -67,18 +119,33 @@ export default function VisitList() {
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex].value
   let startOfTheMonth = startOfMonth(new Date(showDateValue))
+// console.log(startOfTheMonth, 'startOfTheMonth')
+  // .startOf('month')
+  // .format('YYYY-MM-DD')
+  //   console.log(getDate(startOfTheMonth))
   const currentYear = newdate.getFullYear()
   const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
+  //   const previousMonth = newdate.getMonth()
   let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
   let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
+  // console.log(startOfTheMonthDate)
+  //     const today = new Date()
+  // const firstDateOfMonth = format(today, 'yyyy-MM-01')
+  //     console.log(firstDateOfMonth)
+  //     console.log(dateSelected)
 
   let startOfTheMonthDayNumber = getDay(new Date(startOfTheMonth)) // moment(startOfTheMonth).day()
+  // console.log(startOfTheMonthDayNumber)
+  // console.log(getDay(new Date(startOfTheMonth)))
 
   const endOfThePreviousMonth = parseInt(
     // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
     getDate(endOfMonth(subMonths(newdate, 1))),
   )
-  
+  // console.log(getDate(endOfMonth(subMonths(newdate, 1))))
+  // console.log(endOfThePreviousMonth)
+  // console.log(format(new Date(showDateValue),'yyyy-MM-dd'))
+
   const gridMonthlyColumnStart = {
     gridColumnStart: startOfTheMonthDayNumber,
     backgroundColor: ' #eeee',
@@ -311,40 +378,40 @@ export default function VisitList() {
   //   .format('YYYY-MM-DD'))
   // console.log(format(endOfMonth(subMonths(newdate, 1)),'yyyy-MM-dd'))
   // const monthlyDay2 =
-  // startOfTheMonthDayNumber === 0
-  //   ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-  //   : startOfTheMonthDayNumber === 1
-  //   ? moment(startOfTheMonth).format('YYYY-MM-DD')
-  //   : startOfTheMonthDayNumber === 2
-  //   ? moment(dateSelected)
-  //       .subtract(1, 'months')
-  //       .endOf('month')
-  //       .format('YYYY-MM-DD')
-  //   : startOfTheMonthDayNumber === 3
-  //   ? moment(dateSelected)
-  //       .subtract(1, 'months')
-  //       .endOf('month')
-  //       .subtract(1, 'days')
-  //       .format('YYYY-MM-DD')
-  //   : startOfTheMonthDayNumber === 4
-  //   ? moment(dateSelected)
-  //       .subtract(1, 'months')
-  //       .endOf('month')
-  //       .subtract(2, 'days')
-  //       .format('YYYY-MM-DD')
-  //   : startOfTheMonthDayNumber === 5
-  //   ? moment(dateSelected)
-  //       .subtract(1, 'months')
-  //       .endOf('month')
-  //       .subtract(3, 'days')
-  //       .format('YYYY-MM-DD')
-  //   : startOfTheMonthDayNumber === 6
-  //   ? moment(dateSelected)
-  //       .subtract(1, 'months')
-  //       .endOf('month')
-  //       .subtract(4, 'days')
-  //       .format('YYYY-MM-DD')
-  //   : ''
+    // startOfTheMonthDayNumber === 0
+    //   ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 1
+    //   ? moment(startOfTheMonth).format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 2
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 3
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(1, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 4
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(2, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 5
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(3, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : startOfTheMonthDayNumber === 6
+    //   ? moment(dateSelected)
+    //       .subtract(1, 'months')
+    //       .endOf('month')
+    //       .subtract(4, 'days')
+    //       .format('YYYY-MM-DD')
+    //   : ''
   const monthlyDay2 =
     startOfTheMonthDayNumber === 0
       ? format(addDays(startOfTheMonth, 1), 'yyyy-MM-dd')
@@ -2892,10 +2959,7 @@ export default function VisitList() {
   // const dateSelectedMonday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
   //   .format('YYYY-MM-DD')
-  const dateSelectedMonday = format(
-    addDays(startOfWeek(showDateValue), 1),
-    'yyyy-MM-dd',
-  )
+  const dateSelectedMonday =  format(addDays(startOfWeek(showDateValue),1),'yyyy-MM-dd')
   // console.log(dateSelectedMonday, 'dateSelectedMonday')
   // console.log(moment(showDateValue).date(), 'moment(showDateValue).date()')
   // console.log(startDayOfTheWeek + 1, 'startDayOfTheWeek + 1')
@@ -2903,7 +2967,7 @@ export default function VisitList() {
   //const dateSelectedMonday4 = addDays(showDateValue, (startDayOfTheWeek + 1))
   // const dateSelectedMonday3 = format(addDays(startOfWeek(showDateValue),1),'yyyy-MM-dd')
   // console.log(dateSelectedMonday3, 'dateSelectedMonday3')
-  // const s = getDate(showDateValue)
+  // const s = getDate(showDateValue) 
   // const t = (startDayOfTheWeek + 1)
   // const u = getDate(showDateValue) - (startDayOfTheWeek + 1)
   // console.log(s, t ,u)
@@ -2912,35 +2976,24 @@ export default function VisitList() {
 
   // console.log(dateSelectedMonday3)
   // console.log(getDate(dateSelectedMonday2), 'getDate()')
-
+  
+  
   // const dateSelectedTuesday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
   //   .format('YYYY-MM-DD')
-  const dateSelectedTuesday = format(
-    addDays(startOfWeek(showDateValue), 2),
-    'yyyy-MM-dd',
-  )
+  const dateSelectedTuesday = format(addDays(startOfWeek(showDateValue),2),'yyyy-MM-dd')
   // const dateSelectedWednesday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
   //   .format('YYYY-MM-DD')
-  const dateSelectedWednesday = format(
-    addDays(startOfWeek(showDateValue), 3),
-    'yyyy-MM-dd',
-  )
+  const dateSelectedWednesday = format(addDays(startOfWeek(showDateValue),3),'yyyy-MM-dd')
   // const dateSelectedThursday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 4), 'days')
   //   .format('YYYY-MM-DD')
-  const dateSelectedThursday = format(
-    addDays(startOfWeek(showDateValue), 4),
-    'yyyy-MM-dd',
-  )
+  const dateSelectedThursday = format(addDays(startOfWeek(showDateValue),4),'yyyy-MM-dd')
   // const dateSelectedFriday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 5), 'days')
   //   .format('YYYY-MM-DD')
-  const dateSelectedFriday = format(
-    addDays(startOfWeek(showDateValue), 5),
-    'yyyy-MM-dd',
-  )
+  const dateSelectedFriday = format(addDays(startOfWeek(showDateValue),5),'yyyy-MM-dd')
   //#endregion
   //#region code for filtering visits with dates / this method will filter the table weekly
   const filteredDataWeeklyMonday = visits.filter((el) => {
@@ -3049,7 +3102,7 @@ export default function VisitList() {
   // })
   //#endregion
   //#region code for each weekly visit dates
-
+  
   function visitListWeeklyMonday() {
     return [...filteredDataWeeklyMonday]
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
@@ -3122,6 +3175,30 @@ export default function VisitList() {
       })
   }
   //#endregion
+
+  // const x = startOfTheMonthDayNumber === 0
+  // ? startOfTheMonthDate
+  // : startOfTheMonthDayNumber === 1
+  // ? endOfThePreviousMonth
+  // : startOfTheMonthDayNumber === 2
+  // ? endOfThePreviousMonth - 1
+  // : startOfTheMonthDayNumber === 3
+  // ? endOfThePreviousMonth - 2
+  // : startOfTheMonthDayNumber === 4
+  // ? endOfThePreviousMonth - 3
+  // : startOfTheMonthDayNumber === 5
+  // ? endOfThePreviousMonth - 4
+  // : startOfTheMonthDayNumber === 6
+  // ? endOfThePreviousMonth - 5
+  // : ''
+
+  // console.log(moment(monthlyDay32).format('D'))
+  // // console.log(getDate(new Date(format(monthlyDay32, 'MM-dd-yyyy'))))
+  // console.log(getDate(parseISO(monthlyDay32)))
+
+  // console.log(format(parseISO(monthlyDay32),'MM/dd/yyyy'))
+
+  // console.log(monthlyDay32)
 
   return (
     <div className="grid_container">
