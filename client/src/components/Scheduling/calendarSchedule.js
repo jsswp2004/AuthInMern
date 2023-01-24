@@ -5560,7 +5560,6 @@ export default function VisitList() {
                       <th>Action</th>
                     </tr>
                   </thead>
-                  {/* <tbody className="trStyles">{patientListDaily()}</tbody> */}
                   <tbody className="trStyles">{patientListDaily()}</tbody>
                 </table>
               </div>

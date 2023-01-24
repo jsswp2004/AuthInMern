@@ -1,17 +1,60 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
+import PatientDetail from './PatientDetails'
+// import Button from "@material-ui/core/Button";
+// import { useReactToPrint } from 'react-to-print'
+
+const PatientDetails = (props) => {
+  return (
+    // <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
+    <div className="patientDetails">
+      <div className="patientDetailsDemographics">
+        {' '}
+        <div>
+          <h6>Patient Name </h6>
+          {props.visit.firstName} {props.visit.middleName}{' '}
+          {props.visit.lastName}
+        </div>{' '}
+        <div>
+          <h6>Email</h6>
+          {props.visit.email}
+        </div>
+      </div>
+      <div className="patientDetailsDemographics">
+        {' '}
+        <div>
+          <h6>Appointment Date & Time </h6>
+          {props.visit.visitDate} {props.visit.hourOfVisit}
+        </div>
+        <div>
+          <h6>Provider</h6>
+          {props.visit.provider}
+        </div>
+        {/* <div>
+        button is placed at the bottom
+          <button className="btn btn-info printDetails" onClick={handlePrint}>Print</button>
+        </div> */}
+      </div>
+      <div className="patientDetailsDemographics"></div>
+    </div>
+  )
+}
 
 function UpdateVisitInfo(props) {
+  // const componentRef = useRef()
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  // })
   const [visit, setVisit] = useState({
     firstName: '',
     lastName: '',
     middleName: '',
     email: '',
-    addedDate: '',
+    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     visitDate: '',
     provider: '',
   })
@@ -28,7 +71,7 @@ function UpdateVisitInfo(props) {
           lastName: res.data.lastName,
           middleName: res.data.middleName,
           email: res.data.email,
-          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), //res.data.addedDate,
+          addedDate: res.data.addedDate,
           visitDate: res.data.visitDate,
           hourOfVisit: res.data.hourOfVisit,
           provider: res.data.provider,
@@ -52,8 +95,8 @@ function UpdateVisitInfo(props) {
       middleName: visit.middleName,
       email: visit.email,
       addedDate: visit.addedDate,
-        visitDate: visit.visitDate,
-        hourOfVisit: visit.hourOfVisit,
+      visitDate: visit.visitDate,
+      hourOfVisit: visit.hourOfVisit,
       provider: visit.provider,
     }
 
@@ -67,6 +110,16 @@ function UpdateVisitInfo(props) {
       })
   }
 
+  function patientDetailsInfo() {
+    return (
+      // <React.forwardRef>
+
+      <PatientDetails visit={visit} key={visit._id} />
+
+      // </React.forwardRef>
+    )
+  }
+
   return (
     <div className="grid_container">
       <div className="item1">
@@ -76,8 +129,54 @@ function UpdateVisitInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Edit Visit</h3>
-        <div className="item3A">
+        <div className="App">
+          <PatientDetail visit={visit} key={visit._id} />
+        </div>
+        <div>
+          <h5 className="patientDetailsTitle">Patient Visit Details</h5>
+          {patientDetailsInfo()}
+        </div>
+        <div>
+          <button className="btn btn-info printDetails" >
+          {/* onClick={handlePrint} */}
+            Print
+          </button>
+        </div>
+        {/* <PatientDetails visit={visit} key={visit._id} /> */}
+
+        {/* <div className='patientDetails' >
+          <div className='patientDetailsDemographics'  >
+            {' '}
+            <div>
+              <h6>Patient Name </h6>
+              {visit.firstName} {visit.middleName} {visit.lastName}
+            </div>{' '}
+            <div>
+              <h6>Email</h6>
+              {visit.email}
+            </div>
+          </div>
+          <div className='patientDetailsDemographics'>
+            {' '}
+            <div>
+              <h6>Appointment Date & Time </h6>
+              {visit.visitDate} {visit.hourOfVisit}
+            </div>
+            <div>
+              <h6>Provider</h6>
+              {visit.provider}
+            </div>
+            <div>
+              <button className="btn btn-info printDetails">Print</button>
+            </div>
+          </div>
+          <div className='patientDetailsDemographics' >
+
+          </div>
+        </div> */}
+
+        {/* form below is not being displayed */}
+        <div className="item3A" style={{ display: 'none' }}>
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
               <div className="div-items">
@@ -90,6 +189,7 @@ function UpdateVisitInfo(props) {
                       name="firstName"
                       value={visit.firstName}
                       onChange={onChange}
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
@@ -97,9 +197,10 @@ function UpdateVisitInfo(props) {
                     <input
                       type="text"
                       name="middleName"
-                      value={visit.middleName}
+                      defaultValue={visit.middleName}
                       className="form-control"
                       onChange={onChange}
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
@@ -108,8 +209,9 @@ function UpdateVisitInfo(props) {
                       type="text"
                       className="form-control"
                       name="lastName"
-                      value={visit.lastName}
+                      defaultValue={visit.lastName}
                       onChange={onChange}
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
@@ -119,6 +221,7 @@ function UpdateVisitInfo(props) {
                       className="form-control"
                       value={visit.hourOfVisit}
                       onChange={onChange}
+                      readOnly
                     />
                   </div>
                 </div>
@@ -132,6 +235,7 @@ function UpdateVisitInfo(props) {
                     className="form-control"
                     value={visit.email}
                     onChange={onChange}
+                    readOnly
                   />
                 </div>
                 <div className="form-group">
@@ -141,6 +245,7 @@ function UpdateVisitInfo(props) {
                     className="form-control"
                     value={visit.addedDate}
                     onChange={onChange}
+                    readOnly
                   />
                 </div>
                 <div className="form-group">
@@ -151,6 +256,7 @@ function UpdateVisitInfo(props) {
                     className="form-control"
                     value={visit.visitDate}
                     onChange={onChange}
+                    readOnly
                   />
                 </div>
                 <div className="form-group">
@@ -161,6 +267,7 @@ function UpdateVisitInfo(props) {
                     className="form-control"
                     value={visit.provider}
                     onChange={onChange}
+                    readOnly
                   />
                 </div>
                 <div
@@ -171,11 +278,12 @@ function UpdateVisitInfo(props) {
                     paddingTop: '10px',
                   }}
                 >
-                  <input
+                  {/* <input
                     value="Update"
                     type="submit"
                     className="btn btn-success"
-                  />
+                                  /> */}
+                  <input value="Print" type="submit" className="btn btn-info" />
                 </div>
               </div>
             </div>
