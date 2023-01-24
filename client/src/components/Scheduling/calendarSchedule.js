@@ -10,6 +10,9 @@ import {
   addDays,
   subDays,
   startOfWeek,
+  // previousSunday,
+  // previousMonday,
+  parseISO
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
@@ -46,6 +49,12 @@ const VisitCard = (props) => (
         to={`/editVisit/${props.visit._id}`}
       >
         <i className="fa fa-pencil-square-o" aria-hidden="true" />
+      </Link>
+      <Link
+        className="btn btn-success btn-sm"
+        to={`/detailsVisit/${props.visit._id}`}
+      >
+        <i className="fa fa-clipboard" aria-hidden="true" />
       </Link>
       <button
         className="btn btn-danger btn-sm"
@@ -2947,38 +2956,44 @@ export default function VisitList() {
   //#endregion
   //#region code for each weekly daily visit dates
 
-  const dateSelectedMonday = moment(showDateValue)
-    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
-    .format('YYYY-MM-DD')
-    // console.log(startDayOfTheWeek, 'startDayOfTheWeek')
-    // console.log(dateSelectedMonday, 'dateSelectedMonday')
+  // const dateSelectedMonday = moment(showDateValue)
+  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
+  //   .format('YYYY-MM-DD')
+  const dateSelectedMonday =  format(addDays(startOfWeek(showDateValue),1),'yyyy-MM-dd')
+  // console.log(dateSelectedMonday, 'dateSelectedMonday')
+  // console.log(moment(showDateValue).date(), 'moment(showDateValue).date()')
+  // console.log(startDayOfTheWeek + 1, 'startDayOfTheWeek + 1')
   // const dateSelectedMonday = format(showDateValue, 'MM-dd-yyyy')
-  const dateSelectedMonday4 = addDays(showDateValue, (startDayOfTheWeek + 1))
-  // const dateSelectedMonday3 = new Date(dateSelectedMonday)
+  //const dateSelectedMonday4 = addDays(showDateValue, (startDayOfTheWeek + 1))
+  // const dateSelectedMonday3 = format(addDays(startOfWeek(showDateValue),1),'yyyy-MM-dd')
+  // console.log(dateSelectedMonday3, 'dateSelectedMonday3')
   // const s = getDate(showDateValue) 
   // const t = (startDayOfTheWeek + 1)
-  const u = getDate(showDateValue) - (startDayOfTheWeek + 1)
-  const dateSelectedMonday5 = subDays(showDateValue, (startDayOfTheWeek + 1))
+  // const u = getDate(showDateValue) - (startDayOfTheWeek + 1)
   // console.log(s, t ,u)
-    console.log(u)
+  // console.log(u, 'getDate(showDateValue) - (startDayOfTheWeek + 1)')
   // console.log(getDate(showDateValue), 'getDate()')
-  console.log(dateSelectedMonday)
+
   // console.log(dateSelectedMonday3)
   // console.log(getDate(dateSelectedMonday2), 'getDate()')
   
   
-  const dateSelectedTuesday = moment(showDateValue)
-    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
-    .format('YYYY-MM-DD')
-  const dateSelectedWednesday = moment(showDateValue)
-    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
-    .format('YYYY-MM-DD')
-  const dateSelectedThursday = moment(showDateValue)
-    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 4), 'days')
-    .format('YYYY-MM-DD')
-  const dateSelectedFriday = moment(showDateValue)
-    .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 5), 'days')
-    .format('YYYY-MM-DD')
+  // const dateSelectedTuesday = moment(showDateValue)
+  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
+  //   .format('YYYY-MM-DD')
+  const dateSelectedTuesday = format(addDays(startOfWeek(showDateValue),2),'yyyy-MM-dd')
+  // const dateSelectedWednesday = moment(showDateValue)
+  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
+  //   .format('YYYY-MM-DD')
+  const dateSelectedWednesday = format(addDays(startOfWeek(showDateValue),3),'yyyy-MM-dd')
+  // const dateSelectedThursday = moment(showDateValue)
+  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 4), 'days')
+  //   .format('YYYY-MM-DD')
+  const dateSelectedThursday = format(addDays(startOfWeek(showDateValue),4),'yyyy-MM-dd')
+  // const dateSelectedFriday = moment(showDateValue)
+  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 5), 'days')
+  //   .format('YYYY-MM-DD')
+  const dateSelectedFriday = format(addDays(startOfWeek(showDateValue),5),'yyyy-MM-dd')
   //#endregion
   //#region code for filtering visits with dates / this method will filter the table weekly
   const filteredDataWeeklyMonday = visits.filter((el) => {
@@ -3161,24 +3176,29 @@ export default function VisitList() {
   }
   //#endregion
 
-  const x = startOfTheMonthDayNumber === 0
-  ? startOfTheMonthDate
-  : startOfTheMonthDayNumber === 1
-  ? endOfThePreviousMonth
-  : startOfTheMonthDayNumber === 2
-  ? endOfThePreviousMonth - 1
-  : startOfTheMonthDayNumber === 3
-  ? endOfThePreviousMonth - 2
-  : startOfTheMonthDayNumber === 4
-  ? endOfThePreviousMonth - 3
-  : startOfTheMonthDayNumber === 5
-  ? endOfThePreviousMonth - 4
-  : startOfTheMonthDayNumber === 6
-  ? endOfThePreviousMonth - 5
-  : ''
+  // const x = startOfTheMonthDayNumber === 0
+  // ? startOfTheMonthDate
+  // : startOfTheMonthDayNumber === 1
+  // ? endOfThePreviousMonth
+  // : startOfTheMonthDayNumber === 2
+  // ? endOfThePreviousMonth - 1
+  // : startOfTheMonthDayNumber === 3
+  // ? endOfThePreviousMonth - 2
+  // : startOfTheMonthDayNumber === 4
+  // ? endOfThePreviousMonth - 3
+  // : startOfTheMonthDayNumber === 5
+  // ? endOfThePreviousMonth - 4
+  // : startOfTheMonthDayNumber === 6
+  // ? endOfThePreviousMonth - 5
+  // : ''
 
-  // console.log(x)
-  // console.log(startOfTheMonthDayNumber)
+  // console.log(moment(monthlyDay32).format('D'))
+  // // console.log(getDate(new Date(format(monthlyDay32, 'MM-dd-yyyy'))))
+  // console.log(getDate(parseISO(monthlyDay32)))
+
+  // console.log(format(parseISO(monthlyDay32),'MM/dd/yyyy'))
+
+  // console.log(monthlyDay32)
 
   return (
     <div className="grid_container">
@@ -4821,7 +4841,8 @@ export default function VisitList() {
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {moment(monthlyDay32).format('D')}
+                        {/* {moment(monthlyDay32).format('D')} */}
+                        {getDate(parseISO(monthlyDay32))}
                       </span>
                     </div>
                   </li>

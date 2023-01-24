@@ -20,7 +20,8 @@ const Main = () => {
       </div>
       <div className="item3">
         <div className="HomepageGreeting">
-          <div className="aboutPage1">
+          <div className="aboutPage1" >
+          {/* style={{ backgroundImage: URL('./images/aboutPageDoc.jpg')}} */}
             <h5 className="aboutPageTitle">Welcome to POEHR</h5>
             <p className="aboutPageDescription">
               Our company, POEHR, Inc., is dedicated to revolutionizing the way
