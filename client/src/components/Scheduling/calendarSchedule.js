@@ -2920,6 +2920,7 @@ export default function VisitList() {
     addDays(startOfWeek(showDateValue), 2),
     'yyyy-MM-dd',
   )
+  console.log(dateSelectedTuesday, 'dateSelectedTuesday')
   // const dateSelectedWednesday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
   //   .format('YYYY-MM-DD')
