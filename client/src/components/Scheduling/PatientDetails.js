@@ -100,20 +100,67 @@ const PatientDetails = (props) => {
             </Text>
             <Text style={styles.title}>Patient Visit Details</Text>
 
-            <View style={styles.section1}>
-              <Text style={styles.subtitle}>Patient Name:</Text>
-              <Text style={styles.text}>
-                {props.visit.firstName} {props.visit.middleName}{' '}
-                {props.visit.lastName}
+            <View style={styles.section}>
+              <table>
+                <tr>
+                  <th>Patient Name</th>
+                  <th>Email</th>
+                  <th>Visit Date</th>
+                  <th>Physician</th>
+                </tr>
+
+                <tr>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Patient Name:{' '}
+                      <Text style={styles.text}>
+                        {props.visit.firstName} {props.visit.middleName}{' '}
+                        {props.visit.lastName}
+                      </Text>
+                    </Text>
+                  </td>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Email:{' '}
+                      <Text style={styles.text}>{props.visit.email}</Text>
+                    </Text>
+                  </td>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Visit Date:{' '}
+                      <Text style={styles.text}>
+                        {props.visit.visitDate} {props.visit.hourOfVisit}
+                      </Text>
+                    </Text>
+                  </td>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Physician:{' '}
+                      <Text style={styles.text}>{props.visit.provider}</Text>
+                    </Text>
+                  </td>
+                </tr>
+              </table>
+              {/* <Text style={styles.subtitle}>
+                Patient Name:{' '}
+                <Text style={styles.text}>
+                  {props.visit.firstName} {props.visit.middleName}{' '}
+                  {props.visit.lastName}
+                </Text>
               </Text>
-              <Text style={styles.subtitle}>Email:</Text>
-              <Text style={styles.text}>{props.visit.email}</Text>
-              <Text style={styles.subtitle}>Visit Date:</Text>
-              <Text style={styles.text}>
-                {props.visit.visitDate} {props.visit.hourOfVisit}
+              <Text style={styles.subtitle}>
+                Email: <Text style={styles.text}>{props.visit.email}</Text>
               </Text>
-              <Text style={styles.subtitle}>Physician:</Text>
-              <Text style={styles.text}>{props.visit.provider}</Text>
+              <Text style={styles.subtitle}>
+                Visit Date:{' '}
+                <Text style={styles.text}>
+                  {props.visit.visitDate} {props.visit.hourOfVisit}
+                </Text>
+              </Text>
+              <Text style={styles.subtitle}>
+                Physician:{' '}
+                <Text style={styles.text}>{props.visit.provider}</Text>
+              </Text> */}
             </View>
             {/* <View style={styles.section}>
               <Text style={styles.subtitle}>Patient Name:</Text>
