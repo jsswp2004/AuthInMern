@@ -2946,37 +2946,53 @@ export default function VisitList() {
   //#region code for filtering visits with dates / this method will filter the table weekly
   const filteredDataWeeklyMonday = visits.filter((el) => {
     //if no input the return the with the original default date
-    if (searchInput === '') {
-      // return el
-      return Object.values(el)
+    // if (searchInput === '') {
+    //   // return el
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedMonday)
+    // }
+    // //return the item which contains the user input
+    // else {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedMonday)
+    // }
+    return (
+      el.visitDate
+        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedMonday)
-    }
-    //return the item which contains the user input
-    else {
-      return Object.values(el)
-        .toString()
-        .toLowerCase()
-        .includes(dateSelectedMonday)
-    }
+    )
   })
   const filteredDataWeeklyTuesday = visits.filter((el) => {
     //if no input the return the with the original default date
-    if (searchInput === '') {
-      return Object.values(el)
+    // if (searchInput === '') {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedTuesday)
+    // }
+    // //return the item which contains the user input
+    // else {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedTuesday)
+    // }
+    return (
+      el.visitDate
+        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedTuesday)
-    }
-    //return the item which contains the user input
-    else {
-      return Object.values(el)
-        .toString()
-        .toLowerCase()
-        .includes(dateSelectedTuesday)
-    }
+    )
   })
+
+  // console.log(filteredDataWeeklyTuesday, 'filteredDataWeeklyTuesday')
   const filteredDataWeeklyWed = visits.filter((el) => {
     //if no input the return the with the original default date
     // if (searchInput === '') {
@@ -2999,35 +3015,49 @@ export default function VisitList() {
 
   const filteredDataWeeklyThursday = visits.filter((el) => {
     //if no input the return the with the original default date
-    if (searchInput === '') {
-      return Object.values(el)
+    // if (searchInput === '') {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedThursday)
+    // }
+    // //return the item which contains the user input
+    // else {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedThursday)
+    // }
+    return (
+      el.visitDate
+        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedThursday)
-    }
-    //return the item which contains the user input
-    else {
-      return Object.values(el)
-        .toString()
-        .toLowerCase()
-        .includes(dateSelectedThursday)
-    }
+    )
   })
   const filteredDataWeeklyFri = visits.filter((el) => {
     //if no input the return the with the original default date
-    if (searchInput === '') {
-      return Object.values(el)
+    // if (searchInput === '') {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedFriday)
+    // }
+    // //return the item which contains the user input
+    // else {
+    //   return Object.values(el)
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(dateSelectedFriday)
+    // }
+    return (
+      el.visitDate
+        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedFriday)
-    }
-    //return the item which contains the user input
-    else {
-      return Object.values(el)
-        .toString()
-        .toLowerCase()
-        .includes(dateSelectedFriday)
-    }
+    )
   })
 
   // const filteredDataMonthly = visits.filter((el) => {
