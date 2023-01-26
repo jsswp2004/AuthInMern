@@ -15,6 +15,7 @@ import CreateVisit from './components/Scheduling/createvisit'
 import EditVisit from './components/Scheduling/editVisit'
 import VisitDetails from './components/Scheduling/detailsVisit'
 import About from './components/Main/About'
+import ClinicVisit from './components/ClinicVisits/clinicVisits'
 
 function App() {
   const user = localStorage.getItem('token')
@@ -30,6 +31,7 @@ function App() {
       <Route path="/visitSchedule" exact element={<VisitSchedule />} />
       <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
       <Route path="/createVisit" exact element={<CreateVisit />} />
+      <Route path="/clinicVisit" exact element={<ClinicVisit />} />
       <Route path="/editVisit/:id" exact element={<EditVisit />} />
       <Route path="/detailsVisit/:id" exact element={<VisitDetails />} />
       <Route path="/createUser" exact element={<CreateUser />} />

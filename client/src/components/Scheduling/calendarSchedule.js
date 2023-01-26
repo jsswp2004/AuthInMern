@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import backward from '../shared/images/backward.jpg'
-import forward  from '../shared/images/forward.jpg'
+import forward from '../shared/images/forward.jpg'
 import {
   format,
   getDate,
@@ -30,7 +30,6 @@ import CreateVisitModal from '../Scheduling/createvisitmodal'
 import VisitCard from './VisitCard'
 
 export default function VisitList() {
-
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
   useEffect(() => {
@@ -64,7 +63,6 @@ export default function VisitList() {
     return new Date(year, month, 0).getDate()
   }
 
-
   const [showDateValue, setShowDateValue] = useState(new Date())
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
@@ -82,7 +80,7 @@ export default function VisitList() {
     // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
     getDate(endOfMonth(subMonths(newdate, 1))),
   )
-  
+
   const gridMonthlyColumnStart = {
     gridColumnStart: startOfTheMonthDayNumber,
     backgroundColor: ' #eeee',
@@ -367,16 +365,25 @@ export default function VisitList() {
       : ''
   const visitMonthlyDay2 = visits.filter((el) => {
     //if no input the return the with the original default date
-    if (searchInput === '') {
-      // return el
-      return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
-    }
-    //return the item which contains the user input
-    else {
-      return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
-    }
+    // if (searchInput === '') {
+    //   // return el
+    //   return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
+    // }
+    // //return the item which contains the user input
+    // else {
+    //   return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
+    // }
+    return (
+      el.visitDate
+        // Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(monthlyDay2)
+    )
   })
-  // console.log('dateSelected', dateSelected)
+  // console.log('showDateValue', showDateValue)
+  // console.log('startOfTheMonthDayNumber', startOfTheMonthDayNumber)
+  // console.log('formatted as',format(subDays(endOfMonth(subMonths(newdate, 1)), 1), 'yyyy-MM-dd'))
   // console.log(
   //   'dateSelected',
   //   moment(dateSelected)
@@ -388,7 +395,7 @@ export default function VisitList() {
   //   format(subDays(endOfMonth(subMonths(newdate, 1)), 1), 'yyyy-MM-dd'),
   // )
   // console.log('firstmonday', monthlyDay2)
-  // console.log('firstmonday2', monthlyDay222)
+  // console.log('firstmonday', monthlyDay2)
 
   function visitListMonthlyDay2() {
     return [...visitMonthlyDay2]
@@ -463,14 +470,21 @@ export default function VisitList() {
 
   const visitMonthlyDay3 = visits.filter((el) => {
     //if no input the return the with the original default date
-    if (searchInput === '') {
-      // return el
-      return el.visitDate.toString().toLowerCase().includes(monthlyDay3)
-    }
-    //return the item which contains the user input
-    else {
-      return el.visitDate.toString().toLowerCase().includes(monthlyDay3)
-    }
+    // if (searchInput === '') {
+    //   // return el
+    //   return el.visitDate.toString().toLowerCase().includes(monthlyDay3)
+    // }
+    // //return the item which contains the user input
+    // else {
+    //   return el.visitDate.toString().toLowerCase().includes(monthlyDay3)
+    // }
+    return (
+      el.visitDate
+        // Object.values(el)
+        .toString()
+        .toLowerCase()
+        .includes(monthlyDay3)
+    )
   })
   function visitListMonthlyDay3() {
     return [...visitMonthlyDay3]
@@ -485,6 +499,11 @@ export default function VisitList() {
         )
       })
   }
+  console.log('showDateValue', showDateValue)
+  console.log('startOfTheMonthDayNumber', startOfTheMonthDayNumber)
+  console.log('firstTuesday', monthlyDay3)
+
+  // console.log('formatted as',format(subDays(endOfMonth(subMonths(newdate, 1)), 1), 'yyyy-MM-dd'))
   //#endregion
   //#region fourth day of the month
   // const monthlyDay4 =
@@ -688,6 +707,7 @@ export default function VisitList() {
     else {
       return el.visitDate.toString().toLowerCase().includes(monthlyDay6)
     }
+
   })
   function visitListMonthlyDay6() {
     return [...visitMonthlyDay6]
@@ -3211,13 +3231,39 @@ export default function VisitList() {
             ))}
           </select>
           {/* calendar forward and backward  */}
-          <div >
-            <img className='directionArrows' src={backward} alt='backward' onClick={(newValue) => setShowDateValue(addDays(showDateValue, -31))}></img>
+          <div>
+            <img
+              className="directionArrows"
+              src={backward}
+              alt="backward"
+              onClick={(newValue) =>
+                selectViewValue === 'Monthly'
+                  ? setShowDateValue(addDays(showDateValue, -31))
+                  : selectViewValue === 'Weekly'
+                  ? setShowDateValue(addDays(showDateValue, -7))
+                  : selectViewValue === 'Daily'
+                  ? setShowDateValue(addDays(showDateValue, -1))
+                  : setShowDateValue(showDateValue)
+              }
+            ></img>
           </div>
-          <div >
-            <img className='directionArrows' src={forward} alt='forward' onClick={(newValue) => setShowDateValue(addDays(showDateValue, 31))}></img>
+          <div>
+            <img
+              className="directionArrows"
+              src={forward}
+              alt="forward"
+              onClick={(newValue) =>
+                selectViewValue === 'Monthly'
+                  ? setShowDateValue(addDays(showDateValue, 31))
+                  : selectViewValue === 'Weekly'
+                  ? setShowDateValue(addDays(showDateValue, 7))
+                  : selectViewValue === 'Daily'
+                  ? setShowDateValue(addDays(showDateValue, 1))
+                  : setShowDateValue(showDateValue)
+              }
+            ></img>
           </div>
-          
+
           {/* code for modal to add visit*/}
           <div
             style={{ marginLeft: 'auto', height: '38px', paddingRight: '5px' }}
