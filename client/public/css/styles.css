@@ -878,3 +878,16 @@ background-color: #2196F3;
 .printDetails {
 float: right;
 }
+
+/* direction arrows */
+.directionArrows {
+  padding-left: 15px;
+  padding-top: 5px;
+  width: 40px;
+  height: 30px;
+}
+
+.directionArrows:hover  {
+  height: 40px;
+  width: 50px;
+}

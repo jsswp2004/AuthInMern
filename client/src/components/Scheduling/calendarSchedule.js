@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import backward from '../shared/images/backward.jpg'
+import forward  from '../shared/images/forward.jpg'
 import {
   format,
   getDate,
@@ -28,6 +30,7 @@ import CreateVisitModal from '../Scheduling/createvisitmodal'
 import VisitCard from './VisitCard'
 
 export default function VisitList() {
+
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
   useEffect(() => {
@@ -60,6 +63,7 @@ export default function VisitList() {
   function getDaysInMonth(month, year) {
     return new Date(year, month, 0).getDate()
   }
+
 
   const [showDateValue, setShowDateValue] = useState(new Date())
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
@@ -3171,7 +3175,6 @@ export default function VisitList() {
               verticalAlign: 'middle',
             }}
           >
-            {/* titlle for month */}
             {monthName}
           </h3>
           <div className="customDatePickerWidth">
@@ -3207,7 +3210,15 @@ export default function VisitList() {
               </option>
             ))}
           </select>
-          {/* modal start */}
+          {/* calendar forward and backward  */}
+          <div >
+            <img className='directionArrows' src={backward} alt='backward' onClick={(newValue) => setShowDateValue(addDays(showDateValue, -31))}></img>
+          </div>
+          <div >
+            <img className='directionArrows' src={forward} alt='forward' onClick={(newValue) => setShowDateValue(addDays(showDateValue, 31))}></img>
+          </div>
+          
+          {/* code for modal to add visit*/}
           <div
             style={{ marginLeft: 'auto', height: '38px', paddingRight: '5px' }}
           >
