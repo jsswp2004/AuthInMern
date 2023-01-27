@@ -161,9 +161,33 @@ export default function ClinicVisit() {
       })
   }
   //#endregion
+  //#region for formatting date function
   const formatDay = (el) => {
     return format(el, 'yyyy-MM-dd')
   }
+  //#endregion
+  //#region for filtering data with selected date
+  const filterDataWithDate = visits.filter((visit) => {
+    return visit.visitDate.toString().toLowerCase().includes(dateSelected)
+  })
+  //#endregion
+  //#region for mapping and sorting data by date
+  function patientListDaily() {
+    return [...filterDataWithDate]
+      .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
+
+      .map((visit) => {
+        return (
+          <VisitCard
+            visit={visit}
+            deleteRecord={deleteRecord}
+            key={visit._id}
+          />
+        )
+      })
+  }
+  // console.log(filterDataWithDate)
+  //#endregion
   //#region for first day of the month
   const monthlyDay = formatDay(startOfTheMonth) //format(startOfTheMonth, 'yyyy-MM-dd')
   const visitMonthlyDay1 = visits.filter((el) => {
@@ -1065,15 +1089,18 @@ export default function ClinicVisit() {
         <div className="grid_calendar">
           <div className="itemCalendar1">
             <div className="month-indicator item3C">
-              <h3
-                style={{
-                  float: 'left',
-                  marginBottom: '0px',
-                  verticalAlign: 'middle',
-                }}
-              >
-                {monthName}
-              </h3>
+              <div className="month-name" >
+                <h3
+                  style={{
+                    float: 'left',
+                    marginBottom: '0px',
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  {monthName}
+                </h3>
+              </div>
+
               <div className="customDatePickerWidth">
                 <DatePicker
                   selected={showDateValue}
@@ -1194,7 +1221,6 @@ export default function ClinicVisit() {
               {/* search end */}
             </div>
           </div>
-
           <div className="itemCalendar2">
             <div
               className="monthly"
@@ -1778,7 +1804,46 @@ export default function ClinicVisit() {
                 </div>
               </div>
             </div>
-            <div className="daily"></div>
+            <div
+              className="daily"
+              style={{
+                display: selectViewValue === 'Daily' ? '' : 'none',
+                columnSpan: 'all',
+              }}
+            >
+              <li
+                className="calendar-item calendar-day"
+                id="calendarDaily"
+                style={gridWeeklyStart}
+              >
+                <div className="calendarDailyDate" id="calendarDailyDate">
+                  <h5
+                    style={{ marginBottom: '0px', backgroundColor: '#b9b9b9' }}
+                  >
+                    {format(new Date(showDateValue.toLocaleString()), 'PPP')}
+                  </h5>
+                </div>
+
+                <div>
+                  <table className="table table-striped">
+                    <thead>
+                      <tr className="trStyles">
+                        <th>FirstName</th>
+                        <th>Middlename</th>
+                        <th>Lastname</th>
+                        <th>Visit Date</th>
+                        <th>Time</th>
+                        <th>Email</th>
+                        <th>Provider</th>
+                        <th>Date Created</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="trStyles">{patientListDaily()}</tbody>
+                  </table>
+                </div>
+              </li>
+            </div>
           </div>
         </div>
       </div>

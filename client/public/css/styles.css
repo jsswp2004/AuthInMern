@@ -326,6 +326,7 @@ body {
 .item3C h3 {
   padding-left: 5px;
   padding-top: 2px;
+  font-size: 25px;
 }
 
 /* this is the wrapper for the table */
@@ -629,10 +630,12 @@ h5 {
   margin: 0px;
   /* font-size: small; */
   /* height: 100vh; */
+  list-style: none;
 }
 
 .weekday {
   font-size: 14px;
+  list-style: none;
 }
 
 ul {
@@ -654,10 +657,16 @@ ul {
   /* height: 100vh; */
 }
 
-#calendarDailyDate {
-  /* width: auto; */
+/* #calendarDailyDate {
+
   text-align: center;
   margin-bottom: 0px;
+  background-color: var(--grey-background);
+} */
+.calendarDailyDate {
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: var(--grey-background);
 }
 
 /* #calendarWeekly {
@@ -700,6 +709,7 @@ ul .calendar {
 /* datepicker */
 .weekday {
   font-size: 14px;
+  background-color: var(--grey-background);
 }
 .customDatePickerWidth,
 .customDatePickerWidth > div.react-datepicker-wrapper,
@@ -885,6 +895,7 @@ float: right;
   padding-top: 5px;
   width: 40px;
   height: 30px;
+
 }
 
 .directionArrows:hover  {
@@ -919,6 +930,8 @@ float: right;
 --blue-grey-700: #334e68;
 --blue-grey-800: #243b53;
 --blue-grey-900: #102a43;
+--grey-background: #b9b9b9;
+
 --grid-column-start: 1;
 }
 
@@ -950,7 +963,10 @@ color: var(--blue-grey-700);
 text-align: left;
 font-weight: 500;
 }
+.month-name {
+width: 10%;
 
+}
 /* // CSS grid used for the dates */
 .day-of-week,
 .date-grid {
@@ -1031,13 +1047,15 @@ color: var(--teal-900);
   "main main main main main main main main";
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  /* grid-template-columns: 50px repeat(auto-fit, minmax(calc((100% - 100px)/5), 1fr)) 50px; */
   grid-template-rows: repeat(5, auto);
   gap: 0px;
 }
 .weekDayTitleParent {
   background-color: white;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  /* grid-template-columns: repeat(7, 1fr); */
+  grid-template-columns: 80px repeat(auto-fit, minmax(calc((100% - 100px)/6), 1fr)) 80px;
   gap: 1px;
 }
 .weekDayTitleChild {
@@ -1052,7 +1070,8 @@ color: var(--teal-900);
 .monthDayTitleParent {
   background-color: #eeee;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  /* grid-template-columns: repeat(7, 1fr); */
+  grid-template-columns: 80px repeat(auto-fit, minmax(calc((100% - 100px)/6), 1fr)) 80px;
   grid-template-rows: repeat(6, 130px);
   /* grid-template-rows: repeat(auto-fill, 120px); */
   gap: 1px;
@@ -1068,7 +1087,7 @@ color: var(--teal-900);
 .itemCalendar1 {
   grid-area: header;
   grid-column: 1 / span all;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   text-align: center;
   vertical-align: middle;
   /* padding: 0px 0; */
