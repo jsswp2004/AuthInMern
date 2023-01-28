@@ -29,6 +29,7 @@ import {
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
+import VisitModal from '../Scheduling/visitModal'
 import VisitCard from '../Scheduling/VisitCard'
 import { display } from '@mui/system'
 //#endregion
@@ -91,7 +92,7 @@ export default function ClinicVisit() {
   }
 
   const gridWeekly = {
-    backgroundColor: ' #eeee',
+    backgroundColor: 'white',
     height: 'calc(100vh - 132px)',
   }
 
@@ -144,6 +145,27 @@ export default function ClinicVisit() {
   // This method will map out the visits on the table
   function displayVisitModal() {
     return <VisitModal />
+  }
+  //#endregion
+  //#region for Modal from monthly
+  const VisitModalMonthly = () => (
+    <Modal show={show} onHide={handleClose} size="lg" centered>
+      <Modal.Header closeButton>
+        <Modal.Title>Add a Visit</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <VisitModal />
+      </Modal.Body>
+      <Modal.Footer>
+        <span style={{ textAlign: 'center' }}>
+          Please make sure all information is current and accurate.
+        </span>
+      </Modal.Footer>
+    </Modal>
+  )
+  // This method will map out the visits on the table
+  function displayVisitMonthlyModal() {
+    return <VisitModalMonthly />
   }
   //#endregion
   //#region months dropdown code
@@ -994,11 +1016,12 @@ export default function ClinicVisit() {
     gridColumnStart: dayOfSunday,
     backgroundColor: ' #eeee',
     height: 'calc(100vh - 110px)',
+    width: '100%',
   }
 
   const gridWeeklyStartSun = {
     gridColumnStart: dayOfSunday,
-    backgroundColor: ' #eeee',
+    backgroundColor: 'white',
     height: 'calc(100vh - 132px)',
   }
 
@@ -1089,7 +1112,7 @@ export default function ClinicVisit() {
         <div className="grid_calendar">
           <div className="itemCalendar1">
             <div className="month-indicator item3C">
-              <div className="month-name" >
+              <div className="month-name">
                 <h3
                   style={{
                     float: 'left',
@@ -1187,6 +1210,7 @@ export default function ClinicVisit() {
                   <i className="fa fa-solid fa-plus"></i>
                 </Button>
                 <div>{displayVisitModal()}</div>
+                {/* <div>{displayVisitMonthlyModal()}</div> */}
               </div>
               {/* modal end*/}
               {/* search start */}
@@ -1242,8 +1266,7 @@ export default function ClinicVisit() {
               <div className="monthDayTitleParent">
                 <div
                   className="monthDayTitleChild"
-                                  style={gridMonthlyColumnStart}
-                                  
+                  style={gridMonthlyColumnStart}
                 >
                   <span>{startOfTheMonthDay}</span>
                   <table className="table table-striped">
@@ -1254,7 +1277,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div className="monthDayTitleChild" onClick={handleShow}>
-                  <span >
+                  <span>
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </span>
                   <table className="table table-striped">

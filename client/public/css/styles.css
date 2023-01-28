@@ -524,7 +524,7 @@ thead tr {
 .table thead {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 0;
   background-color: #535353;
 
   /* box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); */

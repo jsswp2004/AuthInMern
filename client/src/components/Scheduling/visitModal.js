@@ -59,28 +59,6 @@ const CreateVisit = (props) => {
       })
   }
 
-  // const [show, setShow] = useState(false);
-  // function AlertDismissible() {
-    // const [show, setShow] = useState(false);
-  
-    // if (show) {
-    //   return (
-    //     <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-    //       <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-    //       <p>
-    //         Change this and that and try again. Duis mollis, est non commodo
-    //         luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-    //         Cras mattis consectetur purus sit amet fermentum.
-    //       </p>
-    //     </Alert>
-    //   );
-    // }
-  //   return <Button onClick={() => setShow(true)}>Show Alert</Button>;
-  // }
-
-  
-
-  // console.log(visit)
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className="form-grid-container">
@@ -93,7 +71,6 @@ const CreateVisit = (props) => {
                 className="form-control"
                 name="firstName"
                 value={visit.firstName}
-                // defaultValue={visit.firstName}
                 onChange={onChange}
               />
             </div>
@@ -117,15 +94,6 @@ const CreateVisit = (props) => {
                 onChange={onChange}
               />
             </div>
-            {/* <div className="form-group">
-              <label htmlFor="hourOfVisit">Appointment Time</label>
-              <input
-                name="hourOfVisit"
-                className="form-control"
-                value={visit.hourOfVisit}
-                onChange={onChange}
-              />
-            </div> */}
             <div className="form-group">
                     <label htmlFor="hourOfVisit">
                       Gender
@@ -171,7 +139,7 @@ const CreateVisit = (props) => {
               type="date"
               name="visitDate"
               className="form-control"
-              value={visit.visitDate}
+              value={props.visit.visitDate}
               onChange={onChange}
             />
           </div>
