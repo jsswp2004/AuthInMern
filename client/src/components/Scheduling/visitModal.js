@@ -8,7 +8,7 @@ Hour
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 
-const CreateVisit = (props) => {
+const CreateVisitMonthly = (props) => {
   // Define the state with useState hook
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
@@ -139,7 +139,7 @@ const CreateVisit = (props) => {
               type="date"
               name="visitDate"
               className="form-control"
-              value={props.visit.visitDate}
+              value={visit.visitDate}
               onChange={onChange}
             />
           </div>
@@ -180,4 +180,4 @@ const CreateVisit = (props) => {
   )
 }
 
-export default CreateVisit
+export default CreateVisitMonthly

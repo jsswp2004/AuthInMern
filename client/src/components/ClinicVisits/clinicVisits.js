@@ -29,7 +29,7 @@ import {
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
-import VisitModal from '../Scheduling/visitModal'
+import VisitMonthlyModal from '../Scheduling/visitModal'
 import VisitCard from '../Scheduling/VisitCard'
 import { display } from '@mui/system'
 //#endregion
@@ -125,6 +125,12 @@ export default function ClinicVisit() {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+  const [showMonthly, setShowMonthly] = useState(false)
+  const handleMonthlyClose = () => setShowMonthly(false)
+  const handleMonthlyShow = () => {
+    setShowMonthly(true)
+  }
+
   //#endregion
   //#region for Modal
   const VisitModal = () => (
@@ -147,14 +153,14 @@ export default function ClinicVisit() {
     return <VisitModal />
   }
   //#endregion
-  //#region for Modal from monthly
+  //#region for Modal from monthly days
   const VisitModalMonthly = () => (
-    <Modal show={show} onHide={handleClose} size="lg" centered>
+    <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
       <Modal.Header closeButton>
-        <Modal.Title>Add a Visit</Modal.Title>
+        <Modal.Title>Create a Visit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <VisitModal />
+        <VisitMonthlyModal />
       </Modal.Body>
       <Modal.Footer>
         <span style={{ textAlign: 'center' }}>
@@ -1026,6 +1032,9 @@ export default function ClinicVisit() {
   }
 
   //#endregion
+  function getTotal() {
+    return alert(document.getElementById('subtotal').innerHTML)
+  }
   //#region code for each weekly visit dates
 
   function visitListWeeklyMonday() {
@@ -1210,7 +1219,6 @@ export default function ClinicVisit() {
                   <i className="fa fa-solid fa-plus"></i>
                 </Button>
                 <div>{displayVisitModal()}</div>
-                {/* <div>{displayVisitMonthlyModal()}</div> */}
               </div>
               {/* modal end*/}
               {/* search start */}
@@ -1245,6 +1253,7 @@ export default function ClinicVisit() {
               {/* search end */}
             </div>
           </div>
+          <div>{displayVisitMonthlyModal()}</div>
           <div className="itemCalendar2">
             <div
               className="monthly"
@@ -1268,7 +1277,7 @@ export default function ClinicVisit() {
                   className="monthDayTitleChild"
                   style={gridMonthlyColumnStart}
                 >
-                  <span>{startOfTheMonthDay}</span>
+                  <span id="subtotal">{startOfTheMonthDay}</span>
                   <table className="table table-striped">
                     <thead>
                       <tr className="trStyles"></tr>
@@ -1276,8 +1285,9 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay1()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild" onClick={handleShow}>
+                <div className="monthDayTitleChild" onClick={handleMonthlyShow}>
                   <span>
+                    {/* onClick={getTotal()} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </span>
                   <table className="table table-striped">
@@ -1299,7 +1309,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div className="monthDayTitleChild">
-                  <span>
+                  <span >
                     {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
                   </span>
                   <table className="table table-striped">
