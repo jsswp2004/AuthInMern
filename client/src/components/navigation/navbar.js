@@ -26,9 +26,9 @@ export default function Navbar() {
           {/* <li id="link" className="body_navbarlist">
             <Link to="/visitlist">Schedule</Link>
           </li> */}
-          <li id="link" className="body_navbarlist">
+          {/* <li id="link" className="body_navbarlist">
             <Link to="/calendarSchedule">Visit Schedule</Link>
-          </li>
+          </li> */}
           {/* <li id="link" className="body_navbarlist">
             <Link to="/createVisit">Create Schedule</Link>
           </li> */}

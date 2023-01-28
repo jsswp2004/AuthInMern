@@ -1242,7 +1242,8 @@ export default function ClinicVisit() {
               <div className="monthDayTitleParent">
                 <div
                   className="monthDayTitleChild"
-                  style={gridMonthlyColumnStart}
+                                  style={gridMonthlyColumnStart}
+                                  
                 >
                   <span>{startOfTheMonthDay}</span>
                   <table className="table table-striped">
@@ -1252,8 +1253,8 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay1()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
-                  <span>
+                <div className="monthDayTitleChild" onClick={handleShow}>
+                  <span >
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </span>
                   <table className="table table-striped">
