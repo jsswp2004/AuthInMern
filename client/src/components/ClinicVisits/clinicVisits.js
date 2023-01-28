@@ -66,7 +66,7 @@ export default function ClinicVisit() {
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex].value
   let startOfTheMonth = startOfMonth(new Date(showDateValue))
-  console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
+//   console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
   const currentYear = newdate.getFullYear()
   const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
   let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
@@ -75,11 +75,11 @@ export default function ClinicVisit() {
   // let startOfTheMonthDayNumber = getDay(new Date(startOfTheMonth)) // moment(startOfTheMonth).day()
   let startOfTheMonthDayNumber = getDay(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
   let endOfTheMonthDayNumber = getDay(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  console.log(endOfTheMonthDayNumber)
+//   console.log(endOfTheMonthDayNumber)
   let startOfTheMonthDay = getDate(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  console.log(startOfTheMonthDay)
+//   console.log(startOfTheMonthDay)
   let endOfTheMonthDay = getDate(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  console.log(endOfTheMonthDay)
+//   console.log(endOfTheMonthDay)
   const endOfThePreviousMonth = parseInt(
     // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
     getDate(endOfMonth(subMonths(newdate, 1))),
@@ -243,7 +243,7 @@ export default function ClinicVisit() {
   const visitMonthlyDay2 = visits.filter((el) => {
     return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
   })
-  console.log(visitMonthlyDay2)
+//   console.log(visitMonthlyDay2)
   function visitListMonthlyDay2() {
     return [...visitMonthlyDay2]
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
@@ -872,7 +872,7 @@ export default function ClinicVisit() {
     addDays(startOfWeek(showDateValue), 2),
     'yyyy-MM-dd',
   )
-  console.log(dateSelectedTuesday, 'dateSelectedTuesday')
+//   console.log(dateSelectedTuesday, 'dateSelectedTuesday')
   // const dateSelectedWednesday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
   //   .format('YYYY-MM-DD')
@@ -1200,7 +1200,7 @@ export default function ClinicVisit() {
                   }
                 ></img>
               </div>
-
+            <div><button onClick={getTotal}>total</button></div>
               {/* code for modal to add visit*/}
               <div
                 style={{
@@ -1286,8 +1286,8 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div className="monthDayTitleChild" onClick={handleMonthlyShow}>
-                  <span>
-                    {/* onClick={getTotal()} */}
+                  <span id="subtotal" >
+                  {/* onClick={getTotal()} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </span>
                   <table className="table table-striped">
@@ -1298,7 +1298,8 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div className="monthDayTitleChild">
-                  <span>
+                                  <span  >
+                                  {/* onClick={getTotal()} */}
                     {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                   </span>
                   <table className="table table-striped">
