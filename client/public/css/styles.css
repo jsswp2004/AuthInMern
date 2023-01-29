@@ -442,7 +442,7 @@ body {
   width: 100%;
   /* height: 300px; */
   font-size: 14px;
-  /* overflow: auto; */
+  overflow: auto;
 }
 
 .table-striped {
@@ -820,7 +820,7 @@ background-color: #2196F3;
   width: auto;
   margin-top: 0px;
   margin-bottom: 0px;
-  /* overflow: scroll; */
+   overflow: auto; 
 }
 /* tbody tr {
   margin-top: 0px;
@@ -1104,6 +1104,7 @@ color: var(--teal-900);
   /* grid-template-rows: repeat(auto-fill, 120px); */
   /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; */
   gap: 1px;
+  /* overflow: auto; */
 }
 .monthDayTitleChild {
   color:var(--blue-grey-600);
@@ -1112,6 +1113,7 @@ color: var(--teal-900);
   font-size: 12px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    overflow: auto;
 }
 
 
