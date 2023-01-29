@@ -15,7 +15,7 @@ const CreateVisitMonthly = (props) => {
     firstName: '',
     lastName: '',
     middleName: '',
-    visitDate: '',
+    visitDate: props.visitDate,
     hourOfVisit: '',
     email: '',
     provider: '',

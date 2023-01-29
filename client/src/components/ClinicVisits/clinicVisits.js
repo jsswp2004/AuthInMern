@@ -20,7 +20,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import VisitWeekly from '../Scheduling/visitWeekly'
-import moment from 'moment'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import {
@@ -66,7 +65,7 @@ export default function ClinicVisit() {
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex].value
   let startOfTheMonth = startOfMonth(new Date(showDateValue))
-//   console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
+  //   console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
   const currentYear = newdate.getFullYear()
   const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
   let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
@@ -75,11 +74,11 @@ export default function ClinicVisit() {
   // let startOfTheMonthDayNumber = getDay(new Date(startOfTheMonth)) // moment(startOfTheMonth).day()
   let startOfTheMonthDayNumber = getDay(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
   let endOfTheMonthDayNumber = getDay(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-//   console.log(endOfTheMonthDayNumber)
+  //   console.log(endOfTheMonthDayNumber)
   let startOfTheMonthDay = getDate(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-//   console.log(startOfTheMonthDay)
+  //   console.log(startOfTheMonthDay)
   let endOfTheMonthDay = getDate(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-//   console.log(endOfTheMonthDay)
+  //   console.log(endOfTheMonthDay)
   const endOfThePreviousMonth = parseInt(
     // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
     getDate(endOfMonth(subMonths(newdate, 1))),
@@ -153,14 +152,22 @@ export default function ClinicVisit() {
     return <VisitModal />
   }
   //#endregion
+  // function getTotal() {
+  //   const xx = document.getElementById('subtotal').innerHTML
+  //     return alert(addDays(startOfTheMonth, xx - 1))
+  //   }
   //#region for Modal from monthly days
-  const VisitModalMonthly = () => (
+
+  //   const selectedDateNumber = document.getElementById('subtotal').innerHTML
+
+  const VisitModalMonthly = (visit) => (
     <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
       <Modal.Header closeButton>
         <Modal.Title>Create a Visit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <VisitMonthlyModal />
+        {/* visitDate={selectedDate} */}
       </Modal.Body>
       <Modal.Footer>
         <span style={{ textAlign: 'center' }}>
@@ -243,7 +250,7 @@ export default function ClinicVisit() {
   const visitMonthlyDay2 = visits.filter((el) => {
     return el.visitDate.toString().toLowerCase().includes(monthlyDay2)
   })
-//   console.log(visitMonthlyDay2)
+  //   console.log(visitMonthlyDay2)
   function visitListMonthlyDay2() {
     return [...visitMonthlyDay2]
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
@@ -872,7 +879,7 @@ export default function ClinicVisit() {
     addDays(startOfWeek(showDateValue), 2),
     'yyyy-MM-dd',
   )
-//   console.log(dateSelectedTuesday, 'dateSelectedTuesday')
+  //   console.log(dateSelectedTuesday, 'dateSelectedTuesday')
   // const dateSelectedWednesday = moment(showDateValue)
   //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
   //   .format('YYYY-MM-DD')
@@ -1032,9 +1039,7 @@ export default function ClinicVisit() {
   }
 
   //#endregion
-  function getTotal() {
-    return alert(document.getElementById('subtotal').innerHTML)
-  }
+
   //#region code for each weekly visit dates
 
   function visitListWeeklyMonday() {
@@ -1109,6 +1114,21 @@ export default function ClinicVisit() {
       })
   }
   //#endregion
+  //   function getElement(e) {
+  //       var element = e.target || e.srcElement
+  //       const selectedDateNumber = document.getElementById('subtotal').innerHTML
+  //     // alert(selectedDateNumber)
+  //         const selectedDate = format(
+  //     addDays(startOfTheMonth, selectedDateNumber - 1),
+  //     'yyyy-MM-dd',
+  //   )
+  //   }
+
+  // const selectedDate = format(
+  //   addDays(startOfTheMonth, selectedDateNumber - 1),
+  //   'yyyy-MM-dd',
+  // )
+  //   console.log(selectedDateNumber)
   return (
     <div className="grid_container">
       <div className="item1">
@@ -1200,7 +1220,7 @@ export default function ClinicVisit() {
                   }
                 ></img>
               </div>
-            <div><button onClick={getTotal}>total</button></div>
+              {/* <div><button onClick={getTotal}>total</button></div> */}
               {/* code for modal to add visit*/}
               <div
                 style={{
@@ -1286,8 +1306,8 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div className="monthDayTitleChild" onClick={handleMonthlyShow}>
-                  <span id="subtotal" >
-                  {/* onClick={getTotal()} */}
+                  <span id="subtotal">
+                    {/* onClick={getTotal()} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </span>
                   <table className="table table-striped">
@@ -1297,9 +1317,19 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay2()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
-                                  <span  >
-                                  {/* onClick={getTotal()} */}
+                <div className="monthDayTitleChild" onClick={handleMonthlyShow}>
+                  {/* onClick={document.getElementById('subtotal').innerHTML} */}
+                  <span
+                    id="subtotal3"
+                    data-value={
+                      startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3
+                    }
+                    onClick={(x) =>
+                      alert(x.target.getAttribute('data-value'))
+                    }
+                  >
+                    {/*  onClick={getElement}  */}
+                    {/* onClick={getTotal()}  onClick={getElementID}  value='3' onClick= {(x) => console.log(x.target.getAttribute('data-value'))} */}
                     {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                   </span>
                   <table className="table table-striped">
@@ -1310,7 +1340,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div className="monthDayTitleChild">
-                  <span >
+                  <span>
                     {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
                   </span>
                   <table className="table table-striped">
