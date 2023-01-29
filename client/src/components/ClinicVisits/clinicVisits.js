@@ -166,8 +166,8 @@ export default function ClinicVisit() {
         <Modal.Title>Create a Visit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <VisitMonthlyModal />
-        {/* visitDate={selectedDate} */}
+        <VisitMonthlyModal visitDate={selectedDate} />
+        {/*  */}
       </Modal.Body>
       <Modal.Footer>
         <span style={{ textAlign: 'center' }}>
@@ -1123,12 +1123,34 @@ export default function ClinicVisit() {
   //     'yyyy-MM-dd',
   //   )
   //   }
+    let idClick = // 'subtotal'
+        (event) => {
+    var yy = event.target.id
+      return yy
+     
+    }
+    // console.log(idClick)
 
-  // const selectedDate = format(
-  //   addDays(startOfTheMonth, selectedDateNumber - 1),
-  //   'yyyy-MM-dd',
-  // )
-  //   console.log(selectedDateNumber)
+  const [selectedDate, setSelectedDate] = useState('')
+  useEffect((e) => {
+    //   const idClick = (event) => {
+    // var yy = e._id
+    // return yy
+//   }
+
+    const selectedDateNumber = document.getElementById('subtotal').innerHTML
+    const selectedDate = format(
+      addDays(startOfTheMonth, selectedDateNumber - 1),
+      'yyyy-MM-dd',
+    )
+    // console.log(selectedDate)
+    setSelectedDate(selectedDate)
+  })
+
+  // const doublet = {
+  //     handleMonthlyShow();
+  //     setSelectedDate(),
+  // }
   return (
     <div className="grid_container">
       <div className="item1">
@@ -1305,11 +1327,22 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay1()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild" onClick={handleMonthlyShow}>
+                <div
+                  className="monthDayTitleChild"
+                  id="xx"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                    
+                  }}
+                >
                   <span id="subtotal">
                     {/* onClick={getTotal()} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </span>
+                  <button id="my-btn" onClick={idClick}>
+                    Click
+                  </button>
                   <table className="table table-striped">
                     <thead>
                       <tr className="trStyles"></tr>
@@ -1319,15 +1352,7 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild" onClick={handleMonthlyShow}>
                   {/* onClick={document.getElementById('subtotal').innerHTML} */}
-                  <span
-                    id="subtotal3"
-                    data-value={
-                      startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3
-                    }
-                    onClick={(x) =>
-                      alert(x.target.getAttribute('data-value'))
-                    }
-                  >
+                  <span id="subtotal3" onClick={setSelectedDate}>
                     {/*  onClick={getElement}  */}
                     {/* onClick={getTotal()}  onClick={getElementID}  value='3' onClick= {(x) => console.log(x.target.getAttribute('data-value'))} */}
                     {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
