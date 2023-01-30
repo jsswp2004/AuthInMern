@@ -1151,9 +1151,13 @@ export default function ClinicVisit() {
   //     setSelectedDate(new Date(dateSelected).toISOString().slice(0, 10))
   //     return
   // }
+  const buttonPressed = e => {
+    console.log(e.target.id);  // Get ID of Clicked Element
+  }
   useEffect(
     (e) => {
       let isSubscribed = true
+
       //let msg = handleClick()
       // ref.current.id)  const selectedDateNumber = new Date(dateSelected).toISOString().slice(0, 10)
       //   const classNamed = e.currentTarget.className
@@ -1396,7 +1400,7 @@ export default function ClinicVisit() {
                   </span>
                   <button
                     className="day2"
-                    // onClick={msg}
+                    onClick={buttonPressed}
                   >
                     {/* onClick={handleClick} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
@@ -1410,20 +1414,20 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="monthDayTitleChild"
-                  onClick={() => {
-                    // handleClick()
-                    handleMonthlyShow()
-                    setSelectedDate()
+                  // onClick={() => {
+                  //   // handleClick()
+                  //   handleMonthlyShow()
+                  //   setSelectedDate()
 
-                    // idClick()
-                  }}
+                  //   // idClick()
+                  // }}
                 >
                   <span className="day3" id="day3" ref={ref}>
                     {/* onClick={idClick()} ref={ref} */}
                     {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                   </span>
                   <button
-                    className="day3"
+                    className="day3"  onClick={buttonPressed}
                     //   onClick={msg}
                   >
                     {/* onClick={handleClick} */}
