@@ -1153,12 +1153,13 @@ export default function ClinicVisit() {
   // }
   useEffect(
     (e) => {
+      let isSubscribed = true
       //let msg = handleClick()
       // ref.current.id)  const selectedDateNumber = new Date(dateSelected).toISOString().slice(0, 10)
       //   const classNamed = e.currentTarget.className
-      const selectt = ref.current.className
+      const selectt = selectedElement
       console.log(selectt)
-      const selectedDateNumber = document.getElementById(selectt).innerHTML
+      const selectedDateNumber = document.getElementById('day2').innerHTML
       //   const selectedDateNumber = new Date(showDateValue).toISOString().slice(0, 10)
       // ref.current.id
       const selectedDate = format(
@@ -1169,6 +1170,7 @@ export default function ClinicVisit() {
       //   console.log(classNamed )
       setSelectedDate(selectedDate)
       //   setSelectedElement(classNamed)
+      return () => (isSubscribed = false)
     },
     [selectedElement, startOfTheMonth],
   )
@@ -1177,20 +1179,25 @@ export default function ClinicVisit() {
     // event.preventDefault()
     const selectt = ref.current.className
     console.log(selectt)
-      const selectedDateNumber = document.getElementById(selectt).innerHTML
-      const selectedDate = format(
-        addDays(startOfTheMonth, selectedDateNumber - 1),
-        'yyyy-MM-dd',
-      )
+    const selectedDateNumber = document.getElementById(selectt).innerHTML
+    const selectedDate = format(
+      addDays(startOfTheMonth, selectedDateNumber - 1),
+      'yyyy-MM-dd',
+    )
     console.log('className 👉️', event.currentTarget.className)
     const classNamed = event.currentTarget.className
-      setSelectedElement(classNamed)
-      setSelectedDate(selectedDate)
+    setSelectedElement(classNamed)
+    setSelectedDate(selectedDate)
     console.log(selectedElement)
     return classNamed
   }
-
-  // let msg = handleClick()
+  console.log(selectedElement)
+    let msg = {
+       
+        handleMonthlyShow,
+        setSelectedDate,
+        handleClick
+    }
 
   // console.log(new Date(dateSelected).toISOString().slice(0, 10))
   const ref = useRef(null)
@@ -1376,9 +1383,10 @@ export default function ClinicVisit() {
                 <div
                   className="monthDayTitleChild"
                   onClick={() => {
+                    handleClick()
                     handleMonthlyShow()
                     setSelectedDate()
-                    setSelectedElement()
+                    // setSelectedElement()
                     // idClick()
                   }}
                 >
@@ -1386,7 +1394,10 @@ export default function ClinicVisit() {
                     {/* ref={ref} onClick={idClick()} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </span>
-                  <button className="day2" onClick={handleClick}>
+                  <button
+                    className="day2"
+                    onClick={msg}
+                  >
                     {/* onClick={handleClick} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                   </button>
@@ -1399,11 +1410,11 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="monthDayTitleChild"
-                                  onClick={() => {
-                                    handleClick()
+                  onClick={() => {
+                    handleClick()
                     handleMonthlyShow()
                     setSelectedDate()
-                    
+
                     // idClick()
                   }}
                 >
@@ -1411,7 +1422,7 @@ export default function ClinicVisit() {
                     {/* onClick={idClick()} ref={ref} */}
                     {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                   </span>
-                  <button className="day3" onClick={handleClick}>
+                  <button className="day3" onClick={msg}>
                     {/* onClick={handleClick} */}
                     {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 3}
                   </button>
@@ -1425,9 +1436,10 @@ export default function ClinicVisit() {
                 <div
                   className="monthDayTitleChild"
                   onClick={() => {
+                    handleClick()
                     handleMonthlyShow()
                     setSelectedDate()
-                    setSelectedElement()
+                    // setSelectedElement()
                   }}
                 >
                   <span className="day4" id="day4" ref={ref}>
