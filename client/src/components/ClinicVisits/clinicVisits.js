@@ -1131,40 +1131,57 @@ export default function ClinicVisit() {
 
   // const weekenddate = addDays(new Date(selectedDate), 1)
   // const weekendTrue = isSaturday(weekenddate) || isSunday(weekenddate)
-  const [weekendDay, setWeekendDay] = useState(false)
+  const [weekendDay, setWeekendDay] = useState()
   const wekendSunday = isSunday(addDays(new Date(selectedDate), 1))
   const wekendSaturday = isSaturday(addDays(new Date(selectedDate), 1))
 
-  console.log(
-    weekendDay,
-    wekendSunday,
-    wekendSaturday,
-    selectedDate,
-    addDays(new Date(selectedDate), 1),
-  )
+  // console.log(
+  //   weekendDay,
+  //   wekendSunday,
+  //   wekendSaturday,
+  //   selectedDate,
+  //   addDays(new Date(selectedDate), 1),
+  // )
   // console.log(selectedDate,weekendTrue,isSaturday(weekenddate),isSunday(weekenddate))
   const handleClick = (event) => {
     var target = event.target || event.srcElement
-    // setSelectedElement(target.className)
+
     setSelectedNumber(target.innerText)
     handleMonthlyShow()
-    setWeekendDay(wekendSaturday ? true : wekendSunday ? true : false)
   }
   // const weekendSat = isSaturday(addDays(new Date(selectedDate), 1))
   // const weekendSun = isSunday(addDays(new Date(selectedDate), 1))
   // const weekend = weekendSat || weekendSun
   // console.log(weekend, selectedDate, new Date(selectedDate))
-
+  function weekending() {
+    if (wekendSunday) {
+      setWeekendDay('true')
+    } else if (wekendSaturday) {
+      setWeekendDay('true')
+    } else {
+      setWeekendDay('false')
+    }
+  }
   useEffect(
     (e) => {
+      // e.preventDefault()
       let isSubscribed = true
+      // function weekending () {
+      //   if (wekendSunday) {
+      //     setWeekendDay('true')
+      //   } else if (wekendSaturday) {
+      //     setWeekendDay('true')
+      //   } else {
+      //     setWeekendDay('false')
+      //   }
+      // }
       const sel = new Date(year, month, day)
       const selectDate = format(sel, 'yyyy-MM-dd')
       setSelectedDate(selectDate)
-
+      setWeekendDay(wekendSaturday ? true : wekendSunday ? true : false)
       return () => (isSubscribed = false)
     },
-    [year, month, day],
+    [year, month, day, wekendSaturday, wekendSunday],
   )
 
   //#endregion
@@ -1176,7 +1193,8 @@ export default function ClinicVisit() {
       <div className="item2">
         <Navbar />
       </div>
-      <div className="item3">
+      <div className="item3" >
+      {/* onLoad={weekending} */}
         <div className="grid_calendar">
           <div className="itemCalendar1">
             <div className="month-indicator item3C">
@@ -1336,22 +1354,26 @@ export default function ClinicVisit() {
               <div className="monthDayTitleParent">
                 <div
                   className="monthDayTitleChild"
-                  // style={gridMonthlyColumnStart}
                   style={{
                     gridColumnStart: startOfTheMonthDayNumber + 1,
-                    pointerEvents: weekendDay ? 'none' : '',
+                    // pointerEvents: weekendDay ? 'none' : '',
                   }}
-                  readonly
                 >
-                  <span id="day1">
+                  <span
+                    id="day1"
+                    // style={{
+                    //   pointerEvents: weekendDay ? 'none' : '',
+                    // }}
+                  >
                     <button
+                      // onLoad={weekending}
                       style={{
                         fontSize: '10px',
                         paddingTop: '1px',
                         paddingBottom: '1px',
                         borderRadius: '10px',
                       }}
-                      className="btn btn-info btn-sm"                      
+                      className="btn btn-info btn-sm"
                       onClick={handleClick}
                       title="Click to add visit"
                     >
@@ -1365,13 +1387,14 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay1()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild"
-                  style={{
-                    pointerEvents: weekendDay ? 'none' : '',
-                  }}
-                >
-                  <span id="day2" className="day">
+                <div className="monthDayTitleChild">
+                  <span
+                    id="day2"
+                    className="day"
+                    // style={{
+                    //   pointerEvents: weekendDay ? 'none' : '',
+                    // }}
+                  >
                     <button
                       style={{
                         fontSize: '10px',
@@ -1408,6 +1431,7 @@ export default function ClinicVisit() {
                     >
                       {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                     </button>
+                    {/* <span style={{display:'none'}}>{startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}</span> */}
                     {/* {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3} */}
                   </span>
                   <table className="table table-striped">
@@ -1516,8 +1540,9 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay7()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild"
-                                  style={{
+                <div
+                  className="monthDayTitleChild"
+                  style={{
                     pointerEvents: weekendDay ? 'none' : '',
                   }}
                 >
@@ -2050,10 +2075,7 @@ export default function ClinicVisit() {
                         ? 'none'
                         : 'inline',
                   }}
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
+
                 >
                   <span>
                     <button
@@ -2087,10 +2109,6 @@ export default function ClinicVisit() {
                         ? 'none'
                         : 'inline',
                   }}
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
                 >
                   <span>
                     <button
@@ -2123,10 +2141,6 @@ export default function ClinicVisit() {
                       startOfTheMonthDay + 30 > endOfTheMonthDay
                         ? 'none'
                         : 'inline',
-                  }}
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
                   }}
                 >
                   <span>
