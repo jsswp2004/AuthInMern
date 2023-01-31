@@ -1,6 +1,5 @@
 //#region Imports
 import React, { useEffect, useState, useRef } from 'react'
-// import { createRoot } from "react-dom";
 import { Modal, Button } from 'react-bootstrap'
 import backward from '../shared/images/backward.jpg'
 import forward from '../shared/images/forward.jpg'
@@ -155,10 +154,6 @@ export default function ClinicVisit() {
     return <VisitModal />
   }
   //#endregion
-  // function getTotal() {
-  //   const xx = document.getElementById('subtotal').innerHTML
-  //     return alert(addDays(startOfTheMonth, xx - 1))
-  //   }
   //#region for Modal from monthly days
 
   //   const selectedDateNumber = document.getElementById('subtotal').innerHTML
@@ -1117,21 +1112,26 @@ export default function ClinicVisit() {
       })
   }
   //#endregion
+ 
+  const month = getMonth(startOfTheMonth)
+  const year = getYear(startOfTheMonth)
 
   const [selectedNumber, setSelectedNumber] = useState('')
+  const day = selectedNumber 
+  const sel = new Date(year, month, day)
+  const select = format(sel, 'yyyy-MM-dd')
+  const selectDate = select //format(sel, 'yyyy-MM-dd')
   const [selectedElement, setSelectedElement] = useState('')
+  const [selectedDate, setSelectedDate] = useState('')
   const handleClick = (event) => {
     var target = event.target || event.srcElement
     setSelectedElement(target.className)
     setSelectedNumber(target.innerText)
+    setSelectedDate(selectDate)
+    handleMonthlyShow()
   }
-  console.log(selectedElement, selectedNumber)
+  // console.log(selectedElement, selectedNumber, selectedDate)
 
-  const [selectedDate, setSelectedDate] = useState('')
-
-  // const buttonPressed = (e) => {
-  //   console.log(e.target.id) // Get ID of Clicked Element
-  // }
   useEffect(
     (e) => {
       let isSubscribed = true
@@ -1142,7 +1142,7 @@ export default function ClinicVisit() {
       // const target = selectedElement
       // const targetNumber = selectedNumber
       const sel = new Date(year, month, day)
-      const select = format(sel, 'yyyy-MM-dd')
+      // const select = format(sel, 'yyyy-MM-dd')
       // const selectt = document.getElementById('day1').innerHTML
       // const selectedDateNumber = document.getElementById('day2').innerHTML
 
@@ -1154,16 +1154,13 @@ export default function ClinicVisit() {
 
       setSelectedDate(selectedDate)
       // console.log(day,year,month, target, targetNumber ,selectedDateNumber, selectedDate, sel, select)
-      console.log(day, select)
+      // console.log(day, select)
 
       return () => (isSubscribed = false)
     },
     [selectedElement, startOfTheMonth, selectedNumber],
   )
 
-  const msg = {
-    handleMonthlyShow,
-  }
 
   // console.log(new Date(dateSelected).toISOString().slice(0, 10))
   const ref = useRef(null)
@@ -1334,10 +1331,10 @@ export default function ClinicVisit() {
                 <div
                   className="monthDayTitleChild"
                   style={gridMonthlyColumnStart}
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
+                  // onClick={() => {
+                  //   handleMonthlyShow()
+                  //   setSelectedDate()
+                  // }}
                 >
                   <span id="day1">
                     <button
@@ -1357,10 +1354,10 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
+                  // onClick={() => {
+                  //   handleMonthlyShow()
+                  //   setSelectedDate()
+                  // }}
                 >
                   <span id="day2" className="day">
                     <button
@@ -1388,12 +1385,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span className="day" id="day3">
                     <button
                       className="btn btn-info btn-sm"
@@ -1411,12 +1403,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span className="day4" id="day4" ref={ref}>
                     <button
                       className="btn btn-info btn-sm"
@@ -1456,12 +1443,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span className="day6" id="day6">
                     <button
                       className="btn btn-info btn-sm"
@@ -1478,12 +1460,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1500,12 +1477,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1522,12 +1494,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1544,12 +1511,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1568,12 +1530,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1593,12 +1550,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1617,12 +1569,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1641,12 +1588,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1665,12 +1607,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1689,12 +1626,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1713,12 +1645,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1737,12 +1664,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1761,12 +1683,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1785,12 +1702,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1809,12 +1721,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1833,12 +1740,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1857,12 +1759,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1881,12 +1778,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1905,12 +1797,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1929,12 +1816,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1953,12 +1835,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
@@ -1977,12 +1854,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                >
+                  className="monthDayTitleChild">
                   <span>
                     <button
                       className="btn btn-info btn-sm"
