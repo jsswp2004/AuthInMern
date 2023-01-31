@@ -89,11 +89,16 @@ body {
 
 .btn-sm {
   margin-left: 2px;
+
 }
 
 .btn {
   margin-left: 2px;
-  /* padding-right: 2px; */
+}
+
+.btnCalDate{
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .HomepageGreeting .aboutPage1 {
@@ -588,6 +593,10 @@ h5 {
 .calendar-day {
   grid-column-start: 2;
   font-size: 14px;
+  background-color: white;
+}
+
+.day:hover {
   background-color: white;
 }
 
@@ -1122,3 +1131,11 @@ color: var(--teal-900);
   /* grid-column: 6; */
   grid-column: var(--grid-column-start, 0)
   }
+
+  /* .btn .btn-info .btn-sm .btnCalendarDate #day1 {
+    font-size: 5px;
+  }
+
+  span {
+    font-size: 5px;
+  } */

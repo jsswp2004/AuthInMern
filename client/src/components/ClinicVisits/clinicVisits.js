@@ -11,12 +11,16 @@ import {
   subMonths,
   endOfMonth,
   addDays,
-  subDays,
+  addMonths,
+  addWeeks,
   startOfWeek,
   parseISO,
-  set,
+  formatISO,
   getMonth,
   getYear,
+  isWeekend,
+  isSaturday,
+  isSunday,
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
@@ -32,7 +36,7 @@ import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
 import VisitCard from '../Scheduling/VisitCard'
-import { display } from '@mui/system'
+// import { display } from '@mui/system'
 //#endregion
 
 export default function ClinicVisit() {
@@ -134,13 +138,14 @@ export default function ClinicVisit() {
 
   //#endregion
   //#region for Modal
+  const selectedDateDaily = format(showDateValue, 'yyyy-MM-dd')
   const VisitModal = () => (
     <Modal show={show} onHide={handleClose} size="lg" centered>
       <Modal.Header closeButton>
         <Modal.Title>Add a Visit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <CreateVisitModal />
+        <CreateVisitModal visitDate={selectedDateDaily} />
       </Modal.Body>
       <Modal.Footer>
         <span style={{ textAlign: 'center' }}>
@@ -156,24 +161,24 @@ export default function ClinicVisit() {
   //#endregion
   //#region for Modal from monthly days
 
-  //   const selectedDateNumber = document.getElementById('subtotal').innerHTML
+  const VisitModalMonthly = (visit) =>
+    weekendDay === false ? (
+      <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Create a Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <VisitMonthlyModal visitDate={selectedDate} />
+          {/*  */}
+        </Modal.Body>
+        <Modal.Footer>
+          <span style={{ textAlign: 'center' }}>
+            Please make sure all information is current and accurate.
+          </span>
+        </Modal.Footer>
+      </Modal>
+    ) : null
 
-  const VisitModalMonthly = (visit) => (
-    <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Create a Visit</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <VisitMonthlyModal visitDate={selectedDate} />
-        {/*  */}
-      </Modal.Body>
-      <Modal.Footer>
-        <span style={{ textAlign: 'center' }}>
-          Please make sure all information is current and accurate.
-        </span>
-      </Modal.Footer>
-    </Modal>
-  )
   // This method will map out the visits on the table
   function displayVisitMonthlyModal() {
     return <VisitModalMonthly />
@@ -1037,7 +1042,6 @@ export default function ClinicVisit() {
   }
 
   //#endregion
-
   //#region code for each weekly visit dates
 
   function visitListWeeklyMonday() {
@@ -1112,58 +1116,58 @@ export default function ClinicVisit() {
       })
   }
   //#endregion
- 
+  //#region code for monthly calendar create visits
+  // const weekdayTitle = document.getElementById('weekDayTitleChild').innerHTML
+  // console.log(weekdayTitle)
   const month = getMonth(startOfTheMonth)
   const year = getYear(startOfTheMonth)
-
   const [selectedNumber, setSelectedNumber] = useState('')
-  const day = selectedNumber 
-  const sel = new Date(year, month, day)
-  const select = format(sel, 'yyyy-MM-dd')
-  const selectDate = select //format(sel, 'yyyy-MM-dd')
-  const [selectedElement, setSelectedElement] = useState('')
+  const day = selectedNumber
+  // const sel = new Date(year, month, day)
+  // const select = format(sel, 'yyyy-MM-dd')
+  // const selectDate = select
+  // const [selectedElement, setSelectedElement] = useState('')
   const [selectedDate, setSelectedDate] = useState('')
+
+  // const weekenddate = addDays(new Date(selectedDate), 1)
+  // const weekendTrue = isSaturday(weekenddate) || isSunday(weekenddate)
+  const [weekendDay, setWeekendDay] = useState(false)
+  const wekendSunday = isSunday(addDays(new Date(selectedDate), 1))
+  const wekendSaturday = isSaturday(addDays(new Date(selectedDate), 1))
+
+  console.log(
+    weekendDay,
+    wekendSunday,
+    wekendSaturday,
+    selectedDate,
+    addDays(new Date(selectedDate), 1),
+  )
+  // console.log(selectedDate,weekendTrue,isSaturday(weekenddate),isSunday(weekenddate))
   const handleClick = (event) => {
     var target = event.target || event.srcElement
-    setSelectedElement(target.className)
+    // setSelectedElement(target.className)
     setSelectedNumber(target.innerText)
-    setSelectedDate(selectDate)
     handleMonthlyShow()
+    setWeekendDay(wekendSaturday ? true : wekendSunday ? true : false)
   }
-  // console.log(selectedElement, selectedNumber, selectedDate)
+  // const weekendSat = isSaturday(addDays(new Date(selectedDate), 1))
+  // const weekendSun = isSunday(addDays(new Date(selectedDate), 1))
+  // const weekend = weekendSat || weekendSun
+  // console.log(weekend, selectedDate, new Date(selectedDate))
 
   useEffect(
     (e) => {
       let isSubscribed = true
-
-      const day = selectedNumber //getDay(startOfTheMonth)
-      const month = getMonth(startOfTheMonth)
-      const year = getYear(startOfTheMonth)
-      // const target = selectedElement
-      // const targetNumber = selectedNumber
       const sel = new Date(year, month, day)
-      // const select = format(sel, 'yyyy-MM-dd')
-      // const selectt = document.getElementById('day1').innerHTML
-      // const selectedDateNumber = document.getElementById('day2').innerHTML
-
-      // const selectedDate = format(
-      //   addDays(startOfTheMonth, targetNumber - 1),
-      //   'yyyy-MM-dd',
-      // )
-      const selectedDate = format(sel, 'yyyy-MM-dd')
-
-      setSelectedDate(selectedDate)
-      // console.log(day,year,month, target, targetNumber ,selectedDateNumber, selectedDate, sel, select)
-      // console.log(day, select)
+      const selectDate = format(sel, 'yyyy-MM-dd')
+      setSelectedDate(selectDate)
 
       return () => (isSubscribed = false)
     },
-    [selectedElement, startOfTheMonth, selectedNumber],
+    [year, month, day],
   )
 
-
-  // console.log(new Date(dateSelected).toISOString().slice(0, 10))
-  const ref = useRef(null)
+  //#endregion
   return (
     <div className="grid_container">
       <div className="item1">
@@ -1187,7 +1191,6 @@ export default function ClinicVisit() {
                   {monthName}
                 </h3>
               </div>
-
               <div className="customDatePickerWidth">
                 <DatePicker
                   selected={showDateValue}
@@ -1246,17 +1249,15 @@ export default function ClinicVisit() {
                   alt="forward"
                   onClick={(newValue) =>
                     selectViewValue === 'Monthly'
-                      ? setShowDateValue(addDays(showDateValue, 31))
+                      ? setShowDateValue(addMonths(showDateValue, 1))
                       : selectViewValue === 'Weekly'
-                      ? setShowDateValue(addDays(showDateValue, 7))
+                      ? setShowDateValue(addWeeks(showDateValue, 1))
                       : selectViewValue === 'Daily'
                       ? setShowDateValue(addDays(showDateValue, 1))
                       : setShowDateValue(showDateValue)
                   }
                 ></img>
               </div>
-              {/* <div><button onClick={getTotal}>total</button></div> */}
-              {/* code for modal to add visit*/}
               <div
                 style={{
                   marginLeft: 'auto',
@@ -1270,6 +1271,9 @@ export default function ClinicVisit() {
                   data-toggle="tooltip"
                   data-placement="right"
                   title="Add Visit"
+                  style={{
+                    display: selectViewValue === 'Monthly' ? 'none' : '',
+                  }}
                 >
                   <i className="fa fa-solid fa-plus"></i>
                 </Button>
@@ -1319,7 +1323,9 @@ export default function ClinicVisit() {
               }}
             >
               <div className="weekDayTitleParent">
-                <div className="weekDayTitleChild">Su</div>
+                <div id="weekDayTitleChild" className="weekDayTitleChild">
+                  Su
+                </div>
                 <div className="weekDayTitleChild">Mo</div>
                 <div className="weekDayTitleChild">Tu</div>
                 <div className="weekDayTitleChild">We</div>
@@ -1330,18 +1336,25 @@ export default function ClinicVisit() {
               <div className="monthDayTitleParent">
                 <div
                   className="monthDayTitleChild"
-                  style={gridMonthlyColumnStart}
-                  // onClick={() => {
-                  //   handleMonthlyShow()
-                  //   setSelectedDate()
-                  // }}
+                  // style={gridMonthlyColumnStart}
+                  style={{
+                    gridColumnStart: startOfTheMonthDayNumber + 1,
+                    pointerEvents: weekendDay ? 'none' : '',
+                  }}
+                  readonly
                 >
                   <span id="day1">
                     <button
-                      className="btn btn-info btn-sm"
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
+                      className="btn btn-info btn-sm"                      
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
-                      {' '}
                       {startOfTheMonthDay}
                     </button>
                   </span>
@@ -1354,29 +1367,25 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="monthDayTitleChild"
-                  // onClick={() => {
-                  //   handleMonthlyShow()
-                  //   setSelectedDate()
-                  // }}
+                  style={{
+                    pointerEvents: weekendDay ? 'none' : '',
+                  }}
                 >
                   <span id="day2" className="day">
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                     </button>
                   </span>
-                  {/* <input type='button' onClick={handleClick}></input> */}
-                  {/* onClick={handleClick} */}
-                  {/* <button className="day2"
-                    onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-                  }}
-                  >
-                    {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
-                  </button> */}
                   <table className="table table-striped">
                     <thead>
                       <tr className="trStyles"></tr>
@@ -1384,12 +1393,18 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay2()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span className="day" id="day3">
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                     </button>
@@ -1402,12 +1417,18 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay3()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
-                  <span className="day4" id="day4" ref={ref}>
+                <div className="monthDayTitleChild">
+                  <span className="day4" id="day4">
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
                     </button>
@@ -1429,8 +1450,15 @@ export default function ClinicVisit() {
                 >
                   <span className="day5" id="day5">
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
                     </button>
@@ -1442,12 +1470,18 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay5()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span className="day6" id="day6">
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
                     </button>
@@ -1459,12 +1493,18 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay6()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
                     </button>
@@ -1476,12 +1516,22 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay7()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                                  style={{
+                    pointerEvents: weekendDay ? 'none' : '',
+                  }}
+                >
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
                     </button>
@@ -1493,12 +1543,18 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay8()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
                     </button>
@@ -1510,12 +1566,18 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay9()}</tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
                     </button>
@@ -1529,12 +1591,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
                     </button>
@@ -1549,12 +1617,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
                     </button>
@@ -1568,12 +1642,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
                     </button>
@@ -1587,12 +1667,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
                     </button>
@@ -1606,12 +1692,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15}
                     </button>
@@ -1625,12 +1717,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 16}
                     </button>
@@ -1644,12 +1742,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17}
                     </button>
@@ -1663,12 +1767,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18}
                     </button>
@@ -1682,12 +1792,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19}
                     </button>
@@ -1701,12 +1817,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20}
                     </button>
@@ -1720,12 +1842,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21}
                     </button>
@@ -1739,12 +1867,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22}
                     </button>
@@ -1758,12 +1892,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23}
                     </button>
@@ -1777,12 +1917,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24}
                     </button>
@@ -1796,12 +1942,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25}
                     </button>
@@ -1815,12 +1967,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26}
                     </button>
@@ -1834,12 +1992,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27}
                     </button>
@@ -1853,12 +2017,18 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div
-                  className="monthDayTitleChild">
+                <div className="monthDayTitleChild">
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28}
                     </button>
@@ -1887,8 +2057,15 @@ export default function ClinicVisit() {
                 >
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29}
                     </button>
@@ -1917,8 +2094,15 @@ export default function ClinicVisit() {
                 >
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30}
                     </button>
@@ -1947,8 +2131,15 @@ export default function ClinicVisit() {
                 >
                   <span>
                     <button
+                      style={{
+                        fontSize: '10px',
+                        paddingTop: '1px',
+                        paddingBottom: '1px',
+                        borderRadius: '10px',
+                      }}
                       className="btn btn-info btn-sm"
                       onClick={handleClick}
+                      title="Click to add visit"
                     >
                       {startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31}
                     </button>
