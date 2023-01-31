@@ -1340,10 +1340,14 @@ export default function ClinicVisit() {
                   }}
                 >
                   <span id="day1">
-                  <Button onClick={handleClick}>
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
                       {' '}
                       {startOfTheMonthDay}
-                    </Button></span>
+                    </button>
+                  </span>
                   <table className="table table-striped">
                     <thead>
                       <tr className="trStyles"></tr>
@@ -1359,10 +1363,12 @@ export default function ClinicVisit() {
                   }}
                 >
                   <span id="day2" className="day">
-                    <Button onClick={handleClick}>
-                      {' '}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
                       {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
-                    </Button>
+                    </button>
                   </span>
                   {/* <input type='button' onClick={handleClick}></input> */}
                   {/* onClick={handleClick} */}
@@ -1389,10 +1395,12 @@ export default function ClinicVisit() {
                   }}
                 >
                   <span className="day" id="day3">
-                  <Button onClick={handleClick}>
-                      {' '}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
                       {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
-                    </Button>
+                    </button>
                     {/* {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3} */}
                   </span>
                   <table className="table table-striped">
@@ -1410,10 +1418,12 @@ export default function ClinicVisit() {
                   }}
                 >
                   <span className="day4" id="day4" ref={ref}>
-                    <Button onClick={handleClick}>
-                      {' '}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
                       {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
-                    </Button>
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1430,8 +1440,13 @@ export default function ClinicVisit() {
                     // setSelectedElement()
                   }}
                 >
-                  <span className="day5" id="day5" ref={ref}>
-                    {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
+                  <span className="day5" id="day5">
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1445,11 +1460,15 @@ export default function ClinicVisit() {
                   onClick={() => {
                     handleMonthlyShow()
                     setSelectedDate()
-                    // setSelectedElement()
                   }}
                 >
-                  <span className="day6" id="day6" ref={ref}>
-                    {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
+                  <span className="day6" id="day6">
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1458,9 +1477,20 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay6()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1469,9 +1499,20 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay7()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1480,9 +1521,20 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay8()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1491,9 +1543,20 @@ export default function ClinicVisit() {
                     <tbody className="trStyles">{visitListMonthlyDay9()}</tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1504,10 +1567,22 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
+                    </button>
                   </span>
+
                   <table className="table table-striped">
                     <thead>
                       <tr className="trStyles"></tr>
@@ -1517,9 +1592,20 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1530,9 +1616,20 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
@@ -1543,9 +1640,20 @@ export default function ClinicVisit() {
                     </tbody>
                   </table>
                 </div>
-                <div className="monthDayTitleChild">
+                <div
+                  className="monthDayTitleChild"
+                  onClick={() => {
+                    handleMonthlyShow()
+                    setSelectedDate()
+                  }}
+                >
                   <span>
-                    {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
+                    <button
+                      className="btn btn-info btn-sm"
+                      onClick={handleClick}
+                    >
+                      {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
+                    </button>
                   </span>
                   <table className="table table-striped">
                     <thead>
