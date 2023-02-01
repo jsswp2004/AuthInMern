@@ -39,18 +39,17 @@ const CreateVisitMonthly = (props) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
   // const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName))
-  const { firstName, lastName} = attendings
-  const providerMD = [{ value: userMD, label: 'Dr. John Doe' }]
+  // const { firstName, lastName} = attendings
+  // const providerMD = [{ value: userMD, label: 'Dr. John Doe' }]
   // attendings.firstName + ' ' + attendings.lastName
-  console.log(firstName)
-  console.log(providerMD)
+  // console.log(firstName)
+  // console.log(providerMD)
 
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
       .then((response) => {
         setUserMD(response.data)
-        // .filter=(user) => user.role === 'Attending'
       })
       .catch((error) => {
         console.log('Error from user list')
@@ -174,17 +173,16 @@ const CreateVisitMonthly = (props) => {
               onChange={onChange}
               // readOnly
             /> */}
-            <label >Please select provider</label>
+            {/* <label >Please select provider</label> */}
             <select
-              type="text"
+              // type="text"
               className="form-control"
               name="provider"
               value={visit.provider}
               onChange={onChange}
             >    
-              {attendings.map((doc) => (
-                <option key={doc.name} value={doc.name}>{doc.firstName} {doc.lastName}</option>
-                
+              {userMD.map((doc) => ( doc.role === 'Attending' &&
+                <option key={doc._id} >{doc.firstName} {doc.lastName}</option>               
               ))}
             </select>
           </div>
