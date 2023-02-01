@@ -41,7 +41,7 @@ const CreateVisit = (props) => {
         })
 
         // Push to /
-        navigate('/visitlist')
+        navigate(-1)
       })
       .catch((err) => {
         console.log('Error in CreateVisit!')

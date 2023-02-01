@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
-import Alert from 'react-bootstrap/Alert'
-import Button from 'react-bootstrap/Button'
+// import Alert from 'react-bootstrap/Alert'
+// import Button from 'react-bootstrap/Button'
 
 const CreateVisitMonthly = (props) => {
   // Define the state with useState hook
@@ -32,8 +32,6 @@ const CreateVisitMonthly = (props) => {
   const [userMD, setUserMD] = useState([])
   const attendings = userMD//.filter((user) => user.role === 'Attending')
   
-  // let provider = userMD.firstName + ' ' + userMD.lastName
-  // console.log(provider)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')

@@ -166,7 +166,7 @@ export default function ClinicVisit() {
     weekendDay === false ? (
       <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
         <Modal.Header closeButton>
-          <Modal.Title>Create a Visit</Modal.Title>
+          <Modal.Title>Add a Visit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <VisitMonthlyModal visitDate={selectedDate} />

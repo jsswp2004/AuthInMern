@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import {
 Hour
 } from '../listDictionaries/listData/listDictionariesData'
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
+// import Alert from 'react-bootstrap/Alert';
+// import Button from 'react-bootstrap/Button';
 
 const CreateVisit = (props) => {
   // Define the state with useState hook
@@ -31,7 +31,20 @@ const CreateVisit = (props) => {
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
-
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD//.filter((user) => user.role === 'Attending')
+  
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/users')
+      .then((response) => {
+        setUserMD(response.data)
+        // .filter=(user) => user.role === 'Attending'
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [])
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -49,38 +62,15 @@ const CreateVisit = (props) => {
           addedDate: '',
         })
 
-        // postMessage('Visit created!')
-
         // Push to /
-        navigate('/visitList')
+        navigate(-1)
       })
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
   }
 
-  // const [show, setShow] = useState(false);
-  // function AlertDismissible() {
-    // const [show, setShow] = useState(false);
-  
-    // if (show) {
-    //   return (
-    //     <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-    //       <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-    //       <p>
-    //         Change this and that and try again. Duis mollis, est non commodo
-    //         luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-    //         Cras mattis consectetur purus sit amet fermentum.
-    //       </p>
-    //     </Alert>
-    //   );
-    // }
-  //   return <Button onClick={() => setShow(true)}>Show Alert</Button>;
-  // }
-
-  
-
-  // console.log(visit)
+ 
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className="form-grid-container">
@@ -117,15 +107,6 @@ const CreateVisit = (props) => {
                 onChange={onChange}
               />
             </div>
-            {/* <div className="form-group">
-              <label htmlFor="hourOfVisit">Appointment Time</label>
-              <input
-                name="hourOfVisit"
-                className="form-control"
-                value={visit.hourOfVisit}
-                onChange={onChange}
-              />
-            </div> */}
             <div className="form-group">
                     <label htmlFor="hourOfVisit">
                       Gender
@@ -177,13 +158,19 @@ const CreateVisit = (props) => {
           </div>
           <div className="form-group">
             <label htmlFor="provider">Provider</label>
-            <input
-              type="string"
-              name="provider"
+
+                        <select
+              type="text"
               className="form-control"
+              name="provider"
               value={visit.provider}
               onChange={onChange}
-            />
+            >    
+              {attendings.map((doc) => (
+                <option key={doc.name} value={doc.name}>{doc.firstName} {doc.lastName}</option>
+                
+              ))}
+            </select>
           </div>
           {/* <AlertDismissible /> */}
           <div
