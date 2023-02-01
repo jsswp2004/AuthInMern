@@ -84,7 +84,7 @@ const CreateRecord = (props) => {
         console.log('Error in CreateRecord!')
       })
   }
-console.log(record)
+// console.log(record)
   //Race
   const racevalues = Race
   const [racevalue, setraceValue] = React.useState('')

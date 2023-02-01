@@ -15,7 +15,7 @@ const Signup = () => {
     password: '',
     addedDate: dateAdded,
   })
-  
+
   const [error, setError] = useState('')
 
   const handleChange = (e) => {
@@ -39,7 +39,7 @@ const Signup = () => {
       }
     }
   }
-      
+
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
@@ -54,6 +54,7 @@ const Signup = () => {
         <div className={styles.right}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
             <h1>Create Account</h1>
+
             <input
               type="text"
               placeholder="First Name"
@@ -70,6 +71,17 @@ const Signup = () => {
               onChange={handleChange}
               value={data.lastName}
               required
+              className={styles.input}
+            />
+            <input
+              display="none"
+              type="text"
+              placeholder="Full Name (optional)"
+              name="name"
+              defaultValue={data.firstName + '' + data.lastName}
+              value={data.name}
+              onChange={handleChange}
+              
               className={styles.input}
             />
             <input

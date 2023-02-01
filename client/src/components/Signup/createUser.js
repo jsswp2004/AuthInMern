@@ -8,6 +8,7 @@ const CreateUser = () => {
   //Define the state
   const navigate = useNavigate()
   const [user, setUser] = useState({
+    name: '',
     firstName: '',
     lastName: '',
     role: '',
@@ -16,6 +17,7 @@ const CreateUser = () => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
+  const fullName = user.firstName + ' ' + user.lastName
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
@@ -27,6 +29,7 @@ const CreateUser = () => {
       .post('http://localhost:8081/api/users', user)
       .then((res) => {
         setUser({
+          name: fullName,
           firstName: '',
           lastName: '',
           role: '',
@@ -45,6 +48,16 @@ const CreateUser = () => {
     <div>
       <h1>Create User</h1>
       <form onSubmit={onSubmit}>
+      <div className={styles.formGroup}>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            value={user.name}
+            onChange={onChange}
+            className={styles.formControl}
+          />
+        </div>
         <div className={styles.formGroup}>
           <label htmlFor="firstName">First Name</label>
           <input

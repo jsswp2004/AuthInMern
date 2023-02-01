@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-import {
-Hour
-} from '../listDictionaries/listData/listDictionariesData'
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
+import { Hour } from '../listDictionaries/listData/listDictionariesData'
+import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
 
 const CreateVisitMonthly = (props) => {
   // Define the state with useState hook
@@ -31,7 +29,22 @@ const CreateVisitMonthly = (props) => {
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
-
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD//.filter((user) => user.role === 'Attending')
+  
+  // let provider = userMD.firstName + ' ' + userMD.lastName
+  // console.log(provider)
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/users')
+      .then((response) => {
+        setUserMD(response.data)
+        // .filter=(user) => user.role === 'Attending'
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [])
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -49,10 +62,8 @@ const CreateVisitMonthly = (props) => {
           addedDate: '',
         })
 
-        // postMessage('Visit created!')
-
-        // Push to /
-        navigate('/visitList')
+        // Push to /patientlist
+        navigate(-1)
       })
       .catch((err) => {
         console.log('Error in CreateVisit!')
@@ -95,22 +106,20 @@ const CreateVisitMonthly = (props) => {
               />
             </div>
             <div className="form-group">
-                    <label htmlFor="hourOfVisit">
-                      Gender
-                      <select
-                        className="form-control select"
-                        name="hourOfVisit"
-                        value={visit.hourOfVisit}
-                        onChange={onChange}
-                      >
-                        {hourValues.map((hourval) => (
-                          <option value={hourval.value}>
-                            {hourval.label}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
+              <label htmlFor="hourOfVisit">
+                Hour of Visit
+                <select
+                  className="form-control select"
+                  name="hourOfVisit"
+                  value={visit.hourOfVisit}
+                  onChange={onChange}
+                >
+                  {hourValues.map((hourval) => (
+                    <option key={hourval.value } value={hourval.value}>{hourval.label}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
           </div>
         </div>
         <div className="div-items">
@@ -145,24 +154,27 @@ const CreateVisitMonthly = (props) => {
           </div>
           <div className="form-group">
             <label htmlFor="provider">Provider</label>
-            <input
-              type="string"
-              name="provider"
+            <select
+              type="text"
               className="form-control"
+              name="provider"
               value={visit.provider}
               onChange={onChange}
-            />
+            >    
+              {attendings.map((doc) => (
+                <option key={doc.name} value={doc.name}>{doc.firstName} {doc.lastName}</option>
+                
+              ))}
+            </select>
           </div>
           {/* <AlertDismissible /> */}
           <div
             className="form-group"
-            
             style={{
               float: 'left',
               textAlign: 'left',
               paddingTop: '10px',
             }}
-            
           >
             <input value="Add" type="submit" className="btn btn-success" />
             {/* <Alert variant="success" dismissible style={{ display: show ? 'false' : 'true' } }>

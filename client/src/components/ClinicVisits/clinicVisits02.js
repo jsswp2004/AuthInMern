@@ -138,7 +138,6 @@ export default function ClinicVisit() {
 
   //#endregion
   //#region for Modal
-
   const selectedDateDaily = format(showDateValue, 'yyyy-MM-dd')
   const VisitModal = () => (
     <Modal show={show} onHide={handleClose} size="lg" centered>
