@@ -29,9 +29,22 @@ const CreateVisitMonthly = (props) => {
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
+
+  // const onMD = (e) => {
+  //   setMD({ ...visit, [e.target.name]: e.target.value })
+  // }
+
   const [userMD, setUserMD] = useState([])
-  const attendings = userMD//.filter((user) => user.role === 'Attending')
-  
+  const attendings = userMD.filter((user) => {
+    return user.role.toString().toLowerCase().includes('attending')
+  })
+  // const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName))
+  const { firstName, lastName} = attendings
+  const providerMD = [{ value: userMD, label: 'Dr. John Doe' }]
+  // attendings.firstName + ' ' + attendings.lastName
+  console.log(firstName)
+  console.log(providerMD)
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -152,6 +165,16 @@ const CreateVisitMonthly = (props) => {
           </div>
           <div className="form-group">
             <label htmlFor="provider">Provider</label>
+            {/* <input
+              type="text"
+              name="provider"
+              placeholder={providerMD[0]}
+              className="form-control"
+              value={visit.provider}
+              onChange={onChange}
+              // readOnly
+            /> */}
+            <label >Please select provider</label>
             <select
               type="text"
               className="form-control"
