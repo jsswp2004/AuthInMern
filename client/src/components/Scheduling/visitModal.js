@@ -9,12 +9,21 @@ import { Hour } from '../listDictionaries/listData/listDictionariesData'
 const CreateVisitMonthly = (props) => {
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
-    return user.role.toString().toLowerCase().includes('attending')
-  })
+      return user.role.toString().toLowerCase().includes('attending')
+    })
+  
   // Define the state with useState hook
-  const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName)).toString()
-  let provider = providerMD.toString()
-  console.log(provider)
+  const providerMD = attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString()
+  const providerFirstName = attendings.map((doc) => (doc.firstName)).toString()
+  const providerlastName = attendings.map((doc) => ( doc.lastName)).toString()
+  let provider = new Array(providerMD)//providerMD.toString()
+  console.log(providerMD)
+  
+  const doctor = [{ label: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString(), value: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString() }]
+    // [{ label: 'Select provider', value: ' ' },
+    // { label: providerMD, value: providerMD},]
+  // { label: providerFirstName + ' ' + providerlastName, value: providerFirstName + ' ' + providerlastName },]
+  console.log(doctor)
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
     firstName: '',
@@ -23,7 +32,7 @@ const CreateVisitMonthly = (props) => {
     visitDate: props.visitDate,
     hourOfVisit: '',
     email: '',
-    provider: 'fix me',
+    provider: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const hourValues = Hour
@@ -44,12 +53,12 @@ const CreateVisitMonthly = (props) => {
     
   }
 
-console.log(provider)
+// console.log(provider)
   // const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName))
   // const { firstName, lastName} = attendings
   // const providerMD = [{ value: userMD, label: 'Dr. John Doe' }]
   // attendings.firstName + ' ' + attendings.lastName
-  console.log(providerMD.toString())
+  console.log(providerMD)
   // console.log(userMD)
 
   useEffect(() => {
@@ -65,6 +74,7 @@ console.log(provider)
         console.log('Error from user list')
       })
   }, [])
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -89,7 +99,7 @@ console.log(provider)
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
-      console.log(visit.provider)
+      // console.log(visit.provider)
   }
 
   return (
@@ -176,28 +186,16 @@ console.log(provider)
           </div>
           <div className="form-group">
             <label htmlFor="provider">Provider</label>
-            {/* <input
-              type="text"
-              name="provider"
-              // placeholder={provider}
-              className="form-control"
-              value={provider}
-              onChange={onChange}
-              // readOnly
-            /> */}
-            {/* <label >Please select provider</label> */}
-            <select 
-              htmlFor="provider"
-              type="text"
-              className="form-control"
-              name="provider"
-              value={visit.provider}
-              onChange={onChange}
-            >    
-              {userMD.map((doc) => ( doc.role === 'Attending' &&
-                <option key={doc._id} value={doc.value}>{doc.firstName} {doc.lastName} </option>               
-              ))}
-            </select>
+            <select
+                  className="form-control select"
+                  name="provider"
+                  value={visit.provider}
+                  onChange={onChange}
+                >
+                  {doctor.map((doc) => (
+                    <option key={doc.value } value={doc.value}>{doc.label}</option>
+                  ))}
+                </select>
           </div>
           {/* <AlertDismissible /> */}
           <div
