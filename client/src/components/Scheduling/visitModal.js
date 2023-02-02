@@ -7,7 +7,14 @@ import { Hour } from '../listDictionaries/listData/listDictionariesData'
 // import Button from 'react-bootstrap/Button'
 
 const CreateVisitMonthly = (props) => {
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD.filter((user) => {
+    return user.role.toString().toLowerCase().includes('attending')
+  })
   // Define the state with useState hook
+  const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName)).toString()
+  let provider = providerMD.toString()
+  console.log(provider)
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
     firstName: '',
@@ -16,7 +23,7 @@ const CreateVisitMonthly = (props) => {
     visitDate: props.visitDate,
     hourOfVisit: '',
     email: '',
-    provider: '',
+    provider: 'fix me',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const hourValues = Hour
@@ -30,26 +37,29 @@ const CreateVisitMonthly = (props) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
 
-  // const onMD = (e) => {
-  //   setMD({ ...visit, [e.target.name]: e.target.value })
-  // }
+  const onMD = (e) => {
+    return (
+    provider = attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString()
+    )
+    
+  }
 
-  const [userMD, setUserMD] = useState([])
-  const attendings = userMD.filter((user) => {
-    return user.role.toString().toLowerCase().includes('attending')
-  })
+console.log(provider)
   // const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName))
   // const { firstName, lastName} = attendings
   // const providerMD = [{ value: userMD, label: 'Dr. John Doe' }]
   // attendings.firstName + ' ' + attendings.lastName
-  // console.log(firstName)
-  // console.log(providerMD)
+  console.log(providerMD.toString())
+  // console.log(userMD)
 
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
       .then((response) => {
-        setUserMD(response.data)
+        // const data = response.data
+        const data = response.data
+        console.log(data)
+        setUserMD(data)
       })
       .catch((error) => {
         console.log('Error from user list')
@@ -71,13 +81,15 @@ const CreateVisitMonthly = (props) => {
           provider: '',
           addedDate: '',
         })
-
+      // console.log(visit.firstName)
         // Push to /patientlist
         navigate(-1)
       })
+      
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
+      console.log(visit.provider)
   }
 
   return (
@@ -167,22 +179,23 @@ const CreateVisitMonthly = (props) => {
             {/* <input
               type="text"
               name="provider"
-              placeholder={providerMD[0]}
+              // placeholder={provider}
               className="form-control"
-              value={visit.provider}
+              value={provider}
               onChange={onChange}
               // readOnly
             /> */}
             {/* <label >Please select provider</label> */}
-            <select
-              // type="text"
+            <select 
+              htmlFor="provider"
+              type="text"
               className="form-control"
               name="provider"
               value={visit.provider}
               onChange={onChange}
             >    
               {userMD.map((doc) => ( doc.role === 'Attending' &&
-                <option key={doc._id} >{doc.firstName} {doc.lastName}</option>               
+                <option key={doc._id} value={doc.value}>{doc.firstName} {doc.lastName} </option>               
               ))}
             </select>
           </div>
