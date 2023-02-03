@@ -12,7 +12,6 @@ const CreateVisitMonthly = (props) => {
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
-
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
   const navigate = useNavigate()
@@ -41,10 +40,8 @@ const CreateVisitMonthly = (props) => {
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
-      .then((response) => {
-        // const data = response.data
-        const data = response.data
-        // console.log(data)
+      .then((response) => {        
+        const data = response.data        
         setUserMD(data)
       })
       .catch((error) => {
@@ -178,11 +175,6 @@ const CreateVisitMonthly = (props) => {
                   {doc}
                 </option>
               ))}
-              {/* {doctor.map((doc) => (
-                    <option key={doc.value } value={doc.value}>{doc.label}</option>
-                  ))} */}
-              {/* {attendings.map((doc) => <li>{(doc.firstName + ' ' + doc.lastName)}</li>)} */}
-              {/* <ul>{attendings}</ul> */}
             </select>
           </div>
           {/* <AlertDismissible /> */}

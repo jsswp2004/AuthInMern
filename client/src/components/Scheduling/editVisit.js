@@ -6,6 +6,25 @@ import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 
 function UpdateVisitInfo(props) {
+  //create provider object
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD.filter((user) => {
+    return user.role.toString().toLowerCase().includes('attending')
+  })
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/users')
+      .then((response) => {
+        const data = response.data
+        setUserMD(data)
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [])
+
+  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+
   const [visit, setVisit] = useState({
     firstName: '',
     lastName: '',
@@ -52,15 +71,15 @@ function UpdateVisitInfo(props) {
       middleName: visit.middleName,
       email: visit.email,
       addedDate: visit.addedDate,
-        visitDate: visit.visitDate,
-        hourOfVisit: visit.hourOfVisit,
+      visitDate: visit.visitDate,
+      hourOfVisit: visit.hourOfVisit,
       provider: visit.provider,
     }
 
     axios
       .put(`http://localhost:8081/api/visits/${id}`, data)
       .then((res) => {
-        navigate(`/calendarSchedule`)
+        navigate(`/clinicVisit`)
       })
       .catch((err) => {
         console.log('Error in UpdateVisitInfo!')
@@ -155,13 +174,29 @@ function UpdateVisitInfo(props) {
                 </div>
                 <div className="form-group">
                   <label htmlFor="provider">Provider</label>
-                  <input
+                  {/* <input
                     type="string"
                     name="provider"
                     className="form-control"
                     value={visit.provider}
                     onChange={onChange}
-                  />
+                  /> */}
+                  <select
+                    className="form-control select"
+                    name="provider"
+                    value={visit.provider}
+                    onChange={onChange}
+                  >
+                    {' '}
+                    <option value="" disabled selected>
+                      Select Provider
+                    </option>
+                    {providerMD.map((doc) => (
+                      <option key={doc.value} value={doc.value}>
+                        {doc}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div
                   className="form-group"
