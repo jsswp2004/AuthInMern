@@ -9,21 +9,27 @@ import { Hour } from '../listDictionaries/listData/listDictionariesData'
 const CreateVisitMonthly = (props) => {
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
-      return user.role.toString().toLowerCase().includes('attending')
-    })
-  
+    return user.role.toString().toLowerCase().includes('attending')
+  })
+
   // Define the state with useState hook
-  const providerMD = attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString()
-  const providerFirstName = attendings.map((doc) => (doc.firstName)).toString()
-  const providerlastName = attendings.map((doc) => ( doc.lastName)).toString()
-  let provider = new Array(providerMD)//providerMD.toString()
+  const providerMD = attendings.map((doc) => (
+    <li>{doc.firstName + ' ' + doc.lastName}</li>
+  ))
+  // const providerMD = attendings.map((doc) =>
+  // (doc.firstName + ' ' + doc.lastName)).toString()
+  const providerFirstName = attendings.map((doc) => doc.firstName).toString()
+  const providerlastName = attendings.map((doc) => doc.lastName).toString()
+  let provider = new Array(providerMD) //providerMD.toString()
   console.log(providerMD)
-  
-  const doctor = [{ label: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString(), value: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString() }]
-    // [{ label: 'Select provider', value: ' ' },
-    // { label: providerMD, value: providerMD},]
+
+  // const doctor = [{ label: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString(), value: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString() }]
+  const doctor = [{ label: providerMD.firstName, value: providerMD.firstName }]
+
+  // [{ label: 'Select provider', value: ' ' },
+  // { label: providerMD, value: providerMD},]
   // { label: providerFirstName + ' ' + providerlastName, value: providerFirstName + ' ' + providerlastName },]
-  console.log(doctor)
+  // console.log(doctor)
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
     firstName: '',
@@ -47,13 +53,12 @@ const CreateVisitMonthly = (props) => {
   }
 
   const onMD = (e) => {
-    return (
-    provider = attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString()
-    )
-    
+    return (provider = attendings
+      .map((doc) => doc.firstName + ' ' + doc.lastName)
+      .toString())
   }
 
-// console.log(provider)
+  // console.log(provider)
   // const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName))
   // const { firstName, lastName} = attendings
   // const providerMD = [{ value: userMD, label: 'Dr. John Doe' }]
@@ -91,15 +96,15 @@ const CreateVisitMonthly = (props) => {
           provider: '',
           addedDate: '',
         })
-      // console.log(visit.firstName)
+        // console.log(visit.firstName)
         // Push to /patientlist
         navigate(-1)
       })
-      
+
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
-      // console.log(visit.provider)
+    // console.log(visit.provider)
   }
 
   return (
@@ -147,7 +152,9 @@ const CreateVisitMonthly = (props) => {
                   onChange={onChange}
                 >
                   {hourValues.map((hourval) => (
-                    <option key={hourval.value } value={hourval.value}>{hourval.label}</option>
+                    <option key={hourval.value} value={hourval.value}>
+                      {hourval.label}
+                    </option>
                   ))}
                 </select>
               </label>
@@ -187,15 +194,20 @@ const CreateVisitMonthly = (props) => {
           <div className="form-group">
             <label htmlFor="provider">Provider</label>
             <select
-                  className="form-control select"
-                  name="provider"
-                  value={visit.provider}
-                  onChange={onChange}
-                >
-                  {doctor.map((doc) => (
+              className="form-control select"
+              name="provider"
+              value={visit.provider}
+              onChange={onChange}
+            >
+              {/* {doctor.map((doc) => (
                     <option key={doc.value } value={doc.value}>{doc.label}</option>
+                  ))} */}
+              {/* {attendings.map((doc) => <li>{(doc.firstName + ' ' + doc.lastName)}</li>)} */}
+              {/* <ul>{attendings}</ul> */}
+              {doctor.map((doc) => (
+                    <option key={doc.value } value={doc.value}><ul>{providerMD}</ul></option>
                   ))}
-                </select>
+            </select>
           </div>
           {/* <AlertDismissible /> */}
           <div
