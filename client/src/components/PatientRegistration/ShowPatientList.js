@@ -3,9 +3,31 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
+import { Modal, Button } from 'react-bootstrap'
+import CreateVisitModal from '../Scheduling/createvisitmodal'
+import {
+  format,
+  getDate,
+  startOfMonth,
+  getDay,
+  subMonths,
+  endOfMonth,
+  addDays,
+  addMonths,
+  addWeeks,
+  startOfWeek,
+  parseISO,
+  formatISO,
+  getMonth,
+  getYear,
+  isWeekend,
+  isSaturday,
+  isSunday,
+} from 'date-fns'
 // import RecordCard from './RecordCard';
 // import User from '../userregistration/userlist'
 const RecordCard = (props) => (
+  
   <tr>
     <td>{props.record.medicalRecordNumber}</td>
     <td>{props.record.visitNumber}</td>
@@ -18,6 +40,29 @@ const RecordCard = (props) => (
     <td>{props.record.race}</td>
     <td>{props.record.addedDate}</td>
     <td>
+      <Button
+        className="openVisitModalButton"
+        // onClick={handleShow}
+        data-toggle="tooltip"
+        data-placement="right"
+        title="Add Visit"
+      >
+        <i className="fa fa-solid fa-plus"></i>
+      </Button>
+      <Link
+        className="btn btn-success btn-sm"
+        to={`/createvisitmodal/${props.record._id}`}
+      >
+        <i className="fa fa-pencil-square-o" aria-hidden="true" />
+      </Link>{' '}
+      <button
+      
+        className="btn btn-success btn-sm"
+        // onClick={handleShow}
+      >
+        <i className="fa fa-pencil-square-o" aria-hidden="true" />
+      
+      </button>
       <Link
         className="btn btn-info btn-sm"
         to={`/editPatient/${props.record._id}`}
@@ -37,6 +82,34 @@ const RecordCard = (props) => (
 )
 
 function ShowRecordList() {
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const [showDateValue, setShowDateValue] = useState(new Date())
+  const selectedDateDaily = format(showDateValue, 'yyyy-MM-dd')
+  //#region for Modal
+
+  const VisitModal = () => (
+    <Modal show={show} onHide={handleClose} size="lg" centered>
+      <Modal.Header closeButton>
+        <Modal.Title>Add a Visit</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <CreateVisitModal visitDate={selectedDateDaily} />
+      </Modal.Body>
+      <Modal.Footer>
+        <span style={{ textAlign: 'center' }}>
+          Please make sure all information is current and accurate.
+        </span>
+      </Modal.Footer>
+    </Modal>
+  )
+  // This method will map out the visits on the table
+  function displayVisitModal() {
+    return <VisitModal />
+  }
+  //#endregion
+
   const [records, setRecords] = useState([])
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
@@ -182,6 +255,7 @@ function ShowRecordList() {
             {patientList()}
           </tbody>
         </table>
+        <div>{displayVisitModal()}</div>
       </div>
     </div>
   )
