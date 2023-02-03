@@ -5,6 +5,7 @@ import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
+import RecordCard from './RecordCard'
 import {
   format,
   getDate,
@@ -24,64 +25,63 @@ import {
   isSaturday,
   isSunday,
 } from 'date-fns'
-// import RecordCard from './RecordCard';
 // import User from '../userregistration/userlist'
-const RecordCard = (props) => (
+// const RecordCard = (props) => (
   
-  <tr>
-    <td>{props.record.medicalRecordNumber}</td>
-    <td>{props.record.visitNumber}</td>
-    <td>{props.record.firstName}</td>
-    <td>{props.record.middleName}</td>
-    <td>{props.record.lastName}</td>
-    <td>{props.record.dateOfBirth}</td>
-    <td>{props.record.gender}</td>
-    <td>{props.record.age}</td>
-    <td>{props.record.race}</td>
-    <td>{props.record.addedDate}</td>
-    <td>
-      <Button
-        className="openVisitModalButton"
-        // onClick={handleShow}
-        data-toggle="tooltip"
-        data-placement="right"
-        title="Add Visit"
-      >
-        <i className="fa fa-solid fa-plus"></i>
-      </Button>
-      <Link
-        className="btn btn-success btn-sm"
-        to={`/createvisitmodal/${props.record._id}`}
-      >
-        <i className="fa fa-pencil-square-o" aria-hidden="true" />
-      </Link>{' '}
-      <button
+//   <tr>
+//     <td>{props.record.medicalRecordNumber}</td>
+//     <td>{props.record.visitNumber}</td>
+//     <td>{props.record.firstName}</td>
+//     <td>{props.record.middleName}</td>
+//     <td>{props.record.lastName}</td>
+//     <td>{props.record.dateOfBirth}</td>
+//     <td>{props.record.gender}</td>
+//     <td>{props.record.age}</td>
+//     <td>{props.record.race}</td>
+//     <td>{props.record.addedDate}</td>
+//     <td>
+//       {/* <Button
+//         className="openVisitModalButton"
+//         // onClick={handleShow}
+//         data-toggle="tooltip"
+//         data-placement="right"
+//         title="Add Visit"
+//       >
+//         <i className="fa fa-solid fa-plus"></i>
+//       </Button> */}
+//       <Link
+//         className="btn btn-success btn-sm"
+//         to={`/createvisitmodal/${props.record._id}`}
+//       >
+//         <i className="fa fa-pencil-square-o" aria-hidden="true" />
+//       </Link>{' '}
+//       <button
       
-        className="btn btn-success btn-sm"
-        // onClick={handleShow}
-      >
-        <i className="fa fa-pencil-square-o" aria-hidden="true" />
+//         className="btn btn-success btn-sm"
+//         // onClick={handleShow}
+//       >
+//         <i className="fa fa-pencil-square-o" aria-hidden="true" />
       
-      </button>
-      <Link
-        className="btn btn-info btn-sm"
-        to={`/editPatient/${props.record._id}`}
-      >
-        <i className="fa fa-pencil-square-o" aria-hidden="true" />
-      </Link>{' '}
-      <button
-        className="btn btn-danger btn-sm"
-        onClick={() => {
-          props.deleteRecord(props.record._id)
-        }}
-      >
-        <i className="fa fa-trash-o" aria-hidden="true" />
-      </button>
-    </td>
-  </tr>
-)
+//       </button>
+//       <Link
+//         className="btn btn-info btn-sm"
+//         to={`/editPatient/${props.record._id}`}
+//       >
+//         <i className="fa fa-pencil-square-o" aria-hidden="true" />
+//       </Link>{' '}
+//       <button
+//         className="btn btn-danger btn-sm"
+//         onClick={() => {
+//           props.deleteRecord(props.record._id)
+//         }}
+//       >
+//         <i className="fa fa-trash-o" aria-hidden="true" />
+//       </button>
+//     </td>
+//   </tr>
+// )
 
-function ShowRecordList() {
+export default function ShowRecordList() {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -217,7 +217,19 @@ function ShowRecordList() {
       <div className="item3">
         <div className="item3A">
           <h3>Patient List</h3>
-
+          <Button
+                  className="openVisitModalButton"
+                  onClick={handleShow}
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  title="Add Visit"
+                  // style={{
+                  //   display: selectViewValue === 'Monthly' ? 'none' : '',
+                  // }}
+                >
+                  <i className="fa fa-solid fa-plus"></i>
+                </Button>
+                <div>{displayVisitModal()}</div>
           <label htmlFor="search" className="searchLabel">
             Search :{' '}
             <input
@@ -255,10 +267,10 @@ function ShowRecordList() {
             {patientList()}
           </tbody>
         </table>
-        <div>{displayVisitModal()}</div>
+        {/* <div>{displayVisitModal()}</div> */}
       </div>
     </div>
   )
 }
 
-export default ShowRecordList
+
