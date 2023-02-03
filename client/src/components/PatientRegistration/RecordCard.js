@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 // const [show, setShow] = useState(false)
 // const handleClose = () => setShow(false)
 // const handleShow = () => setShow(true)
-const RecordCard = (props) => (
+// const RecordCard = (props) => (
     
+    const RecordCard = (props) => (
     <tr>
       <td>{props.record.medicalRecordNumber}</td>
       <td>{props.record.visitNumber}</td>
@@ -27,7 +28,7 @@ const RecordCard = (props) => (
         <button
         
           className="btn btn-success btn-sm"
-          onClick={props.handleShow}
+          onClick={alert('hello')}
         >
           <i className="fa fa-pencil-square-o" aria-hidden="true" />
         
