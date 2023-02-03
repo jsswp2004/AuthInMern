@@ -7,29 +7,14 @@ import { Hour } from '../listDictionaries/listData/listDictionariesData'
 // import Button from 'react-bootstrap/Button'
 
 const CreateVisitMonthly = (props) => {
+  //create provider object
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
 
-  // Define the state with useState hook
-  const providerMD = attendings.map((doc) => (
-    <li>{doc.firstName + ' ' + doc.lastName}</li>
-  ))
-  // const providerMD = attendings.map((doc) =>
-  // (doc.firstName + ' ' + doc.lastName)).toString()
-  const providerFirstName = attendings.map((doc) => doc.firstName).toString()
-  const providerlastName = attendings.map((doc) => doc.lastName).toString()
-  let provider = new Array(providerMD) //providerMD.toString()
-  console.log(providerMD)
+  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
-  // const doctor = [{ label: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString(), value: attendings.map((doc) => (doc.firstName + ' ' + doc.lastName)).toString() }]
-  const doctor = [{ label: providerMD.firstName, value: providerMD.firstName }]
-
-  // [{ label: 'Select provider', value: ' ' },
-  // { label: providerMD, value: providerMD},]
-  // { label: providerFirstName + ' ' + providerlastName, value: providerFirstName + ' ' + providerlastName },]
-  // console.log(doctor)
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
     firstName: '',
@@ -52,19 +37,6 @@ const CreateVisitMonthly = (props) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
 
-  const onMD = (e) => {
-    return (provider = attendings
-      .map((doc) => doc.firstName + ' ' + doc.lastName)
-      .toString())
-  }
-
-  // console.log(provider)
-  // const providerMD = attendings.map((doc) => ( doc.firstName + ' ' + doc.lastName))
-  // const { firstName, lastName} = attendings
-  // const providerMD = [{ value: userMD, label: 'Dr. John Doe' }]
-  // attendings.firstName + ' ' + attendings.lastName
-  console.log(providerMD)
-  // console.log(userMD)
 
   useEffect(() => {
     axios
@@ -72,7 +44,7 @@ const CreateVisitMonthly = (props) => {
       .then((response) => {
         // const data = response.data
         const data = response.data
-        console.log(data)
+        // console.log(data)
         setUserMD(data)
       })
       .catch((error) => {
@@ -96,15 +68,13 @@ const CreateVisitMonthly = (props) => {
           provider: '',
           addedDate: '',
         })
-        // console.log(visit.firstName)
         // Push to /patientlist
-        navigate(-1)
+        navigate('/patientlist')
       })
 
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
-    // console.log(visit.provider)
   }
 
   return (
@@ -199,14 +169,20 @@ const CreateVisitMonthly = (props) => {
               value={visit.provider}
               onChange={onChange}
             >
+              {' '}
+              <option value="" disabled selected>
+                Select Provider
+              </option>
+              {providerMD.map((doc) => (
+                <option key={doc.value} value={doc.value}>
+                  {doc}
+                </option>
+              ))}
               {/* {doctor.map((doc) => (
                     <option key={doc.value } value={doc.value}>{doc.label}</option>
                   ))} */}
               {/* {attendings.map((doc) => <li>{(doc.firstName + ' ' + doc.lastName)}</li>)} */}
               {/* <ul>{attendings}</ul> */}
-              {doctor.map((doc) => (
-                    <option key={doc.value } value={doc.value}><ul>{providerMD}</ul></option>
-                  ))}
             </select>
           </div>
           {/* <AlertDismissible /> */}
