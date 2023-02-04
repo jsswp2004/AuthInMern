@@ -14,14 +14,15 @@ export default function Navbar() {
           {/* <li id="link" className="body_navbarlist">
             <Link to="/">Home</Link>
           </li> */}
-          <li id="link" className="body_navbarlist">
-            <Link to="/patientlist">Patient List</Link>
-          </li>
+
           {/* <li id="link" className="body_navbarlist">
             <Link to="/createClient">Registration</Link>
           </li> */}
           <li id="link" className="body_navbarlist">
-            <Link to="/createPatient">Patient Registration</Link>
+            <Link to="/createPatient">Register a patient</Link>
+          </li>
+          <li id="link" className="body_navbarlist">
+            <Link to="/patientlist">Patient List</Link>
           </li>
           {/* <li id="link" className="body_navbarlist">
             <Link to="/visitlist">Schedule</Link>

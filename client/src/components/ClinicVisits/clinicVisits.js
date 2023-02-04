@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import backward from '../shared/images/backward.jpg'
 import forward from '../shared/images/forward.jpg'
+import { useAlert } from 'react-alert'
 import {
   format,
   getDate,
@@ -40,6 +41,9 @@ import VisitCard from '../Scheduling/VisitCard'
 //#endregion
 
 export default function ClinicVisit() {
+  //#region for alert declaration
+  const alert = useAlert()
+  //#endregion
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
   useEffect(() => {
@@ -1194,8 +1198,7 @@ export default function ClinicVisit() {
       <div className="item2">
         <Navbar />
       </div>
-      <div className="item3" >
-      {/* onLoad={weekending} */}
+      <div className="item3">
         <div className="grid_calendar">
           <div className="itemCalendar1">
             <div className="month-indicator item3C">
@@ -1345,7 +1348,14 @@ export default function ClinicVisit() {
                 <div id="weekDayTitleChild" className="weekDayTitleChild">
                   Su
                 </div>
-                <div className="weekDayTitleChild">Mo</div>
+                <div
+                  className="weekDayTitleChild"
+                  onClick={() => {
+                    alert.show('Oh look, an alert!')
+                  }}
+                >
+                  Mo
+                </div>
                 <div className="weekDayTitleChild">Tu</div>
                 <div className="weekDayTitleChild">We</div>
                 <div className="weekDayTitleChild">Th</div>
@@ -1357,17 +1367,10 @@ export default function ClinicVisit() {
                   className="monthDayTitleChild"
                   style={{
                     gridColumnStart: startOfTheMonthDayNumber + 1,
-                    // pointerEvents: weekendDay ? 'none' : '',
                   }}
                 >
-                  <span
-                    id="day1"
-                    // style={{
-                    //   pointerEvents: weekendDay ? 'none' : '',
-                    // }}
-                  >
+                  <span id="day1">
                     <button
-                      // onLoad={weekending}
                       style={{
                         fontSize: '10px',
                         paddingTop: '1px',
@@ -1389,13 +1392,7 @@ export default function ClinicVisit() {
                   </table>
                 </div>
                 <div className="monthDayTitleChild">
-                  <span
-                    id="day2"
-                    className="day"
-                    // style={{
-                    //   pointerEvents: weekendDay ? 'none' : '',
-                    // }}
-                  >
+                  <span id="day2" className="day">
                     <button
                       style={{
                         fontSize: '10px',
@@ -2076,7 +2073,6 @@ export default function ClinicVisit() {
                         ? 'none'
                         : 'inline',
                   }}
-
                 >
                   <span>
                     <button

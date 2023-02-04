@@ -113,7 +113,7 @@ const CreateVisit = (props) => {
       firstName: record.firstName,
       lastName: record.lastName,
       middleName: record.middleName,
-      email: record.email === null ? visit.email : visit.email,
+      email: record.email === null ? visit.email === null ? record.email : visit.email : record.email,
       addedDate: visit.addedDate,
       visitDate: visit.visitDate,
       hourOfVisit: visit.hourOfVisit,
@@ -151,7 +151,7 @@ const CreateVisit = (props) => {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Add a visit</h3>
+        <h3>Schedule a visit</h3>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
