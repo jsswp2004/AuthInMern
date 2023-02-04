@@ -512,6 +512,11 @@ thead tr {
   font-weight: 40;
 }
 
+tbody tr {
+  background-color: #ffffff;
+  font-weight: 40;
+}
+
 .table tr:nth-child(even) {
   background-color: #f2f2f2;
 }

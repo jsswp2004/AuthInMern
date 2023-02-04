@@ -1350,9 +1350,9 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="weekDayTitleChild"
-                  onClick={() => {
-                    alert.show('Oh look, an alert!')
-                  }}
+                  // onClick={() => {
+                  //   alert.show('Oh look, an alert!')
+                  // }}
                 >
                   Mo
                 </div>
