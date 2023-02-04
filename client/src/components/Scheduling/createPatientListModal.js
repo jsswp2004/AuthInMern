@@ -1,16 +1,67 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-import { Hour } from '../listDictionaries/listData/listDictionariesData'
-// import Alert from 'react-bootstrap/Alert';
-// import Button from 'react-bootstrap/Button';
+import {
+Hour
+} from '../listDictionaries/listData/listDictionariesData'
 
 const CreateVisit = (props) => {
+  const [record, setRecord] = useState({
+    medicalRecordNumber:'',
+    visitNumber: '',
+    firstName: '',
+    lastName: '',
+    middleName: '',
+    gender: '',
+    race: '',
+    dateOfBirth: '',
+    age: '',
+    language: '',
+    address: '',
+    city: '',
+    zipCode: '',
+    state: '',
+    email: '',
+    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+  })
+
+  console.log('record', record)
+  const { id } = useParams()
+  // const navigate = useNavigate()
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/records/${id}`)
+      .then((res) => {
+        setRecord({
+            medicalRecordNumber: res.data.medicalRecordNumber,
+            visitNumber: res.data.visitNumber,
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            middleName: res.data.middleName,
+            gender: res.data.gender,
+            race: res.data.race,
+            dateOfBirth: res.data.dateOfBirth,
+            age: res.data.age,
+            language: res.data.language,
+            address: res.data.address,
+            city: res.data.city,
+            zipCode: res.data.zipCode,
+            state: res.data.state,
+            email: res.data.email,
+            addedDate: res.data.addedDate,
+        })
+      })
+      .catch((err) => {
+        console.log('Error from UpdateRecordInfo')
+      })
+  }, [id])
+
   // Define the state with useState hook
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
-    firstName: '',
+    firstName: props.firstName,
     lastName: '',
     middleName: '',
     visitDate: props.visitDate,
@@ -30,8 +81,8 @@ const CreateVisit = (props) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
   const [userMD, setUserMD] = useState([])
-  const attendings = userMD //.filter((user) => user.role === 'Attending')
-
+  const attendings = userMD//.filter((user) => user.role === 'Attending')
+  
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -68,6 +119,7 @@ const CreateVisit = (props) => {
       })
   }
 
+ 
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className="form-grid-container">
@@ -105,20 +157,22 @@ const CreateVisit = (props) => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="hourOfVisit">
-              Hour of Visit
-                <select
-                  className="form-control select"
-                  name="hourOfVisit"
-                  value={visit.hourOfVisit}
-                  onChange={onChange}
-                >
-                  {hourValues.map((hourval) => (
-                    <option value={hourval.value}>{hourval.label}</option>
-                  ))}
-                </select>
-              </label>
-            </div>
+                    <label htmlFor="hourOfVisit">
+                      Gender
+                      <select
+                        className="form-control select"
+                        name="hourOfVisit"
+                        value={visit.hourOfVisit}
+                        onChange={onChange}
+                      >
+                        {hourValues.map((hourval) => (
+                          <option value={hourval.value}>
+                            {hourval.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
           </div>
         </div>
         <div className="div-items">
@@ -154,38 +208,31 @@ const CreateVisit = (props) => {
           <div className="form-group">
             <label htmlFor="provider">Provider</label>
 
-            <select
+                        <select
               type="text"
               className="form-control"
               name="provider"
               value={visit.provider}
               onChange={onChange}
-            >
+            >    
               {attendings.map((doc) => (
-                <option key={doc.name} value={doc.name}>
-                  {doc.firstName} {doc.lastName}
-                </option>
+                <option key={doc.name} value={doc.name}>{doc.firstName} {doc.lastName}</option>
+                
               ))}
             </select>
           </div>
-          {/* <AlertDismissible /> */}
+          
           <div
             className="form-group"
+            
             style={{
               float: 'left',
               textAlign: 'left',
               paddingTop: '10px',
             }}
+            
           >
             <input value="Add" type="submit" className="btn btn-success" />
-            {/* <Alert variant="success" dismissible style={{ display: show ? 'false' : 'true' } }>
-          <Alert.Heading>Visit added!</Alert.Heading>
-          <p>
-            Change this and that and try again. Duis mollis, est non commodo
-            luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-            Cras mattis consectetur purus sit amet fermentum.
-          </p>
-        </Alert> */}
           </div>
         </div>
       </div>

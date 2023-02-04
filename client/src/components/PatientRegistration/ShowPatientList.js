@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link,  useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
-import CreateVisitModal from '../Scheduling/createvisitmodal'
-import RecordCard from './RecordCard'
+import CreatePatientListModal from '../Scheduling/createPatientListModal'
+// import RecordCard from './RecordCard'
 import {
   format,
   getDate,
@@ -25,89 +25,123 @@ import {
   isSaturday,
   isSunday,
 } from 'date-fns'
-// import User from '../userregistration/userlist'
-// const RecordCard = (props) => (
-  
-//   <tr>
-//     <td>{props.record.medicalRecordNumber}</td>
-//     <td>{props.record.visitNumber}</td>
-//     <td>{props.record.firstName}</td>
-//     <td>{props.record.middleName}</td>
-//     <td>{props.record.lastName}</td>
-//     <td>{props.record.dateOfBirth}</td>
-//     <td>{props.record.gender}</td>
-//     <td>{props.record.age}</td>
-//     <td>{props.record.race}</td>
-//     <td>{props.record.addedDate}</td>
-//     <td>
-//       {/* <Button
-//         className="openVisitModalButton"
-//         // onClick={handleShow}
-//         data-toggle="tooltip"
-//         data-placement="right"
-//         title="Add Visit"
-//       >
-//         <i className="fa fa-solid fa-plus"></i>
-//       </Button> */}
-//       <Link
-//         className="btn btn-success btn-sm"
-//         to={`/createvisitmodal/${props.record._id}`}
-//       >
-//         <i className="fa fa-pencil-square-o" aria-hidden="true" />
-//       </Link>{' '}
-//       <button
-      
-//         className="btn btn-success btn-sm"
-//         // onClick={handleShow}
-//       >
-//         <i className="fa fa-pencil-square-o" aria-hidden="true" />
-      
-//       </button>
-//       <Link
-//         className="btn btn-info btn-sm"
-//         to={`/editPatient/${props.record._id}`}
-//       >
-//         <i className="fa fa-pencil-square-o" aria-hidden="true" />
-//       </Link>{' '}
-//       <button
-//         className="btn btn-danger btn-sm"
-//         onClick={() => {
-//           props.deleteRecord(props.record._id)
-//         }}
-//       >
-//         <i className="fa fa-trash-o" aria-hidden="true" />
-//       </button>
-//     </td>
-//   </tr>
-// )
+
+
 
 export default function ShowRecordList() {
+const RecordCard = (props) => (
+  <tr>
+    <td>{props.record.medicalRecordNumber}</td>
+    <td>{props.record.visitNumber}</td>
+    <td>{props.record.firstName}</td>
+    <td>{props.record.middleName}</td>
+    <td>{props.record.lastName}</td>
+    <td>{props.record.dateOfBirth}</td>
+    <td>{props.record.gender}</td>
+    <td>{props.record.age}</td>
+    <td>{props.record.race}</td>
+    <td>{props.record.addedDate}</td>
+    <td>
+      <Link
+        className="btn btn-success btn-sm"
+        to={`/createVisit/${props.record._id}`}
+      >
+        <i className="fa fa-pencil-square-o" aria-hidden="true" />
+      </Link>{' '}
+      <Link
+        className="btn btn-info btn-sm"
+        to={`/editPatient/${props.record._id}`}
+      >
+        <i className="fa fa-pencil-square-o" aria-hidden="true" />
+      </Link>{' '}
+      <button
+        className="btn btn-danger btn-sm"
+        onClick={() => {
+          props.deleteRecord(props.record._id)
+        }}
+      >
+        <i className="fa fa-trash-o" aria-hidden="true" />
+      </button>
+    </td>
+  </tr>
+  )
+  // const [patientRecord, setPatientRecord] = useState({
+  //   medicalRecordNumber:'',
+  //   visitNumber: '',
+  //   firstName: '',
+  //   lastName: '',
+  //   middleName: '',
+  //   gender: '',
+  //   race: '',
+  //   dateOfBirth: '',
+  //   age: '',
+  //   language: '',
+  //   address: '',
+  //   city: '',
+  //   zipCode: '',
+  //   state: '',
+  //   email: '',
+  //   addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+  // })
+  // const { id } = useParams()
+  // const navigate = useNavigate()
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8081/api/records/${id}`)
+  //     .then((res) => {
+  //       setPatientRecord({
+  //           medicalRecordNumber: res.data.medicalRecordNumber,
+  //           visitNumber: res.data.visitNumber,
+  //           firstName: res.data.firstName,
+  //           lastName: res.data.lastName,
+  //           middleName: res.data.middleName,
+  //           gender: res.data.gender,
+  //           race: res.data.race,
+  //           dateOfBirth: res.data.dateOfBirth,
+  //           age: res.data.age,
+  //           language: res.data.language,
+  //           address: res.data.address,
+  //           city: res.data.city,
+  //           zipCode: res.data.zipCode,
+  //           state: res.data.state,
+  //           email: res.data.email,
+  //           addedDate: res.data.addedDate,
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error from UpdateRecordInfo')
+  //     })
+  // }, [id])
+
+
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const [showDateValue, setShowDateValue] = useState(new Date())
   const selectedDateDaily = format(showDateValue, 'yyyy-MM-dd')
+  // console.log(selectedDateDaily)
   //#region for Modal
 
-  const VisitModal = () => (
-    <Modal show={show} onHide={handleClose} size="lg" centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Add a Visit</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <CreateVisitModal visitDate={selectedDateDaily} />
-      </Modal.Body>
-      <Modal.Footer>
-        <span style={{ textAlign: 'center' }}>
-          Please make sure all information is current and accurate.
-        </span>
-      </Modal.Footer>
-    </Modal>
-  )
+  // const VisitModal = () => (
+  //   <Modal show={show} onHide={handleClose} size="lg" centered>
+  //     <Modal.Header closeButton>
+  //       <Modal.Title>Add a Visit</Modal.Title>
+  //     </Modal.Header>
+  //     <Modal.Body>
+  //       <CreatePatientListModal  visitDate={selectedDateDaily} />
+  //     </Modal.Body>
+  //     <Modal.Footer>
+  //       <span style={{ textAlign: 'center' }}>
+  //         Please make sure all information is current and accurate.
+  //       </span>
+  //     </Modal.Footer>
+  //   </Modal>
+  // )
+  //firstName={patientRecord.firstName }
   // This method will map out the visits on the table
-  function displayVisitModal() {
-    return <VisitModal />
-  }
+  // function displayVisitModal() {
+  //   return <VisitModal />
+  // }
   //#endregion
 
   const [records, setRecords] = useState([])
@@ -123,6 +157,7 @@ export default function ShowRecordList() {
       .get('http://localhost:8081/api/records')
       .then((res) => {
         setRecords(res.data)
+        setShowDateValue(new Date())
       })
       .catch((err) => {
         console.log('Error from ShowRecordList')
@@ -217,19 +252,7 @@ export default function ShowRecordList() {
       <div className="item3">
         <div className="item3A">
           <h3>Patient List</h3>
-          <Button
-                  className="openVisitModalButton"
-                  onClick={handleShow}
-                  data-toggle="tooltip"
-                  data-placement="right"
-                  title="Add Visit"
-                  // style={{
-                  //   display: selectViewValue === 'Monthly' ? 'none' : '',
-                  // }}
-                >
-                  <i className="fa fa-solid fa-plus"></i>
-                </Button>
-                <div>{displayVisitModal()}</div>
+                {/* <div>{displayVisitModal()}</div> */}
           <label htmlFor="search" className="searchLabel">
             Search :{' '}
             <input
@@ -259,15 +282,9 @@ export default function ShowRecordList() {
             </tr>
           </thead>
           <tbody>
-            {/* {records.length === 0
-          ? 'there is no record record!'
-          : filteredData.map((record) => (
-              <RecordCard record={record} deleteRecord={deleteRecord} key={record._id} />
-            ))} */}
             {patientList()}
           </tbody>
         </table>
-        {/* <div>{displayVisitModal()}</div> */}
       </div>
     </div>
   )

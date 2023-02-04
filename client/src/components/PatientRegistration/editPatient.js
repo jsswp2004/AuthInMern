@@ -31,6 +31,7 @@ function UpdateRecordInfo(props) {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
+  console.log('record', record)
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -288,6 +289,17 @@ function UpdateRecordInfo(props) {
                     placeholder="Automatically generated"
                     value={record.age}
                     readOnly
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="emailaddress@mail.com"
+                    name="email"                    
+                    value={record.email}                    
                     onChange={onChange}
                   />
                 </div>
