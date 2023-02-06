@@ -36,6 +36,7 @@ const VisitCard = (props) => (
 )
 
 function ShowVisitList() {
+  const [regDate, setRegFilterDate] = useState(new Date())
   const [visits, setVisits] = useState([])
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the input text
@@ -67,15 +68,18 @@ function ShowVisitList() {
   }
 
   var filteredData = visits.filter((visit) => {
-    if (searchInput === '') {
+    if (searchInput === '' && regDate === '') {
       return visit
-    // } else if (regDate !== '') {
-    //   return visit.filter((visit) => 
-    //     visit.visitDate 
-    //     .toString()
-    //       .toLowerCase()
-    //       .includes(searchInput.toLowerCase())
-    //   }
+    } else if (regDate !== '') {
+      return visit
+        .toString()
+        .toLowerCase()
+        .includes(searchInput.toLowerCase()
+          
+      )
+    } 
+        
+    
     else {
       return (
         visit.firstName
@@ -113,7 +117,7 @@ function ShowVisitList() {
       )
     }
   })
-  const [regDate, setRegFilterDate] = useState(new Date())
+
 
   console.log('regDate', regDate)
   function patientList() {
