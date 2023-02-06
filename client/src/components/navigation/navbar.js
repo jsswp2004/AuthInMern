@@ -125,7 +125,7 @@ export default function Navbar() {
                 id='registrationDateFilter'
                 value={regDate}
                 onChange={(newValue) => {
-                  setRegFilterDate(newValue)
+                  setRegFilterDate(newValue.target.value)
                   }}
                 // placeholder="Search"
               />
