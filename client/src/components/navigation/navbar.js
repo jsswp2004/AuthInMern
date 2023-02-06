@@ -11,9 +11,7 @@ import { Link } from 'react-router-dom'
 // Here, we display our Navbar
 export default function Navbar() {
   const [regDate, setRegFilterDate] = useState('')
-  const onChange = (e) => {
-    setRecord({ ...record, [e.target.name]: e.target.value })
-  }
+  
   console.log('regDate', regDate)
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
