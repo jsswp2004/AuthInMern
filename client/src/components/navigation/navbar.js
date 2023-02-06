@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 // Here, we display our Navbar
 export default function Navbar() {
-  const [regDate, setRegFilterDate] = useState('')
+  const [regDate, setRegFilterDate] = useState(new Date())
   
   console.log('regDate', regDate)
   const [userMD, setUserMD] = useState([])
@@ -123,7 +123,10 @@ export default function Navbar() {
                 type="date"
                 className="filter__search-input"
                 id='registrationDateFilter'
-                onChange={x => setRegFilterDate(x)}
+                value={regDate}
+                onChange={(newValue) => {
+                  setRegFilterDate(newValue)
+                  }}
                 // placeholder="Search"
               />
               {/* <button className="btn btn-info btn-sm filter__search-button">
