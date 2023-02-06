@@ -55,7 +55,6 @@ function ShowVisitList() {
       })
   }, [])
 
-  
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/visits/${id}`)
@@ -70,7 +69,14 @@ function ShowVisitList() {
   var filteredData = visits.filter((visit) => {
     if (searchInput === '') {
       return visit
-    } else {
+    // } else if (regDate !== '') {
+    //   return visit.filter((visit) => 
+    //     visit.visitDate 
+    //     .toString()
+    //       .toLowerCase()
+    //       .includes(searchInput.toLowerCase())
+    //   }
+    else {
       return (
         visit.firstName
           .toString()
@@ -107,7 +113,9 @@ function ShowVisitList() {
       )
     }
   })
+  const [regDate, setRegFilterDate] = useState(new Date())
 
+  console.log('regDate', regDate)
   function patientList() {
     return filteredData
       .slice(0, 20)
@@ -124,7 +132,28 @@ function ShowVisitList() {
         )
       })
   }
+  // const onChange = (e) => {
+  //   setVisit({ ...visit, [e.target.name]: e.target.value })
+  // }
 
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD.filter((user) => {
+    return user.role.toString().toLowerCase().includes('attending')
+  })
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/users')
+      .then((response) => {
+        const data = response.data
+        setUserMD(data)
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [])
+
+  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
   return (
     <div className="grid_container" style={{ height: '100px' }}>
       <div className="item1">
@@ -136,18 +165,59 @@ function ShowVisitList() {
 
       <div className="item3">
         <div className="item3A">
-          <h3>Patient Visits</h3>
+          <div style={{ width: '20%' }}>
+            <h3>Patient Visits</h3>
+          </div>
+          <div style={{ width: '60%' }}>
+            <span className="filter__search-label">Filter table</span>
+            <label className="filter__search-label">
+              Visit Date:
+              <input
+                  type="date"
+                  className="filter__search-input"
+                  id="registrationDateFilter"
+                  value={regDate}
+                  onChange={(newValue) => {
+                    setRegFilterDate(newValue.target.value)
+                  }}
+                />
+              {/* <div className="filter_navbarlist">
 
-          <label htmlFor="search" className="searchLabel">
-            Search :{' '}
-            <input
-              id="search"
-              type="text"
-              placeholder="Search here"
-              onChange={handleChange}
-              value={searchInput}
-            />
-          </label>
+              </div> */}
+            </label>
+            <label htmlFor="search" className="filter__search-label">
+              Provider:
+              <select
+              className="form-control select"
+              name="provider"
+              value={visits.provider}
+              // onChange={onChange}
+            >
+              {' '}
+              <option value="" disabled selected>
+                Select Provider
+              </option>
+              {providerMD.map((doc) => (
+                <option key={doc.value} value={doc.value}>
+                  {doc}
+                </option>
+              ))}
+            </select>
+            </label>
+
+          </div>
+          <div style={{ width: '20%' }}>
+            <label htmlFor="search" className="searchLabel">
+              Search :{' '}
+              <input
+                id="search"
+                type="text"
+                placeholder="Search here"
+                onChange={handleChange}
+                value={searchInput}
+              />
+            </label>
+          </div>
         </div>
         <div className="item3B" style={{ overflowY: 'auto' }}>
           <table className="table">

@@ -565,9 +565,9 @@ tbody tr {
 /*Form end*/
 
 /*search css*/
-.searchLabel {
+/* .searchLabel {
   margin-left: auto;
-}
+} */
 /*search css end*/
 
 /*Date picker*/
@@ -1151,9 +1151,11 @@ text-align: center;
   margin: 1px;
   height: 100%;
   border-radius: 5px;
+  display: inline-flex;
 }
 .filter {
   background-color: #ffffff;
+   
 }
 
 .filter_navbar {
@@ -1168,7 +1170,7 @@ text-align: center;
   height: 100%;
   width:auto;
   border-radius: 5px;
-  display: flex;
+ 
 }
 
 .filter__search-input {

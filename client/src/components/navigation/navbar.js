@@ -111,7 +111,7 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      <div className="filter-container">
+      {/* <div className="filter-container">
         <div className="filter">
           <span className="filter__search-label">Filter table</span>
           <ul className="filter_navbar">
@@ -127,24 +127,13 @@ export default function Navbar() {
                 onChange={(newValue) => {
                   setRegFilterDate(newValue.target.value)
                   }}
-                // placeholder="Search"
+                
               />
-              {/* <button className="btn btn-info btn-sm filter__search-button">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button> */}
             </li>
             <label htmlFor="search" className="filter__search-label">
               Provider:
             </label>
             <li className="filter_navbarlist">
-              {/* <input
-                type="text"
-                className="filter__search-input"
-                placeholder="Search"
-              />
-              <button className="btn btn-info btn-sm filter__search-button">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button> */}
             </li>
             <select
               className="form-control select"
@@ -164,7 +153,7 @@ export default function Navbar() {
             </select>
           </ul>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
