@@ -6,37 +6,36 @@ import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import PatientDetail from './PatientDetails'
 
-const PatientDetails = (props) => {
-  return (
-    // <h5 className='patientDetailsTitle' >Patient Visit Details</h5>
-    <div className="patientDetails">
-      <div className="patientDetailsDemographics">
-        {' '}
-        <div>
-          <h6>Patient Name </h6>
-          {props.visit.firstName} {props.visit.middleName}{' '}
-          {props.visit.lastName}
-        </div>{' '}
-        <div>
-          <h6>Email</h6>
-          {props.visit.email}
-        </div>
-      </div>
-      <div className="patientDetailsDemographics">
-        {' '}
-        <div>
-          <h6>Appointment Date & Time </h6>
-          {props.visit.visitDate} {props.visit.hourOfVisit}
-        </div>
-        <div>
-          <h6>Provider</h6>
-          {props.visit.provider}
-        </div>
-      </div>
-      <div className="patientDetailsDemographics"></div>
-    </div>
-  )
-}
+// const PatientDetails = (props) => {
+//   return (    
+//     <div className="patientDetails">
+//       <div className="patientDetailsDemographics">
+//         {' '}
+//         <div>
+//           <h6>Patient Name </h6>
+//           {props.visit.firstName} {props.visit.middleName}{' '}
+//           {props.visit.lastName}
+//         </div>{' '}
+//         <div>
+//           <h6>Email</h6>
+//           {props.visit.email}
+//         </div>
+//       </div>
+//       <div className="patientDetailsDemographics">
+//         {' '}
+//         <div>
+//           <h6>Appointment Date & Time </h6>
+//           {props.visit.visitDate} {props.visit.hourOfVisit}
+//         </div>
+//         <div>
+//           <h6>Provider</h6>
+//           {props.visit.provider}
+//         </div>
+//       </div>
+//       <div className="patientDetailsDemographics"></div>
+//     </div>
+//   )
+// }
 
 function UpdateVisitInfo(props) {
   const [visit, setVisit] = useState({
@@ -50,7 +49,7 @@ function UpdateVisitInfo(props) {
   })
 
   const { id } = useParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -72,43 +71,43 @@ function UpdateVisitInfo(props) {
       })
   }, [id])
 
-  const onChange = (e) => {
-    setVisit({ ...visit, [e.target.name]: e.target.value })
-  }
+  // const onChange = (e) => {
+  //   setVisit({ ...visit, [e.target.name]: e.target.value })
+  // }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
+  // const onSubmit = (e) => {
+  //   e.preventDefault()
 
-    const data = {
-      firstName: visit.firstName,
-      lastName: visit.lastName,
-      middleName: visit.middleName,
-      email: visit.email,
-      addedDate: visit.addedDate,
-      visitDate: visit.visitDate,
-      hourOfVisit: visit.hourOfVisit,
-      provider: visit.provider,
-    }
+  //   const data = {
+  //     firstName: visit.firstName,
+  //     lastName: visit.lastName,
+  //     middleName: visit.middleName,
+  //     email: visit.email,
+  //     addedDate: visit.addedDate,
+  //     visitDate: visit.visitDate,
+  //     hourOfVisit: visit.hourOfVisit,
+  //     provider: visit.provider,
+  //   }
 
-    axios
-      .put(`http://localhost:8081/api/visits/${id}`, data)
-      .then((res) => {
-        navigate(`/calendarSchedule`)
-      })
-      .catch((err) => {
-        console.log('Error in UpdateVisitInfo!')
-      })
-  }
+  //   axios
+  //     .put(`http://localhost:8081/api/visits/${id}`, data)
+  //     .then((res) => {
+  //       navigate(`/calendarSchedule`)
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error in UpdateVisitInfo!')
+  //     })
+  // }
 
-  function patientDetailsInfo() {
-    return (
-      // <React.forwardRef>
+  // function patientDetailsInfo() {
+  //   return (
+  //     // <React.forwardRef>
 
-      <PatientDetails visit={visit} key={visit._id} />
+  //     <PatientDetails visit={visit} key={visit._id} />
 
-      // </React.forwardRef>
-    )
-  }
+  //     // </React.forwardRef>
+  //   )
+  // }
 
   return (
     <div className="grid_container">

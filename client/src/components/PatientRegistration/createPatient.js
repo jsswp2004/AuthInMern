@@ -265,6 +265,17 @@ const CreateRecord = (props) => {
                     onChange={onChange}
                   />
                 </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    name="email"
+                    placeholder='Enter email'
+                    value={record.email}                    
+                    onChange={onChange}
+                  />
+                </div>
               </div>
               <div className="div-items">
                 <div className="form-group">

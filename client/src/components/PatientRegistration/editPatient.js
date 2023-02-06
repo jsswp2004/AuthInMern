@@ -31,7 +31,7 @@ function UpdateRecordInfo(props) {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
-  console.log('record', record)
+  // console.log('record', record)
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -297,7 +297,7 @@ function UpdateRecordInfo(props) {
                   <input
                     type="email"
                     className="form-control"
-                    placeholder="emailaddress@mail.com"
+                    placeholder="Enter email"
                     name="email"                    
                     value={record.email}                    
                     onChange={onChange}

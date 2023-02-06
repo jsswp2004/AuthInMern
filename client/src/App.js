@@ -6,6 +6,7 @@ import ShowUsersList from './components/Signup/showUsersList'
 import EditUser from './components/Signup/editUser'
 import CreateUser from './components/Signup/createUser'
 import CreatePatient from './components/PatientRegistration/createPatient'
+import RegistrationDetails from './components/PatientRegistration/registrationDetails'
 import EditPatient from './components/PatientRegistration/editPatient'
 import PatientList from './components/PatientRegistration/ShowPatientList'
 import VisitList from './components/PatientVisit/ShowVisitList'
@@ -31,6 +32,7 @@ function App() {
       <Route path="/visitSchedule" exact element={<VisitSchedule />} />
       <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
       <Route path="/createVisit/:id" exact element={<CreateVisit />} />
+      <Route path="/registrationDetails/:id" exact element={<RegistrationDetails />} />
       <Route path="/clinicVisit" exact element={<ClinicVisit />} />
       <Route path="/editVisit/:id" exact element={<EditVisit />} />
       <Route path="/detailsVisit/:id" exact element={<VisitDetails />} />

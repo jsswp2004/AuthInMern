@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link,  useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
@@ -26,44 +26,48 @@ import {
   isSunday,
 } from 'date-fns'
 
-
-
 export default function ShowRecordList() {
-const RecordCard = (props) => (
-  <tr>
-    <td>{props.record.medicalRecordNumber}</td>
-    <td>{props.record.visitNumber}</td>
-    <td>{props.record.firstName}</td>
-    <td>{props.record.middleName}</td>
-    <td>{props.record.lastName}</td>
-    <td>{props.record.dateOfBirth}</td>
-    <td>{props.record.gender}</td>
-    <td>{props.record.age}</td>
-    <td>{props.record.race}</td>
-    <td>{props.record.addedDate}</td>
-    <td>
-      <Link
-        className="btn btn-success btn-sm"
-        to={`/createVisit/${props.record._id}`}
-      >
-        <i className="fa fa-pencil-square-o" aria-hidden="true" />
-      </Link>{' '}
-      <Link
-        className="btn btn-info btn-sm"
-        to={`/editPatient/${props.record._id}`}
-      >
-        <i className="fa fa-pencil-square-o" aria-hidden="true" />
-      </Link>{' '}
-      <button
-        className="btn btn-danger btn-sm"
-        onClick={() => {
-          props.deleteRecord(props.record._id)
-        }}
-      >
-        <i className="fa fa-trash-o" aria-hidden="true" />
-      </button>
-    </td>
-  </tr>
+  const RecordCard = (props) => (
+    <tr>
+      <td>{props.record.medicalRecordNumber}</td>
+      <td>{props.record.visitNumber}</td>
+      <td>{props.record.firstName}</td>
+      <td>{props.record.middleName}</td>
+      <td>{props.record.lastName}</td>
+      <td>{props.record.dateOfBirth}</td>
+      <td>{props.record.gender}</td>
+      <td>{props.record.age}</td>
+      <td>{props.record.race}</td>
+      <td>{props.record.addedDate}</td>
+      <td>
+        <Link
+          className="btn btn-secondary btn-sm" title='View Patient Details'
+          to={`/registrationDetails/${props.record._id}`}
+        >
+          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        </Link>{' '}
+        <Link
+          className="btn btn-success btn-sm" title='Create Visit'
+          to={`/createVisit/${props.record._id}`}
+        >
+          <i class="fa fa-user-md" aria-hidden="true"></i>
+        </Link>{' '}
+        <Link
+          className="btn btn-info btn-sm" title='Edit Patient'
+          to={`/editPatient/${props.record._id}`}
+        >
+          <i className="fa fa-pencil-square-o" aria-hidden="true" />
+        </Link>{' '}
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => {
+            props.deleteRecord(props.record._id)
+          }}
+        >
+          <i className="fa fa-trash-o" aria-hidden="true" title='Delete' />
+        </button>
+      </td>
+    </tr>
   )
   // const [patientRecord, setPatientRecord] = useState({
   //   medicalRecordNumber:'',
@@ -112,7 +116,6 @@ const RecordCard = (props) => (
   //       console.log('Error from UpdateRecordInfo')
   //     })
   // }, [id])
-
 
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
@@ -252,7 +255,7 @@ const RecordCard = (props) => (
       <div className="item3">
         <div className="item3A">
           <h3>Patient List</h3>
-                {/* <div>{displayVisitModal()}</div> */}
+          {/* <div>{displayVisitModal()}</div> */}
           <label htmlFor="search" className="searchLabel">
             Search :{' '}
             <input
@@ -281,13 +284,9 @@ const RecordCard = (props) => (
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            {patientList()}
-          </tbody>
+          <tbody>{patientList()}</tbody>
         </table>
       </div>
     </div>
   )
 }
-
-
