@@ -49,6 +49,39 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
+      <div className="filter">
+        <span className="filter__search-label" style={{ color:'white' }}>Filter table</span>
+        <ul className="body_navbar">
+          <label htmlFor="search" className="filter__search-label" style={{ color:'white' }}>
+            Visit Date:
+          </label>
+          <li className="body_navbarlist" style={{ display: 'flex' }}>
+            <input
+              type="text"
+              className="filter__search-input"
+              placeholder="Search"
+            />
+            <button className="btn btn-info btn-sm filter__search-button">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </li>
+          <label htmlFor="search" className="filter__search-label" style={{ color:'white' }}>
+            Provider:
+          </label>
+          <li className="body_navbarlist" style={{ display: 'flex' }}>
+            <input
+              type="text"
+              className="filter__search-input"
+              placeholder="Search"
+            />
+            <button className="btn btn-info btn-sm filter__search-button">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </li>
+
+      
+        </ul>
+      </div>
     </div>
   )
 }

@@ -110,6 +110,7 @@ function ShowVisitList() {
 
   function patientList() {
     return filteredData
+      .slice(0, 20)
       .sort((a, b) =>
         Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
       )
