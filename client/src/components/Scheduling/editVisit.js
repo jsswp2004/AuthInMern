@@ -174,13 +174,6 @@ function UpdateVisitInfo(props) {
                 </div>
                 <div className="form-group">
                   <label htmlFor="provider">Provider</label>
-                  {/* <input
-                    type="string"
-                    name="provider"
-                    className="form-control"
-                    value={visit.provider}
-                    onChange={onChange}
-                  /> */}
                   <select
                     className="form-control select"
                     name="provider"
