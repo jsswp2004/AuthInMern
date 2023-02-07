@@ -122,7 +122,7 @@ function ShowVisitList() {
   console.log('regDate', regDate)
   function patientList() {
     return filteredData
-      .slice(0, 20)
+      .slice(0, 15)
       .sort((a, b) =>
         Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
       )
