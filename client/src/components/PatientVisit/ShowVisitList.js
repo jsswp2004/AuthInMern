@@ -70,13 +70,13 @@ function ShowVisitList() {
   var filteredData = visits.filter((visit) => {
     if (searchInput === '' && regDate === '') {
       return visit
-    } else if (regDate !== '') {
+    } else if (searchInput === '' && regDate !== '') {
       return visit
         .toString()
         .toLowerCase()
-        .includes(searchInput.toLowerCase()
+        .includes(regDate.toLowerCase())
           
-      )
+      
     } 
         
     
