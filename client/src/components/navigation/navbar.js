@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom'
 
 // Here, we display our Navbar
 export default function Navbar() {
-  const [regDate, setRegFilterDate] = useState(new Date())
+  // const [regDate, setRegFilterDate] = useState(new Date())
   
-  console.log('regDate', regDate)
+  // console.log('regDate', regDate)
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')

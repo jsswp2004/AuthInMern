@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
+import format from 'date-fns/format'
 
 const VisitCard = (props) => (
   <tr>
@@ -36,7 +37,8 @@ const VisitCard = (props) => (
 )
 
 function ShowVisitList() {
-  const [regDate, setRegFilterDate] = useState(new Date())
+  const [regDate, setRegFilterDate] = useState('')
+  const [selectMD, setSelectMD] = useState('')
   const [visits, setVisits] = useState([])
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the input text
@@ -66,20 +68,47 @@ function ShowVisitList() {
         console.log('Unable to delete visit')
       })
   }
+  
 
-  var filteredData = visits.filter((visit) => {
-    if (searchInput === '' && regDate === '') {
+  const dateRegister = regDate //format(regDate, 'yyyy-MM-dd')
+  const dateRegistered = dateRegister
+  console.log(selectMD.toLowerCase())
+  var filteredMD = visits.filter((visit) => {
+    if (selectMD === '') {
       return visit
-    } else if (searchInput === '' && regDate !== '') {
+    }
+    else {
+      return (
+        visit.provider
+          .toString()
+          .includes(selectMD)
+      )
+    }
+  })
+
+  console.log(filteredMD)
+  var filteredDat = filteredMD.filter((visit) => {
+    if (dateRegistered === '') {
       return visit
-        .toString()
-        .toLowerCase()
-        .includes(regDate.toLowerCase())
-          
-      
-    } 
-        
+    }
+    else {
+      return (
+        visit.visitDate
+          .toString()
+          .toLowerCase()
+          .includes(dateRegistered)
+      )
+    }
+  })
+
+  
+
+
+  var filteredData = filteredDat.filter((visit) => {
     
+    if (searchInput === '') {
+      return visit
+    } 
     else {
       return (
         visit.firstName
@@ -91,10 +120,6 @@ function ShowVisitList() {
           .toLowerCase()
           .includes(searchInput.toLowerCase()) ||
         visit.lastName
-          .toString()
-          .toLowerCase()
-          .includes(searchInput.toLowerCase()) ||
-        visit.visitDate
           .toString()
           .toLowerCase()
           .includes(searchInput.toLowerCase()) ||
@@ -118,13 +143,46 @@ function ShowVisitList() {
     }
   })
 
+  //sort codes
+  const [sortedField, setSortedField] = useState('visitDate')
+  const [sortedDirection, setSortedDirection] = useState('asc')
 
-  console.log('regDate', regDate)
+  // console.log(sortedField, sortedDirection)
   function patientList() {
-    return filteredData
-      .slice(0, 15)
+    if (sortedField === '' && sortedDirection === '') {
+      return filteredData
+        .sort((a, b) =>
+          Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
+        )
+        .map((visit) => {
+          return (
+            <VisitCard
+              visit={visit}
+              deleteRecord={deleteRecord}
+              key={visit._id}
+            />
+          )
+        })
+    } else if
+     (sortedField === 'visitDate' && sortedDirection === 'asc') {
+      return filteredData
+        .sort((a, b) =>
+          Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
+        )
+        .map((visit) => {
+          return (
+            <VisitCard
+              visit={visit}
+              deleteRecord={deleteRecord}
+              key={visit._id}
+            />
+          )
+        })
+    } else if (sortedField === 'visitDate' && sortedDirection === 'dsc') {
+
+      return filteredData
       .sort((a, b) =>
-        Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
+        Date.parse(a.visitDate) < Date.parse(b.visitDate) ? -1 : 1,
       )
       .map((visit) => {
         return (
@@ -135,10 +193,10 @@ function ShowVisitList() {
           />
         )
       })
+     }
+    
   }
-  // const onChange = (e) => {
-  //   setVisit({ ...visit, [e.target.name]: e.target.value })
-  // }
+
 
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
@@ -169,11 +227,11 @@ function ShowVisitList() {
 
       <div className="item3">
         <div className="item3A">
-          <div style={{ width: '20%' }}>
+          <div className='filter_navbarLeft'>
             <h3>Patient Visits</h3>
           </div>
-          <div style={{ width: '60%' }}>
-            <span className="filter__search-label">Filter table</span>
+          <div  className='.filter_navbarlist' >
+            <span className="filter__search-label">Filter table: </span>
             <label className="filter__search-label">
               Visit Date:
               <input
@@ -183,22 +241,21 @@ function ShowVisitList() {
                   value={regDate}
                   onChange={(newValue) => {
                     setRegFilterDate(newValue.target.value)
+                    
                   }}
                 />
-              {/* <div className="filter_navbarlist">
-
-              </div> */}
             </label>
-            <label htmlFor="search" className="filter__search-label">
-              Provider:
+            <label className="filter__search-label"> Provider:
               <select
-              className="form-control select"
-              name="provider"
-              value={visits.provider}
-              // onChange={onChange}
+                className="filter__search-input"
+                name="provider"
+                value={visits.provider}
+                onChange={(e) => {
+                  setSelectMD(e.target.value)
+                }}
             >
               {' '}
-              <option value="" disabled selected>
+              <option value="" selected>
                 Select Provider
               </option>
               {providerMD.map((doc) => (
@@ -210,10 +267,12 @@ function ShowVisitList() {
             </label>
 
           </div>
-          <div style={{ width: '20%' }}>
+          {/* .filter_navbar */}
+          <div className='filter_navbarRight'>
             <label htmlFor="search" className="searchLabel">
               Search :{' '}
               <input
+                className="searchInput"
                 id="search"
                 type="text"
                 placeholder="Search here"
@@ -230,7 +289,30 @@ function ShowVisitList() {
                 <th>FirstName</th>
                 <th>Middlename</th>
                 <th>Lastname</th>
-                <th>Visit Date</th>
+                {/* <th>Visit Date</th> */}
+                <th>
+                <div className="parent">
+                  <div className="child">Visit Date</div>
+                  <div className="child sortdirection">
+                    <i
+                      className="fa fa-arrow-up fa-sm asc"
+                      aria-hidden="true"
+                      onClick={() => {
+                        setSortedField('visitDate')
+                        setSortedDirection('asc')
+                      }}
+                    />{' '}
+                    <i
+                      className="fa fa-arrow-down fa-sm dsc"
+                      aria-hidden="true"
+                      onClick={() => {
+                        setSortedField('visitDate')
+                        setSortedDirection('dsc')
+                      }}
+                    />
+                  </div>
+                </div>
+              </th>
                 <th>Time</th>
                 <th>Email</th>
                 <th>Provider</th>
