@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+// import { useNavigate } from 'react-router'
 import Role from './rolesList'
 import axios from 'axios'
-import logo from '../../shared/images/logoPOWER.png'
-// import logo from '../../components/shared/images/logoPOWER.png'
 import Navbar from '../../navigation/navbar'
 import Header from '../../shared/Header'
-import { Link } from 'react-router-dom'
-import LogoutIcon from '@mui/icons-material/Logout'
+
 
 const ShowRolesList = () => {
   const [roles, setRoles] = useState([])
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
