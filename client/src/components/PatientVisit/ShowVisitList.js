@@ -228,10 +228,10 @@ function ShowVisitList() {
       <div className="item3">
         <div className="item3A">
           <div className='filter_navbarLeft'>
-            <h3>Patient Visits</h3>
+            <h3>Search for a visit</h3>
           </div>
           <div  className='.filter_navbarlist' >
-            <span className="filter__search-label">Filter table: </span>
+            <span className="filter__search-label">Filter: </span>
             <label className="filter__search-label">
               Visit Date:
               <input
@@ -247,6 +247,7 @@ function ShowVisitList() {
             </label>
             <label className="filter__search-label"> Provider:
               <select
+                key={visits.provider}
                 className="filter__search-input"
                 name="provider"
                 value={visits.provider}
@@ -255,11 +256,11 @@ function ShowVisitList() {
                 }}
             >
               {' '}
-              <option value="" selected>
+              <option key='Select' value="">
                 Select Provider
               </option>
               {providerMD.map((doc) => (
-                <option key={doc.value} value={doc.value}>
+                <option key={doc._id} value={doc.value}>
                   {doc}
                 </option>
               ))}
@@ -275,7 +276,7 @@ function ShowVisitList() {
                 className="searchInput"
                 id="search"
                 type="text"
-                placeholder="Search here"
+                placeholder="Type here to search"
                 onChange={handleChange}
                 value={searchInput}
               />

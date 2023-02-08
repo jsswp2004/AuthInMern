@@ -44,13 +44,13 @@ export default function ShowRecordList() {
           className="btn btn-secondary btn-sm" title='View Patient Details'
           to={`/registrationDetails/${props.record._id}`}
         >
-          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+          <i className="fa fa-file-text-o" aria-hidden="true"></i>
         </Link>{' '}
         <Link
           className="btn btn-success btn-sm" title='Create Visit'
           to={`/createVisit/${props.record._id}`}
         >
-          <i class="fa fa-user-md" aria-hidden="true"></i>
+          <i className="fa fa-user-md" aria-hidden="true"></i>
         </Link>{' '}
         <Link
           className="btn btn-info btn-sm" title='Edit Patient'

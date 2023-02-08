@@ -33,7 +33,7 @@ const CreateVisit = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const { id } = useParams()
-  console.log(record)
+  // console.log(record)
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/records/${id}`)
@@ -62,14 +62,16 @@ const CreateVisit = (props) => {
       })
   }, [id])
 
-  
-  const firstName = record.firstName
-  const lastName = record.lastName
-  const middleName = record.middleName
-  // const visitDate = record.visitDate
-  const email = record.email
-  // const 
- 
+  const {
+    firstName,
+    lastName,
+    middleName,
+    visitDate,
+    hourOfVisit,
+    provider,
+    email,
+  } = record
+
   const [visit, setVisit] = useState({
     firstName: firstName,
     lastName: lastName,
@@ -80,8 +82,10 @@ const CreateVisit = (props) => {
     provider: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
-  const patientVisit = visit
-  console.log(patientVisit.firstName)
+  // const { visitDate, hourOfVisit, provider } = visit
+
+  // const patientVisit = visit
+  console.log(visitDate, hourOfVisit, provider)
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')
 
@@ -113,7 +117,12 @@ const CreateVisit = (props) => {
       firstName: record.firstName,
       lastName: record.lastName,
       middleName: record.middleName,
-      email: record.email === null ? visit.email === null ? record.email : visit.email : record.email,
+      email:
+        record.email === null
+          ? visit.email === null
+            ? record.email
+            : visit.email
+          : record.email,
       addedDate: visit.addedDate,
       visitDate: visit.visitDate,
       hourOfVisit: visit.hourOfVisit,
@@ -122,17 +131,6 @@ const CreateVisit = (props) => {
     axios
       .post('http://localhost:8081/api/visits', data)
       .then((res) => {
-        // setVisit({
-        //   firstName: firstName,
-        //   lastName: lastName,
-        //   middleName: middleName,
-        //   visitDate: '',
-        //   hourOfVisit: '',
-        //   email: email,
-        //   provider: '',
-        //   addedDate: '',
-        // })
-
         // Push to /
         navigate(-1)
       })
@@ -141,7 +139,6 @@ const CreateVisit = (props) => {
       })
   }
 
-  console.log(email)
   return (
     <div className="grid_container">
       <div className="item1">
@@ -192,13 +189,14 @@ const CreateVisit = (props) => {
                     <label htmlFor="hourOfVisit">
                       Hour of Visit
                       <select
+                        key={visit.hourOfVisit}
                         className="form-control select"
                         name="hourOfVisit"
                         value={visit.hourOfVisit}
                         onChange={onChange}
                       >
                         {hourValues.map((hourval) => (
-                          <option value={hourval.value}>{hourval.label}</option>
+                          <option key={hourval.value} value={hourval.value}>{hourval.label}</option>
                         ))}
                       </select>
                     </label>
@@ -240,21 +238,22 @@ const CreateVisit = (props) => {
                 <div className="form-group">
                   <label htmlFor="provider">Provider</label>
                   <select
-              className="form-control select"
-              name="provider"
-              value={visit.provider}
-              onChange={onChange}
-            >
-              {' '}
-              <option value="" disabled selected>
-                Select Provider
-              </option>
-              {providerMD.map((doc) => (
-                <option key={doc.value} value={doc.value}>
-                  {doc}
-                </option>
-              ))}
-            </select>
+                    key={visit.provider}
+                    className="form-control select"
+                    name="provider"
+                    value={visit.provider}
+                    onChange={onChange}
+                  >
+                    {' '}
+                    <option key="0" value="Select Provider" >
+                      Select Provider
+                    </option>
+                    {providerMD.map((doc) => (
+                      <option key={doc.value} value={doc.value}>
+                        {doc}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div
                   className="form-group"

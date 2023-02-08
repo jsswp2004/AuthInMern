@@ -13,62 +13,62 @@ export default function Navbar() {
   // const [regDate, setRegFilterDate] = useState(new Date())
   
   // console.log('regDate', regDate)
-  const [userMD, setUserMD] = useState([])
-  const attendings = userMD.filter((user) => {
-    return user.role.toString().toLowerCase().includes('attending')
-  })
+  // const [userMD, setUserMD] = useState([])
+  // const attendings = userMD.filter((user) => {
+  //   return user.role.toString().toLowerCase().includes('attending')
+  // })
 
   
-  useEffect(() => {
-    axios
-      .get('http://localhost:8081/api/users')
-      .then((response) => {
-        const data = response.data
-        setUserMD(data)
-      })
-      .catch((error) => {
-        console.log('Error from user list')
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:8081/api/users')
+  //     .then((response) => {
+  //       const data = response.data
+  //       setUserMD(data)
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from user list')
+  //     })
+  // }, [])
 
-  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+  // const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
-  const { id } = useParams()
-  const navigate = useNavigate()
+  // const { id } = useParams()
+  // const navigate = useNavigate()
 
-  const [visit, setVisit] = useState({
-    firstName: '',
-    lastName: '',
-    middleName: '',
-    email: '',
-    addedDate: '',
-    visitDate: '',
-    provider: '',
-  })
+  // const [visit, setVisit] = useState({
+  //   firstName: '',
+  //   lastName: '',
+  //   middleName: '',
+  //   email: '',
+  //   addedDate: '',
+  //   visitDate: '',
+  //   provider: '',
+  // })
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8081/api/visits/${id}`)
-      .then((res) => {
-        setVisit({
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          middleName: res.data.middleName,
-          email: res.data.email,
-          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), //res.data.addedDate,
-          visitDate: res.data.visitDate,
-          hourOfVisit: res.data.hourOfVisit,
-          provider: res.data.provider,
-        })
-      })
-      .catch((err) => {
-        console.log('Error from UpdateVisitInfo')
-      })
-  }, [id])
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8081/api/visits/${id}`)
+  //     .then((res) => {
+  //       setVisit({
+  //         firstName: res.data.firstName,
+  //         lastName: res.data.lastName,
+  //         middleName: res.data.middleName,
+  //         email: res.data.email,
+  //         addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), //res.data.addedDate,
+  //         visitDate: res.data.visitDate,
+  //         hourOfVisit: res.data.hourOfVisit,
+  //         provider: res.data.provider,
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error from UpdateVisitInfo')
+  //     })
+  // }, [id])
 
-  const onChange = (e) => {
-    setVisit({ ...visit, [e.target.name]: e.target.value })
-  }
+  // const onChange = (e) => {
+  //   setVisit({ ...visit, [e.target.name]: e.target.value })
+  // }
   return (
     <div id="navbarSupportedContent">
       <div className="header-bodynavbar">
