@@ -60,7 +60,7 @@ export default function ClinicVisit() {
   // console.log(visits)
   //#endregion
   //#region code for calendar view select dropdown
-  const [selectViewValue, setViewValue] = React.useState('Monthly')
+  const [selectViewValue, setViewValue] = React.useState('Daily')
   const viewValueChange = (event) => {
     setViewValue(event.target.value)
   }

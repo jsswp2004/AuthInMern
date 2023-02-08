@@ -80,11 +80,12 @@ export default function Navbar() {
           {/* <li id="link" className="body_navbarlist">
             <Link to="/createClient">Registration</Link>
           </li> */}
+
           <li id="link" className="body_navbarlist">
-            <Link to="/createPatient">Register a patient</Link>
+            <Link to="/patientlist">Registered Patients</Link>
           </li>
           <li id="link" className="body_navbarlist">
-            <Link to="/patientlist">Patient List</Link>
+            <Link to="/createPatient">Add a patient</Link>
           </li>
           {/* <li id="link" className="body_navbarlist">
             <Link to="/visitlist">Schedule</Link>
@@ -100,7 +101,7 @@ export default function Navbar() {
             <Link to="/usersList">User List</Link>
           </li> */}
           <li id="link" className="body_navbarlist">
-            <Link to="/clinicVisit">Clinic Visit</Link>
+            <Link to="/clinicVisit">Clinic Schedule</Link>
           </li>
 
           <li className="body_navbarlist dropdown">
