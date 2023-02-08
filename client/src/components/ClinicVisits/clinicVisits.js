@@ -1,5 +1,5 @@
 //#region Imports
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import backward from '../shared/images/backward.jpg'
 import forward from '../shared/images/forward.jpg'
@@ -15,11 +15,11 @@ import {
   addMonths,
   addWeeks,
   startOfWeek,
-  parseISO,
-  formatISO,
+  // parseISO,
+  // formatISO,
   getMonth,
   getYear,
-  isWeekend,
+  // isWeekend,
   isSaturday,
   isSunday,
 } from 'date-fns'
@@ -27,6 +27,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import VisitWeekly from '../Scheduling/visitWeekly'
+import VisitDaily from '../Scheduling/visitMonthlyDaily'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import {
@@ -77,38 +78,39 @@ export default function ClinicVisit() {
   let startOfTheMonth = startOfMonth(new Date(showDateValue))
   //   console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
   const currentYear = newdate.getFullYear()
-  const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
-  let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
-  let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
+  // const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
+  // let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
+  // let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
 
   // let startOfTheMonthDayNumber = getDay(new Date(startOfTheMonth)) // moment(startOfTheMonth).day()
   let startOfTheMonthDayNumber = getDay(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  let endOfTheMonthDayNumber = getDay(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
+  // let endOfTheMonthDayNumber = getDay(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
   //   console.log(endOfTheMonthDayNumber)
   let startOfTheMonthDay = getDate(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
   //   console.log(startOfTheMonthDay)
   let endOfTheMonthDay = getDate(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
   //   console.log(endOfTheMonthDay)
-  const endOfThePreviousMonth = parseInt(
-    // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
-    getDate(endOfMonth(subMonths(newdate, 1))),
-  )
+  // const endOfThePreviousMonth = parseInt(
+  //   // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
+  //   getDate(endOfMonth(subMonths(newdate, 1))),
+  // )
 
-  const gridMonthlyColumnStart = {
-    gridColumnStart: startOfTheMonthDayNumber + 1, // this is not 0 based
-    // backgroundColor: ' #eeee',
-    // height: '100px',
-  }
+  // const gridMonthlyColumnStart = {
+  //   gridColumnStart: startOfTheMonthDayNumber + 1, // this is not 0 based
+  //   // backgroundColor: ' #eeee',
+  //   // height: '100px',
+  // }
 
   const gridWeekly = {
+    fontSize: '14px',
     backgroundColor: 'white',
     height: 'calc(100vh - 132px)',
   }
 
-  const gridMonthly = {
-    backgroundColor: ' #eeee',
-    height: '100px',
-  }
+  // const gridMonthly = {
+  //   backgroundColor: ' #eeee',
+  //   height: '100px',
+  // }
   const previousMonth = newdate.getMonth()
   let daysOfPreviousMonth = getDaysInMonth(previousMonth, currentYear)
   let dayOfTheMonth = newdate.getDate()
@@ -236,13 +238,17 @@ export default function ClinicVisit() {
   const visitMonthlyDay1 = visits.filter((el) => {
     return el.visitDate.toString().toLowerCase().includes(monthlyDay)
   })
-  //   console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
+  // const { houfOfVisit , visitDate, firstName, lastName } = visitMonthlyDay1
+  // console.log(houfOfVisit , visitDate, firstName, lastName)
+  const visitDay1 = visitMonthlyDay1
+  console.log(visitDay1.map((el) => el))
+
   function visitListMonthlyDay1() {
     return [...visitMonthlyDay1]
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -264,7 +270,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -285,7 +291,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -305,7 +311,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -325,7 +331,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -345,7 +351,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -365,7 +371,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -385,7 +391,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -405,7 +411,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -425,7 +431,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -445,7 +451,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -465,7 +471,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -485,7 +491,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -505,7 +511,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -525,7 +531,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -545,7 +551,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -565,7 +571,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -585,7 +591,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -605,7 +611,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -625,7 +631,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -645,7 +651,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -665,7 +671,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -685,7 +691,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -705,7 +711,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -725,7 +731,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -745,7 +751,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -765,7 +771,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -785,7 +791,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -805,7 +811,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -825,7 +831,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -845,7 +851,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -1054,7 +1060,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -1069,7 +1075,7 @@ export default function ClinicVisit() {
       .map((visit) => {
         // console.log(moment(visit.visitDate + ', ' + visit.hourOfVisit))
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -1083,7 +1089,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -1097,7 +1103,7 @@ export default function ClinicVisit() {
       .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -1112,7 +1118,7 @@ export default function ClinicVisit() {
 
       .map((visit) => {
         return (
-          <VisitWeekly
+          <VisitDaily
             visit={visit}
             deleteRecord={() => deleteRecord(visit._id)}
             key={visit._id}
@@ -1158,15 +1164,15 @@ export default function ClinicVisit() {
   // const weekendSun = isSunday(addDays(new Date(selectedDate), 1))
   // const weekend = weekendSat || weekendSun
   // console.log(weekend, selectedDate, new Date(selectedDate))
-  function weekending() {
-    if (wekendSunday) {
-      setWeekendDay('true')
-    } else if (wekendSaturday) {
-      setWeekendDay('true')
-    } else {
-      setWeekendDay('false')
-    }
-  }
+  // function weekending() {
+  //   if (wekendSunday) {
+  //     setWeekendDay('true')
+  //   } else if (wekendSaturday) {
+  //     setWeekendDay('true')
+  //   } else {
+  //     setWeekendDay('false')
+  //   }
+  // }
   useEffect(
     (e) => {
       // e.preventDefault()
@@ -1384,12 +1390,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay1()}</tbody>
-                  </table>
+                  {visitListMonthlyDay1()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span id="day2" className="day">
@@ -1407,12 +1408,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay2()}</tbody>
-                  </table>
+                  {visitListMonthlyDay2()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span className="day" id="day3">
@@ -1432,12 +1428,7 @@ export default function ClinicVisit() {
                     {/* <span style={{display:'none'}}>{startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}</span> */}
                     {/* {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3} */}
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay3()}</tbody>
-                  </table>
+                  {visitListMonthlyDay3()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span className="day4" id="day4">
@@ -1455,12 +1446,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay4()}</tbody>
-                  </table>
+                  {visitListMonthlyDay4()}
                 </div>
                 <div
                   className="monthDayTitleChild"
@@ -1485,12 +1471,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay5()}</tbody>
-                  </table>
+                  {visitListMonthlyDay5()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span className="day6" id="day6">
@@ -1508,12 +1489,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay6()}</tbody>
-                  </table>
+                  {visitListMonthlyDay6()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1531,12 +1507,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay7()}</tbody>
-                  </table>
+                  {visitListMonthlyDay7()}
                 </div>
                 <div
                   className="monthDayTitleChild"
@@ -1559,12 +1530,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay8()}</tbody>
-                  </table>
+                  {visitListMonthlyDay8()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1582,12 +1548,7 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">{visitListMonthlyDay9()}</tbody>
-                  </table>
+                  {visitListMonthlyDay9()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1605,14 +1566,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay10()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay10()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1631,14 +1586,7 @@ export default function ClinicVisit() {
                     </button>
                   </span>
 
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay11()}
-                    </tbody>
-                  </table>
+                  {visitListMonthlyDay11()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1656,14 +1604,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay12()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay12()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1681,14 +1623,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay13()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay13()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1706,14 +1642,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay14()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay14()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1731,14 +1661,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay15()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay15()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1756,14 +1680,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 16}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay16()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay16()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1781,14 +1699,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay17()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay17()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1806,14 +1718,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay18()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay18()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1831,14 +1737,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay19()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay19()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1856,14 +1756,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay20()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay20()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1881,14 +1775,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay21()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay21()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1906,14 +1794,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay22()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay22()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1931,14 +1813,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay23()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay23()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1956,14 +1832,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay24()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay24()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -1981,14 +1851,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay25()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay25()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -2006,14 +1870,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay26()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay26()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -2031,14 +1889,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay27()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay27()}
                 </div>
                 <div className="monthDayTitleChild">
                   <span>
@@ -2056,14 +1908,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay28()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay28()}
                 </div>
                 <div
                   className="monthDayTitleChild"
@@ -2089,14 +1935,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay29()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay29()}
                 </div>
                 <div
                   className="monthDayTitleChild"
@@ -2122,14 +1962,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay30()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay30()}
                 </div>
                 <div
                   className="monthDayTitleChild"
@@ -2155,14 +1989,8 @@ export default function ClinicVisit() {
                       {startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31}
                     </button>
                   </span>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles"></tr>
-                    </thead>
-                    <tbody className="trStyles">
-                      {visitListMonthlyDay31()}
-                    </tbody>
-                  </table>
+
+                  {visitListMonthlyDay31()}
                 </div>
               </div>
             </div>
@@ -2201,14 +2029,7 @@ export default function ClinicVisit() {
                     </div>
                   </li>
                   <li className="calendar-item calendar-day" style={gridWeekly}>
-                    <table className="table table-striped">
-                      <thead>
-                        <tr className="trStyles"></tr>
-                      </thead>
-                      <tbody className="trStyles">
-                        {visitListWeeklyMonday()}
-                      </tbody>
-                    </table>
+                    {visitListWeeklyMonday()}
                   </li>
                 </div>
                 <div>
@@ -2223,14 +2044,7 @@ export default function ClinicVisit() {
                     </div>
                   </li>
                   <li className="calendar-item calendar-day" style={gridWeekly}>
-                    <table className="table table-striped">
-                      <thead>
-                        <tr className="trStyles"></tr>
-                      </thead>
-                      <tbody className="trStyles">
-                        {visitListWeeklyTuesday()}
-                      </tbody>
-                    </table>
+                    {visitListWeeklyTuesday()}
                   </li>
                 </div>
                 <div>
@@ -2245,14 +2059,7 @@ export default function ClinicVisit() {
                     </div>
                   </li>
                   <li className="calendar-item calendar-day" style={gridWeekly}>
-                    <table className="table table-striped">
-                      <thead>
-                        <tr className="trStyles"></tr>
-                      </thead>
-                      <tbody className="trStyles">
-                        {visitListWeeklyWednesday()}
-                      </tbody>
-                    </table>
+                    {visitListWeeklyWednesday()}
                   </li>
                 </div>
                 <div>
@@ -2267,14 +2074,7 @@ export default function ClinicVisit() {
                     </div>
                   </li>
                   <li className="calendar-item calendar-day" style={gridWeekly}>
-                    <table className="table table-striped">
-                      <thead>
-                        <tr className="trStyles"></tr>
-                      </thead>
-                      <tbody className="trStyles">
-                        {visitListWeeklyThursday()}
-                      </tbody>
-                    </table>
+                    {visitListWeeklyThursday()}
                   </li>
                 </div>
                 <div>
@@ -2290,14 +2090,7 @@ export default function ClinicVisit() {
                   </li>
 
                   <li className="calendar-item calendar-day" style={gridWeekly}>
-                    <table className="table table-striped">
-                      <thead>
-                        <tr className="trStyles"></tr>
-                      </thead>
-                      <tbody className="trStyles">
-                        {visitListWeeklyFriday()}
-                      </tbody>
-                    </table>
+                    {visitListWeeklyFriday()}
                   </li>
                 </div>
                 <div>
