@@ -104,12 +104,14 @@ export default function Navbar() {
             <Link to="/clinicVisit">Clinic Schedule</Link>
           </li>
 
-          <li className="body_navbarlist dropdown">
+          <ul className="body_navbarlist dropdown">
             <span>Settings</span>
-            <div className="dropdown-content">
-              <a href="/usersList">User Profiles</a>
-            </div>
-          </li>
+            <li className="dropdown-content">
+              <a href="/usersList">User Profiles</a> <br />
+              <a href="/rolesList">Roles</a>
+            </li>
+
+          </ul>
         </ul>
       </div>
       {/* <div className="filter-container">

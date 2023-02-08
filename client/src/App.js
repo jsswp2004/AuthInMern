@@ -17,7 +17,7 @@ import EditVisit from './components/Scheduling/editVisit'
 import VisitDetails from './components/Scheduling/detailsVisit'
 import About from './components/Main/About'
 import ClinicVisit from './components/ClinicVisits/clinicVisits'
-
+import RolesList from './components/Management/Roles/showRolesList'
 function App() {
   const user = localStorage.getItem('token')
 
@@ -41,6 +41,7 @@ function App() {
       <Route path="/usersList" exact element={<ShowUsersList />} />
       <Route path="/editUser/:id" exact element={<EditUser />} />
       <Route path="/about" exact element={<About />} />
+      <Route path="/rolesList" exact element={<RolesList />} />
       <Route path="/" element={<Navigate replace to="/login" />} />
     </Routes>
   )

@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth");
 const clientRoutes = require("./routes/clients");
 const recordRoutes = require("./routes/records");
 const visitRoutes = require("./routes/visits");
+const roleRoutes = require("./routes/roles");
 
 require('dotenv').config()
 
@@ -23,6 +24,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/records", recordRoutes);
 app.use("/api/visits", visitRoutes);
+app.use("/api/roles", visitRoutes);
 
 const port = process.env.PORT || 8081;
 app.listen(port, console.log(`Listening on port ${port}...`));
