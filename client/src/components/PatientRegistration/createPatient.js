@@ -128,7 +128,7 @@ const CreateRecord = (props) => {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Patient Registration</h3>
+        <h5 className="createPageHeader">Patient Registration</h5>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">

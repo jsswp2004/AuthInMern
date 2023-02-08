@@ -155,7 +155,7 @@ function UpdateRecordInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Edit Patient Registration</h3>
+        <h5 className='createPageHeader'>Edit Patient Registration</h5>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">

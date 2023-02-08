@@ -550,7 +550,7 @@ tbody tr {
   align-content: space-evenly;
   grid-template-columns: auto auto auto;
   gap: 10px;
-  background-color: hwb(0 25% 75%);
+  background-color: #efefef;
   padding: 5px;
   border-radius: 5px;
 }
@@ -598,7 +598,12 @@ tbody tr {
 
 /* Start calendar css */
 h5 {
-  background-color: white;
+  /* background-color: white; */
+  margin-bottom: 0px;
+}
+
+h5 .createPageHeader {
+  background-color: #efefef;
   margin-bottom: 0px;
 }
 .calendar {
@@ -810,7 +815,7 @@ background-color: #2196F3;
   /* padding: 0px; */
   /* justify-content: space-between; */
   border-bottom-width: 0px;
-  /* background-color: white; */
+  background-color: white;
   /* float: right; */
 }
 

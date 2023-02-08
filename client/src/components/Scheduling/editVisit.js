@@ -95,7 +95,7 @@ function UpdateVisitInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Edit Visit</h3>
+        <h5 className='createPageHeader'>Edit Visit</h5>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">

@@ -148,7 +148,7 @@ const CreateVisit = (props) => {
         <Navbar />
       </div>
       <div className="item3">
-        <h3>Schedule a visit</h3>
+        <h5 className='createPageHeader'>Schedule a visit</h5>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
