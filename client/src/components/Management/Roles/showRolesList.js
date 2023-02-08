@@ -38,7 +38,7 @@ const ShowRolesList = () => {
       .delete(`http://localhost:8081/api/roles/${id}`)
       .then((res) => {
         setRoles(roles.filter((el) => el._id !== id))
-        console.log('Record successfully deleted!')
+        console.log('Role successfully deleted!')
       })
       .catch((error) => {
         console.log('Unable to delete visit')
