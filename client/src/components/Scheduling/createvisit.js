@@ -85,7 +85,7 @@ const CreateVisit = (props) => {
   // const { visitDate, hourOfVisit, provider } = visit
 
   // const patientVisit = visit
-  console.log(visitDate, hourOfVisit, provider)
+  // console.log(visitDate, hourOfVisit, provider)
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')
 

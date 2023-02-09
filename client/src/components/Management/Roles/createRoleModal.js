@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { format } from 'date-fns'
 // import Role from './rolesList'
 import axios from 'axios'
-import Navbar from '../../navigation/navbar'
-import Header from '../../shared/Header'
+// import Navbar from '../../navigation/navbar'
+// import Header from '../../shared/Header'
 
 const CreateRole = (props) => {
 
@@ -18,7 +18,7 @@ const CreateRole = (props) => {
     setRole({ ...role, [e.target.name]: e.target.value })
   }
 
-  console.log(role)
+  // console.log(role)
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -40,18 +40,18 @@ const CreateRole = (props) => {
   // console.log(role)
 
   return (
-    <div className="grid_container">
-      <div className="item1">
+    <div className="grid_containers">
+      {/* <div className="item1">
         <Header />
       </div>
       <div className="item2">
         <Navbar />
-      </div>
+      </div> */}
       <div className="item3">
-        <h5 className="createPageHeader">Create Role</h5>
-        <div className="item3A">
+        {/* <h5 className="createPageHeader">Create Role</h5> */}
+        <div className='item3A createRoleModalBody'>
           <form noValidate onSubmit={onSubmit}>
-            <div className="form-grid-container">
+            {/* <div className="form-grid-container"> */}
               <div className="form-group">
                 <label htmlFor="name">Role </label>
                 <input
@@ -63,7 +63,7 @@ const CreateRole = (props) => {
                 />
                 <input value="Add" type="submit" className="btn btn-success" />
               </div>
-            </div>
+            {/* </div> */}
           </form>
         </div>
       </div>

@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react'
-// import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import Role from './rolesList'
 import axios from 'axios'
 import Navbar from '../../navigation/navbar'
 import Header from '../../shared/Header'
-
+import { Modal, Button } from 'react-bootstrap'
+import CreateRole from './createRoleModal'
 
 const ShowRolesList = () => {
+  // Define the state with useState hook
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
   const [roles, setRoles] = useState([])
   // const navigate = useNavigate()
 
@@ -17,7 +23,17 @@ const ShowRolesList = () => {
     setSearchInput(e.target.value)
   }
 
-  console.log(roles)
+  const navigate = useNavigate()
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    // setSearchInput(e.target.value)
+    // alert('Create role button clicked')
+    setShow(false)
+    navigate('/rolesList')
+  }
+
+  // console.log(roles)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/roles')
@@ -41,13 +57,28 @@ const ShowRolesList = () => {
         console.log('Unable to delete visit')
       })
   }
-  console.log('roles', roles)
-
-  //   const roleList = () => {
-  //     return roles.map((currentrole, i) => {
-  //       return <Role role={currentrole} deleteRecord={deleteRecord} key={i} />
-  //     })
-  //     }
+  // console.log('roles', roles)
+  const RoleModal = () => (
+    <>
+      <Modal show={show} onHide={handleClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Add a Role</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CreateRole />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  // console.log(show)
+  function displayVisitModal() {
+    return <RoleModal />
+  }
 
   function roleList() {
     return roles
@@ -78,6 +109,20 @@ const ShowRolesList = () => {
           <div className="card">
             <div className="item3A">
               <h5 className="createPageHeader">Roles</h5>
+
+              <Button
+                className="btn btn-info btn-sm roleCreateBtn"
+                variant="primary"
+                onClick={handleShow}
+              >
+                <i
+                  className="fa fa-plus"
+                  aria-hidden="true"
+                  title="Add role"
+                ></i>
+              </Button>
+              <div>{displayVisitModal()}</div>
+
               <label htmlFor="search" className="searchLabel">
                 Search :{' '}
                 <input
@@ -99,7 +144,7 @@ const ShowRolesList = () => {
                 </thead>
                 <tbody>{roleList()}</tbody>
               </table>
-              {/* {roleList()} */}
+              
             </div>
           </div>
         </div>
