@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
@@ -6,6 +6,23 @@ import styles from './styles.module.css'
 
 const CreateUser = () => {
   //Define the state
+  const [role, setRoles] = useState(
+    {
+      name: '',
+    }
+  )
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/roles')
+      .then((response) => {
+        setRoles(response.data)
+        // .filter=(user) => user.role === 'Attending'
+      })
+      .catch((error) => {
+        console.log('Error from roles list')
+      })
+  }, [])
+
   const navigate = useNavigate()
   const [user, setUser] = useState({
     name: '',
@@ -80,13 +97,27 @@ const CreateUser = () => {
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="role">Role</label>
-          <input
+          {/* <input
             type="text"
             name="role"
             value={user.role}
             onChange={onChange}
             className={styles.formControl}
-          />
+          /> */}
+          <select
+            key={role._id}
+            name="role"
+            className='form-control select'
+            value={user.role}
+            onChange={onChange}
+          >
+            <option key="0" value=''>Select Role</option>
+            {role.map((role) => (
+              <option key={role._id} value={role.name}>
+                {role.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>

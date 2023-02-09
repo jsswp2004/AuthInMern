@@ -1,10 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import styles from './styles.module.css'
 
 const Signup = () => {
+  //Define the state
+  const [rolex, setRoles] = useState([])
+  const roles = rolex.filter((role) => {
+    return role.name.toString().toLowerCase()
+  })
+  const userRoles = roles.map((role) => {
+    return role.name
+  })
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/roles')
+      .then((response) => {
+        setRoles(response.data)
+        // .filter=(user) => user.role === 'Attending'
+      })
+      .catch((error) => {
+        console.log('Error from roles list')
+      })
+  }, [])
+
   const navigate = useNavigate()
   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   const [data, setData] = useState({
@@ -81,10 +101,9 @@ const Signup = () => {
               defaultValue={data.firstName + '' + data.lastName}
               value={data.name}
               onChange={handleChange}
-              
               className={styles.input}
             />
-            <input
+            {/* <input
               type="text"
               placeholder="Role"
               name="role"
@@ -92,7 +111,24 @@ const Signup = () => {
               value={data.role}
               required
               className={styles.input}
-            />
+            /> */}
+            <select
+              key={rolex._id}
+              placeholder="Select Role"
+              name="role"
+              className="form-control select"
+              value={data.role}
+              onChange={handleChange}
+            >
+              <option key="0" value="">
+                Select Role
+              </option>
+              {userRoles.map((role) => (
+                <option key={role._id} value={role.name}>
+                  {role}
+                </option>
+              ))}
+            </select>
             <input
               type="email"
               placeholder="Email"
