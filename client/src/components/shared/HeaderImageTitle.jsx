@@ -20,8 +20,7 @@ function HeaderImageTitle() {
       <div className="header">
         <div className="headerItem">
           <img src={logo} className="App_logo" alt="logo" />{' '}
-          <h3 id="#header_logotext" className="h3">
-            {' '}
+          <h3  className="h3header">            
             POEHR
           </h3>
         </div>

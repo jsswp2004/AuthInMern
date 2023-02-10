@@ -7,6 +7,7 @@ import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
 import CreateRole from './createRoleModal'
 
+
 const ShowRolesList = () => {
   // Define the state with useState hook
   const [show, setShow] = useState(false)
@@ -79,6 +80,8 @@ const ShowRolesList = () => {
   function displayVisitModal() {
     return <RoleModal />
   }
+
+
 
   function roleList() {
     return roles

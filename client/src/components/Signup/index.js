@@ -18,7 +18,6 @@ const Signup = () => {
       .get('http://localhost:8081/api/roles')
       .then((response) => {
         setRoles(response.data)
-        // .filter=(user) => user.role === 'Attending'
       })
       .catch((error) => {
         console.log('Error from roles list')
