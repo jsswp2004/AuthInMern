@@ -148,7 +148,7 @@ const CreateVisit = (props) => {
         <Navbar />
       </div>
       <div className="item3">
-        <h5 className='createPageHeader'>Schedule a visit</h5>
+        <h5 className="createPageHeader">Schedule a visit</h5>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
@@ -196,7 +196,9 @@ const CreateVisit = (props) => {
                         onChange={onChange}
                       >
                         {hourValues.map((hourval) => (
-                          <option key={hourval.value} value={hourval.value}>{hourval.label}</option>
+                          <option key={hourval.value} value={hourval.value}>
+                            {hourval.label}
+                          </option>
                         ))}
                       </select>
                     </label>
@@ -245,7 +247,7 @@ const CreateVisit = (props) => {
                     onChange={onChange}
                   >
                     {' '}
-                    <option key="0" value="Select Provider" >
+                    <option key="0" value="Select Provider">
                       Select Provider
                     </option>
                     {providerMD.map((doc) => (
@@ -255,7 +257,10 @@ const CreateVisit = (props) => {
                     ))}
                   </select>
                 </div>
-                <div
+
+              </div>
+              <div className="div-items">
+              <div
                   className="form-group"
                   style={{
                     float: 'left',

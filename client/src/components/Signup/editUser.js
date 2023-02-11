@@ -27,6 +27,16 @@ function EditUser(props) {
   })
   const { id } = useParams()
   const navigate = useNavigate()
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/roles')
+      .then((response) => {
+        setRoles(response.data)
+      })
+      .catch((error) => {
+        console.log('Error from roles list')
+      })
+  }, [])
 
   useEffect(() => {
     const url = `http://localhost:8081/api/users/${id}`
@@ -148,7 +158,7 @@ function EditUser(props) {
                     placeholder="Select Role"
                     name="role"
                     className="form-control select"
-                    value={rolex.name}
+                    value={user.role}
                     onChange={onChange}
                   >
                     <option key="0" value="">

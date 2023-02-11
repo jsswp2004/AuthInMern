@@ -2133,6 +2133,8 @@ export default function ClinicVisit() {
                   <table className="table table-striped">
                     <thead>
                       <tr className="trStyles">
+                        <th id="columnName">MRN</th>
+                        <th id="columnName">Visit ID</th>
                         <th id="columnName">FirstName</th>
                         <th id="columnName">Middlename</th>
                         <th id="columnName">Lastname</th>
