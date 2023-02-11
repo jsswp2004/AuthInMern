@@ -240,8 +240,8 @@ export default function ClinicVisit() {
   })
   // const { houfOfVisit , visitDate, firstName, lastName } = visitMonthlyDay1
   // console.log(houfOfVisit , visitDate, firstName, lastName)
-  const visitDay1 = visitMonthlyDay1
-  console.log(visitDay1.map((el) => el))
+  // const visitDay1 = visitMonthlyDay1
+  // console.log(visitDay1.map((el) => el))
 
   function visitListMonthlyDay1() {
     return [...visitMonthlyDay1]
@@ -2124,9 +2124,7 @@ export default function ClinicVisit() {
                 style={gridWeeklyStart}
               >
                 <div className="calendarDailyDate" id="calendarDailyDate">
-                  <h5
-                    style={{ marginBottom: '0px', backgroundColor: '#b9b9b9' }}
-                  >
+                  <h5 className="calendarDailyDateHeader">
                     {format(new Date(showDateValue.toLocaleString()), 'PPP')}
                   </h5>
                 </div>
@@ -2135,15 +2133,15 @@ export default function ClinicVisit() {
                   <table className="table table-striped">
                     <thead>
                       <tr className="trStyles">
-                        <th>FirstName</th>
-                        <th>Middlename</th>
-                        <th>Lastname</th>
-                        <th>Visit Date</th>
-                        <th>Time</th>
-                        <th>Email</th>
-                        <th>Provider</th>
-                        <th>Date Created</th>
-                        <th>Action</th>
+                        <th id="columnName">FirstName</th>
+                        <th id="columnName">Middlename</th>
+                        <th id="columnName">Lastname</th>
+                        <th id="columnName">Visit Date</th>
+                        <th id="columnName">Time</th>
+                        <th id="columnName">Email</th>
+                        <th id="columnName">Provider</th>
+                        <th id="columnName">Date Created</th>
+                        <th id="columnName">Action</th>
                       </tr>
                     </thead>
                     <tbody className="trStyles">{patientListDaily()}</tbody>

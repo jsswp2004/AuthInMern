@@ -449,7 +449,13 @@ body {
   font-size: 14px;
   overflow: auto;
 }
+.roleItemContainer {
+  width: 100%;
+}
 
+.roleItemContainer .roleItemContainerBox {
+  width: 50%;
+}
 .table-striped {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -468,7 +474,7 @@ body {
 }
 .child {
   display: inline-block;
-  text-align: center;
+  text-align: left;
   /* border: 1px solid red; */
   /* padding: 1rem 1rem; */
   /* vertical-align: middle; */
@@ -484,10 +490,7 @@ body {
   /* float: right;  */
   padding-right: "5px";
 }
-#columnName {
-  /* display: flex; */
-  flex-direction: row;
-}
+
 
 #columntable {
   padding-top: 2px;
@@ -497,10 +500,12 @@ body {
 }
 
 #columnName {
+  flex-direction: row;
   padding-top: 2px;
   padding-bottom: 0px;
   padding-right: 0px;
   padding-left: 2px;
+  text-align: left;
 }
 .table td,
 .table th {
@@ -570,12 +575,16 @@ tbody tr {
   height: 30px;
   border-radius: 5px;
   float: right;
+  margin-top: 3px;
+}
+.patientListHeader {
+  margin-top: 3px;
 }
 
 .searchInput {
   margin-left: auto;
   height: 30px;
-  margin-top: 2px;
+  margin-top: 3px;
   margin-right: 2px;
   border-radius: 5px;
 }
@@ -605,6 +614,7 @@ h5 {
 h5 .createPageHeader {
   background-color: #efefef;
   margin-bottom: 0px;
+  margin-top: 3px;
 }
 .calendar {
   width: 100%;
@@ -706,6 +716,13 @@ ul {
   background-color: var(--grey-background);
 }
 
+.calendarDailyDateHeader  {
+  margin-bottom: 0px;
+  margin-right: 5px;
+  float:right;
+  margin-left: auto;
+  background-color: '#eeeeee'
+}
 /* #calendarWeekly {
   height: 100vh;
 }
@@ -1217,11 +1234,12 @@ text-align: center;
 
 /*role page css*/
 .roleCreateBtn {
-  border-radius: 8px;
+  border-radius: 10px;
   margin-left: 10px;
-  margin-top: 1px;
+  margin-top: 3px;
   margin-bottom: 1px;
-  
+  margin-left: 50%;
+  height: 30px;
 }
 
 .roleInput {

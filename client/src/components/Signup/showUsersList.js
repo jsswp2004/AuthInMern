@@ -180,8 +180,8 @@ const ShowUsersList = () => {
           </label>
         </div>
 
-        <table className="table">
-          <thead className="thead-light">
+        <table className="table table-striped">
+          <thead >
             <tr>
               <th id="columnName">
                 <div className="parent">

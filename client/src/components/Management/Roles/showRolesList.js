@@ -7,7 +7,6 @@ import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
 import CreateRole from './createRoleModal'
 
-
 const ShowRolesList = () => {
   // Define the state with useState hook
   const [show, setShow] = useState(false)
@@ -81,8 +80,6 @@ const ShowRolesList = () => {
     return <RoleModal />
   }
 
-
-
   function roleList() {
     return roles
       .filter((role) => {
@@ -107,41 +104,52 @@ const ShowRolesList = () => {
       <div className="item2">
         <Navbar />
       </div>
+
       <div className="item3">
-        <div className="item3A">
-          <h5 className="createPageHeader">Roles</h5>
+        <div className="roleItemContainer">
+          <div className="roleItemContainerBox">
+            <div className="item3A">
+              <h5 className="createPageHeader">Roles</h5>
 
-          <Button
-            className="btn btn-info btn-sm roleCreateBtn"
-            variant="primary"
-            onClick={handleShow}
-          >
-            <i className="fa fa-plus" aria-hidden="true" title="Add role"></i>
-          </Button>
-          <div>{displayVisitModal()}</div>
+              <div>{displayVisitModal()}</div>
+              <Button
+                className="btn btn-info btn-sm roleCreateBtn"
+                variant="primary"
+                onClick={handleShow}
+              >
+                {/* <i
+                  className="fa fa-plus"
+                  aria-hidden="true"
+                  title="Add role"
+                ></i> */}
+                Add Role
+              </Button>
+              <label htmlFor="search" className="searchLabel">
+                Search :{' '}
+                <input
+                  id="search"
+                  type="text"
+                  placeholder="Search roles"
+                  onChange={handleChange}
+                  value={searchInput}
+                />
+              </label>
+            </div>
+            <div className="card-body table-responsive p-0">
+              <table className="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>{roleList()}</tbody>
+              </table>
 
-          <label htmlFor="search" className="searchLabel">
-            Search :{' '}
-            <input
-              id="search"
-              type="text"
-              placeholder="Search roles"
-              onChange={handleChange}
-              value={searchInput}
-            />
-          </label>
+            </div>
+          </div>
         </div>
-        <div className="card-body table-responsive p-0">
-          <table className="table table-hover text-nowrap">
-            <thead>
-              <tr>
-                <th>Role</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>{roleList()}</tbody>
-          </table>
-        </div>
+        <div className="roleItemContainerBox"></div>
       </div>
     </div>
   )

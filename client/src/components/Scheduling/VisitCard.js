@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'
 
 const VisitCard = (props) => (
     <tr>
-      <td>{props.visit.firstName}</td>
-      <td>{props.visit.middleName}</td>
-      <td>{props.visit.lastName}</td>
-      <td>{props.visit.visitDate}</td>
-      <td>{props.visit.hourOfVisit}</td>
-      <td>{props.visit.email}</td>
-      <td>{props.visit.provider}</td>
-      <td>{props.visit.addedDate}</td>
-      <td>
+      <td id='columntable'>{props.visit.firstName}</td>
+      <td id='columntable'>{props.visit.middleName}</td>
+      <td id='columntable'>{props.visit.lastName}</td>
+      <td id='columntable'>{props.visit.visitDate}</td>
+      <td id='columntable'>{props.visit.hourOfVisit}</td>
+      <td id='columntable'>{props.visit.email}</td>
+      <td id='columntable'>{props.visit.provider}</td>
+      <td id='columntable'>{props.visit.addedDate}</td>
+      <td id='columntable'>
         <Link
           className="btn btn-info btn-sm"
           to={`/editVisit/${props.visit._id}`}

@@ -100,7 +100,7 @@ function EditRole(props) {
                 placeholder="Select Role"
                 name="role"
                 className="form-control select"
-                value={data.role}
+                value={role.name}
                 onChange={handleChange}
               >
                 <option key="0" value="">

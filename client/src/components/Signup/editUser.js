@@ -6,6 +6,13 @@ import Navbar from '../navigation/navbar'
 import LogoutIcon from '@mui/icons-material/Logout'
 
 function EditUser(props) {
+  const [rolex, setRoles] = useState([])
+  const roles = rolex.filter((role) => {
+    return role.name.toString().toLowerCase()
+  })
+  const userRoles = roles.map((role) => {
+    return role.name
+  })
   const handleLogout = () => {
     localStorage.removeItem('token')
     navigate('/login')
@@ -58,7 +65,13 @@ function EditUser(props) {
         console.log(err)
       })
   }
-
+  // const [data, setData] = useState({
+  //   name: '',
+  //   addedDate: dateAdded,
+  // })
+  // const handleChange = (e) => {
+  //   setData({ ...data, [e.target.name]: e.target.value })
+  // }
   return (
     <div className="grid_container">
       <div className="item1">
@@ -66,7 +79,7 @@ function EditUser(props) {
           <div className="header">
             <div className="headerItem">
               <img src={logo} className="App_logo" alt="logo" />{' '}
-              <h3 id="#header_logotext" className="h3">
+              <h3 id="#header_logotext" className="h3header">
                 {' '}
                 POEHR
               </h3>
@@ -123,13 +136,30 @@ function EditUser(props) {
                 </div>
                 <div className="form-group">
                   <label htmlFor="role">Role</label>
-                  <input
+                  {/* <input
                     type="text"
                     name="role"
                     value={user.role}
                     onChange={onChange}
                     className="form-control"
-                  />
+                  /> */}
+                  <select
+                    key={rolex._id}
+                    placeholder="Select Role"
+                    name="role"
+                    className="form-control select"
+                    value={rolex.name}
+                    onChange={onChange}
+                  >
+                    <option key="0" value="">
+                      Select Role
+                    </option>
+                    {userRoles.map((role) => (
+                      <option key={role._id} value={role.name}>
+                        {role}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
