@@ -1250,3 +1250,18 @@ text-align: center;
   padding-top: 0px;
   background-color: #ffffff;
 }
+
+tfoot .MuiTableFooter-root {
+  background-color: #ffffff;
+  margin-bottom: 0px;
+  margin-top: 20px;
+  ;
+}
+
+
+.MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows {
+  background-color: #ffffff;
+  /* margin-bottom: 0px; */
+  margin-top: 10px;
+  
+}
