@@ -1251,10 +1251,10 @@ text-align: center;
   background-color: #ffffff;
 }
 
-tfoot .MuiTableFooter-root {
+tfoot>.MuiTableFooter-root {
   background-color: #ffffff;
   margin-bottom: 0px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   ;
 }
 
@@ -1262,6 +1262,6 @@ tfoot .MuiTableFooter-root {
 .MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows {
   background-color: #ffffff;
   /* margin-bottom: 0px; */
-  margin-top: 10px;
+  margin-top: 15px;
   
 }
