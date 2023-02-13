@@ -32,7 +32,7 @@ const Main = () => {
             {/* <img src={AboutImg} className="About_img" alt="about" /> */}
           </div>
           <div className="aboutPage1"> 
-          <div className="aboutPage2 aboutPageDescription">
+          <aside className="aboutPage2 aboutPageDescription">
           At POEHR, we understand the importance of accurate and up-to-date medical
               records, and our state-of-the-art electronic medical record system
               tools are designed to streamline the process for both medical
@@ -49,10 +49,10 @@ const Main = () => {
             improving the efficiency and accuracy of your medical record
             keeping, contact us today to learn more about how POEHR, Inc. can
             benefit your practice.
-          </div>
-          <div className="aboutPage3">
+          </aside>
+          <aside className="aboutPage3">
             <img src={AboutImg} className="About_img" alt="about" />
-          </div>
+          </aside>
           </div> 
 
         {/* </div> */}
