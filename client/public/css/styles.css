@@ -34,7 +34,7 @@ body {
 }
 .HomeGreeting {
    display: flex;
-   flex-flow: row wrap;
+   /* flex-flow: row wrap; */
   /*flex-direction: column;
   justify-content: center;
   align-items: center; */
