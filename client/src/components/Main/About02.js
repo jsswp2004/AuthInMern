@@ -20,22 +20,25 @@ const Main = () => {
       </div> */}
       <div className="item2About">
         {/* <div className="HomepageGreeting"> */}
-        <div className="aboutPage1">
+        <div className="wrapper">
           {/* style={{ backgroundImage: URL('./images/aboutPageDoc.jpg')}} */}
-          <h3 className="aboutPageTitle1">We Are POEHR.</h3>
+          <h3 className="headers">We Are POEHR.</h3>
 
-          <h5 className="aboutPageTitle2">
-            Dedicated to revolutionizing the way healthcare providers store and
-            access patient information.{' '}
-          </h5>
+          {/* <div className="main"> */}
+            <p>
+              {' '}
+              Dedicated to revolutionizing the way healthcare providers store
+              and access patient information.{' '}
+            </p>
+          {/* </div> */}
           {/* <p className="aboutPageDescription">
  
             </p> */}
           {/* <img src={AboutImg} className="About_img" alt="about" /> */}
-        </div>
-        <div className="aboutPageBodyContainer">
-          <div className="aside aboutPage2 aboutPageDescription" style={{float: 'left'}}>
-            At POEHR, we understand the importance of accurate and up-to-date
+
+          {/* <div className="aboutPage1"> */}
+          <div className="aside aside-1">
+                At POEHR, we understand the importance of accurate and up-to-date
             medical records, and our state-of-the-art electronic medical record
             system tools are designed to streamline the process for both medical
             professionals and patients. Our system is fully compliant with all
@@ -52,9 +55,10 @@ const Main = () => {
             keeping, contact us today to learn more about how POEHR, Inc. can
             benefit your practice.
           </div>
-          <div className="aside aboutPage3" style={{float: 'right'}}>
+          <div className="aside aside-2">
             <img src={AboutImg} className="About_img" alt="about" />
           </div>
+          {/* </div> */}
         </div>
 
         {/* </div> */}
