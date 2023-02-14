@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+// import { useNavigate } from 'react-router'
 import User from './userlist'
 import axios from 'axios'
-import logo from '../../components/shared/images/logoPOWER.png'
+// import logo from '../../components/shared/images/logoPOWER.png'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { Link } from 'react-router-dom'
-import LogoutIcon from '@mui/icons-material/Logout'
+// import LogoutIcon from '@mui/icons-material/Logout'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -25,52 +25,26 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
-import { alpha } from '@mui/material/styles';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
-import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@mui/utils';
+// import { alpha } from '@mui/material/styles';
+// import TableSortLabel from '@mui/material/TableSortLabel';
+// import Toolbar from '@mui/material/Toolbar';
+// import Typography from '@mui/material/Typography';
+// import Checkbox from '@mui/material/Checkbox';
+// import Tooltip from '@mui/material/Tooltip';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Switch from '@mui/material/Switch';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import FilterListIcon from '@mui/icons-material/FilterList';
+// import { visuallyHidden } from '@mui/utils';
 
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
 
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
 
 export default function ShowUsersList() {
-  let navigate = useNavigate()
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    navigate('/login')
-  }
+  // let navigate = useNavigate()
+  // const handleLogout = () => {
+  //   localStorage.removeItem('token')
+  //   navigate('/login')
+  // }
 
 
 
@@ -266,6 +240,7 @@ export default function ShowUsersList() {
       onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1))
     }
 
+
     return (
       <Box sx={{ flexShrink: 0, ml: 2.5 }}>
         <IconButton
@@ -308,6 +283,7 @@ export default function ShowUsersList() {
     )
   }
 
+
   TablePaginationActions.propTypes = {
     count: PropTypes.number.isRequired,
     onPageChange: PropTypes.func.isRequired,
@@ -330,6 +306,8 @@ export default function ShowUsersList() {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
+
+
 
   return (
     <div className="grid_container">
