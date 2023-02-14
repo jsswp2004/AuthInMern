@@ -34,7 +34,10 @@ const Main = () => {
           {/* <img src={AboutImg} className="About_img" alt="about" /> */}
         </div>
         <div className="aboutPageBodyContainer">
-          <div className="aside aboutPage2 aboutPageDescription" style={{float: 'left'}}>
+          <div
+            className="aside aboutPage2 aboutPageDescription"
+            style={{ float: 'left' }}
+          >
             At POEHR, we understand the importance of accurate and up-to-date
             medical records, and our state-of-the-art electronic medical record
             system tools are designed to streamline the process for both medical
@@ -52,12 +55,25 @@ const Main = () => {
             keeping, contact us today to learn more about how POEHR, Inc. can
             benefit your practice.
           </div>
-          <div className="aside aboutPage3" style={{float: 'right'}}>
+          <div className="aside aboutPage3" style={{ float: 'right' }}>
             <img src={AboutImg} className="About_img" alt="about" />
           </div>
         </div>
-
         {/* </div> */}
+        <div>
+          <div>
+            {' '}
+            Icons made by{' '}
+            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+              {' '}
+              Freepik{' '}
+            </a>{' '}
+            from{' '}
+            <a href="https://www.flaticon.com/" title="Flaticon">
+              www.flaticon.com'
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   )
