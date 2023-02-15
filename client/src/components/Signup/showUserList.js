@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import { useNavigate } from 'react-router'
-import User from './userlist'
+// import User from './userlist'
 import axios from 'axios'
 // import logo from '../../components/shared/images/logoPOWER.png'
 import Navbar from '../navigation/navbar'
@@ -37,16 +37,12 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 // import FilterListIcon from '@mui/icons-material/FilterList';
 // import { visuallyHidden } from '@mui/utils';
 
-
-
 export default function ShowUsersList() {
   // let navigate = useNavigate()
   // const handleLogout = () => {
   //   localStorage.removeItem('token')
   //   navigate('/login')
   // }
-
-
 
   const [users, setUsers] = useState([])
   const [searchInput, setSearchInput] = useState('')
@@ -78,108 +74,110 @@ export default function ShowUsersList() {
       })
   }
 
-  const filteredData = users.filter((user) => {
-    if (searchInput === '') {
-      return user
-    } else {
-      return (
-        user.firstName
-          .toString()
-          .toLowerCase()
-          .includes(searchInput.toLowerCase()) ||
-        user.lastName
-          .toString()
-          .toLowerCase()
-          .includes(searchInput.toLowerCase()) ||
-        user.email
-          .toString()
-          .toLowerCase()
-          .includes(searchInput.toLowerCase()) ||
-        user.role
-          .toString()
-          .toLowerCase()
-          .includes(searchInput.toLowerCase()) ||
-        user.addedDate
-          .toString()
-          .toLowerCase()
-          .includes(searchInput.toLowerCase())
-      )
-    }
-  })
-  const [sortedField, setSortedField] = useState(null)
-  const [sortedDirection, setSortedDirection] = useState(null)
+  const filteredData = users
+    .filter((user) => {
+      if (searchInput === '') {
+        return user
+      } else {
+        return (
+          user.firstName
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          user.lastName
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          user.email
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          user.role
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          user.addedDate
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase())
+        )
+      }
+    })
+    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1))
+  // const [sortedField, setSortedField] = useState(null)
+  // const [sortedDirection, setSortedDirection] = useState(null)
 
-  function userList() {
-    if (sortedField === 'firstName' && sortedDirection === 'asc') {
-      return filteredData
-        .sort((a, b) => (a.firstName > b.firstName ? 1 : -1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'firstName' && sortedDirection === 'dsc') {
-      return filteredData
-        .sort((a, b) => (a.firstName > b.firstName ? -1 : 1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'lastName' && sortedDirection === 'asc') {
-      return filteredData
-        .sort((a, b) => (a.lastName > b.lastName ? 1 : -1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'lastName' && sortedDirection === 'dsc') {
-      return filteredData
-        .sort((a, b) => (a.lastName > b.lastName ? -1 : 1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'email' && sortedDirection === 'asc') {
-      return filteredData
-        .sort((a, b) => (a.email > b.email ? 1 : -1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'email' && sortedDirection === 'dsc') {
-      return filteredData
-        .sort((a, b) => (a.email > b.email ? -1 : 1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'role' && sortedDirection === 'asc') {
-      return filteredData
-        .sort((a, b) => (a.role > b.role ? 1 : -1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'role' && sortedDirection === 'dsc') {
-      return filteredData
-        .sort((a, b) => (a.role > b.role ? -1 : 1))
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'addedDate' && sortedDirection === 'asc') {
-      return filteredData
-        .sort((a, b) =>
-          Date.parse(a.addedDate) > Date.parse(b.addedDate) ? 1 : -1,
-        )
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else if (sortedField === 'addedDate' && sortedDirection === 'dsc') {
-      return filteredData
-        .sort((a, b) =>
-          Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1,
-        )
-        .map((user) => {
-          return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-        })
-    } else {
-      return filteredData.map((user) => {
-        return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-      })
-    }
-  }
+  // function userList() {
+  //   if (sortedField === 'firstName' && sortedDirection === 'asc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.firstName > b.firstName ? 1 : -1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'firstName' && sortedDirection === 'dsc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.firstName > b.firstName ? -1 : 1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'lastName' && sortedDirection === 'asc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.lastName > b.lastName ? 1 : -1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'lastName' && sortedDirection === 'dsc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.lastName > b.lastName ? -1 : 1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'email' && sortedDirection === 'asc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.email > b.email ? 1 : -1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'email' && sortedDirection === 'dsc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.email > b.email ? -1 : 1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'role' && sortedDirection === 'asc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.role > b.role ? 1 : -1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'role' && sortedDirection === 'dsc') {
+  //     return filteredData
+  //       .sort((a, b) => (a.role > b.role ? -1 : 1))
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'addedDate' && sortedDirection === 'asc') {
+  //     return filteredData
+  //       .sort((a, b) =>
+  //         Date.parse(a.addedDate) > Date.parse(b.addedDate) ? 1 : -1,
+  //       )
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else if (sortedField === 'addedDate' && sortedDirection === 'dsc') {
+  //     return filteredData
+  //       .sort((a, b) =>
+  //         Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1,
+  //       )
+  //       .map((user) => {
+  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //       })
+  //   } else {
+  //     return filteredData.map((user) => {
+  //       return <User user={user} deleteRecord={deleteRecord} key={user._id} />
+  //     })
+  //   }
+  // }
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -200,24 +198,24 @@ export default function ShowUsersList() {
       border: 0,
     },
   }))
-    
-//   const StyledTablePagination = styled(TablePagination)(({ theme }) => ({
-//     '&:td': {
-//           backgroundColor: theme.palette.common.white,
-//           color: theme.palette.common.black,
-//           marginBottom: 0,
-//           marginTop: 10,
-//     },
-//     // hide last border
-//     // '&:last-child td, &:last-child th': {
-//     //   border: 0,
-//     // },
-//     // [`&.${tableCellClasses.body}`]: {
-//     //       fontSize: 14,
-//     //     // fontColor: theme.palette.common.white,
-//     //     marginBottom: 0,
-//     //   },
-//   }))
+
+  //   const StyledTablePagination = styled(TablePagination)(({ theme }) => ({
+  //     '&:td': {
+  //           backgroundColor: theme.palette.common.white,
+  //           color: theme.palette.common.black,
+  //           marginBottom: 0,
+  //           marginTop: 10,
+  //     },
+  //     // hide last border
+  //     // '&:last-child td, &:last-child th': {
+  //     //   border: 0,
+  //     // },
+  //     // [`&.${tableCellClasses.body}`]: {
+  //     //       fontSize: 14,
+  //     //     // fontColor: theme.palette.common.white,
+  //     //     marginBottom: 0,
+  //     //   },
+  //   }))
 
   //pagination
   function TablePaginationActions(props) {
@@ -239,7 +237,6 @@ export default function ShowUsersList() {
     const handleLastPageButtonClick = (event) => {
       onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1))
     }
-
 
     return (
       <Box sx={{ flexShrink: 0, ml: 2.5 }}>
@@ -283,7 +280,6 @@ export default function ShowUsersList() {
     )
   }
 
-
   TablePaginationActions.propTypes = {
     count: PropTypes.number.isRequired,
     onPageChange: PropTypes.func.isRequired,
@@ -307,8 +303,6 @@ export default function ShowUsersList() {
     setPage(0)
   }
 
-
-
   return (
     <div className="grid_container">
       <div className="item1">
@@ -320,7 +314,11 @@ export default function ShowUsersList() {
       <div className="item3">
         <div className="item3A">
           <h3>Registered Users</h3>
+
           <label htmlFor="search" className="searchLabel">
+          <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
+            <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User'/>
+          </Link>{' '}
             Search :{' '}
             <input
               id="search"
@@ -377,7 +375,7 @@ export default function ShowUsersList() {
                     <button
                       className="btn btn-danger btn-sm"
                       onClick={() => {
-                        User.deleteRecord(user._id)
+                        deleteRecord(user._id)
                       }}
                     >
                       <i className="fa fa-trash-o fa-sm" aria-hidden="true" />
@@ -395,7 +393,7 @@ export default function ShowUsersList() {
                 </StyledTableRow>
               )}
             </TableBody>
-            <TableFooter >
+            <TableFooter>
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}

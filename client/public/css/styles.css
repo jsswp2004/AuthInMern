@@ -577,14 +577,23 @@ body {
   display: flex;
 }
 .child {
-  display: inline-block;
-  text-align: left;
+  /* display: inline-block; */
+  float: right;
+  /* text-align: right; */
   /* border: 1px solid red; */
   /* padding: 1rem 1rem; */
   /* vertical-align: middle; */
   margin-left: auto;
 }
-
+.aboutChild {
+  /* display: inline-block; */
+  float: right;
+  /* text-align: right; */
+  /* border: 1px solid red; */
+  /* padding: 1rem 1rem; */
+  /* vertical-align: middle; */
+  margin-left: auto;
+}
 .asc {
   /* float: right;  */
   padding-right: "5px";
@@ -1405,3 +1414,12 @@ tfoot > .MuiTableFooter-root {
 
 
 /**/
+
+/*registration page css*/
+.registerBtn{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: 10px;
+  height: 30px;
+}

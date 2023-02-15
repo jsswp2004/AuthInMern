@@ -9,7 +9,7 @@ import {
   getDate,
   startOfMonth,
   getDay,
-  subMonths,
+  // subMonths,
   endOfMonth,
   addDays,
   addMonths,
@@ -26,7 +26,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import VisitWeekly from '../Scheduling/visitWeekly'
+// import VisitWeekly from '../Scheduling/visitWeekly'
 import VisitDaily from '../Scheduling/visitMonthlyDaily'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
@@ -43,7 +43,7 @@ import VisitCard from '../Scheduling/VisitCard'
 
 export default function ClinicVisit() {
   //#region for alert declaration
-  const alert = useAlert()
+  // const alert = useAlert()
   //#endregion
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
