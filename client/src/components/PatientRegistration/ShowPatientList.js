@@ -332,7 +332,7 @@ export default function ShowRecordList() {
                   <StyledTableCell align="left">
                   <Link
                       className="btn btn-success btn-sm "
-                      to={`/editPatient/${pt._id}`}
+                      to={`/createvisitFromReg/${pt._id}`}
                     >
                       <i
                         className="fa fa-stethoscope fa-sm"

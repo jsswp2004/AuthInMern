@@ -13,6 +13,7 @@ import VisitList from './components/PatientVisit/ShowVisitList'
 import VisitSchedule from './components/Scheduling/VisitScheduleList'
 import CalendarSchedule from './components/Scheduling/calendarSchedule'
 import CreateVisit from './components/Scheduling/createvisit'
+import CreateVisitFromReg from './components/Scheduling/createvisitFromReg'
 import EditVisit from './components/Scheduling/editVisit'
 import VisitDetails from './components/Scheduling/detailsVisit'
 import About from './components/Main/About'
@@ -34,6 +35,7 @@ function App() {
       <Route path="/visitSchedule" exact element={<VisitSchedule />} />
       <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
       <Route path="/createVisit/:id" exact element={<CreateVisit />} />
+      <Route path="/createvisitFromReg/:id" exact element={<CreateVisitFromReg />} />
       <Route path="/registrationDetails/:id" exact element={<RegistrationDetails />} />
       <Route path="/clinicVisit" exact element={<ClinicVisit />} />
       <Route path="/editVisit/:id" exact element={<EditVisit />} />
