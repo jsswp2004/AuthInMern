@@ -22,6 +22,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 export default function ShowRecordList() {
   const [records, setRecords] = useState([])
@@ -329,10 +330,11 @@ export default function ShowRecordList() {
                       className="btn btn-info btn-sm"
                       to={`/editPatient/${pt._id}`}
                     >
-                      <i
+                      {/* <i
                         className="fa fa-user-o fa-sm"
                         aria-hidden="true" title='Create visit'
-                      />
+                      /> */}
+                      <LocalHospitalIcon fontSize='small'/>
                     </Link>{' '}
                     <Link
                       className="btn btn-info btn-sm"
