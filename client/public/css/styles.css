@@ -1363,6 +1363,12 @@ tfoot > .MuiTableFooter-root {
   background-color: #ffffff;
   margin-bottom: 0px;
   /* margin-top: 20px; */
+  column-span: all;
+  float: right;
+}
+.MuiTableCell-footer {
+  column-span: all;
+  /* float: right; */
 }
 
 .MuiTablePagination-selectLabel,
