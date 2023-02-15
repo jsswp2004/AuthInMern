@@ -285,7 +285,7 @@ const CreateVisitFromReg = (props) => {
                     className="form-control"
                     name="visitNumber"
                     placeholder="Automatically generated"
-                    value={visit.visitNumber}
+                    value={record.visitNumber}
                     readOnly
                     onChange={onChange}
                   />

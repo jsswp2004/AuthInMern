@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
+import { Hour } from '../listDictionaries/listData/listDictionariesData'
 
 function UpdateVisitInfo(props) {
   //create provider object
@@ -25,7 +26,16 @@ function UpdateVisitInfo(props) {
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
+  const hourValues = Hour
+  const [hourvalue, sethourValue] = useState('')
+
+  const hourvalueChange = (event) => {
+    sethourValue(event.target.value)
+    // onChange({ gendervalue })
+  }
   const [visit, setVisit] = useState({
+    medicalRecordNumber: '',
+    visitNumber:'',
     firstName: '',
     lastName: '',
     middleName: '',
@@ -43,6 +53,8 @@ function UpdateVisitInfo(props) {
       .get(`http://localhost:8081/api/visits/${id}`)
       .then((res) => {
         setVisit({
+          medicalRecordNumber: res.data.medicalRecordNumber,
+          visitNumber: res.data.visitNumber,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
           middleName: res.data.middleName,
@@ -131,7 +143,7 @@ function UpdateVisitInfo(props) {
                       onChange={onChange}
                     />
                   </div>
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label htmlFor="hourOfVisit">Appointment Time</label>
                     <input
                       name="hourOfVisit"
@@ -139,6 +151,24 @@ function UpdateVisitInfo(props) {
                       value={visit.hourOfVisit}
                       onChange={onChange}
                     />
+                  </div> */}
+                  <div className="form-group">
+                    <label htmlFor="hourOfVisit">
+                      Hour of Visit
+                      <select
+                        key={visit.hourOfVisit}
+                        className="form-control select"
+                        name="hourOfVisit"
+                        value={visit.hourOfVisit}
+                        onChange={onChange}
+                      >
+                        {hourValues.map((hourval) => (
+                          <option key={hourval.value} value={hourval.value}>
+                            {hourval.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -190,6 +220,31 @@ function UpdateVisitInfo(props) {
                       </option>
                     ))}
                   </select>
+                </div>
+
+              </div>
+              <div className='div-items'>
+              <div className="form-group">
+                  <label htmlFor="medicalRecordNumber">MRN</label>
+                  <input
+                    type="text"
+                    name="medicalRecordNumber"
+                    className="form-control"
+                    value={visit.medicalRecordNumber}
+                    onChange={onChange}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="visitNumber">Visit ID</label>
+                  <input
+                    type="text"
+                    name="visitNumber"
+                    className="form-control"
+                    value={visit.visitNumber}
+                    onChange={onChange}
+                    readOnly
+                  />
                 </div>
                 <div
                   className="form-group"

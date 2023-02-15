@@ -7,8 +7,8 @@ import format from 'date-fns/format'
 
 const VisitCard = (props) => (
   <tr>
-    {/* <td>{props.visit.medicalVisitNumber}</td>
-    <td>{props.visit.visitNumber}</td> */}
+    <td>{props.visit.medicalRecordNumber}</td>
+    <td>{props.visit.visitNumber}</td>
     <td>{props.visit.firstName}</td>
     <td>{props.visit.middleName}</td>
     <td>{props.visit.lastName}</td>
@@ -111,6 +111,14 @@ function ShowVisitList() {
     } 
     else {
       return (
+        visit.medicalRecordNumber
+        .toString()
+        .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+          visit.visitNumber
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
         visit.firstName
           .toString()
           .toLowerCase()
@@ -228,7 +236,7 @@ function ShowVisitList() {
       <div className="item3">
         <div className="item3A">
           <div className='filter_navbarLeft'>
-            <h3>Search for a visit</h3>
+            <h4>Visit List</h4>
           </div>
           <div  className='.filter_navbarlist' >
             <span className="filter__search-label">Filter: </span>
@@ -287,6 +295,8 @@ function ShowVisitList() {
           <table className="table">
             <thead>
               <tr>
+              <th>MRN</th>
+                <th>Visit ID</th>
                 <th>FirstName</th>
                 <th>Middlename</th>
                 <th>Lastname</th>

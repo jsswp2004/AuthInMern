@@ -57,7 +57,7 @@ export default function ClinicVisit() {
         console.log('Error from ShowVisitList')
       })
   }, [])
-  // console.log(visits)
+  console.log(visits)
   //#endregion
   //#region code for calendar view select dropdown
   const [selectViewValue, setViewValue] = React.useState('Daily')

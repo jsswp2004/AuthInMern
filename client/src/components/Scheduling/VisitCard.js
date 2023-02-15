@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const VisitCard = (props) => (
   <tr>
     <td id='columntable'>{props.visit.medicalRecordNumber}</td>
-    <td id='columntable'>{props.visit.visidID}</td>
+    <td id='columntable'>{props.visit.visitNumber}</td>
       <td id='columntable'>{props.visit.firstName}</td>
       <td id='columntable'>{props.visit.middleName}</td>
       <td id='columntable'>{props.visit.lastName}</td>
