@@ -22,9 +22,11 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+
 
 export default function ShowRecordList() {
+
+
   const [records, setRecords] = useState([])
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
@@ -241,9 +243,11 @@ export default function ShowRecordList() {
         <div className="item3A">
           <h4 className='patientListHeader'>Patient List</h4>
           <label htmlFor="search" className="searchLabel">
-          <Link className="btn btn-info btn-sm registerBtn" to={`/createPatient`}>
-            <i className="fa fa-hospital-user fa-sm" aria-hidden="true" title='Add Patient'/>
-          </Link>{' '}
+            
+          <Link className="btn btn-info btn-sm registerBtn " to={`/createPatient`}>
+            <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient'/>
+            
+            </Link>{' '}
             Search :{' '}
             <input
               className="searchInput"
@@ -327,14 +331,15 @@ export default function ShowRecordList() {
                   </StyledTableCell>
                   <StyledTableCell align="left">
                   <Link
-                      className="btn btn-info btn-sm"
+                      className="btn btn-success btn-sm "
                       to={`/editPatient/${pt._id}`}
                     >
-                      {/* <i
-                        className="fa fa-user-o fa-sm"
+                      <i
+                        className="fa fa-stethoscope fa-sm"
                         aria-hidden="true" title='Create visit'
-                      /> */}
-                      <LocalHospitalIcon fontSize='small'/>
+                      />
+                      {/* <LocalHospitalIcon sx={{ fontSize: 12 }} /> */}
+                      {/* <span class="tooltiptext">Tooltip text</span> */}
                     </Link>{' '}
                     <Link
                       className="btn btn-info btn-sm"
