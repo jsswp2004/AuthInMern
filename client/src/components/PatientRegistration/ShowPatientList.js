@@ -240,6 +240,9 @@ export default function ShowRecordList() {
         <div className="item3A">
           <h4 className='patientListHeader'>Patient List</h4>
           <label htmlFor="search" className="searchLabel">
+          <Link className="btn btn-info btn-sm registerBtn" to={`/createPatient`}>
+            <i className="fa fa-hospital-user fa-sm" aria-hidden="true" title='Add Patient'/>
+          </Link>{' '}
             Search :{' '}
             <input
               className="searchInput"
@@ -322,13 +325,22 @@ export default function ShowRecordList() {
                     {pt.addedDate}
                   </StyledTableCell>
                   <StyledTableCell align="left">
+                  <Link
+                      className="btn btn-info btn-sm"
+                      to={`/editPatient/${pt._id}`}
+                    >
+                      <i
+                        className="fa fa-user-o fa-sm"
+                        aria-hidden="true" title='Create visit'
+                      />
+                    </Link>{' '}
                     <Link
                       className="btn btn-info btn-sm"
                       to={`/editPatient/${pt._id}`}
                     >
                       <i
-                        className="fa fa-pencil-square-o fa-sm"
-                        aria-hidden="true"
+                        className="fa fa-hospital-o fa-sm"
+                        aria-hidden="true" title='Edit registration'
                       />
                     </Link>{' '}
                     <button
@@ -337,7 +349,7 @@ export default function ShowRecordList() {
                         deleteRecord(pt._id)
                       }}
                     >
-                      <i className="fa fa-trash-o fa-sm" aria-hidden="true" />
+                      <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
                     </button>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -357,7 +369,7 @@ export default function ShowRecordList() {
                 <TablePagination
                   // style={{float:'right'}}
                   rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                  colSpan={6}
+                  colSpan={12}
                   count={filteredData.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

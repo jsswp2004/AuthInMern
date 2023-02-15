@@ -84,9 +84,9 @@ export default function Navbar() {
           <li id="link" className="body_navbarlist">
             <Link to="/patientlist">Registered Patients</Link>
           </li>
-          <li id="link" className="body_navbarlist">
+          {/* <li id="link" className="body_navbarlist">
             <Link to="/createPatient">Add a patient</Link>
-          </li>
+          </li> */}
           {/* <li id="link" className="body_navbarlist">
             <Link to="/visitlist">Schedule</Link>
           </li> */}
