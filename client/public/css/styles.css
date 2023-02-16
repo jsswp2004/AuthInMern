@@ -1457,3 +1457,9 @@ tfoot > .MuiTableFooter-root {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+/*visit modal additional css*/
+.addVisitModalBtn {
+  margin-left: 400px;
+}
+

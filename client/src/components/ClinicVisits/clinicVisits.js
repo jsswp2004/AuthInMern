@@ -39,6 +39,25 @@ import CreateVisitModal from '../Scheduling/createvisitmodal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
 import VisitCard from '../Scheduling/VisitCard'
 // import { display } from '@mui/system'
+import { Link } from 'react-router-dom'
+import { styled } from '@mui/material/styles'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+import TableCell, { tableCellClasses } from '@mui/material/TableCell'
+import PropTypes from 'prop-types'
+import { useTheme } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import TableFooter from '@mui/material/TableFooter'
+import TablePagination from '@mui/material/TablePagination'
+import IconButton from '@mui/material/IconButton'
+import FirstPageIcon from '@mui/icons-material/FirstPage'
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
+import LastPageIcon from '@mui/icons-material/LastPage'
 //#endregion
 
 export default function ClinicVisit() {
@@ -60,7 +79,7 @@ export default function ClinicVisit() {
   console.log(visits)
   //#endregion
   //#region code for calendar view select dropdown
-  const [selectViewValue, setViewValue] = React.useState('Daily')
+  const [selectViewValue, setViewValue] = React.useState('Monthly')
   const viewValueChange = (event) => {
     setViewValue(event.target.value)
   }
@@ -167,17 +186,34 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region for Modal from monthly days
-
+  const [newPatient, setNewPatient] = useState(false)
+  console.log(newPatient)
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Add a Visit</Modal.Title>
+        <Modal.Header closeButton onClick={() => setNewPatient(true)}>
+          <Modal.Title>
+            Add a Visit for a New Patient
+            {/* <button className='btn btn-info btn-sm' onClick={() => setNewPatient(true)}> New patient</button> */}
+            {/* <button  className='btn btn-secondary btn-sm addVisitModalBtn' onClick={() => setNewPatient(false)}> Search patient</button> */}
+            <Link className="btn btn-secondary btn-sm addVisitModalBtn" to={`/patientlist`}>
+              <i
+                className="fas fa-laptop-medical fa-sm"
+                aria-hidden="true"
+                title="Search patient"
+              />
+            </Link>{' '}
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>
           <VisitMonthlyModal visitDate={selectedDate} />
           {/*  */}
         </Modal.Body>
+        {/* <Modal.Body style={{ display: newPatient === false ? '' : "none" }}>
+          <p>TT</p>
+          <VisitMonthlyModal visitDate={selectedDate} />
+          
+        </Modal.Body> */}
         <Modal.Footer>
           <span style={{ textAlign: 'center' }}>
             Please make sure all information is current and accurate.
@@ -212,9 +248,15 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region for filtering data with selected date
-  const filterDataWithDate = visits.filter((visit) => {
+  const filterDataWithDat = visits.filter((visit) => {
     return visit.visitDate.toString().toLowerCase().includes(dateSelected)
+    // .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
   })
+
+  const filterDataWithDate = filterDataWithDat.sort((a, b) =>
+    a.hourOfVisit > b.hourOfVisit ? 1 : -1,
+  )
+  console.log(filterDataWithDat)
   //#endregion
   //#region for mapping and sorting data by date
   function patientListDaily() {
@@ -1159,6 +1201,7 @@ export default function ClinicVisit() {
 
     setSelectedNumber(target.innerText)
     handleMonthlyShow()
+    setNewPatient(true)
   }
   // const weekendSat = isSaturday(addDays(new Date(selectedDate), 1))
   // const weekendSun = isSunday(addDays(new Date(selectedDate), 1))
@@ -1196,6 +1239,116 @@ export default function ClinicVisit() {
   )
 
   //#endregion
+  //#region for new table
+  //table functions
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.gray,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }))
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }))
+
+  //pagination
+  function TablePaginationActions(props) {
+    const theme = useTheme()
+    const { count, page, rowsPerPage, onPageChange } = props
+
+    const handleFirstPageButtonClick = (event) => {
+      onPageChange(event, 0)
+    }
+
+    const handleBackButtonClick = (event) => {
+      onPageChange(event, page - 1)
+    }
+
+    const handleNextButtonClick = (event) => {
+      onPageChange(event, page + 1)
+    }
+
+    const handleLastPageButtonClick = (event) => {
+      onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1))
+    }
+    return (
+      <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+        <IconButton
+          onClick={handleFirstPageButtonClick}
+          disabled={page === 0}
+          aria-label="first page"
+        >
+          {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        </IconButton>
+        <IconButton
+          onClick={handleBackButtonClick}
+          disabled={page === 0}
+          aria-label="previous page"
+        >
+          {theme.direction === 'rtl' ? (
+            <KeyboardArrowRight />
+          ) : (
+            <KeyboardArrowLeft />
+          )}
+        </IconButton>
+        <IconButton
+          onClick={handleNextButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="next page"
+        >
+          {theme.direction === 'rtl' ? (
+            <KeyboardArrowLeft />
+          ) : (
+            <KeyboardArrowRight />
+          )}
+        </IconButton>
+        <IconButton
+          onClick={handleLastPageButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="last page"
+        >
+          {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        </IconButton>
+      </Box>
+    )
+  }
+
+  TablePaginationActions.propTypes = {
+    count: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+    page: PropTypes.number.isRequired,
+    rowsPerPage: PropTypes.number.isRequired,
+  }
+
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(5)
+
+  const emptyRows =
+    page > 0
+      ? Math.max(0, (1 + page) * rowsPerPage - filterDataWithDate.length)
+      : 0
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10))
+    setPage(0)
+  }
+
+  //#endregion
+
   return (
     <div className="grid_container">
       <div className="item1">
@@ -2130,7 +2283,7 @@ export default function ClinicVisit() {
                 </div>
 
                 <div>
-                  <table className="table table-striped">
+                  {/* <table className="table table-striped">
                     <thead>
                       <tr className="trStyles">
                         <th id="columnName">MRN</th>
@@ -2147,7 +2300,156 @@ export default function ClinicVisit() {
                       </tr>
                     </thead>
                     <tbody className="trStyles">{patientListDaily()}</tbody>
-                  </table>
+                  </table> */}
+
+                  <TableContainer component={Paper}>
+                    <Table
+                      sx={{ minWidth: 650 }}
+                      size="small"
+                      aria-label="a dense table"
+                      // className='table-striped'
+                    >
+                      <TableHead>
+                        <TableRow>
+                          <StyledTableCell align="left">MRN</StyledTableCell>
+                          <StyledTableCell align="left">
+                            Visit ID
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Firstname
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Middlename
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Lastname
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Visit Date
+                          </StyledTableCell>
+                          <StyledTableCell align="left">Time</StyledTableCell>
+                          <StyledTableCell align="left">Email</StyledTableCell>
+                          <StyledTableCell align="left">
+                            Provider
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Date Created
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Actions
+                          </StyledTableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {(rowsPerPage > 0
+                          ? filterDataWithDate.slice(
+                              page * rowsPerPage,
+                              page * rowsPerPage + rowsPerPage,
+                            )
+                          : filterDataWithDate
+                        ).map((pt) => (
+                          <StyledTableRow key={pt._id}>
+                            <StyledTableCell align="left">
+                              {pt.medicalRecordNumber}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.visitNumber}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.firstName}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.middleName}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.lastName}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.visitDate}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.hourOfVisit}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.email}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.provider}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.addedDate}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              <Link
+                                className="btn btn-info btn-sm"
+                                to={`/editVisit/${pt._id}`}
+                              >
+                                <i
+                                  className="fa fa-pencil-square-o"
+                                  aria-hidden="true"
+                                />
+                              </Link>
+                              <Link
+                                className="btn btn-success btn-sm"
+                                to={`/detailsVisit/${pt._id}`}
+                              >
+                                <i
+                                  className="fa fa-clipboard"
+                                  aria-hidden="true"
+                                />
+                              </Link>
+                              <button
+                                className="btn btn-danger btn-sm"
+                                onClick={() => {
+                                  deleteRecord(pt._id)
+                                }}
+                              >
+                                <i
+                                  className="fa fa-trash-o"
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </StyledTableCell>
+                          </StyledTableRow>
+                        ))}
+                        {emptyRows > 0 && (
+                          <StyledTableRow
+                            style={{
+                              height: 53 * emptyRows,
+                            }}
+                          >
+                            <StyledTableCell colSpan={6} />
+                          </StyledTableRow>
+                        )}
+                      </TableBody>
+                      <TableFooter>
+                        <TableRow>
+                          <TablePagination
+                            // style={{float:'right'}}
+                            rowsPerPageOptions={[
+                              5,
+                              10,
+                              25,
+                              { label: 'All', value: -1 },
+                            ]}
+                            colSpan={12}
+                            count={filterDataWithDate.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            SelectProps={{
+                              inputProps: {
+                                'aria-label': 'rows per page',
+                              },
+                              native: true,
+                            }}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            ActionsComponent={TablePaginationActions}
+                          />
+                        </TableRow>
+                      </TableFooter>
+                    </Table>
+                  </TableContainer>
                 </div>
               </li>
             </div>

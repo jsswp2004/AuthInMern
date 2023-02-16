@@ -12,10 +12,17 @@ const CreateVisitMonthly = (props) => {
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
+
+    //autocreate MRN
+    const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
+    //autocreate visit number
+    const setVisitNumber = Math.floor(1 + Math.random() * 99999)
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
+    medicalRecordNumber: setMedicalRecordNumber,
+    visitNumber: setVisitNumber,
     firstName: '',
     lastName: '',
     middleName: '',
@@ -56,6 +63,8 @@ const CreateVisitMonthly = (props) => {
       .post('http://localhost:8081/api/visits', visit)
       .then((res) => {
         setVisit({
+          medicalRecordNumber: '',
+          visitNumber: '',
           firstName: '',
           lastName: '',
           middleName: '',
@@ -177,7 +186,30 @@ const CreateVisitMonthly = (props) => {
               ))}
             </select>
           </div>
-          {/* <AlertDismissible /> */}
+        </div>
+        <div className="div-items">
+          <div className="form-group">
+            <label htmlFor="medicalRecordNumber">MRN</label>
+            <input
+              type="text"
+              className="form-control"
+              name="medicalRecordNumber"
+              value={visit.medicalRecordNumber}
+              onChange={onChange}
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="visitNumber">Visit ID</label>
+            <input
+              type="text"
+              className="form-control"
+              name="visitNumber"
+              value={visit.visitNumber}
+              onChange={onChange}
+              readOnly
+            />
+          </div>
           <div
             className="form-group"
             style={{

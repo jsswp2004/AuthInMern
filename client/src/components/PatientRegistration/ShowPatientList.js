@@ -282,7 +282,7 @@ export default function ShowRecordList() {
             <TableHead>
               <TableRow>
                 <StyledTableCell align="left">MRN</StyledTableCell>
-                <StyledTableCell align="left">Visit Number</StyledTableCell>
+                {/* <StyledTableCell align="left">Visit Number</StyledTableCell> */}
                 <StyledTableCell align="left">Firstname</StyledTableCell>
                 <StyledTableCell align="left">Middlename</StyledTableCell>
                 <StyledTableCell align="left">Lastname</StyledTableCell>
@@ -306,9 +306,9 @@ export default function ShowRecordList() {
                 <StyledTableCell align="left">
                     {pt.medicalRecordNumber}
                   </StyledTableCell>
-                  <StyledTableCell align="left">
+                  {/* <StyledTableCell align="left">
                     {pt.visitNumber}
-                  </StyledTableCell>
+                  </StyledTableCell> */}
                   <StyledTableCell align="left">
                     {pt.firstName}
                   </StyledTableCell>
