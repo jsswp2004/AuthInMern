@@ -557,7 +557,7 @@ body {
   width: 100%;
 }
 
-.roleItemContainer .roleItemContainerBox {
+.roleItemContainer>.roleItemContainerBox {
   width: 50%;
 }
 .table-striped {
@@ -1346,7 +1346,8 @@ text-align: center;
   margin-left: 10px;
   margin-top: 3px;
   margin-bottom: 1px;
-  margin-left: 50%;
+  /* margin-left: auto; */
+  float:right;
   height: 30px;
 }
 
