@@ -25,6 +25,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import ShowUsers from '../../Signup/showUsers'
 
 const ShowSettings = () => {
   // Define the state with useState hook
@@ -207,9 +208,13 @@ const ShowSettings = () => {
 
   const [setting, setSetting] = useState('')
 
-//   console.log(setting)
+  //   console.log(setting)
   const displayRolesSetting = {
     display: setting === 'Roles' ? '' : 'none',
+  }
+
+  const displayUserProfileSetting = {
+    display: setting === 'User Profiles' ? '' : 'none',
   }
 
   return (
@@ -385,6 +390,39 @@ const ShowSettings = () => {
                     </TableFooter>
                   </Table>
                 </TableContainer>
+              </div>
+            </div>
+
+            <div style={displayUserProfileSetting}>
+              {/* <div className="item3A"> */}
+                {/* <h5 className="createPageHeader">Roles</h5> */}
+
+                {/* <div>{displayVisitModal()}</div> */}
+                {/* <Button
+                  className="btn btn-info btn-sm roleCreateBtn"
+                  variant="primary"
+                  onClick={handleShow}
+                > */}
+                  {/* <i
+                  className="fa fa-plus"
+                  aria-hidden="true"
+                  title="Add role"
+                ></i> */}
+                  {/* Add Role
+                </Button> */}
+                {/* <label htmlFor="search" className="searchLabel">
+                  Search :{' '}
+                  <input
+                    id="search"
+                    type="text"
+                    placeholder="Search roles"
+                    onChange={handleChange}
+                    value={searchInput}
+                  />
+                </label> */}
+              {/* </div> */}
+              <div className="card-body table-responsive p-0">
+                <ShowUsers />
               </div>
             </div>
           </div>
