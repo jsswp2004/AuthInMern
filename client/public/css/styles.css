@@ -554,11 +554,13 @@ body {
   overflow: auto;
 }
 .roleItemContainer {
+  display: flex;
   width: 100%;
 }
 
 .roleItemContainer>.roleItemContainerBox {
   width: 50%;
+  margin-left: 2px;
 }
 .table-striped {
   margin-top: 0px;
@@ -1462,5 +1464,74 @@ tfoot > .MuiTableFooter-root {
 /*visit modal additional css*/
 .addVisitModalBtn {
   margin-left: 400px;
+}
+
+/*settings page css*/
+.settingsPage {
+  display: flex;
+}
+
+/*radio css*/
+.settingCheckboxContainer {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.settingCheckboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom radio button */
+.settingCheckboxCheckmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+
+/* On mouse-over, add a grey background color */
+.settingCheckboxContainer:hover input ~ .settingCheckboxCheckmark {
+  background-color: #ccc;
+}
+
+/* When the radio is checked, add a blue background */
+.settingCheckboxContainer input:checked ~ .settingCheckboxCheckmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (the dot/circle - hidden when not checked) */
+.settingCheckboxCheckmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.settingCheckboxContainer input:checked ~ .settingCheckboxCheckmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.settingCheckboxContainer .settingCheckboxCheckmark:after {
+  top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
 }
 

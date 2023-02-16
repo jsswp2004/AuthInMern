@@ -21,6 +21,7 @@ import ClinicVisit from './components/ClinicVisits/clinicVisits'
 import RolesList from './components/Management/Roles/showRolesList'
 import CreateRole from './components/Management/Roles/createRole'
 import EditRole from './components/Management/Roles/editRole'
+import ManageSettings from './components/Management/Settings/settingsPage'
 function App() {
   const user = localStorage.getItem('token')
 
@@ -49,6 +50,7 @@ function App() {
       <Route path="/" element={<Navigate replace to="/login" />} />
       <Route path="/createRole" exact element={<CreateRole />} />
       <Route path="/editRole/:id" exact element={<EditRole />} />
+      <Route path="/settingsPage" exact element={<ManageSettings />} />
     </Routes>
   )
 }

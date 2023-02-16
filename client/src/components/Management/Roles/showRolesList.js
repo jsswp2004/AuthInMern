@@ -34,7 +34,7 @@ const ShowRolesList = () => {
 
   const [roles, setRoles] = useState([])
   // const navigate = useNavigate()
-
+console.log(roles)
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
@@ -99,9 +99,6 @@ const ShowRolesList = () => {
     return <RoleModal />
   }
 
-
-  
-
   function roleList() {
     return roles
       .filter((role) => {
@@ -118,6 +115,112 @@ const ShowRolesList = () => {
       })
   }
 
+  //table functions
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.gray,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }))
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }))
+
+  //pagination
+  function TablePaginationActions(props) {
+    const theme = useTheme()
+    const { count, page, rowsPerPage, onPageChange } = props
+
+    const handleFirstPageButtonClick = (event) => {
+      onPageChange(event, 0)
+    }
+
+    const handleBackButtonClick = (event) => {
+      onPageChange(event, page - 1)
+    }
+
+    const handleNextButtonClick = (event) => {
+      onPageChange(event, page + 1)
+    }
+
+    const handleLastPageButtonClick = (event) => {
+      onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1))
+    }
+    return (
+      <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+        <IconButton
+          onClick={handleFirstPageButtonClick}
+          disabled={page === 0}
+          aria-label="first page"
+        >
+          {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        </IconButton>
+        <IconButton
+          onClick={handleBackButtonClick}
+          disabled={page === 0}
+          aria-label="previous page"
+        >
+          {theme.direction === 'rtl' ? (
+            <KeyboardArrowRight />
+          ) : (
+            <KeyboardArrowLeft />
+          )}
+        </IconButton>
+        <IconButton
+          onClick={handleNextButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="next page"
+        >
+          {theme.direction === 'rtl' ? (
+            <KeyboardArrowLeft />
+          ) : (
+            <KeyboardArrowRight />
+          )}
+        </IconButton>
+        <IconButton
+          onClick={handleLastPageButtonClick}
+          disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          aria-label="last page"
+        >
+          {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        </IconButton>
+      </Box>
+    )
+  }
+
+  TablePaginationActions.propTypes = {
+    count: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+    page: PropTypes.number.isRequired,
+    rowsPerPage: PropTypes.number.isRequired,
+  }
+
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(5)
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - roles.length) : 0
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10))
+    setPage(0)
+  }
+
   return (
     <div className="grid_container">
       <div className="item1">
@@ -129,6 +232,16 @@ const ShowRolesList = () => {
 
       <div className="item3">
         <div className="roleItemContainer">
+          <div className="roleItemContainerBox">
+            <div className="item3A">
+              <h5 className="createPageHeader">Settings</h5>
+
+           
+
+            </div>
+
+          
+          </div>
           <div className="roleItemContainerBox">
             <div className="item3A">
               <h5 className="createPageHeader">Roles</h5>
@@ -158,20 +271,98 @@ const ShowRolesList = () => {
               </label>
             </div>
             <div className="card-body table-responsive p-0">
-              <table className="table table-hover text-nowrap">
-                <thead>
-                  <tr>
-                    <th>Role</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>{roleList()}</tbody>
-              </table>
-
+              <TableContainer component={Paper}>
+                <Table
+                  sx={{ minWidth: 650 }}
+                  size="small"
+                  aria-label="a dense table"
+                >
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell align="left">Role</StyledTableCell>
+                      <StyledTableCell align="left">Actions</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {(rowsPerPage > 0
+                      ? roles.slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage,
+                        )
+                      : roles
+                    ).map((role) => (
+                      <StyledTableRow key={role._id}>
+                        <StyledTableCell align="left">
+                          {role.name}
+                        </StyledTableCell>
+                        <StyledTableCell align="left">
+                          <Link
+                            className="btn btn-info btn-sm"
+                            to={`/editRole/${role._id}`}
+                          >
+                            <i
+                              className="fa fa-hospital-o fa-sm"
+                              aria-hidden="true"
+                              title="Edit registration"
+                            />
+                          </Link>{' '}
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => {
+                              deleteRecord(role._id)
+                            }}
+                          >
+                            <i
+                              title="delete patient"
+                              className="fa fa-trash-o fa-sm"
+                              aria-hidden="true"
+                            />
+                          </button>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                    {emptyRows > 0 && (
+                      <StyledTableRow
+                        style={{
+                          height: 53 * emptyRows,
+                        }}
+                      >
+                        <StyledTableCell colSpan={6} />
+                      </StyledTableRow>
+                    )}
+                  </TableBody>
+                  <TableFooter>
+                    <TableRow>
+                      <TablePagination
+                        // style={{float:'right'}}
+                        rowsPerPageOptions={[
+                          5,
+                          10,
+                          25,
+                          { label: 'All', value: -1 },
+                        ]}
+                        colSpan={12}
+                        count={roles.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        SelectProps={{
+                          inputProps: {
+                            'aria-label': 'rows per page',
+                          },
+                          native: true,
+                        }}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        ActionsComponent={TablePaginationActions}
+                      />
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </TableContainer>
             </div>
           </div>
         </div>
-        <div className="roleItemContainerBox"></div>
+        
       </div>
     </div>
   )
