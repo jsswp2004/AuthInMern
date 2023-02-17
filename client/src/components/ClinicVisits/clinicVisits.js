@@ -37,6 +37,7 @@ import {
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createvisitmodal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
+import CreatePatientModal from '../PatientRegistration/createPatientModal'
 import VisitCard from '../Scheduling/VisitCard'
 // import { display } from '@mui/system'
 import { Link } from 'react-router-dom'
@@ -187,26 +188,57 @@ export default function ClinicVisit() {
   //#endregion
   //#region for Modal from monthly days
   const [newPatient, setNewPatient] = useState(false)
-  console.log(newPatient)
+  // console.log(newPatient)
+  const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
+  //autocreate visit number
+  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
+  const { firstName, lastName, middleName, email } = CreatePatientModal
+  const [modalDisplay, setModalDisplay] = useState()
+  // const displayVisitMonthlyMode = {
+  //   display: modalDisplay === 'show' ? '' : 'none',
+  // }
+  console.log(modalDisplay)
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
-        <Modal.Header closeButton onClick={() => setNewPatient(true)}>
+        <Modal.Header closeButton onClick={() =>  setNewPatient(true) }>
           <Modal.Title>
-            Add a Visit for a New Patient
+            Add New Patient and Visit
             {/* <button className='btn btn-info btn-sm' onClick={() => setNewPatient(true)}> New patient</button> */}
             {/* <button  className='btn btn-secondary btn-sm addVisitModalBtn' onClick={() => setNewPatient(false)}> Search patient</button> */}
-            <Link className="btn btn-secondary btn-sm addVisitModalBtn" to={`/patientlist`}>
+            <Link
+              className="btn btn-secondary btn-sm addVisitModalBtn"
+              to={`/patientlist`}
+            >
               <i
                 className="fas fa-laptop-medical fa-sm"
                 aria-hidden="true"
                 title="Search patient"
               />
             </Link>{' '}
+            <Link to={`/clinicVisit`} onClick={setModalDisplay('registration')}>Registration</Link>
+            <Link to={`/clinicVisit`} onClick={setModalDisplay('visit')}>Visit</Link>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>
-          <VisitMonthlyModal visitDate={selectedDate} />
+          <div style={{ display: modalDisplay === 'registration' ? '' : 'none' }}>
+            <CreatePatientModal
+              visitNumber={setVisitNumber}
+              medicalRecordNumber={setMedicalRecordNumber}
+              // onClick={setModalDisplay('show')}
+            />
+          </div>
+          <div style={{ display: modalDisplay === 'visit' ? '' : 'none' }}>
+            <VisitMonthlyModal
+              firstName={firstName}
+              lastName={lastName}
+              middleName={middleName}
+              email={email}
+              visitNumber={setVisitNumber}
+              medicalRecordNumber={setMedicalRecordNumber}
+              visitDate={selectedDate}
+            />
+          </div>
           {/*  */}
         </Modal.Body>
         {/* <Modal.Body style={{ display: newPatient === false ? '' : "none" }}>

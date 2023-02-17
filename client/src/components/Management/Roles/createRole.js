@@ -31,7 +31,7 @@ const CreateRole = (props) => {
         })
 
         // Push to /
-        navigate('/rolesList')
+        navigate('/settingsPage')
       })
       .catch((err) => {
         console.log('Error in CreateRole!')

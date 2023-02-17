@@ -50,7 +50,7 @@ const ShowSettings = () => {
     // setSearchInput(e.target.value)
     // alert('Create role button clicked')
     setShow(false)
-    navigate('/rolesList')
+    navigate('/settingsPage')
   }
 
   // console.log(roles)
@@ -191,7 +191,7 @@ const ShowSettings = () => {
   }
 
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -275,22 +275,20 @@ const ShowSettings = () => {
           <div className="roleItemContainerBox">
             <div style={displayRolesSetting}>
               <div className="item3A">
-                <h5 className="createPageHeader">Roles</h5>
+                <h4 className="createPageHeader">Roles</h4>
 
                 <div>{displayVisitModal()}</div>
-                <Button
-                  className="btn btn-info btn-sm roleCreateBtn"
-                  variant="primary"
-                  onClick={handleShow}
-                >
-                  {/* <i
-                  className="fa fa-plus"
-                  aria-hidden="true"
-                  title="Add role"
-                ></i> */}
-                  Add Role
-                </Button>
                 <label htmlFor="search" className="searchLabel">
+                  <Button
+                    className="btn btn-info btn-sm registerBtn"
+                    onClick={handleShow}
+                  >
+                    <i
+                      className="fa fa-user-plus fa-sm"
+                      aria-hidden="true"
+                      title="Add Role"
+                    />
+                  </Button>
                   Search :{' '}
                   <input
                     id="search"
@@ -395,22 +393,22 @@ const ShowSettings = () => {
 
             <div style={displayUserProfileSetting}>
               {/* <div className="item3A"> */}
-                {/* <h5 className="createPageHeader">Roles</h5> */}
+              {/* <h5 className="createPageHeader">Roles</h5> */}
 
-                {/* <div>{displayVisitModal()}</div> */}
-                {/* <Button
+              {/* <div>{displayVisitModal()}</div> */}
+              {/* <Button
                   className="btn btn-info btn-sm roleCreateBtn"
                   variant="primary"
                   onClick={handleShow}
                 > */}
-                  {/* <i
+              {/* <i
                   className="fa fa-plus"
                   aria-hidden="true"
                   title="Add role"
                 ></i> */}
-                  {/* Add Role
+              {/* Add Role
                 </Button> */}
-                {/* <label htmlFor="search" className="searchLabel">
+              {/* <label htmlFor="search" className="searchLabel">
                   Search :{' '}
                   <input
                     id="search"

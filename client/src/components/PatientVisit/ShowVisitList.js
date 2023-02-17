@@ -24,36 +24,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 
-// const VisitCard = (props) => (
-//   <tr>
-//     <td>{props.visit.medicalRecordNumber}</td>
-//     <td>{props.visit.visitNumber}</td>
-//     <td>{props.visit.firstName}</td>
-//     <td>{props.visit.middleName}</td>
-//     <td>{props.visit.lastName}</td>
-//     <td>{props.visit.visitDate}</td>
-//     <td>{props.visit.hourOfVisit}</td>
-//     <td>{props.visit.email}</td>
-//     <td>{props.visit.provider}</td>
-//     <td>{props.visit.addedDate}</td>
-//     <td>
-//       <Link
-//         className="btn btn-info btn-sm"
-//         to={`/editVisit/${props.visit._id}`}
-//       >
-//         <i className="fa fa-pencil-square-o" aria-hidden="true" />
-//       </Link>{' '}
-//       <button
-//         className="btn btn-danger btn-sm"
-//         onClick={() => {
-//           props.deleteRecord(props.visit._id)
-//         }}
-//       >
-//         <i className="fa fa-trash-o" aria-hidden="true" />
-//       </button>
-//     </td>
-//   </tr>
-// )
+
 
 export default function ShowVisitList() {
   const [regDate, setRegFilterDate] = useState('')
@@ -153,7 +124,8 @@ export default function ShowVisitList() {
         )
       }
     })
-    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1))
+    .sort((a, b) => (a.visitDate + a.hourOfVisit  < b.visitDate + b.hourOfVisit  ? 1 : -1))
+    // .sort((a, b) => (a.hourOfVisit < b.hourOfVisit ? 1 : -1))
 
   //table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -246,7 +218,7 @@ export default function ShowVisitList() {
   }
 
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(5)
+  const [rowsPerPage, setRowsPerPage] = React.useState(15)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -265,21 +237,21 @@ export default function ShowVisitList() {
   // const [sortedDirection, setSortedDirection] = useState('asc')
 
   // console.log(sortedField, sortedDirection)
-  function patientList() {
-    return filteredData
-      .sort((a, b) =>
-        Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
-      )
-      .map((visit) => {
-        return (
-          <VisitCard
-            visit={visit}
-            deleteRecord={deleteRecord}
-            key={visit._id}
-          />
-        )
-      })
-  }
+  // function patientList() {
+  //   return filteredData
+  //     .sort((a, b) =>
+  //       Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
+  //     )
+  //     .map((visit) => {
+  //       return (
+  //         <VisitCard
+  //           visit={visit}
+  //           deleteRecord={deleteRecord}
+  //           key={visit._id}
+  //         />
+  //       )
+  //     })
+  // }
 
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
@@ -367,47 +339,7 @@ export default function ShowVisitList() {
           </div>
         </div>
         <div className="item3B" style={{ overflowY: 'auto' }}>
-          {/* <table className="table">
-            <thead>
-              <tr>
-                <th>MRN</th>
-                <th>Visit ID</th>
-                <th>FirstName</th>
-                <th>Middlename</th>
-                <th>Lastname</th>
-                
-                <th>
-                  <div className="parent">
-                    <div className="child">Visit Date</div>
-                    <div className="child sortdirection">
-                      <i
-                        className="fa fa-arrow-up fa-sm asc"
-                        aria-hidden="true"
-                        onClick={() => {
-                          setSortedField('visitDate')
-                          setSortedDirection('asc')
-                        }}
-                      />{' '}
-                      <i
-                        className="fa fa-arrow-down fa-sm dsc"
-                        aria-hidden="true"
-                        onClick={() => {
-                          setSortedField('visitDate')
-                          setSortedDirection('dsc')
-                        }}
-                      />
-                    </div>
-                  </div>
-                </th>
-                <th>Time</th>
-                <th>Email</th>
-                <th>Provider</th>
-                <th>Date Created</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>{patientList()}</tbody>
-          </table> */}
+
           <TableContainer component={Paper}>
             <Table
               sx={{ minWidth: 650 }}
@@ -507,7 +439,7 @@ export default function ShowVisitList() {
                     // style={{float:'right'}}
                     rowsPerPageOptions={[
                       5,
-                      10,
+                      15,
                       25,
                       { label: 'All', value: -1 },
                     ]}

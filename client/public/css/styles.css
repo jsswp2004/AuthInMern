@@ -689,7 +689,7 @@ tbody tr {
   height: 30px;
   border-radius: 5px;
   float: right;
-  margin-top: 3px;
+  margin-top: 0px;
 }
 .patientListHeader {
   margin-top: 3px;
@@ -725,7 +725,7 @@ h5 {
   margin-bottom: 0px;
 }
 
-h5 .createPageHeader {
+.createPageHeader {
   background-color: #efefef;
   margin-bottom: 0px;
   margin-top: 3px;
@@ -1431,6 +1431,7 @@ tfoot > .MuiTableFooter-root {
   margin-left: auto;
   margin-right: 10px;
   height: 30px;
+  padding-top:0px;
 }
 
 /*Tool TIp CSS*/

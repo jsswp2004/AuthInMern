@@ -106,14 +106,14 @@ export default function Navbar() {
           <li id="link" className="body_navbarlist">
             <Link to="/settingsPage">Manage Settings</Link>
           </li>
-          <ul className="body_navbarlist dropdown">
+          {/* <ul className="body_navbarlist dropdown">
             <span>Settings</span>
             <li className="dropdown-content">
               <a href="/usersList">User Profiles</a> <br />
               <a href="/rolesList">Roles</a>
             </li>
 
-          </ul>
+          </ul> */}
         </ul>
       </div>
       {/* <div className="filter-container">

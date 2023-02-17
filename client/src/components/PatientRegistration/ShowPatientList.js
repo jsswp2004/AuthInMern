@@ -199,7 +199,7 @@ export default function ShowRecordList() {
 
 
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(5)
+  const [rowsPerPage, setRowsPerPage] = React.useState(15)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -242,8 +242,7 @@ export default function ShowRecordList() {
       <div className="item3">
         <div className="item3A">
           <h4 className='patientListHeader'>Patient List</h4>
-          <label htmlFor="search" className="searchLabel">
-            
+          <label htmlFor="search" className="searchLabel">            
           <Link className="btn btn-info btn-sm registerBtn " to={`/createPatient`}>
             <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient'/>
             
@@ -259,24 +258,6 @@ export default function ShowRecordList() {
             />
           </label>
         </div>
-        {/* <table className="table table-striped">
-          <thead>
-            <tr>
-              <th id="columnName">MRN</th>
-              <th id="columnName">Visit Number</th>
-              <th id="columnName">FirstName</th>
-              <th id="columnName">Middlename</th>
-              <th id="columnName">Lastname</th>
-              <th id="columnName">DOB</th>
-              <th id="columnName">Gender</th>
-              <th id="columnName">Age</th>
-              <th id="columnName">Race</th>
-              <th id="columnName">Date Added</th>
-              <th id="columnName">Action</th>
-            </tr>
-          </thead>
-          <tbody>{patientList()}</tbody>
-        </table> */}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
@@ -375,7 +356,7 @@ export default function ShowRecordList() {
               <TableRow>
                 <TablePagination
                   // style={{float:'right'}}
-                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                  rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
                   colSpan={12}
                   count={filteredData.length}
                   rowsPerPage={rowsPerPage}

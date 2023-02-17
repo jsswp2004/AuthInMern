@@ -13,25 +13,26 @@ const CreateVisitMonthly = (props) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
 
-    //autocreate MRN
-    const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
-    //autocreate visit number
-    const setVisitNumber = Math.floor(1 + Math.random() * 99999)
+  //autocreate MRN
+  //const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
+  //autocreate visit number
+  //const setVisitNumber = Math.floor(1 + Math.random() * 99999)
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
-    medicalRecordNumber: setMedicalRecordNumber,
-    visitNumber: setVisitNumber,
-    firstName: '',
-    lastName: '',
-    middleName: '',
+    medicalRecordNumber: props.medicalRecordNumber,//setMedicalRecordNumber,
+    visitNumber: props.visitNumber, //setVisitNumber,
+    firstName: props.firstName,
+    lastName: props.lastName,
+    middleName: props.middleName,
     visitDate: props.visitDate,
     hourOfVisit: '',
-    email: '',
+    email: props.email,
     provider: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
+
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')
 
@@ -43,12 +44,11 @@ const CreateVisitMonthly = (props) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
 
-
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
-      .then((response) => {        
-        const data = response.data        
+      .then((response) => {
+        const data = response.data
         setUserMD(data)
       })
       .catch((error) => {
@@ -74,6 +74,7 @@ const CreateVisitMonthly = (props) => {
           provider: '',
           addedDate: '',
         })
+
         // Push to /patientlist
         navigate('/patientlist')
       })
@@ -81,7 +82,10 @@ const CreateVisitMonthly = (props) => {
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
-  }
+    }
+
+
+
 
   return (
     <form noValidate onSubmit={onSubmit}>

@@ -40,7 +40,7 @@ const validate = (data) => {
         middleName: Joi.string().label("Middle Name"),
         gender:Joi.string().label("Gender"),
         race: Joi.string().label("Race"),
-        dateOfBirth: Joi.date().label("DOB"),
+        dateOfBirth: Joi.string().label("DOB"),
         age:  Joi.number().label("Age"),
         language:Joi.string().label("Language"),
         address: Joi.string().label("Address"),
