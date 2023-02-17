@@ -9,6 +9,7 @@ import CreatePatient from './components/PatientRegistration/createPatient'
 import RegistrationDetails from './components/PatientRegistration/registrationDetails'
 import EditPatient from './components/PatientRegistration/editPatient'
 import PatientList from './components/PatientRegistration/ShowPatientList'
+import CreatePatientFromVisit from './components/PatientRegistration/createPatientFromVisit'
 import VisitList from './components/PatientVisit/ShowVisitList'
 import VisitSchedule from './components/Scheduling/VisitScheduleList'
 import CalendarSchedule from './components/Scheduling/calendarSchedule'
@@ -51,6 +52,7 @@ function App() {
       <Route path="/createRole" exact element={<CreateRole />} />
       <Route path="/editRole/:id" exact element={<EditRole />} />
       <Route path="/settingsPage" exact element={<ManageSettings />} />
+      <Route path="/createPatientFromVisit" exact element={<CreatePatientFromVisit/>}/>
     </Routes>
   )
 }

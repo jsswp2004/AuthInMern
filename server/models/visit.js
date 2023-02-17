@@ -4,8 +4,8 @@ const Joi = require("joi");
 
 
 const visitSchema = new mongoose.Schema({
-    medicalRecordNumber:{ type: Number,required: true },
-    visitNumber: { type: Number,required: true },
+    medicalRecordNumber:{ type: Number,required: false },
+    visitNumber: { type: Number,required: false },
     firstName: { type:String,required: true },
     lastName: { type:String,required: true },
     middleName: { type: String,required: false },
@@ -31,8 +31,8 @@ const Visit = mongoose.model("visit", visitSchema);
 
 const validate = (data) => {
 	const schema = Joi.object({
-        medicalRecordNumber:Joi.number().required().label("Medical Record Number"),
-        visitNumber: Joi.number().required().label("Visit Number"),
+        medicalRecordNumber:Joi.number().label("Medical Record Number"),
+        visitNumber: Joi.number().label("Visit Number"),
         firstName: Joi.string().required().label("First Name"),
         lastName: Joi.string().required().label("Last Name"),
         middleName: Joi.string().label("Middle Name"),

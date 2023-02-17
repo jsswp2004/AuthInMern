@@ -193,7 +193,7 @@ export default function ClinicVisit() {
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
   const { firstName, lastName, middleName, email } = CreatePatientModal
-  const [modalDisplay, setModalDisplay] = useState("")
+  const [modalDisplay, setModalDisplay] = useState('visit')
   // const displayVisitMonthlyMode = {
   //   display: modalDisplay === 'show' ? '' : 'none',
   // }
@@ -201,9 +201,9 @@ export default function ClinicVisit() {
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
-        <Modal.Header closeButton onClick={() =>  setNewPatient(true) }>
+        <Modal.Header closeButton onClick={() => setNewPatient(true)}>
           <Modal.Title>
-            Add New Patient and Visit
+            Add a quick Visit
             {/* <button className='btn btn-info btn-sm' onClick={() => setNewPatient(true)}> New patient</button> */}
             {/* <button  className='btn btn-secondary btn-sm addVisitModalBtn' onClick={() => setNewPatient(false)}> Search patient</button> */}
             <Link
@@ -216,28 +216,37 @@ export default function ClinicVisit() {
                 title="Search patient"
               />
             </Link>{' '}
-
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>
-          <div><Button onClick={setModalDisplay(' ') }>Registration</Button></div>
-        <div><Button onclick={setModalDisplay('visit')}>Visit</Button></div>
-            
-          <div style={{ display: modalDisplay === 'registration' ? 'none' : '' }}>
+          {/* <div>
+            <Button onClick={setModalDisplay(' ')}>Registration</Button>
+          </div>
+          <div>
+            <Button onclick={setModalDisplay('visit')}>Visit</Button>
+          </div> */}
+
+          {/* <div
+            style={{ display: modalDisplay === 'registration' ? 'none' : '' }}
+          >
             <CreatePatientModal
               visitNumber={setVisitNumber}
               medicalRecordNumber={setMedicalRecordNumber}
               // onClick={setModalDisplay('show')}
             />
-          </div>
-          <div style={{ display: modalDisplay !== 'registration' ? 'none' : 'none' }}>
+          </div> */}
+          <div
+            style={{
+              display: modalDisplay === 'visit' ? '' : 'none',
+            }}
+          >
             <VisitMonthlyModal
               firstName={firstName}
               lastName={lastName}
               middleName={middleName}
               email={email}
-              visitNumber={setVisitNumber}
-              medicalRecordNumber={setMedicalRecordNumber}
+              // visitNumber={setVisitNumber}
+              // medicalRecordNumber={setMedicalRecordNumber}
               visitDate={selectedDate}
             />
           </div>
@@ -250,7 +259,7 @@ export default function ClinicVisit() {
         </Modal.Body> */}
         <Modal.Footer>
           <span style={{ textAlign: 'center' }}>
-            Please make sure all information is current and accurate.
+            PLEASE MAKE SURE TO REGISTER CLIENT.
           </span>
         </Modal.Footer>
       </Modal>

@@ -21,7 +21,7 @@ const CreateVisitMonthly = (props) => {
 
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
-    medicalRecordNumber: props.medicalRecordNumber,//setMedicalRecordNumber,
+    medicalRecordNumber: props.medicalRecordNumber, //setMedicalRecordNumber,
     visitNumber: props.visitNumber, //setVisitNumber,
     firstName: props.firstName,
     lastName: props.lastName,
@@ -82,10 +82,7 @@ const CreateVisitMonthly = (props) => {
       .catch((err) => {
         console.log('Error in CreateVisit!')
       })
-    }
-
-
-
+  }
 
   return (
     <form noValidate onSubmit={onSubmit}>
@@ -196,6 +193,7 @@ const CreateVisitMonthly = (props) => {
             <label htmlFor="medicalRecordNumber">MRN</label>
             <input
               type="text"
+              placeholder='Please register client'
               className="form-control"
               name="medicalRecordNumber"
               value={visit.medicalRecordNumber}
@@ -206,6 +204,7 @@ const CreateVisitMonthly = (props) => {
           <div className="form-group">
             <label htmlFor="visitNumber">Visit ID</label>
             <input
+              placeholder='Please register client'
               type="text"
               className="form-control"
               name="visitNumber"

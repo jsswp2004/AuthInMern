@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { Link, Button} from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
+import CreatePatientFromVisit from '../PatientRegistration/createPatientFromVisit'
 
 function UpdateVisitInfo(props) {
   //create provider object
@@ -35,7 +37,7 @@ function UpdateVisitInfo(props) {
   }
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
-    visitNumber:'',
+    visitNumber: '',
     firstName: '',
     lastName: '',
     middleName: '',
@@ -74,10 +76,13 @@ function UpdateVisitInfo(props) {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
 
+  const [data, setData] = useState([])
   const onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
+      medicalRecordNumber: visit.medicalRecordNumber,
+      visitNumber: visit.visitNumber,
       firstName: visit.firstName,
       lastName: visit.lastName,
       middleName: visit.middleName,
@@ -87,6 +92,8 @@ function UpdateVisitInfo(props) {
       hourOfVisit: visit.hourOfVisit,
       provider: visit.provider,
     }
+
+    setData(data)
 
     axios
       .put(`http://localhost:8081/api/visits/${id}`, data)
@@ -98,6 +105,11 @@ function UpdateVisitInfo(props) {
       })
   }
 
+  const createFromVisit = () =>
+  {
+    return (<CreatePatientFromVisit data={data} />
+    )
+    }
   return (
     <div className="grid_container">
       <div className="item1">
@@ -107,7 +119,7 @@ function UpdateVisitInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h5 className='createPageHeader'>Edit Visit</h5>
+        <h5 className="createPageHeader">Edit Visit</h5>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
@@ -221,12 +233,12 @@ function UpdateVisitInfo(props) {
                     ))}
                   </select>
                 </div>
-
               </div>
-              <div className='div-items'>
-              <div className="form-group">
+              <div className="div-items">
+                <div className="form-group">
                   <label htmlFor="medicalRecordNumber">MRN</label>
                   <input
+                    placeholder="Please register client"
                     type="text"
                     name="medicalRecordNumber"
                     className="form-control"
@@ -238,6 +250,7 @@ function UpdateVisitInfo(props) {
                 <div className="form-group">
                   <label htmlFor="visitNumber">Visit ID</label>
                   <input
+                    placeholder="Please register client"
                     type="text"
                     name="visitNumber"
                     className="form-control"
@@ -257,8 +270,24 @@ function UpdateVisitInfo(props) {
                   <input
                     value="Update"
                     type="submit"
-                    className="btn btn-success"
+                    className="btn btn-success btn-sm"
                   />
+                  <Link
+                    className="btn btn-info btn-sm"
+                    to={`/createPatientFromVisit`}
+                    // data={data}
+                    firstName={data.firstName}
+                    
+                  >
+                    <i
+                      className="fa fa-hospital-o fa-sm"
+                      aria-hidden="true"
+                      title="Edit registration"
+                    />
+                  </Link>{' '}
+                  <button onClick={createFromVisit()} className="btn btn-info btn-sm" >
+                  test
+                  </button>
                 </div>
               </div>
             </div>
