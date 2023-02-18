@@ -10,6 +10,7 @@ import {
   Language,
   States,
 } from '../listDictionaries/listData/listDictionariesData'
+import RegistrationDetail from './registrationDetails'
 
 function UpdateRecordInfo(props) {
   const [record, setRecord] = useState({
@@ -155,9 +156,11 @@ function UpdateRecordInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h4 className='createPageHeader'>Edit Patient Registration</h4>
-        <div className="item3As"></div>
-        <div className="item3AItem left">
+        
+        <div className="item3A">
+        
+          <div className="item3AItem left">
+          <h4 className='createPageHeader'>Edit Patient Registration</h4>
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
               <div className="div-items">
@@ -368,7 +371,11 @@ function UpdateRecordInfo(props) {
             </div>
           </form>
         </div>
-        <div className="item3AItem right" >TEST</div>
+          <div className="item3AItem right" >
+            <h4 className='createPageHeader'>Details</h4>
+            <RegistrationDetail/>
+          </div>
+          </div>
       </div>
       
     </div>

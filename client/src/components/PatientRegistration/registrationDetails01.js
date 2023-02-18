@@ -63,7 +63,13 @@ function RegistrationDetails(props) {
   }, [id])
 
   return (
-    <div className="grid_containers">
+    <div className="grid_container">
+      <div className="item1">
+        <Header />
+      </div>
+      <div className="item2">
+        <Navbar />
+      </div>
       <div className="item3">
       <div className="App">
           <RegistrationDetail visit={record} key={record._id} />

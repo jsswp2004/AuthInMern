@@ -425,6 +425,8 @@ body {
 .item3A {
   display: flex;
   /* position: fixed; */
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .item3AItem {
