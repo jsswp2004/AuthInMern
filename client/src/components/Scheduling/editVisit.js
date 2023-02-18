@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, Button} from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
@@ -50,6 +50,13 @@ function UpdateVisitInfo(props) {
   const { id } = useParams()
   const navigate = useNavigate()
 
+  const [prevID, setprevID] = useState('')
+  const previousID = useRef('')
+
+  useEffect(() => {
+    previousID.current = prevID
+  }, [prevID])
+
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/visits/${id}`)
@@ -70,7 +77,10 @@ function UpdateVisitInfo(props) {
       .catch((err) => {
         console.log('Error from UpdateVisitInfo')
       })
+    setprevID(id)
   }, [id])
+
+  console.log(previousID.current)
 
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
@@ -274,7 +284,7 @@ function UpdateVisitInfo(props) {
                   />
                   <Link
                     className="btn btn-info btn-sm"
-                    to={`/createPatientFromVisit/${visit._id}`}
+                    to={`/createPatientFromVisit/${id}`}
                     // data={data}
                     firstName={data.firstName}
                     
@@ -282,12 +292,12 @@ function UpdateVisitInfo(props) {
                     <i
                       className="fa fa-hospital-o fa-sm"
                       aria-hidden="true"
-                      title="Edit registration"
+                      title="Add registration"
                     />
                   </Link>{' '}
-                  <button onClick={createFromVisit} className="btn btn-info btn-sm" >
+                  {/* <button onClick={createFromVisit} className="btn btn-info btn-sm" >
                   test
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

@@ -15,7 +15,7 @@ const CreatePatientFromVisit = (props) => {
   //autocreate MRN
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
-  // const setVisitNumber = Math.floor(1 + Math.random() * 99999)
+  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
   
   // Define the state with useState hook
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ const CreatePatientFromVisit = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const { id } = useParams()
-  console.log(id)
+  console.log(visit.firstName)
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/visits/${id}`)
@@ -53,7 +53,8 @@ const CreatePatientFromVisit = (props) => {
         console.log('Error from CreatePatientFromVisit')
       })
   }, [id])
-
+  console.log(visit)
+  console.log(visit.firstName)
   const {
     medicalRecordNumber,
     visitNumber,
@@ -73,13 +74,13 @@ const CreatePatientFromVisit = (props) => {
     addedDate,
   } = visit
   const today = new Date()
-  const setVisitNumber = visit.visitNumber
+  // const setVisitNumber = visit.visitNumber
   const [record, setRecord] = useState({
     medicalRecordNumber: setMedicalRecordNumber,
     visitNumber: setVisitNumber,
     firstName: visit.firstName,
-    lastName: visit.lastName,
-    middleName: visit.middleName,
+    lastName: lastName,
+    middleName: middleName,
     gender: '',
     race: '',
     dateOfBirth: '',
@@ -96,6 +97,8 @@ const CreatePatientFromVisit = (props) => {
   const onChange = (e) => {
     setRecord({ ...record, [e.target.name]: e.target.value })
   }
+
+  console.log(record)
   //calculate age
   
   // const birthDate = new Date(record.dateOfBirth)
@@ -130,6 +133,8 @@ const CreatePatientFromVisit = (props) => {
       addedDate: visit.addedDate,
     }
 
+ 
+
     axios
       .post('http://localhost:8081/api/records', data)
       .then((res) => {
@@ -143,7 +148,7 @@ const CreatePatientFromVisit = (props) => {
         console.log('Error in CreatePatientFromVisit!')
       })
   }
-// console.log(record)
+
   //Race
   const racevalues = Race
   const [racevalue, setraceValue] = React.useState('')
