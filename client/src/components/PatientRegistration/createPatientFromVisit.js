@@ -31,7 +31,7 @@ const CreatePatientFromVisit = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const { id } = useParams()
-  console.log(visit.firstName)
+  // console.log(visit.firstName)
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/visits/${id}`)
@@ -53,8 +53,8 @@ const CreatePatientFromVisit = (props) => {
         console.log('Error from CreatePatientFromVisit')
       })
   }, [id])
-  console.log(visit)
-  console.log(visit.firstName)
+  // console.log(visit)
+  // console.log(visit.medicalRecordNumber)
   const {
     medicalRecordNumber,
     visitNumber,
@@ -73,12 +73,14 @@ const CreatePatientFromVisit = (props) => {
     email,
     addedDate,
   } = visit
+
+  // console.log(firstName)
   const today = new Date()
   // const setVisitNumber = visit.visitNumber
   const [record, setRecord] = useState({
     medicalRecordNumber: setMedicalRecordNumber,
     visitNumber: setVisitNumber,
-    firstName: visit.firstName,
+    firstName: firstName,
     lastName: lastName,
     middleName: middleName,
     gender: '',
@@ -98,16 +100,17 @@ const CreatePatientFromVisit = (props) => {
     setRecord({ ...record, [e.target.name]: e.target.value })
   }
 
-  console.log(record)
+  // console.log(record)
   //calculate age
   
-  // const birthDate = new Date(record.dateOfBirth)
+  const birthDate = new Date(record.dateOfBirth)
   // let clientAge = visit.age
-  // record.age = today.getFullYear() - birthDate.getFullYear()
+  record.age = today.getFullYear() - birthDate.getFullYear()
   // const m = today.getMonth() - birthDate.getMonth()
   // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
   //   age--
   // }
+  // console.log(record.age)
   // //save age to record.age
   // record.age = age.toString()
 
@@ -117,9 +120,9 @@ const CreatePatientFromVisit = (props) => {
     const data = {
       medicalRecordNumber: record.medicalRecordNumber,
       visitNumber: record.visitNumber,
-      firstName: visit.firstName,
-      lastName: visit.lastName,
-      middleName: visit/middleName,
+      firstName: visit.firstName.toUpperCase(),
+      lastName: visit.lastName.toUpperCase(),
+      middleName: visit.middleName.toUpperCase(),
       gender: record.gender,
       race: record.race,
       dateOfBirth: record.dateOfBirth,
@@ -133,7 +136,24 @@ const CreatePatientFromVisit = (props) => {
       addedDate: visit.addedDate,
     }
 
- 
+    const data2 = {
+      medicalRecordNumber: record.medicalRecordNumber,
+      visitNumber: record.visitNumber,
+    }
+
+    axios
+    .post('http://localhost:8081/api/visits', data2)
+    .then((res) => {
+
+
+      // Push to /
+      navigate('/patientlist')
+      
+    })
+    .catch((err) => {
+      console.log('Error in CreatePatientFromVisit!')
+    })
+    
 
     axios
       .post('http://localhost:8081/api/records', data)
@@ -141,14 +161,42 @@ const CreatePatientFromVisit = (props) => {
 
 
         // Push to /
-        // navigate('/patientlist')
-        navigate(-1)
+        //navigate('/patientlist')
+        
+      })
+      .catch((err) => {
+        console.log('Error in CreatePatientFromVisit!')
+      })
+    
+    const visit2 = {
+      medicalRecordNumber: data2.medicalRecordNumber,
+      visitNumber: data2.visitNumber,
+      firstName: visit.firstName,
+      lastName: visit.lastName,
+      middleName: visit.middleName,
+      visitDate: visit.visitDate,
+      hourOfVisit: visit.hourOfVisit,
+      email: visit.email,
+      provider: visit.provider,
+      addedDate: visit.addedDate,
+    }
+    
+      axios
+      .put(`http://localhost:8081/api/visits/${id}`, visit2)
+      .then((res) => {
+
+
+        // Push to /
+        navigate('/patientlist')
+        
       })
       .catch((err) => {
         console.log('Error in CreatePatientFromVisit!')
       })
   }
 
+  
+  // console.log(data2)
   //Race
   const racevalues = Race
   const [racevalue, setraceValue] = React.useState('')
@@ -204,7 +252,7 @@ const CreatePatientFromVisit = (props) => {
                       type="text"
                       className="form-control"
                       name="firstName"
-                      value={record.firstName}
+                      value={visit.firstName}
                       // defaultValue={record.firstName}
                       onChange={onChange}
                     />
@@ -214,7 +262,7 @@ const CreatePatientFromVisit = (props) => {
                     <input
                       type="text"
                       name="middleName"
-                      defaultValue={record.middleName}
+                      defaultValue={visit.middleName}
                       className="form-control"
                       onChange={onChange}
                     />
@@ -225,7 +273,7 @@ const CreatePatientFromVisit = (props) => {
                       type="text"
                       className="form-control"
                       name="lastName"
-                      defaultValue={record.lastName}
+                      defaultValue={visit.lastName}
                       onChange={onChange}
                     />
                   </div>
@@ -336,7 +384,7 @@ const CreatePatientFromVisit = (props) => {
                     className="form-control"
                     name="email"
                     placeholder='Enter email'
-                    value={record.email}                    
+                    value={visit.email}                    
                     onChange={onChange}
                   />
                 </div>

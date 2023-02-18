@@ -85,9 +85,9 @@ function UpdateRecordInfo(props) {
     const data = {
         medicalRecordNumber: record.medicalRecordNumber,
         visitNumber: record.visitNumber,
-        firstName: record.firstName,
-        lastName: record.lastName,
-        middleName: record.middleName,
+        firstName: record.firstName.toUpperCase(),
+        lastName: record.lastName.toUpperCase(),
+        middleName: record.middleName.toUpperCase(),
         gender: record.gender,
         race: record.race,
         dateOfBirth: record.dateOfBirth,

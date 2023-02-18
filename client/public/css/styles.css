@@ -674,8 +674,27 @@ tbody tr {
   border-radius: 5px;
 }
 
+.form-grid-container .quickVisit {
+  grid-template-columns: auto auto;
+}
+
+.form-grid-quickvisit-container {
+  display: grid;
+  height: auto;
+  align-content: space-evenly;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  background-color: #efefef;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.div-items {
+  width: 100%;
+}
+
 .form-grid-container > div {
-  background-color: #ffffffcc;
+  background-color: #ffffff;
   text-align: left;
   padding: 20px 5px;
   font-size: 14px;
@@ -1464,7 +1483,7 @@ tfoot > .MuiTableFooter-root {
 
 /*visit modal additional css*/
 .addVisitModalBtn {
-  margin-left: 400px;
+  margin-left: 300px;
 }
 
 /*settings page css*/

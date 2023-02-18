@@ -294,7 +294,8 @@ function UpdateVisitInfo(props) {
                       aria-hidden="true"
                       title="Add registration"
                     />
-                  </Link>{' '}
+                    {' '}Register
+                  </Link>
                   {/* <button onClick={createFromVisit} className="btn btn-info btn-sm" >
                   test
                   </button> */}

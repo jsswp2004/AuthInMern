@@ -86,38 +86,45 @@ const CreateVisitMonthly = (props) => {
 
   return (
     <form noValidate onSubmit={onSubmit}>
-      <div className="form-grid-container">
+      <div className="form-grid-quickvisit-container">
         <div className="div-items">
+          {/* style={{width: '360px'}} */}
           <div className="forms-group">
             <div className="form-group">
-              <label htmlFor="firstName">Firstname </label>
-              <input
-                type="text"
-                className="form-control"
-                name="firstName"
-                value={visit.firstName}
-                onChange={onChange}
-              />
+              <label htmlFor="firstName">
+                Firstname
+                <input
+                  type="text"
+                  className="form-control"
+                  name="firstName"
+                  value={visit.firstName}
+                  onChange={onChange}
+                />
+              </label>
             </div>
             <div className="form-group">
-              <label htmlFor="middleName">Middlename</label>
-              <input
-                type="text"
-                name="middleName"
-                value={visit.middleName}
-                className="form-control"
-                onChange={onChange}
-              />
+              <label htmlFor="middleName">
+                Middlename
+                <input
+                  type="text"
+                  name="middleName"
+                  value={visit.middleName}
+                  className="form-control"
+                  onChange={onChange}
+                />
+              </label>
             </div>
             <div className="form-group">
-              <label htmlFor="lastName">Lastname</label>
-              <input
-                type="text"
-                className="form-control"
-                name="lastName"
-                value={visit.lastName}
-                onChange={onChange}
-              />
+              <label htmlFor="lastName">
+                Lastname
+                <input
+                  type="text"
+                  className="form-control"
+                  name="lastName"
+                  value={visit.lastName}
+                  onChange={onChange}
+                />
+              </label>
             </div>
             <div className="form-group">
               <label htmlFor="hourOfVisit">
@@ -128,6 +135,7 @@ const CreateVisitMonthly = (props) => {
                   value={visit.hourOfVisit}
                   onChange={onChange}
                 >
+                  {' '}
                   {hourValues.map((hourval) => (
                     <option key={hourval.value} value={hourval.value}>
                       {hourval.label}
@@ -140,78 +148,60 @@ const CreateVisitMonthly = (props) => {
         </div>
         <div className="div-items">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              name="email"
-              className="form-control"
-              value={visit.email}
-              onChange={onChange}
-            />
+            <label htmlFor="email">
+              Email
+              <input
+                type="text"
+                name="email"
+                className="form-control"
+                value={visit.email}
+                onChange={onChange}
+              />
+            </label>
           </div>
           <div className="form-group">
-            <label htmlFor="addedDate">Date Created</label>
-            <input
-              name="addedDate"
-              className="form-control"
-              value={visit.addedDate}
-              onChange={onChange}
-            />
+            <label htmlFor="addedDate">
+              Date Created
+              <input
+                name="addedDate"
+                className="form-control"
+                value={visit.addedDate}
+                onChange={onChange}
+              />
+            </label>
           </div>
           <div className="form-group">
-            <label htmlFor="visitDate">Visit Date</label>
-            <input
-              type="date"
-              name="visitDate"
-              className="form-control"
-              value={visit.visitDate}
-              onChange={onChange}
-            />
+            <label htmlFor="visitDate">
+              Visit Date
+              <input
+                type="date"
+                name="visitDate"
+                className="form-control"
+                value={visit.visitDate}
+                onChange={onChange}
+              />
+            </label>
           </div>
           <div className="form-group">
-            <label htmlFor="provider">Provider</label>
-            <select
-              className="form-control select"
-              name="provider"
-              value={visit.provider}
-              onChange={onChange}
-            >
-              {' '}
-              <option value="" disabled selected>
-                Select Provider
-              </option>
-              {providerMD.map((doc) => (
-                <option key={doc.value} value={doc.value}>
-                  {doc}
+            <label htmlFor="provider">
+              Provider
+              <select
+                className="form-control select"
+                name="provider"
+                value={visit.provider}
+                onChange={onChange}
+              >
+                {' '}
+                <option value="" disabled selected>
+                  Select Provider
                 </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="div-items">
-          <div className="form-group">
-            <label htmlFor="medicalRecordNumber">MRN</label>
-            <input
-              type="text"
-              placeholder='Please register client'
-              className="form-control"
-              name="medicalRecordNumber"
-              value={visit.medicalRecordNumber}
-              onChange={onChange}
-              readOnly
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="visitNumber">Visit ID</label>
-            <input
-              placeholder='Please register client'
-              type="text"
-              className="form-control"
-              name="visitNumber"
-              value={visit.visitNumber}
-              onChange={onChange}
-              readOnly
-            />
+                {providerMD.map((doc) => (
+                  <option key={doc.value} value={doc.value}>
+                    {doc}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
           <div
             className="form-group"
@@ -230,6 +220,32 @@ const CreateVisitMonthly = (props) => {
             Cras mattis consectetur purus sit amet fermentum.
           </p>
         </Alert> */}
+          </div>
+        </div>
+        <div className="div-items" style={{ display: 'none' }}>
+          <div className="form-group">
+            <label htmlFor="medicalRecordNumber">MRN</label>
+            <input
+              type="text"
+              placeholder="Please register client"
+              className="form-control"
+              name="medicalRecordNumber"
+              value={visit.medicalRecordNumber}
+              onChange={onChange}
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="visitNumber">Visit ID</label>
+            <input
+              placeholder="Please register client"
+              type="text"
+              className="form-control"
+              name="visitNumber"
+              value={visit.visitNumber}
+              onChange={onChange}
+              readOnly
+            />
           </div>
         </div>
       </div>

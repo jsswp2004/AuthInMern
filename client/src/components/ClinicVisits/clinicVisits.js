@@ -203,9 +203,7 @@ export default function ClinicVisit() {
       <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
         <Modal.Header closeButton onClick={() => setNewPatient(true)}>
           <Modal.Title>
-            Add a quick Visit
-            {/* <button className='btn btn-info btn-sm' onClick={() => setNewPatient(true)}> New patient</button> */}
-            {/* <button  className='btn btn-secondary btn-sm addVisitModalBtn' onClick={() => setNewPatient(false)}> Search patient</button> */}
+            Add a quick visit
             <Link
               className="btn btn-secondary btn-sm addVisitModalBtn"
               to={`/patientlist`}
@@ -218,23 +216,7 @@ export default function ClinicVisit() {
             </Link>{' '}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>
-          {/* <div>
-            <Button onClick={setModalDisplay(' ')}>Registration</Button>
-          </div>
-          <div>
-            <Button onclick={setModalDisplay('visit')}>Visit</Button>
-          </div> */}
-
-          {/* <div
-            style={{ display: modalDisplay === 'registration' ? 'none' : '' }}
-          >
-            <CreatePatientModal
-              visitNumber={setVisitNumber}
-              medicalRecordNumber={setMedicalRecordNumber}
-              // onClick={setModalDisplay('show')}
-            />
-          </div> */}
+        <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>          
           <div
             style={{
               display: modalDisplay === 'visit' ? '' : 'none',
@@ -245,21 +227,14 @@ export default function ClinicVisit() {
               lastName={lastName}
               middleName={middleName}
               email={email}
-              // visitNumber={setVisitNumber}
-              // medicalRecordNumber={setMedicalRecordNumber}
               visitDate={selectedDate}
             />
           </div>
           {/*  */}
         </Modal.Body>
-        {/* <Modal.Body style={{ display: newPatient === false ? '' : "none" }}>
-          <p>TT</p>
-          <VisitMonthlyModal visitDate={selectedDate} />
-          
-        </Modal.Body> */}
         <Modal.Footer>
           <span style={{ textAlign: 'center' }}>
-            PLEASE MAKE SURE TO REGISTER CLIENT.
+            PLEASE MAKE SURE TO REGISTER CLIENT AFTER ADDING QUICK VISIT TO SCHEDULE.
           </span>
         </Modal.Footer>
       </Modal>
