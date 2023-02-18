@@ -274,7 +274,7 @@ function UpdateVisitInfo(props) {
                   />
                   <Link
                     className="btn btn-info btn-sm"
-                    to={`/createPatientFromVisit`}
+                    to={`/createPatientFromVisit/${visit._id}`}
                     // data={data}
                     firstName={data.firstName}
                     
@@ -285,7 +285,7 @@ function UpdateVisitInfo(props) {
                       title="Edit registration"
                     />
                   </Link>{' '}
-                  <button onClick={createFromVisit()} className="btn btn-info btn-sm" >
+                  <button onClick={createFromVisit} className="btn btn-info btn-sm" >
                   test
                   </button>
                 </div>

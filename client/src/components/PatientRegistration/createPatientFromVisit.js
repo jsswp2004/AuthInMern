@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams,useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
@@ -11,30 +11,85 @@ import {
   States,
 } from '../listDictionaries/listData/listDictionariesData'
 
-const CreateRecord = (props) => {
+const CreatePatientFromVisit = (props) => {
   //autocreate MRN
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
-  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-
+  // const setVisitNumber = Math.floor(1 + Math.random() * 99999)
+  
   // Define the state with useState hook
   const navigate = useNavigate()
+  const [visit, setVisit] = useState({
+    medicalRecordNumber: '',
+    visitNumber:'',
+    lastName: '',
+    middleName: '',
+    visitDate: '',
+    hourOfVisit: '',
+    email: '',
+    provider: '',
+    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+  })
+  const { id } = useParams()
+  console.log(id)
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/visits/${id}`)
+      .then((res) => {
+        setVisit({
+          medicalRecordNumber: res.data.medicalRecordNumber,
+          visitNumber: res.data.visitNumber,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          middleName: res.data.middleName,
+          visitDate: res.data.visitDate,
+          hourOfVisit: res.data.hourOfVisit,
+          email: res.data.email,
+          provider: res.data.provider,
+          addedDate: res.data.addedDate,
+        })
+      })
+      .catch((err) => {
+        console.log('Error from CreatePatientFromVisit')
+      })
+  }, [id])
+
+  const {
+    medicalRecordNumber,
+    visitNumber,
+    firstName,
+    lastName,
+    middleName,
+    gender,
+    race,
+    dateOfBirth,
+    age,
+    language,
+    address,
+    city,
+    zipCode,
+    state,
+    email,
+    addedDate,
+  } = visit
+  const today = new Date()
+  const setVisitNumber = visit.visitNumber
   const [record, setRecord] = useState({
     medicalRecordNumber: setMedicalRecordNumber,
     visitNumber: setVisitNumber,
-    firstName: props.firstName,
-    lastName: props.lastName,
-    middleName: props.middleName,
+    firstName: visit.firstName,
+    lastName: visit.lastName,
+    middleName: visit.middleName,
     gender: '',
     race: '',
-    dateOfBirth: format(new Date(), 'yyyy-MM-dd'),
+    dateOfBirth: '',
     age: '',
     language: '',
     address: '',
     city: '',
     zipCode: '',
     state: '',
-    email: props.email,
+    email: visit.email,
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
@@ -42,46 +97,50 @@ const CreateRecord = (props) => {
     setRecord({ ...record, [e.target.name]: e.target.value })
   }
   //calculate age
-  const today = new Date()
-  const birthDate = new Date(record.dateOfBirth)
-  var age = today.getFullYear() - birthDate.getFullYear()
-  const m = today.getMonth() - birthDate.getMonth()
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--
-  }
-  //save age to record.age
-  record.age = age.toString()
+  
+  // const birthDate = new Date(record.dateOfBirth)
+  // let clientAge = visit.age
+  // record.age = today.getFullYear() - birthDate.getFullYear()
+  // const m = today.getMonth() - birthDate.getMonth()
+  // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  //   age--
+  // }
+  // //save age to record.age
+  // record.age = age.toString()
 
   const onSubmit = (e) => {
     e.preventDefault()
 
+    const data = {
+      medicalRecordNumber: record.medicalRecordNumber,
+      visitNumber: record.visitNumber,
+      firstName: visit.firstName,
+      lastName: visit.lastName,
+      middleName: visit/middleName,
+      gender: record.gender,
+      race: record.race,
+      dateOfBirth: record.dateOfBirth,
+      age: record.age,
+      language: record.language,
+      address: record.address,
+      city: record.city,
+      zipCode: record.zipCode,
+      state: record.state,
+      email: visit.email,
+      addedDate: visit.addedDate,
+    }
+
     axios
-      .post('http://localhost:8081/api/records', record)
+      .post('http://localhost:8081/api/records', data)
       .then((res) => {
-        setRecord({
-          medicalRecordNumber: '',
-          visitNumber: '',
-          firstName: '',
-          lastName: '',
-          middleName: '',
-          gender: '',
-          race: '',
-          dateOfBirth: '',
-          age: '',
-          language: '',
-          address: '',
-          city: '',
-          zipCode: '',
-          state: '',
-          email: '',
-          addedDate: '',
-        })
+
 
         // Push to /
-        navigate('/patientlist')
+        // navigate('/patientlist')
+        navigate(-1)
       })
       .catch((err) => {
-        console.log('Error in CreateRecord!')
+        console.log('Error in CreatePatientFromVisit!')
       })
   }
 // console.log(record)
@@ -345,4 +404,4 @@ const CreateRecord = (props) => {
   )
 }
 
-export default CreateRecord
+export default CreatePatientFromVisit

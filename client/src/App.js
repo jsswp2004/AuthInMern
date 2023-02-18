@@ -52,7 +52,7 @@ function App() {
       <Route path="/createRole" exact element={<CreateRole />} />
       <Route path="/editRole/:id" exact element={<EditRole />} />
       <Route path="/settingsPage" exact element={<ManageSettings />} />
-      <Route path="/createPatientFromVisit" exact element={<CreatePatientFromVisit/>}/>
+      <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit/>}/>
     </Routes>
   )
 }

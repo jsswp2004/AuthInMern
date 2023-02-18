@@ -77,7 +77,8 @@ const CreateVisitFromReg = (props) => {
 
   const [visit, setVisit] = useState({
     medicalRecordNumber: medicalRecordNumber,
-    visitNumber:setVisitNumber,
+    visitNumber: setVisitNumber,
+    firstName: firstName,
     lastName: lastName,
     middleName: middleName,
     visitDate: '',

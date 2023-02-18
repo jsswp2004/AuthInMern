@@ -214,7 +214,7 @@ export default function ClinicVisit() {
                 className="fas fa-laptop-medical fa-sm"
                 aria-hidden="true"
                 title="Search patient"
-              />
+              /> Search Patient
             </Link>{' '}
           </Modal.Title>
         </Modal.Header>
