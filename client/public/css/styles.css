@@ -1600,8 +1600,8 @@ tfoot > .MuiTableFooter-root {
 /*Edit registration page css*/
 .updateRegistrationBtn {
   float: right;
-  text-align: left;
+  /* text-align: left; */
   padding-top: 10px;
-  bottom: 0p;
-  position: absolute;
+  bottom: 0px;
+  /* position: absolute; */
 }
