@@ -4,42 +4,14 @@ import { Link } from 'react-router-dom'
 // import { textAlign } from '@mui/system'
 const VisitMonthDaily = (props) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        marginTop: '0',
-        marginRight: '2px',
-        marginLeft: '2px',
-        marginBottom: '0',
-        paddingBottom: '0',
-        paddingTop: '0',
-      }}
-    >
-      <div
-        style={{
-          marginTop: '0',
-          marginRight: '2px',
-          marginLeft: '0',
-          marginBottom: '0',
-          paddingBottom: '0',
-          paddingTop: '0',
-        }}
-      >
+    <div className="visitMonthDayContainer">
+      <div className="visitMonthDayContainerItem">
         <span>
           {props.visit.hourOfVisit} {props.visit.firstName}{' '}
           {props.visit.lastName}
         </span>
       </div>
-      <div
-        style={{
-          marginTop: '0',
-          marginRight: '2px',
-          marginLeft: 'auto',
-          marginBottom: '0',
-          paddingBottom: '0',
-          paddingTop: '0',
-        }}
-      >
+      <div className="visitMonthDayContainerItemAction">
         <Link to={`/editVisit/${props.visit._id}`}>
           <i
             className="fa fa-pencil-square-o fa-sm"

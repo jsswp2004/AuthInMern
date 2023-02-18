@@ -797,6 +797,33 @@ h5 {
   /* font-size: small; */
   /* height: 100vh; */
 }
+.visitMonthDayContainer {
+  display: flex;
+  margin-top: 0;
+  margin-right: 10px;
+  margin-left: 5px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.visitMonthDayContainerItem {
+  margin-top: 0;
+  margin-right: 2px;
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.visitMonthDayContainerItemAction {
+  margin-top: 0;
+  margin-right: 2px;
+  margin-left: auto;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
 
 .calendar-item {
   width: auto;

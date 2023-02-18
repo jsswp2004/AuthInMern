@@ -197,7 +197,7 @@ export default function ClinicVisit() {
   // const displayVisitMonthlyMode = {
   //   display: modalDisplay === 'show' ? '' : 'none',
   // }
-  console.log(modalDisplay)
+  // console.log(modalDisplay)
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
@@ -1466,7 +1466,7 @@ export default function ClinicVisit() {
               >
                 <Button
                   className="openVisitModalButton"
-                  onClick={handleShow}
+                  onClick={handleClick}
                   data-toggle="tooltip"
                   data-placement="right"
                   title="Add Visit"
