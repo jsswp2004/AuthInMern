@@ -155,8 +155,9 @@ function UpdateRecordInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h5 className='createPageHeader'>Edit Patient Registration</h5>
-        <div className="item3A">
+        <h4 className='createPageHeader'>Edit Patient Registration</h4>
+        <div className="item3As"></div>
+        <div className="item3AItem left">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
               <div className="div-items">
@@ -367,7 +368,9 @@ function UpdateRecordInfo(props) {
             </div>
           </form>
         </div>
+        <div className="item3AItem right" >TEST</div>
       </div>
+      
     </div>
   )
 }
