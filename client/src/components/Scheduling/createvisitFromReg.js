@@ -258,7 +258,7 @@ const CreateVisitFromReg = (props) => {
                       Select Provider
                     </option>
                     {providerMD.map((doc) => (
-                      <option key={doc.value} value={doc.value}>
+                      <option key={doc._id} value={doc.provider}>
                         {doc}
                       </option>
                     ))}

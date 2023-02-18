@@ -77,7 +77,7 @@ export default function ClinicVisit() {
         console.log('Error from ShowVisitList')
       })
   }, [])
-  console.log(visits)
+  //console.log(visits)
   //#endregion
   //#region code for calendar view select dropdown
   const [selectViewValue, setViewValue] = React.useState('Monthly')
@@ -133,15 +133,30 @@ export default function ClinicVisit() {
   // }
   const previousMonth = newdate.getMonth()
   let daysOfPreviousMonth = getDaysInMonth(previousMonth, currentYear)
-  let dayOfTheMonth = newdate.getDate()
-  let dayOfTheWeek = newdate.getDay() > 7 ? 1 : newdate.getDay()
-  let startDayOfTheWeek =
-    newdate === '2022-05-01' ? 1 : dayOfTheMonth - dayOfTheWeek
-  let startOfTheWeek =
-    startDayOfTheWeek < 1
-      ? daysOfPreviousMonth - (dayOfTheWeek - 1)
-      : startDayOfTheWeek
-
+  //pulls the number date of the month
+  // let dayOfTheMonth = newdate.getDate()
+  //pull the day number of the week - o based
+  // let dayOfTheWeek = newdate.getDay() > 7 ? 1 : newdate.getDay()
+  //pulls date number of the date
+  // let startDayOfTheWeek =
+  //   newdate === '2022-05-01' ? 1 : dayOfTheMonth - dayOfTheWeek
+  //pulls date number of the week
+  let startOfTheWeek = startOfWeek(newdate).getDate()
+    // startDayOfTheWeek < 1
+    //   ? daysOfPreviousMonth - (dayOfTheWeek - 1)
+    //   : startDayOfTheWeek
+      
+  // console.log(newdate)
+  // console.log(previousMonth)
+  // console.log(daysOfPreviousMonth)
+  
+  // console.log(dayOfTheMonth)
+  
+  // console.log(dayOfTheWeek)
+  
+  // console.log(startDayOfTheWeek)
+  // console.log(startOfTheWeek)
+  // console.log(startOfWeek(newdate))
   //#endregion
   //#region captures and sets value of the search input text
   const [searchInput, setSearchInput] = useState(
@@ -274,7 +289,7 @@ export default function ClinicVisit() {
   const filterDataWithDate = filterDataWithDat.sort((a, b) =>
     a.hourOfVisit > b.hourOfVisit ? 1 : -1,
   )
-  console.log(filterDataWithDat)
+  //console.log(filterDataWithDat)
   //#endregion
   //#region for mapping and sorting data by date
   function patientListDaily() {

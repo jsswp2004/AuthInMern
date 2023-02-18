@@ -171,9 +171,9 @@ const CreatePatientFromVisit = (props) => {
     const visit2 = {
       medicalRecordNumber: data2.medicalRecordNumber,
       visitNumber: data2.visitNumber,
-      firstName: visit.firstName,
-      lastName: visit.lastName,
-      middleName: visit.middleName,
+      firstName: visit.firstName.toUpperCase(),
+      lastName: visit.lastName.toUpperCase(),
+      middleName: visit.middleName.toUpperCase(),
       visitDate: visit.visitDate,
       hourOfVisit: visit.hourOfVisit,
       email: visit.email,

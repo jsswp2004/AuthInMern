@@ -80,7 +80,7 @@ function UpdateVisitInfo(props) {
     setprevID(id)
   }, [id])
 
-  console.log(previousID.current)
+  // console.log(previousID.current)
 
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
@@ -93,6 +93,9 @@ function UpdateVisitInfo(props) {
     const data = {
       medicalRecordNumber: visit.medicalRecordNumber,
       visitNumber: visit.visitNumber,
+      // firstName: visit.firstName.toUpperCase(),
+      // lastName: visit.lastName.toUpperCase(),
+      // middleName: visit.middleName.toUpperCase(),
       firstName: visit.firstName,
       lastName: visit.lastName,
       middleName: visit.middleName,

@@ -61,7 +61,7 @@ export default function ShowVisitList() {
 
   const dateRegister = regDate //format(regDate, 'yyyy-MM-dd')
   const dateRegistered = dateRegister
-  console.log(selectMD.toLowerCase())
+  // console.log(selectMD.toLowerCase())
   var filteredMD = visits.filter((visit) => {
     if (selectMD === '') {
       return visit
