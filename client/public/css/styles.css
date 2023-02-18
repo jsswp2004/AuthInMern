@@ -51,7 +51,7 @@ body {
   /* flex-flow: row wrap; */
   /*flex-direction: column;
   justify-content: center;*/
-  align-items: center; 
+  align-items: center;
   /* height: 100vh; */
   /* width: 100%; */
   /* background-color: #535353; */
@@ -441,7 +441,6 @@ body {
 .right {
   right: 0;
   float: right;
-  
 }
 .item3A h3 {
   margin-bottom: 0px;
@@ -575,7 +574,7 @@ body {
   width: 100%;
 }
 
-.roleItemContainer>.roleItemContainerBox {
+.roleItemContainer > .roleItemContainerBox {
   width: 50%;
   margin-left: 2px;
 }
@@ -1412,7 +1411,7 @@ text-align: center;
   margin-top: 3px;
   margin-bottom: 1px;
   /* margin-left: auto; */
-  float:right;
+  float: right;
   height: 30px;
 }
 
@@ -1468,33 +1467,33 @@ tfoot > .MuiTableFooter-root {
 /* Medium screens */
 @media all and (min-width: 600px) {
   /* We tell both sidebars to share a row */
-  .aside { flex: 1 auto; }
+  .aside {
+    flex: 1 auto;
+  }
 }
 
 /* Large screens */
 /* @media all and (min-width: 800px) { */
-  /* We invert order of first sidebar and main
+/* We invert order of first sidebar and main
    * And tell the main element to take twice as much width as the other two sidebars 
    */
-  /* .main { flex: 3 0px; }
+/* .main { flex: 3 0px; }
   .aside-1 { order: 1; }
   .main    { order: 2; }
   .aside-2 { order: 3; }
   .footer  { order: 4; }
 } */
 
-
-
 /**/
 
 /*registration page css*/
-.registerBtn{
+.registerBtn {
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: 10px;
   height: 30px;
-  padding-top:0px;
+  padding-top: 0px;
 }
 
 /*Tool TIp CSS*/
@@ -1514,7 +1513,7 @@ tfoot > .MuiTableFooter-root {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
- 
+
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
@@ -1566,7 +1565,6 @@ tfoot > .MuiTableFooter-root {
   border-radius: 50%;
 }
 
-
 /* On mouse-over, add a grey background color */
 .settingCheckboxContainer:hover input ~ .settingCheckboxCheckmark {
   background-color: #ccc;
@@ -1574,7 +1572,7 @@ tfoot > .MuiTableFooter-root {
 
 /* When the radio is checked, add a blue background */
 .settingCheckboxContainer input:checked ~ .settingCheckboxCheckmark {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 /* Create the checkmark/indicator (the dot/circle - hidden when not checked) */
@@ -1592,10 +1590,18 @@ tfoot > .MuiTableFooter-root {
 /* Style the indicator (dot/circle) */
 .settingCheckboxContainer .settingCheckboxCheckmark:after {
   top: 6px;
-	left: 6px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 
+/*Edit registration page css*/
+.updateRegistrationBtn {
+  float: right;
+  text-align: left;
+  padding-top: 10px;
+  bottom: 0p;
+  position: absolute;
+}

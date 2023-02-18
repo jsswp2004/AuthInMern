@@ -157,7 +157,7 @@ function UpdateRecordInfo(props) {
       <div className="item3">
         <div className="item3A">
           <div className="item3AItem left">
-            <h4 className="createPageHeader">Edit Patient Registration</h4>
+            <h4 className="createPageHeader">Patient Registration</h4>
             <form noValidate onSubmit={onSubmit}>
               <div className="form-grid-container">
                 <div className="div-items">
@@ -377,12 +377,14 @@ function UpdateRecordInfo(props) {
                     </label>
                   </div>
                   <div
-                    className="form-group"
-                    style={{
-                      float: 'left',
-                      textAlign: 'left',
-                      paddingTop: '10px',
-                    }}
+                    className="form-group updateRegistrationBtn"
+                    // style={{
+                    //   float: 'right',
+                    //   textAlign: 'left',
+                    //   paddingTop: '10px',
+                    //   bottom: '0px',
+                    //   position: 'absolute'
+                    // }}
                   >
                     <input
                       value="Update"
