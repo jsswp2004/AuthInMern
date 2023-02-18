@@ -14,7 +14,7 @@ import RegistrationDetail from './registrationDetails'
 
 function UpdateRecordInfo(props) {
   const [record, setRecord] = useState({
-    medicalRecordNumber:'',
+    medicalRecordNumber: '',
     visitNumber: '',
     firstName: '',
     lastName: '',
@@ -41,22 +41,22 @@ function UpdateRecordInfo(props) {
       .get(`http://localhost:8081/api/records/${id}`)
       .then((res) => {
         setRecord({
-            medicalRecordNumber: res.data.medicalRecordNumber,
-            visitNumber: res.data.visitNumber,
-            firstName: res.data.firstName,
-            lastName: res.data.lastName,
-            middleName: res.data.middleName,
-            gender: res.data.gender,
-            race: res.data.race,
-            dateOfBirth: res.data.dateOfBirth,
-            age: res.data.age,
-            language: res.data.language,
-            address: res.data.address,
-            city: res.data.city,
-            zipCode: res.data.zipCode,
-            state: res.data.state,
-            email: res.data.email,
-            addedDate: res.data.addedDate,
+          medicalRecordNumber: res.data.medicalRecordNumber,
+          visitNumber: res.data.visitNumber,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          middleName: res.data.middleName,
+          gender: res.data.gender,
+          race: res.data.race,
+          dateOfBirth: res.data.dateOfBirth,
+          age: res.data.age,
+          language: res.data.language,
+          address: res.data.address,
+          city: res.data.city,
+          zipCode: res.data.zipCode,
+          state: res.data.state,
+          email: res.data.email,
+          addedDate: res.data.addedDate,
         })
       })
       .catch((err) => {
@@ -79,27 +79,26 @@ function UpdateRecordInfo(props) {
   //will make this active if age is to be updated
   // record.age = age
 
-
   const onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
-        medicalRecordNumber: record.medicalRecordNumber,
-        visitNumber: record.visitNumber,
-        firstName: record.firstName.toUpperCase(),
-        lastName: record.lastName.toUpperCase(),
-        middleName: record.middleName.toUpperCase(),
-        gender: record.gender,
-        race: record.race,
-        dateOfBirth: record.dateOfBirth,
-        age: record.age,
-        language: record.language,
-        address: record.address,
-        city: record.city,
-        zipCode: record.zipCode,
-        state: record.state,
-        email: record.email,
-        addedDate: record.addedDate,
+      medicalRecordNumber: record.medicalRecordNumber,
+      visitNumber: record.visitNumber,
+      firstName: record.firstName.toUpperCase(),
+      lastName: record.lastName.toUpperCase(),
+      middleName: record.middleName.toUpperCase(),
+      gender: record.gender,
+      race: record.race,
+      dateOfBirth: record.dateOfBirth,
+      age: record.age,
+      language: record.language,
+      address: record.address,
+      city: record.city,
+      zipCode: record.zipCode,
+      state: record.state,
+      email: record.email,
+      addedDate: record.addedDate,
     }
 
     axios
@@ -113,7 +112,7 @@ function UpdateRecordInfo(props) {
       })
   }
 
-    //Race
+  //Race
   const racevalues = Race
   const [racevalue, setraceValue] = React.useState('')
 
@@ -146,7 +145,7 @@ function UpdateRecordInfo(props) {
   const statevalueChange = (event) => {
     setSelectedState(event.target.value)
   }
-  
+
   return (
     <div className="grid_container">
       <div className="item1">
@@ -156,228 +155,251 @@ function UpdateRecordInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        
         <div className="item3A">
-        
           <div className="item3AItem left">
-          <h4 className='createPageHeader'>Edit Patient Registration</h4>
-          <form noValidate onSubmit={onSubmit}>
-            <div className="form-grid-container">
-              <div className="div-items">
-                <div className="forms-group">
-                  <div className="form-group">
-                    <label htmlFor="firstName">Firstname </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="firstName"
-                      value={record.firstName}
-                      // defaultValue={record.firstName}
-                      onChange={onChange}
-                    />
+            <h4 className="createPageHeader">Edit Patient Registration</h4>
+            <form noValidate onSubmit={onSubmit}>
+              <div className="form-grid-container">
+                <div className="div-items">
+                  <div className="forms-group">
+                    <div className="form-group">
+                      <label htmlFor="firstName">
+                        Firstname
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="firstName"
+                          value={record.firstName}
+                          // defaultValue={record.firstName}
+                          onChange={onChange}
+                        />
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="middleName">
+                        Middlename
+                        <input
+                          type="text"
+                          name="middleName"
+                          defaultValue={record.middleName}
+                          className="form-control"
+                          onChange={onChange}
+                        />
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="lastName">
+                        Lastname
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="lastName"
+                          defaultValue={record.lastName}
+                          onChange={onChange}
+                        />
+                      </label>
+                    </div>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="middleName">Middlename</label>
-                    <input
-                      type="text"
-                      name="middleName"
-                      defaultValue={record.middleName}
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="lastName">Lastname</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="lastName"
-                      defaultValue={record.lastName}
-                      onChange={onChange}
-                    />
+                    <div className="form-group">
+                      <label htmlFor="dateOfBirth">
+                        Date of Birth
+                        <input
+                          type="date"
+                          name="dateOfBirth"
+                          value={record.dateOfBirth}
+                          className="form-control"
+                          onChange={onChange}
+                        />
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="gender">
+                        Gender
+                        <select
+                          className="form-control select"
+                          name="gender"
+                          value={record.gender}
+                          onChange={onChange}
+                        >
+                          {gendervalues.map((genderval) => (
+                            <option value={genderval.value}>
+                              {genderval.label}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="race">
+                        Race
+                        <select
+                          className="form-control select"
+                          name="race"
+                          value={record.race}
+                          onChange={onChange}
+                        >
+                          {racevalues.map((raceval) => (
+                            <option value={raceval.value}>
+                              {raceval.label}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </div>
                   </div>
                 </div>
-                <div className="form-group">
+                <div className="div-items">
                   <div className="form-group">
-                    <label htmlFor="dateOfBirth">Date of Birth</label>
-                    <input
-                      type="date"
-                      name="dateOfBirth"
-                      value={record.dateOfBirth}
-                      className="form-control"
-                      onChange={onChange}
-                    />
+                    <label htmlFor="medicalRecordNumber">
+                      MRN
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="medicalRecordNumber"
+                        placeholder="Automatically generated"
+                        value={record.medicalRecordNumber}
+                        readOnly
+                        onChange={onChange}
+                      />
+                    </label>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="gender">
-                      Gender
+                    <label htmlFor="visitNumber">
+                      Visit Number
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="visitNumber"
+                        placeholder="Automatically generated"
+                        value={record.visitNumber}
+                        readOnly
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="language">
+                      Language
                       <select
                         className="form-control select"
-                        name="gender"
-                        value={record.gender}
+                        name="language"
+                        value={record.language}
                         onChange={onChange}
                       >
-                        {gendervalues.map((genderval) => (
-                          <option value={genderval.value}>
-                            {genderval.label}
+                        {languagevalues.map((languageval) => (
+                          <option value={languageval.value}>
+                            {languageval.label}
                           </option>
                         ))}
                       </select>
                     </label>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="race">
-                      Race
+                    <label htmlFor="age">
+                      Age
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="age"
+                        placeholder="Automatically generated"
+                        value={record.age}
+                        readOnly
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">
+                      Email
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter email"
+                        name="email"
+                        value={record.email}
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div className="div-items">
+                  <div className="form-group">
+                    <label htmlFor="address">
+                      Address
+                      <input
+                        type="text"
+                        name="address"
+                        className="form-control"
+                        value={record.address}
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="city">
+                      City
+                      <input
+                        name="city"
+                        className="form-control"
+                        value={record.city}
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="zipCode">
+                      Zip Code
+                      <input
+                        type="number"
+                        name="zipCode"
+                        className="form-control"
+                        value={record.zipCode}
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="state">
+                      State
                       <select
                         className="form-control select"
-                        name="race"
-                        value={record.race}
+                        name="state"
+                        value={record.state}
                         onChange={onChange}
                       >
-                        {racevalues.map((raceval) => (
-                          <option value={raceval.value}>{raceval.label}</option>
+                        {statevalues.map((stateval) => (
+                          <option value={stateval.value}>
+                            {stateval.name}
+                          </option>
                         ))}
                       </select>
                     </label>
                   </div>
+                  <div
+                    className="form-group"
+                    style={{
+                      float: 'left',
+                      textAlign: 'left',
+                      paddingTop: '10px',
+                    }}
+                  >
+                    <input
+                      value="Update"
+                      type="submit"
+                      className="btn btn-success"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="div-items">
-                <div className="form-group">
-                  <label htmlFor="medicalRecordNumber">MRN </label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="medicalRecordNumber"
-                    placeholder="Automatically generated"
-                    value={record.medicalRecordNumber}
-                    readOnly
-                    onChange={onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="visitNumber">Visit Number </label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="visitNumber"
-                    placeholder="Automatically generated"
-                    value={record.visitNumber}
-                    readOnly
-                    onChange={onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="language">
-                    Language
-                    <select
-                      className="form-control select"
-                      name="language"
-                      value={record.language}
-                      onChange={onChange}
-                    >
-                      {languagevalues.map((languageval) => (
-                        <option value={languageval.value}>
-                          {languageval.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="age">Age </label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="age"
-                    placeholder="Automatically generated"
-                    value={record.age}
-                    readOnly
-                    onChange={onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter email"
-                    name="email"                    
-                    value={record.email}                    
-                    onChange={onChange}
-                  />
-                </div>
-              </div>
-              <div className="div-items">
-                <div className="form-group">
-                  <label htmlFor="address">Address</label>
-                  <input
-                    type="text"
-                    name="address"
-                    className="form-control"
-                    value={record.address}
-                    onChange={onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="city">City</label>
-                  <input
-                    name="city"
-                    className="form-control"
-                    value={record.city}
-                    onChange={onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="zipCode">Zip Code</label>
-                  <input
-                    type="number"
-                    name="zipCode"
-                    className="form-control"
-                    value={record.zipCode}
-                    onChange={onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="state">
-                    State
-                    <select
-                      className="form-control select"
-                      name="state"
-                      value={record.state}
-                      onChange={onChange}
-                    >
-                      {statevalues.map((stateval) => (
-                        <option value={stateval.value}>{stateval.name}</option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    float: 'left',
-                    textAlign: 'left',
-                    paddingTop: '10px',
-                  }}
-                >
-                  <input
-                    value="Update"
-                    type="submit"
-                    className="btn btn-success"
-                  />
-                </div>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
+          <div className="item3AItem right">
+            <h4 className="createPageHeader">Details</h4>
+            <RegistrationDetail />
+          </div>
         </div>
-          <div className="item3AItem right" >
-            <h4 className='createPageHeader'>Details</h4>
-            <RegistrationDetail/>
-          </div>
-          </div>
       </div>
-      
     </div>
   )
 }
