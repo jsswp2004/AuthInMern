@@ -27,6 +27,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
   },
+  container: {
+    flex: 1,
+    paddingTop: 30,
+    paddingLeft: 15,
+    '@media max-width: 400': {
+      paddingTop: 10,
+      paddingLeft: 0,
+    },
+  },
+
+  demographics: {
+    // flexDirection: 'row',
+    margin: 10,
+    padding: 10,
+    flexGrow: 1,
+  },
   section: {
     // flexDirection: 'row',
     margin: 10,
@@ -72,7 +88,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    textAlign: 'center',
+    // textAlign: 'center',
+    alignSelf: 'center',
     fontFamily: 'Oswald',
   },
   author: {
@@ -97,8 +114,10 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 12,
-    marginBottom: 12,
-    textAlign: 'right',
+    marginBottom: 10,
+    marginTop: 5,
+    marginLeft: 10,
+    textAlign: 'center',
     color: 'grey',
   },
   pageNumber: {
@@ -109,6 +128,32 @@ const styles = StyleSheet.create({
     right: 0,
     textAlign: 'center',
     color: 'grey',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  leftColumn: {
+    flexDirection: 'column',
+    flexGrow: 1,
+    // alignItems: 'flex-end',
+    // justifySelf: 'flex-end',
+  },
+  rightColumn: {
+    flexDirection: 'column',
+    flexGrow: 1,
+    alignItems: 'flex-start',
+    marginRight: 10,
+    // justifySelf: 'flex-end',
+  },
+  date: {
+    fontSize: 14,
+    fontFamily: 'Oswald',
+  },
+  entryContainer: {
+    marginBottom: 10,
+    flexDirection: 'row',
   },
 })
 
@@ -121,82 +166,41 @@ const RegistrationDetail = (props) => {
       <Document>
         {/*render a single page*/}
         <Page size="Letter" style={styles.page}>
-          <View style={styles.section}>
-            <Text style={styles.header} fixed>
-              POEHR&#174;
-            </Text>
-            <Text style={styles.title}>Patient Registration Details</Text>
+          <Text style={styles.header} fixed>
+            POEHR&#174;
+          </Text>
+          <View style={styles.container}>
+            <View style={styles.headerContainer}>
+              <Text style={styles.title}>Patient Registration Details</Text>
+            </View>
 
-            <View style={styles.section0}>
-              <div style={styles.subsection0}>
-                {/* <View style={styles.subsection0}> */}
-                <Text style={styles.subtitle}>
-                  Patient Name:{' '}
-                  <Text style={styles.text}>
-                    {props.visit.firstName} {props.visit.middleName}{' '}
-                    {props.visit.lastName}
-                  </Text>
+            <View style={styles.entryContainer}>
+              <View style={styles.leftColumn}>
+                {/* <Text style={styles.title}></Text> */}
+                <Text style={styles.text}>
+                  Patient Name: {props.visit.firstName} {props.visit.middleName}{' '}
+                  {props.visit.lastName}
                 </Text>
-                <Text style={styles.subtitle}>
-                  Gender: <Text style={styles.text}>{props.visit.gender}</Text>
+                <Text style={styles.text}>DOB: {props.visit.dateOfBirth}   Age: {props.visit.age}</Text>
+                <Text style={styles.text}>Gender: {props.visit.gender}</Text>
+                <Text style={styles.text}>Race: {props.visit.race}</Text>
+                <Text style={styles.text}>Language: {props.visit.language}</Text>
+                <Text style={styles.text}>Address: {props.visit.address}</Text>
+                <Text style={styles.text}>City: {props.visit.city}</Text>
+                <Text style={styles.text}>Zip Code:{props.visit.zipCode}</Text>
+                <Text style={styles.text}>State: {props.visit.state}</Text>
+              </View>
+              <View style={styles.rightColumn}>
+                <Text style={styles.text}>
+                  MRN: {props.visit.medicalRecordNumber}
                 </Text>
-                <Text style={styles.subtitle}>
-                  Race: <Text style={styles.text}>{props.visit.race}</Text>
+                <Text style={styles.text}>
+                  Visit ID: {props.visit.visitNumber}
                 </Text>
-
-                <Text style={styles.subtitle}>
-                  Language:{' '}
-                  <Text style={styles.text}>{props.visit.language}</Text>
-                </Text>
-                <Text style={styles.subtitle}>
-                  Address:{' '}
-                  <Text style={styles.text}>{props.visit.address}</Text>
-                </Text>
-
-                <Text style={styles.subtitle}>
-                  City: <Text style={styles.text}>{props.visit.city}</Text>
-                </Text>
-
-                <Text style={styles.subtitle}>
-                  Zipcode:{' '}
-                  <Text style={styles.text}>{props.visit.zipCode}</Text>
-                </Text>
-
-                <Text style={styles.subtitle}>
-                  State: <Text style={styles.text}>{props.visit.state}</Text>
-                </Text>
-
-                <Text style={styles.subtitle}>
-                  Email: <Text style={styles.text}>{props.visit.email}</Text>
-                </Text>
-                {/* </View> */}
-              </div>
-              {/* <div style={styles.subsection1}>
-                <View style={styles.subsection1}>
-                  <Text style={styles.subtitle}>
-                    MRN:{' '}
-                    <Text style={styles.text}>
-                      {props.visit.medicalRecordNumber}
-                    </Text>
-                  </Text>
-
-                  <Text style={styles.subtitle}>
-                    Visit ID:{' '}
-                    <Text style={styles.text}>{props.visit.visitNumber}</Text>
-                  </Text>
-                  <Text style={styles.subtitle}>
-                    DOB:{' '}
-                    <Text style={styles.text}>{props.visit.dateOfBirth}</Text>
-                  </Text>
-                  <Text style={styles.subtitle}>
-                    Age: <Text style={styles.text}>{props.visit.age}</Text>
-                  </Text>
-                  <Text style={styles.subtitle}>
-                    Date of Registration:{' '}
-                    <Text style={styles.text}>{props.visit.addedDate}</Text>
-                  </Text>
-                </View>
-              </div> */}
+                <Text style={styles.text}>Date Registered: {props.visit.addedDate}</Text>
+                <Text style={styles.text}>Email: {props.visit.email}</Text>
+                <Text style={styles.text}>Phone: xxx-xxx-xxxx</Text>
+              </View>
             </View>
           </View>
         </Page>
