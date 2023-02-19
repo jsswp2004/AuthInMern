@@ -1598,10 +1598,23 @@ tfoot > .MuiTableFooter-root {
 }
 
 /*Edit registration page css*/
+
+.updateRegistrationGrp{
+  /* height: 800px; */
+  position: relative;
+}
 .updateRegistrationBtn {
-  float: right;
+  /* float: right; */
   /* text-align: left; */
-  padding-top: 10px;
-  bottom: 0px;
+  /* padding-top: 10px; */
+  /* bottom: 0px; */
   /* position: absolute; */
+  padding: 5px 5px 5px 10px;
+  margin-left: auto;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  /* background-color: green; */
 }

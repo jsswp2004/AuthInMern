@@ -323,7 +323,7 @@ function UpdateRecordInfo(props) {
                     </label>
                   </div>
                 </div>
-                <div className="div-items">
+                <div className="div-items updateRegistrationGrp">
                   <div className="form-group">
                     <label htmlFor="address">
                       Address
@@ -377,19 +377,11 @@ function UpdateRecordInfo(props) {
                     </label>
                   </div>
                   <div
-                    className="form-group updateRegistrationBtn"
-                    // style={{
-                    //   float: 'right',
-                    //   textAlign: 'left',
-                    //   paddingTop: '10px',
-                    //   bottom: '0px',
-                    //   position: 'absolute'
-                    // }}
-                  >
+                    className="form-group">
                     <input
                       value="Update"
                       type="submit"
-                      className="btn btn-success"
+                      className="btn btn-success  updateRegistrationBtn"
                     />
                   </div>
                 </div>
