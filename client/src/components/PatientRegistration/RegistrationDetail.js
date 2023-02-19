@@ -128,7 +128,8 @@ const RegistrationDetail = (props) => {
             <Text style={styles.title}>Patient Registration Details</Text>
 
             <View style={styles.section0}>
-              <View style={styles.subsection0}>
+              <div style={styles.subsection0}>
+                {/* <View style={styles.subsection0}> */}
                 <Text style={styles.subtitle}>
                   Patient Name:{' '}
                   <Text style={styles.text}>
@@ -168,31 +169,34 @@ const RegistrationDetail = (props) => {
                 <Text style={styles.subtitle}>
                   Email: <Text style={styles.text}>{props.visit.email}</Text>
                 </Text>
-              </View>
-{/* 
-              <View style={styles.subsection1}>
-                <Text style={styles.subtitle}>
-                  MRN:{' '}
-                  <Text style={styles.text}>
-                    {props.visit.medicalRecordNumber}
+                {/* </View> */}
+              </div>
+              {/* <div style={styles.subsection1}>
+                <View style={styles.subsection1}>
+                  <Text style={styles.subtitle}>
+                    MRN:{' '}
+                    <Text style={styles.text}>
+                      {props.visit.medicalRecordNumber}
+                    </Text>
                   </Text>
-                </Text>
-                <Text style={styles.subtitle}>
-                  Visit ID:{' '}
-                  <Text style={styles.text}>{props.visit.visitNumber}</Text>
-                </Text>
-                <Text style={styles.subtitle}>
-                  DOB:{' '}
-                  <Text style={styles.text}>{props.visit.dateOfBirth}</Text>
-                </Text>
-                <Text style={styles.subtitle}>
-                  Age: <Text style={styles.text}>{props.visit.age}</Text>
-                </Text>
-                <Text style={styles.subtitle}>
-                  Date of Registration:{' '}
-                  <Text style={styles.text}>{props.visit.addedDate}</Text>
-                </Text>
-              </View> */}
+
+                  <Text style={styles.subtitle}>
+                    Visit ID:{' '}
+                    <Text style={styles.text}>{props.visit.visitNumber}</Text>
+                  </Text>
+                  <Text style={styles.subtitle}>
+                    DOB:{' '}
+                    <Text style={styles.text}>{props.visit.dateOfBirth}</Text>
+                  </Text>
+                  <Text style={styles.subtitle}>
+                    Age: <Text style={styles.text}>{props.visit.age}</Text>
+                  </Text>
+                  <Text style={styles.subtitle}>
+                    Date of Registration:{' '}
+                    <Text style={styles.text}>{props.visit.addedDate}</Text>
+                  </Text>
+                </View>
+              </div> */}
             </View>
           </View>
         </Page>
