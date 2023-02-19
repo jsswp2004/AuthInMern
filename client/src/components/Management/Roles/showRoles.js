@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import Role from '../Roles/rolesList'
+import Role from './rolesList'
 import axios from 'axios'
 import Navbar from '../../navigation/navbar'
 import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
-import CreateRole from '../Roles/createRoleModal'
+import CreateRole from './createRoleModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -25,10 +25,8 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
-import ShowUsers from '../../Signup/showUsers'
-import ShowRoles from '../Roles/showRoles'
 
-const ShowSettings = () => {
+const ShowRolesList = () => {
   // Define the state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
@@ -100,6 +98,22 @@ const ShowSettings = () => {
   function displayVisitModal() {
     return <RoleModal />
   }
+
+  // function roleList() {
+  //   return roles
+  //     .filter((role) => {
+  //       if (searchInput === '') {
+  //         return role
+  //       } else if (
+  //         role.role.toLowerCase().includes(searchInput.toLowerCase())
+  //       ) {
+  //         return role
+  //       }
+  //     })
+  //     .map((currentrole, i) => {
+  //       return <Role role={currentrole} deleteRecord={deleteRecord} key={i} />
+  //     })
+  // }
 
   //table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -191,8 +205,8 @@ const ShowSettings = () => {
     rowsPerPage: PropTypes.number.isRequired,
   }
 
-  const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -207,89 +221,161 @@ const ShowSettings = () => {
     setPage(0)
   }
 
-  const [setting, setSetting] = useState('')
-
-  //   console.log(setting)
-  const displayRolesSetting = {
-    display: setting === 'Roles' ? '' : 'none',
-  }
-
-  const displayUserProfileSetting = {
-    display: setting === 'User Profiles' ? '' : 'none',
-  }
-
   return (
-    <div className="grid_container">
-      <div className="item1">
-        <Header />
-      </div>
-      <div className="item2">
-        <Navbar />
+    // <div className="grid_containers">
+    // <div className="item3">
+    // <div className="roleItemContainer">
+    <div className="roleItemContainerBox">
+      <div className="item3A">
+        <h4 className="createPageHeader">Roles</h4>
+
+        <div>{displayVisitModal()}</div>
+        <label htmlFor="search" className="searchLabel">
+          <Button
+            className="btn btn-info btn-sm registerBtn"
+            onClick={handleShow}
+          >
+            <i
+              className="fa fa-user-plus fa-sm"
+              aria-hidden="true"
+              title="Add Role"
+            />
+          </Button>
+          Search :{' '}
+          <input
+            id="search"
+            type="text"
+            placeholder="Search roles"
+            onChange={handleChange}
+            value={searchInput}
+          />
+        </label>
       </div>
 
-      <div className="item3">
-        <div className="roleItemContainer">
-          <div className="roleItemContainerBox">
-            <div className="item3A settingsPage">
-              <div className="form-control">
-                <h5 className="createPageHeader">Settings</h5>
-                <span>Select settings:</span>
-                <label className="settingCheckboxContainer">
-                  User Profiles
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('User Profiles')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-                <label className="settingCheckboxContainer">
-                  Roles
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('Roles')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-                <label className="settingCheckboxContainer">
-                  Clinic Events
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('role')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-                <label className="settingCheckboxContainer">
-                  Four
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('role')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div className="roleItemContainerBox">
-            <div style={displayRolesSetting}>
-              <div className="card-body table-responsive p-0">
-                <ShowRoles />
-              </div>
-            </div>
+      <div className="roleItemContainerBox">
+        {/* <div className="item3A">
+              <h4 className="createPageHeader">Roles</h4>
 
-            <div style={displayUserProfileSetting}>
-              <div className="card-body table-responsive p-0">
-                <ShowUsers />
-              </div>
-            </div>
-          </div>
+              <div>{displayVisitModal()}</div>
+              <Button
+                className="btn btn-info btn-sm roleCreateBtn"
+                variant="primary"
+                onClick={handleShow}
+              >
+                    <i
+                      className="fa fa-user-plus fa-sm"
+                      aria-hidden="true"
+                      title="Add Role"
+                    />
+              </Button>
+              <label htmlFor="search" className="searchLabel">
+                Search :{' '}
+                <input
+                  id="search"
+                  type="text"
+                  placeholder="Search roles"
+                  onChange={handleChange}
+                  value={searchInput}
+                />
+              </label>
+            </div> */}
+        <div className="card-body table-responsive p-0">
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 650 }}
+              size="small"
+              aria-label="a dense table"
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="left">Role</StyledTableCell>
+                  <StyledTableCell align="left">Actions</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? roles.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage,
+                    )
+                  : roles
+                ).map((role) => (
+                  <StyledTableRow key={role._id}>
+                    <StyledTableCell align="left">{role.name}</StyledTableCell>
+                    <StyledTableCell align="left">
+                      <Link
+                        className="btn btn-info btn-sm"
+                        to={`/editRole/${role._id}`}
+                      >
+                        <i
+                          className="fa fa-hospital-o fa-sm"
+                          aria-hidden="true"
+                          title="Edit registration"
+                        />
+                      </Link>{' '}
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => {
+                          deleteRecord(role._id)
+                        }}
+                      >
+                        <i
+                          title="delete patient"
+                          className="fa fa-trash-o fa-sm"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {emptyRows > 0 && (
+                  <StyledTableRow
+                    style={{
+                      height: 53 * emptyRows,
+                    }}
+                  >
+                    <StyledTableCell colSpan={6} />
+                  </StyledTableRow>
+                )}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    // style={{float:'right'}}
+                    rowsPerPageOptions={[
+                      5,
+                      10,
+                      25,
+                      { label: 'All', value: -1 },
+                    ]}
+                    colSpan={12}
+                    count={roles.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    SelectProps={{
+                      inputProps: {
+                        'aria-label': 'rows per page',
+                      },
+                      native: true,
+                    }}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    ActionsComponent={TablePaginationActions}
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </TableContainer>
+          {/* <div className="card-body table-responsive p-0">
+                  <ShowRoles />
+                </div> */}
         </div>
       </div>
     </div>
+    // </div>
+    // </div>
+    // </div>
   )
 }
 
-export default ShowSettings
+export default ShowRolesList

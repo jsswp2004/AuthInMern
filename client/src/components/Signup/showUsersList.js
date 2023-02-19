@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom'
 import LogoutIcon from '@mui/icons-material/Logout'
 
 const ShowUsersList = () => {
-  let navigate = useNavigate()
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    navigate('/login')
-  }
+  // let navigate = useNavigate()
+  // const handleLogout = () => {
+  //   localStorage.removeItem('token')
+  //   navigate('/login')
+  // }
 
   const [users, setUsers] = useState([])
   const [searchInput, setSearchInput] = useState('')
@@ -150,11 +150,6 @@ const ShowUsersList = () => {
         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
       })
     }
-    // return filteredData
-    //   .sort((a, b) => (Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1))
-    // .map((user) => {
-    //   return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-    // })
   }
 
   return (
@@ -303,9 +298,6 @@ const ShowUsersList = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {users.map((user) => (
-              <User user={user} deleteRecord={deleteRecord} key={user._id} />
-            ))} */}
             {userList()}
           </tbody>
         </table>
