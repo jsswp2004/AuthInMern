@@ -23,6 +23,7 @@ import RolesList from './components/Management/Roles/showRolesList'
 import CreateRole from './components/Management/Roles/createRole'
 import EditRole from './components/Management/Roles/editRole'
 import ManageSettings from './components/Management/Settings/settingsPage'
+import CreateEvent from './components/Management/Events/createEvent'
 function App() {
   const user = localStorage.getItem('token')
 
@@ -53,6 +54,7 @@ function App() {
       <Route path="/editRole/:id" exact element={<EditRole />} />
       <Route path="/settingsPage" exact element={<ManageSettings />} />
       <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit/>}/>
+      <Route path="/createEvent" exact element={<CreateEvent />} />
     </Routes>
   )
 }

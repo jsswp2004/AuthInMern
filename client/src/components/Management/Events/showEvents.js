@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import Role from './rolesList'
 import axios from 'axios'
-import Navbar from '../../navigation/navbar'
-import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
-import CreateRole from './createRoleModal'
+import CreateEvent from './createEventModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -26,15 +23,15 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 
-const ShowRolesList = () => {
+const ShowEventsList = () => {
   // Define the state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  const [roles, setRoles] = useState([])
+  const [events, setEvents] = useState([])
   // const navigate = useNavigate()
-  console.log(roles)
+//   console.log(events)
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
@@ -47,44 +44,44 @@ const ShowRolesList = () => {
   const handleClick = (e) => {
     e.preventDefault()
     // setSearchInput(e.target.value)
-    // alert('Create role button clicked')
+    // alert('Create event button clicked')
     setShow(false)
     navigate('/settingsPage')
   }
 
-  // console.log(roles)
+  // console.log(events)
   useEffect(() => {
     axios
-      .get('http://localhost:8081/api/roles')
+      .get('http://localhost:8081/api/events')
       .then((res) => {
         // const data = response.data
-        setRoles(res.data)
+        setEvents(res.data)
       })
       .catch((error) => {
-        console.log('Error from roles list')
+        console.log('Error from events list')
       })
   }, [])
 
   const deleteRecord = (id) => {
     axios
-      .delete(`http://localhost:8081/api/roles/${id}`)
+      .delete(`http://localhost:8081/api/events/${id}`)
       .then((res) => {
-        setRoles(roles.filter((el) => el._id !== id))
-        console.log('Role successfully deleted!')
+        setEvents(events.filter((el) => el._id !== id))
+        console.log('Event successfully deleted!')
       })
       .catch((error) => {
         console.log('Unable to delete visit')
       })
   }
-  // console.log('roles', roles)
-  const RoleModal = () => (
+  // console.log('events', events)
+  const EventModal = () => (
     <>
       <Modal show={show} onHide={handleClose} size="med" centered>
         <Modal.Header>
-          <Modal.Title>Add a Role</Modal.Title>
+          <Modal.Title>Add a Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CreateRole />
+          <CreateEvent />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
@@ -96,7 +93,7 @@ const ShowRolesList = () => {
   )
   // console.log(show)
   function displayVisitModal() {
-    return <RoleModal />
+    return <EventModal />
   }
 
   //table functions
@@ -194,7 +191,7 @@ const ShowRolesList = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - roles.length) : 0
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - events.length) : 0
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -206,9 +203,9 @@ const ShowRolesList = () => {
   }
 
   return (
-    <div className="roleItemContainerBox">
+    <div className="eventItemContainerBox">
       <div className="item3A">
-        <h4 className="createPageHeader">Roles</h4>
+        <h4 className="createPageHeader">Events</h4>
 
         <div>{displayVisitModal()}</div>
         <label htmlFor="search" className="searchLabel">
@@ -219,21 +216,21 @@ const ShowRolesList = () => {
             <i
               className="fa fa-user-plus fa-sm"
               aria-hidden="true"
-              title="Add Role"
+              title="Add Event"
             />
           </Button>
           Search :{' '}
           <input
             id="search"
             type="text"
-            placeholder="Search roles"
+            placeholder="Search events"
             onChange={handleChange}
             value={searchInput}
           />
         </label>
       </div>
 
-      <div className="roleItemContainerBox">
+      <div className="eventItemContainerBox">
         <div className="card-body table-responsive p-0">
           <TableContainer component={Paper}>
             <Table
@@ -243,24 +240,24 @@ const ShowRolesList = () => {
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="left">Role</StyledTableCell>
+                  <StyledTableCell align="left">Event</StyledTableCell>
                   <StyledTableCell align="left">Actions</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? roles.slice(
+                  ? events.slice(
                       page * rowsPerPage,
                       page * rowsPerPage + rowsPerPage,
                     )
-                  : roles
-                ).map((role) => (
-                  <StyledTableRow key={role._id}>
-                    <StyledTableCell align="left">{role.name}</StyledTableCell>
+                  : events
+                ).map((event) => (
+                  <StyledTableRow key={event._id}>
+                    <StyledTableCell align="left">{event.name}</StyledTableCell>
                     <StyledTableCell align="left">
                       <Link
                         className="btn btn-info btn-sm"
-                        to={`/editRole/${role._id}`}
+                        to={`/editEvent/${event._id}`}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"
@@ -271,7 +268,7 @@ const ShowRolesList = () => {
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => {
-                          deleteRecord(role._id)
+                          deleteRecord(event._id)
                         }}
                       >
                         <i
@@ -303,7 +300,7 @@ const ShowRolesList = () => {
                       { label: 'All', value: -1 },
                     ]}
                     colSpan={12}
-                    count={roles.length}
+                    count={events.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{
@@ -326,4 +323,4 @@ const ShowRolesList = () => {
   )
 }
 
-export default ShowRolesList
+export default ShowEventsList
