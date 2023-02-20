@@ -25,6 +25,8 @@ import EditRole from './components/Management/Roles/editRole'
 import ManageSettings from './components/Management/Settings/settingsPage'
 import CreateEvent from './components/Management/Events/createEvent'
 import EditEvent from './components/Management/Events/editEvent'
+import TestPage from './components/TestFolder/testPage'
+import CreateSchedule from './components/TestFolder/testCreateSchedule'
 function App() {
   const user = localStorage.getItem('token')
 
@@ -57,6 +59,9 @@ function App() {
       <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit/>}/>
       <Route path="/createEvent" exact element={<CreateEvent />} />
       <Route path="/editEvent/:id" exact element={<EditEvent />} />
+      <Route path="/testPage" exact element={<TestPage />} />
+      <Route path="/createSchedule" exact element={<CreateSchedule />} />
+      
     </Routes>
   )
 }

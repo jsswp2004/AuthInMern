@@ -11,14 +11,13 @@ import { Link } from 'react-router-dom'
 // Here, we display our Navbar
 export default function Navbar() {
   // const [regDate, setRegFilterDate] = useState(new Date())
-  
+
   // console.log('regDate', regDate)
   // const [userMD, setUserMD] = useState([])
   // const attendings = userMD.filter((user) => {
   //   return user.role.toString().toLowerCase().includes('attending')
   // })
 
-  
   // useEffect(() => {
   //   axios
   //     .get('http://localhost:8081/api/users')
@@ -97,14 +96,14 @@ export default function Navbar() {
             <Link to="/createVisit">Create Schedule</Link>
           </li> */}
 
-          {/* <li id="link" className="body_navbarlist">
-            <Link to="/usersList">User List</Link>
-          </li> */}
           <li id="link" className="body_navbarlist">
             <Link to="/clinicVisit">Clinic Schedule</Link>
           </li>
           <li id="link" className="body_navbarlist">
             <Link to="/settingsPage">Manage Settings</Link>
+          </li>
+          <li id="link" className="body_navbarlist">
+            <Link to="/testPage">Test Page</Link>
           </li>
           {/* <ul className="body_navbarlist dropdown">
             <span>Settings</span>
