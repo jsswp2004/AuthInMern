@@ -254,7 +254,7 @@ const ShowEventsList = () => {
                   : events
                 ).map((event) => (
                   <StyledTableRow key={event._id}>
-                    <StyledTableCell align="left">{event.name}</StyledTableCell>
+                    <StyledTableCell align="left">{event.Name}</StyledTableCell>
                     <StyledTableCell align="left">
                       <Link
                         className="btn btn-info btn-sm"

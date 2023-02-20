@@ -1186,11 +1186,12 @@ main {
 /* // For the month */
 .month-indicator {
   color: var(--blue-grey-700);
-  text-align: left;
+  /* text-align: left; */
   font-weight: 500;
+  display: flex;
 }
 .month-name {
-  width: 10%;
+  width: fit-content;
 }
 /* // CSS grid used for the dates */
 .day-of-week,
@@ -1265,8 +1266,8 @@ text-align: center;
   padding: 0px;*/
   height: 100%;
   grid-template-areas:
-    "header header header header header header header header"
-    "main main main main main main main main";
+    "header header header header header header header"
+    "main main main main main main main";
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   /* grid-template-columns: 50px repeat(auto-fit, minmax(calc((100% - 100px)/5), 1fr)) 50px; */
@@ -1283,6 +1284,7 @@ text-align: center;
   margin: 0px;
   /* display: flex; */
   /* height: 34px; */
+  display: flex;
 }
 
 .itemCalendar2 {

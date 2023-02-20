@@ -24,6 +24,7 @@ const visitSchema = new mongoose.Schema({
     addedDate: { type: String, required: true },
     // provider: { type: mongoose.Schema.Types.ObjectId, ref: "provider" },
     provider: { type: String, required: true },
+    event: { type: String,required: false },
 });
 
 
@@ -50,6 +51,7 @@ const validate = (data) => {
         hourOfVisit: Joi.string().required().label("Hour of Visit"),
         addedDate: Joi.string().required().label("Added Date"),
         provider: Joi.string().required().label("Provider"),
+        event: Joi.string().required().label("Event"),
 	});
 	return schema.validate(data);
 };

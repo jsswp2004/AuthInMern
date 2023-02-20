@@ -7,17 +7,10 @@ import { Hour } from '../listDictionaries/listData/listDictionariesData'
 // import Button from 'react-bootstrap/Button'
 
 const CreateVisitMonthly = (props) => {
-  //create provider object
-  const [userMD, setUserMD] = useState([])
-  const attendings = userMD.filter((user) => {
-    return user.role.toString().toLowerCase().includes('attending')
-  })
-
   //autocreate MRN
   //const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
   //const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
@@ -31,6 +24,7 @@ const CreateVisitMonthly = (props) => {
     email: props.email,
     provider: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    event: '',
   })
 
   const hourValues = Hour
@@ -44,6 +38,13 @@ const CreateVisitMonthly = (props) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
 
+  //create provider object
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD.filter((user) => {
+    return user.role.toString().toLowerCase().includes('attending')
+  })
+  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -53,6 +54,23 @@ const CreateVisitMonthly = (props) => {
       })
       .catch((error) => {
         console.log('Error from user list')
+      })
+  }, [])
+
+  const [schedEvent, setSchedEvent] = useState([])
+  const schedEvents = schedEvent.filter((event) => {
+    return event.Name.toString().toLowerCase() //.includes('attending')
+  })
+  const clinicEvents = schedEvents.map((doc) => doc.Name)
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/events')
+      .then((response) => {
+        setSchedEvent(response.data)
+      })
+      .catch((error) => {
+        console.log('Error from event list')
       })
   }, [])
 
@@ -73,6 +91,7 @@ const CreateVisitMonthly = (props) => {
           email: '',
           provider: '',
           addedDate: '',
+          event: '',
         })
 
         // Push to /patientlist
@@ -139,6 +158,28 @@ const CreateVisitMonthly = (props) => {
                   {hourValues.map((hourval) => (
                     <option key={hourval.value} value={hourval.value}>
                       {hourval.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <div className="form-group">
+              <label htmlFor="event">
+                Scheduled Event
+                <select
+                  key={visit.event._id}
+                  className="form-control select"
+                  name="event"
+                  value={visit.event}
+                  onChange={onChange}
+                >
+                  {' '}
+                  <option key="0" value="Select Event">
+                    Select Event
+                  </option>
+                  {clinicEvents.map((doc) => (
+                    <option key={doc._id} value={doc.event}>
+                      {doc}
                     </option>
                   ))}
                 </select>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link, Button} from 'react-router-dom'
+import { Link, Button } from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
@@ -27,6 +27,23 @@ function UpdateVisitInfo(props) {
   }, [])
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+
+  const [schedEvent, setSchedEvent] = useState([])
+  console.log(schedEvent)
+  const schedEvents = schedEvent.filter((event) => {
+    return event.Name //.toString().toLowerCase() //.includes('attending')
+  })
+  const clinicEvents = schedEvents.map((doc) => doc.Name)
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/events')
+      .then((response) => {
+        setSchedEvent(response.data)
+      })
+      .catch((error) => {
+        console.log('Error from event list')
+      })
+  }, [])
 
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')
@@ -118,11 +135,9 @@ function UpdateVisitInfo(props) {
       })
   }
 
-  const createFromVisit = () =>
-  {
-    return (<CreatePatientFromVisit data={data} />
-    )
-    }
+  // const createFromVisit = () => {
+  //   return <CreatePatientFromVisit data={data} />
+  // }
   return (
     <div className="grid_container">
       <div className="item1">
@@ -132,41 +147,47 @@ function UpdateVisitInfo(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <h5 className="createPageHeader">Edit Visit</h5>
+        <h4 className="createPageHeader">Edit Visit</h4>
         <div className="item3A">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
               <div className="div-items">
                 <div className="forms-group">
                   <div className="form-group">
-                    <label htmlFor="firstName">Firstname </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="firstName"
-                      value={visit.firstName}
-                      onChange={onChange}
-                    />
+                    <label htmlFor="firstName">
+                      Firstname
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="firstName"
+                        value={visit.firstName}
+                        onChange={onChange}
+                      />
+                    </label>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="middleName">Middlename</label>
-                    <input
-                      type="text"
-                      name="middleName"
-                      value={visit.middleName}
-                      className="form-control"
-                      onChange={onChange}
-                    />
+                    <label htmlFor="middleName">
+                      Middlename
+                      <input
+                        type="text"
+                        name="middleName"
+                        value={visit.middleName}
+                        className="form-control"
+                        onChange={onChange}
+                      />
+                    </label>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="lastName">Lastname</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="lastName"
-                      value={visit.lastName}
-                      onChange={onChange}
-                    />
+                    <label htmlFor="lastName">
+                      Lastname
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="lastName"
+                        value={visit.lastName}
+                        onChange={onChange}
+                      />
+                    </label>
                   </div>
                   {/* <div className="form-group">
                     <label htmlFor="hourOfVisit">Appointment Time</label>
@@ -199,81 +220,117 @@ function UpdateVisitInfo(props) {
               </div>
               <div className="div-items">
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="text"
-                    name="email"
-                    className="form-control"
-                    value={visit.email}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="email">
+                    Email
+                    <input
+                      type="text"
+                      name="email"
+                      className="form-control"
+                      value={visit.email}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="addedDate">Date Created</label>
-                  <input
-                    name="addedDate"
-                    className="form-control"
-                    value={visit.addedDate}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="addedDate">
+                    Date Created
+                    <input
+                      name="addedDate"
+                      className="form-control"
+                      value={visit.addedDate}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="visitDate">Visit Date</label>
-                  <input
-                    type="string"
-                    name="visitDate"
-                    className="form-control"
-                    value={visit.visitDate}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="visitDate">
+                    Visit Date
+                    <input
+                      type="string"
+                      name="visitDate"
+                      className="form-control"
+                      value={visit.visitDate}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="provider">Provider</label>
-                  <select
-                    className="form-control select"
-                    name="provider"
-                    value={visit.provider}
-                    onChange={onChange}
-                  >
-                    {' '}
-                    <option value="" disabled selected>
-                      Select Provider
-                    </option>
-                    {providerMD.map((doc) => (
-                      <option key={doc.value} value={doc.value}>
-                        {doc}
+                  <label htmlFor="provider">
+                    Provider
+                    <select
+                      key={visit.provider._id}
+                      className="form-control select"
+                      name="provider"
+                      value={visit.provider}
+                      onChange={onChange}
+                    >
+                      {' '}
+                      <option value="" disabled selected>
+                        Select Provider
                       </option>
-                    ))}
-                  </select>
+                      {providerMD.map((doc) => (
+                        <option key={doc.value} value={doc.value}>
+                          {doc}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                 </div>
               </div>
-              <div className="div-items">
+              <div className="div-items updateRegistrationGrp">
                 <div className="form-group">
-                  <label htmlFor="medicalRecordNumber">MRN</label>
-                  <input
-                    placeholder="Please register client"
-                    type="text"
-                    name="medicalRecordNumber"
-                    className="form-control"
-                    value={visit.medicalRecordNumber}
-                    onChange={onChange}
-                    readOnly
-                  />
+                  <label htmlFor="event">
+                    Scheduled Event
+                    <select
+                      key={visit.event}
+                      className="form-control select"
+                      name="event"
+                      value={visit.event}
+                      onChange={onChange}
+                    >
+                      {' '}
+                      <option key="0" value="Select Event" disabled selected>
+                        Select Event
+                      </option>
+                      {clinicEvents.map((doc) => (
+                        <option key={doc._id} value={doc.Name}>
+                          {doc}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+{console.log(visit.event)}
+                <div className="form-group">
+                  <label htmlFor="medicalRecordNumber">
+                    MRN
+                    <input
+                      placeholder="Please register client"
+                      type="text"
+                      name="medicalRecordNumber"
+                      className="form-control"
+                      value={visit.medicalRecordNumber}
+                      onChange={onChange}
+                      readOnly
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="visitNumber">Visit ID</label>
-                  <input
-                    placeholder="Please register client"
-                    type="text"
-                    name="visitNumber"
-                    className="form-control"
-                    value={visit.visitNumber}
-                    onChange={onChange}
-                    readOnly
-                  />
+                  <label htmlFor="visitNumber">
+                    Visit ID
+                    <input
+                      placeholder="Please register client"
+                      type="text"
+                      name="visitNumber"
+                      className="form-control"
+                      value={visit.visitNumber}
+                      onChange={onChange}
+                      readOnly
+                    />
+                  </label>
                 </div>
                 <div
-                  className="form-group"
+                  className="form-group updateRegistrationBtn"
                   style={{
                     float: 'left',
                     textAlign: 'left',
@@ -283,25 +340,22 @@ function UpdateVisitInfo(props) {
                   <input
                     value="Update"
                     type="submit"
-                    className="btn btn-success btn-sm"
+                    className="btn btn-success btn-sm "
                   />
+
                   <Link
-                    className="btn btn-info btn-sm"
+                    className="btn btn-info btn-sm "
                     to={`/createPatientFromVisit/${id}`}
                     // data={data}
                     firstName={data.firstName}
-                    
                   >
                     <i
                       className="fa fa-hospital-o fa-sm"
                       aria-hidden="true"
                       title="Add registration"
-                    />
-                    {' '}Register
+                    />{' '}
+                    Register
                   </Link>
-                  {/* <button onClick={createFromVisit} className="btn btn-info btn-sm" >
-                  test
-                  </button> */}
                 </div>
               </div>
             </div>

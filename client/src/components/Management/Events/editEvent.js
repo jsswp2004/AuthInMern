@@ -8,7 +8,7 @@ import Header from '../../shared/Header'
 
 function EditEvent(props) {
   const [event, setEvent] = useState({
-    name: '',
+    Name: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const { id } = useParams()
@@ -16,10 +16,10 @@ function EditEvent(props) {
 
   const [eventx, setEvents] = useState([])
   const events = eventx.filter((event) => {
-    return event.name.toString().toLowerCase()
+    return event.Name.toString().toLowerCase()
   })
   const userEvents = events.map((event) => {
-    return event.name
+    return event.Name
   })
   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   useEffect(() => {
@@ -33,12 +33,12 @@ function EditEvent(props) {
       })
   }, [])
   const [data, setData] = useState({
-    name: '',
+    Name: '',
     addedDate: dateAdded,
   })
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
+    setData({ ...data, [e.target.Name]: e.target.value })
   }
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function EditEvent(props) {
       .get(`http://localhost:8081/api/events/${id}`)
       .then((res) => {
         setEvent({
-          name: res.data.name,
+          Name: res.data.Name,
         })
       })
       .catch((err) => {
@@ -54,14 +54,14 @@ function EditEvent(props) {
       })
   }, [id])
   const onChange = (e) => {
-    setEvent({ ...event, [e.target.name]: e.target.value })
+    setEvent({ ...event, [e.target.Name]: e.target.value })
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
-      name: event.name,
+      Name: event.Name,
     }
 
     axios
@@ -87,27 +87,27 @@ function EditEvent(props) {
         <div className="item3A EditEventModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Event </label>
+              <label htmlFor="Name">Event </label>
               <input
                 type="text"
                 className="form-control eventInput"
-                name="name"
-                value={event.name}
+                Name="Name"
+                value={event.Name}
                 onChange={onChange}
               />
               {/* <select
                 key={eventx._id}
                 placeholder="Select Event"
-                name="event"
+                Name="event"
                 className="form-control select"
-                value={event.name}
+                value={event.Name}
                 onChange={handleChange}
               >
                 <option key="0" value="">
                   Select Event
                 </option>
                 {userEvents.map((event) => (
-                  <option key={event._id} value={event.name}>
+                  <option key={event._id} value={event.Name}>
                     {event}
                   </option>
                 ))}
