@@ -6,13 +6,21 @@ import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { Checkbox } from '@mui/material'
+import { Hour } from '../listDictionaries/listData/listDictionariesData'
 
 const CreateSchedule = (props) => {
+  const hourValues = Hour
+  const [hourvalue, sethourValue] = useState('')
+
+  const hourvalueChange = (event) => {
+    sethourValue(event.target.value)
+    // onChange({ gendervalue })
+  }
+
   const navigate = useNavigate()
   const [schedule, setSchedule] = useState({
     providerID: '',
-    firstName: '',
-    lastName: '',
+    provider: '',
     startDate: '',
     endDate: '',
     amStartTime: '',
@@ -36,8 +44,7 @@ const CreateSchedule = (props) => {
       .then((res) => {
         setSchedule({
           providerID: '',
-          firstName: '',
-          lastName: '',
+          provider: '',
           startDate: '',
           endDate: '',
           amStartTime: '',
@@ -56,6 +63,21 @@ const CreateSchedule = (props) => {
       })
   }
   // console.log(schedule)
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD.filter((user) => {
+    return user.role.toString().toLowerCase().includes('attending')
+  })
+  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/users')
+      .then((response) => {
+        setUserMD(response.data)
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [])
 
   return (
     <div className="grid_container">
@@ -71,7 +93,25 @@ const CreateSchedule = (props) => {
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-container">
               <div className="form-group">
-                <label htmlFor="firstName">
+                <label htmlFor="provider">Provider</label>
+                <select
+                  key={schedule.provider}
+                  className="form-control select"
+                  name="provider"
+                  value={schedule.provider}
+                  onChange={onChange}
+                >
+                  {' '}
+                  <option key="0" value="Select Provider">
+                    Select Provider
+                  </option>
+                  {providerMD.map((doc) => (
+                    <option key={doc.value} value={doc.value}>
+                      {doc}
+                    </option>
+                  ))}
+                </select>
+                {/* <label htmlFor="firstName">
                   Firstname
                   <input
                     type="text"
@@ -90,7 +130,7 @@ const CreateSchedule = (props) => {
                     value={schedule.lastName}
                     onChange={onChange}
                   />
-                </label>
+                </label> */}
                 <label htmlFor="name">
                   Scheduled days
                   <Checkbox
@@ -158,39 +198,63 @@ const CreateSchedule = (props) => {
                 </div>
                 <label htmlFor="name">
                   AM Start Time
-                  <input
-                    type="text"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.firstName}
-                    onChange={onChange}
-                  />
+                  <select
+                        key={schedule.hourOfVisit}
+                        className="form-control select"
+                        name="amStartTime"
+                        value={schedule.amStartTime}
+                        onChange={onChange}
+                      >
+                        {hourValues.map((hourval) => (
+                          <option key={hourval.value} value={hourval.value}>
+                            {hourval.label}
+                          </option>
+                        ))}
+                      </select>
                   AM End Time
-                  <input
-                    type="text"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.firstName}
-                    onChange={onChange}
-                  />
+                  <select
+                        key={schedule.hourOfVisit}
+                        className="form-control select"
+                        name="amEndTime"
+                        value={schedule.amEndTime}
+                        onChange={onChange}
+                      >
+                        {hourValues.map((hourval) => (
+                          <option key={hourval.value} value={hourval.value}>
+                            {hourval.label}
+                          </option>
+                        ))}
+                      </select>
                 </label>
                 <label htmlFor="name">
                   PM Start Time
-                  <input
-                    type="text"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.firstName}
-                    onChange={onChange}
-                  />
+                  <select
+                        key={schedule.hourOfVisit}
+                        className="form-control select"
+                        name="pmStartTime"
+                        value={schedule.pmStartTime}
+                        onChange={onChange}
+                      >
+                        {hourValues.map((hourval) => (
+                          <option key={hourval.value} value={hourval.value}>
+                            {hourval.label}
+                          </option>
+                        ))}
+                      </select>
                   PM End Time
-                  <input
-                    type="text"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.firstName}
-                    onChange={onChange}
-                  />
+                  <select
+                        key={schedule.hourOfVisit}
+                        className="form-control select"
+                        name="pmEndTime"
+                        value={schedule.pmEndTime}
+                        onChange={onChange}
+                      >
+                        {hourValues.map((hourval) => (
+                          <option key={hourval.value} value={hourval.value}>
+                            {hourval.label}
+                          </option>
+                        ))}
+                      </select>
                 </label>
               </div>
               <div className="form-group">
