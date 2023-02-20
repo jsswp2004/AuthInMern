@@ -8,8 +8,10 @@ const scheduleSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   startDate: { type: String, required: true },
   endDate: { type: String, required: true },
-  startTime: { type: String, required: true },
-  endTime: { type: String, required: true },
+  amStartTime: { type: String, required: true },
+  amEndTime: { type: String, required: true },
+  pmStartTime: { type: String, required: true },
+  pmEndTime: { type: String, required: true },
   scheduled: { type: Boolean, required: true },
 })
 
@@ -22,8 +24,10 @@ const validate = (data) => {
     lastName: Joi.string().required().label('Last Name'),
     startDate: Joi.string().required().label('Start Date'),
     endDate: Joi.string().required().label('End Date'),
-    startTime: Joi.string().required().label('Start Time'),
-    endTime: Joi.string().required().label('End Time'),
+    amStartTime: Joi.string().required().label('AM Start Time'),
+    amEndTime: Joi.string().required().label('AM End Time'),
+    pmStartTime: Joi.string().required().label('PM Start Time'),
+    pmEndTime: Joi.string().required().label('PM End Time'),
     scheduled: Joi.boolean().required().label('Scheduled'),
   })
   return schema.validate(data)
