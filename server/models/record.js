@@ -22,13 +22,6 @@ const recordSchema = new mongoose.Schema({
     addedDate: { type: String,required: true },
 });
 
-// clientSchema.methods.generateAuthToken = function () {
-// 	const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
-// 		expiresIn: "7d",
-// 	});
-// 	return token;
-// };
-
 const Record = mongoose.model("record", recordSchema);
 
 const validate = (data) => {

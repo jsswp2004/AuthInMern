@@ -82,6 +82,7 @@ const ShowEventsList = () => {
         </Modal.Header>
         <Modal.Body>
           <CreateEvent />
+          {/* handleClick={ handleClick} */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
@@ -214,7 +215,7 @@ const ShowEventsList = () => {
             onClick={handleShow}
           >
             <i
-              className="fa fa-user-plus fa-sm"
+              className="fa fa-calendar fa-sm"
               aria-hidden="true"
               title="Add Event"
             />

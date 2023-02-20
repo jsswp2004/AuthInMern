@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { format } from 'date-fns'
-// import Role from './rolesList'
+// import Event from './eventsList'
 import axios from 'axios'
 import Navbar from '../../navigation/navbar'
 import Header from '../../shared/Header'
 
-function EditRole(props) {
-  const [role, setRole] = useState({
+function EditEvent(props) {
+  const [event, setEvent] = useState({
     name: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const [rolex, setRoles] = useState([])
-  const roles = rolex.filter((role) => {
-    return role.name.toString().toLowerCase()
+  const [eventx, setEvents] = useState([])
+  const events = eventx.filter((event) => {
+    return event.name.toString().toLowerCase()
   })
-  const userRoles = roles.map((role) => {
-    return role.name
+  const userEvents = events.map((event) => {
+    return event.name
   })
   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   useEffect(() => {
     axios
-      .get('http://localhost:8081/api/roles')
+      .get('http://localhost:8081/api/events')
       .then((response) => {
-        setRoles(response.data)
+        setEvents(response.data)
       })
       .catch((error) => {
-        console.log('Error from roles list')
+        console.log('Error from events list')
       })
   }, [])
   const [data, setData] = useState({
@@ -43,35 +43,35 @@ function EditRole(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/roles/${id}`)
+      .get(`http://localhost:8081/api/events/${id}`)
       .then((res) => {
-        setRole({
+        setEvent({
           name: res.data.name,
         })
       })
       .catch((err) => {
-        console.log('Error from EditRole')
+        console.log('Error from EditEvent')
       })
   }, [id])
   const onChange = (e) => {
-    setRole({ ...role, [e.target.name]: e.target.value })
+    setEvent({ ...event, [e.target.name]: e.target.value })
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
-      name: role.name,
+      name: event.name,
     }
 
     axios
-      .put(`http://localhost:8081/api/roles/${id}`, data)
+      .put(`http://localhost:8081/api/events/${id}`, data)
       .then((res) => {
         // Push to /
         navigate('/settingsPage')
       })
       .catch((err) => {
-        console.log('Error in EditRole!')
+        console.log('Error in EditEvent!')
       })
   }
 
@@ -84,31 +84,31 @@ function EditRole(props) {
         <Navbar />
       </div>
       <div className="item3">
-        <div className="item3A EditRoleModalBody">
+        <div className="item3A EditEventModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Role </label>
+              <label htmlFor="name">Event </label>
               <input
                 type="text"
-                className="form-control roleInput"
+                className="form-control eventInput"
                 name="name"
-                value={role.name}
+                value={event.name}
                 onChange={onChange}
               />
               {/* <select
-                key={rolex._id}
-                placeholder="Select Role"
-                name="role"
+                key={eventx._id}
+                placeholder="Select Event"
+                name="event"
                 className="form-control select"
-                value={role.name}
+                value={event.name}
                 onChange={handleChange}
               >
                 <option key="0" value="">
-                  Select Role
+                  Select Event
                 </option>
-                {userRoles.map((role) => (
-                  <option key={role._id} value={role.name}>
-                    {role}
+                {userEvents.map((event) => (
+                  <option key={event._id} value={event.name}>
+                    {event}
                   </option>
                 ))}
               </select> */}
@@ -122,4 +122,4 @@ function EditRole(props) {
   )
 }
 
-export default EditRole
+export default EditEvent

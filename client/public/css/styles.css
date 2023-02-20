@@ -1618,3 +1618,9 @@ tfoot > .MuiTableFooter-root {
   right: 0px;
   /* background-color: green; */
 }
+
+/* show event modal */
+
+.eventInput {
+  margin-bottom: 5px;
+}

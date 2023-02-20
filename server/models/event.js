@@ -9,7 +9,7 @@ const eventSchema = new mongoose.Schema({
 });
 
 
-const Role = mongoose.model("event", eventSchema);
+const Event = mongoose.model("event", eventSchema);
 
 const validate = (data) => {
 	const schema = Joi.object({

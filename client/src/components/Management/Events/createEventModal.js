@@ -27,7 +27,7 @@ const CreateEvent = (props) => {
         })
         // setShow(false)
         // Push to /
-        navigate('/settingsPage')
+        navigate(-1)
       })
       .catch((err) => {
         console.log('Error in CreateEvent!')
@@ -49,6 +49,7 @@ const CreateEvent = (props) => {
                 onChange={onChange}
               />
               <input value="Add" type="submit" className="btn btn-success" />
+              {/* onClick={ props.handleClick}  */}
             </div>
           </form>
         </div>
