@@ -24,7 +24,7 @@ const Schedule = mongoose.model('schedule', scheduleSchema)
 const validate = (data) => {
   const schema = Joi.object({
     providerID: Joi.number().required().label('Provider ID'),
-    provider: Joi.string().required().label('First Name'),
+    provider: Joi.string().required().label('Provider'),
     startDate: Joi.string().required().label('Start Date'),
     endDate: Joi.string().required().label('End Date'),
     amStartTime: Joi.string().required().label('AM Start Time'),
