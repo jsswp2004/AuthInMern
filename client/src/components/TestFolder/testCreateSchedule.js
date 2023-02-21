@@ -25,7 +25,11 @@ const CreateSchedule = (props) => {
     amEndTime: '',
     pmStartTime: '',
     pmEndTime: '',
-    scheduled: '',
+    scheduledMon: '',
+    scheduledTues: '',
+    scheduledWed: '',
+    scheduledThurs: '',
+    scheduledFri: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
@@ -33,11 +37,34 @@ const CreateSchedule = (props) => {
     setSchedule({ ...schedule, [e.target.name]: e.target.value })
   }
 
+  const [scheduleMon, setScheduleDay1] = useState('')
+  const [scheduleTues, setScheduleDay2] = useState('')
+  const [scheduleWed, setScheduleDay3] = useState('')
+  const [scheduleThurs, setScheduleDay4] = useState('')
+  const [scheduleFri, setScheduleDay5] = useState('')
+  console.log(scheduleMon)
+
   const onSubmit = (e) => {
     e.preventDefault()
 
+    const data = {
+      providerID: 4554,
+      startDate: '',
+      endDate: '',
+      amStartTime: '',
+      amEndTime: '',
+      pmStartTime: '',
+      pmEndTime: '',
+      scheduledMon: scheduleMon,
+      scheduledTues: scheduleTues,
+      scheduledWed: scheduleWed,
+      scheduledThurs: scheduleThurs,
+      scheduledFri: scheduleFri,
+      addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    }
+
     axios
-      .post('http://localhost:8081/api/schedules', schedule)
+      .post('http://localhost:8081/api/schedules', data)
       .then((res) => {
         setSchedule({
           providerID: '',
@@ -48,7 +75,11 @@ const CreateSchedule = (props) => {
           amEndTime: '',
           pmStartTime: '',
           pmEndTime: '',
-          scheduled: '',
+          scheduledMon: '',
+          scheduledTues: '',
+          scheduledWed: '',
+          scheduledThurs: '',
+          scheduledFri: '',
           addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
         })
 
@@ -76,8 +107,7 @@ const CreateSchedule = (props) => {
       })
   }, [])
 
-  const [scheduleDays, setScheduleDays] = useState('')
-  console.log(scheduleDays)
+
 
   return (
     <div className="grid_container">
@@ -117,7 +147,7 @@ const CreateSchedule = (props) => {
                   <input
                     type="checkbox"
                     // checked='checked'
-                    onClick={() => setScheduleDays('1')}
+                    onClick={() => setScheduleDay1('1')}
                     name="scheduledDays"
                     value={schedule.scheduledMon}
                   />
@@ -127,9 +157,9 @@ const CreateSchedule = (props) => {
                   Tuesdays
                   <input
                     type="checkbox"
-                    onClick={() => setScheduleDays('2')}
+                    onClick={() => setScheduleDay2('2')}
                     name="scheduledDays"
-                    value={schedule.scheduledMon}
+                    value={schedule.scheduledTues}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -137,9 +167,9 @@ const CreateSchedule = (props) => {
                   Wednesdays
                   <input
                     type="checkbox"
-                    onClick={() => setScheduleDays('3')}
+                    onClick={() => setScheduleDay3('3')}
                     name="scheduledDays"
-                    value={schedule.scheduledMon}
+                    value={schedule.scheduledWed}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -147,9 +177,9 @@ const CreateSchedule = (props) => {
                   Thursdays
                   <input
                     type="checkbox"
-                    onClick={() => setScheduleDays('4')}
+                    onClick={() => setScheduleDay4('4')}
                     name="scheduledDays"
-                    value={schedule.scheduledMon}
+                    value={schedule.scheduledThurs}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -157,9 +187,9 @@ const CreateSchedule = (props) => {
                   Fridays
                   <input
                     type="checkbox"
-                    onClick={() => setScheduleDays('5')}
+                    onClick={() => setScheduleDay5('5')}
                     name="scheduledDays"
-                    value={schedule.scheduledMon}
+                    value={schedule.scheduledFri}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -171,8 +201,8 @@ const CreateSchedule = (props) => {
                     <input
                       type="date"
                       className="form-control scheduleInput"
-                      name="name"
-                      value={schedule.firstName}
+                      name="startDate"
+                      value={schedule.startDate}
                       onChange={onChange}
                     />
                   </label>
@@ -183,8 +213,8 @@ const CreateSchedule = (props) => {
                     <input
                       type="date"
                       className="form-control scheduleInput"
-                      name="name"
-                      value={schedule.firstName}
+                      name="endDate"
+                      value={schedule.endDate}
                       onChange={onChange}
                     />
                   </label>
