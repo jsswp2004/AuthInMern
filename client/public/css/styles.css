@@ -1599,6 +1599,68 @@ tfoot > .MuiTableFooter-root {
   background: white;
 }
 
+/*checkbox css*/
+.scheduleCheckboxContainer {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.scheduleCheckboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom radio button */
+.scheduleCheckboxCheckmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 20%;
+}
+
+/* On mouse-over, add a grey background color */
+.scheduleCheckboxContainer:hover input ~ .scheduleCheckboxCheckmark {
+  background-color: #ccc;
+}
+
+/* When the radio is checked, add a blue background */
+.scheduleCheckboxContainer input:checked ~ .scheduleCheckboxCheckmark {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (the dot/circle - hidden when not checked) */
+.scheduleCheckboxCheckmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.scheduleCheckboxContainer input:checked ~ .scheduleCheckboxCheckmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.scheduleCheckboxContainer .scheduleCheckboxCheckmark:after {
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 20%;
+  background: white;
+}
 /*Edit registration page css*/
 
 .updateRegistrationGrp{

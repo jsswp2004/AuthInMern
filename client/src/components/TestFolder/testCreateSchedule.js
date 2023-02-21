@@ -5,7 +5,6 @@ import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
-import { Checkbox } from '@mui/material'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
 
 const CreateSchedule = (props) => {
@@ -14,7 +13,6 @@ const CreateSchedule = (props) => {
 
   const hourvalueChange = (event) => {
     sethourValue(event.target.value)
-    // onChange({ gendervalue })
   }
 
   const navigate = useNavigate()
@@ -35,7 +33,6 @@ const CreateSchedule = (props) => {
     setSchedule({ ...schedule, [e.target.name]: e.target.value })
   }
 
-  //   console.log(schedule)
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -62,7 +59,7 @@ const CreateSchedule = (props) => {
         console.log('Error in CreateSchedule!')
       })
   }
-  // console.log(schedule)
+
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -78,6 +75,9 @@ const CreateSchedule = (props) => {
         console.log('Error from user list')
       })
   }, [])
+
+  const [scheduleDays, setScheduleDays] = useState('')
+  console.log(scheduleDays)
 
   return (
     <div className="grid_container">
@@ -111,73 +111,57 @@ const CreateSchedule = (props) => {
                     </option>
                   ))}
                 </select>
-                {/* <label htmlFor="firstName">
-                  Firstname
+                <label>Scheduled Days:</label>
+                <label className="scheduleCheckboxContainer">
+                  Mondays
                   <input
-                    type="text"
-                    className="form-control scheduleInput"
-                    name="firstName"
-                    value={schedule.firstName}
-                    onChange={onChange}
+                    type="checkbox"
+                    // checked='checked'
+                    onClick={() => setScheduleDays('1')}
+                    name="scheduledDays"
                   />
+                  <span className="scheduleCheckboxCheckmark"></span>
                 </label>
-                <label htmlFor="lastName">
-                  Lastname
+                <label className="scheduleCheckboxContainer">
+                  Tuesdays
                   <input
-                    type="text"
-                    className="form-control scheduleInput"
-                    name="lastName"
-                    value={schedule.lastName}
-                    onChange={onChange}
-                  />
-                </label> */}
-                <label htmlFor="name">
-                  Scheduled days
-                  <Checkbox
                     type="checkbox"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.scheduled}
-                    onChange={onChange}
-                    title="Mon"
+                    onClick={() => setScheduleDays('2')}
+                    name="scheduledDays"
                   />
-                  <Checkbox
+                  <span className="scheduleCheckboxCheckmark"></span>
+                </label>
+                <label className="scheduleCheckboxContainer">
+                  Wednesdays
+                  <input
                     type="checkbox"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.scheduled}
-                    onChange={onChange}
-                    title="Mon"
+                    onClick={() => setScheduleDays('3')}
+                    name="scheduledDays"
                   />
-                  <Checkbox
+                  <span className="scheduleCheckboxCheckmark"></span>
+                </label>
+                <label className="scheduleCheckboxContainer">
+                  Thursdays
+                  <input
                     type="checkbox"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.scheduled}
-                    onChange={onChange}
-                    title="Mon"
+                    onClick={() => setScheduleDays('4')}
+                    name="scheduledDays"
                   />
-                  <Checkbox
+                  <span className="scheduleCheckboxCheckmark"></span>
+                </label>
+                <label className="scheduleCheckboxContainer">
+                  Fridays
+                  <input
                     type="checkbox"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.scheduled}
-                    onChange={onChange}
-                    title="Mon"
+                    onClick={() => setScheduleDays('5')}
+                    name="scheduledDays"
                   />
-                  <Checkbox
-                    type="checkbox"
-                    className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.scheduled}
-                    onChange={onChange}
-                    title="Mon"
-                  />
+                  <span className="scheduleCheckboxCheckmark"></span>
                 </label>
               </div>
               <div className="form-group">
                 <div>
-                  <label htmlFor="name">
+                  <label htmlFor="startDate">
                     Start Date
                     <input
                       type="date"
@@ -186,6 +170,10 @@ const CreateSchedule = (props) => {
                       value={schedule.firstName}
                       onChange={onChange}
                     />
+                  </label>
+                </div>
+                <div>
+                  <label>
                     End Date
                     <input
                       type="date"
@@ -196,81 +184,89 @@ const CreateSchedule = (props) => {
                     />
                   </label>
                 </div>
-                <label htmlFor="name">
-                  AM Start Time
-                  <select
-                        key={schedule.hourOfVisit}
-                        className="form-control select"
-                        name="amStartTime"
-                        value={schedule.amStartTime}
-                        onChange={onChange}
-                      >
-                        {hourValues.map((hourval) => (
-                          <option key={hourval.value} value={hourval.value}>
-                            {hourval.label}
-                          </option>
-                        ))}
-                      </select>
-                  AM End Time
-                  <select
-                        key={schedule.hourOfVisit}
-                        className="form-control select"
-                        name="amEndTime"
-                        value={schedule.amEndTime}
-                        onChange={onChange}
-                      >
-                        {hourValues.map((hourval) => (
-                          <option key={hourval.value} value={hourval.value}>
-                            {hourval.label}
-                          </option>
-                        ))}
-                      </select>
-                </label>
-                <label htmlFor="name">
-                  PM Start Time
-                  <select
-                        key={schedule.hourOfVisit}
-                        className="form-control select"
-                        name="pmStartTime"
-                        value={schedule.pmStartTime}
-                        onChange={onChange}
-                      >
-                        {hourValues.map((hourval) => (
-                          <option key={hourval.value} value={hourval.value}>
-                            {hourval.label}
-                          </option>
-                        ))}
-                      </select>
-                  PM End Time
-                  <select
-                        key={schedule.hourOfVisit}
-                        className="form-control select"
-                        name="pmEndTime"
-                        value={schedule.pmEndTime}
-                        onChange={onChange}
-                      >
-                        {hourValues.map((hourval) => (
-                          <option key={hourval.value} value={hourval.value}>
-                            {hourval.label}
-                          </option>
-                        ))}
-                      </select>
-                </label>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <label htmlFor="amStartTime">
+                    AM Start Time
+                    <select
+                      key={schedule.hourOfVisit}
+                      className="form-control select"
+                      name="amStartTime"
+                      value={schedule.amStartTime}
+                      onChange={onChange}
+                    >
+                      {hourValues.map((hourval) => (
+                        <option key={hourval.value} value={hourval.value}>
+                          {hourval.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label htmlFor="amEndTime" style={{ marginLeft: '2px' }}>
+                    AM End Time
+                    <select
+                      key={schedule.hourOfVisit}
+                      className="form-control select"
+                      name="amEndTime"
+                      value={schedule.amEndTime}
+                      onChange={onChange}
+                    >
+                      {hourValues.map((hourval) => (
+                        <option key={hourval.value} value={hourval.value}>
+                          {hourval.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <label htmlFor="pmStartTime">
+                    PM Start Time
+                    <select
+                      key={schedule.pmStartTime._id}
+                      className="form-control select"
+                      name="pmStartTime"
+                      value={schedule.pmStartTime}
+                      onChange={onChange}
+                    >
+                      {hourValues.map((hourval) => (
+                        <option key={hourval.value} value={hourval.value}>
+                          {hourval.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label htmlFor="pmEndTime" style={{ marginLeft: '2px' }}>
+                    PM End Time
+                    <select
+                      key={schedule.hourOfVisit}
+                      className="form-control select"
+                      name="pmEndTime"
+                      value={schedule.pmEndTime}
+                      onChange={onChange}
+                    >
+                      {hourValues.map((hourval) => (
+                        <option key={hourval.value} value={hourval.value}>
+                          {hourval.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="name">
+              <div className="form-group updateRegistrationGrp">
+                <label htmlFor="addedDate">
                   Date Created
                   <input
                     type="date"
                     className="form-control scheduleInput"
-                    name="name"
-                    value={schedule.firstName}
+                    name="addedDate"
+                    value={schedule.addedDate}
                     onChange={onChange}
                   />
                   <input
                     value="Add"
                     type="submit"
-                    className="btn btn-success"
+                    className="btn btn-success updateRegistrationBtn"
                   />
                 </label>
               </div>
