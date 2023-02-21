@@ -6,7 +6,7 @@ import axios from 'axios'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
-import CreatePatientFromVisit from '../PatientRegistration/createPatientFromVisit'
+// import CreatePatientFromVisit from '../PatientRegistration/createPatientFromVisit'
 
 function UpdateVisitInfo(props) {
   //create provider object
@@ -29,7 +29,7 @@ function UpdateVisitInfo(props) {
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
   const [schedEvent, setSchedEvent] = useState([])
-  console.log(schedEvent)
+  // console.log(schedEvent)
   const schedEvents = schedEvent.filter((event) => {
     return event.Name //.toString().toLowerCase() //.includes('attending')
   })

@@ -26,7 +26,10 @@ import ManageSettings from './components/Management/Settings/settingsPage'
 import CreateEvent from './components/Management/Events/createEvent'
 import EditEvent from './components/Management/Events/editEvent'
 import TestPage from './components/TestFolder/testPage'
-import CreateSchedule from './components/TestFolder/testCreateSchedule'
+import TestStaffTable from './components/TestFolder/testStaffTable01'
+import CreateSchedule from './components/Management/StaffSchedules/createSchedule'
+import EditSchedule from './components/Management/StaffSchedules/editSchedule'
+
 function App() {
   const user = localStorage.getItem('token')
 
@@ -60,8 +63,9 @@ function App() {
       <Route path="/createEvent" exact element={<CreateEvent />} />
       <Route path="/editEvent/:id" exact element={<EditEvent />} />
       <Route path="/testPage" exact element={<TestPage />} />
+      <Route path="/testStaffTable" exact element={<TestStaffTable />} />
       <Route path="/createSchedule" exact element={<CreateSchedule />} />
-      
+      <Route path="/editSchedule/:id" exact element={<EditSchedule />} />
     </Routes>
   )
 }

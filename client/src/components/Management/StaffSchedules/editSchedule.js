@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import { format } from 'date-fns'
-// import Schedule from './schedulesList'
 import axios from 'axios'
-import Navbar from '../navigation/navbar'
-import Header from '../shared/Header'
-import { Hour } from '../listDictionaries/listData/listDictionariesData'
+import Navbar from '../../navigation/navbar'
+import Header from '../../shared/Header'
+import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
-const CreateSchedule = (props) => {
+function EditSchedule(props) {
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
-  
-
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -26,14 +23,15 @@ const CreateSchedule = (props) => {
         console.log('Error from user list')
       })
   }, [])
+
+  const { id } = useParams()
+  const navigate = useNavigate()
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')
 
   const hourvalueChange = (event) => {
     sethourValue(event.target.value)
   }
-
-  const navigate = useNavigate()
   const [schedule, setSchedule] = useState({
     providerID: '',
     provider: 'Select Doctor',
@@ -51,81 +49,83 @@ const CreateSchedule = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
-  // const providerMDSelected = schedule.provider
-  // const attendingsID = userMD.find((md) => md.name === providerMDSelected)
-  // const providerMDSelectedID = userMD.filter((user) => {
-  //   return user.toString().toLowerCase().includes(providerMDSelected)
-  // })
 
-  // const { _id, name } = attendingsID
-  // const providersID = _id
-  // console.log(_id, name)
-  // console.log(providersID)
-  // console.log(attendingsID)
 
-  // const [selectedMD, setSelectedMD] = useState('')
+  const providerSelected = attendings.find(
+    (user) => user.name === schedule.provider,
+  )
 
+  const [scheduleMon, setScheduleDay1] = useState(' ')
+  const [scheduleTues, setScheduleDay2] = useState(' ')
+  const [scheduleWed, setScheduleDay3] = useState(' ')
+  const [scheduleThurs, setScheduleDay4] = useState(' ')
+  const [scheduleFri, setScheduleDay5] = useState(' ')
+
+
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/schedules/${id}`)
+      .then((res) => {
+        setSchedule({
+          providerID: res.data._id,
+          provider: res.data.provider,
+          startDate: res.data.startDate,
+          endDate: res.data.endDate,
+          amStartTime: res.data.amStartTime,
+          amEndTime: res.data.amEndTime,
+          pmStartTime: res.data.pmStartTime,
+          pmEndTime: res.data.pmEndTime,
+          scheduledMon: res.data.scheduleMon,
+          scheduledTues: res.data.scheduleTues,
+          scheduledWed: res.data.scheduleWed,
+          scheduledThurs: res.data.scheduleThurs,
+          scheduledFri: res.data.scheduledFri,
+          // addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          addedDate: res.data.addedDate,
+        })
+      })
+      .catch((err) => {
+        console.log('Error from EditSchedule')
+      })
+  }, [id])
+  // const onChange = (e) => {
+  //   setSchedule({ ...schedule, [e.target.name]: e.target.value })
+  // }
   const onChange = (e) => {
     setSchedule({ ...schedule, [e.target.name]: e.target.value })
     // setSelectedMD(schedule.provider.name)
   }
 
-  const providerSelected = attendings.find((user) => user.name === schedule.provider )
-  // console.log(providerSelected)
-  // const { _id, name } = providerSelected
-  const [scheduleMon, setScheduleDay1] = useState('0')
-  const [scheduleTues, setScheduleDay2] = useState('0')
-  const [scheduleWed, setScheduleDay3] = useState('0')
-  const [scheduleThurs, setScheduleDay4] = useState('0')
-  const [scheduleFri, setScheduleDay5] = useState('0')
-  // console.log(schedule.startDate)
-  // console.log(providerSelected._id)
-
+  const [data, setData] = useState([])
   const onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
-      provider: schedule.provider,
       providerID: providerSelected._id,
-      startDate: schedule.startDate,
-      endDate: schedule.endDate,
-      amStartTime: schedule.amStartTime,
-      amEndTime: schedule.amEndTime,
-      pmStartTime: schedule.pmStartTime,
-      pmEndTime: schedule.pmEndTime,
-      scheduledMon: scheduleMon,
-      scheduledTues: scheduleTues,
-      scheduledWed: scheduleWed,
-      scheduledThurs: scheduleThurs,
-      scheduledFri: scheduleFri,
-      addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          provider: schedule.provider,
+          startDate: schedule.startDate,
+          endDate: schedule.endDate,
+          amStartTime: schedule.amStartTime,
+          amEndTime: schedule.amEndTime,
+          pmStartTime: schedule.pmStartTime,
+          pmEndTime: schedule.pmEndTime,
+          scheduledMon: scheduleMon,
+          scheduledTues: scheduleTues,
+          scheduledWed: scheduleWed,
+          scheduledThurs: scheduleThurs,
+          scheduledFri: scheduleFri,
+          addedDate: schedule.addedDate,
     }
-
+    setData(data)
     axios
-      .post('http://localhost:8081/api/schedules', data)
+      .put(`http://localhost:8081/api/schedules/${id}`, data)
       .then((res) => {
-        setSchedule({
-          providerID: '',
-          provider: '',
-          startDate: '',
-          endDate: '',
-          amStartTime: '',
-          amEndTime: '',
-          pmStartTime: '',
-          pmEndTime: '',
-          scheduledMon: '',
-          scheduledTues: '',
-          scheduledWed: '',
-          scheduledThurs: '',
-          scheduledFri: '',
-          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-        })
-
         // Push to /
-        navigate('/testPage')
+        navigate('/settingsPage')
       })
       .catch((err) => {
-        console.log('Error in CreateSchedule!')
+        console.log('Error in EditSchedule!')
       })
   }
 
@@ -140,14 +140,17 @@ const CreateSchedule = (props) => {
         <Navbar />
       </div>
       <div className="item3">
-        <h5 className="createPageHeader">Create Schedule</h5>
-        <div className="item3A">
+      <h4 className="createPageHeader">Edit Schedule</h4>
+        <div className="item3A EditRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
-            <div className="form-grid-container">
+            <div
+              className="form-grid-containers"
+              style={{ display: 'flex', columnGap: '10px' }}
+            >
               <div className="form-group">
                 <div>
-                  <label style={{display: 'none'}} >
-                  {/* style={{display: 'none'}} */}
+                  <label style={{ display: 'none' }}>
+                    {/* style={{display: 'none'}} */}
                     Provider ID
                     <input
                       type="text"
@@ -325,7 +328,7 @@ const CreateSchedule = (props) => {
                   </label>
                 </div>
               </div>
-              <div className="form-group updateRegistrationGrp">
+              <div className="form-group updateRegistrationGrp ">
                 <label htmlFor="addedDate">
                   Date Created
                   <input
@@ -336,7 +339,7 @@ const CreateSchedule = (props) => {
                     onChange={onChange}
                   />
                   <input
-                    value="Add"
+                    value="Update"
                     type="submit"
                     className="btn btn-success updateRegistrationBtn"
                   />
@@ -350,4 +353,4 @@ const CreateSchedule = (props) => {
   )
 }
 
-export default CreateSchedule
+export default EditSchedule

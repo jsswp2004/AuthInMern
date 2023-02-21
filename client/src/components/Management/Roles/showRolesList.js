@@ -34,7 +34,7 @@ const ShowRolesList = () => {
 
   const [roles, setRoles] = useState([])
   // const navigate = useNavigate()
-console.log(roles)
+  //console.log(roles)
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {

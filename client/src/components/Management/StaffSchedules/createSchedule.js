@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router'
 import { format } from 'date-fns'
 // import Schedule from './schedulesList'
 import axios from 'axios'
-import Navbar from '../navigation/navbar'
-import Header from '../shared/Header'
-import { Hour } from '../listDictionaries/listData/listDictionariesData'
+import Navbar from '../../navigation/navbar'
+import Header from '../../shared/Header'
+import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
 const CreateSchedule = (props) => {
   const [userMD, setUserMD] = useState([])
@@ -73,11 +73,11 @@ const CreateSchedule = (props) => {
   const providerSelected = attendings.find((user) => user.name === schedule.provider )
   // console.log(providerSelected)
   // const { _id, name } = providerSelected
-  const [scheduleMon, setScheduleDay1] = useState('0')
-  const [scheduleTues, setScheduleDay2] = useState('0')
-  const [scheduleWed, setScheduleDay3] = useState('0')
-  const [scheduleThurs, setScheduleDay4] = useState('0')
-  const [scheduleFri, setScheduleDay5] = useState('0')
+  const [scheduleMon, setScheduleDay1] = useState(' ')
+  const [scheduleTues, setScheduleDay2] = useState(' ')
+  const [scheduleWed, setScheduleDay3] = useState(' ')
+  const [scheduleThurs, setScheduleDay4] = useState(' ')
+  const [scheduleFri, setScheduleDay5] = useState(' ')
   // console.log(schedule.startDate)
   // console.log(providerSelected._id)
 
@@ -122,7 +122,7 @@ const CreateSchedule = (props) => {
         })
 
         // Push to /
-        navigate('/testPage')
+        navigate('/settingsPage')
       })
       .catch((err) => {
         console.log('Error in CreateSchedule!')
@@ -132,18 +132,13 @@ const CreateSchedule = (props) => {
 
 
   return (
-    <div className="grid_container">
-      <div className="item1">
-        <Header />
-      </div>
-      <div className="item2">
-        <Navbar />
-      </div>
+    <div className="grid_containers">
       <div className="item3">
-        <h5 className="createPageHeader">Create Schedule</h5>
-        <div className="item3A">
+        {/* <h5 className="createPageHeader">Create Schedule</h5> */}
+        <div className="item3A createRoleModalBody">
+        {/* <label className="createPageHeader">Create Schedule</label> */}
           <form noValidate onSubmit={onSubmit}>
-            <div className="form-grid-container">
+            <div className="form-grid-containers" style={{display:'flex', columnGap: '10px'}}>
               <div className="form-group">
                 <div>
                   <label style={{display: 'none'}} >
@@ -325,7 +320,7 @@ const CreateSchedule = (props) => {
                   </label>
                 </div>
               </div>
-              <div className="form-group updateRegistrationGrp">
+              <div className="form-group updateRegistrationGrp ">
                 <label htmlFor="addedDate">
                   Date Created
                   <input

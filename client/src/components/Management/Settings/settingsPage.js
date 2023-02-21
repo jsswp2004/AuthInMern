@@ -29,7 +29,7 @@ import ShowUsers from '../../Signup/showUsers'
 import ShowRoles from '../Roles/showRoles'
 import ShowEvents from '../Events/showEvents'
 import ShowStaffSchedules from '../StaffSchedules/showStaffSchedules'
-
+// import ShowStaffSchedules from '../../TestFolder/testPage'
 const ShowSettings = () => {
 
   const [setting, setSetting] = useState('')
@@ -62,7 +62,7 @@ const ShowSettings = () => {
 
       <div className="item3">
         <div className="roleItemContainer">
-          <div className="roleItemContainerBox">
+          <div className="roleItemContainerBoxLeft">
             <div className="item3A settingsPage">
               <div className="form-control">
                 <h5 className="createPageHeader">Settings</h5>
@@ -106,7 +106,7 @@ const ShowSettings = () => {
               </div>
             </div>
           </div>
-          <div className="roleItemContainerBox">
+          <div className="roleItemContainerBoxRight">
             <div style={displayRolesSetting}>
               <div className="card-body table-responsive p-0">
                 <ShowRoles />

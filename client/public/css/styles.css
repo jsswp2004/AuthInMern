@@ -574,8 +574,13 @@ body {
   width: 100%;
 }
 
-.roleItemContainer > .roleItemContainerBox {
-  width: 50%;
+.roleItemContainer > .roleItemContainerBoxLeft {
+  width: 30%;
+  margin-left: 2px;
+}
+
+.roleItemContainer > .roleItemContainerBoxRight {
+  width: 70%;
   margin-left: 2px;
 }
 .table-striped {
@@ -721,10 +726,11 @@ tbody tr {
 /*search css*/
 .searchLabel {
   margin-left: auto;
+  margin-right: 3px;
   height: 30px;
   border-radius: 5px;
   float: right;
-  margin-top: 0px;
+  margin-top: 2px;
 }
 .patientListHeader {
   margin-top: 3px;
@@ -760,6 +766,13 @@ h5 {
   margin-bottom: 0px;
 }
 
+
+
+.createScheduleHeader {
+  background-color: #efefef;
+  margin-bottom: 0px;
+  margin-top: 3px;
+}
 .createPageHeader {
   background-color: #efefef;
   margin-bottom: 0px;
@@ -1661,11 +1674,16 @@ tfoot > .MuiTableFooter-root {
   border-radius: 20%;
   background: white;
 }
+/*Add Schedule*/
+.addScheduleBackGround{
+  background-color: #efefef;
+}
 /*Edit registration page css*/
 
 .updateRegistrationGrp{
   /* height: 800px; */
   position: relative;
+  /* background-color: #efefef */
 }
 .updateRegistrationBtn {
   /* float: right; */

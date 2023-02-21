@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import Role from './rolesList'
+// import Role from './rolesList'
 import axios from 'axios'
-import Navbar from '../../navigation/navbar'
-import Header from '../../shared/Header'
+// import Navbar from '../../navigation/navbar'
+// import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
-import CreateRole from './createRoleModal'
+import CreateSchedule from '../Management/Roles/createRoleModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -26,15 +26,15 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 
-const ShowRolesList = () => {
+const ShowSchedulesList = () => {
   // Define the state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  const [roles, setRoles] = useState([])
+  const [schedules, setSchedules] = useState([])
   // const navigate = useNavigate()
-  // console.log(roles)
+  // console.log(schedules)
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
@@ -47,44 +47,44 @@ const ShowRolesList = () => {
   const handleClick = (e) => {
     e.preventDefault()
     // setSearchInput(e.target.value)
-    // alert('Create role button clicked')
+    // alert('Create schedule button clicked')
     setShow(false)
     navigate('/settingsPage')
   }
 
-  // console.log(roles)
+  // console.log(schedules)
   useEffect(() => {
     axios
-      .get('http://localhost:8081/api/roles')
+      .get('http://localhost:8081/api/schedules')
       .then((res) => {
         // const data = response.data
-        setRoles(res.data)
+        setSchedules(res.data)
       })
       .catch((error) => {
-        console.log('Error from roles list')
+        console.log('Error from schedules list')
       })
   }, [])
 
   const deleteRecord = (id) => {
     axios
-      .delete(`http://localhost:8081/api/roles/${id}`)
+      .delete(`http://localhost:8081/api/schedules/${id}`)
       .then((res) => {
-        setRoles(roles.filter((el) => el._id !== id))
-        console.log('Role successfully deleted!')
+        setSchedules(schedules.filter((el) => el._id !== id))
+        console.log('Schedule successfully deleted!')
       })
       .catch((error) => {
         console.log('Unable to delete visit')
       })
   }
-  // console.log('roles', roles)
-  const RoleModal = () => (
+  // console.log('schedules', schedules)
+  const ScheduleModal = () => (
     <>
       <Modal show={show} onHide={handleClose} size="med" centered>
         <Modal.Header>
-          <Modal.Title>Add a Role</Modal.Title>
+          <Modal.Title>Add a Schedule</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CreateRole />
+          <CreateSchedule />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
@@ -96,7 +96,7 @@ const ShowRolesList = () => {
   )
   // console.log(show)
   function displayVisitModal() {
-    return <RoleModal />
+    return <ScheduleModal />
   }
 
   //table functions
@@ -194,7 +194,7 @@ const ShowRolesList = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - roles.length) : 0
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - schedules.length) : 0
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -206,12 +206,31 @@ const ShowRolesList = () => {
   }
 
   return (
-    <div className="roleItemContainerBox">
+    <div className="scheduleItemContainerBox">
       <div className="item3A">
-        <h4 className="createPageHeader">Roles</h4>
+        <h4 className="createPageHeader">Schedules</h4>
 
         <div>{displayVisitModal()}</div>
         <label htmlFor="search" className="searchLabel">
+          {/* create schedule button */}
+          {/* <span> */}
+          <Link
+            style={{
+              fontSize: '14px',
+              marginTop: '2px',
+              paddingBottom: '2px',
+              borderRadius: '5px',
+              height: '30px',
+            }}
+            className="btn btn-info btn-sm"
+            // onClick={handleClick}
+            // title="Click to add visit"
+            to={'/createSchedule'}
+          >
+            {/* {startOfTheMonthDay} */}
+            Create Schedule
+          </Link>
+          {/* </span> */}
           <Button
             className="btn btn-info btn-sm registerBtn"
             onClick={handleShow}
@@ -219,21 +238,21 @@ const ShowRolesList = () => {
             <i
               className="fa fa-user-plus fa-sm"
               aria-hidden="true"
-              title="Add Role"
+              title="Add Schedule"
             />
           </Button>
           Search :{' '}
           <input
             id="search"
             type="text"
-            placeholder="Search roles"
+            placeholder="Search schedules"
             onChange={handleChange}
             value={searchInput}
           />
         </label>
       </div>
 
-      <div className="roleItemContainerBox">
+      <div className="scheduleItemContainerBox">
         <div className="card-body table-responsive p-0">
           <TableContainer component={Paper}>
             <Table
@@ -243,24 +262,26 @@ const ShowRolesList = () => {
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="left">Role</StyledTableCell>
+                  <StyledTableCell align="left">Schedule</StyledTableCell>
                   <StyledTableCell align="left">Actions</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? roles.slice(
+                  ? schedules.slice(
                       page * rowsPerPage,
                       page * rowsPerPage + rowsPerPage,
                     )
-                  : roles
-                ).map((role) => (
-                  <StyledTableRow key={role._id}>
-                    <StyledTableCell align="left">{role.name}</StyledTableCell>
+                  : schedules
+                ).map((schedule) => (
+                  <StyledTableRow key={schedule._id}>
+                    <StyledTableCell align="left">
+                      {schedule.name}
+                    </StyledTableCell>
                     <StyledTableCell align="left">
                       <Link
                         className="btn btn-info btn-sm"
-                        to={`/editRole/${role._id}`}
+                        to={`/editSchedule/${schedule._id}`}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"
@@ -271,7 +292,7 @@ const ShowRolesList = () => {
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => {
-                          deleteRecord(role._id)
+                          deleteRecord(schedule._id)
                         }}
                       >
                         <i
@@ -295,7 +316,7 @@ const ShowRolesList = () => {
               </TableBody>
               <TableFooter>
                 <TableRow>
-                  <TablePagination                    
+                  <TablePagination
                     rowsPerPageOptions={[
                       5,
                       10,
@@ -303,7 +324,7 @@ const ShowRolesList = () => {
                       { label: 'All', value: -1 },
                     ]}
                     colSpan={12}
-                    count={roles.length}
+                    count={schedules.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{
@@ -326,4 +347,4 @@ const ShowRolesList = () => {
   )
 }
 
-export default ShowRolesList
+export default ShowSchedulesList
