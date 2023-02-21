@@ -119,6 +119,7 @@ const CreateSchedule = (props) => {
                     // checked='checked'
                     onClick={() => setScheduleDays('1')}
                     name="scheduledDays"
+                    value={schedule.scheduledMon}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -128,6 +129,7 @@ const CreateSchedule = (props) => {
                     type="checkbox"
                     onClick={() => setScheduleDays('2')}
                     name="scheduledDays"
+                    value={schedule.scheduledMon}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -137,6 +139,7 @@ const CreateSchedule = (props) => {
                     type="checkbox"
                     onClick={() => setScheduleDays('3')}
                     name="scheduledDays"
+                    value={schedule.scheduledMon}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -146,6 +149,7 @@ const CreateSchedule = (props) => {
                     type="checkbox"
                     onClick={() => setScheduleDays('4')}
                     name="scheduledDays"
+                    value={schedule.scheduledMon}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
@@ -155,6 +159,7 @@ const CreateSchedule = (props) => {
                     type="checkbox"
                     onClick={() => setScheduleDays('5')}
                     name="scheduledDays"
+                    value={schedule.scheduledMon}
                   />
                   <span className="scheduleCheckboxCheckmark"></span>
                 </label>
