@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router'
-// import Role from './rolesList'
 import axios from 'axios'
-// import Navbar from '../../navigation/navbar'
-// import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
 import CreateSchedule from '../StaffSchedules/createSchedule'
+import EditSchedule from '../StaffSchedules/editScheduleModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -25,16 +24,20 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import { id } from 'date-fns/locale'
 
 const ShowSchedulesList = () => {
   // Define the state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleShow = () => {
+    setShow(true)
+    // setMdID("33445")
+  }
 
   const [schedules, setSchedules] = useState([])
   // const navigate = useNavigate()
-  // console.log(schedules)
+  // console.log(schedules.data.providerID)
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
@@ -42,6 +45,23 @@ const ShowSchedulesList = () => {
     setSearchInput(e.target.value)
   }
 
+  const [mdID, setMdID] = useState('')
+
+  // useEffect((id) => {
+  //   axios
+  //     .get(`http://localhost:8081/api/schedules/${id}`)
+  //     .then((res) => {
+  //       // const data = response.data
+  //       setMdID(res.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from fetching ID')
+  //     })
+  // }, [])
+  
+  // destructuring
+  // const result = mdID.find(({ providerID }) => providerID);
+  console.log(mdID)
   const navigate = useNavigate()
 
   const handleClick = (e) => {
@@ -52,7 +72,6 @@ const ShowSchedulesList = () => {
     navigate('/settingsPage')
   }
 
-  // console.log(schedules)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/schedules')
@@ -64,6 +83,30 @@ const ShowSchedulesList = () => {
         console.log('Error from schedules list')
       })
   }, [])
+
+  useEffect((id) => {
+    axios
+    .get(`http://localhost:8081/api/schedules/${id}`)
+      .then((res) => {
+        // const data = response.data
+        // setMdID(schedules.filter((el) => el.providerID === id))
+        setMdID(schedules)
+      })
+      .catch((error) => {
+        console.log('Error from schedules list')
+      })
+  }, [schedules])
+
+  // const pullRecord = (id) => {
+  //   axios
+  //     .get(`http://localhost:8081/api/schedules/${id}`)
+  //     .then((res) => {
+  //       setMdID(schedules.filter((el) => el._id === id))
+  //     })
+  //     .catch((error) => {
+  //       console.log('Unable to get visit')
+  //     })
+  // }
 
   const deleteRecord = (id) => {
     axios
@@ -97,6 +140,37 @@ const ShowSchedulesList = () => {
   // console.log(show)
   function displayVisitModal() {
     return <ScheduleModal />
+  }
+  // const { id } = useParams()
+  // console.log(id)
+  //edit schedule modal
+  const EditScheduleModal = (testtext) => (
+    <>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        centered
+        thistestID={testtext._id}
+      >
+        <Modal.Header>
+          <Modal.Title>Edit Schedule </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditSchedule thistestID={testtext._id}>{testtext._id}</EditSchedule>
+          {/* providerid={id } */}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+
+  function displayEditScheduleModal() {
+    return <EditScheduleModal />
   }
 
   //table functions
@@ -205,12 +279,15 @@ const ShowSchedulesList = () => {
     setPage(0)
   }
 
+  // const { id } = useParams()
+  // console.log(schedules)
   return (
     <div className="scheduleItemContainerBox">
       <div className="item3A">
         <h4 className="createScheduleHeader">Add Schedule</h4>
 
         <div>{displayVisitModal()}</div>
+        <div>{displayEditScheduleModal()}</div>
         <label htmlFor="search" className="searchLabel">
           {/* create schedule button */}
           {/* <Link
@@ -308,8 +385,10 @@ const ShowSchedulesList = () => {
                       {schedule.pmEndTime}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {schedule.scheduledMon + ' '} {schedule.scheduledTues + ' '}
-                      {schedule.scheduledWed + ' '} {schedule.scheduledThurs + ' '}
+                      {schedule.scheduledMon + ' '}{' '}
+                      {schedule.scheduledTues + ' '}
+                      {schedule.scheduledWed + ' '}{' '}
+                      {schedule.scheduledThurs + ' '}
                       {schedule.scheduledFri + ' '}
                     </StyledTableCell>
                     {/* <StyledTableCell align="left"> 
@@ -326,6 +405,15 @@ const ShowSchedulesList = () => {
                           title="Edit registration"
                         />
                       </Link>{' '}
+                      <button
+                        testtext={schedule._id}
+                        // onMouseOver={() => pullRecord(schedule._id)}
+                        onClick={handleShow}//{() => pullRecord(schedule._id)}
+                      >
+                        xx
+                      </button>
+                      {/* pullRecord(schedule._id) */}
+                      {/* providerid={id} */}
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => {

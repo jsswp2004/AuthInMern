@@ -25,6 +25,7 @@ function EditSchedule(props) {
   }, [])
 
   const { id } = useParams()
+  console.log(id)
   const navigate = useNavigate()
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')
@@ -141,7 +142,7 @@ function EditSchedule(props) {
       </div>
       <div className="item3">
       <h4 className="createPageHeader">Edit Schedule</h4>
-        <div className="item3A EditRoleModalBody">
+        <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div
               className="form-grid-containers"

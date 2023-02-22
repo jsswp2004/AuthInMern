@@ -13,7 +13,7 @@ function EditEvent(props) {
   })
   const { id } = useParams()
   const navigate = useNavigate()
-
+  console.log(id)
   const [eventx, setEvents] = useState([])
   const events = eventx.filter((event) => {
     return event.Name.toString().toLowerCase()
