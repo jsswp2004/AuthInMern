@@ -37,19 +37,30 @@ const CreateEvent = (props) => {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createEventModalBody">
+        <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Event </label>
-              <input
-                type="text"
-                className="form-control eventInput"
-                name="name"
-                value={event.name}
-                onChange={onChange}
-              />
-              <input value="Add" type="submit" className="btn btn-success" />
-              {/* onClick={ props.handleClick}  */}
+            <div
+              className="form-grid-containers"
+              style={{ display: 'flex', columnGap: '10px' }}
+            >
+              <div className="form-group" >
+                <div >
+                  <label htmlFor="name">Event </label>
+                  <input
+                    type="text"
+                    className="form-control eventInput"
+                    name="name"
+                    value={event.name}
+                    onChange={onChange}
+                  />
+                  <input
+                    value="Add"
+                    type="submit"
+                    className="btn btn-success"
+                  />
+                  {/* onClick={ props.handleClick}  */}
+                </div>
+              </div>
             </div>
           </form>
         </div>

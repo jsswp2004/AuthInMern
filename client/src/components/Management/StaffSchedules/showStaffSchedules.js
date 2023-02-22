@@ -1,11 +1,9 @@
-import React, { useState, useEffect, userRef, useContext} from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect} from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import CreateSchedule from '../StaffSchedules/createSchedule'
 import EditSchedule from '../StaffSchedules/editScheduleModal'
-import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -24,61 +22,54 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
-import { id } from 'date-fns/locale'
-import UserContext from '../../Signup/index'
+
 
 const ShowSchedulesList = () => {
-  // const user = useContext(UserContext)
-
-  // console.log(user)
-  // Define the state with useState hook
+  // Define the Create Modal state
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => {
-    setShow(true)
-    setMdID(schedules._id)
+    setShow(true)    
   }
 
+  // Define the Edit Modal state
+  const [editShow, setEditShow] = useState(false)
+  const handleEditClose = () => setEditShow(false)
+  const handleEditShow = () => {
+    setEditShow(true)    
+  }
+  // Define the Schedule state
   const [schedules, setSchedules] = useState([])
-  // const navigate = useNavigate()
-  // console.log(schedules.data.providerID)
+  // Define the Search state
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
-
-  // useEffect((id) => {
-  //   axios
-  //     .get(`http://localhost:8081/api/schedules/${id}`)
-  //     .then((res) => {
-  //       // const data = response.data
-  //       setMdID(res.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error from fetching ID')
-  //     })
-  // }, [])
-
-  // destructuring
-  // const result = mdID.find(({ providerID }) => providerID);
-  // console.log(mdID)
+  // Navigation
   const navigate = useNavigate()
 
+  // Method to set show for create modal to false
   const handleClick = (e) => {
     e.preventDefault()
-    // setSearchInput(e.target.value)
     // alert('Create schedule button clicked')
     setShow(false)
-    navigate('/settingsPage')
+    // navigate('/settingsPage')
+  }
+
+  // Method to set show for edit modal to false
+  const handleEditClick = (e) => {
+    e.preventDefault()
+    setEditShow(false)
+    // navigate('/settingsPage')
+    // window.location.reload()
   }
 
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/schedules')
       .then((res) => {
-        // const data = response.data
         setSchedules(res.data)
       })
       .catch((error) => {
@@ -86,37 +77,10 @@ const ShowSchedulesList = () => {
       })
   }, [])
 
+  // Define mdID state for prop
   const [mdID, setMdID] = useState('')
-  console.log(mdID)
 
-  // const useFetch = (id) => {
-  //   const [mdID, setMdID] = useState('')
-  //   useEffect((id) => {
-  //     axios
-  //       .get(`http://localhost:8081/api/schedules/${id}`)
-  //       .then((res) => {
-  //         // const data = response.data
-  //         // setMdID(schedules.filter((el) => el.providerID === id))
-  //         setMdID(schedules)
-  //       })
-  //       .catch((error) => {
-  //         console.log('Error from schedules list')
-  //       })
-  //   }, [])
-  //   return [mdID]
-  // }
-
-  // const pullRecord = (id) => {
-  //   axios
-  //     .get(`http://localhost:8081/api/schedules/${id}`)
-  //     .then((res) => {
-  //       setMdID(schedules.filter((el) => el._id === id))
-  //     })
-  //     .catch((error) => {
-  //       console.log('Unable to get visit')
-  //     })
-  // }
-
+  // Delete record
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/schedules/${id}`)
@@ -128,7 +92,8 @@ const ShowSchedulesList = () => {
         console.log('Unable to delete visit')
       })
   }
-  // console.log('schedules', schedules)
+
+  // Create Schedule Modal
   const ScheduleModal = () => (
     <>
       <Modal show={show} onHide={handleClose} size="lg" centered>
@@ -146,33 +111,29 @@ const ShowSchedulesList = () => {
       </Modal>
     </>
   )
-  // console.log(show)
+
+  // Function to display create schedule modal
   function displayVisitModal() {
     return <ScheduleModal />
   }
-  // const { id } = useParams()
-  // console.log(id)
-  //edit schedule modal
+
+  // Edit Schedule Modal
   const EditScheduleModal = (props) => (
     <>
       <Modal
-        show={show}
-        onHide={handleClose}
+        show={editShow}
+        onHide={handleEditClose}
         size="lg"
         centered
-        
       >
         <Modal.Header>
           <Modal.Title>Edit Schedule</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <EditSchedule>{testtext._id}</EditSchedule> */}
-          <EditSchedule providerID={props.providerID} />
-          {/* providerid={id } */}
-          
+          <EditSchedule providerID={mdID} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClick}>
+          <Button variant="secondary" onClick={handleEditClick}>
             Close
           </Button>
         </Modal.Footer>
@@ -180,6 +141,7 @@ const ShowSchedulesList = () => {
     </>
   )
 
+  // Function to display edit schedule modal
   function displayEditScheduleModal() {
     return <EditScheduleModal />
   }
@@ -205,7 +167,7 @@ const ShowSchedulesList = () => {
     },
   }))
 
-  //pagination
+  //page pagination
   function TablePaginationActions(props) {
     const theme = useTheme()
     const { count, page, rowsPerPage, onPageChange } = props
@@ -290,43 +252,20 @@ const ShowSchedulesList = () => {
     setPage(0)
   }
 
-  // const { id } = useParams()
-  // console.log(mdID)
+  //setting the ID of the provider for the property
   const handleItemClick = item => {
-    //Redirect to new route from here with the item data
-    var providerID = item._id
-    console.log(providerID)
-}
+    const providerID = item._id
+    setMdID(providerID)
+  }
 
   return (
     <div className="scheduleItemContainerBox">
       <div className="item3A">
         <h4 className="createScheduleHeader">Add Schedule</h4>
-
         <div>{displayVisitModal()}</div>
         <div>{displayEditScheduleModal()}</div>
         <label htmlFor="search" className="searchLabel">
           {/* create schedule button */}
-          {/* <Link
-            style={{
-              fontSize: '14px',
-              marginTop: '2px',
-              paddingBottom: '2px',
-              borderRadius: '5px',
-              height: '30px',
-              marginRight: '5px',
-            }}
-            className="btn btn-info btn-sm"
-            // onClick={handleClick}
-            // title="Click to add visit"
-            to={'/createSchedule'}
-          >
-            <i
-              className="fa fa-calendar-plus-o fa-sm"
-              aria-hidden="true"
-              title="Create Schedule"
-            />
-          </Link> */}
           <Button
             className="btn btn-info btn-sm registerBtn"
             onClick={handleShow}
@@ -334,7 +273,7 @@ const ShowSchedulesList = () => {
             <i
               className="fa fa-calendar-plus-o fa-sm"
               aria-hidden="true"
-              title="Add Role"
+              title="Add Schedule"
             />
           </Button>
           Search :{' '}
@@ -410,37 +349,27 @@ const ShowSchedulesList = () => {
                       {schedule.scheduledThurs + ' '}
                       {schedule.scheduledFri + ' '}
                     </StyledTableCell>
-                    {/* <StyledTableCell align="left"> 
-                      {schedule.addedDate}
-                    </StyledTableCell> */}
                     <StyledTableCell align="left">
-                      <Link
+                      {/* <Link
                         className="btn btn-info btn-sm"
                         to={`/editSchedule/${schedule._id}`}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"
                           aria-hidden="true"
-                          title="Edit registration"
+                          title="Edit Schedule"
                         />
-                      </Link>{' '}
-                      <button
-                        // testtext={schedule._id}
-                        // onMouseOver={() => pullRecord(schedule._id)}
-                       // onClick={setMdID(schedule._id)}//{() => pullRecord(schedule._id)}
-                        onClick={handleShow}
+                      </Link>{' '} */}
+                      <button className='btn btn-info btn-sm'                      
+                        onClick={handleEditShow}
                         providerID={schedule._id}
                       >
-                        xx
+                        <i
+                          className="fa fa-hospital-o fa-sm"
+                          aria-hidden="true"
+                          title="Edit Schedule"
+                        />
                       </button>
-                      {/* <link
-                        className="btn btn-info btn-sm"
-                        // to={`/editSchedule/${schedule._id}}`}
-                      >
-                        test
-                      </link> */}
-                      {/* pullRecord(schedule._id) */}
-                      {/* providerid={id} */}
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => {
@@ -500,4 +429,3 @@ const ShowSchedulesList = () => {
 }
 
 export default ShowSchedulesList
-// export useFetch

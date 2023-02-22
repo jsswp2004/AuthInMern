@@ -51,20 +51,6 @@ const CreateSchedule = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
-  // const providerMDSelected = schedule.provider
-  // const attendingsID = userMD.find((md) => md.name === providerMDSelected)
-  // const providerMDSelectedID = userMD.filter((user) => {
-  //   return user.toString().toLowerCase().includes(providerMDSelected)
-  // })
-
-  // const { _id, name } = attendingsID
-  // const providersID = _id
-  // console.log(_id, name)
-  // console.log(providersID)
-  // console.log(attendingsID)
-
-  // const [selectedMD, setSelectedMD] = useState('')
-
   const onChange = (e) => {
     setSchedule({ ...schedule, [e.target.name]: e.target.value })
     // setSelectedMD(schedule.provider.name)
@@ -122,7 +108,8 @@ const CreateSchedule = (props) => {
         })
 
         // Push to /
-        navigate('/settingsPage')
+        // navigate('/settingsPage')
+        window.location.reload()
       })
       .catch((err) => {
         console.log('Error in CreateSchedule!')

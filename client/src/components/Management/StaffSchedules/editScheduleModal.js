@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router'
+import React, { useState, useEffect } from 'react'
+// import { useNavigate } from 'react-router'
 import { format } from 'date-fns'
 import axios from 'axios'
-import Navbar from '../../navigation/navbar'
-import Header from '../../shared/Header'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
 function EditSchedule(props) {
@@ -24,9 +22,7 @@ function EditSchedule(props) {
       })
   }, [])
 
-  const { id } = useParams()
-  // console.log(id)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')
 
@@ -51,36 +47,20 @@ function EditSchedule(props) {
   })
 
 
-
-  // const providerSelected = attendings.find(
-  //   (user) => user.name === schedule.provider,
-  // )
-
-  const providerSelected = attendings.find(
-    (user) => user.providerID === props.providerID,
-  )
-
-
+  const DrID = props.providerID
+  
   const [scheduleMon, setScheduleDay1] = useState(' ')
   const [scheduleTues, setScheduleDay2] = useState(' ')
   const [scheduleWed, setScheduleDay3] = useState(' ')
   const [scheduleThurs, setScheduleDay4] = useState(' ')
   const [scheduleFri, setScheduleDay5] = useState(' ')
 
-  // console.log(providerSelected._id)
-  // const [inputIDValue, setInputIDValue] = useState("")
-  // const previousInputIDValue = useRef("")
-  // useEffect(() => {
-  //   previousInputIDValue.current = providerSelected._id;
-  // }, [providerSelected._id])
-  // console.log(inputIDValue)
-  // console.log(previousInputIDValue.current)
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/schedules/${id}`)
+      .get(`http://localhost:8081/api/schedules/${DrID}`)
       .then((res) => {
         setSchedule({
-          providerID: res.data._id,//props.thistestID,//
+          providerID: res.data.providerID,
           provider: res.data.provider,
           startDate: res.data.startDate,
           endDate: res.data.endDate,
@@ -93,34 +73,24 @@ function EditSchedule(props) {
           scheduledWed: res.data.scheduleWed,
           scheduledThurs: res.data.scheduleThurs,
           scheduledFri: res.data.scheduledFri,
-          // addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
           addedDate: res.data.addedDate,
         })
-        // setInputIDValue({
-        //   providerID: res.data._id,
-        // })
+
       })
       .catch((err) => {
         console.log('Error from EditSchedule')
       })
-  }, [id])
-  // const onChange = (e) => {
-  //   setSchedule({ ...schedule, [e.target.name]: e.target.value })
-  // }
+  }, [DrID])
+
   
   const onChange = (e) => {
     setSchedule({ ...schedule, [e.target.name]: e.target.value })
-    // setSelectedMD(schedule.provider.name)
   }
-
-  // const [data, setData] = useState([])
-  // const { providerID } = data
-  // console.log(data)
   const onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
-      providerID: providerSelected._id,
+      providerID: props.providerID,
           provider: schedule.provider,
           startDate: schedule.startDate,
           endDate: schedule.endDate,
@@ -135,31 +105,23 @@ function EditSchedule(props) {
           scheduledFri: scheduleFri,
           addedDate: schedule.addedDate,
     }
-    // setData(data)
+    
     axios
-      .put(`http://localhost:8081/api/schedules/${id}`, data)
+      .put(`http://localhost:8081/api/schedules/${props.providerID}`, data)
       .then((res) => {
-        // Push to /
-        navigate('/settingsPage')
+        // Push to      
+        window.location.reload()
+        window.location.close()
+        
       })
       .catch((err) => {
         console.log('Error in EditSchedule!')
       })
   }
 
- 
-
   return (
-    <div className="grid_containers">
-      {/* <div className="item1">
-        <Header />
-      </div>
-      <div className="item2">
-        <Navbar />
-      </div> */}
-      
+    <div className="grid_containers">      
       <div className="item3">
-      {/* <h4 className="createPageHeader">Edit Schedule</h4> */}
         <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div
@@ -169,7 +131,6 @@ function EditSchedule(props) {
               <div className="form-group">
                 <div>
                   <label style={{ display: 'none' }}>
-                    {/* style={{display: 'none'}} */}
                     Provider ID
                     <input
                       type="text"
@@ -206,7 +167,6 @@ function EditSchedule(props) {
                     Mondays
                     <input
                       type="checkbox"
-                      // checked='checked'
                       onClick={() => setScheduleDay1('Mon')}
                       name="scheduledDays"
                       value={schedule.scheduledMon}

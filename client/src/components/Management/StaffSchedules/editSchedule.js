@@ -25,7 +25,7 @@ function EditSchedule(props) {
   }, [])
 
   const { id } = useParams()
-  console.log(id)
+  // console.log(id)
   const navigate = useNavigate()
   const hourValues = Hour
   const [hourvalue, sethourValue] = useState('')

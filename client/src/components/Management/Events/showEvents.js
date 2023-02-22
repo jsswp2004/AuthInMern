@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import CreateEvent from './createEventModal'
+import EditEvent from './editEventModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -28,6 +29,11 @@ const ShowEventsList = () => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
+    // Define the state with useState hook
+    const [editShow, setEditShow] = useState(false)
+    const handleEditClose = () => setEditShow(false)
+    const handleEditShow = () => setEditShow(true)
 
   const [events, setEvents] = useState([])
   // const navigate = useNavigate()
@@ -61,6 +67,8 @@ const ShowEventsList = () => {
         console.log('Error from events list')
       })
   }, [])
+  // Define visitID state for prop
+  const [visitID, setVisitID] = useState('')
 
   const deleteRecord = (id) => {
     axios
@@ -93,8 +101,31 @@ const ShowEventsList = () => {
     </>
   )
   // console.log(show)
-  function displayVisitModal() {
+  function displayEventModal() {
     return <EventModal />
+  }
+
+  const EditEventModal = () => (
+    <>
+      <Modal show={editShow} onHide={handleEditClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Add a Event</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditEvent visitID={ visitID} />
+          {/* handleClick={ handleClick} */}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  // console.log(show)
+  function displayEditEventModal() {
+    return <EditEventModal />
   }
 
   //table functions
@@ -203,12 +234,19 @@ const ShowEventsList = () => {
     setPage(0)
   }
 
+    //setting the ID of the visit for the property
+  const handleItemClick = item => {
+    const visitID = item._id
+    setVisitID(visitID)
+  }
+
   return (
     <div className="eventItemContainerBox">
       <div className="item3A">
         <h4 className="createPageHeader">Events</h4>
 
-        <div>{displayVisitModal()}</div>
+        <div>{displayEventModal()}</div>
+        <div>{ displayEditEventModal()}</div>
         <label htmlFor="search" className="searchLabel">
           <Button
             className="btn btn-info btn-sm registerBtn"
@@ -253,10 +291,12 @@ const ShowEventsList = () => {
                     )
                   : events
                 ).map((event) => (
-                  <StyledTableRow key={event._id}>
+                  <StyledTableRow key={event._id}
+                  onClick={() => handleItemClick(event)}
+                  >
                     <StyledTableCell align="left">{event.Name}</StyledTableCell>
                     <StyledTableCell align="left">
-                      <Link
+                      {/* <Link
                         className="btn btn-info btn-sm"
                         to={`/editEvent/${event._id}`}
                       >
@@ -265,7 +305,17 @@ const ShowEventsList = () => {
                           aria-hidden="true"
                           title="Edit registration"
                         />
-                      </Link>{' '}
+                      </Link>{' '} */}
+                      <button className='btn btn-info btn-sm'                      
+                        onClick={handleEditShow}
+                        providerID={event._id}
+                      >
+                        <i
+                          className="fa fa-hospital-o fa-sm"
+                          aria-hidden="true"
+                          title="Edit Event"
+                        />
+                      </button>
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => {
