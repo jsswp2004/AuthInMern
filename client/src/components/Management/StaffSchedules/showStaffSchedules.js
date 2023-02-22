@@ -1,4 +1,4 @@
-import React, { useState, useEffect, userRef } from 'react'
+import React, { useState, useEffect, userRef, useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
@@ -25,14 +25,18 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import { id } from 'date-fns/locale'
+import UserContext from '../../Signup/index'
 
 const ShowSchedulesList = () => {
+  // const user = useContext(UserContext)
+
+  // console.log(user)
   // Define the state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => {
     setShow(true)
-    // setMdID("33445")
+    setMdID(schedules._id)
   }
 
   const [schedules, setSchedules] = useState([])
@@ -45,8 +49,6 @@ const ShowSchedulesList = () => {
     setSearchInput(e.target.value)
   }
 
-  
-
   // useEffect((id) => {
   //   axios
   //     .get(`http://localhost:8081/api/schedules/${id}`)
@@ -58,7 +60,7 @@ const ShowSchedulesList = () => {
   //       console.log('Error from fetching ID')
   //     })
   // }, [])
-  
+
   // destructuring
   // const result = mdID.find(({ providerID }) => providerID);
   // console.log(mdID)
@@ -84,24 +86,25 @@ const ShowSchedulesList = () => {
       })
   }, [])
 
-  const useFetch = (id) => {
-    const [mdID, setMdID] = useState('')
-    useEffect((id) => {
-      axios
-      .get(`http://localhost:8081/api/schedules/${id}`)
-        .then((res) => {
-          // const data = response.data
-          // setMdID(schedules.filter((el) => el.providerID === id))
-          setMdID(schedules)
-        })
-        .catch((error) => {
-          console.log('Error from schedules list')
-        })
-    }, [])
-    return [mdID]
-  } 
+  const [mdID, setMdID] = useState('')
+  console.log(mdID)
 
-
+  // const useFetch = (id) => {
+  //   const [mdID, setMdID] = useState('')
+  //   useEffect((id) => {
+  //     axios
+  //       .get(`http://localhost:8081/api/schedules/${id}`)
+  //       .then((res) => {
+  //         // const data = response.data
+  //         // setMdID(schedules.filter((el) => el.providerID === id))
+  //         setMdID(schedules)
+  //       })
+  //       .catch((error) => {
+  //         console.log('Error from schedules list')
+  //       })
+  //   }, [])
+  //   return [mdID]
+  // }
 
   // const pullRecord = (id) => {
   //   axios
@@ -150,21 +153,23 @@ const ShowSchedulesList = () => {
   // const { id } = useParams()
   // console.log(id)
   //edit schedule modal
-  const EditScheduleModal = (testtext) => (
+  const EditScheduleModal = (props) => (
     <>
       <Modal
         show={show}
         onHide={handleClose}
         size="lg"
         centered
-        thistestID={testtext._id}
+        
       >
         <Modal.Header>
-          <Modal.Title>Edit Schedule </Modal.Title>
+          <Modal.Title>Edit Schedule</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditSchedule thistestID={testtext._id}>{testtext._id}</EditSchedule>
+          {/* <EditSchedule>{testtext._id}</EditSchedule> */}
+          <EditSchedule providerID={props.providerID} />
           {/* providerid={id } */}
+          
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
@@ -286,7 +291,13 @@ const ShowSchedulesList = () => {
   }
 
   // const { id } = useParams()
-  // console.log(schedules)
+  // console.log(mdID)
+  const handleItemClick = item => {
+    //Redirect to new route from here with the item data
+    var providerID = item._id
+    console.log(providerID)
+}
+
   return (
     <div className="scheduleItemContainerBox">
       <div className="item3A">
@@ -360,7 +371,7 @@ const ShowSchedulesList = () => {
                   <StyledTableCell align="left">Actions</StyledTableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody >
                 {(rowsPerPage > 0
                   ? schedules.slice(
                       page * rowsPerPage,
@@ -368,7 +379,9 @@ const ShowSchedulesList = () => {
                     )
                   : schedules
                 ).map((schedule) => (
-                  <StyledTableRow key={schedule._id}>
+                  <StyledTableRow key={schedule._id}
+                    onClick={() => handleItemClick(schedule)}
+                  >
                     <StyledTableCell align="left">
                       {schedule.provider}
                     </StyledTableCell>
@@ -412,12 +425,20 @@ const ShowSchedulesList = () => {
                         />
                       </Link>{' '}
                       <button
-                        testtext={schedule._id}
+                        // testtext={schedule._id}
                         // onMouseOver={() => pullRecord(schedule._id)}
-                        onClick={handleShow}//{() => pullRecord(schedule._id)}
+                       // onClick={setMdID(schedule._id)}//{() => pullRecord(schedule._id)}
+                        onClick={handleShow}
+                        providerID={schedule._id}
                       >
                         xx
                       </button>
+                      {/* <link
+                        className="btn btn-info btn-sm"
+                        // to={`/editSchedule/${schedule._id}}`}
+                      >
+                        test
+                      </link> */}
                       {/* pullRecord(schedule._id) */}
                       {/* providerid={id} */}
                       <button
@@ -478,5 +499,5 @@ const ShowSchedulesList = () => {
   )
 }
 
-export default  ShowSchedulesList
+export default ShowSchedulesList
 // export useFetch

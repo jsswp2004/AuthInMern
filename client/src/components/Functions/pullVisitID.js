@@ -7,5 +7,8 @@ export default function VisitID() {
     const pullVisitID = () => {
         const visitIDValue = reference.current
         // reference.current = newValue
+        return visitIDValue
     }
+
+    
 }

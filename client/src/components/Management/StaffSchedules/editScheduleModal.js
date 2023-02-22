@@ -52,9 +52,14 @@ function EditSchedule(props) {
 
 
 
+  // const providerSelected = attendings.find(
+  //   (user) => user.name === schedule.provider,
+  // )
+
   const providerSelected = attendings.find(
-    (user) => user.name === schedule.provider,
+    (user) => user.providerID === props.providerID,
   )
+
 
   const [scheduleMon, setScheduleDay1] = useState(' ')
   const [scheduleTues, setScheduleDay2] = useState(' ')
