@@ -45,7 +45,7 @@ const ShowSchedulesList = () => {
     setSearchInput(e.target.value)
   }
 
-  const [mdID, setMdID] = useState('')
+  
 
   // useEffect((id) => {
   //   axios
@@ -61,7 +61,7 @@ const ShowSchedulesList = () => {
   
   // destructuring
   // const result = mdID.find(({ providerID }) => providerID);
-  console.log(mdID)
+  // console.log(mdID)
   const navigate = useNavigate()
 
   const handleClick = (e) => {
@@ -84,18 +84,24 @@ const ShowSchedulesList = () => {
       })
   }, [])
 
-  useEffect((id) => {
-    axios
-    .get(`http://localhost:8081/api/schedules/${id}`)
-      .then((res) => {
-        // const data = response.data
-        // setMdID(schedules.filter((el) => el.providerID === id))
-        setMdID(schedules)
-      })
-      .catch((error) => {
-        console.log('Error from schedules list')
-      })
-  }, [schedules])
+  const useFetch = (id) => {
+    const [mdID, setMdID] = useState('')
+    useEffect((id) => {
+      axios
+      .get(`http://localhost:8081/api/schedules/${id}`)
+        .then((res) => {
+          // const data = response.data
+          // setMdID(schedules.filter((el) => el.providerID === id))
+          setMdID(schedules)
+        })
+        .catch((error) => {
+          console.log('Error from schedules list')
+        })
+    }, [])
+    return [mdID]
+  } 
+
+
 
   // const pullRecord = (id) => {
   //   axios
@@ -472,4 +478,5 @@ const ShowSchedulesList = () => {
   )
 }
 
-export default ShowSchedulesList
+export default  ShowSchedulesList
+// export useFetch
