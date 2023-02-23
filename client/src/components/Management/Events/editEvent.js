@@ -127,7 +127,7 @@ function EditEvent(props) {
                     Select Event
                   </option>
                   {clinicVisitEvents.map((event) => (
-                    <option key={event.name} value={event.name}>
+                    <option key={event._id} value={event.name}>
                       {event}
                     </option>
                   ))}
