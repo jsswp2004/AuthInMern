@@ -5,48 +5,46 @@ import axios from 'axios'
 // import Navbar from '../../navigation/navbar'
 // import Header from '../../shared/Header'
 
-function EditEventModal(props) {
-  const [clinicEvents, setClinicEvents] = useState([])
-  //   useState({
-  //   name: '',
-  //   addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-  // })
-  const { id } = useParams()
-  // const navigate = useNavigate()
-  console.log(clinicEvents)
-  
-  const ClinicEvents = clinicEvents.filter((event) => {
-    return event.name//.toString().toLowerCase()
+function EditEvent(props) {
+  const [eventx, setEvent] = useState({
+    name: '',
+    addedDate: format(new Date(), 'MM-dd-yyyy'),
   })
-  const clinicVisitEvents = ClinicEvents.map((doc) => doc.name)
-  console.log(clinicVisitEvents)
 
+  const [eventxx, setEvents] = useState([])
+
+  const events = eventxx.filter((item) => {
+    return item.name//.toString().toLowerCase()
+  })
+  const userEvents = events.map((item) => {
+    return item.name
+  })
   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
-  // pull event values from database
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/events')
       .then((res) => {
-        setClinicEvents(res.data)
+        setEvents(res.data)
       })
       .catch((error) => {
         console.log('Error from events list')
       })
   }, [])
-  const [clinicEvent, setClinicEvent] = useState({
+
+  const [eventItem, setEventItem] = useState({
     name: '',
     addedDate: dateAdded,
   })
 
   const EventID = props.eventID
-  console.log(clinicEvent)
+  console.log(eventItem)
 
   const navigate = useNavigate()
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/events/${EventID}`)
       .then((res) => {
-        setClinicEvent({
+        setEvents({
           // _id: res.data._id,
           name: res.data.name,
           addedDate: res.data.addedDate,
@@ -59,7 +57,7 @@ function EditEventModal(props) {
 
   // console.log(event)
   const handleChange = (e) => {
-    setClinicEvent({ ...clinicEvent, [e.target.name]: e.target.value })
+    setEventItem({ ...eventItem, [e.target.name]: e.target.value })
   }
 
   const onSubmit = (e) => {
@@ -67,17 +65,17 @@ function EditEventModal(props) {
 
     const data = {
       _id: props.eventID,
-      name: clinicEvent.name,
-      addedDate: format(new Date(), 'MM-dd-yyyy'),
+      name: eventxx.name,
+      addedDate: eventxx.addedDate,
     }
 
     axios
       .put(`http://localhost:8081/api/events/${props.eventID}`, data)
       .then((res) => {
         // Push to /
-        // navigate('/settingsPage')
-        window.location.reload()
-        window.location.close()
+        navigate('/settingsPage')
+        // window.location.reload()
+        // window.location.close()
       })
       .catch((err) => {
         console.log('Error in EditEvent!')
@@ -96,37 +94,36 @@ function EditEventModal(props) {
                   type="text"
                   className="form-control scheduleInput"
                   name="_id"
-                  value={clinicEvent._id}
+                  value={eventx._id}
                   onChange={handleChange}
                 />
               </label>
-              <label htmlFor="name">
-                Event
-                <select
-                  key={clinicEvent._id}
-                  // placeholder="Select Event"
-                  name="name"
-                  className="form-control select"
-                  value={clinicEvent.name}
-                  onChange={handleChange}
-                >
-                  <option key="0" value="Select Event">
-                    Select Event
+              <label htmlFor="name">Event 
+              <select
+                key={eventx._id}
+                // placeholder="Select Event"
+                name="name"
+                className="form-control select"
+                value={eventx.name}
+                onChange={handleChange}
+              >
+                <option key="0" value="Select Event">
+                  Select Event
+                </option>
+                {userEvents.map((event) => (
+                  <option key={event._id} value={event.name}>
+                    {event}
                   </option>
-                  {clinicVisitEvents.map((event) => (
-                    <option key={event._id} value={event.name}>
-                      {event}
-                    </option>
-                  ))}
-                </select>
-              </label>
+                ))}
+                              </select>
+                              </label>
               <label>
                 Date Added
                 <input
                   type="date"
                   className="form-control scheduleInput"
                   name="addedDate"
-                  value={clinicEvent.name}
+                  value={eventx.addedDate}
                   onChange={handleChange}
                 />
               </label>
@@ -144,4 +141,4 @@ function EditEventModal(props) {
   )
 }
 
-export default EditEventModal
+export default EditEvent

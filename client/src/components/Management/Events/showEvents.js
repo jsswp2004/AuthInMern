@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import CreateEvent from './createEventModal'
-import EditEvent from './editEventModal'
+import EditEventsModal from './editEventModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -55,6 +55,14 @@ const ShowEventsList = () => {
     navigate('/settingsPage')
   }
 
+  const handleEditClick = (e) => {
+    e.preventDefault()
+    // setSearchInput(e.target.value)
+    // alert('Create event button clicked')
+    setEditShow(false)
+    navigate('/settingsPage')
+  }
+
   // console.log(events)
   useEffect(() => {
     axios
@@ -68,7 +76,7 @@ const ShowEventsList = () => {
       })
   }, [])
   // Define visitID state for prop
-  const [visitID, setVisitID] = useState('')
+  const [eventID, setEventID] = useState('')
 
   const deleteRecord = (id) => {
     axios
@@ -86,7 +94,7 @@ const ShowEventsList = () => {
     <>
       <Modal show={show} onHide={handleClose} size="med" centered>
         <Modal.Header>
-          <Modal.Title>Add a Event</Modal.Title>
+          <Modal.Title>Add Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CreateEvent />
@@ -109,14 +117,14 @@ const ShowEventsList = () => {
     <>
       <Modal show={editShow} onHide={handleEditClose} size="med" centered>
         <Modal.Header>
-          <Modal.Title>Add a Event</Modal.Title>
+          <Modal.Title>Edit Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditEvent visitID={ visitID} />
+          <EditEventsModal eventID={ eventID} />
           {/* handleClick={ handleClick} */}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClick}>
+          <Button variant="secondary" onClick={handleEditClick}>
             Close
           </Button>
         </Modal.Footer>
@@ -234,19 +242,20 @@ const ShowEventsList = () => {
     setPage(0)
   }
 
-    //setting the ID of the visit for the property
+    //setting the ID of the event for the property
   const handleItemClick = item => {
-    const visitID = item._id
-    setVisitID(visitID)
+    const eventID = item._id
+    setEventID(eventID)
   }
+  console.log(eventID)
 
   return (
     <div className="eventItemContainerBox">
       <div className="item3A">
-        <h4 className="createPageHeader">Events</h4>
+        <h4 className="createPageHeader">Event</h4>
 
         <div>{displayEventModal()}</div>
-        <div>{ displayEditEventModal()}</div>
+        <div>{displayEditEventModal()}</div>
         <label htmlFor="search" className="searchLabel">
           <Button
             className="btn btn-info btn-sm registerBtn"
@@ -280,6 +289,7 @@ const ShowEventsList = () => {
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="left">Event</StyledTableCell>
+                  <StyledTableCell align="left">Date Created</StyledTableCell>
                   <StyledTableCell align="left">Actions</StyledTableCell>
                 </TableRow>
               </TableHead>
@@ -294,9 +304,10 @@ const ShowEventsList = () => {
                   <StyledTableRow key={event._id}
                   onClick={() => handleItemClick(event)}
                   >
-                    <StyledTableCell align="left">{event.Name}</StyledTableCell>
+                    <StyledTableCell align="left">{event.name}</StyledTableCell>
+                    <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
                     <StyledTableCell align="left">
-                      {/* <Link
+                      <Link
                         className="btn btn-info btn-sm"
                         to={`/editEvent/${event._id}`}
                       >
@@ -305,10 +316,9 @@ const ShowEventsList = () => {
                           aria-hidden="true"
                           title="Edit registration"
                         />
-                      </Link>{' '} */}
+                      </Link>{' '}
                       <button className='btn btn-info btn-sm'                      
                         onClick={handleEditShow}
-                        providerID={event._id}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"

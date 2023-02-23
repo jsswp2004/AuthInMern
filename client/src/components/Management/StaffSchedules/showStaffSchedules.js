@@ -48,7 +48,7 @@ const ShowSchedulesList = () => {
     setSearchInput(e.target.value)
   }
   // Navigation
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   // Method to set show for create modal to false
   const handleClick = (e) => {
@@ -118,7 +118,7 @@ const ShowSchedulesList = () => {
   }
 
   // Edit Schedule Modal
-  const EditScheduleModal = (props) => (
+  const EditScheduleModal = () => (
     <>
       <Modal
         show={editShow}
@@ -362,7 +362,7 @@ const ShowSchedulesList = () => {
                       </Link>{' '} */}
                       <button className='btn btn-info btn-sm'                      
                         onClick={handleEditShow}
-                        providerID={schedule._id}
+                        // providerID={schedule._id}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"

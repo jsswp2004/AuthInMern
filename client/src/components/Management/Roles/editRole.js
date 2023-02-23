@@ -37,9 +37,9 @@ function EditRole(props) {
     addedDate: dateAdded,
   })
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+  // const handleChange = (e) => {
+  //   setData({ ...data, [e.target.name]: e.target.value })
+  // }
 
   useEffect(() => {
     axios
@@ -62,6 +62,7 @@ function EditRole(props) {
 
     const data = {
       name: role.name,
+      addedDate: format(new Date(), 'MM-dd-yyyy'),
     }
 
     axios
