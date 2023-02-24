@@ -55,7 +55,7 @@ function App() {
       <Route path="/editUser/:id" exact element={<EditUser />} />
       <Route path="/about" exact element={<About />} />
       <Route path="/rolesList" exact element={<RolesList />} />
-      <Route path="/" element={<Navigate replace to="/login" />} />
+      <Route path="/" exact element={<Navigate replace to="/login" />} />
       <Route path="/createRole" exact element={<CreateRole />} />
       <Route path="/editRole/:id" exact element={<EditRole />} />
       <Route path="/settingsPage" exact element={<ManageSettings />} />

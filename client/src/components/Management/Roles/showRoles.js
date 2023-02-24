@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import Role from './rolesList'
+// import Role from './rolesList'
 import axios from 'axios'
-import Navbar from '../../navigation/navbar'
-import Header from '../../shared/Header'
+// import Navbar from '../../navigation/navbar'
+// import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
 import CreateRole from './createRoleModal'
+import EditRole from './editRoleModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -27,10 +28,14 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 
 const ShowRolesList = () => {
-  // Define the state with useState hook
+  // Define the modal state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
+  const [editShow, setEditShow] = useState(false)
+  const handleEditClose = () => setEditShow(false)
+  const handleEditShow = () => setEditShow(true)
 
   const [roles, setRoles] = useState([])
   // const navigate = useNavigate()
@@ -52,6 +57,14 @@ const ShowRolesList = () => {
     navigate('/settingsPage')
   }
 
+  const handleEditClick = (e) => {
+    e.preventDefault()
+    // setSearchInput(e.target.value)
+    // alert('Create role button clicked')
+    setEditShow(false)
+    navigate('/settingsPage')
+  }
+
   // console.log(roles)
   useEffect(() => {
     axios
@@ -64,6 +77,9 @@ const ShowRolesList = () => {
         console.log('Error from roles list')
       })
   }, [])
+
+  //Define role id for prop
+  const [roleID, setRoleID] = useState('')
 
   const deleteRecord = (id) => {
     axios
@@ -95,8 +111,30 @@ const ShowRolesList = () => {
     </>
   )
   // console.log(show)
-  function displayVisitModal() {
+  function displayRoleModal() {
     return <RoleModal />
+  }
+
+  const EditRoleModal = () => (
+    <>
+      <Modal show={editShow} onHide={handleEditClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Edit Role</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditRole roleID={ roleID} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleEditClick}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  // console.log(show)
+  function displayEditRoleModal() {
+    return <EditRoleModal />
   }
 
   //table functions
@@ -205,12 +243,19 @@ const ShowRolesList = () => {
     setPage(0)
   }
 
+      //setting the ID of the event for the property
+      const handleItemClick = item => {
+        const roleID = item._id
+        setRoleID(roleID)
+      }
+
   return (
     <div className="roleItemContainerBox">
       <div className="item3A">
         <h4 className="createPageHeader">Roles</h4>
 
-        <div>{displayVisitModal()}</div>
+        <div>{displayRoleModal()}</div>
+        <div>{displayEditRoleModal()}</div>
         <label htmlFor="search" className="searchLabel">
           <Button
             className="btn btn-info btn-sm registerBtn"
@@ -255,10 +300,11 @@ const ShowRolesList = () => {
                     )
                   : roles
                 ).map((role) => (
-                  <StyledTableRow key={role._id}>
+                  <StyledTableRow key={role._id}
+                  onClick={() => handleItemClick(role)}>
                     <StyledTableCell align="left">{role.name}</StyledTableCell>
                     <StyledTableCell align="left">
-                      <Link
+                      {/* <Link
                         className="btn btn-info btn-sm"
                         to={`/editRole/${role._id}`}
                       >
@@ -267,7 +313,16 @@ const ShowRolesList = () => {
                           aria-hidden="true"
                           title="Edit registration"
                         />
-                      </Link>{' '}
+                      </Link>{' '} */}
+                      <button className='btn btn-info btn-sm'                      
+                        onClick={handleEditShow}
+                      >
+                        <i
+                          className="fa fa-hospital-o fa-sm"
+                          aria-hidden="true"
+                          title="Edit Event"
+                        />
+                      </button>
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => {

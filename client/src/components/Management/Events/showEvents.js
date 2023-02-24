@@ -60,7 +60,9 @@ const ShowEventsList = () => {
     // setSearchInput(e.target.value)
     // alert('Create event button clicked')
     setEditShow(false)
-    navigate('/settingsPage')
+    // navigate('/settingsPage')
+    // window.location.reload()
+    window.location.close()
   }
 
   // console.log(events)
@@ -120,8 +122,7 @@ const ShowEventsList = () => {
           <Modal.Title>Edit Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditEventsModal eventID={ eventID} />
-          {/* handleClick={ handleClick} */}
+          <EditEventsModal eventID={ eventID} />          
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
@@ -247,7 +248,7 @@ const ShowEventsList = () => {
     const eventID = item._id
     setEventID(eventID)
   }
-  console.log(eventID)
+  // console.log(eventID)
 
   return (
     <div className="eventItemContainerBox">
@@ -307,7 +308,7 @@ const ShowEventsList = () => {
                     <StyledTableCell align="left">{event.name}</StyledTableCell>
                     <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
                     <StyledTableCell align="left">
-                      <Link
+                      {/* <Link
                         className="btn btn-info btn-sm"
                         to={`/editEvent/${event._id}`}
                       >
@@ -316,7 +317,7 @@ const ShowEventsList = () => {
                           aria-hidden="true"
                           title="Edit registration"
                         />
-                      </Link>{' '}
+                      </Link>{' '} */}
                       <button className='btn btn-info btn-sm'                      
                         onClick={handleEditShow}
                       >

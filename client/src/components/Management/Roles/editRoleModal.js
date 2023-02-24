@@ -1,78 +1,78 @@
 import React, { useState, useEffect } from 'react'
 // import { useParams, useNavigate } from 'react-router'
-import { format } from 'date-fns'
+// import { format } from 'date-fns'
 import axios from 'axios'
 // import Navbar from '../../navigation/navbar'
 // import Header from '../../shared/Header'
 
-function EditEventModal(props) {
-  const [clinicEvents, setClinicEvents] = useState([])
+function EditRoleModal(props) {
+  const [clinicRoles, setClinicRoles] = useState([])
   //   useState({
   //   name: '',
   //   addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   // })
   // const { id } = useParams()
   // const navigate = useNavigate()
-  // console.log(clinicEvents)
+  // console.log(clinicRoles)
 
-  const ClinicEvents = clinicEvents.filter((event) => {
-    return event.name //.toString().toLowerCase()
+  const ClinicRoles = clinicRoles.filter((role) => {
+    return role.name //.toString().toLowerCase()
   })
-  const clinicVisitEvents = ClinicEvents.map((doc) => doc.name)
-  console.log(clinicVisitEvents)
+  const clinicVisitRoles = ClinicRoles.map((doc) => doc.name)
+  console.log(clinicVisitRoles)
 
-  const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
-  // pull event values from database
+//   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+  // pull role values from database
   useEffect(() => {
     axios
-      .get('http://localhost:8081/api/events')
+      .get('http://localhost:8081/api/roles')
       .then((res) => {
-        setClinicEvents(res.data)
+        setClinicRoles(res.data)
       })
       .catch((error) => {
-        console.log('Error from events list')
+        console.log('Error from roles list')
       })
   }, [])
-  const [clinicEvent, setClinicEvent] = useState({
+  const [clinicRole, setClinicRole] = useState({
     name: '',
     addedDate: '',
   })
 
-  const EventID = props.eventID
-  console.log(clinicEvent)
+  const RoleID = props.roleID
+  console.log(clinicRole)
 
   // const navigate = useNavigate()
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/events/${EventID}`)
+      .get(`http://localhost:8081/api/roles/${RoleID}`)
       .then((res) => {
-        setClinicEvent({
+        setClinicRole({
           // _id: res.data._id,
           name: res.data.name,
           addedDate: res.data.addedDate,
         })
       })
       .catch((err) => {
-        console.log('Error from EditEvent')
+        console.log('Error from EditRole')
       })
-  }, [EventID])
+  }, [RoleID])
 
-  // console.log(event)
+  // console.log(role)
   const handleChange = (e) => {
-    setClinicEvent({ ...clinicEvent, [e.target.name]: e.target.value })
+    setClinicRole({ ...clinicRole, [e.target.name]: e.target.value })
   }
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.prroleDefault()
 
     const data = {
-      _id: props.eventID,
-      name: clinicEvent.name,
-      addedDate: clinicEvent.addedDate,//format(new Date(), 'MM-dd-yyyy'),
+      _id: props.roleID,
+      name: clinicRole.name,
+      addedDate: clinicRole.addedDate,//format(new Date(), 'MM-dd-yyyy'),
     }
 
     axios
-      .put(`http://localhost:8081/api/events/${props.eventID}`, data)
+      .put(`http://localhost:8081/api/roles/${props.roleID}`, data)
       .then((res) => {
         // Push to /
         // navigate('/settingsPage')
@@ -80,7 +80,7 @@ function EditEventModal(props) {
         // window.location.close()
       })
       .catch((err) => {
-        console.log('Error in EditEvent!')
+        console.log('Error in EditRole!')
       })
   }
 
@@ -91,31 +91,31 @@ function EditEventModal(props) {
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group ">
               <label style={{ display: 'none' }}>
-                Event ID
+                Role ID
                 <input
                   type="text"
                   className="form-control scheduleInput"
                   name="_id"
-                  value={clinicEvent._id}
+                  value={clinicRole._id}
                   onChange={handleChange}
                 />
               </label>
               <label htmlFor="name">
-                Event
+                Role
                 <select
-                  key={clinicEvent._id}
-                  // placeholder="Select Event"
+                  key={clinicRole._id}
+                  // placeholder="Select Role"
                   name="name"
                   className="form-control select"
-                  value={clinicEvent.name}
+                  value={clinicRole.name}
                   onChange={handleChange}
                 >
-                  <option key="0" value="Select Event">
-                    Select Event
+                  <option key="0" value="Select Role">
+                    Select Role
                   </option>
-                  {clinicVisitEvents.map((event) => (
-                    <option key={event._id} value={event.name}>
-                      {event}
+                  {clinicVisitRoles.map((role) => (
+                    <option key={role._id} value={role.name}>
+                      {role}
                     </option>
                   ))}
                 </select>
@@ -128,7 +128,7 @@ function EditEventModal(props) {
                   type="date"
                   className="form-control scheduleInput"
                   name="addedDate"
-                  value={clinicEvent.addedDate}
+                  value={clinicRole.addedDate}
                   onChange={handleChange}
                 />
               </label>
@@ -147,4 +147,4 @@ function EditEventModal(props) {
   )
 }
 
-export default EditEventModal
+export default EditRoleModal
