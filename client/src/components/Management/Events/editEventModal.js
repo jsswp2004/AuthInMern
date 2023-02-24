@@ -3,26 +3,26 @@ import axios from 'axios'
 
 
 function EditEventModal(props) {
-  const [clinicEvents, setClinicEvents] = useState([])
+  // const [clinicEvents, setClinicEvents] = useState([])
 
-  const ClinicEvents = clinicEvents.filter((event) => {
-    return event.name //.toString().toLowerCase()
-  })
-  const clinicVisitEvents = ClinicEvents.map((doc) => doc.name)
+  // const ClinicEvents = clinicEvents.filter((event) => {
+  //   return event.name //.toString().toLowerCase()
+  // })
+  // const clinicVisitEvents = ClinicEvents.map((doc) => doc.name)
   // console.log(clinicVisitEvents)
 
   // const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   // pull event values from database
-  useEffect(() => {
-    axios
-      .get('http://localhost:8081/api/events')
-      .then((res) => {
-        setClinicEvents(res.data)
-      })
-      .catch((error) => {
-        console.log('Error from events list')
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:8081/api/events')
+  //     .then((res) => {
+  //       setClinicEvents(res.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from events list')
+  //     })
+  // }, [])
   const [clinicEvent, setClinicEvent] = useState({
     name: '',
     addedDate: '',
@@ -92,7 +92,14 @@ function EditEventModal(props) {
               </label>
               <label htmlFor="name">
                 Event
-                <select
+                <input
+                  type="text"
+                  className="form-control scheduleInput"
+                  name="name"
+                  value={clinicEvent.name}
+                  onChange={handleChange}
+                />
+                {/* <select
                   key={clinicEvent._id}
                   // placeholder="Select Event"
                   name="name"
@@ -108,7 +115,7 @@ function EditEventModal(props) {
                       {event}
                     </option>
                   ))}
-                </select>
+                </select> */}
               </label>
             </div>
             <div>

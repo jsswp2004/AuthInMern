@@ -3,23 +3,23 @@ import axios from 'axios'
 
 
 function EditRoleModal(props) {
-  const [clinicRoles, setClinicRoles] = useState([])
+  // const [clinicRoles, setClinicRoles] = useState([])
 
-  const ClinicRoles = clinicRoles.filter((role) => {
-    return role.name //.toString().toLowerCase()
-  })
-  const clinicVisitRoles = ClinicRoles.map((doc) => doc.name)
+  // const ClinicRoles = clinicRoles.filter((role) => {
+  //   return role.name //.toString().toLowerCase()
+  // })
+  // const clinicVisitRoles = ClinicRoles.map((doc) => doc.name)
   // pull role values from database
-  useEffect(() => {
-    axios
-      .get('http://localhost:8081/api/roles')
-      .then((res) => {
-        setClinicRoles(res.data)
-      })
-      .catch((error) => {
-        console.log('Error from roles list')
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:8081/api/roles')
+  //     .then((res) => {
+  //       setClinicRoles(res.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from roles list')
+  //     })
+  // }, [])
   const [clinicRole, setClinicRole] = useState({
     name: '',
     addedDate: '',
@@ -93,7 +93,14 @@ function EditRoleModal(props) {
               </label>
               <label htmlFor="name">
                 Role
-                <select
+                <input
+                  type="text"
+                  className="form-control scheduleInput"
+                  name="name"
+                  value={clinicRole.name}
+                  onChange={handleChange}
+                />
+                {/* <select
                   key={clinicRole._id}
                   // placeholder="Select Role"
                   name="name"
@@ -109,7 +116,7 @@ function EditRoleModal(props) {
                       {role}
                     </option>
                   ))}
-                </select>
+                </select> */}
               </label>
             </div>
 
