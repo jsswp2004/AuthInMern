@@ -8,7 +8,7 @@ const CreateRole = (props) => {
   const navigate = useNavigate()
   const [role, setRole] = useState({
     name: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const onChange = (e) => {
@@ -25,6 +25,7 @@ const CreateRole = (props) => {
           name: '',
           addedDate: '',
         })
+        window.location.reload()
         // setShow(false)
         // Push to /
         navigate('/settingsPage')
@@ -48,7 +49,18 @@ const CreateRole = (props) => {
                 value={role.name}
                 onChange={onChange}
               />
-              <input value="Add" type="submit" className="btn btn-success" />
+              
+              <div className="form-group re">
+              <label htmlFor="addedDate">Date Created </label>
+              <input
+                type="text"
+                className="form-control roleInput"
+                name="addedDate"
+                value={role.addedDate}
+                onChange={onChange}
+              />
+              <input value="Add" type="submit" className="btn btn-success updateRegistrationBtn" />
+            </div>
             </div>
           </form>
         </div>

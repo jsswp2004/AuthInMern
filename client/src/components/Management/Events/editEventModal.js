@@ -1,27 +1,17 @@
 import React, { useState, useEffect } from 'react'
-// import { useParams, useNavigate } from 'react-router'
-import { format } from 'date-fns'
 import axios from 'axios'
-// import Navbar from '../../navigation/navbar'
-// import Header from '../../shared/Header'
+
 
 function EditEventModal(props) {
   const [clinicEvents, setClinicEvents] = useState([])
-  //   useState({
-  //   name: '',
-  //   addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-  // })
-  // const { id } = useParams()
-  // const navigate = useNavigate()
-  // console.log(clinicEvents)
 
   const ClinicEvents = clinicEvents.filter((event) => {
     return event.name //.toString().toLowerCase()
   })
   const clinicVisitEvents = ClinicEvents.map((doc) => doc.name)
-  console.log(clinicVisitEvents)
+  // console.log(clinicVisitEvents)
 
-  const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+  // const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   // pull event values from database
   useEffect(() => {
     axios
@@ -39,7 +29,7 @@ function EditEventModal(props) {
   })
 
   const EventID = props.eventID
-  console.log(clinicEvent)
+  // console.log(clinicEvent)
 
   // const navigate = useNavigate()
   useEffect(() => {

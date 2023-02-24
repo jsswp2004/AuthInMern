@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from 'react'
-// import { useParams, useNavigate } from 'react-router'
-// import { format } from 'date-fns'
 import axios from 'axios'
-// import Navbar from '../../navigation/navbar'
-// import Header from '../../shared/Header'
+
 
 function EditRoleModal(props) {
   const [clinicRoles, setClinicRoles] = useState([])
-  //   useState({
-  //   name: '',
-  //   addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-  // })
-  // const { id } = useParams()
-  // const navigate = useNavigate()
-  // console.log(clinicRoles)
 
   const ClinicRoles = clinicRoles.filter((role) => {
     return role.name //.toString().toLowerCase()
   })
   const clinicVisitRoles = ClinicRoles.map((doc) => doc.name)
-  console.log(clinicVisitRoles)
+  // console.log(clinicVisitRoles)
 
 //   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   // pull role values from database
@@ -39,7 +29,7 @@ function EditRoleModal(props) {
   })
 
   const RoleID = props.roleID
-  console.log(clinicRole)
+  // console.log(clinicRole)
 
   // const navigate = useNavigate()
   useEffect(() => {
@@ -60,6 +50,7 @@ function EditRoleModal(props) {
   // console.log(role)
   const handleChange = (e) => {
     setClinicRole({ ...clinicRole, [e.target.name]: e.target.value })
+    // window.location.reload()
   }
 
   const onSubmit = (e) => {
@@ -76,12 +67,15 @@ function EditRoleModal(props) {
       .then((res) => {
         // Push to /
         // navigate('/settingsPage')
-        window.location.reload()
-        // window.location.close()
+            
+      window.location.reload()
+      // window.location.close()
+  
       })
       .catch((err) => {
         console.log('Error in EditRole!')
       })
+
   }
 
   return (
@@ -121,6 +115,7 @@ function EditRoleModal(props) {
                 </select>
               </label>
             </div>
+
             <div>
               <label>
                 Date Added
