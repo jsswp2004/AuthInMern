@@ -62,7 +62,8 @@ const ShowRolesList = () => {
     // setSearchInput(e.target.value)
     // alert('Create role button clicked')
     setEditShow(false)
-    navigate('/settingsPage')
+    window.location.close()
+    // navigate('/settingsPage')
   }
 
   // console.log(roles)

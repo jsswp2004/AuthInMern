@@ -9,9 +9,6 @@ function EditRoleModal(props) {
     return role.name //.toString().toLowerCase()
   })
   const clinicVisitRoles = ClinicRoles.map((doc) => doc.name)
-  // console.log(clinicVisitRoles)
-
-//   const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
   // pull role values from database
   useEffect(() => {
     axios
@@ -54,7 +51,7 @@ function EditRoleModal(props) {
   }
 
   const onSubmit = (e) => {
-    e.prroleDefault()
+    e.preventDefault()
 
     const data = {
       _id: props.roleID,
