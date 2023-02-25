@@ -121,9 +121,9 @@ const CreateVisitFromReg = (props) => {
 
   const [schedEvent, setSchedEvent] = useState([])
   const schedEvents = schedEvent.filter((event) => {
-    return event.Name.toString().toLowerCase() //.includes('attending')
+    return event.name.toString().toLowerCase() //.includes('attending')
   })
-  const clinicEvents = schedEvents.map((doc) => doc.Name)
+  const clinicEvents = schedEvents.map((doc) => doc.name)
 
   useEffect(() => {
     axios
@@ -317,7 +317,7 @@ const CreateVisitFromReg = (props) => {
                         Select Event
                       </option>
                       {clinicEvents.map((doc) => (
-                        <option key={doc._id} value={doc.event}>
+                        <option key={doc._id} value={doc.name}>
                           {doc}
                         </option>
                       ))}
