@@ -59,13 +59,23 @@ const CreateVisitMonthly = (props) => {
 
   const [schedEvent, setSchedEvent] = useState([])
   const schedEvents = schedEvent.filter((event) => {
-    return event.Name.toString().toLowerCase() //.includes('attending')
+    return event.name//.toString().toLowerCase() //.includes('attending')
   })
-  const clinicEvents = schedEvents.map((doc) => doc.Name)
+  const clinicEvents = schedEvents.map((doc) => doc.name)
+  // console.log(schedEvents)
+
+  // var filteredEvents = clinicEvents.filter((events) => {
+  //   if (searchInput === '') {
+  //     return 'please select an event'
+  //   } else {
+  //     return events.name.toString().includes(searchInput)
+  //   }
+  // })
 
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/events')
+      // .limit(10)
       .then((response) => {
         setSchedEvent(response.data)
       })
@@ -102,7 +112,21 @@ const CreateVisitMonthly = (props) => {
         console.log('Error in CreateVisit!')
       })
   }
+  const [searchInput, setSearchInput] = useState('')
+  //captures and sets value of the input text
+  const handleChange = (e) => {
+    e.preventDefault()
+    setSearchInput(e.target.value)
+  }
 
+  
+  var filteredEvents = clinicEvents.filter((events) => {
+    // if (searchInput === '') {
+    //   return 'please select an event'
+    // } else {
+      return events.toString().toLowerCase().includes(searchInput)
+    // } 
+  })
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className="form-grid-quickvisit-container">
@@ -170,7 +194,7 @@ const CreateVisitMonthly = (props) => {
                   key={visit.event._id}
                   className="form-control select"
                   name="event"
-                  value={visit.event}
+                  value={visit.name}
                   onChange={onChange}
                 >
                   {' '}
@@ -178,13 +202,42 @@ const CreateVisitMonthly = (props) => {
                     Select Event
                   </option>
                   {clinicEvents.map((doc) => (
-                    <option key={doc._id} value={doc.event}>
+                    <option key={doc._id} value={doc.name}>
                       {doc}
                     </option>
                   ))}
                 </select>
               </label>
+
+
             </div>
+
+            {/* <div className="form-group">
+              <label htmlFor="search" className="searchLabel">
+
+                Search Event :{' '}
+                <div>
+                  <textarea
+                    wrap="hard"
+                    cols="23"
+                    rows="1"
+                    defaultValue='Search Event'
+                    placeholder='Search Event'
+                    value={filteredEvents}>
+                    {filteredEvents}
+                    </textarea>
+                </div>
+                <input
+                  className="searchInput"
+                  id="search"
+                  type="text"
+                  placeholder="Type here to search"
+                  onChange={handleChange}
+                  value={searchInput}
+                >
+                </input>
+              </label>
+            </div> */}
           </div>
         </div>
         <div className="div-items">
@@ -237,7 +290,7 @@ const CreateVisitMonthly = (props) => {
                   Select Provider
                 </option>
                 {providerMD.map((doc) => (
-                  <option key={doc.value} value={doc.value}>
+                  <option key={doc._id} value={doc.provider}>
                     {doc}
                   </option>
                 ))}

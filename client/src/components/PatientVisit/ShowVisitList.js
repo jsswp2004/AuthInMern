@@ -232,26 +232,7 @@ export default function ShowVisitList() {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-  //sort codes
-  // const [sortedField, setSortedField] = useState('visitDate')
-  // const [sortedDirection, setSortedDirection] = useState('asc')
 
-  // console.log(sortedField, sortedDirection)
-  // function patientList() {
-  //   return filteredData
-  //     .sort((a, b) =>
-  //       Date.parse(a.visitDate) > Date.parse(b.visitDate) ? -1 : 1,
-  //     )
-  //     .map((visit) => {
-  //       return (
-  //         <VisitCard
-  //           visit={visit}
-  //           deleteRecord={deleteRecord}
-  //           key={visit._id}
-  //         />
-  //       )
-  //     })
-  // }
 
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {

@@ -15,9 +15,11 @@ router.get('/test', (req, res) => res.send('event route testing!'))
 router.get('/', (req, res) => {
   Event.find()
     .then((events) => res.json(events))
+    // .limit('10')
     .catch((err) =>
       res.status(404).json({ noeventsfound: 'No Events found' }),
-    )
+  )
+  // .shellBatchSize = 200
 })
 
 // @route GET api/events/:id
