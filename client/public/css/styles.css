@@ -766,8 +766,6 @@ h5 {
   margin-bottom: 0px;
 }
 
-
-
 .createScheduleHeader {
   background-color: #efefef;
   margin-bottom: 0px;
@@ -1504,7 +1502,7 @@ tfoot > .MuiTableFooter-root {
 /*registration page css*/
 .registerBtn {
   margin-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   margin-left: auto;
   margin-right: 10px;
   height: 30px;
@@ -1675,12 +1673,12 @@ tfoot > .MuiTableFooter-root {
   background: white;
 }
 /*Add Schedule*/
-.addScheduleBackGround{
+.addScheduleBackGround {
   background-color: #efefef;
 }
 /*Edit registration page css*/
 
-.updateRegistrationGrp{
+.updateRegistrationGrp {
   /* height: 800px; */
   position: relative;
   /* background-color: #efefef */
@@ -1705,4 +1703,11 @@ tfoot > .MuiTableFooter-root {
 
 .eventInput {
   margin-bottom: 5px;
+}
+
+/****streamlined css items***/
+/*modal css*/
+.modalContainer {
+  display: flex;
+  color: 10px;
 }

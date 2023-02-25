@@ -13,7 +13,7 @@ import {
   monthNames,
   // weekdays,
 } from '../listDictionaries/listData/listDictionariesData'
-import CreateVisit from '../Scheduling/createvisit'
+import CreateVisit from './createVisit'
 
 export default function VisitList() {
   //code for datepicker

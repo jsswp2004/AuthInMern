@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { format } from 'date-fns'
-// import Schedule from './schedulesList'
 import axios from 'axios'
-import Navbar from '../../navigation/navbar'
-import Header from '../../shared/Header'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
 const CreateSchedule = (props) => {

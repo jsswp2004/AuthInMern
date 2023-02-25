@@ -35,7 +35,7 @@ import {
   monthNames,
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
-import CreateVisitModal from '../Scheduling/createvisitmodal'
+import CreateVisitModal from '../Scheduling/createVisitModal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
 import CreatePatientModal from '../PatientRegistration/createPatientModal'
 import VisitCard from '../Scheduling/VisitCard'

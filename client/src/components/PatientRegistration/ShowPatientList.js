@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Modal, Button } from 'react-bootstrap'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import RecordCard from './RecordCard'
@@ -22,10 +23,23 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import CreateRegistration from './createPatientModal'
+import CreateVisitRegistration from '../Scheduling/createVisitFromRegModal'
 
 
 export default function ShowRecordList() {
-
+  // Define the state for create registration modal
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => {
+    setShow(true)
+  }
+  // Define the state for create visit from registration modal 
+  const [showVisit, setVisitShow] = useState(false)
+  const handleVisitClose = () => setVisitShow(false)
+  const handleVisitShow = () => {
+    setVisitShow(true)
+  }
 
   const [records, setRecords] = useState([])
   const [searchInput, setSearchInput] = useState('')
@@ -33,6 +47,20 @@ export default function ShowRecordList() {
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
+  }
+
+  // Method to set show for create modal to false
+  const handleClick = (e) => {
+    e.preventDefault()
+    // alert('Create schedule button clicked')
+    setShow(false)
+    // navigate('/settingsPage')
+  }
+
+  // Method to set show for create modal to false
+  const handleVisitClick = (e) => {
+    e.preventDefault()
+    setVisitShow(false)
   }
 
   useEffect(() => {
@@ -46,6 +74,9 @@ export default function ShowRecordList() {
       })
   }, [])
 
+  //Define patient ID for create visit from registration modal
+  const [patientID, setPatientID] = useState('')
+
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/records/${id}`)
@@ -55,6 +86,55 @@ export default function ShowRecordList() {
       .catch((error) => {
         console.log('Unable to delete record')
       })
+  }
+
+  // Create Registration Modal
+  const RegistrationModal = () => (
+    <>
+      <Modal show={show} onHide={handleClose} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Register a client</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CreateRegistration />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+
+  // Function to display create registration modal
+  function displayRegistrationModal() {
+    return <RegistrationModal />
+  }
+
+
+  // Create Visit Modal
+  const VisitFromRegistrationModal = () => (
+    <>
+      <Modal show={showVisit} onHide={handleVisitClose} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Register a client</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CreateVisitRegistration patientID={patientID} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleVisitClick}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+
+  // Function to display create visit from registration modal
+  function displayVisitFromRegistrationModal() {
+    return <VisitFromRegistrationModal />
   }
 
   var filteredData = records.filter((record) => {
@@ -106,8 +186,8 @@ export default function ShowRecordList() {
     }
   })
     .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1))
-  
-  //table functions
+
+  //#region Table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.gray,
@@ -127,24 +207,24 @@ export default function ShowRecordList() {
       border: 0,
     },
   }))
-
-    //pagination
+  //#endregion
+  //#region Pagination functions
   function TablePaginationActions(props) {
     const theme = useTheme()
     const { count, page, rowsPerPage, onPageChange } = props
-  
+
     const handleFirstPageButtonClick = (event) => {
       onPageChange(event, 0)
     }
-  
+
     const handleBackButtonClick = (event) => {
       onPageChange(event, page - 1)
     }
-  
+
     const handleNextButtonClick = (event) => {
       onPageChange(event, page + 1)
     }
-  
+
     const handleLastPageButtonClick = (event) => {
       onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1))
     }
@@ -214,6 +294,7 @@ export default function ShowRecordList() {
     setPage(0)
   }
 
+  //#endregion 
 
   function patientList() {
     return filteredData
@@ -231,6 +312,13 @@ export default function ShowRecordList() {
       })
   }
 
+  //setting the ID of the provider for the property
+  const handleItemClick = item => {
+    const patID = item._id
+    setPatientID(patID)
+  }
+
+  console.log('patientID', patientID)
   return (
     <div className="grid_container">
       <div className="item1">
@@ -242,11 +330,19 @@ export default function ShowRecordList() {
       <div className="item3">
         <div className="item3A">
           <h4 className='patientListHeader'>Patient List</h4>
-          <label htmlFor="search" className="searchLabel">            
-          <Link className="btn btn-info btn-sm registerBtn " to={`/createPatient`}>
-            <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient'/>
-            
-            </Link>{' '}
+          <div>{displayRegistrationModal()}</div>
+          <div>{displayVisitFromRegistrationModal()}</div>
+          <label htmlFor="search" className="searchLabel">
+            <Button
+              className="btn btn-info btn-sm registerBtn"
+              onClick={handleShow}
+            >
+              <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient' />
+            </Button>
+            {/* <Link className="btn btn-info btn-sm registerBtn " to={`/createPatient`}>
+              <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient' />
+
+            </Link>{' '} */}
             Search :{' '}
             <input
               className="searchInput"
@@ -278,18 +374,17 @@ export default function ShowRecordList() {
             <TableBody>
               {(rowsPerPage > 0
                 ? filteredData.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage,
+                )
                 : filteredData
               ).map((pt) => (
-                <StyledTableRow key={pt._id}>
-                <StyledTableCell align="left">
+                <StyledTableRow key={pt._id}
+                  onClick={() => handleItemClick(pt)}
+                >
+                  <StyledTableCell align="left">
                     {pt.medicalRecordNumber}
                   </StyledTableCell>
-                  {/* <StyledTableCell align="left">
-                    {pt.visitNumber}
-                  </StyledTableCell> */}
                   <StyledTableCell align="left">
                     {pt.firstName}
                   </StyledTableCell>
@@ -311,7 +406,16 @@ export default function ShowRecordList() {
                     {pt.addedDate}
                   </StyledTableCell>
                   <StyledTableCell align="left">
-                  <Link
+                    <Button
+                      className="btn btn-primary btn-sm"
+                      onClick={handleVisitShow}
+                    >
+                                            <i
+                        className="fa fa-stethoscope fa-sm"
+                        aria-hidden="true" title='Create visit'
+                      />
+                    </Button>
+                    {/* <Link
                       className="btn btn-success btn-sm "
                       to={`/createvisitFromReg/${pt._id}`}
                     >
@@ -319,9 +423,7 @@ export default function ShowRecordList() {
                         className="fa fa-stethoscope fa-sm"
                         aria-hidden="true" title='Create visit'
                       />
-                      {/* <LocalHospitalIcon sx={{ fontSize: 12 }} /> */}
-                      {/* <span class="tooltiptext">Tooltip text</span> */}
-                    </Link>{' '}
+                    </Link>{' '} */}
                     <Link
                       className="btn btn-info btn-sm"
                       to={`/editPatient/${pt._id}`}

@@ -26,7 +26,7 @@ import {
   monthNames,
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
-import CreateVisitModal from '../Scheduling/createvisitmodal'
+import CreateVisitModal from './createVisitModal'
 import VisitCard from './VisitCard'
 
 export default function VisitList() {

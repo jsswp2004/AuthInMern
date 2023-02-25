@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-import Navbar from '../navigation/navbar'
-import Header from '../shared/Header'
 import {
   Race,
   Gender,
@@ -20,14 +18,14 @@ const CreateRecord = (props) => {
   // Define the state with useState hook
   const navigate = useNavigate()
   const [record, setRecord] = useState({
-    medicalRecordNumber: props.medicalRecordNumber,// setMedicalRecordNumber,
-    visitNumber: props.visitNumber, //setVisitNumber,
+    medicalRecordNumber: setMedicalRecordNumber,
+    visitNumber: setVisitNumber,
     firstName: '',
     lastName: '',
     middleName: '',
     gender: '',
     race: '',
-    dateOfBirth: '',//format(new Date(), 'yyyy-MM-dd'),
+    dateOfBirth: '',
     age: '',
     language: '',
     address: '',
@@ -78,60 +76,28 @@ const CreateRecord = (props) => {
         })
 
         // Push to /
-        navigate('/clinicVisit')
+        navigate('/patientlist')
       })
       .catch((err) => {
-        console.log('Error in CreateRecord!')
+        console.log('Error in creating a new registration!')
       })
   }
-// console.log(record)
+
   //Race
   const racevalues = Race
-  const [racevalue, setraceValue] = React.useState('')
-
-  const racevalueChange = (event) => {
-    setraceValue(event.target.value)
-    // onChange({ race: event.target.value })
-    // onChange({ racevalue })
-  }
-
-  // console.log(racevalue)
   //Gender
   const gendervalues = Gender
-  const [gendervalue, setgenderValue] = React.useState('')
-
-  const gendervalueChange = (event) => {
-    setgenderValue(event.target.value)
-    // onChange({ gendervalue })
-  }
-
+  //Language
   const languagevalues = Language
-  const [selectedLanguage, setSelectedLanguage] = useState('')
-
-  const languagevalueChange = (event) => {
-    setSelectedLanguage(event.target.value)
-  }
-
+  //States
   const statevalues = States
-  const [selectedState, setSelectedState] = useState('')
 
-  const statevalueChange = (event) => {
-    setSelectedState(event.target.value)
-  }
-  // console.log(record)
   return (
     <div className="grid_containers">
-      {/* <div className="item1">
-        <Header />
-      </div> */}
-      {/* <div className="item2">
-        <Navbar />
-      </div> */}
       <div className="item3">
-        <h5 className="createPageHeader">Patient Registration</h5>
-        <div className="item3A">
+        <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
-            <div className="form-grid-container">
+            <div className="form-grid-containers" style={{ display: 'flex', columnGap: '10px' }}>
               <div className="div-items">
                 <div className="forms-group">
                   <div className="form-group">
@@ -140,8 +106,7 @@ const CreateRecord = (props) => {
                       type="text"
                       className="form-control"
                       name="firstName"
-                      value={record.firstName}
-                      // defaultValue={record.firstName}
+                      value={record.firstName.toUpperCase()}
                       onChange={onChange}
                     />
                   </div>
@@ -150,7 +115,7 @@ const CreateRecord = (props) => {
                     <input
                       type="text"
                       name="middleName"
-                      defaultValue={record.middleName}
+                      value={record.middleName.toUpperCase()}
                       className="form-control"
                       onChange={onChange}
                     />
@@ -161,7 +126,7 @@ const CreateRecord = (props) => {
                       type="text"
                       className="form-control"
                       name="lastName"
-                      defaultValue={record.lastName}
+                      value={record.lastName.toUpperCase()}
                       onChange={onChange}
                     />
                   </div>
@@ -198,13 +163,14 @@ const CreateRecord = (props) => {
                     <label htmlFor="race">
                       Race
                       <select
+
                         className="form-control select"
                         name="race"
                         value={record.race}
                         onChange={onChange}
                       >
                         {racevalues.map((raceval) => (
-                          <option key={raceval.value} value={raceval.value}>{raceval.label}</option>
+                          <option key={raceval.id} value={raceval.value}>{raceval.label}</option>
                         ))}
                       </select>
                     </label>
@@ -246,7 +212,7 @@ const CreateRecord = (props) => {
                       onChange={onChange}
                     >
                       {languagevalues.map((languageval) => (
-                        <option key={languageval.value}  value={languageval.value}>
+                        <option key={languageval.value} value={languageval.value}>
                           {languageval.label}
                         </option>
                       ))}
@@ -272,12 +238,12 @@ const CreateRecord = (props) => {
                     className="form-control"
                     name="email"
                     placeholder='Enter email'
-                    value={record.email}                    
+                    value={record.email}
                     onChange={onChange}
                   />
                 </div>
               </div>
-              <div className="div-items">
+              <div className="div-items updateRegistrationGrp">
                 <div className="form-group">
                   <label htmlFor="address">Address</label>
                   <input
@@ -333,7 +299,7 @@ const CreateRecord = (props) => {
                   <input
                     value="Add"
                     type="submit"
-                    className="btn btn-success"
+                    className="btn btn-success updateRegistrationBtn"
                   />
                 </div>
               </div>
