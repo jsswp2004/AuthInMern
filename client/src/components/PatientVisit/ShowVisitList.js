@@ -37,28 +37,22 @@ export default function ShowVisitList() {
     setSearchInput(e.target.value)
   }
 
-    //#region Define the state for create visit from registration modal 
-    const [showEditVisit, setEditVisitShow] = useState(false)
-    const handleEditVisitClose = () => setEditVisitShow(false)
-    const handleEditVisitShow = () => {
-      setEditVisitShow(true)
-    }
-    //#endregion
+
   //#region for setting the ID of the provider for the property
   const handleItemClick = item => {
     const patID = item._id
     setVisitID(patID)
   }
   //#endregion
+  //#region Define patient ID for create visit from registration modal
+  const [visitID, setVisitID] = useState('')
+  //#endregion
   //#region Create Visit Modal from Registration
-    //#region Define patient ID for create visit from registration modal
-    const [visitID, setVisitID] = useState('')
-    //#endregion
-  const VisitFromRegistrationModal = () => (
+  const ShowEditVisitModal = () => (
     <>
       <Modal show={showEditVisit} onHide={handleEditVisitClose} size="lg" centered>
         <Modal.Header>
-          <Modal.Title>Register a client</Modal.Title>
+          <Modal.Title>Edit</Modal.Title>
           <Button variant="secondary" onClick={handleEditVisitClick}>
             Close
           </Button>
@@ -74,16 +68,27 @@ export default function ShowVisitList() {
       </Modal>
     </>
   )
+
   //Function to display create visit from registration modal
-  function displayVisitFromRegistrationModal() {
-    return <VisitFromRegistrationModal />
+  function displayEditVisitModal() {
+    return <ShowEditVisitModal />
   }
   //#endregion
+  //#region Define the state for edit visit from registration modal 
+  const [showEditVisit, setEditVisitShow] = useState(false)
+  const handleEditVisitClose = () => setEditVisitShow(false)
+  const handleEditVisitShow = () => {
+    setEditVisitShow(true)
+  }
+
   const handleEditVisitClick = (e) => {
     e.preventDefault()
     setEditVisitShow(false)
   }
 
+
+  //#endregion
+  //#region Pull all visits from the database
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/visits')
@@ -94,7 +99,8 @@ export default function ShowVisitList() {
         console.log('Error from ShowVisitList')
       })
   }, [])
-
+  //#endregion
+  //#region Delete visit function
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/visits/${id}`)
@@ -105,9 +111,12 @@ export default function ShowVisitList() {
         console.log('Unable to delete visit')
       })
   }
-
+  //#endregion
+  //#region Create Registration date variable
   const dateRegister = regDate //format(regDate, 'yyyy-MM-dd')
   const dateRegistered = dateRegister
+  //#endregion
+  //#region Filter functions
   var filteredMD = visits.filter((visit) => {
     if (selectMD === '') {
       return visit
@@ -169,9 +178,9 @@ export default function ShowVisitList() {
         )
       }
     })
-    .sort((a, b) => (a.visitDate + a.hourOfVisit  < b.visitDate + b.hourOfVisit  ? 1 : -1))
-
-  //table functions
+    .sort((a, b) => (a.visitDate + a.hourOfVisit < b.visitDate + b.hourOfVisit ? 1 : -1))
+  //#endregion
+  //#region table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.gray,
@@ -191,8 +200,8 @@ export default function ShowVisitList() {
       border: 0,
     },
   }))
-
-  //pagination
+  //#endregion
+  //#region pagination
   function TablePaginationActions(props) {
     const theme = useTheme()
     const { count, page, rowsPerPage, onPageChange } = props
@@ -276,7 +285,7 @@ export default function ShowVisitList() {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-
+  //#endregion
 
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
@@ -350,7 +359,7 @@ export default function ShowVisitList() {
           </div>
           {/* .filter_navbar */}
           <div className="filter_navbarRight">
-            <label htmlFor="search" className="searchLabel">
+            <label htmlFor="search" className="searchLabel filter_search-label">
               Search :{' '}
               <input
                 className="searchInput"
@@ -363,6 +372,7 @@ export default function ShowVisitList() {
             </label>
           </div>
         </div>
+        <div>{displayEditVisitModal()}</div>
         <div className="item3B" style={{ overflowY: 'auto' }}>
 
           <TableContainer component={Paper}>
@@ -389,14 +399,14 @@ export default function ShowVisitList() {
               <TableBody>
                 {(rowsPerPage > 0
                   ? filteredData.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage,
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage,
+                  )
                   : filteredData
                 ).map((pt) => (
                   <StyledTableRow key={pt._id}
-                   onClick={() => handleItemClick(pt)}
-                >
+                    onClick={() => handleItemClick(pt)}
+                  >
                     <StyledTableCell align="left">
                       {pt.medicalRecordNumber}
                     </StyledTableCell>
@@ -426,7 +436,7 @@ export default function ShowVisitList() {
                       {pt.addedDate}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      <Link
+                      {/* <Link
                         className="btn btn-info btn-sm"
                         to={`/editVisit/${pt._id}`}
                       >
@@ -434,7 +444,16 @@ export default function ShowVisitList() {
                           className="fa fa-pencil-square-o"
                           aria-hidden="true"
                         />
-                      </Link>{' '}
+                      </Link>{' '} */}
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={() => { handleEditVisitShow(pt._id) }}>
+                                          <i
+                          className="fa fa-pencil-square-o"
+                          aria-hidden="true"
+                          title='edit visit'
+                        />
+                      </button>
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => {
