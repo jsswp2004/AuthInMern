@@ -88,7 +88,7 @@ export default function ShowRecordList() {
       })
   }
 
-  // Create Registration Modal
+  //#region Create Registration Modal
   const RegistrationModal = () => (
     <>
       <Modal show={show} onHide={handleClose} size="lg" centered>
@@ -111,9 +111,9 @@ export default function ShowRecordList() {
   function displayRegistrationModal() {
     return <RegistrationModal />
   }
+  //#endregion
 
-
-  // Create Visit Modal
+  //#region Create Visit Modal from Registration
   const VisitFromRegistrationModal = () => (
     <>
       <Modal show={showVisit} onHide={handleVisitClose} size="lg" centered>
@@ -131,11 +131,45 @@ export default function ShowRecordList() {
       </Modal>
     </>
   )
+    //Function to display create visit from registration modal
+    function displayVisitFromRegistrationModal() {
+      return <VisitFromRegistrationModal />
+    }
+    //#endregion
 
-  // Function to display create visit from registration modal
-  function displayVisitFromRegistrationModal() {
-    return <VisitFromRegistrationModal />
+  //#region for delete confirmation modal
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+
+  const DeleteRegistrationModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Client</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this client?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={deleteRecord(patientID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteRegistrationModal />
   }
+  //#endregion
+
+
 
   var filteredData = records.filter((record) => {
     if (searchInput === '') {
@@ -296,21 +330,21 @@ export default function ShowRecordList() {
 
   //#endregion 
 
-  function patientList() {
-    return filteredData
-      .sort((a, b) =>
-        Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1,
-      )
-      .map((record) => {
-        return (
-          <RecordCard
-            record={record}
-            deleteRecord={deleteRecord}
-            key={record._id}
-          />
-        )
-      })
-  }
+  // function patientList() {
+  //   return filteredData
+  //     .sort((a, b) =>
+  //       Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1,
+  //     )
+  //     .map((record) => {
+  //       return (
+  //         <RecordCard
+  //           record={record}
+  //           deleteRecord={deleteRecord}
+  //           key={record._id}
+  //         />
+  //       )
+  //     })
+  // }
 
   //setting the ID of the provider for the property
   const handleItemClick = item => {
@@ -332,6 +366,7 @@ export default function ShowRecordList() {
           <h4 className='patientListHeader'>Patient List</h4>
           <div>{displayRegistrationModal()}</div>
           <div>{displayVisitFromRegistrationModal()}</div>
+          <div>{displayDeleteRegistrationModal()}</div>
           <label htmlFor="search" className="searchLabel">
             <Button
               className="btn btn-info btn-sm registerBtn"
@@ -410,7 +445,7 @@ export default function ShowRecordList() {
                       className="btn btn-primary btn-sm"
                       onClick={handleVisitShow}
                     >
-                                            <i
+                      <i
                         className="fa fa-stethoscope fa-sm"
                         aria-hidden="true" title='Create visit'
                       />
@@ -436,7 +471,10 @@ export default function ShowRecordList() {
                     <button
                       className="btn btn-danger btn-sm"
                       onClick={() => {
-                        deleteRecord(pt._id)
+                        // deleteRecord(pt._id)
+                        // displayDeleteRegistrationModal()
+                        // handleItemClick();
+                        handleShowDelete()
                       }}
                     >
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
