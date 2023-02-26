@@ -9,24 +9,19 @@ import {
   getDate,
   startOfMonth,
   getDay,
-  // subMonths,
   endOfMonth,
   addDays,
   addMonths,
   addWeeks,
   startOfWeek,
-  // parseISO,
-  // formatISO,
   getMonth,
   getYear,
-  // isWeekend,
   isSaturday,
   isSunday,
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-// import VisitWeekly from '../Scheduling/visitWeekly'
 import VisitDaily from '../Scheduling/visitMonthlyDaily'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
@@ -39,7 +34,6 @@ import CreateVisitModal from '../Scheduling/createVisitModal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
 import CreatePatientModal from '../PatientRegistration/createPatientModal'
 import VisitCard from '../Scheduling/VisitCard'
-// import { display } from '@mui/system'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -142,18 +136,18 @@ export default function ClinicVisit() {
   //   newdate === '2022-05-01' ? 1 : dayOfTheMonth - dayOfTheWeek
   //pulls date number of the week
   let startOfTheWeek = startOfWeek(newdate).getDate()
-    // startDayOfTheWeek < 1
-    //   ? daysOfPreviousMonth - (dayOfTheWeek - 1)
-    //   : startDayOfTheWeek
-      
+  // startDayOfTheWeek < 1
+  //   ? daysOfPreviousMonth - (dayOfTheWeek - 1)
+  //   : startDayOfTheWeek
+
   // console.log(newdate)
   // console.log(previousMonth)
   // console.log(daysOfPreviousMonth)
-  
+
   // console.log(dayOfTheMonth)
-  
+
   // console.log(dayOfTheWeek)
-  
+
   // console.log(startDayOfTheWeek)
   // console.log(startOfTheWeek)
   // console.log(startOfWeek(newdate))
@@ -231,7 +225,7 @@ export default function ClinicVisit() {
             </Link>{' '}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>          
+        <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>
           <div
             style={{
               display: modalDisplay === 'visit' ? '' : 'none',
@@ -1395,17 +1389,12 @@ export default function ClinicVisit() {
           <div className="itemCalendar1">
             <div className="month-indicator item3C">
               <div className="month-name">
-                <h3
-                  style={{
-                    float: 'left',
-                    marginBottom: '0px',
-                    verticalAlign: 'middle',
-                  }}
+                <h4 className='patientListHeader'
                 >
                   {monthName}
-                </h3>
+                </h4>
               </div>
-              <div className="customDatePickerWidth">
+              <div className="customDatePickerWidth searchLabel">
                 <DatePicker
                   selected={showDateValue}
                   className="form-control"
@@ -1417,29 +1406,32 @@ export default function ClinicVisit() {
                   todayButton="Today"
                 />
               </div>
-              <select
-                style={{
-                  width: '200px',
-                  height: '38px',
-                  textAlign: 'center',
-                  verticalAlign: 'middle',
-                  marginLeft: '10px',
-                  paddingLeft: '0px',
-                  paddingBottom: '0px',
-                  paddingTop: '0px',
-                  paddingRight: '0px',
-                }}
-                className="form-control select"
-                id="calendarView"
-                value={selectViewValue}
-                onChange={viewValueChange}
-              >
-                {viewValues.map((viewval) => (
-                  <option key={viewval.value} value={viewval.value}>
-                    {viewval.name}
-                  </option>
-                ))}
-              </select>
+              <div className="searchLabels">                
+                  <select className="form-control select searchLabel"
+                    style={{
+                      width: '200px',
+                      height: '38px',
+                      textAlign: 'center',
+                      verticalAlign: 'middle',
+                      marginLeft: '10px',
+                      paddingLeft: '0px',
+                      paddingBottom: '0px',
+                      paddingTop: '0px',
+                      paddingRight: '0px',
+                    }}
+                    // className="form-control select"
+                    id="calendarView"
+                    value={selectViewValue}
+                    onChange={viewValueChange}
+                  >
+                    {viewValues.map((viewval) => (
+                      <option key={viewval.value} value={viewval.value}>
+                        {viewval.name}
+                      </option>
+                    ))}
+                  </select>
+                
+              </div>
               <div>
                 <img
                   className="directionArrows"
@@ -1449,10 +1441,10 @@ export default function ClinicVisit() {
                     selectViewValue === 'Monthly'
                       ? setShowDateValue(addDays(showDateValue, -31))
                       : selectViewValue === 'Weekly'
-                      ? setShowDateValue(addDays(showDateValue, -7))
-                      : selectViewValue === 'Daily'
-                      ? setShowDateValue(addDays(showDateValue, -1))
-                      : setShowDateValue(showDateValue)
+                        ? setShowDateValue(addDays(showDateValue, -7))
+                        : selectViewValue === 'Daily'
+                          ? setShowDateValue(addDays(showDateValue, -1))
+                          : setShowDateValue(showDateValue)
                   }
                 ></img>
               </div>
@@ -1465,18 +1457,18 @@ export default function ClinicVisit() {
                     selectViewValue === 'Monthly'
                       ? setShowDateValue(addMonths(showDateValue, 1))
                       : selectViewValue === 'Weekly'
-                      ? setShowDateValue(addWeeks(showDateValue, 1))
-                      : selectViewValue === 'Daily'
-                      ? setShowDateValue(addDays(showDateValue, 1))
-                      : setShowDateValue(showDateValue)
+                        ? setShowDateValue(addWeeks(showDateValue, 1))
+                        : selectViewValue === 'Daily'
+                          ? setShowDateValue(addDays(showDateValue, 1))
+                          : setShowDateValue(showDateValue)
                   }
                 ></img>
               </div>
               <div
                 style={{
                   marginLeft: 'auto',
-                  height: '38px',
-                  paddingRight: '5px',
+                  height: '30px',
+                  marginTop: '5px',
                 }}
               >
                 <Button
@@ -1542,9 +1534,9 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="weekDayTitleChild"
-                  // onClick={() => {
-                  //   alert.show('Oh look, an alert!')
-                  // }}
+                // onClick={() => {
+                //   alert.show('Oh look, an alert!')
+                // }}
                 >
                   Mo
                 </div>
@@ -2340,7 +2332,7 @@ export default function ClinicVisit() {
                       sx={{ minWidth: 650 }}
                       size="small"
                       aria-label="a dense table"
-                      // className='table-striped'
+                    // className='table-striped'
                     >
                       <TableHead>
                         <TableRow>
@@ -2376,9 +2368,9 @@ export default function ClinicVisit() {
                       <TableBody>
                         {(rowsPerPage > 0
                           ? filterDataWithDate.slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage,
-                            )
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage,
+                          )
                           : filterDataWithDate
                         ).map((pt) => (
                           <StyledTableRow key={pt._id}>

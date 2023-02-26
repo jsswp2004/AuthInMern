@@ -33,7 +33,7 @@ const CreateRecord = (props) => {
     zipCode: '',
     state: '',
     email: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const onChange = (e) => {

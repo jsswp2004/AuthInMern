@@ -730,10 +730,31 @@ tbody tr {
   height: 30px;
   border-radius: 5px;
   float: right;
-  margin-top: 2px;
+  margin-top: 5px;
+}
+
+.search {
+  margin-left: auto;
+  margin-right: 3px;
+  height: 30px;
+  border-radius: 5px;
+  /* float: right; */
+  margin-top: 5px;
+}
+
+.viewlabel {
+  width: "400px";
+  height: "38px";
+  text-align: "center";
+  vertical-align: "middle";
+  margin-left: "10px";
+  padding-left: "0px";
+  padding-bottom: "0px";
+  padding-top: "0px";
+  padding-right: "0px";
 }
 .patientListHeader {
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 .searchInput {
@@ -1393,8 +1414,8 @@ text-align: center;
 
 .filter_navbarlist {
   background-color: #efefef;
-  padding: 1px;
-  margin: 1px;
+  padding: 0px;
+  margin-top: 5px;
   height: 100%;
   width: auto;
   border-radius: 5px;
@@ -1409,12 +1430,16 @@ text-align: center;
   margin-left: 2px;
 }
 
-.filter__search-label {
+.filter_search-label {
   background-color: #efefef;
   color: black;
   font-size: 14px;
-  font-style: italic;
+  font-style: normal;
   margin-left: 5px;
+}
+
+.filterTitle {
+  font-style: italic;
 }
 
 /*role page css*/

@@ -1,10 +1,10 @@
+//#region imports
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
-import VisitCard from '../Scheduling/VisitCard'
-// import RecordCard from './RecordCard'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -23,8 +23,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
-
-
+//#endregion
 
 export default function ShowVisitList() {
   const [regDate, setRegFilterDate] = useState('')
@@ -61,7 +60,6 @@ export default function ShowVisitList() {
 
   const dateRegister = regDate //format(regDate, 'yyyy-MM-dd')
   const dateRegistered = dateRegister
-  // console.log(selectMD.toLowerCase())
   var filteredMD = visits.filter((visit) => {
     if (selectMD === '') {
       return visit
@@ -70,8 +68,7 @@ export default function ShowVisitList() {
     }
   })
 
-  // console.log(filteredMD)
-  var filteredDat = filteredMD.filter((visit) => {
+  var filterDateRegistration = filteredMD.filter((visit) => {
     if (dateRegistered === '') {
       return visit
     } else {
@@ -79,7 +76,7 @@ export default function ShowVisitList() {
     }
   })
 
-  var filteredData = filteredDat
+  var filteredData = filterDateRegistration
     .filter((visit) => {
       if (searchInput === '') {
         return visit
@@ -125,7 +122,6 @@ export default function ShowVisitList() {
       }
     })
     .sort((a, b) => (a.visitDate + a.hourOfVisit  < b.visitDate + b.hourOfVisit  ? 1 : -1))
-    // .sort((a, b) => (a.hourOfVisit < b.hourOfVisit ? 1 : -1))
 
   //table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -264,11 +260,11 @@ export default function ShowVisitList() {
       <div className="item3">
         <div className="item3A">
           <div className="filter_navbarLeft">
-            <h4>Visit List</h4>
+            <h4 className='patientListHeader'>Visit List</h4>
           </div>
-          <div className=".filter_navbarlist">
-            <span className="filter__search-label">Filter: </span>
-            <label className="filter__search-label">
+          <div className="filter_navbarlist searchLabel">
+            <span className="filter_search-label filterTitle">Filter: </span>
+            <label className="filter_search-label">
               Visit Date:
               <input
                 type="date"
@@ -280,7 +276,7 @@ export default function ShowVisitList() {
                 }}
               />
             </label>
-            <label className="filter__search-label">
+            <label className="filter_search-label">
               {' '}
               Provider:
               <select
