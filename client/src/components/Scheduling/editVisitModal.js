@@ -3,8 +3,8 @@ import { Link, Button } from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-import Navbar from '../navigation/navbar'
-import Header from '../shared/Header'
+// import Navbar from '../navigation/navbar'
+// import Header from '../shared/Header'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
 // import CreatePatientFromVisit from '../PatientRegistration/createPatientFromVisit'
 
@@ -64,6 +64,7 @@ function UpdateVisitInfo(props) {
     provider: '',
   })
 
+  const visitID = props.visitID
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -76,7 +77,7 @@ function UpdateVisitInfo(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/visits/${id}`)
+      .get(`http://localhost:8081/api/visits/${visitID}`)
       .then((res) => {
         setVisit({
           medicalRecordNumber: res.data.medicalRecordNumber,
@@ -140,17 +141,11 @@ function UpdateVisitInfo(props) {
   // }
   return (
     <div className="grid_containers">
-      {/* <div className="item1">
-        <Header />
-      </div> */}
-      {/* <div className="item2">
-        <Navbar />
-      </div> */}
       <div className="item3">
-        <h4 className="createPageHeader">Edit Visit</h4>
-        <div className="item3A">
+        {/* <h4 className="createPageHeader">Edit Visit</h4> */}
+        <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
-            <div className="form-grid-container">
+            <div className="form-grid-containers modalContainer ">
               <div className="div-items">
                 <div className="forms-group">
                   <div className="form-group">
@@ -269,7 +264,7 @@ function UpdateVisitInfo(props) {
                         Select Provider
                       </option>
                       {providerMD.map((doc) => (
-                        <option key={doc.value} value={doc.value}>
+                        <option key={doc._id} value={doc.provider}>
                           {doc}
                         </option>
                       ))}
@@ -300,7 +295,7 @@ function UpdateVisitInfo(props) {
                     </select>
                   </label>
                 </div>
-{console.log(visit.event)}
+{/* {console.log(visit.event)} */}
                 <div className="form-group">
                   <label htmlFor="medicalRecordNumber">
                     MRN
