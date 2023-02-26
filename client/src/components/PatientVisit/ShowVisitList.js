@@ -23,6 +23,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import EditVisitModal from '../Scheduling/editVisitModal'
 //#endregion
 
 export default function ShowVisitList() {
@@ -34,6 +35,53 @@ export default function ShowVisitList() {
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
+  }
+
+    //#region Define the state for create visit from registration modal 
+    const [showEditVisit, setEditVisitShow] = useState(false)
+    const handleEditVisitClose = () => setEditVisitShow(false)
+    const handleEditVisitShow = () => {
+      setEditVisitShow(true)
+    }
+    //#endregion
+  //#region for setting the ID of the provider for the property
+  const handleItemClick = item => {
+    const patID = item._id
+    setVisitID(patID)
+  }
+  //#endregion
+  //#region Create Visit Modal from Registration
+    //#region Define patient ID for create visit from registration modal
+    const [visitID, setVisitID] = useState('')
+    //#endregion
+  const VisitFromRegistrationModal = () => (
+    <>
+      <Modal show={showEditVisit} onHide={handleEditVisitClose} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Register a client</Modal.Title>
+          <Button variant="secondary" onClick={handleEditVisitClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <EditVisitModal visitID={visitID} />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleVisitClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+  //Function to display create visit from registration modal
+  function displayVisitFromRegistrationModal() {
+    return <VisitFromRegistrationModal />
+  }
+  //#endregion
+  const handleEditVisitClick = (e) => {
+    e.preventDefault()
+    setEditVisitShow(false)
   }
 
   useEffect(() => {
@@ -346,7 +394,9 @@ export default function ShowVisitList() {
                     )
                   : filteredData
                 ).map((pt) => (
-                  <StyledTableRow key={pt._id}>
+                  <StyledTableRow key={pt._id}
+                   onClick={() => handleItemClick(pt)}
+                >
                     <StyledTableCell align="left">
                       {pt.medicalRecordNumber}
                     </StyledTableCell>
