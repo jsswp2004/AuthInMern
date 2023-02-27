@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
 import { styled } from '@mui/material/styles'
@@ -27,17 +26,19 @@ import EditVisitModal from '../Scheduling/editVisitModal'
 //#endregion
 
 export default function ShowVisitList() {
+
+  //#region for state definition
   const [regDate, setRegFilterDate] = useState('')
   const [selectMD, setSelectMD] = useState('')
   const [visits, setVisits] = useState([])
+  //#endregion
+  //#region captures and sets value of the search input text
   const [searchInput, setSearchInput] = useState('')
-  //captures and sets value of the input text
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
-
-
+  //#endregion
   //#region for setting the ID of the provider for the property
   const handleItemClick = item => {
     const patID = item._id
@@ -47,12 +48,12 @@ export default function ShowVisitList() {
   //#region Define patient ID for create visit from registration modal
   const [visitID, setVisitID] = useState('')
   //#endregion
-  //#region Create Visit Modal from Registration
+  //#region Edit Visit Modal from Registration
   const ShowEditVisitModal = () => (
     <>
       <Modal show={showEditVisit} onHide={handleEditVisitClose} size="lg" centered>
         <Modal.Header>
-          <Modal.Title>Edit</Modal.Title>
+          <Modal.Title>Edit Visit</Modal.Title>
           <Button variant="secondary" onClick={handleEditVisitClick}>
             Close
           </Button>
@@ -73,8 +74,7 @@ export default function ShowVisitList() {
   function displayEditVisitModal() {
     return <ShowEditVisitModal />
   }
-  //#endregion
-  //#region Define the state for edit visit from registration modal 
+  //Define the state for edit visit from registration modal 
   const [showEditVisit, setEditVisitShow] = useState(false)
   const handleEditVisitClose = () => setEditVisitShow(false)
   const handleEditVisitShow = () => {
@@ -86,6 +86,38 @@ export default function ShowVisitList() {
     setEditVisitShow(false)
   }
 
+
+  //#endregion
+  //#region for delete confirmation modal
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+
+  const DeleteVisitModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this data item?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => deleteRecord(visitID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteVisitModal />
+  }
 
   //#endregion
   //#region Pull all visits from the database
@@ -286,7 +318,7 @@ export default function ShowVisitList() {
     setPage(0)
   }
   //#endregion
-
+  //#region pull data for provider
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -305,6 +337,8 @@ export default function ShowVisitList() {
   }, [])
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+  //#endregion
+
   return (
     <div className="grid_container" style={{ height: '100px' }}>
       <div className="item1">
@@ -316,10 +350,10 @@ export default function ShowVisitList() {
 
       <div className="item3">
         <div className="item3A">
-          <div className="filter_navbarLeft">
+          <div className="left filter_navbarLeft">
             <h4 className='patientListHeader'>Visit List</h4>
           </div>
-          <div className="filter_navbarlist searchLabel">
+          <div className="right filter_navbarlist searchLabel">
             <span className="filter_search-label filterTitle">Filter: </span>
             <label className="filter_search-label">
               Visit Date:
@@ -358,8 +392,8 @@ export default function ShowVisitList() {
             </label>
           </div>
           {/* .filter_navbar */}
-          <div className="filter_navbarRight">
-            <label htmlFor="search" className="searchLabel filter_search-label">
+          <div className="right searchLabel filter_navbarRight">
+            <label htmlFor="search" className=" filter_search-label">
               Search :{' '}
               <input
                 className="searchInput"
@@ -373,6 +407,7 @@ export default function ShowVisitList() {
           </div>
         </div>
         <div>{displayEditVisitModal()}</div>
+        <div>{displayDeleteRegistrationModal()}</div>
         <div className="item3B" style={{ overflowY: 'auto' }}>
 
           <TableContainer component={Paper}>
@@ -445,10 +480,11 @@ export default function ShowVisitList() {
                           aria-hidden="true"
                         />
                       </Link>{' '} */}
+  
                       <button
                         className="btn btn-primary btn-sm"
                         onClick={() => { handleEditVisitShow(pt._id) }}>
-                                          <i
+                        <i
                           className="fa fa-pencil-square-o"
                           aria-hidden="true"
                           title='edit visit'
@@ -456,9 +492,10 @@ export default function ShowVisitList() {
                       </button>
                       <button
                         className="btn btn-danger btn-sm"
-                        onClick={() => {
-                          deleteRecord(pt._id)
-                        }}
+                        // onClick={() => {
+                        //   deleteRecord(pt._id)
+                        // }}
+                        onClick={handleShowDelete}
                       >
                         <i
                           title="delete visit"

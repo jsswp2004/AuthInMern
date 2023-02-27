@@ -278,7 +278,7 @@ const ShowSchedulesList = () => {
           </Button>
           Search :{' '}
           <input
-            className="searchLabel"
+            // className="searchLabel"
             id="search"
             type="text"
             placeholder="Search schedules"

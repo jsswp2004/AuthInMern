@@ -1,3 +1,4 @@
+//#region Import statements
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
@@ -24,6 +25,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import CreateRegistration from './createPatientModal'
 import CreateVisitRegistration from '../Scheduling/createVisitFromRegModal'
+//#endregion
 
 export default function ShowRecordList() {
   //#region Define the state for create registration modal
@@ -355,7 +357,8 @@ export default function ShowRecordList() {
           <div>{displayRegistrationModal()}</div>
           <div>{displayVisitFromRegistrationModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
-          <label htmlFor="search" className="searchLabel">
+          <div className="searchLabel">
+          <label htmlFor="search" >
             <Button
               className="btn btn-info btn-sm registerBtn"
               onClick={handleShow}
@@ -371,7 +374,8 @@ export default function ShowRecordList() {
               onChange={handleChange}
               value={searchInput}
             />
-          </label>
+            </label>
+            </div>
         </div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">

@@ -314,20 +314,22 @@ export default function ShowUsersList() {
       <div className="item3">
         <div className="item3A">
           <h4 className='createPageHeader'>Registered Users</h4>
-
-          <label htmlFor="search" className="searchLabel">
+          
+          <label htmlFor="search" className="searchLabel" >
           <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
             <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User'/>
           </Link>{' '}
             Search :{' '}
-            <input
+              <input
+                // className="searchInput"
               id="search"
               type="text"
               placeholder="Search users"
               onChange={handleChange}
               value={searchInput}
             />
-          </label>
+            </label>
+            
         </div>
 
         <TableContainer component={Paper}>

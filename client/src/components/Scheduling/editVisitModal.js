@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link, Button } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
@@ -29,11 +29,10 @@ function UpdateVisitInfo(props) {
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
   const [schedEvent, setSchedEvent] = useState([])
-  // console.log(schedEvent)
   const schedEvents = schedEvent.filter((event) => {
-    return event.Name //.toString().toLowerCase() //.includes('attending')
+    return event.name //.toString().toLowerCase() //.includes('attending')
   })
-  const clinicEvents = schedEvents.map((doc) => doc.Name)
+  const clinicEvents = schedEvents.map((doc) => doc.name)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/events')
@@ -62,18 +61,20 @@ function UpdateVisitInfo(props) {
     addedDate: '',
     visitDate: '',
     provider: '',
+    hourOfVisitz: '',
+    event: '',
   })
 
   const visitID = props.visitID
-  const { id } = useParams()
+  // const { id } = useParams()
   const navigate = useNavigate()
 
-  const [prevID, setprevID] = useState('')
-  const previousID = useRef('')
+  // const [prevID, setprevID] = useState('')
+  // const previousID = useRef('')
 
-  useEffect(() => {
-    previousID.current = prevID
-  }, [prevID])
+  // useEffect(() => {
+  //   previousID.current = prevID
+  // }, [prevID])
 
   useEffect(() => {
     axios
@@ -90,13 +91,14 @@ function UpdateVisitInfo(props) {
           visitDate: res.data.visitDate,
           hourOfVisit: res.data.hourOfVisit,
           provider: res.data.provider,
+          event: res.data.event,
         })
       })
       .catch((err) => {
         console.log('Error from UpdateVisitInfo')
       })
-    setprevID(id)
-  }, [id])
+    // setprevID(id)
+  }, [visitID])
 
   // console.log(previousID.current)
 
@@ -122,12 +124,13 @@ function UpdateVisitInfo(props) {
       visitDate: visit.visitDate,
       hourOfVisit: visit.hourOfVisit,
       provider: visit.provider,
+      event: visit.event,
     }
 
     setData(data)
 
     axios
-      .put(`http://localhost:8081/api/visits/${id}`, data)
+      .put(`http://localhost:8081/api/visits/${visitID}`, data)
       .then((res) => {
         navigate(`/clinicVisit`)
       })
@@ -277,7 +280,7 @@ function UpdateVisitInfo(props) {
                   <label htmlFor="event">
                     Scheduled Event
                     <select
-                      key={visit.event}
+                      key={visit._id}
                       className="form-control select"
                       name="event"
                       value={visit.event}
@@ -288,14 +291,14 @@ function UpdateVisitInfo(props) {
                         Select Event
                       </option>
                       {clinicEvents.map((doc) => (
-                        <option key={doc._id} value={doc.Name}>
+                        <option key={doc._id} value={doc.name}>
                           {doc}
                         </option>
                       ))}
                     </select>
                   </label>
                 </div>
-{/* {console.log(visit.event)} */}
+
                 <div className="form-group">
                   <label htmlFor="medicalRecordNumber">
                     MRN
@@ -340,7 +343,7 @@ function UpdateVisitInfo(props) {
 
                   <Link
                     className="btn btn-info btn-sm "
-                    to={`/createPatientFromVisit/${id}`}
+                    to={`/createPatientFromVisit/${visitID}`}
                     // data={data}
                     firstName={data.firstName}
                   >

@@ -1394,7 +1394,7 @@ export default function ClinicVisit() {
                   {monthName}
                 </h4>
               </div>
-              <div className="customDatePickerWidth searchLabel">
+              <div className="customDatePickerWidth searchLabel select">
                 <DatePicker
                   selected={showDateValue}
                   className="form-control"
@@ -1406,15 +1406,15 @@ export default function ClinicVisit() {
                   todayButton="Today"
                 />
               </div>
-              <div className="searchLabels">                
-                  <select className="form-control select searchLabel"
+              <div className="searchLabel viewlabel">                
+                  <select className="form-control"
                     style={{
-                      width: '200px',
+                      width: '100px',
                       height: '38px',
-                      textAlign: 'center',
+                      textAlign: 'left',
                       verticalAlign: 'middle',
                       marginLeft: '10px',
-                      paddingLeft: '0px',
+                      paddingLeft: '5px',
                       paddingBottom: '0px',
                       paddingTop: '0px',
                       paddingRight: '0px',
@@ -1464,7 +1464,7 @@ export default function ClinicVisit() {
                   }
                 ></img>
               </div>
-              <div
+              <div //className='searchLabel'
                 style={{
                   marginLeft: 'auto',
                   height: '30px',
@@ -1487,7 +1487,9 @@ export default function ClinicVisit() {
               </div>
               {/* modal end*/}
               {/* search start */}
-              <div className="search">
+
+              <div className="div-items" >
+              <div className="searchButton">
                 <a
                   data-toggle="tooltip"
                   data-placement="right"
@@ -1499,8 +1501,7 @@ export default function ClinicVisit() {
                   <i className="fa fa-search" aria-hidden="true"></i>
                 </a>
               </div>
-              <div className="div-items" style={{ float: 'right' }}>
-                <label
+                {/* <label
                   htmlFor="search"
                   // style={{ display: selectViewValue === 'Daily' ? '' : 'none' }}
                   style={{ display: 'none' }}
@@ -1513,7 +1514,7 @@ export default function ClinicVisit() {
                     onChange={handleChange}
                     value={searchInput}
                   />
-                </label>
+                </label> */}
               </div>
               {/* search end */}
             </div>

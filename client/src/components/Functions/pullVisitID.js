@@ -9,6 +9,6 @@ export default function VisitID() {
         // reference.current = newValue
         return visitIDValue
     }
+    return { pullVisitID }
 
-    
 }

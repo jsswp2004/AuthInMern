@@ -447,12 +447,13 @@ body {
 }
 
 .item3C {
-  padding-top: 2px;
+  padding-top: 0px;
+  width: 100%;
 }
 
 .item3C h3 {
   padding-left: 5px;
-  padding-top: 2px;
+  padding-top: 0px;
   font-size: 25px;
 }
 
@@ -726,11 +727,23 @@ tbody tr {
 /*search css*/
 .searchLabel {
   margin-left: auto;
+  align-items: flex-end;
   margin-right: 3px;
   height: 30px;
   border-radius: 5px;
+  /* float: right; */
+  margin-top: 5px;
+  /* width : 400px; */
+}
+
+.searchButton {
+  margin-left: auto;
+  margin-right: 3px;
+  height: 38px;
+  border-radius: 5px;
   float: right;
   margin-top: 5px;
+  /* width : 400px; */
 }
 
 .search {
@@ -758,7 +771,7 @@ tbody tr {
 }
 
 .searchInput {
-  margin-left: auto;
+  /* margin-left: auto; */
   height: 30px;
   margin-top: 3px;
   margin-right: 2px;
@@ -766,7 +779,7 @@ tbody tr {
 }
 /*search css end*/
 
-/*Date picker*/
+/* Date picker
 .customDatePickerWidth,
 .customDatePickerWidth > div.react-datepicker-wrapper,
 .customDatePickerWidth
@@ -779,7 +792,7 @@ tbody tr {
   width: 200px;
   padding-left: 5px;
   height: 40px;
-}
+} */
 
 /* Start calendar css */
 h5 {
@@ -973,7 +986,8 @@ ul .calendar {
   font-size: 14px;
   background-color: var(--grey-background);
 }
-.customDatePickerWidth,
+/* .customDatePickerWidth
+,
 .customDatePickerWidth > div.react-datepicker-wrapper,
 .customDatePickerWidth
   > div
@@ -984,7 +998,14 @@ ul .calendar {
   input {
   width: 200px;
   padding-left: 5px;
-  height: 40px;
+  height: 30px;
+} */
+
+.customDatePickerWidth{
+  width: 400px;
+  padding: 0px;
+  height: 30px;
+  margin-left: 5px;
 }
 
 .grid-weeklycalcontainer {
@@ -1222,6 +1243,8 @@ main {
   font-weight: 500;
   display: flex;
 }
+
+
 .month-name {
   width: fit-content;
 }
@@ -1398,19 +1421,20 @@ text-align: center;
   background-color: #ffffff;
 }
 
-.filter_navbarLeft {
+/* .filter_navbarLeft {
   background-color: #efefef;
   padding-left: 5px;
   width: 20%;
-}
+} */
 
-.filter_navbarRight {
+/* .filter_navbarRight {
   background-color: #efefef;
   padding-left: 5px;
   width: 25%;
-  margin-left: auto;
-  float: right;
-}
+  margin-left: 100px;
+  float: right; 
+  position: relative;
+} */
 
 .filter_navbarlist {
   background-color: #efefef;
@@ -1435,7 +1459,7 @@ text-align: center;
   color: black;
   font-size: 14px;
   font-style: normal;
-  margin-left: 5px;
+  /* margin-left: auto; */
 }
 
 .filterTitle {
@@ -1531,6 +1555,7 @@ tfoot > .MuiTableFooter-root {
   margin-left: auto;
   margin-right: 10px;
   height: 30px;
+  width: 30px;
   padding-top: 0px;
 }
 
@@ -1735,4 +1760,15 @@ tfoot > .MuiTableFooter-root {
 .modalContainer {
   display: flex;
   color: 10px;
+}
+
+/*for select  css*/
+.select {
+  width: '400px';
+  height: '30px';
+  text-align: 'center';
+  vertical-align: 'middle';
+  margin-left: '10px';
+  padding: 0px;
+
 }
