@@ -366,16 +366,17 @@ export default function ShowUsersList() {
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     <Link
-                      className="btn btn-info btn-sm"
+                      className="btn btn-info btn-sm registerBtn"
                       to={`/editUser/${user._id}`}
                     >
                       <i
                         className="fa fa-pencil-square-o fa-sm"
                         aria-hidden="true"
+                        title='Edit User'
                       />
                     </Link>{' '}
                     <button
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-danger btn-sm registerBtn"
                       onClick={() => {
                         deleteRecord(user._id)
                       }}

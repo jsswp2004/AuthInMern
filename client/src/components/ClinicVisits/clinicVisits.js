@@ -53,6 +53,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import EditVisitModal from '../Scheduling/editVisitModal'
 //#endregion
 
 export default function ClinicVisit() {
@@ -196,6 +197,7 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region for Modal from monthly days
+
   const [newPatient, setNewPatient] = useState(false)
   // console.log(newPatient)
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
@@ -253,6 +255,55 @@ export default function ClinicVisit() {
   function displayVisitMonthlyModal() {
     return <VisitModalMonthly />
   }
+  //#endregion
+  //#region for setting the ID of the provider for the property
+  const handleItemClick = item => {
+    const patID = item._id
+    setVisitID(patID)
+  }
+  //#endregion
+  //#region Define patient ID for create visit from registration modal
+  const [visitID, setVisitID] = useState('')
+  //#endregion
+  //#region Edit Visit Modal from Registration
+  const ShowEditVisitModal = () => (
+    <>
+      <Modal show={showEditVisit} onHide={handleEditVisitClose} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Edit Visit</Modal.Title>
+          <Button variant="secondary" onClick={handleEditVisitClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <EditVisitModal visitID={visitID} />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleVisitClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+
+  //Function to display create visit from registration modal
+  function displayEditVisitModal() {
+    return <ShowEditVisitModal />
+  }
+  //Define the state for edit visit from registration modal 
+  const [showEditVisit, setEditVisitShow] = useState(false)
+  const handleEditVisitClose = () => setEditVisitShow(false)
+  const handleEditVisitShow = () => {
+    setEditVisitShow(true)
+  }
+
+  const handleEditVisitClick = (e) => {
+    e.preventDefault()
+    setEditVisitShow(false)
+  }
+
+
   //#endregion
   //#region months dropdown code
   const viewValues = View
@@ -1406,31 +1457,31 @@ export default function ClinicVisit() {
                   todayButton="Today"
                 />
               </div>
-              <div className="searchLabel viewlabel">                
-                  <select className="form-control"
-                    style={{
-                      width: '100px',
-                      height: '38px',
-                      textAlign: 'left',
-                      verticalAlign: 'middle',
-                      marginLeft: '10px',
-                      paddingLeft: '5px',
-                      paddingBottom: '0px',
-                      paddingTop: '0px',
-                      paddingRight: '0px',
-                    }}
-                    // className="form-control select"
-                    id="calendarView"
-                    value={selectViewValue}
-                    onChange={viewValueChange}
-                  >
-                    {viewValues.map((viewval) => (
-                      <option key={viewval.value} value={viewval.value}>
-                        {viewval.name}
-                      </option>
-                    ))}
-                  </select>
-                
+              <div className="searchLabel viewlabel">
+                <select className="form-control"
+                  // style={{
+                  //   width: '100px',
+                  //   height: '38px',
+                  //   textAlign: 'left',
+                  //   verticalAlign: 'middle',
+                  //   marginLeft: '10px',
+                  //   paddingLeft: '5px',
+                  //   paddingBottom: '0px',
+                  //   paddingTop: '0px',
+                  //   paddingRight: '0px',
+                  // }}
+                  
+                  id="calendarView"
+                  value={selectViewValue}
+                  onChange={viewValueChange}
+                >
+                  {viewValues.map((viewval) => (
+                    <option key={viewval.value} value={viewval.value}>
+                      {viewval.name}
+                    </option>
+                  ))}
+                </select>
+
               </div>
               <div>
                 <img
@@ -1489,18 +1540,18 @@ export default function ClinicVisit() {
               {/* search start */}
 
               <div className="div-items" >
-              <div className="searchButton">
-                <a
-                  data-toggle="tooltip"
-                  data-placement="right"
-                  title="Search for Visit"
-                  href="/visitlist"
-                  className="btn btn-info"
-                  role="button"
-                >
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </a>
-              </div>
+                <div className="searchButton">
+                  <a
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="Search for Visit"
+                    href="/visitlist"
+                    className="btn btn-info"
+                    role="button"
+                  >
+                    <i className="fa fa-search" aria-hidden="true"></i>
+                  </a>
+                </div>
                 {/* <label
                   htmlFor="search"
                   // style={{ display: selectViewValue === 'Daily' ? '' : 'none' }}
@@ -1521,6 +1572,7 @@ export default function ClinicVisit() {
           </div>
           <div>{displayVisitMonthlyModal()}</div>
           <div className="itemCalendar2">
+            <div>{displayEditVisitModal()}</div>
             <div
               className="monthly"
               style={{
@@ -2309,25 +2361,6 @@ export default function ClinicVisit() {
                 </div>
 
                 <div>
-                  {/* <table className="table table-striped">
-                    <thead>
-                      <tr className="trStyles">
-                        <th id="columnName">MRN</th>
-                        <th id="columnName">Visit ID</th>
-                        <th id="columnName">FirstName</th>
-                        <th id="columnName">Middlename</th>
-                        <th id="columnName">Lastname</th>
-                        <th id="columnName">Visit Date</th>
-                        <th id="columnName">Time</th>
-                        <th id="columnName">Email</th>
-                        <th id="columnName">Provider</th>
-                        <th id="columnName">Date Created</th>
-                        <th id="columnName">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="trStyles">{patientListDaily()}</tbody>
-                  </table> */}
-
                   <TableContainer component={Paper}>
                     <Table
                       sx={{ minWidth: 650 }}
@@ -2374,7 +2407,9 @@ export default function ClinicVisit() {
                           )
                           : filterDataWithDate
                         ).map((pt) => (
-                          <StyledTableRow key={pt._id}>
+                          <StyledTableRow key={pt._id}
+                            onClick={() => handleItemClick(pt)}
+                          >
                             <StyledTableCell align="left">
                               {pt.medicalRecordNumber}
                             </StyledTableCell>
@@ -2406,7 +2441,16 @@ export default function ClinicVisit() {
                               {pt.addedDate}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              <Link
+                              <button
+                                className="btn btn-primary btn-sm"
+                                onClick={() => { handleEditVisitShow(pt._id) }}>
+                                <i
+                                  className="fa fa-pencil-square-o"
+                                  aria-hidden="true"
+                                  title='edit visit'
+                                />
+                              </button>
+                              {/* <Link
                                 className="btn btn-info btn-sm"
                                 to={`/editVisit/${pt._id}`}
                               >
@@ -2414,7 +2458,7 @@ export default function ClinicVisit() {
                                   className="fa fa-pencil-square-o"
                                   aria-hidden="true"
                                 />
-                              </Link>
+                              </Link> */}
                               <Link
                                 className="btn btn-success btn-sm"
                                 to={`/detailsVisit/${pt._id}`}

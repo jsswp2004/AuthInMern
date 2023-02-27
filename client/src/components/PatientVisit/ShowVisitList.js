@@ -482,7 +482,7 @@ export default function ShowVisitList() {
                       </Link>{' '} */}
   
                       <button
-                        className="btn btn-primary btn-sm"
+                        className="btn btn-primary btn-sm registerBtn"
                         onClick={() => { handleEditVisitShow(pt._id) }}>
                         <i
                           className="fa fa-pencil-square-o"
@@ -491,7 +491,7 @@ export default function ShowVisitList() {
                         />
                       </button>
                       <button
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-danger btn-sm registerBtn"
                         // onClick={() => {
                         //   deleteRecord(pt._id)
                         // }}

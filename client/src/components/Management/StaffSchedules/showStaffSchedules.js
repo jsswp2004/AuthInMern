@@ -360,7 +360,7 @@ const ShowSchedulesList = () => {
                           title="Edit Schedule"
                         />
                       </Link>{' '} */}
-                      <button className='btn btn-info btn-sm'                      
+                      <button className='btn btn-info btn-sm registerBtn'                      
                         onClick={handleEditShow}
                         // providerID={schedule._id}
                       >
@@ -371,7 +371,7 @@ const ShowSchedulesList = () => {
                         />
                       </button>
                       <button
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-danger btn-sm registerBtn"
                         onClick={() => {
                           deleteRecord(schedule._id)
                         }}

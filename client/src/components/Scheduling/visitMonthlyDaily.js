@@ -121,36 +121,33 @@ const VisitMonthDaily = (props) => {
 
       <div>{displayEditVisitModal()}</div>
       <div>{displayDeleteRegistrationModal()}</div>
-
-      {/* <div className="visitMonthDayContainerItem" > */}
       <div className="visitMonthDayContainerItem" onClick={() => handleItemClick(props.visit)}>
 
         <span className="visitMonthDayContainerItemSpan">{props.visit.hourOfVisit} {props.visit.firstName}{' '}
           {props.visit.lastName}
         </span>
-      </div>
+        {/* this is hidden and displays on hover */}
+        <div className="visitMonthDayContainerItems" >
+          <ul>
+            <li>{props.visit.email}</li>
+            <li>Provider: {props.visit.provider}</li>
+            <li>Event: {props.visit.event}</li>
+            <li>{'cellphone'}</li>
 
-      <div className="visitMonthDayContainerItems" >
-        <ul>
-          {/* <li>{props.visit.firstName}</li>
-          <li>{props.visit.lastName}</li> */}
-          
-          <li>{props.visit.email}</li>
-          <li>{props.visit.hourOfVisit}</li>
-          <li>{props.visit.provider}</li>
-          <li>{'cellphone'}</li>
-
-        </ul>
+          </ul>
+        </div>
       </div>
-      {/* </div> */}
+      
       <div className="visitMonthDayContainerItemAction" onClick={() => setVisitID(props.visit._id)}>
-        {/* <Link to={`/editVisit/${props.visit._id}`} >
+        <span>
           <i
             className="fa fa-pencil-square-o fa-sm"
             aria-hidden="true"
-            style={{ color: 'blue', paddingTop: '5px' }}
+            title='edit visit'
+            style={{ color: 'blue', paddingTop: '5px', paddingLeft: '3px' }}
+            onClick={() => { handleEditVisitShow(visitID) }}
           />
-        </Link> */}
+        </span>
         <Link className='hovertest' to={`/detailsVisit/${props.visit._id}`}>
           <i
             className="fa fa-clipboard fa-sm"

@@ -308,17 +308,8 @@ const ShowEventsList = () => {
                     <StyledTableCell align="left">{event.name}</StyledTableCell>
                     <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
                     <StyledTableCell align="left">
-                      {/* <Link
-                        className="btn btn-info btn-sm"
-                        to={`/editEvent/${event._id}`}
-                      >
-                        <i
-                          className="fa fa-hospital-o fa-sm"
-                          aria-hidden="true"
-                          title="Edit registration"
-                        />
-                      </Link>{' '} */}
-                      <button className='btn btn-info btn-sm'                      
+  
+                      <button className='btn btn-info btn-sm registerBtn'                      
                         onClick={handleEditShow}
                       >
                         <i
@@ -328,7 +319,7 @@ const ShowEventsList = () => {
                         />
                       </button>
                       <button
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-danger btn-sm registerBtn"
                         onClick={() => {
                           deleteRecord(event._id)
                         }}

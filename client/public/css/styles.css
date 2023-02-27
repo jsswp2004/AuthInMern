@@ -756,15 +756,15 @@ tbody tr {
 }
 
 .viewlabel {
-  width: "400px";
-  height: "38px";
-  text-align: "center";
-  vertical-align: "middle";
-  margin-left: "10px";
-  padding-left: "0px";
-  padding-bottom: "0px";
-  padding-top: "0px";
-  padding-right: "0px";
+  width: 300px;
+  height: 38px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 10px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
 }
 .patientListHeader {
   margin-top: 5px;
@@ -868,6 +868,8 @@ h5 {
   padding-top: 0;
 }
 
+
+/* this is the css for the calendar hover display */
 .visitMonthDayContainer:hover {
 background-color: #0c4879;
 color: white;
@@ -877,13 +879,10 @@ color: white;
 display: none;
 }
 
-.visitMonthDayContainerItem:hover + .visitMonthDayContainerItems { 
+.visitMonthDayContainerItem:hover > .visitMonthDayContainerItems { 
   display: block;
 }
-
-/* .visitMonthDayContainerItemSpan:hover { 
-  display: none;
-} */
+/* end code for calendar hover display */
 
 .visitMonthDayContainerItem {
   margin-top: 0;
@@ -1019,7 +1018,7 @@ ul .calendar {
 } */
 
 .customDatePickerWidth{
-  width: 400px;
+  width: 300px;
   padding: 0px;
   height: 30px;
   margin-left: 5px;
@@ -1191,15 +1190,15 @@ background-color: #2196F3;
 
 /* direction arrows */
 .directionArrows {
-  padding-left: 15px;
-  padding-top: 5px;
-  width: 40px;
-  height: 30px;
+  margin-left: 10px;
+  margin-top: 15px;
+  width: 20px;
+  height: 20px;
 }
 
 .directionArrows:hover {
-  height: 40px;
-  width: 50px;
+  height: 20px;
+  width: 25px;
 }
 
 /* code for test calendar */
@@ -1263,7 +1262,7 @@ main {
 
 
 .month-name {
-  width: fit-content;
+  width: 300px;
 }
 /* // CSS grid used for the dates */
 .day-of-week,

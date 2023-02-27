@@ -308,27 +308,17 @@ const ShowRolesList = () => {
                     <StyledTableCell align="left">{role.addedDate}</StyledTableCell>
                     
                     <StyledTableCell align="left">
-                      {/* <Link
-                        className="btn btn-info btn-sm"
-                        to={`/editRole/${role._id}`}
-                      >
-                        <i
-                          className="fa fa-hospital-o fa-sm"
-                          aria-hidden="true"
-                          title="Edit registration"
-                        />
-                      </Link>{' '} */}
-                      <button className='btn btn-info btn-sm'                      
+                      <button className='btn btn-info btn-sm registerBtn'                      
                         onClick={handleEditShow}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"
                           aria-hidden="true"
-                          title="Edit Event"
+                          title="Edit Role"
                         />
                       </button>
                       <button
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-danger btn-sm registerBtn"
                         onClick={() => {
                           deleteRecord(role._id)
                         }}

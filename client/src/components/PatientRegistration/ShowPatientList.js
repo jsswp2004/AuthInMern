@@ -430,7 +430,7 @@ export default function ShowRecordList() {
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     <Button
-                      className="btn btn-primary btn-sm"
+                      className="btn btn-primary btn-sm registerBtn"
                       onClick={handleVisitShow}
                     >
                       <i
@@ -448,7 +448,7 @@ export default function ShowRecordList() {
                       />
                     </Link>{' '} */}
                     <Link
-                      className="btn btn-info btn-sm"
+                      className="btn btn-info btn-sm registerBtn"
                       to={`/editPatient/${pt._id}`}
                     >
                       <i
@@ -471,7 +471,7 @@ export default function ShowRecordList() {
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
                     </button> */}
                     <button onClick={handleShowDelete}
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-danger btn-sm registerBtn"
                     >
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" /></button>
                   </StyledTableCell>
