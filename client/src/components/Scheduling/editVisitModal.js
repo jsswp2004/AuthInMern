@@ -137,6 +137,8 @@ function UpdateVisitInfo(props) {
       .catch((err) => {
         console.log('Error in UpdateVisitInfo!')
       })
+    window.location.reload()
+    window.location.close()
   }
 
   // const createFromVisit = () => {

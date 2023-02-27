@@ -868,6 +868,13 @@ h5 {
   padding-top: 0;
 }
 
+.visitMonthDayContainer:hover {
+background-color: #0c4879;
+color: white;
+}
+
+
+
 .visitMonthDayContainerItem {
   margin-top: 0;
   margin-right: 2px;
