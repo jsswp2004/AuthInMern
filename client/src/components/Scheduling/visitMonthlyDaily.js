@@ -117,15 +117,31 @@ const VisitMonthDaily = (props) => {
   }
   //#endregion
   return (
-    <div className="visitMonthDayContainer" >
+    <div title='select to update' className="visitMonthDayContainer" >
+
       <div>{displayEditVisitModal()}</div>
       <div>{displayDeleteRegistrationModal()}</div>
 
       {/* <div className="visitMonthDayContainerItem" > */}
-      <span className="visitMonthDayContainerItem" onClick={() => handleItemClick(props.visit)}>
-        {props.visit.hourOfVisit} {props.visit.firstName}{' '}
-        {props.visit.lastName}
-      </span>
+      <div className="visitMonthDayContainerItem" onClick={() => handleItemClick(props.visit)}>
+
+        <span className="visitMonthDayContainerItemSpan">{props.visit.hourOfVisit} {props.visit.firstName}{' '}
+          {props.visit.lastName}
+        </span>
+      </div>
+
+      <div className="visitMonthDayContainerItems" >
+        <ul>
+          {/* <li>{props.visit.firstName}</li>
+          <li>{props.visit.lastName}</li> */}
+          
+          <li>{props.visit.email}</li>
+          <li>{props.visit.hourOfVisit}</li>
+          <li>{props.visit.provider}</li>
+          <li>{'cellphone'}</li>
+
+        </ul>
+      </div>
       {/* </div> */}
       <div className="visitMonthDayContainerItemAction" onClick={() => setVisitID(props.visit._id)}>
         {/* <Link to={`/editVisit/${props.visit._id}`} >
@@ -135,7 +151,7 @@ const VisitMonthDaily = (props) => {
             style={{ color: 'blue', paddingTop: '5px' }}
           />
         </Link> */}
-        <Link to={`/detailsVisit/${props.visit._id}`}>
+        <Link className='hovertest' to={`/detailsVisit/${props.visit._id}`}>
           <i
             className="fa fa-clipboard fa-sm"
             aria-hidden="true"
@@ -144,6 +160,7 @@ const VisitMonthDaily = (props) => {
 
           />
         </Link>{' '}
+
         <span>
           <i
             className="fa fa-trash fa-sm"

@@ -873,7 +873,17 @@ background-color: #0c4879;
 color: white;
 }
 
+.visitMonthDayContainerItems {
+display: none;
+}
 
+.visitMonthDayContainerItem:hover + .visitMonthDayContainerItems { 
+  display: block;
+}
+
+/* .visitMonthDayContainerItemSpan:hover { 
+  display: none;
+} */
 
 .visitMonthDayContainerItem {
   margin-top: 0;
