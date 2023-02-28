@@ -61,7 +61,7 @@ export default function ClinicVisit() {
   // const alert = useAlert()
   //#endregion
   //#region for setting state for monthdate with in schedule
-  const [monthDate, setMonthDate] = useState('')
+  // const [monthDate, setMonthDate] = useState('')
   //#endregion
   //#region for setting state and pulling data for provider MD
   const [selectAvailabilityMD, setSelectAvailabilityMD] = useState([])
@@ -72,7 +72,7 @@ export default function ClinicVisit() {
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
-// console.log(selectAvailabilityMD)
+  // console.log(selectAvailabilityMD)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -92,29 +92,7 @@ export default function ClinicVisit() {
   // console.log(selectAvailabilityMD, availableMD._id)
 
   //#endregion
-  //#region for pulling the schedules based on selected provider availability
-  const [staffSchedules, setStaffSchedules] = useState([])
-  const availableMD  = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
-  const { providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart , endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User': availableMD[0]
-  // const provider = availableMD[0]
-  console.log(availableMD, selectedAvailableMDID, selectedAvailableMDStart, selectedAvailableMDEnd)
-  // const availableMD = staffSchedules.provider.includes(selectAvailabilityMD)//find((doc) => doc.name === selectAvailabilityMD)
-  // Pull the date
-  // const [pullDailyDate, setPullDailyDate] = useState([])
-  // const DailyDate = pullDailyDate//.filter((doc) => doc.provider === selectAvailabilityMD)
-  useEffect(() => {
-    axios
-      .get('http://localhost:8081/api/schedules')
-      .then((response) => {
-        const data = response.data//.find(doc => doc.name === availableMD)
-        setStaffSchedules(data)
-      })
-      .catch((error) => {
-        console.log('Error from schedule list')
-      })
-  },[])
-  // console.log(DailyDate)
-  //#endregion
+
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
   useEffect(() => {
@@ -1489,6 +1467,74 @@ export default function ClinicVisit() {
 
   //#endregion
 
+  //#region for pulling the schedules based on selected provider availability
+  const [staffSchedules, setStaffSchedules] = useState([])
+  const availableMD = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
+  const { providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart, endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
+  // const provider = availableMD[0]
+  console.log(selectedAvailableMDID, selectedAvailableMDStart, selectedAvailableMDEnd)
+  // const availableMD = staffSchedules.provider.includes(selectAvailabilityMD)//find((doc) => doc.name === selectAvailabilityMD)
+  // Pull the date
+  // const [pullDailyDate, setPullDailyDate] = useState([])
+  // const DailyDate = pullDailyDate//.filter((doc) => doc.provider === selectAvailabilityMD)
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/schedules')
+      .then((response) => {
+        const data = response.data//.find(doc => doc.name === availableMD)
+        setStaffSchedules(data)
+      })
+      .catch((error) => {
+        console.log('Error from schedule list')
+      })
+  }, [])
+
+  const MonthDayDate1 = format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd')
+  const MonthDayDate2 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2), 'yyyy-MM-dd')
+  const MonthDayDate3 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3), 'yyyy-MM-dd')
+  const MonthDayDate4 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4), 'yyyy-MM-dd')
+  const MonthDayDate5 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5), 'yyyy-MM-dd')
+  const MonthDayDate6 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6), 'yyyy-MM-dd')
+  const MonthDayDate7 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7), 'yyyy-MM-dd')
+  const MonthDayDate8 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8), 'yyyy-MM-dd')
+  const MonthDayDate9 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9), 'yyyy-MM-dd')
+  const MonthDayDate10 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10), 'yyyy-MM-dd')
+  const MonthDayDate11 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11), 'yyyy-MM-dd')
+  const MonthDayDate12 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12), 'yyyy-MM-dd')
+  const MonthDayDate13 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13), 'yyyy-MM-dd')
+  const MonthDayDate14 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14), 'yyyy-MM-dd')
+  const MonthDayDate15 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15), 'yyyy-MM-dd')
+  const MonthDayDate16 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 15 > endOfTheMonthDay ? 1 : 16), 'yyyy-MM-dd')
+  const MonthDayDate17 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17), 'yyyy-MM-dd')
+  const MonthDayDate18 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18), 'yyyy-MM-dd')
+  const MonthDayDate19 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19), 'yyyy-MM-dd')
+  const MonthDayDate20 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20), 'yyyy-MM-dd')
+  const MonthDayDate21 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21), 'yyyy-MM-dd')
+  const MonthDayDate22 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22), 'yyyy-MM-dd')
+  const MonthDayDate23 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23), 'yyyy-MM-dd')
+  const MonthDayDate24 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24), 'yyyy-MM-dd')
+  const MonthDayDate25 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25), 'yyyy-MM-dd')
+  const MonthDayDate26 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26), 'yyyy-MM-dd')
+  const MonthDayDate27 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27), 'yyyy-MM-dd')
+  const MonthDayDate28 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28), 'yyyy-MM-dd')
+  const MonthDayDate29 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29), 'yyyy-MM-dd')
+  const MonthDayDate30 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30), 'yyyy-MM-dd')
+  const MonthDayDate31 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31), 'yyyy-MM-dd')
+  // const MonthDayDate32 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 31 > endOfTheMonthDay ? 1 : 32), 'yyyy-MM-dd')
+  
+  function isScheduled(dateItem) {
+    const isScheduled = dateItem >= selectedAvailableMDStart && dateItem <= selectedAvailableMDEnd ? true : false
+    return isScheduled
+  }
+
+  console.log(isScheduled(MonthDayDate31))
+  console.log(MonthDayDate31)
+
+  // function getDaysInMonth(month, year) {
+  //   return new Date(year, month, 0).getDate()
+  // }
+  // console.log(DailyDate)
+  //#endregion
   return (
     <div className="grid_container">
       <div className="item1">
@@ -1602,7 +1648,7 @@ export default function ClinicVisit() {
                   >
                     {' '}
                     <option key="Select" value="">
-                      Select Provider Availability
+                      Select Provider for Availability
                     </option>
                     {providerMD.map((doc) => (
                       <option id={doc._id} key={doc._id} value={doc._id}>
@@ -1666,10 +1712,11 @@ export default function ClinicVisit() {
                   className="monthDayTitleChild"
                   style={{
                     gridColumnStart: startOfTheMonthDayNumber + 1,
+                    backgroundColor: isScheduled(MonthDayDate1) ? '#90EE90' : 'white',
                   }}
                 >
                   <span id="day1" >
-                  {/* onClick={setPullDailyDate(new Date())} */}
+                    {/* onClick={setPullDailyDate(new Date())} */}
                     <button
                       style={{
                         fontSize: '10px',
@@ -1682,12 +1729,15 @@ export default function ClinicVisit() {
                       title="Click to add visit"
                     >
                       {startOfTheMonthDay}
-                      {/* {setPullDailyDate(startOfTheMonthDay)} */}
+
                     </button>
                   </span>
                   {visitListMonthlyDay1()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate2) ? '#90EE90' : 'white',
+                  }}>
                   <span id="day2" className="day">
                     <button
                       style={{
@@ -1705,7 +1755,10 @@ export default function ClinicVisit() {
                   </span>
                   {visitListMonthlyDay2()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate3) ? '#90EE90' : 'white',
+                  }}>
                   <span className="day" id="day3">
                     <button
                       style={{
@@ -1725,7 +1778,10 @@ export default function ClinicVisit() {
                   </span>
                   {visitListMonthlyDay3()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate4) ? '#90EE90' : 'white',
+                  }}>
                   <span className="day4" id="day4">
                     <button
                       style={{
@@ -1750,6 +1806,9 @@ export default function ClinicVisit() {
                     setSelectedDate()
                     // setSelectedElement()
                   }}
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate5) ? '#90EE90' : 'white',
+                  }}
                 >
                   <span className="day5" id="day5">
                     <button
@@ -1768,7 +1827,9 @@ export default function ClinicVisit() {
                   </span>
                   {visitListMonthlyDay5()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild" style={{
+                  backgroundColor: isScheduled(MonthDayDate6) ? '#90EE90' : 'white',
+                }}>
                   <span className="day6" id="day6">
                     <button
                       style={{
@@ -1786,7 +1847,10 @@ export default function ClinicVisit() {
                   </span>
                   {visitListMonthlyDay6()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate7) ? '#90EE90' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -1808,6 +1872,9 @@ export default function ClinicVisit() {
                   className="monthDayTitleChild"
                   style={{
                     pointerEvents: weekendDay ? 'none' : '',
+
+                    backgroundColor: isScheduled(MonthDayDate8) ? '#90EE90' : 'white',
+
                   }}
                 >
                   <span>
@@ -1827,7 +1894,9 @@ export default function ClinicVisit() {
                   </span>
                   {visitListMonthlyDay8()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild" style={{
+                  backgroundColor: isScheduled(MonthDayDate9) ? '#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1845,7 +1914,10 @@ export default function ClinicVisit() {
                   </span>
                   {visitListMonthlyDay9()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate10) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1864,7 +1936,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay10()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate11) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1883,7 +1958,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay11()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate12) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1902,7 +1980,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay12()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate13) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1921,7 +2002,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay13()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate14) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1940,7 +2024,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay14()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                                style={{
+                    backgroundColor: isScheduled(MonthDayDate15) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1959,7 +2046,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay15()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                                style={{
+                    backgroundColor: isScheduled(MonthDayDate16) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1978,7 +2068,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay16()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                                style={{
+                    backgroundColor: isScheduled(MonthDayDate17) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -1997,7 +2090,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay17()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                                style={{
+                    backgroundColor: isScheduled(MonthDayDate18) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2016,7 +2112,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay18()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                                style={{
+                    backgroundColor: isScheduled(MonthDayDate19) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2035,7 +2134,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay19()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                                style={{
+                    backgroundColor: isScheduled(MonthDayDate20) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2054,7 +2156,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay20()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate21) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2073,7 +2178,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay21()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate22) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2092,7 +2200,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay22()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate23) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2111,7 +2222,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay23()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate24) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2130,7 +2244,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay24()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate25) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2149,7 +2266,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay25()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate26) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2168,7 +2288,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay26()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate27) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2187,7 +2310,10 @@ export default function ClinicVisit() {
 
                   {visitListMonthlyDay27()}
                 </div>
-                <div className="monthDayTitleChild">
+                <div className="monthDayTitleChild"
+                style={{
+                    backgroundColor: isScheduled(MonthDayDate28) ?'#90EE90' : 'white',
+                }}>
                   <span>
                     <button
                       style={{
@@ -2213,6 +2339,7 @@ export default function ClinicVisit() {
                       startOfTheMonthDay + 28 > endOfTheMonthDay
                         ? 'none'
                         : 'inline',
+                        backgroundColor: isScheduled(MonthDayDate29) ?'#90EE90' : 'white',
                   }}
                 >
                   <span>
@@ -2240,6 +2367,7 @@ export default function ClinicVisit() {
                       startOfTheMonthDay + 29 > endOfTheMonthDay
                         ? 'none'
                         : 'inline',
+                        backgroundColor: isScheduled(MonthDayDate30) ?'#90EE90' : 'white',
                   }}
                 >
                   <span>
@@ -2267,7 +2395,9 @@ export default function ClinicVisit() {
                       startOfTheMonthDay + 30 > endOfTheMonthDay
                         ? 'none'
                         : 'inline',
+                        backgroundColor: isScheduled(MonthDayDate31) ?'#90EE90' : 'white',
                   }}
+                  
                 >
                   <span>
                     <button
@@ -2295,6 +2425,7 @@ export default function ClinicVisit() {
                 display: selectViewValue === 'Weekly' ? 'inline' : 'none',
                 paddingLeft: '0px',
                 marginBottom: '0px',
+                backgroundColor: isScheduled(MonthDayDate31) ?'#90EE90' : 'white',
               }}
             >
               <div className="grid-weeklycalcontainer">
