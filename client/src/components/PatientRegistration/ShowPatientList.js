@@ -124,7 +124,7 @@ export default function ShowRecordList() {
     <>
       <Modal show={showVisit} onHide={handleVisitClose} size="lg" centered>
         <Modal.Header>
-          <Modal.Title>Register a client</Modal.Title>
+          <Modal.Title>Add a visit</Modal.Title>
           <Button variant="secondary" onClick={handleVisitClick}>
             Close
           </Button>

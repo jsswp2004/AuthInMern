@@ -199,7 +199,7 @@ function EditSchedule(props) {
                     Tuesdays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay2('Tues')}
+                      onClick={() => setScheduleDay2('Tue')}
                       name="scheduledDays"
                       value={schedule.scheduledTues}
                     />
@@ -219,7 +219,7 @@ function EditSchedule(props) {
                     Thursdays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay4('Thurs')}
+                      onClick={() => setScheduleDay4('Thur')}
                       name="scheduledDays"
                       value={schedule.scheduledThurs}
                     />

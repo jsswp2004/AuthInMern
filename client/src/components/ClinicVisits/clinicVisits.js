@@ -18,6 +18,7 @@ import {
   getYear,
   isSaturday,
   isSunday,
+  isWeekend,
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
@@ -1466,17 +1467,11 @@ export default function ClinicVisit() {
   }
 
   //#endregion
-
   //#region for pulling the schedules based on selected provider availability
   const [staffSchedules, setStaffSchedules] = useState([])
   const availableMD = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
-  const { providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart, endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
-  // const provider = availableMD[0]
-  console.log(selectedAvailableMDID, selectedAvailableMDStart, selectedAvailableMDEnd)
-  // const availableMD = staffSchedules.provider.includes(selectAvailabilityMD)//find((doc) => doc.name === selectAvailabilityMD)
-  // Pull the date
-  // const [pullDailyDate, setPullDailyDate] = useState([])
-  // const DailyDate = pullDailyDate//.filter((doc) => doc.provider === selectAvailabilityMD)
+  const { scheduledMon: scheduledMons, scheduledTues: scheduledTue, scheduledWed: scheduledWeds, scheduledThurs: scheduledThur, scheduledFri: scheduledFris,  providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart, endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/schedules')
@@ -1521,20 +1516,27 @@ export default function ClinicVisit() {
   const MonthDayDate30 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30), 'yyyy-MM-dd')
   const MonthDayDate31 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31), 'yyyy-MM-dd')
   // const MonthDayDate32 = format(new Date(currentYear, monthIndex, startOfTheMonthDay + 31 > endOfTheMonthDay ? 1 : 32), 'yyyy-MM-dd')
-  
+
   function isScheduled(dateItem) {
-    const isScheduled = dateItem >= selectedAvailableMDStart && dateItem <= selectedAvailableMDEnd ? true : false
+    const isDayScheduled = scheduledMons === format(addDays(new Date(dateItem), 1), 'iii') || scheduledTue === format(addDays(new Date(dateItem), 1), 'iii') || scheduledWeds === format(addDays(new Date(dateItem), 1), 'iii') || scheduledThur === format(addDays(new Date(dateItem), 1), 'iii') || scheduledFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
+    const isSchedule = dateItem >= selectedAvailableMDStart && dateItem <= selectedAvailableMDEnd ? true : false
+    const isScheduled = isDayScheduled && isSchedule ? true : false
     return isScheduled
   }
 
-  console.log(isScheduled(MonthDayDate31))
-  console.log(MonthDayDate31)
+  // console.log(format(addDays(new Date(dateItem), 1), 'iii'))
+
 
   // function getDaysInMonth(month, year) {
   //   return new Date(year, month, 0).getDate()
   // }
   // console.log(DailyDate)
   //#endregion
+  // console.log(scheduledMons, scheduledTue, scheduledWeds, scheduledThur, format(addDays(new Date(MonthDayDate9), 1), 'iii'))
+  //   console.log(scheduledThur === format(addDays(new Date(MonthDayDate9),1),'iii') ? true : false)
+  // console.log(addDays(new Date(MonthDayDate11), 1), MonthDayDate11, MonthDayDate12)
+  // console.log(isWeekend(addDays(new Date(MonthDayDate11), 1)), isWeekend(addDays(new Date(MonthDayDate12), 1)))
+  // console.log(addDays(new Date(MonthDayDate11), 1), MonthDayDate11, MonthDayDate12)
   return (
     <div className="grid_container">
       <div className="item1">
@@ -1681,6 +1683,7 @@ export default function ClinicVisit() {
           <div>{displayVisitMonthlyModal()}</div>
           <div className="itemCalendar2">
             <div>{displayEditVisitModal()}</div>
+            {/* monthly */}
             <div
               className="monthly"
               style={{
@@ -1695,9 +1698,9 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="weekDayTitleChild"
-                // onClick={() => {
-                //   alert.show('Oh look, an alert!')
-                // }}
+                  onClick={() => {
+                    alert.show('Oh look, an alert!')
+                  }}
                 >
                   Mo
                 </div>
@@ -1712,7 +1715,10 @@ export default function ClinicVisit() {
                   className="monthDayTitleChild"
                   style={{
                     gridColumnStart: startOfTheMonthDayNumber + 1,
-                    backgroundColor: isScheduled(MonthDayDate1) ? '#90EE90' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate1) ? '#cefad0' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate2) ? '#cefad0' : isWeekend(addDays(new Date(MonthDayDate2),1)) ? 'white' : 'white' ,
+                    backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) ? 'white' : '#cefad0' : 'white',
+
                   }}
                 >
                   <span id="day1" >
@@ -1736,7 +1742,9 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    backgroundColor: isScheduled(MonthDayDate2) ? '#90EE90' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate2) ? '#cefad0' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate2) ? '#cefad0' : isWeekend(addDays(new Date(MonthDayDate2),1)) ? 'white' : 'white' ,
+                    backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span id="day2" className="day">
                     <button
@@ -1757,7 +1765,9 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    backgroundColor: isScheduled(MonthDayDate3) ? '#90EE90' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate3) ? '#cefad0' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate3) ? '#cefad0' : isWeekend(addDays(new Date(MonthDayDate3),1)) ? 'white' : 'white' ,
+                    backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span className="day" id="day3">
                     <button
@@ -1780,7 +1790,9 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    backgroundColor: isScheduled(MonthDayDate4) ? '#90EE90' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate4) ? '#cefad0' : 'white',
+                    // backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4),1)) ? 'white' : '#cefad0' : 'white' ,
+                    backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span className="day4" id="day4">
                     <button
@@ -1807,7 +1819,8 @@ export default function ClinicVisit() {
                     // setSelectedElement()
                   }}
                   style={{
-                    backgroundColor: isScheduled(MonthDayDate5) ? '#90EE90' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
+
                   }}
                 >
                   <span className="day5" id="day5">
@@ -1828,7 +1841,7 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay5()}
                 </div>
                 <div className="monthDayTitleChild" style={{
-                  backgroundColor: isScheduled(MonthDayDate6) ? '#90EE90' : 'white',
+                  backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
                 }}>
                   <span className="day6" id="day6">
                     <button
@@ -1849,7 +1862,7 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    backgroundColor: isScheduled(MonthDayDate7) ? '#90EE90' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span>
                     <button
@@ -1873,7 +1886,7 @@ export default function ClinicVisit() {
                   style={{
                     pointerEvents: weekendDay ? 'none' : '',
 
-                    backgroundColor: isScheduled(MonthDayDate8) ? '#90EE90' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) ? 'white' : '#cefad0' : 'white',
 
                   }}
                 >
@@ -1895,7 +1908,7 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay8()}
                 </div>
                 <div className="monthDayTitleChild" style={{
-                  backgroundColor: isScheduled(MonthDayDate9) ? '#90EE90' : 'white',
+                  backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) ? 'white' : '#cefad0' : 'white',
                 }}>
                   <span>
                     <button
@@ -1915,9 +1928,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay9()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate10) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -1937,9 +1950,12 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay10()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate11) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    pointerEvents: weekendDay ? 'none' : '',
+                    // backgroundColor: isScheduled(MonthDayDate11) ? '#cefad0' : isWeekend(MonthDayDate11) ? 'white' : 'white',
+                    // backgroundColor: isWeekend(addDays(new Date(MonthDayDate11), 1)) ? '#cefad0' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -1959,9 +1975,10 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay11()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate12) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    // backgroundColor: isScheduled(MonthDayDate12) ? '#cefad0' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -1981,9 +1998,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay12()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate13) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2003,9 +2020,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay13()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate14) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2025,9 +2042,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay14()}
                 </div>
                 <div className="monthDayTitleChild"
-                                style={{
-                    backgroundColor: isScheduled(MonthDayDate15) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2047,9 +2064,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay15()}
                 </div>
                 <div className="monthDayTitleChild"
-                                style={{
-                    backgroundColor: isScheduled(MonthDayDate16) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2069,9 +2086,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay16()}
                 </div>
                 <div className="monthDayTitleChild"
-                                style={{
-                    backgroundColor: isScheduled(MonthDayDate17) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2091,9 +2108,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay17()}
                 </div>
                 <div className="monthDayTitleChild"
-                                style={{
-                    backgroundColor: isScheduled(MonthDayDate18) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2113,9 +2130,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay18()}
                 </div>
                 <div className="monthDayTitleChild"
-                                style={{
-                    backgroundColor: isScheduled(MonthDayDate19) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2135,9 +2152,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay19()}
                 </div>
                 <div className="monthDayTitleChild"
-                                style={{
-                    backgroundColor: isScheduled(MonthDayDate20) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2157,9 +2174,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay20()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate21) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2179,9 +2196,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay21()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate22) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2201,9 +2218,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay22()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate23) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2223,9 +2240,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay23()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate24) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2245,9 +2262,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay24()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate25) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2267,9 +2284,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay25()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate26) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2289,9 +2306,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay26()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate27) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2311,9 +2328,9 @@ export default function ClinicVisit() {
                   {visitListMonthlyDay27()}
                 </div>
                 <div className="monthDayTitleChild"
-                style={{
-                    backgroundColor: isScheduled(MonthDayDate28) ?'#90EE90' : 'white',
-                }}>
+                  style={{
+                    backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
                   <span>
                     <button
                       style={{
@@ -2339,7 +2356,7 @@ export default function ClinicVisit() {
                       startOfTheMonthDay + 28 > endOfTheMonthDay
                         ? 'none'
                         : 'inline',
-                        backgroundColor: isScheduled(MonthDayDate29) ?'#90EE90' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) ? 'white' : '#cefad0' : 'white',
                   }}
                 >
                   <span>
@@ -2367,7 +2384,7 @@ export default function ClinicVisit() {
                       startOfTheMonthDay + 29 > endOfTheMonthDay
                         ? 'none'
                         : 'inline',
-                        backgroundColor: isScheduled(MonthDayDate30) ?'#90EE90' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) ? 'white' : '#cefad0' : 'white',
                   }}
                 >
                   <span>
@@ -2395,9 +2412,9 @@ export default function ClinicVisit() {
                       startOfTheMonthDay + 30 > endOfTheMonthDay
                         ? 'none'
                         : 'inline',
-                        backgroundColor: isScheduled(MonthDayDate31) ?'#90EE90' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) ? 'white' : '#cefad0' : 'white',
                   }}
-                  
+
                 >
                   <span>
                     <button
@@ -2419,13 +2436,14 @@ export default function ClinicVisit() {
                 </div>
               </div>
             </div>
+            {/* Weekly  */}
             <div
               className="weekly"
               style={{
                 display: selectViewValue === 'Weekly' ? 'inline' : 'none',
                 paddingLeft: '0px',
                 marginBottom: '0px',
-                backgroundColor: isScheduled(MonthDayDate31) ?'#90EE90' : 'white',
+                backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
               }}
             >
               <div className="grid-weeklycalcontainer">
@@ -2537,6 +2555,7 @@ export default function ClinicVisit() {
                 </div>
               </div>
             </div>
+            {/* Daily  */}
             <div
               className="daily"
               style={{
