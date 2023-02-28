@@ -60,6 +60,54 @@ export default function ClinicVisit() {
   //#region for alert declaration
   // const alert = useAlert()
   //#endregion
+  //#region for setting state for monthdate with in schedule
+  const [monthDate, setMonthDate] = useState('')
+  //#endregion
+  //#region for setting state and pulling data for provider MD
+  const [selectAvailabilityMD, setSelectAvailabilityMD] = useState([])
+  const selectedDR = selectAvailabilityMD.filter((doc) => {
+    return doc.name.toString().toLowerCase().includes(selectAvailabilityMD) 
+  })
+  const [userMD, setUserMD] = useState([])
+  const attendings = userMD.filter((user) => {
+    return user.role.toString().toLowerCase().includes('attending')
+  })
+// console.log(selectAvailabilityMD)
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/users')
+      .then((response) => {
+        const data = response.data
+        setUserMD(data)
+
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [])
+
+  const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+  const availableMD = selectedDR
+  // const availableMD = attendings.find((doc) => doc.name === availableDR)
+  // console.log(selectAvailabilityMD, availableMD._id)
+  const { _id: selectedAvailableMDID, name: selectedAvailableMDName , role: selectedAvailableMDRole } = availableMD
+  // console.log(selectedAvailableMDID, selectedAvailableMDName, selectedAvailableMDRole)
+  //#endregion
+  //#region for pulling the schedules based on selected provider availability
+  const [staffSchedules, setStaffSchedules] = useState([])
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/schedules')
+      .then((response) => {
+        const data = response.data.find(doc => doc.name === availableMD)
+        setStaffSchedules(data)
+      })
+      .catch((error) => {
+        console.log('Error from schedule list')
+      })
+  })
+  console.log(availableMD, staffSchedules)
+  //#endregion
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
   useEffect(() => {
@@ -255,6 +303,13 @@ export default function ClinicVisit() {
   function displayVisitMonthlyModal() {
     return <VisitModalMonthly />
   }
+
+  // const onChangeHandler = (e) => {
+  //   const index = e.target.selectedIndex;
+  //   const el = e.target.childNodes[index]
+  //   const option =  el.getAttribute('id');  
+  // }
+
   //#endregion
   //#region for setting the ID of the provider for the property
   const handleItemClick = item => {
@@ -1459,18 +1514,6 @@ export default function ClinicVisit() {
               </div>
               <div className="searchLabel viewlabel">
                 <select className="form-control"
-                  // style={{
-                  //   width: '100px',
-                  //   height: '38px',
-                  //   textAlign: 'left',
-                  //   verticalAlign: 'middle',
-                  //   marginLeft: '10px',
-                  //   paddingLeft: '5px',
-                  //   paddingBottom: '0px',
-                  //   paddingTop: '0px',
-                  //   paddingRight: '0px',
-                  // }}
-                  
                   id="calendarView"
                   value={selectViewValue}
                   onChange={viewValueChange}
@@ -1515,7 +1558,7 @@ export default function ClinicVisit() {
                   }
                 ></img>
               </div>
-              <div //className='searchLabel'
+              <div
                 style={{
                   marginLeft: 'auto',
                   height: '30px',
@@ -1537,6 +1580,32 @@ export default function ClinicVisit() {
                 <div>{displayVisitModal()}</div>
               </div>
               {/* modal end*/}
+              {/* provider availability start */}
+              <div className="searchLabel viewlabel">
+                <label>
+                  {/* Provider: */}
+                  <select
+                    key={visits.provider}
+                    className="selectlabel"
+                    name="provider"
+                    value={visits.provider}
+                    onChange={(e) => {
+                      setSelectAvailabilityMD(e.target.value)
+                    }}
+                  >
+                    {' '}
+                    <option key="Select" value="">
+                      Select Provider Availability
+                    </option>
+                    {providerMD.map((doc) => (
+                      <option id={doc._id} key={doc._id} value={doc._id}>
+                        {doc}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              {/* provider end */}
               {/* search start */}
 
               <div className="div-items" >
@@ -1552,20 +1621,6 @@ export default function ClinicVisit() {
                     <i className="fa fa-search" aria-hidden="true"></i>
                   </a>
                 </div>
-                {/* <label
-                  htmlFor="search"
-                  // style={{ display: selectViewValue === 'Daily' ? '' : 'none' }}
-                  style={{ display: 'none' }}
-                >
-                  Search :
-                  <input
-                    id="search"
-                    type="text"
-                    placeholder="Search here"
-                    onChange={handleChange}
-                    value={searchInput}
-                  />
-                </label> */}
               </div>
               {/* search end */}
             </div>
@@ -1619,6 +1674,7 @@ export default function ClinicVisit() {
                       title="Click to add visit"
                     >
                       {startOfTheMonthDay}
+                      {/* {setMonthDate(startOfTheMonthDay)} */}
                     </button>
                   </span>
                   {visitListMonthlyDay1()}

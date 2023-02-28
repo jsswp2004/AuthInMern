@@ -766,6 +766,19 @@ tbody tr {
   padding-top: 0px;
   padding-right: 0px;
 }
+.selectlabel {
+  width: 250px;
+  height: 38px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 10px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  background-color: white;
+  border-radius: 5px;
+}
 .patientListHeader {
   margin-top: 5px;
 }
@@ -1475,7 +1488,7 @@ text-align: center;
   color: black;
   font-size: 14px;
   font-style: normal;
-  /* margin-left: auto; */
+  margin-left: 10px; 
 }
 
 .filterTitle {
