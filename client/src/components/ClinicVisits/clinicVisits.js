@@ -65,9 +65,9 @@ export default function ClinicVisit() {
   //#endregion
   //#region for setting state and pulling data for provider MD
   const [selectAvailabilityMD, setSelectAvailabilityMD] = useState([])
-  const selectedDR = selectAvailabilityMD.filter((doc) => {
-    return doc.name.toString().toLowerCase().includes(selectAvailabilityMD) 
-  })
+  // const selectedDR = selectAvailabilityMD.filter((doc) => {
+  //   return doc.name.toString().toLowerCase().includes(selectAvailabilityMD) 
+  // })
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -87,26 +87,33 @@ export default function ClinicVisit() {
   }, [])
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
-  const availableMD = selectedDR
-  // const availableMD = attendings.find((doc) => doc.name === availableDR)
+  // const availableMD = selectedDR
+
   // console.log(selectAvailabilityMD, availableMD._id)
-  const { _id: selectedAvailableMDID, name: selectedAvailableMDName , role: selectedAvailableMDRole } = availableMD
-  // console.log(selectedAvailableMDID, selectedAvailableMDName, selectedAvailableMDRole)
+
   //#endregion
   //#region for pulling the schedules based on selected provider availability
   const [staffSchedules, setStaffSchedules] = useState([])
+  const availableMD  = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
+  const { providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart , endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User': availableMD[0]
+  // const provider = availableMD[0]
+  console.log(availableMD, selectedAvailableMDID, selectedAvailableMDStart, selectedAvailableMDEnd)
+  // const availableMD = staffSchedules.provider.includes(selectAvailabilityMD)//find((doc) => doc.name === selectAvailabilityMD)
+  // Pull the date
+  // const [pullDailyDate, setPullDailyDate] = useState([])
+  // const DailyDate = pullDailyDate//.filter((doc) => doc.provider === selectAvailabilityMD)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/schedules')
       .then((response) => {
-        const data = response.data.find(doc => doc.name === availableMD)
+        const data = response.data//.find(doc => doc.name === availableMD)
         setStaffSchedules(data)
       })
       .catch((error) => {
         console.log('Error from schedule list')
       })
-  })
-  console.log(availableMD, staffSchedules)
+  },[])
+  // console.log(DailyDate)
   //#endregion
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
@@ -1661,7 +1668,8 @@ export default function ClinicVisit() {
                     gridColumnStart: startOfTheMonthDayNumber + 1,
                   }}
                 >
-                  <span id="day1">
+                  <span id="day1" >
+                  {/* onClick={setPullDailyDate(new Date())} */}
                     <button
                       style={{
                         fontSize: '10px',
@@ -1674,7 +1682,7 @@ export default function ClinicVisit() {
                       title="Click to add visit"
                     >
                       {startOfTheMonthDay}
-                      {/* {setMonthDate(startOfTheMonthDay)} */}
+                      {/* {setPullDailyDate(startOfTheMonthDay)} */}
                     </button>
                   </span>
                   {visitListMonthlyDay1()}
