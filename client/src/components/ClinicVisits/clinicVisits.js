@@ -1535,7 +1535,7 @@ export default function ClinicVisit() {
   const WeekDayDate4 = format(addDays(new Date(startOfTheWeekDate),3),'yyyy-MM-dd') //Wednesday
   const WeekDayDate5 = format(addDays(new Date(startOfTheWeekDate),4) ,'yyyy-MM-dd') //Thursday
   const WeekDayDate6 = format(addDays(new Date(startOfTheWeekDate),5) ,'yyyy-MM-dd')//Friday
-  // const WeekDayDate7 = format(addDays(new Date(startOfTheWeekDate), 'yyyy-MM-dd'), 6)
+  const WeekDayDate7 = format(addDays(new Date(startOfTheWeekDate),6), 'yyyy-MM-dd')
   // console.log(format(addDays(new Date(WeekDayDate5), 1), 'iii'))
   // console.log(WeekDayDate1, monthIndex,startOfTheWeek + 5)
   // console.log(format(addDays(new Date(WeekDayDate5), 1), 'yyyy-MM-dd'))
@@ -2614,10 +2614,14 @@ export default function ClinicVisit() {
 
                   <li className="calendar-item calendar-day">
                     {visitListWeeklyFriday()}
-                    {console.log(WeekDayDate6)}
+                    {/* {console.log(WeekDayDate6)} */}
                   </li>
                 </div>
-                <div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
+                }}>
                   <li className="calendar-item weekday">
                     <div>
                       SAT

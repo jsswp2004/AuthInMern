@@ -1032,13 +1032,13 @@ ul .calendar {
   display: grid;
   grid-template-areas: "main main main main main main main";
   /* grid-template-columns: auto auto auto auto auto auto auto; */
-  grid-template-columns: 5% 18% 18% 18% 18% 18% 5%;
+  grid-template-columns: 5% 18% 18% 18% 18% 18% 4.5%;
   /* repeat(10, 1fr); minmax(100px, 1fr)) */
   grid-template-rows: repeat(1, auto);
 height: 100%;
   /* align-content: space-evenly; */
-
-  /* gap: 0px; */
+/* : #6d6d6d; */
+  column-gap: 1px;
 }
 .grid-weeklycalcontainer > div {
   /* background-color: rgba(255, 255, 255, 0.8); */
@@ -1046,6 +1046,7 @@ height: 100%;
   /* text-align: right; */
   padding: 0px 0;
   font-size: 30px;
+  /* column-gap: 1px; */
 }
 /* padding: 10px; height: 400px; 
 background-color: #2196F3; 
