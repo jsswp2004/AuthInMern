@@ -833,12 +833,14 @@ h5 {
 .calendar-day {
   grid-column-start: 2;
   font-size: 14px;
-  background-color: white;
+  /* background-color: white; */
 }
 
 .day:hover {
   background-color: white;
 }
+
+
 
 .calendar-item {
   width: auto;
@@ -846,13 +848,14 @@ h5 {
   /* max-height: 150; */
   border: 0px;
   /* border-color: #525252; */
-  list-style-position: inside;
+  /* list-style-position: inside; */
   /* border-bottom: 1px solid #525252; */
   margin: 0px;
   /* font-size: small; */
   /* height: 100vh; */
   overflow: auto;
-  background-color: white;
+  /* background-color: white; */
+  list-style: none;
 }
 
 .weekendDay {
@@ -915,19 +918,7 @@ display: none;
   padding-top: 0;
 }
 
-.calendar-item {
-  width: auto;
-  /* height: auto; */
-  /* max-height: 150; */
-  border: 0px;
-  /* border-color: #525252; */
-  list-style-position: inside;
-  /* border-bottom: 1px solid #525252; */
-  margin: 0px;
-  /* font-size: small; */
-  /* height: 100vh; */
-  list-style: none;
-}
+
 
 .weekday {
   font-size: 14px;
@@ -1041,13 +1032,13 @@ ul .calendar {
   display: grid;
   grid-template-areas: "main main main main main main main";
   /* grid-template-columns: auto auto auto auto auto auto auto; */
-  grid-template-columns: auto 16% 16% 16% 16% 16% auto;
+  grid-template-columns: 5% 18% 18% 18% 18% 18% 5%;
   /* repeat(10, 1fr); minmax(100px, 1fr)) */
-  grid-template-rows: repeat(6, auto);
+  grid-template-rows: repeat(1, auto);
+height: 100%;
+  /* align-content: space-evenly; */
 
-  align-content: space-evenly;
-
-  gap: 2px;
+  /* gap: 0px; */
 }
 .grid-weeklycalcontainer > div {
   /* background-color: rgba(255, 255, 255, 0.8); */
@@ -1355,7 +1346,7 @@ text-align: center;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   /* grid-template-columns: 50px repeat(auto-fit, minmax(calc((100% - 100px)/5), 1fr)) 50px; */
-  grid-template-rows: repeat(2, auto);
+  grid-template-rows: repeat(1, auto);
   gap: 0px;
 }
 .itemCalendar1 {
@@ -1379,7 +1370,7 @@ text-align: center;
   text-align: left;
   padding: 0px;
   margin: 0px;
-  /* height: calc(100vh - 60px); */
+  height: 100%;
 }
 .weekDayTitleParent {
   background-color: white;

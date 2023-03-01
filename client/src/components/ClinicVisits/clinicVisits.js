@@ -152,7 +152,7 @@ export default function ClinicVisit() {
 
   const gridWeekly = {
     fontSize: '14px',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     height: 'calc(100vh - 132px)',
   }
 
@@ -171,6 +171,7 @@ export default function ClinicVisit() {
   //   newdate === '2022-05-01' ? 1 : dayOfTheMonth - dayOfTheWeek
   //pulls date number of the week
   let startOfTheWeek = startOfWeek(newdate).getDate()
+  console.log(startOfTheWeek)
   // startDayOfTheWeek < 1
   //   ? daysOfPreviousMonth - (dayOfTheWeek - 1)
   //   : startDayOfTheWeek
@@ -359,6 +360,7 @@ export default function ClinicVisit() {
       .catch((error) => {
         console.log('Unable to delete visit')
       })
+    window.location.close()
   }
   //#endregion
   //#region for formatting date function
@@ -1210,7 +1212,7 @@ export default function ClinicVisit() {
   const gridWeeklyStartSun = {
     gridColumnStart: dayOfSunday,
     backgroundColor: 'white',
-    height: 'calc(100vh - 132px)',
+    height: 'calc(100vh - 108px)',
   }
 
   //#endregion
@@ -1470,7 +1472,7 @@ export default function ClinicVisit() {
   //#region for pulling the schedules based on selected provider availability
   const [staffSchedules, setStaffSchedules] = useState([])
   const availableMD = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
-  const { scheduledMon: scheduledMons, scheduledTues: scheduledTue, scheduledWed: scheduledWeds, scheduledThurs: scheduledThur, scheduledFri: scheduledFris,  providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart, endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
+  const { scheduledMon: scheduledMons, scheduledTues: scheduledTue, scheduledWed: scheduledWeds, scheduledThurs: scheduledThur, scheduledFri: scheduledFris, providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart, endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
 
   useEffect(() => {
     axios
@@ -1524,6 +1526,19 @@ export default function ClinicVisit() {
     return isScheduled
   }
 
+  //Weekly
+  const WeekDayDate1 = format(new Date(currentYear, monthIndex, startOfTheWeek), 'yyyy-MM-dd') //Sunday
+  const WeekDayDate2 = format(new Date(currentYear, monthIndex, startOfTheWeek + 1), 'yyyy-MM-dd') //Monday
+  const WeekDayDate3 = format(new Date(currentYear, monthIndex, startOfTheWeek + 2), 'yyyy-MM-dd') //Tuesday
+  const WeekDayDate4 = format(new Date(currentYear, monthIndex, startOfTheWeek + 3), 'yyyy-MM-dd') //Wednesday
+  const WeekDayDate5 = format(new Date(currentYear, monthIndex, startOfTheWeek + 4), 'yyyy-MM-dd') //Thursday
+  const WeekDayDate6 = format(new Date(currentYear, monthIndex, startOfTheWeek + 5), 'yyyy-MM-dd') //Friday
+  const WeekDayDate7 = format(new Date(currentYear, monthIndex, startOfTheWeek + 6), 'yyyy-MM-dd') //Saturday
+
+  console.log(format(addDays(new Date(WeekDayDate5), 1), 'iii'))
+  console.log(scheduledThur)
+  console.log(format(addDays(new Date(WeekDayDate5), 1), 'yyyy-MM-dd'))
+  console.log(scheduledThur === format(addDays(new Date(WeekDayDate5), 1), 'iii') ? true : false)
   // console.log(format(addDays(new Date(dateItem), 1), 'iii'))
 
 
@@ -1533,10 +1548,42 @@ export default function ClinicVisit() {
   // console.log(DailyDate)
   //#endregion
   // console.log(scheduledMons, scheduledTue, scheduledWeds, scheduledThur, format(addDays(new Date(MonthDayDate9), 1), 'iii'))
-  //   console.log(scheduledThur === format(addDays(new Date(MonthDayDate9),1),'iii') ? true : false)
+  // console.log(scheduledThur === format(addDays(new Date(MonthDayDate9),1),'iii') ? true : false)
   // console.log(addDays(new Date(MonthDayDate11), 1), MonthDayDate11, MonthDayDate12)
   // console.log(isWeekend(addDays(new Date(MonthDayDate11), 1)), isWeekend(addDays(new Date(MonthDayDate12), 1)))
   // console.log(addDays(new Date(MonthDayDate11), 1), MonthDayDate11, MonthDayDate12)
+  //#region for delete confirmation modal
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+
+  const DeleteVisitModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this data item?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => deleteRecord(visitID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteVisitModal />
+  }
+
+  //#endregion
   return (
     <div className="grid_container">
       <div className="item1">
@@ -1681,6 +1728,7 @@ export default function ClinicVisit() {
             </div>
           </div>
           <div>{displayVisitMonthlyModal()}</div>
+          <div>{displayDeleteRegistrationModal()}</div>
           <div className="itemCalendar2">
             <div>{displayEditVisitModal()}</div>
             {/* monthly */}
@@ -1698,9 +1746,9 @@ export default function ClinicVisit() {
                 </div>
                 <div
                   className="weekDayTitleChild"
-                  onClick={() => {
-                    alert.show('Oh look, an alert!')
-                  }}
+                // onClick={() => {
+                //   alert.show('Oh look, an alert!')
+                // }}
                 >
                   Mo
                 </div>
@@ -1715,14 +1763,11 @@ export default function ClinicVisit() {
                   className="monthDayTitleChild"
                   style={{
                     gridColumnStart: startOfTheMonthDayNumber + 1,
-                    // backgroundColor: isScheduled(MonthDayDate1) ? '#cefad0' : 'white',
-                    // backgroundColor: isScheduled(MonthDayDate2) ? '#cefad0' : isWeekend(addDays(new Date(MonthDayDate2),1)) ? 'white' : 'white' ,
                     backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) ? 'white' : '#cefad0' : 'white',
 
                   }}
                 >
                   <span id="day1" >
-                    {/* onClick={setPullDailyDate(new Date())} */}
                     <button
                       style={{
                         fontSize: '10px',
@@ -1742,8 +1787,6 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    // backgroundColor: isScheduled(MonthDayDate2) ? '#cefad0' : 'white',
-                    // backgroundColor: isScheduled(MonthDayDate2) ? '#cefad0' : isWeekend(addDays(new Date(MonthDayDate2),1)) ? 'white' : 'white' ,
                     backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span id="day2" className="day">
@@ -1765,8 +1808,6 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    // backgroundColor: isScheduled(MonthDayDate3) ? '#cefad0' : 'white',
-                    // backgroundColor: isScheduled(MonthDayDate3) ? '#cefad0' : isWeekend(addDays(new Date(MonthDayDate3),1)) ? 'white' : 'white' ,
                     backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span className="day" id="day3">
@@ -1783,15 +1824,11 @@ export default function ClinicVisit() {
                     >
                       {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                     </button>
-                    {/* <span style={{display:'none'}}>{startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}</span> */}
-                    {/* {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3} */}
                   </span>
                   {visitListMonthlyDay3()}
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    // backgroundColor: isScheduled(MonthDayDate4) ? '#cefad0' : 'white',
-                    // backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4),1)) ? 'white' : '#cefad0' : 'white' ,
                     backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span className="day4" id="day4">
@@ -1816,7 +1853,7 @@ export default function ClinicVisit() {
                   onClick={() => {
                     handleMonthlyShow()
                     setSelectedDate()
-                    // setSelectedElement()
+
                   }}
                   style={{
                     backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
@@ -1952,8 +1989,6 @@ export default function ClinicVisit() {
                 <div className="monthDayTitleChild"
                   style={{
                     pointerEvents: weekendDay ? 'none' : '',
-                    // backgroundColor: isScheduled(MonthDayDate11) ? '#cefad0' : isWeekend(MonthDayDate11) ? 'white' : 'white',
-                    // backgroundColor: isWeekend(addDays(new Date(MonthDayDate11), 1)) ? '#cefad0' : 'white',
                     backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span>
@@ -1976,7 +2011,6 @@ export default function ClinicVisit() {
                 </div>
                 <div className="monthDayTitleChild"
                   style={{
-                    // backgroundColor: isScheduled(MonthDayDate12) ? '#cefad0' : 'white',
                     backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) ? 'white' : '#cefad0' : 'white',
                   }}>
                   <span>
@@ -2443,11 +2477,17 @@ export default function ClinicVisit() {
                 display: selectViewValue === 'Weekly' ? 'inline' : 'none',
                 paddingLeft: '0px',
                 marginBottom: '0px',
-                backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
+                height: '100%',
+                // backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
               }}
             >
               <div className="grid-weeklycalcontainer">
-                <div>
+                <div style={{
+                  fontSize: '14px',
+                  // height: 'calc(100vh - 132px)',
+                  height: '100%',
+                  // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
+                }}>
                   <li className="calendar-item weekday">
                     <div>
                       SUN
@@ -2461,79 +2501,117 @@ export default function ClinicVisit() {
                     style={gridWeeklyStartSun}
                   ></li>
                 </div>
-                <div>
+                <div style={{
+                  fontSize: '14px',
+                  // height: 'calc(100vh - 132px)',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
+                }}>
                   <li className="calendar-item weekday">
                     <div>
                       MON
-                      <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 1 > daysOfPreviousMonth
-                          ? startOfTheWeek + 1 - daysOfPreviousMonth
+                      <span style={{
+                        float: 'right', marginRight: '10px',
+
+
+                      }}
+
+                      >
+                        {startOfTheWeek + 1 > endOfTheMonthDay && startOfTheWeek + 1 - endOfTheMonthDay >= 1
+                          ? startOfTheWeek + 1 - endOfTheMonthDay
                           : startOfTheWeek + 1}
+
+
                       </span>
                     </div>
                   </li>
-                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                  <li className="calendar-item calendar-day" >
                     {visitListWeeklyMonday()}
                   </li>
                 </div>
-                <div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
+                }} >
                   <li className="calendar-item weekday">
                     <div>
                       TUE
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 2 > daysOfPreviousMonth
-                          ? startOfTheWeek + 2 - daysOfPreviousMonth
+                      {startOfTheWeek + 2 > endOfTheMonthDay && startOfTheWeek + 2 - endOfTheMonthDay >= 1
+                          ? startOfTheWeek + 2 - endOfTheMonthDay
                           : startOfTheWeek + 2}
                       </span>
                     </div>
                   </li>
-                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                  <li className="calendar-item calendar-day" >
                     {visitListWeeklyTuesday()}
                   </li>
                 </div>
-                <div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
+                }}>
                   <li className="calendar-item weekday">
                     <div>
                       WED
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 3 > daysOfPreviousMonth
-                          ? startOfTheWeek + 3 - daysOfPreviousMonth
+                        {startOfTheWeek + 3 > endOfTheMonthDay && startOfTheWeek + 3 - endOfTheMonthDay >= 1
+                          ? startOfTheWeek + 3 - endOfTheMonthDay
                           : startOfTheWeek + 3}
+                        {console.log( startOfTheWeek
+  
+                          ,startOfTheWeek + 3
+                          , endOfTheMonthDay,
+                          startOfTheWeek + 3 - endOfTheMonthDay)}
                       </span>
                     </div>
                   </li>
-                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                  <li className="calendar-item calendar-day" >
                     {visitListWeeklyWednesday()}
+                    {/* {console.log(startOfTheWeek + 3 > endOfTheMonthDay
+                          ? 1
+                          : startOfTheWeek + 3, startOfTheWeek + 3)} */}
                   </li>
                 </div>
-                <div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
+                }}>
                   <li className="calendar-item weekday">
                     <div>
                       THU
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 4 > daysOfPreviousMonth
-                          ? startOfTheWeek + 4 - daysOfPreviousMonth
+                      {startOfTheWeek + 4 > endOfTheMonthDay && startOfTheWeek + 4 - endOfTheMonthDay >= 1
+                          ? startOfTheWeek + 4 - endOfTheMonthDay
                           : startOfTheWeek + 4}
                       </span>
                     </div>
                   </li>
-                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                  <li className="calendar-item calendar-day" >
+                    {/* style={gridWeekly} */}
                     {visitListWeeklyThursday()}
                   </li>
                 </div>
-                <div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
+                }}>
                   <li className="calendar-item weekday">
                     <div>
                       FRI
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 5 > daysOfPreviousMonth
-                          ? startOfTheWeek + 5 - daysOfPreviousMonth
+                      {startOfTheWeek + 5 > endOfTheMonthDay && startOfTheWeek + 5 - endOfTheMonthDay >= 1
+                          ? startOfTheWeek + 5 - endOfTheMonthDay
                           : startOfTheWeek + 5}
                       </span>
                     </div>
                   </li>
 
-                  <li className="calendar-item calendar-day" style={gridWeekly}>
+                  <li className="calendar-item calendar-day">
                     {visitListWeeklyFriday()}
                   </li>
                 </div>
@@ -2542,8 +2620,8 @@ export default function ClinicVisit() {
                     <div>
                       SAT
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 6 > daysOfPreviousMonth
-                          ? startOfTheWeek + 6 - daysOfPreviousMonth
+                      {startOfTheWeek + 6 > endOfTheMonthDay && startOfTheWeek + 6 - endOfTheMonthDay >= 1
+                          ? startOfTheWeek + 6 - endOfTheMonthDay
                           : startOfTheWeek + 6}
                       </span>
                     </div>
@@ -2656,10 +2734,10 @@ export default function ClinicVisit() {
                             </StyledTableCell>
                             <StyledTableCell align="left">
                               <button
-                                className="btn btn-primary btn-sm"
+                                className="btn btn-primary btn-sm registerBtn"
                                 onClick={() => { handleEditVisitShow(pt._id) }}>
                                 <i
-                                  className="fa fa-pencil-square-o"
+                                  className="fa fa-pencil-square-o fa-sm"
                                   aria-hidden="true"
                                   title='edit visit'
                                 />
@@ -2674,22 +2752,35 @@ export default function ClinicVisit() {
                                 />
                               </Link> */}
                               <Link
-                                className="btn btn-success btn-sm"
+                                className="btn btn-success btn-sm registerBtn"
                                 to={`/detailsVisit/${pt._id}`}
                               >
                                 <i
-                                  className="fa fa-clipboard"
+                                  className="fa fa-clipboard fa-sm"
                                   aria-hidden="true"
                                 />
                               </Link>
-                              <button
-                                className="btn btn-danger btn-sm"
+                              {/* <button
+                                className="btn btn-danger btn-sm registerBtn"
                                 onClick={() => {
                                   deleteRecord(pt._id)
                                 }}
                               >
                                 <i
                                   className="fa fa-trash-o"
+                                  aria-hidden="true"
+                                />
+                              </button> */}
+                              <button
+                                className="btn btn-danger btn-sm registerBtn"
+                                // onClick={() => {
+                                //   deleteRecord(pt._id)
+                                // }}
+                                onClick={handleShowDelete}
+                              >
+                                <i
+                                  title="delete visit"
+                                  className="fa fa-trash-o fa-sm"
                                   aria-hidden="true"
                                 />
                               </button>
