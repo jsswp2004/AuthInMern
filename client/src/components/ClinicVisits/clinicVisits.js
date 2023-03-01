@@ -1529,18 +1529,17 @@ export default function ClinicVisit() {
   }
 
   //Weekly
-  const WeekDayDate1 = format(new Date(currentYear, monthIndex, startOfTheWeek), 'yyyy-MM-dd') //Sunday
-  const WeekDayDate2 = format(new Date(currentYear, monthIndex, startOfTheWeek + 1), 'yyyy-MM-dd') //Monday
-  const WeekDayDate3 = format(new Date(currentYear, monthIndex, startOfTheWeek + 2), 'yyyy-MM-dd') //Tuesday
-  const WeekDayDate4 = format(new Date(currentYear, monthIndex, startOfTheWeek + 3), 'yyyy-MM-dd') //Wednesday
-  const WeekDayDate5 = format(new Date(currentYear, monthIndex, startOfTheWeek + 4), 'yyyy-MM-dd') //Thursday
-  const WeekDayDate6 = format(new Date(currentYear, monthIndex, startOfTheWeek + 5), 'yyyy-MM-dd') //Friday
-  const WeekDayDate7 = format(new Date(currentYear, monthIndex, startOfTheWeek + 6), 'yyyy-MM-dd') //Saturday
-
-  console.log(format(addDays(new Date(WeekDayDate5), 1), 'iii'))
-  console.log(scheduledThur)
-  console.log(format(addDays(new Date(WeekDayDate5), 1), 'yyyy-MM-dd'))
-  console.log(scheduledThur === format(addDays(new Date(WeekDayDate5), 1), 'iii') ? true : false)
+  const WeekDayDate1 = format(new Date(startOfTheWeekDate), 'yyyy-MM-dd') //Sunday
+  const WeekDayDate2 = format(addDays(new Date(startOfTheWeekDate), 1),'yyyy-MM-dd') //Monday
+  const WeekDayDate3 = format(addDays(new Date(startOfTheWeekDate),2), 'yyyy-MM-dd')//Tuesday
+  const WeekDayDate4 = format(addDays(new Date(startOfTheWeekDate),3),'yyyy-MM-dd') //Wednesday
+  const WeekDayDate5 = format(addDays(new Date(startOfTheWeekDate),4) ,'yyyy-MM-dd') //Thursday
+  const WeekDayDate6 = format(addDays(new Date(startOfTheWeekDate),5) ,'yyyy-MM-dd')//Friday
+  // const WeekDayDate7 = format(addDays(new Date(startOfTheWeekDate), 'yyyy-MM-dd'), 6)
+  // console.log(format(addDays(new Date(WeekDayDate5), 1), 'iii'))
+  // console.log(WeekDayDate1, monthIndex,startOfTheWeek + 5)
+  // console.log(format(addDays(new Date(WeekDayDate5), 1), 'yyyy-MM-dd'))
+  // console.log(scheduledThur === format(addDays(new Date(WeekDayDate5), 1), 'iii') ? true : false)
   // console.log(format(addDays(new Date(dateItem), 1), 'iii'))
 
 
@@ -2540,7 +2539,7 @@ export default function ClinicVisit() {
                     <div>
                       TUE
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                      {startOfTheWeek + 2 > startOfTheWeekEndOfMonth && startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
+                        {startOfTheWeek + 2 > startOfTheWeekEndOfMonth && startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
                           ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
                           : startOfTheWeek + 2}
                       </span>
@@ -2562,9 +2561,9 @@ export default function ClinicVisit() {
                         {startOfTheWeek + 3 > startOfTheWeekEndOfMonth && startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
                           ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
                           : startOfTheWeek + 3}
-                        {console.log( startOfTheWeek
-  
-                          ,startOfTheWeek + 3
+                        {console.log(startOfTheWeek
+
+                          , startOfTheWeek + 3
                           , startOfTheWeekEndOfMonth,
                           startOfTheWeek + 3 - startOfTheWeekEndOfMonth)}
                       </span>
@@ -2586,7 +2585,7 @@ export default function ClinicVisit() {
                     <div>
                       THU
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                      {startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                        {startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
                           ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
                           : startOfTheWeek + 4}
                       </span>
@@ -2606,7 +2605,7 @@ export default function ClinicVisit() {
                     <div>
                       FRI
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                      {startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
+                        {startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
                           ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
                           : startOfTheWeek + 5}
                       </span>
@@ -2615,6 +2614,7 @@ export default function ClinicVisit() {
 
                   <li className="calendar-item calendar-day">
                     {visitListWeeklyFriday()}
+                    {console.log(WeekDayDate6)}
                   </li>
                 </div>
                 <div>
@@ -2622,7 +2622,7 @@ export default function ClinicVisit() {
                     <div>
                       SAT
                       <span style={{ float: 'right', marginRight: '10px' }}>
-                      {startOfTheWeek + 6 > startOfTheWeekEndOfMonth && startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
+                        {startOfTheWeek + 6 > startOfTheWeekEndOfMonth && startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
                           ? startOfTheWeek + 6 - startOfTheWeekEndOfMonth
                           : startOfTheWeek + 6}
                       </span>
