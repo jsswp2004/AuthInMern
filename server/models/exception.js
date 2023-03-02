@@ -19,7 +19,7 @@ const exceptionSchema = new mongoose.Schema({
   addedDate: { type: String, required: true },
 })
 
-const Schedule = mongoose.model('exception', exceptionSchema)
+const Exception = mongoose.model('exception', exceptionSchema)
 
 const validate = (data) => {
   const schema = Joi.object({

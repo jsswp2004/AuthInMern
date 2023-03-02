@@ -10,7 +10,7 @@ const visitRoutes = require("./routes/visits");
 const roleRoutes = require("./routes/roles");
 const eventRoutes = require("./routes/events");
 const scheduleRoutes = require("./routes/schedules")
-const exceptioneRoutes = require("./routes/exceptions")
+const exceptionRoutes = require("./routes/exceptions")
 require('dotenv').config()
 
 // database connection

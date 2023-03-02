@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
-function EditSchedule(props) {
+function EditException(props) {
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -29,7 +29,7 @@ function EditSchedule(props) {
   const hourvalueChange = (event) => {
     sethourValue(event.target.value)
   }
-  const [schedule, setSchedule] = useState({
+  const [exception, setException] = useState({
     providerID: '',
     provider: 'Select Doctor',
     startDate: '',
@@ -38,28 +38,28 @@ function EditSchedule(props) {
     amEndTime: '',
     pmStartTime: '',
     pmEndTime: '',
-    scheduledMon: '',
-    scheduledTues: '',
-    scheduledWed: '',
-    scheduledThurs: '',
-    scheduledFri: '',
+    exceptionMon: '',
+    exceptionTues: '',
+    exceptionWed: '',
+    exceptionThurs: '',
+    exceptionFri: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
 
 
   const DrID = props.providerID
   
-  const [scheduleMon, setScheduleDay1] = useState(' ')
-  const [scheduleTues, setScheduleDay2] = useState(' ')
-  const [scheduleWed, setScheduleDay3] = useState(' ')
-  const [scheduleThurs, setScheduleDay4] = useState(' ')
-  const [scheduleFri, setScheduleDay5] = useState(' ')
+  const [exceptionMon, setExceptionDay1] = useState(' ')
+  const [exceptionTues, setExceptionDay2] = useState(' ')
+  const [exceptionWed, setExceptionDay3] = useState(' ')
+  const [exceptionThurs, setExceptionDay4] = useState(' ')
+  const [exceptionFri, setExceptionDay5] = useState(' ')
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/schedules/${DrID}`)
+      .get(`http://localhost:8081/api/exceptions/${DrID}`)
       .then((res) => {
-        setSchedule({
+        setException({
           providerID: res.data.providerID,
           provider: res.data.provider,
           startDate: res.data.startDate,
@@ -68,46 +68,46 @@ function EditSchedule(props) {
           amEndTime: res.data.amEndTime,
           pmStartTime: res.data.pmStartTime,
           pmEndTime: res.data.pmEndTime,
-          scheduledMon: res.data.scheduleMon,
-          scheduledTues: res.data.scheduleTues,
-          scheduledWed: res.data.scheduleWed,
-          scheduledThurs: res.data.scheduleThurs,
-          scheduledFri: res.data.scheduledFri,
+          exceptionMon: res.data.exceptionMon,
+          exceptionTues: res.data.exceptionTues,
+          exceptionWed: res.data.exceptionWed,
+          exceptionThurs: res.data.exceptionThurs,
+          exceptionFri: res.data.exceptionFri,
           addedDate: res.data.addedDate,
         })
 
       })
       .catch((err) => {
-        console.log('Error from EditSchedule')
+        console.log('Error from EditException')
       })
   }, [DrID])
 
   
   const onChange = (e) => {
-    setSchedule({ ...schedule, [e.target.name]: e.target.value })
+    setException({ ...exception, [e.target.name]: e.target.value })
   }
   const onSubmit = (e) => {
     e.preventDefault()
 
     const data = {
       providerID: props.providerID,
-          provider: schedule.provider,
-          startDate: schedule.startDate,
-          endDate: schedule.endDate,
-          amStartTime: schedule.amStartTime,
-          amEndTime: schedule.amEndTime,
-          pmStartTime: schedule.pmStartTime,
-          pmEndTime: schedule.pmEndTime,
-          scheduledMon: scheduleMon,
-          scheduledTues: scheduleTues,
-          scheduledWed: scheduleWed,
-          scheduledThurs: scheduleThurs,
-          scheduledFri: scheduleFri,
-          addedDate: schedule.addedDate,
+          provider: exception.provider,
+          startDate: exception.startDate,
+          endDate: exception.endDate,
+          amStartTime: exception.amStartTime,
+          amEndTime: exception.amEndTime,
+          pmStartTime: exception.pmStartTime,
+          pmEndTime: exception.pmEndTime,
+          exceptionMon: exceptionMon,
+          exceptionTues: exceptionTues,
+          exceptionWed: exceptionWed,
+          exceptionThurs: exceptionThurs,
+          exceptionFri: exceptionFri,
+          addedDate: exception.addedDate,
     }
     
     axios
-      .put(`http://localhost:8081/api/schedules/${props.providerID}`, data)
+      .put(`http://localhost:8081/api/exceptions/${props.providerID}`, data)
       .then((res) => {
         // Push to      
         window.location.reload()
@@ -115,7 +115,7 @@ function EditSchedule(props) {
         
       })
       .catch((err) => {
-        console.log('Error in EditSchedule!')
+        console.log('Error in EditException!')
       })
   }
 
@@ -134,19 +134,19 @@ function EditSchedule(props) {
                     Provider ID
                     <input
                       type="text"
-                      className="form-control scheduleInput"
+                      className="form-control exceptionInput"
                       name="providerID"
-                      value={schedule.providerID}
+                      value={exception.providerID}
                       onChange={onChange}
                     />
                   </label>
                   <label htmlFor="provider">
                     Provider
                     <select
-                      key={schedule.provider}
+                      key={exception.provider}
                       className="form-control select"
                       name="provider"
-                      value={schedule.provider}
+                      value={exception.provider}
                       onChange={onChange}
                     >
                       {' '}
@@ -162,56 +162,56 @@ function EditSchedule(props) {
                   </label>
                 </div>
                 <div>
-                  <label>Scheduled Days:</label>
-                  <label className="scheduleCheckboxContainer">
+                  <label>Exceptiond Days:</label>
+                  <label className="exceptionCheckboxContainer">
                     Mondays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay1('Mon')}
-                      name="scheduledDays"
-                      value={schedule.scheduledMon}
+                      onClick={() => setExceptionDay1('Mon')}
+                      name="exceptionDays"
+                      value={exception.exceptionMon}
                     />
-                    <span className="scheduleCheckboxCheckmark"></span>
+                    <span className="exceptionCheckboxCheckmark"></span>
                   </label>
-                  <label className="scheduleCheckboxContainer">
+                  <label className="exceptionCheckboxContainer">
                     Tuesdays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay2('Tue')}
-                      name="scheduledDays"
-                      value={schedule.scheduledTues}
+                      onClick={() => setExceptionDay2('Tue')}
+                      name="exceptionDays"
+                      value={exception.exceptionTues}
                     />
-                    <span className="scheduleCheckboxCheckmark"></span>
+                    <span className="exceptionCheckboxCheckmark"></span>
                   </label>
-                  <label className="scheduleCheckboxContainer">
+                  <label className="exceptionCheckboxContainer">
                     Wednesdays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay3('Wed')}
-                      name="scheduledDays"
-                      value={schedule.scheduledWed}
+                      onClick={() => setExceptionDay3('Wed')}
+                      name="exceptionDays"
+                      value={exception.exceptionWed}
                     />
-                    <span className="scheduleCheckboxCheckmark"></span>
+                    <span className="exceptionCheckboxCheckmark"></span>
                   </label>
-                  <label className="scheduleCheckboxContainer">
+                  <label className="exceptionCheckboxContainer">
                     Thursdays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay4('Thu')}
-                      name="scheduledDays"
-                      value={schedule.scheduledThurs}
+                      onClick={() => setExceptionDay4('Thu')}
+                      name="exceptionDays"
+                      value={exception.exceptionThurs}
                     />
-                    <span className="scheduleCheckboxCheckmark"></span>
+                    <span className="exceptionCheckboxCheckmark"></span>
                   </label>
-                  <label className="scheduleCheckboxContainer">
+                  <label className="exceptionCheckboxContainer">
                     Fridays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay5('Fri')}
-                      name="scheduledDays"
-                      value={schedule.scheduledFri}
+                      onClick={() => setExceptionDay5('Fri')}
+                      name="exceptionDays"
+                      value={exception.exceptionFri}
                     />
-                    <span className="scheduleCheckboxCheckmark"></span>
+                    <span className="exceptionCheckboxCheckmark"></span>
                   </label>
                 </div>
               </div>
@@ -221,9 +221,9 @@ function EditSchedule(props) {
                     Start Date
                     <input
                       type="date"
-                      className="form-control scheduleInput"
+                      className="form-control exceptionInput"
                       name="startDate"
-                      value={schedule.startDate}
+                      value={exception.startDate}
                       onChange={onChange}
                     />
                   </label>
@@ -231,9 +231,9 @@ function EditSchedule(props) {
                     End Date
                     <input
                       type="date"
-                      className="form-control scheduleInput"
+                      className="form-control exceptionInput"
                       name="endDate"
-                      value={schedule.endDate}
+                      value={exception.endDate}
                       onChange={onChange}
                     />
                   </label>
@@ -242,10 +242,10 @@ function EditSchedule(props) {
                   <label htmlFor="amStartTime">
                     AM Start Time
                     <select
-                      key={schedule.hourOfVisit}
+                      key={exception.hourOfVisit}
                       className="form-control select"
                       name="amStartTime"
-                      value={schedule.amStartTime}
+                      value={exception.amStartTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -258,10 +258,10 @@ function EditSchedule(props) {
                   <label htmlFor="amEndTime" style={{ marginLeft: '2px' }}>
                     AM End Time
                     <select
-                      key={schedule.hourOfVisit}
+                      key={exception.hourOfVisit}
                       className="form-control select"
                       name="amEndTime"
-                      value={schedule.amEndTime}
+                      value={exception.amEndTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -276,10 +276,10 @@ function EditSchedule(props) {
                   <label htmlFor="pmStartTime">
                     PM Start Time
                     <select
-                      key={schedule.pmStartTime._id}
+                      key={exception.pmStartTime._id}
                       className="form-control select"
                       name="pmStartTime"
-                      value={schedule.pmStartTime}
+                      value={exception.pmStartTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -292,10 +292,10 @@ function EditSchedule(props) {
                   <label htmlFor="pmEndTime" style={{ marginLeft: '2px' }}>
                     PM End Time
                     <select
-                      key={schedule.hourOfVisit}
+                      key={exception.hourOfVisit}
                       className="form-control select"
                       name="pmEndTime"
-                      value={schedule.pmEndTime}
+                      value={exception.pmEndTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -312,9 +312,9 @@ function EditSchedule(props) {
                   Date Created
                   <input
                     type="date"
-                    className="form-control scheduleInput"
+                    className="form-control exceptionInput"
                     name="addedDate"
-                    value={schedule.addedDate}
+                    value={exception.addedDate}
                     onChange={onChange}
                   />
                   <input
@@ -332,4 +332,4 @@ function EditSchedule(props) {
   )
 }
 
-export default EditSchedule
+export default EditException

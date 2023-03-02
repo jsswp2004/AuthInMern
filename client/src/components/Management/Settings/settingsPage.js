@@ -5,6 +5,7 @@ import ShowUsers from '../../Signup/showUsers'
 import ShowRoles from '../Roles/showRoles'
 import ShowEvents from '../Events/showEvents'
 import ShowStaffSchedules from '../StaffSchedules/showStaffSchedules'
+import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
 
 const ShowSettings = () => {
 
@@ -27,6 +28,9 @@ const ShowSettings = () => {
     display: setting === 'Staff Schedule' ? '' : 'none',
   }
 
+  const displayStaffExceptionSetting = {
+    display: setting === 'Staff Exception' ? '' : 'none',
+  }
   return (
     <div className="grid_container">
       <div className="item1">
@@ -71,10 +75,19 @@ const ShowSettings = () => {
                   <span className="settingCheckboxCheckmark"></span>
                 </label>
                 <label className="settingCheckboxContainer">
-                  Staff Schedule
+                  Staff Schedules
                   <input
                     type="radio"
                     onClick={() => setSetting('Staff Schedule')}
+                    name="radio"
+                  />
+                  <span className="settingCheckboxCheckmark"></span>
+                </label>
+                <label className="settingCheckboxContainer">
+                  Staff Exceptions
+                  <input
+                    type="radio"
+                    onClick={() => setSetting('Staff Exception')}
                     name="radio"
                   />
                   <span className="settingCheckboxCheckmark"></span>
@@ -102,6 +115,11 @@ const ShowSettings = () => {
             <div style={displayStaffScheduleSetting}>
               <div className="card-body table-responsive p-0">
               <ShowStaffSchedules />
+              </div>
+            </div>
+            <div style={displayStaffExceptionSetting}>
+              <div className="card-body table-responsive p-0">
+              <ShowStaffExceptions />
               </div>
             </div>
           </div>

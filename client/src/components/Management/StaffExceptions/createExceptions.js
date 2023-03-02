@@ -42,7 +42,7 @@ const CreateException = (props) => {
     pmEndTime: '',
     exceptionMon: '',
     exceptionTues: '',
-    exceptiondWed: '',
+    exceptionWed: '',
     exceptionThurs: '',
     exceptionFri: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
@@ -158,7 +158,7 @@ const CreateException = (props) => {
                   </label>
                 </div>
                 <div>
-                  <label>Exceptiond Days:</label>
+                  <label>Exception Days:</label>
                   <label className="scheduleCheckboxContainer">
                     Mondays
                     <input
