@@ -10,6 +10,7 @@ const visitRoutes = require("./routes/visits");
 const roleRoutes = require("./routes/roles");
 const eventRoutes = require("./routes/events");
 const scheduleRoutes = require("./routes/schedules")
+const exceptioneRoutes = require("./routes/exceptions")
 require('dotenv').config()
 
 // database connection
@@ -28,6 +29,7 @@ app.use("/api/visits", visitRoutes);
 app.use("/api/roles", roleRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/schedules", scheduleRoutes);
+app.use("/api/exceptions", exceptionRoutes);
 
 const port = process.env.PORT || 8081;
 app.listen(port, console.log(`Listening on port ${port}...`));

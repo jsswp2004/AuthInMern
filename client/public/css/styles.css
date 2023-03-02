@@ -823,6 +823,9 @@ h5 {
   margin-bottom: 0px;
   margin-top: 3px;
 }
+.settingsTitle {
+  background-color: white;
+}
 .calendar {
   width: 100%;
   display: grid;
@@ -1610,7 +1613,7 @@ tfoot > .MuiTableFooter-root {
 
 /*visit modal additional css*/
 .addVisitModalBtn {
-  margin-left: 300px;
+  margin-left: 400px;
 }
 
 /*settings page css*/

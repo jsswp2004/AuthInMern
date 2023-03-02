@@ -70,7 +70,7 @@ const CreateVisit = (props) => {
 
   return (
     <form noValidate onSubmit={onSubmit}>
-      <div className="form-grid-container">
+      <div className="form-grid-containers modalContainer">
         <div className="div-items">
           <div className="forms-group">
             <div className="form-group">
@@ -79,8 +79,7 @@ const CreateVisit = (props) => {
                 type="text"
                 className="form-control"
                 name="firstName"
-                value={visit.firstName}
-                // defaultValue={visit.firstName}
+                value={visit.firstName}                
                 onChange={onChange}
               />
             </div>

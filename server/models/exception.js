@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Joi = require('joi')
 
-const scheduleSchema = new mongoose.Schema({
+const exceptionSchema = new mongoose.Schema({
   providerID: { type: String, required: true },
   provider: { type: String, required: true },
   startDate: { type: String, required: true },
@@ -11,15 +11,15 @@ const scheduleSchema = new mongoose.Schema({
   amEndTime: { type: String, required: true },
   pmStartTime: { type: String, required: true },
   pmEndTime: { type: String, required: true },
-  scheduledMon: { type: String, required: true },
-  scheduledTues: { type: String, required: true },
-  scheduledWed: { type: String, required: true },
-  scheduledThurs: { type: String, required: true },
-  scheduledFri: { type: String, required: true },
+  exceptiondMon: { type: String, required: true },
+  exceptiondTues: { type: String, required: true },
+  exceptiondWed: { type: String, required: true },
+  exceptiondThurs: { type: String, required: true },
+  exceptiondFri: { type: String, required: true },
   addedDate: { type: String, required: true },
 })
 
-const Schedule = mongoose.model('schedule', scheduleSchema)
+const Schedule = mongoose.model('exception', exceptionSchema)
 
 const validate = (data) => {
   const schema = Joi.object({
@@ -31,14 +31,14 @@ const validate = (data) => {
     amEndTime: Joi.string().required().label('AM End Time'),
     pmStartTime: Joi.string().required().label('PM Start Time'),
     pmEndTime: Joi.string().required().label('PM End Time'),
-    scheduledMon: Joi.string().required().label('Scheduled'),
-    scheduledTues:Joi.string().required().label('Scheduled'),
-    scheduledWed:Joi.string().required().label('Scheduled'),
-    scheduledThurs:Joi.string().required().label('Scheduled'),
-    scheduledFri:Joi.string().required().label('Scheduled'),
+    exceptiondMon: Joi.string().required().label('Exception'),
+    exceptiondTues:Joi.string().required().label('Exception'),
+    exceptiondWed:Joi.string().required().label('Exception'),
+    exceptiondThurs:Joi.string().required().label('Exception'),
+    exceptiondFri:Joi.string().required().label('Exception'),
     addedDate: Joi.string().required().label('Date Created'),
   })
   return schema.validate(data)
 }
 
-module.exports = { Schedule, validate }
+module.exports = {Exception, validate }

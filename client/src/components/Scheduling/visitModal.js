@@ -129,9 +129,8 @@ const CreateVisitMonthly = (props) => {
   })
   return (
     <form noValidate onSubmit={onSubmit}>
-      <div className="form-grid-quickvisit-container">
-        <div className="div-items">
-          {/* style={{width: '360px'}} */}
+      <div className="form-grid-containers modalContainer">
+        <div className="div-items">          
           <div className="forms-group">
             <div className="form-group">
               <label htmlFor="firstName">
@@ -240,7 +239,7 @@ const CreateVisitMonthly = (props) => {
             </div> */}
           </div>
         </div>
-        <div className="div-items">
+        <div className="div-items updateRegistrationGrp">
           <div className="form-group">
             <label htmlFor="email">
               Email
@@ -298,7 +297,7 @@ const CreateVisitMonthly = (props) => {
             </label>
           </div>
           <div
-            className="form-group"
+            className="form-group updateRegistrationBtn"
             style={{
               float: 'left',
               textAlign: 'left',

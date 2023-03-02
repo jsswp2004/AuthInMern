@@ -93,7 +93,6 @@ export default function ClinicVisit() {
   // console.log(selectAvailabilityMD, availableMD._id)
 
   //#endregion
-
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
   useEffect(() => {

@@ -61,7 +61,7 @@ function UpdateVisitInfo(props) {
     addedDate: '',
     visitDate: '',
     provider: '',
-    hourOfVisitz: '',
+    hourOfVisit: '',
     event: '',
   })
 
@@ -189,15 +189,6 @@ function UpdateVisitInfo(props) {
                       />
                     </label>
                   </div>
-                  {/* <div className="form-group">
-                    <label htmlFor="hourOfVisit">Appointment Time</label>
-                    <input
-                      name="hourOfVisit"
-                      className="form-control"
-                      value={visit.hourOfVisit}
-                      onChange={onChange}
-                    />
-                  </div> */}
                   <div className="form-group">
                     <label htmlFor="hourOfVisit">
                       Hour of Visit
