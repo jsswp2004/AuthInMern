@@ -81,7 +81,37 @@ const ShowRolesList = () => {
 
   //Define role id for prop
   const [roleID, setRoleID] = useState('')
+//#region for delete confirmation modal
+  // const [staffSchedID, setStaffSchedID] = useState('')
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+  const DeleteVisitModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this data item?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => deleteRecord(roleID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteVisitModal />
+  }
 
+  //#endregion
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/roles/${id}`)
@@ -257,6 +287,7 @@ const ShowRolesList = () => {
 
         <div>{displayRoleModal()}</div>
         <div>{displayEditRoleModal()}</div>
+        <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel">
           <Button
             className="btn btn-info btn-sm registerBtn"
@@ -319,14 +350,13 @@ const ShowRolesList = () => {
                       </button>
                       <button
                         className="btn btn-danger btn-sm registerBtn"
-                        onClick={() => {
-                          deleteRecord(role._id)
-                        }}
+                        onClick={handleShowDelete}
                       >
                         <i
-                          title="delete patient"
+                          title="delete role"
                           className="fa fa-trash-o fa-sm"
                           aria-hidden="true"
+                          t
                         />
                       </button>
                     </StyledTableCell>
