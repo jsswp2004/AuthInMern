@@ -11,11 +11,11 @@ const exceptionSchema = new mongoose.Schema({
   amEndTime: { type: String, required: true },
   pmStartTime: { type: String, required: true },
   pmEndTime: { type: String, required: true },
-  exceptiondMon: { type: String, required: true },
-  exceptiondTues: { type: String, required: true },
-  exceptiondWed: { type: String, required: true },
-  exceptiondThurs: { type: String, required: true },
-  exceptiondFri: { type: String, required: true },
+  exceptionMon: { type: String, required: true },
+  exceptionTues: { type: String, required: true },
+  exceptionWed: { type: String, required: true },
+  exceptionThurs: { type: String, required: true },
+  exceptionFri: { type: String, required: true },
   addedDate: { type: String, required: true },
 })
 

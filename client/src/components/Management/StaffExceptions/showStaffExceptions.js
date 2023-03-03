@@ -312,7 +312,7 @@ const ShowExceptionsList = () => {
                   <StyledTableCell align="left">AM End</StyledTableCell>
                   <StyledTableCell align="left">PM Start</StyledTableCell>
                   <StyledTableCell align="left">PM End</StyledTableCell>
-                  <StyledTableCell align="left">Exceptiond Days</StyledTableCell>
+                  <StyledTableCell align="left">Exception Days</StyledTableCell>
                   {/* <StyledTableCell align="left">Date Created</StyledTableCell> */}
                   <StyledTableCell align="left">Actions</StyledTableCell>
                 </TableRow>
@@ -350,11 +350,11 @@ const ShowExceptionsList = () => {
                       {exception.pmEndTime}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {exception.exceptiondMon + ' '}{' '}
-                      {exception.exceptiondTues + ' '}
-                      {exception.exceptiondWed + ' '}{' '}
-                      {exception.exceptiondThurs + ' '}
-                      {exception.exceptiondFri + ' '}
+                      {exception.exceptionMon + ' '}{' '}
+                      {exception.exceptionTues + ' '}
+                      {exception.exceptionWed + ' '}{' '}
+                      {exception.exceptionThurs + ' '}
+                      {exception.exceptionFri + ' '}
                     </StyledTableCell>
                     <StyledTableCell align="left">
                       {/* <Link
