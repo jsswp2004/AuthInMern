@@ -377,6 +377,7 @@ export default function ShowRecordList() {
             </label>
             </div>
         </div>
+        <div className="item3B" style={{ overflowY: 'auto' }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
@@ -510,7 +511,7 @@ export default function ShowRecordList() {
             </TableFooter>
           </Table>
         </TableContainer>
-
+        </div>
       </div>
     </div>
   )
