@@ -31,11 +31,11 @@ const validate = (data) => {
     amEndTime: Joi.string().required().label('AM End Time'),
     pmStartTime: Joi.string().required().label('PM Start Time'),
     pmEndTime: Joi.string().required().label('PM End Time'),
-    exceptiondMon: Joi.string().required().label('Exception'),
-    exceptiondTues:Joi.string().required().label('Exception'),
-    exceptiondWed:Joi.string().required().label('Exception'),
-    exceptiondThurs:Joi.string().required().label('Exception'),
-    exceptiondFri:Joi.string().required().label('Exception'),
+    exceptionMon: Joi.string().required().label('Exception'),
+    exceptionTues:Joi.string().required().label('Exception'),
+    exceptionWed:Joi.string().required().label('Exception'),
+    exceptionThurs:Joi.string().required().label('Exception'),
+    exceptionFri:Joi.string().required().label('Exception'),
     addedDate: Joi.string().required().label('Date Created'),
   })
   return schema.validate(data)
