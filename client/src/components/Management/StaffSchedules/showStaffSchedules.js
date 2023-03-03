@@ -32,13 +32,6 @@ const ShowSchedulesList = () => {
     setShow(true)    
   }
 
-  //Define the exception Modal state
-  const [exceptionShow, setExceptionShow] = useState(false)
-  const handleExceptionClose = () => setExceptionShow(false)
-  const handleExceptionShow = () => {
-    setExceptionShow(true)    
-  }
-
   // Define the Edit Modal state
   const [editShow, setEditShow] = useState(false)
   const handleEditClose = () => setEditShow(false)

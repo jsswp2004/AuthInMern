@@ -11,7 +11,6 @@ const ShowSettings = () => {
 
   const [setting, setSetting] = useState('')
 
-  //   console.log(setting)
   const displayRolesSetting = {
     display: setting === 'Roles' ? '' : 'none',
   }
@@ -46,7 +45,7 @@ const ShowSettings = () => {
             <div className="item3A settingsPage">
               <div className="form-control">
                 <h5 className="createPageHeader settingsTitle">Settings</h5>
-                <span>Select settings:</span>
+                
                 <label className="settingCheckboxContainer">
                   User Profiles
                   <input
