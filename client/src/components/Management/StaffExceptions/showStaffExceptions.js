@@ -87,6 +87,37 @@ const ShowExceptionsList = () => {
   // Define mdID state for prop
   const [mdID, setMdID] = useState('')
 
+  //#region for delete confirmation modal
+  // const [staffSchedID, setStaffSchedID] = useState('')
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+  const DeleteVisitModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this data item?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => deleteRecord(mdID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteVisitModal />
+  }
+
+  //#endregion
   // Delete record
   const deleteRecord = (id) => {
     axios
@@ -271,6 +302,7 @@ const ShowExceptionsList = () => {
         <h4 className="createExceptionHeader">Add Exception</h4>
         <div>{displayVisitModal()}</div>
         <div>{displayEditExceptionModal()}</div>
+        <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel">
           {/* create exception button */}
           <Button
@@ -366,7 +398,7 @@ const ShowExceptionsList = () => {
                           title="Edit Exception"
                         />
                       </button>
-                      <button
+                      {/* <button
                         className="btn btn-danger btn-sm registerBtn"
                         onClick={() => {
                           deleteRecord(exception._id)
@@ -374,6 +406,16 @@ const ShowExceptionsList = () => {
                       >
                         <i
                           title="delete patient"
+                          className="fa fa-trash-o fa-sm"
+                          aria-hidden="true"
+                        />
+                      </button> */}
+                      <button
+                        className="btn btn-danger btn-sm registerBtn"
+                        onClick={handleShowDelete}
+                      >
+                        <i
+                          title="delete visit"
                           className="fa fa-trash-o fa-sm"
                           aria-hidden="true"
                         />
