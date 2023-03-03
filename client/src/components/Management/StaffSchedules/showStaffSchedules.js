@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
@@ -29,14 +29,14 @@ const ShowSchedulesList = () => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => {
-    setShow(true)    
+    setShow(true)
   }
 
   // Define the Edit Modal state
   const [editShow, setEditShow] = useState(false)
   const handleEditClose = () => setEditShow(false)
   const handleEditShow = () => {
-    setEditShow(true)    
+    setEditShow(true)
   }
   // Define the Schedule state
   const [schedules, setSchedules] = useState([])
@@ -80,7 +80,39 @@ const ShowSchedulesList = () => {
   // Define mdID state for prop
   const [mdID, setMdID] = useState('')
 
-  // Delete record
+  //#region for delete confirmation modal
+  // const [staffSchedID, setStaffSchedID] = useState('')
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+  const DeleteVisitModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this data item?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => deleteRecord(mdID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteVisitModal />
+  }
+
+  //#endregion
+
+  // delete record
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/schedules/${id}`)
@@ -92,6 +124,7 @@ const ShowSchedulesList = () => {
         console.log('Unable to delete visit')
       })
   }
+
 
   // Create Schedule Modal
   const ScheduleModal = () => (
@@ -264,6 +297,7 @@ const ShowSchedulesList = () => {
         <h4 className="createScheduleHeader">Add Schedule</h4>
         <div>{displayVisitModal()}</div>
         <div>{displayEditScheduleModal()}</div>
+        <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel">
           {/* create schedule button */}
           <Button
@@ -313,9 +347,9 @@ const ShowSchedulesList = () => {
               <TableBody >
                 {(rowsPerPage > 0
                   ? schedules.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage,
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage,
+                  )
                   : schedules
                 ).map((schedule) => (
                   <StyledTableRow key={schedule._id}
@@ -370,9 +404,9 @@ const ShowSchedulesList = () => {
                           title="Add an exception"
                         />
                       </button> */}
-                      <button className='btn btn-info btn-sm registerBtn'                      
+                      <button className='btn btn-info btn-sm registerBtn'
                         onClick={handleEditShow}
-                        // providerID={schedule._id}
+                      // providerID={schedule._id}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"
@@ -380,7 +414,7 @@ const ShowSchedulesList = () => {
                           title="Edit Schedule"
                         />
                       </button>
-                      <button
+                      {/* <button
                         className="btn btn-danger btn-sm registerBtn"
                         onClick={() => {
                           deleteRecord(schedule._id)
@@ -388,6 +422,16 @@ const ShowSchedulesList = () => {
                       >
                         <i
                           title="delete patient"
+                          className="fa fa-trash-o fa-sm"
+                          aria-hidden="true"
+                        />
+                      </button> */}
+                      <button
+                        className="btn btn-danger btn-sm registerBtn"
+                        onClick={handleShowDelete}
+                      >
+                        <i
+                          title="delete visit"
                           className="fa fa-trash-o fa-sm"
                           aria-hidden="true"
                         />

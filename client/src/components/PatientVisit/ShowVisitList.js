@@ -492,9 +492,6 @@ export default function ShowVisitList() {
                       </button>
                       <button
                         className="btn btn-danger btn-sm registerBtn"
-                        // onClick={() => {
-                        //   deleteRecord(pt._id)
-                        // }}
                         onClick={handleShowDelete}
                       >
                         <i
