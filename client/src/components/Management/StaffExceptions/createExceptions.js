@@ -11,8 +11,6 @@ const CreateException = (props) => {
   })
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
-  
-
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -24,13 +22,7 @@ const CreateException = (props) => {
       })
   }, [])
   const hourValues = Hour
-  const [hourvalue, sethourValue] = useState('')
 
-  const hourvalueChange = (event) => {
-    sethourValue(event.target.value)
-  }
-
-  const navigate = useNavigate()
   const [exception, setException] = useState({
     providerID: '',
     provider: 'Select Doctor',
@@ -107,13 +99,12 @@ const CreateException = (props) => {
         // Push to /
         // navigate('/settingsPage')
         window.location.reload()
+        window.location.close()
       })
       .catch((err) => {
         console.log('Error in CreateException!')
       })
   }
-
-
 
   return (
     <div className="grid_containers">

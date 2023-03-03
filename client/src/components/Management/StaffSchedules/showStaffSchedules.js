@@ -367,7 +367,7 @@ const ShowSchedulesList = () => {
                           title="Edit Schedule"
                         />
                       </Link>{' '} */}
-                      <button className='btn btn-info btn-sm registerBtn'                      
+                      {/* <button className='btn btn-info btn-sm registerBtn'                      
                         onClick={handleEditShow}
                         // providerID={schedule._id}
                       >
@@ -376,7 +376,7 @@ const ShowSchedulesList = () => {
                           aria-hidden="true"
                           title="Add an exception"
                         />
-                      </button>
+                      </button> */}
                       <button className='btn btn-info btn-sm registerBtn'                      
                         onClick={handleEditShow}
                         // providerID={schedule._id}

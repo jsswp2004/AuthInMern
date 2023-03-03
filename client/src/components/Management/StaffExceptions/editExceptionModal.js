@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import { useNavigate } from 'react-router'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
@@ -22,13 +21,8 @@ function EditException(props) {
       })
   }, [])
 
-  // const navigate = useNavigate()
   const hourValues = Hour
-  const [hourvalue, sethourValue] = useState('')
 
-  const hourvalueChange = (event) => {
-    sethourValue(event.target.value)
-  }
   const [exception, setException] = useState({
     providerID: '',
     provider: 'Select Doctor',
@@ -45,7 +39,6 @@ function EditException(props) {
     exceptionFri: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
-
 
   const DrID = props.providerID
   
@@ -162,8 +155,8 @@ function EditException(props) {
                   </label>
                 </div>
                 <div>
-                  <label>Exceptiond Days:</label>
-                  <label className="exceptionCheckboxContainer">
+                  <label>Exception Days:</label>
+                  <label className="scheduleCheckboxContainer">
                     Mondays
                     <input
                       type="checkbox"
@@ -171,9 +164,9 @@ function EditException(props) {
                       name="exceptionDays"
                       value={exception.exceptionMon}
                     />
-                    <span className="exceptionCheckboxCheckmark"></span>
+                    <span className="scheduleCheckboxCheckmark"></span>
                   </label>
-                  <label className="exceptionCheckboxContainer">
+                  <label className="scheduleCheckboxContainer">
                     Tuesdays
                     <input
                       type="checkbox"
@@ -181,9 +174,9 @@ function EditException(props) {
                       name="exceptionDays"
                       value={exception.exceptionTues}
                     />
-                    <span className="exceptionCheckboxCheckmark"></span>
+                    <span className="scheduleCheckboxCheckmark"></span>
                   </label>
-                  <label className="exceptionCheckboxContainer">
+                  <label className="scheduleCheckboxContainer">
                     Wednesdays
                     <input
                       type="checkbox"
@@ -191,9 +184,9 @@ function EditException(props) {
                       name="exceptionDays"
                       value={exception.exceptionWed}
                     />
-                    <span className="exceptionCheckboxCheckmark"></span>
+                    <span className="scheduleCheckboxCheckmark"></span>
                   </label>
-                  <label className="exceptionCheckboxContainer">
+                  <label className="scheduleCheckboxContainer">
                     Thursdays
                     <input
                       type="checkbox"
@@ -201,9 +194,9 @@ function EditException(props) {
                       name="exceptionDays"
                       value={exception.exceptionThurs}
                     />
-                    <span className="exceptionCheckboxCheckmark"></span>
+                    <span className="scheduleCheckboxCheckmark"></span>
                   </label>
-                  <label className="exceptionCheckboxContainer">
+                  <label className="scheduleCheckboxContainer">
                     Fridays
                     <input
                       type="checkbox"
@@ -211,7 +204,7 @@ function EditException(props) {
                       name="exceptionDays"
                       value={exception.exceptionFri}
                     />
-                    <span className="exceptionCheckboxCheckmark"></span>
+                    <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                 </div>
               </div>
@@ -221,7 +214,7 @@ function EditException(props) {
                     Start Date
                     <input
                       type="date"
-                      className="form-control exceptionInput"
+                      className="form-control scheduleInput"
                       name="startDate"
                       value={exception.startDate}
                       onChange={onChange}
@@ -231,7 +224,7 @@ function EditException(props) {
                     End Date
                     <input
                       type="date"
-                      className="form-control exceptionInput"
+                      className="form-control scheduleInput"
                       name="endDate"
                       value={exception.endDate}
                       onChange={onChange}
@@ -312,7 +305,7 @@ function EditException(props) {
                   Date Created
                   <input
                     type="date"
-                    className="form-control exceptionInput"
+                    className="form-control scheduleInput"
                     name="addedDate"
                     value={exception.addedDate}
                     onChange={onChange}

@@ -357,32 +357,11 @@ const ShowExceptionsList = () => {
                       {exception.exceptionFri + ' '}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {/* <Link
-                        className="btn btn-info btn-sm"
-                        to={`/editException/${exception._id}`}
-                      >
-                        <i
-                          className="fa fa-hospital-o fa-sm"
-                          aria-hidden="true"
-                          title="Edit Exception"
-                        />
-                      </Link>{' '} */}
                       <button className='btn btn-info btn-sm registerBtn'                      
-                        onClick={handleEditShow}
-                        // providerID={exception._id}
+                        onClick={handleEditShow}                        
                       >
                         <i
                           className="fa fa-list-alt fa-sm"
-                          aria-hidden="true"
-                          title="Add an exception"
-                        />
-                      </button>
-                      <button className='btn btn-info btn-sm registerBtn'                      
-                        onClick={handleEditShow}
-                        // providerID={exception._id}
-                      >
-                        <i
-                          className="fa fa-hospital-o fa-sm"
                           aria-hidden="true"
                           title="Edit Exception"
                         />
