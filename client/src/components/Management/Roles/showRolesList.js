@@ -65,6 +65,37 @@ const ShowRolesList = () => {
       })
   }, [])
 
+  //#region for delete confirmation modal
+  const [roleID, setRoleID] = useState('')
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+  const DeleteVisitModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this data item?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => deleteRecord(roleID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteVisitModal />
+  }
+
+  //#endregion
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/roles/${id}`)
@@ -221,6 +252,12 @@ const ShowRolesList = () => {
     setPage(0)
   }
 
+    //setting the ID of the role for the property
+    const handleItemClick = item => {
+      const rolID = item._id
+      setRoleID(rolID)
+    }
+
   return (
     <div className="grid_container">
       <div className="item1">
@@ -236,17 +273,18 @@ const ShowRolesList = () => {
             <div className="item3A">
               <h5 className="createPageHeader">Settings</h5>
 
-           
+
 
             </div>
 
-          
+
           </div>
           <div className="roleItemContainerBox">
             <div className="item3A">
               <h5 className="createPageHeader">Roles</h5>
 
               <div>{displayVisitModal()}</div>
+              <div>{displayDeleteRegistrationModal()}</div>
               <Button
                 className="btn btn-info btn-sm roleCreateBtn"
                 variant="primary"
@@ -286,12 +324,14 @@ const ShowRolesList = () => {
                   <TableBody>
                     {(rowsPerPage > 0
                       ? roles.slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage,
-                        )
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage,
+                      )
                       : roles
                     ).map((role) => (
-                      <StyledTableRow key={role._id}>
+                      <StyledTableRow key={role._id}
+                      onClick={() => handleItemClick(role)}
+                      >
                         <StyledTableCell align="left">
                           {role.name}
                         </StyledTableCell>
@@ -306,18 +346,28 @@ const ShowRolesList = () => {
                               title="Edit registration"
                             />
                           </Link>{' '}
+                          {/* //<button
+                          //   className="btn btn-danger btn-sm"
+                          //   onClick={() => {
+                          //     deleteRecord(role._id)
+                          //   }}
+                          // >
+                          //   <i
+                          //     title="delete patient"
+                          //     className="fa fa-trash-o fa-sm"
+                          //     aria-hidden="true"
+                          //   />
+                          // </button> */}
                           <button
-                            className="btn btn-danger btn-sm"
-                            onClick={() => {
-                              deleteRecord(role._id)
-                            }}
-                          >
-                            <i
-                              title="delete patient"
-                              className="fa fa-trash-o fa-sm"
-                              aria-hidden="true"
-                            />
-                          </button>
+                              className="btn btn-danger btn-sm registerBtn"
+                              onClick={handleShowDelete}
+                            >
+                              <i
+                                title="delete visit"
+                                className="fa fa-trash-o fa-sm"
+                                aria-hidden="true"
+                              />
+                            </button>
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}
@@ -362,7 +412,7 @@ const ShowRolesList = () => {
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   )
