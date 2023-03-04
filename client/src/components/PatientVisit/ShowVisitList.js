@@ -349,6 +349,7 @@ export default function ShowVisitList() {
       </div>
 
       <div className="item3" >
+        
         <div className="item3A">
           <div className="left filter_navbarLeft">
             <h4 className='patientListHeader'>Visit List</h4>
@@ -409,7 +410,7 @@ export default function ShowVisitList() {
         <div>{displayEditVisitModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>
         
-
+<div className="item3B" style={{overflowY: 'auto'}}>
           <TableContainer component={Paper}>
             <Table
               sx={{ minWidth: 650 }}
@@ -541,7 +542,7 @@ export default function ShowVisitList() {
               </TableFooter>
             </Table>
           </TableContainer>
-        
+          </div>
       </div>
     </div>
   )

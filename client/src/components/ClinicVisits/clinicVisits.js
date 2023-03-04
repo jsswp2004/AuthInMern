@@ -1529,12 +1529,12 @@ export default function ClinicVisit() {
 
   //Weekly
   const WeekDayDate1 = format(new Date(startOfTheWeekDate), 'yyyy-MM-dd') //Sunday
-  const WeekDayDate2 = format(addDays(new Date(startOfTheWeekDate), 1),'yyyy-MM-dd') //Monday
-  const WeekDayDate3 = format(addDays(new Date(startOfTheWeekDate),2), 'yyyy-MM-dd')//Tuesday
-  const WeekDayDate4 = format(addDays(new Date(startOfTheWeekDate),3),'yyyy-MM-dd') //Wednesday
-  const WeekDayDate5 = format(addDays(new Date(startOfTheWeekDate),4) ,'yyyy-MM-dd') //Thursday
-  const WeekDayDate6 = format(addDays(new Date(startOfTheWeekDate),5) ,'yyyy-MM-dd')//Friday
-  const WeekDayDate7 = format(addDays(new Date(startOfTheWeekDate),6), 'yyyy-MM-dd')
+  const WeekDayDate2 = format(addDays(new Date(startOfTheWeekDate), 1), 'yyyy-MM-dd') //Monday
+  const WeekDayDate3 = format(addDays(new Date(startOfTheWeekDate), 2), 'yyyy-MM-dd')//Tuesday
+  const WeekDayDate4 = format(addDays(new Date(startOfTheWeekDate), 3), 'yyyy-MM-dd') //Wednesday
+  const WeekDayDate5 = format(addDays(new Date(startOfTheWeekDate), 4), 'yyyy-MM-dd') //Thursday
+  const WeekDayDate6 = format(addDays(new Date(startOfTheWeekDate), 5), 'yyyy-MM-dd')//Friday
+  const WeekDayDate7 = format(addDays(new Date(startOfTheWeekDate), 6), 'yyyy-MM-dd')
   // console.log(format(addDays(new Date(WeekDayDate5), 1), 'iii'))
   // console.log(WeekDayDate1, monthIndex,startOfTheWeek + 5)
   // console.log(format(addDays(new Date(WeekDayDate5), 1), 'yyyy-MM-dd'))
@@ -1730,1026 +1730,1030 @@ export default function ClinicVisit() {
           <div>{displayVisitMonthlyModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
           <div>{displayEditVisitModal()}</div>
-          <div className="item3B" style={{ overflowY: 'auto' }}>
-          <div className="itemCalendar2">
-            
+          {/* <div className="item3Bs" style={{ overflowY: 'auto' }}> */}
+            <div className="itemCalendar2">
+
             {/* monthly */}
-            <div
-              className="monthly"
-              style={{
-                display: selectViewValue === 'Monthly' ? '' : 'none',
-                paddingLeft: '0px',
-                marginBottom: '0px',
-              }}
-            >
-              <div className="weekDayTitleParent">
-                <div id="weekDayTitleChild" className="weekDayTitleChild">
-                  Su
+           
+              <div
+                className="monthly"
+                style={{
+                  display: selectViewValue === 'Monthly' ? '' : 'none',
+                  paddingLeft: '0px',
+                  marginBottom: '0px',
+                }}
+              >
+                <div className="weekDayTitleParent">
+                  <div id="weekDayTitleChild" className="weekDayTitleChild">
+                    Su
+                  </div>
+                  <div
+                    className="weekDayTitleChild"
+                  // onClick={() => {
+                  //   alert.show('Oh look, an alert!')
+                  // }}
+                  >
+                    Mo
+                  </div>
+                  <div className="weekDayTitleChild">Tu</div>
+                  <div className="weekDayTitleChild">We</div>
+                  <div className="weekDayTitleChild">Th</div>
+                  <div className="weekDayTitleChild">Fr</div>
+                  <div className="weekDayTitleChild">Sa</div>
                 </div>
-                <div
-                  className="weekDayTitleChild"
-                // onClick={() => {
-                //   alert.show('Oh look, an alert!')
-                // }}
-                >
-                  Mo
-                </div>
-                <div className="weekDayTitleChild">Tu</div>
-                <div className="weekDayTitleChild">We</div>
-                <div className="weekDayTitleChild">Th</div>
-                <div className="weekDayTitleChild">Fr</div>
-                <div className="weekDayTitleChild">Sa</div>
-              </div>
-              <div className="monthDayTitleParent">
-                <div
-                  className="monthDayTitleChild"
-                  style={{
-                    gridColumnStart: startOfTheMonthDayNumber + 1,
-                    backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) ? 'white' : '#cefad0' : 'white',
+                <div style={{ overflowY: 'auto' }}>
+                <div className="monthDayTitleParent">
+                  <div
+                    className="monthDayTitleChild"
+                    style={{
+                      gridColumnStart: startOfTheMonthDayNumber + 1,
+                      backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) ? 'white' : '#cefad0' : 'white',
 
-                  }}
-                >
-                  <span id="day1" >
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay}
-
-                    </button>
-                  </span>
-                  {visitListMonthlyDay1()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span id="day2" className="day">
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay2()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span className="day" id="day3">
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay3()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span className="day4" id="day4">
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay4()}
-                </div>
-                <div
-                  className="monthDayTitleChild"
-                  onClick={() => {
-                    handleMonthlyShow()
-                    setSelectedDate()
-
-                  }}
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
-
-                  }}
-                >
-                  <span className="day5" id="day5">
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay5()}
-                </div>
-                <div className="monthDayTitleChild" style={{
-                  backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <span className="day6" id="day6">
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay6()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay7()}
-                </div>
-                <div
-                  className="monthDayTitleChild"
-                  style={{
-                    pointerEvents: weekendDay ? 'none' : '',
-
-                    backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) ? 'white' : '#cefad0' : 'white',
-
-                  }}
-                >
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay8()}
-                </div>
-                <div className="monthDayTitleChild" style={{
-                  backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
-                    </button>
-                  </span>
-                  {visitListMonthlyDay9()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay10()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    pointerEvents: weekendDay ? 'none' : '',
-                    backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay11()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay12()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay13()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay14()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay15()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 16}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay16()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay17()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay18()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay19()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay20()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay21()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay22()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay23()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay24()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay25()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay26()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay27()}
-                </div>
-                <div className="monthDayTitleChild"
-                  style={{
-                    backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay28()}
-                </div>
-                <div
-                  className="monthDayTitleChild"
-                  style={{
-                    display:
-                      startOfTheMonthDay + 28 > endOfTheMonthDay
-                        ? 'none'
-                        : 'inline',
-                    backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}
-                >
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay29()}
-                </div>
-                <div
-                  className="monthDayTitleChild"
-                  style={{
-                    display:
-                      startOfTheMonthDay + 29 > endOfTheMonthDay
-                        ? 'none'
-                        : 'inline',
-                    backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}
-                >
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay30()}
-                </div>
-                <div
-                  className="monthDayTitleChild"
-                  style={{
-                    display:
-                      startOfTheMonthDay + 30 > endOfTheMonthDay
-                        ? 'none'
-                        : 'inline',
-                    backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}
-
-                >
-                  <span>
-                    <button
-                      style={{
-                        fontSize: '10px',
-                        paddingTop: '1px',
-                        paddingBottom: '1px',
-                        borderRadius: '10px',
-                      }}
-                      className="btn btn-info btn-sm"
-                      onClick={handleClick}
-                      title="Click to add visit"
-                    >
-                      {startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31}
-                    </button>
-                  </span>
-
-                  {visitListMonthlyDay31()}
-                </div>
-              </div>
-            </div>
-            {/* Weekly  */}
-            <div
-              className="weekly"
-              style={{
-                display: selectViewValue === 'Weekly' ? 'inline' : 'none',
-                paddingLeft: '0px',
-                marginBottom: '0px',
-                height: '100%',
-                // backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
-              }}
-            >
-              <div className="grid-weeklycalcontainer">
-                <div style={{
-                  fontSize: '14px',
-                  // height: 'calc(100vh - 132px)',
-                  height: '100%',
-                  // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <li className="calendar-item weekday">
-                    <div>
-                      SUN
-                      <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek}
-                      </span>
-                    </div>
-                  </li>
-                  <li
-                    className="calendar-item calendar-day"
-                    style={gridWeeklyStartSun}
-                  ></li>
-                </div>
-                <div style={{
-                  fontSize: '14px',
-                  // height: 'calc(100vh - 132px)',
-                  height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <li className="calendar-item weekday">
-                    <div>
-                      MON
-                      <span style={{
-                        float: 'right', marginRight: '10px',
-
-
-                      }}
-
+                    }}
+                  >
+                    <span id="day1" >
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
                       >
-                        {startOfTheWeek + 1 > startOfTheWeekEndOfMonth && startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
-                          ? startOfTheWeek + 1 - startOfTheWeekEndOfMonth
-                          : startOfTheWeek + 1}
+                        {startOfTheMonthDay}
 
+                      </button>
+                    </span>
+                    {visitListMonthlyDay1()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span id="day2" className="day">
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay2()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span className="day" id="day3">
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay3()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span className="day4" id="day4">
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay4()}
+                  </div>
+                  <div
+                    className="monthDayTitleChild"
+                    onClick={() => {
+                      handleMonthlyShow()
+                      setSelectedDate()
 
-                      </span>
-                    </div>
-                  </li>
-                  <li className="calendar-item calendar-day" >
-                    {visitListWeeklyMonday()}
-                  </li>
-                </div>
-                <div style={{
-                  fontSize: '14px',
+                    }}
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
+
+                    }}
+                  >
+                    <span className="day5" id="day5">
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay5()}
+                  </div>
+                  <div className="monthDayTitleChild" style={{
+                    backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <span className="day6" id="day6">
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay6()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay7()}
+                  </div>
+                  <div
+                    className="monthDayTitleChild"
+                    style={{
+                      pointerEvents: weekendDay ? 'none' : '',
+
+                      backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) ? 'white' : '#cefad0' : 'white',
+
+                    }}
+                  >
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay8()}
+                  </div>
+                  <div className="monthDayTitleChild" style={{
+                    backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
+                      </button>
+                    </span>
+                    {visitListMonthlyDay9()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay10()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      pointerEvents: weekendDay ? 'none' : '',
+                      backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay11()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay12()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay13()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay14()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay15()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 16}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay16()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay17()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay18()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay19()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay20()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay21()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay22()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay23()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay24()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay25()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay26()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay27()}
+                  </div>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}>
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay28()}
+                  </div>
+                  <div
+                    className="monthDayTitleChild"
+                    style={{
+                      display:
+                        startOfTheMonthDay + 28 > endOfTheMonthDay
+                          ? 'none'
+                          : 'inline',
+                      backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}
+                  >
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay29()}
+                  </div>
+                  <div
+                    className="monthDayTitleChild"
+                    style={{
+                      display:
+                        startOfTheMonthDay + 29 > endOfTheMonthDay
+                          ? 'none'
+                          : 'inline',
+                      backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}
+                  >
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay30()}
+                  </div>
+                  <div
+                    className="monthDayTitleChild"
+                    style={{
+                      display:
+                        startOfTheMonthDay + 30 > endOfTheMonthDay
+                          ? 'none'
+                          : 'inline',
+                      backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) ? 'white' : '#cefad0' : 'white',
+                    }}
+
+                  >
+                    <span>
+                      <button
+                        style={{
+                          fontSize: '10px',
+                          paddingTop: '1px',
+                          paddingBottom: '1px',
+                          borderRadius: '10px',
+                        }}
+                        className="btn btn-info btn-sm"
+                        onClick={handleClick}
+                        title="Click to add visit"
+                      >
+                        {startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31}
+                      </button>
+                    </span>
+
+                    {visitListMonthlyDay31()}
+                  </div>
+                  </div>
+                  </div>
+              </div>
+            
+              {/* Weekly  */}
+              <div
+                className="weekly"
+                style={{
+                  display: selectViewValue === 'Weekly' ? 'inline' : 'none',
+                  paddingLeft: '0px',
+                  marginBottom: '0px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
-                }} >
-                  <li className="calendar-item weekday">
-                    <div>
-                      TUE
-                      <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 2 > startOfTheWeekEndOfMonth && startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
-                          ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
-                          : startOfTheWeek + 2}
-                      </span>
-                    </div>
-                  </li>
-                  <li className="calendar-item calendar-day" >
-                    {visitListWeeklyTuesday()}
-                  </li>
-                </div>
-                <div style={{
-                  fontSize: '14px',
-                  height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <li className="calendar-item weekday">
-                    <div>
-                      WED
-                      <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 3 > startOfTheWeekEndOfMonth && startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
-                          ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
-                          : startOfTheWeek + 3}
-                        {console.log(startOfTheWeek
+                  // backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
+                }}
+              >
+                <div className="grid-weeklycalcontainer">
+                  <div style={{
+                    fontSize: '14px',
+                    // height: 'calc(100vh - 132px)',
+                    height: '100%',
+                    // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <li className="calendar-item weekday">
+                      <div>
+                        SUN
+                        <span style={{ float: 'right', marginRight: '10px' }}>
+                          {startOfTheWeek}
+                        </span>
+                      </div>
+                    </li>
+                    <li
+                      className="calendar-item calendar-day"
+                      style={gridWeeklyStartSun}
+                    ></li>
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    // height: 'calc(100vh - 132px)',
+                    height: '100%',
+                    backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <li className="calendar-item weekday">
+                      <div>
+                        MON
+                        <span style={{
+                          float: 'right', marginRight: '10px',
 
-                          , startOfTheWeek + 3
-                          , startOfTheWeekEndOfMonth,
-                          startOfTheWeek + 3 - startOfTheWeekEndOfMonth)}
-                      </span>
-                    </div>
-                  </li>
-                  <li className="calendar-item calendar-day" >
-                    {visitListWeeklyWednesday()}
-                    {/* {console.log(startOfTheWeek + 3 > startOfTheWeekEndOfMonth
+
+                        }}
+
+                        >
+                          {startOfTheWeek + 1 > startOfTheWeekEndOfMonth && startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 1 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 1}
+
+
+                        </span>
+                      </div>
+                    </li>
+                    <li className="calendar-item calendar-day" >
+                      {visitListWeeklyMonday()}
+                    </li>
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    height: '100%',
+                    backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
+                  }} >
+                    <li className="calendar-item weekday">
+                      <div>
+                        TUE
+                        <span style={{ float: 'right', marginRight: '10px' }}>
+                          {startOfTheWeek + 2 > startOfTheWeekEndOfMonth && startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 2}
+                        </span>
+                      </div>
+                    </li>
+                    <li className="calendar-item calendar-day" >
+                      {visitListWeeklyTuesday()}
+                    </li>
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    height: '100%',
+                    backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <li className="calendar-item weekday">
+                      <div>
+                        WED
+                        <span style={{ float: 'right', marginRight: '10px' }}>
+                          {startOfTheWeek + 3 > startOfTheWeekEndOfMonth && startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 3}
+                          {console.log(startOfTheWeek
+
+                            , startOfTheWeek + 3
+                            , startOfTheWeekEndOfMonth,
+                            startOfTheWeek + 3 - startOfTheWeekEndOfMonth)}
+                        </span>
+                      </div>
+                    </li>
+                    <li className="calendar-item calendar-day" >
+                      {visitListWeeklyWednesday()}
+                      {/* {console.log(startOfTheWeek + 3 > startOfTheWeekEndOfMonth
                           ? 1
                           : startOfTheWeek + 3, startOfTheWeek + 3)} */}
-                  </li>
-                </div>
-                <div style={{
-                  fontSize: '14px',
-                  height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <li className="calendar-item weekday">
-                    <div>
-                      THU
-                      <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
-                          ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
-                          : startOfTheWeek + 4}
-                      </span>
-                    </div>
-                  </li>
-                  <li className="calendar-item calendar-day" >
-                    {/* style={gridWeekly} */}
-                    {visitListWeeklyThursday()}
-                  </li>
-                </div>
-                <div style={{
-                  fontSize: '14px',
-                  height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <li className="calendar-item weekday">
-                    <div>
-                      FRI
-                      <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
-                          ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
-                          : startOfTheWeek + 5}
-                      </span>
-                    </div>
-                  </li>
+                    </li>
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    height: '100%',
+                    backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <li className="calendar-item weekday">
+                      <div>
+                        THU
+                        <span style={{ float: 'right', marginRight: '10px' }}>
+                          {startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 4}
+                        </span>
+                      </div>
+                    </li>
+                    <li className="calendar-item calendar-day" >
+                      {/* style={gridWeekly} */}
+                      {visitListWeeklyThursday()}
+                    </li>
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    height: '100%',
+                    backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <li className="calendar-item weekday">
+                      <div>
+                        FRI
+                        <span style={{ float: 'right', marginRight: '10px' }}>
+                          {startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 5}
+                        </span>
+                      </div>
+                    </li>
 
-                  <li className="calendar-item calendar-day">
-                    {visitListWeeklyFriday()}
-                    {/* {console.log(WeekDayDate6)} */}
-                  </li>
-                </div>
-                <div style={{
-                  fontSize: '14px',
-                  height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
-                }}>
-                  <li className="calendar-item weekday">
-                    <div>
-                      SAT
-                      <span style={{ float: 'right', marginRight: '10px' }}>
-                        {startOfTheWeek + 6 > startOfTheWeekEndOfMonth && startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
-                          ? startOfTheWeek + 6 - startOfTheWeekEndOfMonth
-                          : startOfTheWeek + 6}
-                      </span>
-                    </div>
-                  </li>
-                  <li
-                    className="calendar-item calendar-day"
-                    style={gridWeekly}
-                  ></li>
+                    <li className="calendar-item calendar-day">
+                      {visitListWeeklyFriday()}
+                      {/* {console.log(WeekDayDate6)} */}
+                    </li>
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    height: '100%',
+                    backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
+                  }}>
+                    <li className="calendar-item weekday">
+                      <div>
+                        SAT
+                        <span style={{ float: 'right', marginRight: '10px' }}>
+                          {startOfTheWeek + 6 > startOfTheWeekEndOfMonth && startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 6 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 6}
+                        </span>
+                      </div>
+                    </li>
+                    <li
+                      className="calendar-item calendar-day"
+                      style={gridWeekly}
+                    ></li>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* Daily  */}
-            <div
-              className="daily"
-              style={{
-                display: selectViewValue === 'Daily' ? '' : 'none',
-                columnSpan: 'all',
-              }}
-            >
-              <li
-                className="calendar-item calendar-day"
-                id="calendarDaily"
-                style={gridWeeklyStart}
+              {/* Daily  */}
+              <div
+                className="daily"
+                style={{
+                  display: selectViewValue === 'Daily' ? '' : 'none',
+                  columnSpan: 'all',
+                }}
               >
-                <div className="calendarDailyDate" id="calendarDailyDate">
-                  <h5 className="calendarDailyDateHeader">
-                    {format(new Date(showDateValue.toLocaleString()), 'PPP')}
-                  </h5>
-                </div>
+                <li
+                  className="calendar-item calendar-day"
+                  id="calendarDaily"
+                  style={gridWeeklyStart}
+                >
+                  <div className="calendarDailyDate" id="calendarDailyDate">
+                    <h5 className="calendarDailyDateHeader">
+                      {format(new Date(showDateValue.toLocaleString()), 'PPP')}
+                    </h5>
+                  </div>
 
-                <div>
-                  <TableContainer component={Paper}>
-                    <Table
-                      sx={{ minWidth: 650 }}
-                      size="small"
-                      aria-label="a dense table"
-                    // className='table-striped'
-                    >
-                      <TableHead>
-                        <TableRow>
-                          <StyledTableCell align="left">MRN</StyledTableCell>
-                          <StyledTableCell align="left">
-                            Visit ID
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            Firstname
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            Middlename
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            Lastname
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            Visit Date
-                          </StyledTableCell>
-                          <StyledTableCell align="left">Time</StyledTableCell>
-                          <StyledTableCell align="left">Email</StyledTableCell>
-                          <StyledTableCell align="left">
-                            Provider
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            Date Created
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            Actions
-                          </StyledTableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {(rowsPerPage > 0
-                          ? filterDataWithDate.slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage,
-                          )
-                          : filterDataWithDate
-                        ).map((pt) => (
-                          <StyledTableRow key={pt._id}
-                            onClick={() => handleItemClick(pt)}
-                          >
+                  <div>
+                    <TableContainer component={Paper}>
+                      <Table
+                        sx={{ minWidth: 650 }}
+                        size="small"
+                        aria-label="a dense table"
+                      // className='table-striped'
+                      >
+                        <TableHead>
+                          <TableRow>
+                            <StyledTableCell align="left">MRN</StyledTableCell>
                             <StyledTableCell align="left">
-                              {pt.medicalRecordNumber}
+                              Visit ID
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              {pt.visitNumber}
+                              Firstname
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              {pt.firstName}
+                              Middlename
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              {pt.middleName}
+                              Lastname
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              {pt.lastName}
+                              Visit Date
+                            </StyledTableCell>
+                            <StyledTableCell align="left">Time</StyledTableCell>
+                            <StyledTableCell align="left">Email</StyledTableCell>
+                            <StyledTableCell align="left">
+                              Provider
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              {pt.visitDate}
+                              Date Created
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              {pt.hourOfVisit}
+                              Actions
                             </StyledTableCell>
-                            <StyledTableCell align="left">
-                              {pt.email}
-                            </StyledTableCell>
-                            <StyledTableCell align="left">
-                              {pt.provider}
-                            </StyledTableCell>
-                            <StyledTableCell align="left">
-                              {pt.addedDate}
-                            </StyledTableCell>
-                            <StyledTableCell align="left">
-                              <button
-                                className="btn btn-primary btn-sm registerBtn"
-                                onClick={() => { handleEditVisitShow(pt._id) }}>
-                                <i
-                                  className="fa fa-pencil-square-o fa-sm"
-                                  aria-hidden="true"
-                                  title='edit visit'
-                                />
-                              </button>
-                              {/* <Link
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {(rowsPerPage > 0
+                            ? filterDataWithDate.slice(
+                              page * rowsPerPage,
+                              page * rowsPerPage + rowsPerPage,
+                            )
+                            : filterDataWithDate
+                          ).map((pt) => (
+                            <StyledTableRow key={pt._id}
+                              onClick={() => handleItemClick(pt)}
+                            >
+                              <StyledTableCell align="left">
+                                {pt.medicalRecordNumber}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.visitNumber}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.firstName}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.middleName}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.lastName}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.visitDate}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.hourOfVisit}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.email}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.provider}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.addedDate}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                <button
+                                  className="btn btn-primary btn-sm registerBtn"
+                                  onClick={() => { handleEditVisitShow(pt._id) }}>
+                                  <i
+                                    className="fa fa-pencil-square-o fa-sm"
+                                    aria-hidden="true"
+                                    title='edit visit'
+                                  />
+                                </button>
+                                {/* <Link
                                 className="btn btn-info btn-sm"
                                 to={`/editVisit/${pt._id}`}
                               >
@@ -2758,16 +2762,16 @@ export default function ClinicVisit() {
                                   aria-hidden="true"
                                 />
                               </Link> */}
-                              <Link
-                                className="btn btn-success btn-sm registerBtn"
-                                to={`/detailsVisit/${pt._id}`}
-                              >
-                                <i
-                                  className="fa fa-clipboard fa-sm"
-                                  aria-hidden="true"
-                                />
-                              </Link>
-                              {/* <button
+                                <Link
+                                  className="btn btn-success btn-sm registerBtn"
+                                  to={`/detailsVisit/${pt._id}`}
+                                >
+                                  <i
+                                    className="fa fa-clipboard fa-sm"
+                                    aria-hidden="true"
+                                  />
+                                </Link>
+                                {/* <button
                                 className="btn btn-danger btn-sm registerBtn"
                                 onClick={() => {
                                   deleteRecord(pt._id)
@@ -2778,65 +2782,65 @@ export default function ClinicVisit() {
                                   aria-hidden="true"
                                 />
                               </button> */}
-                              <button
-                                className="btn btn-danger btn-sm registerBtn"
-                                // onClick={() => {
-                                //   deleteRecord(pt._id)
-                                // }}
-                                onClick={handleShowDelete}
-                              >
-                                <i
-                                  title="delete visit"
-                                  className="fa fa-trash-o fa-sm"
-                                  aria-hidden="true"
-                                />
-                              </button>
-                            </StyledTableCell>
-                          </StyledTableRow>
-                        ))}
-                        {emptyRows > 0 && (
-                          <StyledTableRow
-                            style={{
-                              height: 53 * emptyRows,
-                            }}
-                          >
-                            <StyledTableCell colSpan={6} />
-                          </StyledTableRow>
-                        )}
-                      </TableBody>
-                      <TableFooter>
-                        <TableRow>
-                          <TablePagination
-                            // style={{float:'right'}}
-                            rowsPerPageOptions={[
-                              5,
-                              10,
-                              25,
-                              { label: 'All', value: -1 },
-                            ]}
-                            colSpan={12}
-                            count={filterDataWithDate.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            SelectProps={{
-                              inputProps: {
-                                'aria-label': 'rows per page',
-                              },
-                              native: true,
-                            }}
-                            onPageChange={handleChangePage}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                          />
-                        </TableRow>
-                      </TableFooter>
-                    </Table>
-                  </TableContainer>
-                </div>
-              </li>
+                                <button
+                                  className="btn btn-danger btn-sm registerBtn"
+                                  // onClick={() => {
+                                  //   deleteRecord(pt._id)
+                                  // }}
+                                  onClick={handleShowDelete}
+                                >
+                                  <i
+                                    title="delete visit"
+                                    className="fa fa-trash-o fa-sm"
+                                    aria-hidden="true"
+                                  />
+                                </button>
+                              </StyledTableCell>
+                            </StyledTableRow>
+                          ))}
+                          {emptyRows > 0 && (
+                            <StyledTableRow
+                              style={{
+                                height: 53 * emptyRows,
+                              }}
+                            >
+                              <StyledTableCell colSpan={6} />
+                            </StyledTableRow>
+                          )}
+                        </TableBody>
+                        <TableFooter>
+                          <TableRow>
+                            <TablePagination
+                              // style={{float:'right'}}
+                              rowsPerPageOptions={[
+                                5,
+                                10,
+                                25,
+                                { label: 'All', value: -1 },
+                              ]}
+                              colSpan={12}
+                              count={filterDataWithDate.length}
+                              rowsPerPage={rowsPerPage}
+                              page={page}
+                              SelectProps={{
+                                inputProps: {
+                                  'aria-label': 'rows per page',
+                                },
+                                native: true,
+                              }}
+                              onPageChange={handleChangePage}
+                              onRowsPerPageChange={handleChangeRowsPerPage}
+                              ActionsComponent={TablePaginationActions}
+                            />
+                          </TableRow>
+                        </TableFooter>
+                      </Table>
+                    </TableContainer>
+                  </div>
+                </li>
+              </div>
             </div>
-            </div>
-            </div>
+          {/* </div> */}
         </div>
       </div>
     </div>
