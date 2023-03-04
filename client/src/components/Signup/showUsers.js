@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import { useNavigate } from 'react-router'
 // import User from './userlist'
 import axios from 'axios'
+import { Modal, Button } from 'react-bootstrap'
 // import logo from '../../components/shared/images/logoPOWER.png'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
@@ -43,6 +44,30 @@ export default function ShowUsersList() {
   //   localStorage.removeItem('token')
   //   navigate('/login')
   // }
+
+  //for edit button
+  const [editShow, setEditShow] = useState(false)
+  const handleEditClose = () => setEditShow(false)
+  const handleEditShow = () => setEditShow(true)
+
+  const EditUserModal = () => (
+    <>
+      <Modal show={editShow} onHide={handleEditClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Edit User</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditRole roleID={ roleID} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleEditClick}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+
 
   const [users, setUsers] = useState([])
   const [searchInput, setSearchInput] = useState('')
@@ -104,81 +129,6 @@ export default function ShowUsersList() {
       }
     })
     .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1))
-  // const [sortedField, setSortedField] = useState(null)
-  // const [sortedDirection, setSortedDirection] = useState(null)
-
-  // function userList() {
-  //   if (sortedField === 'firstName' && sortedDirection === 'asc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.firstName > b.firstName ? 1 : -1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'firstName' && sortedDirection === 'dsc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.firstName > b.firstName ? -1 : 1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'lastName' && sortedDirection === 'asc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.lastName > b.lastName ? 1 : -1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'lastName' && sortedDirection === 'dsc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.lastName > b.lastName ? -1 : 1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'email' && sortedDirection === 'asc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.email > b.email ? 1 : -1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'email' && sortedDirection === 'dsc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.email > b.email ? -1 : 1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'role' && sortedDirection === 'asc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.role > b.role ? 1 : -1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'role' && sortedDirection === 'dsc') {
-  //     return filteredData
-  //       .sort((a, b) => (a.role > b.role ? -1 : 1))
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'addedDate' && sortedDirection === 'asc') {
-  //     return filteredData
-  //       .sort((a, b) =>
-  //         Date.parse(a.addedDate) > Date.parse(b.addedDate) ? 1 : -1,
-  //       )
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else if (sortedField === 'addedDate' && sortedDirection === 'dsc') {
-  //     return filteredData
-  //       .sort((a, b) =>
-  //         Date.parse(a.addedDate) > Date.parse(b.addedDate) ? -1 : 1,
-  //       )
-  //       .map((user) => {
-  //         return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //       })
-  //   } else {
-  //     return filteredData.map((user) => {
-  //       return <User user={user} deleteRecord={deleteRecord} key={user._id} />
-  //     })
-  //   }
-  // }
-
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.gray,
@@ -198,24 +148,6 @@ export default function ShowUsersList() {
       border: 0,
     },
   }))
-
-  //   const StyledTablePagination = styled(TablePagination)(({ theme }) => ({
-  //     '&:td': {
-  //           backgroundColor: theme.palette.common.white,
-  //           color: theme.palette.common.black,
-  //           marginBottom: 0,
-  //           marginTop: 10,
-  //     },
-  //     // hide last border
-  //     // '&:last-child td, &:last-child th': {
-  //     //   border: 0,
-  //     // },
-  //     // [`&.${tableCellClasses.body}`]: {
-  //     //       fontSize: 14,
-  //     //     // fontColor: theme.palette.common.white,
-  //     //     marginBottom: 0,
-  //     //   },
-  //   }))
 
   //pagination
   function TablePaginationActions(props) {
@@ -305,12 +237,6 @@ export default function ShowUsersList() {
 
   return (
     <div className="grid_containers">
-      {/* <div className="item1">
-        <Header />
-      </div> */}
-      {/* <div className="item2">
-        <Navbar />
-      </div> */}
       <div className="item3">
         <div className="item3A">
           <h4 className='createPageHeader'>Registered Users</h4>
@@ -375,6 +301,15 @@ export default function ShowUsersList() {
                         title='Edit User'
                       />
                     </Link>{' '}
+                    <button className='btn btn-info btn-sm registerBtn'                      
+                        onClick={handleEditShow}
+                      >
+                        <i
+                          className="fa fa-pencil-square-o fa-sm"
+                          aria-hidden="true"
+                          title="Edit Role"
+                        />
+                      </button>
                     <button
                       className="btn btn-danger btn-sm registerBtn"
                       onClick={() => {
