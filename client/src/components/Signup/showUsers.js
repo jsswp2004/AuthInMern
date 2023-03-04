@@ -26,6 +26,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import EditUser from './editUserModal'
 // import { alpha } from '@mui/material/styles';
 // import TableSortLabel from '@mui/material/TableSortLabel';
 // import Toolbar from '@mui/material/Toolbar';
@@ -50,6 +51,19 @@ export default function ShowUsersList() {
   const handleEditClose = () => setEditShow(false)
   const handleEditShow = () => setEditShow(true)
 
+  //Define role id for prop
+  const [userID, setUserID] = useState('')
+  const handleEditClick = (e) => {
+    e.preventDefault()
+    setEditShow(false)
+    window.location.close()    
+  }
+
+        //setting the ID of the user for the property
+        const handleItemClick = item => {
+          const userID = item._id
+          setUserID(userID)
+        }
   const EditUserModal = () => (
     <>
       <Modal show={editShow} onHide={handleEditClose} size="med" centered>
@@ -57,7 +71,7 @@ export default function ShowUsersList() {
           <Modal.Title>Edit User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditRole roleID={ roleID} />
+          <EditUser userID={ userID} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
@@ -68,6 +82,9 @@ export default function ShowUsersList() {
     </>
   )
 
+  function displayEditRoleModal() {
+    return <EditUserModal />
+  }
 
   const [users, setUsers] = useState([])
   const [searchInput, setSearchInput] = useState('')
@@ -240,7 +257,7 @@ export default function ShowUsersList() {
       <div className="item3">
         <div className="item3A">
           <h4 className='createPageHeader'>Registered Users</h4>
-          
+          <div>{ displayEditRoleModal() }</div>
           <label htmlFor="search" className="searchLabel" >
           <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
             <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User'/>
@@ -278,7 +295,9 @@ export default function ShowUsersList() {
                   )
                 : filteredData
               ).map((user) => (
-                <StyledTableRow key={user._id}>
+                <StyledTableRow key={user._id}
+                onClick ={() => handleItemClick(user)}
+                >
                   <StyledTableCell align="left">
                     {user.firstName}
                   </StyledTableCell>

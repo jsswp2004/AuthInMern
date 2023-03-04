@@ -1,33 +1,68 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+// import { Link, useParams, useNavigate } from 'react-router-dom'
+
 
 
 function EditRoleModal(props) {
-  const [clinicRole, setClinicRole] = useState({
-    name: '',
-    addedDate: '',
+  const [rolex, setRoles] = useState([])
+  const roles = rolex.filter((role) => {
+    return role.name.toString().toLowerCase()
   })
-
-  const RoleID = props.roleID
+  const userRoles = roles.map((role) => {
+    return role.name
+  })
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/roles/${RoleID}`)
+      .get('http://localhost:8081/api/roles')
+      .then((response) => {
+        setRoles(response.data)
+      })
+      .catch((error) => {
+        console.log('Error from roles list')
+      })
+  }, [])
+  // const [clinicRole, setClinicRole] = useState({
+  //   name: '',
+  //   addedDate: '',
+  // })
+
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    role: '',
+    email: '',
+    password: '',
+    addedDate: '',
+  })
+
+  // const { id } = useParams()
+  // const RoleID = props.roleID
+  const UserID = props.userID
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/users/${UserID}`)
       .then((res) => {
-        setClinicRole({
+        setUser({
           // _id: res.data._id,
-          name: res.data.name,
-          addedDate: res.data.addedDate,
+          firstName: '',
+          lastName: '',
+          role: '',
+          email: '',
+          password: '',
+          addedDate: '',
         })
       })
       .catch((err) => {
-        console.log('Error from EditRole')
+        console.log('Error from EditUserModal')
       })
-  }, [RoleID])
+  }, [UserID])
 
   // console.log(role)
   const handleChange = (e) => {
-    setClinicRole({ ...clinicRole, [e.target.name]: e.target.value })
+    setUser({ ...user, [e.target.name]: e.target.value })
     // window.location.reload()
   }
 
@@ -35,13 +70,17 @@ function EditRoleModal(props) {
     e.preventDefault()
 
     const data = {
-      _id: props.roleID,
-      name: clinicRole.name,
-      addedDate: clinicRole.addedDate,//format(new Date(), 'MM-dd-yyyy'),
+      _id: props.userID,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+      email: user.email,
+      password: user.password,
+      addedDate: user.addedDate,
     }
 
     axios
-      .put(`http://localhost:8081/api/roles/${props.roleID}`, data)
+      .put(`http://localhost:8081/api/users/${UserID}`, data)
       .then((res) => {
         // Push to /
         // navigate('/settingsPage')
@@ -61,7 +100,79 @@ function EditRoleModal(props) {
       <div className="item3">
         <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
-            <div className="form-group ">
+          <div>
+                <div className="form-group">
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={user.firstName}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={user.lastName}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="role">Role</label>
+                  <select
+                    key={rolex._id}
+                    placeholder="Select Role"
+                    name="role"
+                    className="form-control select"
+                    value={user.role}
+                    onChange={handleChange}
+                  >
+                    <option key="0" value="">
+                      Select Role
+                    </option>
+                    {userRoles.map((role) => (
+                      <option key={role._id} value={role.name}>
+                        {role}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="text"
+                    name="email"
+                    value={user.email}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="addedDate">Added Date</label>
+                  <input
+                    type="text"
+                    name="addedDate"
+                    value={user.addedDate}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <br />
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary">
+                    Update User
+                  </button>
+                </div>
+              </div>
+
+
+
+            
+            {/* <div className="form-group ">
               <label style={{ display: 'none' }}>
                 Role ID
                 <input
@@ -80,7 +191,7 @@ function EditRoleModal(props) {
                   name="name"
                   value={clinicRole.name}
                   onChange={handleChange}
-                />
+                /> */}
                 {/* <select
                   key={clinicRole._id}
                   // placeholder="Select Role"
@@ -98,7 +209,7 @@ function EditRoleModal(props) {
                     </option>
                   ))}
                 </select> */}
-              </label>
+              {/* </label>
             </div>
 
             <div>
@@ -119,7 +230,7 @@ function EditRoleModal(props) {
                 type="submit"
                 className="btn btn-success updateRegistrationBtn"
               />
-            </div>
+            </div> */}
           </form>
         </div>
       </div>
