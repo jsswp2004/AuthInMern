@@ -1730,7 +1730,7 @@ export default function ClinicVisit() {
           <div>{displayVisitMonthlyModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
           <div>{displayEditVisitModal()}</div>
-          {/* <div className="item3Bs" style={{ overflowY: 'auto' }}> */}
+          
             <div className="itemCalendar2">
 
             {/* monthly */}
@@ -2840,7 +2840,7 @@ export default function ClinicVisit() {
                 </li>
               </div>
             </div>
-          {/* </div> */}
+          
         </div>
       </div>
     </div>
