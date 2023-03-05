@@ -4,7 +4,18 @@ import axios from 'axios'
 
 
 
-function EditRoleModal(props) {
+function EditUserModal(props) {
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    role: '',
+    email: '',
+    password: '',
+    addedDate: '',
+  })
+
+  const UserID = props.userID
+  // console.log(UserID)
   const [rolex, setRoles] = useState([])
   const roles = rolex.filter((role) => {
     return role.name.toString().toLowerCase()
@@ -23,23 +34,12 @@ function EditRoleModal(props) {
         console.log('Error from roles list')
       })
   }, [])
-  // const [clinicRole, setClinicRole] = useState({
-  //   name: '',
-  //   addedDate: '',
-  // })
 
-  const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
-    role: '',
-    email: '',
-    password: '',
-    addedDate: '',
-  })
+
 
   // const { id } = useParams()
   // const RoleID = props.roleID
-  const UserID = props.userID
+
 
   useEffect(() => {
     axios
@@ -47,12 +47,12 @@ function EditRoleModal(props) {
       .then((res) => {
         setUser({
           // _id: res.data._id,
-          firstName: '',
-          lastName: '',
-          role: '',
-          email: '',
-          password: '',
-          addedDate: '',
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          role: res.data.role,
+          email: res.data.email,
+          password: res.data.password,
+          addedDate: res.data.addedDate,
         })
       })
       .catch((err) => {
@@ -60,7 +60,7 @@ function EditRoleModal(props) {
       })
   }, [UserID])
 
-  // console.log(role)
+  console.log(user)
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
     // window.location.reload()
@@ -84,10 +84,10 @@ function EditRoleModal(props) {
       .then((res) => {
         // Push to /
         // navigate('/settingsPage')
-            
-      window.location.reload()
-      // window.location.close()
-  
+
+        window.location.reload()
+        // window.location.close()
+
       })
       .catch((err) => {
         console.log('Error in EditRole!')
@@ -100,7 +100,9 @@ function EditRoleModal(props) {
       <div className="item3">
         <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
-          <div>
+            <div             
+              style={{ display: 'flex', columnGap: '10px' }}>
+              <div>
                 <div className="form-group">
                   <label htmlFor="firstName">First Name</label>
                   <input
@@ -141,6 +143,8 @@ function EditRoleModal(props) {
                     ))}
                   </select>
                 </div>
+              </div>
+              <div className='updateRegistrationGrp'>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <input
@@ -162,75 +166,14 @@ function EditRoleModal(props) {
                   />
                 </div>
                 <br />
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary">
-                    Update User
+                <div className="form-group ">
+                  <button type="submit" className="btn btn-primary updateRegistrationBtn">
+                    Update
                   </button>
                 </div>
               </div>
-
-
-
-            
-            {/* <div className="form-group ">
-              <label style={{ display: 'none' }}>
-                Role ID
-                <input
-                  type="text"
-                  className="form-control scheduleInput"
-                  name="_id"
-                  value={clinicRole._id}
-                  onChange={handleChange}
-                />
-              </label>
-              <label htmlFor="name">
-                Role
-                <input
-                  type="text"
-                  className="form-control scheduleInput"
-                  name="name"
-                  value={clinicRole.name}
-                  onChange={handleChange}
-                /> */}
-                {/* <select
-                  key={clinicRole._id}
-                  // placeholder="Select Role"
-                  name="name"
-                  className="form-control select"
-                  value={clinicRole.name}
-                  onChange={handleChange}
-                >
-                  <option key="0" value="Select Role">
-                    Select Role
-                  </option>
-                  {clinicVisitRoles.map((role) => (
-                    <option key={role._id} value={role.name}>
-                      {role}
-                    </option>
-                  ))}
-                </select> */}
-              {/* </label>
             </div>
 
-            <div>
-              <label>
-                Date Added
-                <input
-                  type="date"
-                  className="form-control scheduleInput"
-                  name="addedDate"
-                  value={clinicRole.addedDate}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <input
-                value="Update"
-                type="submit"
-                className="btn btn-success updateRegistrationBtn"
-              />
-            </div> */}
           </form>
         </div>
       </div>
@@ -238,4 +181,4 @@ function EditRoleModal(props) {
   )
 }
 
-export default EditRoleModal
+export default EditUserModal

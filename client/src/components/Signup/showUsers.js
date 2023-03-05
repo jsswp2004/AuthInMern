@@ -27,24 +27,9 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditUser from './editUserModal'
-// import { alpha } from '@mui/material/styles';
-// import TableSortLabel from '@mui/material/TableSortLabel';
-// import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-// import Checkbox from '@mui/material/Checkbox';
-// import Tooltip from '@mui/material/Tooltip';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Switch from '@mui/material/Switch';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import FilterListIcon from '@mui/icons-material/FilterList';
-// import { visuallyHidden } from '@mui/utils';
+
 
 export default function ShowUsersList() {
-  // let navigate = useNavigate()
-  // const handleLogout = () => {
-  //   localStorage.removeItem('token')
-  //   navigate('/login')
-  // }
 
   //for edit button
   const [editShow, setEditShow] = useState(false)
@@ -56,14 +41,14 @@ export default function ShowUsersList() {
   const handleEditClick = (e) => {
     e.preventDefault()
     setEditShow(false)
-    window.location.close()    
+    window.location.close()
   }
 
-        //setting the ID of the user for the property
-        const handleItemClick = item => {
-          const userID = item._id
-          setUserID(userID)
-        }
+  //setting the ID of the user for the property
+  const handleItemClick = item => {
+    const userID = item._id
+    setUserID(userID)
+  }
   const EditUserModal = () => (
     <>
       <Modal show={editShow} onHide={handleEditClose} size="med" centered>
@@ -71,7 +56,7 @@ export default function ShowUsersList() {
           <Modal.Title>Edit User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditUser userID={ userID} />
+          <EditUser userID={userID} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
@@ -104,6 +89,38 @@ export default function ShowUsersList() {
         console.log('Error from user list')
       })
   }, [])
+
+  //#region for delete confirmation modal
+  // const [staffSchedID, setStaffSchedID] = useState('')
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
+  const DeleteVisitModal = (props) => (
+    <>
+      <Modal show={showDelete} onHide={handleCloseDelete} size="sm" centered>
+        <Modal.Header>
+          <Modal.Title>Delete Visit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p><b>Are you sure you want to delete this data item?</b></p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={() => deleteRecord(userID)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+  //Function to display delete registration modal
+  function displayDeleteRegistrationModal() {
+    return <DeleteVisitModal />
+  }
+
+  //#endregion
 
   const deleteRecord = (id) => {
     axios
@@ -257,29 +274,29 @@ export default function ShowUsersList() {
       <div className="item3">
         <div className="item3A">
           <h4 className='createPageHeader'>Registered Users</h4>
-          <div>{ displayEditRoleModal() }</div>
+          <div>{displayEditRoleModal()}</div>
+          <div>{displayDeleteRegistrationModal()}</div>
           <label htmlFor="search" className="searchLabel" >
-          <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
-            <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User'/>
-          </Link>{' '}
+            <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
+              <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User' />
+            </Link>{' '}
             Search :{' '}
-              <input
-                // className="searchInput"
+            <input
               id="search"
               type="text"
               placeholder="Search users"
               onChange={handleChange}
               value={searchInput}
             />
-            </label>
-            
+          </label>
+
         </div>
 
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="left">First Name</StyledTableCell>
+                <StyledTableCell align="left">Firsts Name</StyledTableCell>
                 <StyledTableCell align="left">Last Name</StyledTableCell>
                 <StyledTableCell align="left">Email</StyledTableCell>
                 <StyledTableCell align="left">Role</StyledTableCell>
@@ -290,13 +307,13 @@ export default function ShowUsersList() {
             <TableBody>
               {(rowsPerPage > 0
                 ? filteredData.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage,
+                )
                 : filteredData
               ).map((user) => (
                 <StyledTableRow key={user._id}
-                onClick ={() => handleItemClick(user)}
+                  onClick={() => handleItemClick(user)}
                 >
                   <StyledTableCell align="left">
                     {user.firstName}
@@ -310,32 +327,25 @@ export default function ShowUsersList() {
                     {user.addedDate}
                   </StyledTableCell>
                   <StyledTableCell align="left">
-                    <Link
-                      className="btn btn-info btn-sm registerBtn"
-                      to={`/editUser/${user._id}`}
+                    <button className='btn btn-info btn-sm registerBtn'
+                      onClick={handleEditShow}
                     >
                       <i
                         className="fa fa-pencil-square-o fa-sm"
                         aria-hidden="true"
-                        title='Edit User'
+                        title="Edit User"
                       />
-                    </Link>{' '}
-                    <button className='btn btn-info btn-sm registerBtn'                      
-                        onClick={handleEditShow}
-                      >
-                        <i
-                          className="fa fa-pencil-square-o fa-sm"
-                          aria-hidden="true"
-                          title="Edit Role"
-                        />
-                      </button>
+                    </button>
                     <button
                       className="btn btn-danger btn-sm registerBtn"
-                      onClick={() => {
-                        deleteRecord(user._id)
-                      }}
+                      onClick={handleShowDelete}
                     >
-                      <i className="fa fa-trash-o fa-sm" aria-hidden="true" />
+                      <i
+                        title="delete role"
+                        className="fa fa-trash-o fa-sm"
+                        aria-hidden="true"
+                        t
+                      />
                     </button>
                   </StyledTableCell>
                 </StyledTableRow>

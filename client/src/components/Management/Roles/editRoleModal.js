@@ -3,23 +3,6 @@ import axios from 'axios'
 
 
 function EditRoleModal(props) {
-  // const [clinicRoles, setClinicRoles] = useState([])
-
-  // const ClinicRoles = clinicRoles.filter((role) => {
-  //   return role.name //.toString().toLowerCase()
-  // })
-  // const clinicVisitRoles = ClinicRoles.map((doc) => doc.name)
-  // pull role values from database
-  // useEffect(() => {
-  //   axios
-  //     .get('http://localhost:8081/api/roles')
-  //     .then((res) => {
-  //       setClinicRoles(res.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error from roles list')
-  //     })
-  // }, [])
   const [clinicRole, setClinicRole] = useState({
     name: '',
     addedDate: '',
@@ -100,23 +83,7 @@ function EditRoleModal(props) {
                   value={clinicRole.name}
                   onChange={handleChange}
                 />
-                {/* <select
-                  key={clinicRole._id}
-                  // placeholder="Select Role"
-                  name="name"
-                  className="form-control select"
-                  value={clinicRole.name}
-                  onChange={handleChange}
-                >
-                  <option key="0" value="Select Role">
-                    Select Role
-                  </option>
-                  {clinicVisitRoles.map((role) => (
-                    <option key={role._id} value={role.name}>
-                      {role}
-                    </option>
-                  ))}
-                </select> */}
+
               </label>
             </div>
 
