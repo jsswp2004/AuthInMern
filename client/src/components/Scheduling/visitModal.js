@@ -26,6 +26,7 @@ const CreateVisitMonthly = (props) => {
     event: '',
   })
 
+  // console.lopg(props.selectedProvider)
   //selected hour of visit
   let { hourOfVisit } = visit
   hourOfVisit = selectedHour
@@ -114,7 +115,7 @@ const CreateVisitMonthly = (props) => {
 
     }
 
-    console.log(data)
+    // console.log(data)
     axios
       .post('http://localhost:8081/api/visits', data)
       .then((res) => {
@@ -230,21 +231,7 @@ const CreateVisitMonthly = (props) => {
                 //value={visit.hourOfVisit}
                 value={selectedHour}
                 onChange={onChange}
-              />
-              {/* <select
-                className="form-control select"
-                name="hourOfVisit"
-                value={visit.hourOfVisit}
-                onChange={onChange}
-              >
-                {' '}
-                {hourValues.map((hourval) => (
-                  <option key={hourval.value} value={hourval.value}>
-                    {hourval.label}
-                  </option>
-                ))}
-              </select> */}
-              
+              />              
               <div className='hour-flex'>
 
                 <div className='hour-flex_Item' onClick={() => setSelectedHour('09:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#AA336A' : '#90EE90' }}>9:00</div>
