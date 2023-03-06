@@ -10,7 +10,7 @@ const ShowHourlySchedule = (props) => {
     return visit.provider === selectedMD && visit.visitDate === selectedDate //selectedDate props.visitDate selectedMD
     //&& visit.hourOfVisit === selectedHour
   })
-console.log(selectedDate)
+console.log(visit)
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
 //   const checkedValueInArray = filteredVisitsWithMDAndDate.includes(selectedHour)

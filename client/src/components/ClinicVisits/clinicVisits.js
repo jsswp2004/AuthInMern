@@ -276,7 +276,7 @@ export default function ClinicVisit() {
               middleName={middleName}
               email={email}
               visitDate={selectedDate}
-              selectedProvider={selectedDr}
+              selectedProvider={provider}
               // hourOfVisit={hourOfVisit}
             />
           </div>

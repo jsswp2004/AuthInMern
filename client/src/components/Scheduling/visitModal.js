@@ -23,7 +23,7 @@ const CreateVisitMonthly = (props) => {
     visitDate: props.visitDate,
     hourOfVisit: '',
     email: props.email,
-    provider: '',
+    provider: props.provider,
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     event: '',
   })

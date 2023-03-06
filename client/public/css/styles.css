@@ -1809,7 +1809,7 @@ tfoot > .MuiTableFooter-root {
   }
 
   .hour-flex_Item  {
-    flex: 1 0 21%; /* explanation below */
+    flex: 1 0 20%; /* explanation below */
     margin: 2px;
     height: 50px;
     width: 50px;
