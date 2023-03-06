@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-import { Hour } from '../listDictionaries/listData/listDictionariesData'
-// import SelectedHour from '../../components/ClinicVisits/selectedHour'
-// import { array } from 'prop-types'
-// import Alert from 'react-bootstrap/Alert'
-// import Button from 'react-bootstrap/Button'
+
 
 const CreateVisitMonthly = (props) => {
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
@@ -14,7 +10,7 @@ const CreateVisitMonthly = (props) => {
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
 
   const [selectedHour, setSelectedHour] = useState('')
-  // console.log(selectedHour)
+
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
     medicalRecordNumber: setMedicalRecordNumber,
@@ -30,21 +26,15 @@ const CreateVisitMonthly = (props) => {
     event: '',
   })
 
+  //selected hour of visit
   let { hourOfVisit } = visit
   hourOfVisit = selectedHour
-  // console.log(hourOfVisit)
-  // const hourValues = Hour
-  // const [hourvalue, sethourValue] = useState('')
 
-  // const hourvalueChange = (event) => {
-  //   sethourValue(event.target.value)
-  //   // onChange({ gendervalue })
-  // }
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
 
-  // console.log(visit)
+
   //create provider object
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
@@ -66,7 +56,7 @@ const CreateVisitMonthly = (props) => {
 
   const [schedEvent, setSchedEvent] = useState([])
   const schedEvents = schedEvent.filter((event) => {
-    return event.name//.toString().toLowerCase() //.includes('attending')
+    return event.name
   })
   const clinicEvents = schedEvents.map((doc) => doc.name)
 
@@ -87,12 +77,11 @@ const CreateVisitMonthly = (props) => {
 
   const selectedMD = visit.provider
   const selectedDate = visit.visitDate
-  // const visits = new array(visit)
+
   const filteredVisitsWithMD = getVisits.filter((visit) => {
-    return visit.provider === selectedMD && visit.visitDate === selectedDate //selectedDate props.visitDate selectedMD
-    //&& visit.hourOfVisit === selectedHour
+    return visit.provider === selectedMD && visit.visitDate === selectedDate 
   })
-  // console.log(selectedMD, selectedDate, filteredVisitsWithMD)
+
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
   useEffect(() => {
@@ -151,22 +140,8 @@ const CreateVisitMonthly = (props) => {
         console.log('Error in CreateVisit!')
       })
   }
-  // const [searchInput, setSearchInput] = useState('')
-  // //captures and sets value of the input text
-  // const handleChange = (e) => {
-  //   e.preventDefault()
-  //   setSearchInput(e.target.value)
-  // }
 
-
-  // var filteredEvents = clinicEvents.filter((events) => {
-  //   // if (searchInput === '') {
-  //   //   return 'please select an event'
-  //   // } else {
-  //     return events.toString().toLowerCase().includes(searchInput)
-  //   // } 
-  // })
-  //selected hour of visit
+  
 
   return (
     <form noValidate onSubmit={onSubmit}>
