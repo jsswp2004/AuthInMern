@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
 import SelectedHour from '../../components/ClinicVisits/selectedHour'
+import { array } from 'prop-types'
 // import Alert from 'react-bootstrap/Alert'
 // import Button from 'react-bootstrap/Button'
 
@@ -75,7 +76,8 @@ const CreateVisitMonthly = (props) => {
 
   const selectedMD = visit.provider
   const selectedDate = visit.visitDate
-  const filteredVisitsWithMD = visit.filter((visit) => {
+  const visits = new array(visit)
+  const filteredVisitsWithMD = visits.filter((visit) => {
     return visit.provider === selectedMD && visit.visitDate === selectedDate //selectedDate props.visitDate selectedMD
     //&& visit.hourOfVisit === selectedHour
   })
