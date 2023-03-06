@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
-import SelectedHour from '../../components/ClinicVisits/selectedHour'
-import { array } from 'prop-types'
+// import SelectedHour from '../../components/ClinicVisits/selectedHour'
+// import { array } from 'prop-types'
 // import Alert from 'react-bootstrap/Alert'
 // import Button from 'react-bootstrap/Button'
 
@@ -14,7 +14,7 @@ const CreateVisitMonthly = (props) => {
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
 
   const [selectedHour, setSelectedHour] = useState('')
-  console.log(selectedHour)
+  // console.log(selectedHour)
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
     medicalRecordNumber: setMedicalRecordNumber,
@@ -32,7 +32,7 @@ const CreateVisitMonthly = (props) => {
 
   let { hourOfVisit } = visit
   hourOfVisit = selectedHour
-  console.log(hourOfVisit)
+  // console.log(hourOfVisit)
   // const hourValues = Hour
   // const [hourvalue, sethourValue] = useState('')
 
@@ -92,7 +92,7 @@ const CreateVisitMonthly = (props) => {
     return visit.provider === selectedMD && visit.visitDate === selectedDate //selectedDate props.visitDate selectedMD
     //&& visit.hourOfVisit === selectedHour
   })
-  console.log(selectedMD, selectedDate, filteredVisitsWithMD)
+  // console.log(selectedMD, selectedDate, filteredVisitsWithMD)
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
   useEffect(() => {
