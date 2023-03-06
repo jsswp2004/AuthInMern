@@ -73,6 +73,16 @@ const CreateVisitMonthly = (props) => {
   //   }
   // })
 
+  const selectedMD = visit.provider
+  const selectedDate = visit.visitDate
+  const filteredVisitsWithMD = visit.filter((visit) => {
+    return visit.provider === selectedMD && visit.visitDate === selectedDate //selectedDate props.visitDate selectedMD
+    //&& visit.hourOfVisit === selectedHour
+  })
+// console.log(visit)
+  const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
+
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/events')
@@ -221,7 +231,46 @@ const CreateVisitMonthly = (props) => {
                   </option>
                 ))}
               </select>
-              <SelectedHour />
+              {/* <SelectedHour /> */}
+              <div className='hour-flex'>
+
+<div className='hour-flex_Item' style={{backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#90EE90' : 'white'}}>9:00</div>
+<div className='hour-flex_Item' style={{backgroundColor: filteredVisitsWithMDAndDate.includes('09:15') ? '#90EE90' : 'white'}}>9:15</div>
+<div className='hour-flex_Item'>9:30</div>
+<div className='hour-flex_Item'>9:45</div>
+<div className='hour-flex_Item'>10:00</div>
+<div className='hour-flex_Item'>10:15</div>
+<div className='hour-flex_Item'>10:30</div>
+<div className='hour-flex_Item'>10:45</div>
+<div className='hour-flex_Item'>11:00</div>
+<div className='hour-flex_Item'>11:15</div>
+<div className='hour-flex_Item'>11:30</div>
+<div className='hour-flex_Item'>11:45</div>
+<div className='hour-flex_Item'>12:00</div>
+<div className='hour-flex_Item'>12:15</div>
+<div className='hour-flex_Item'>12:30</div>
+<div className='hour-flex_Item'>12:45</div>
+<div className='hour-flex_Item'>13:00</div>
+<div className='hour-flex_Item'>13:15</div>
+<div className='hour-flex_Item'>13:30</div>
+<div className='hour-flex_Item'>13:45</div>
+<div className='hour-flex_Item'>14:00</div>
+<div className='hour-flex_Item'>14:15</div>
+<div className='hour-flex_Item'>14:30</div>
+<div className='hour-flex_Item'>14:45</div>
+<div className='hour-flex_Item'>15:00</div>
+<div className='hour-flex_Item'>15:15</div>
+<div className='hour-flex_Item'>15:30</div>
+<div className='hour-flex_Item'>15:45</div>
+<div className='hour-flex_Item'>16:00</div>
+<div className='hour-flex_Item'>16:15</div>
+<div className='hour-flex_Item'>16:30</div>
+<div className='hour-flex_Item'>16:45</div>
+<div className='hour-flex_Item'>17:00</div>
+<div className='hour-flex_Item'>17:15</div>
+<div className='hour-flex_Item'>17:30</div>
+<div className='hour-flex_Item'>17:45</div>
+</div>
             </label>
           </div>
           {/* create an hour grid using css */}
