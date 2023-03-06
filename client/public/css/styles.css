@@ -1788,6 +1788,7 @@ tfoot > .MuiTableFooter-root {
 .modalContainer {
   display: flex;
   color: 10px;
+  gap: 10px;
 }
 
 /*for select  css*/
@@ -1806,6 +1807,7 @@ tfoot > .MuiTableFooter-root {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    margin-top: 5px;
   }
 
   .hour-flex_Item  {

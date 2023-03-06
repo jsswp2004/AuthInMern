@@ -9,27 +9,31 @@ import { array } from 'prop-types'
 // import Button from 'react-bootstrap/Button'
 
 const CreateVisitMonthly = (props) => {
-  //autocreate MRN
-  //const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
+  const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
-  //const setVisitNumber = Math.floor(1 + Math.random() * 99999)
+  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
 
+  const [selectedHour, setSelectedHour] = useState('')
+  console.log(selectedHour)
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
-    medicalRecordNumber: props.medicalRecordNumber, //setMedicalRecordNumber,
-    visitNumber: props.visitNumber, //setVisitNumber,
+    medicalRecordNumber: setMedicalRecordNumber,
+    visitNumber: setVisitNumber,
     firstName: props.firstName,
     lastName: props.lastName,
     middleName: props.middleName,
     visitDate: props.visitDate,
-    hourOfVisit: '',
+    hourOfVisit: selectedHour ,
     email: props.email,
     provider: props.provider,
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     event: '',
   })
 
-  const hourValues = Hour
+  let { hourOfVisit } = visit
+  hourOfVisit = selectedHour
+  console.log(hourOfVisit)
+  // const hourValues = Hour
   // const [hourvalue, sethourValue] = useState('')
 
   // const hourvalueChange = (event) => {
@@ -40,6 +44,7 @@ const CreateVisitMonthly = (props) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
 
+  // console.log(visit)
   //create provider object
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
@@ -64,26 +69,31 @@ const CreateVisitMonthly = (props) => {
     return event.name//.toString().toLowerCase() //.includes('attending')
   })
   const clinicEvents = schedEvents.map((doc) => doc.name)
-  // console.log(schedEvents)
 
-  // var filteredEvents = clinicEvents.filter((events) => {
-  //   if (searchInput === '') {
-  //     return 'please select an event'
-  //   } else {
-  //     return events.name.toString().includes(searchInput)
-  //   }
-  // })
+
+  const [getVisits, setGetVisits] = useState([])
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/visits')
+      .then((response) => {
+        const data = response.data
+        setGetVisits(data)
+      })
+      .catch((error) => {
+        console.log('Error from visit list')
+      })
+  }, [])
+
 
   const selectedMD = visit.provider
   const selectedDate = visit.visitDate
-  const visits = new array(visit)
-  const filteredVisitsWithMD = visits.filter((visit) => {
+  // const visits = new array(visit)
+  const filteredVisitsWithMD = getVisits.filter((visit) => {
     return visit.provider === selectedMD && visit.visitDate === selectedDate //selectedDate props.visitDate selectedMD
     //&& visit.hourOfVisit === selectedHour
   })
-// console.log(visit)
+  console.log(selectedMD, selectedDate, filteredVisitsWithMD)
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
-
 
   useEffect(() => {
     axios
@@ -100,8 +110,24 @@ const CreateVisitMonthly = (props) => {
   const onSubmit = (e) => {
     e.preventDefault()
 
+    const data = {
+      medicalRecordNumber: visit.medicalRecordNumber,
+      visitNumber: visit.visitNumber,
+      firstName: visit.firstName,
+      lastName: visit.lastName,
+      middleName: visit.middleName,
+      visitDate: visit.visitDate,
+      hourOfVisit:hourOfVisit,
+      email: visit.email,
+      provider: visit.provider,
+      event: visit.event,
+      addedDate: visit.addedDate,
+
+    }
+
+    console.log(data)
     axios
-      .post('http://localhost:8081/api/visits', visit)
+      .post('http://localhost:8081/api/visits', data)
       .then((res) => {
         setVisit({
           medicalRecordNumber: '',
@@ -110,7 +136,7 @@ const CreateVisitMonthly = (props) => {
           lastName: '',
           middleName: '',
           visitDate: '',
-          hourOfVisit: '',
+          hourOfVisit: hourOfVisit,
           email: '',
           provider: '',
           addedDate: '',
@@ -140,6 +166,8 @@ const CreateVisitMonthly = (props) => {
   //     return events.toString().toLowerCase().includes(searchInput)
   //   // } 
   // })
+  //selected hour of visit
+
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className="form-grid-containers modalContainer">
@@ -220,7 +248,15 @@ const CreateVisitMonthly = (props) => {
           <div className="form-group">
             <label htmlFor="hourOfVisit">
               Hour of Visit
-              <select
+              <input
+                type="text"
+                name="hourOfVisit"
+                className="form-control"
+                //value={visit.hourOfVisit}
+                value={selectedHour}
+                onChange={onChange}
+              />
+              {/* <select
                 className="form-control select"
                 name="hourOfVisit"
                 value={visit.hourOfVisit}
@@ -232,54 +268,54 @@ const CreateVisitMonthly = (props) => {
                     {hourval.label}
                   </option>
                 ))}
-              </select>
-              {/* <SelectedHour /> */}
+              </select> */}
+              
               <div className='hour-flex'>
 
-<div className='hour-flex_Item' style={{backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#90EE90' : 'white'}}>9:00</div>
-<div className='hour-flex_Item' style={{backgroundColor: filteredVisitsWithMDAndDate.includes('09:15') ? '#90EE90' : 'white'}}>9:15</div>
-<div className='hour-flex_Item'>9:30</div>
-<div className='hour-flex_Item'>9:45</div>
-<div className='hour-flex_Item'>10:00</div>
-<div className='hour-flex_Item'>10:15</div>
-<div className='hour-flex_Item'>10:30</div>
-<div className='hour-flex_Item'>10:45</div>
-<div className='hour-flex_Item'>11:00</div>
-<div className='hour-flex_Item'>11:15</div>
-<div className='hour-flex_Item'>11:30</div>
-<div className='hour-flex_Item'>11:45</div>
-<div className='hour-flex_Item'>12:00</div>
-<div className='hour-flex_Item'>12:15</div>
-<div className='hour-flex_Item'>12:30</div>
-<div className='hour-flex_Item'>12:45</div>
-<div className='hour-flex_Item'>13:00</div>
-<div className='hour-flex_Item'>13:15</div>
-<div className='hour-flex_Item'>13:30</div>
-<div className='hour-flex_Item'>13:45</div>
-<div className='hour-flex_Item'>14:00</div>
-<div className='hour-flex_Item'>14:15</div>
-<div className='hour-flex_Item'>14:30</div>
-<div className='hour-flex_Item'>14:45</div>
-<div className='hour-flex_Item'>15:00</div>
-<div className='hour-flex_Item'>15:15</div>
-<div className='hour-flex_Item'>15:30</div>
-<div className='hour-flex_Item'>15:45</div>
-<div className='hour-flex_Item'>16:00</div>
-<div className='hour-flex_Item'>16:15</div>
-<div className='hour-flex_Item'>16:30</div>
-<div className='hour-flex_Item'>16:45</div>
-<div className='hour-flex_Item'>17:00</div>
-<div className='hour-flex_Item'>17:15</div>
-<div className='hour-flex_Item'>17:30</div>
-<div className='hour-flex_Item'>17:45</div>
-</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('09:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#AA336A' : '#90EE90' }}>9:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('09:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:15') ? '#AA336A' : '#90EE90' }}>9:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('09:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:30') ? '#AA336A' : '#90EE90' }}>9:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('09:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:45') ? '#AA336A' : '#90EE90' }}>9:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('10:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('10:00') ? '#AA336A' : '#90EE90' }}>10:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('10:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('10:15') ? '#AA336A' : '#90EE90' }}>10:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('10:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('10:30') ? '#AA336A' : '#90EE90' }}>10:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('10:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('10:45') ? '#AA336A' : '#90EE90' }}>10:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('11:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('11:00') ? '#AA336A' : '#90EE90' }}>11:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('11:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('11:15') ? '#AA336A' : '#90EE90' }}>11:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('11:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('11:30') ? '#AA336A' : '#90EE90' }}>11:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('11:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('11:45') ? '#AA336A' : '#90EE90' }}>11:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('12:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('12:00') ? '#AA336A' : '#90EE90' }}>12:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('12:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('12:15') ? '#AA336A' : '#90EE90' }}>12:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('12:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('12:30') ? '#AA336A' : '#90EE90' }}>12:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('12:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('12:45') ? '#AA336A' : '#90EE90' }}>12:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('13:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('13:00') ? '#AA336A' : '#90EE90' }}>13:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('13:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('13:15') ? '#AA336A' : '#90EE90' }}>13:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('13:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('13:30') ? '#AA336A' : '#90EE90' }}>13:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('13:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('13:45') ? '#AA336A' : '#90EE90' }}>13:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('14:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('14:00') ? '#AA336A' : '#90EE90' }}>14:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('14:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('14:15') ? '#AA336A' : '#90EE90' }}>14:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('14:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('14:30') ? '#AA336A' : '#90EE90' }}>14:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('14:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('14:45') ? '#AA336A' : '#90EE90' }}>14:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('15:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('15:00') ? '#AA336A' : '#90EE90' }}>15:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('15:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('15:15') ? '#AA336A' : '#90EE90' }}>15:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('15:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('15:30') ? '#AA336A' : '#90EE90' }}>15:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('15:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('15:45') ? '#AA336A' : '#90EE90' }}>15:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('16:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('16:00') ? '#AA336A' : '#90EE90' }}>16:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('16:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('16:15') ? '#AA336A' : '#90EE90' }}>16:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('16:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('16:30') ? '#AA336A' : '#90EE90' }}>16:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('16:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('16:45') ? '#AA336A' : '#90EE90' }}>16:45</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('17:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('17:00') ? '#AA336A' : '#90EE90' }}>17:00</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('17:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('17:15') ? '#AA336A' : '#90EE90' }}>17:15</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('17:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('17:30') ? '#AA336A' : '#90EE90' }}>17:30</div>
+                <div className='hour-flex_Item' onClick={() => setSelectedHour('17:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('17:45') ? '#AA336A' : '#90EE90' }}>17:45</div>
+              </div>
             </label>
           </div>
           {/* create an hour grid using css */}
 
         </div>
         <div className="div-items updateRegistrationGrp">
-        <div className="form-group">
+          <div className="form-group">
             <label htmlFor="event">
               Scheduled Event
               <select
