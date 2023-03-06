@@ -3,19 +3,19 @@ import React, { useState, useEffect } from 'react'
 
 const ShowHourlySchedule = (props) => {
   const [visit, setVisits] = useState([])
-  const selectedMD = props.provider
+  const selectedMD = props.selectedProvider
   const selectedDate = props.visitDate
-  const selectedHour = props.hourOfVisit
+//   const selectedHour = props.hourOfVisit
   const filteredVisitsWithMD = visit.filter((visit) => {
-    return visit.provider === 'Morgan Freeman' && visit.visitDate === '2023-02-15' //selectedDate props.visitDate selectedMD
-    && visit.hourOfVisit === '09:15' //selectedHour
+    return visit.provider === selectedMD && visit.visitDate === selectedDate //selectedDate props.visitDate selectedMD
+    //&& visit.hourOfVisit === selectedHour
   })
-
+console.log(selectedDate)
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
-  const checkedValueInArray = filteredVisitsWithMDAndDate.includes('09:15')
+//   const checkedValueInArray = filteredVisitsWithMDAndDate.includes(selectedHour)
 
-console.log(checkedValueInArray)
+console.log(filteredVisitsWithMDAndDate)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/visits')

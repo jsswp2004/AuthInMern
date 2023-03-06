@@ -1800,3 +1800,33 @@ tfoot > .MuiTableFooter-root {
   padding: 0px;
 
 }
+
+/*for hourly availability css*/
+  .hour-flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .hour-flex_Item  {
+    flex: 1 0 21%; /* explanation below */
+    margin: 2px;
+    height: 100px;
+    border-color: #2196f3;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    /* background-color: blue; */
+  }
+
+  .hour-flex_Item:nth-child(odd) {
+    background-color: #efefef;
+  }  
+
+  .hour-flex_Item:nth-child(even) {
+    background-color: white;
+  }
+
+  /* .hour-flex_Item:nth-child(3n) {
+    background-color: yellow;
+  } */

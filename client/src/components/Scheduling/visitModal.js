@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
+import SelectedHour from '../../components/ClinicVisits/selectedHour'
 // import Alert from 'react-bootstrap/Alert'
 // import Button from 'react-bootstrap/Button'
 
@@ -28,12 +29,12 @@ const CreateVisitMonthly = (props) => {
   })
 
   const hourValues = Hour
-  const [hourvalue, sethourValue] = useState('')
+  // const [hourvalue, sethourValue] = useState('')
 
-  const hourvalueChange = (event) => {
-    sethourValue(event.target.value)
-    // onChange({ gendervalue })
-  }
+  // const hourvalueChange = (event) => {
+  //   sethourValue(event.target.value)
+  //   // onChange({ gendervalue })
+  // }
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
@@ -112,134 +113,62 @@ const CreateVisitMonthly = (props) => {
         console.log('Error in CreateVisit!')
       })
   }
-  const [searchInput, setSearchInput] = useState('')
-  //captures and sets value of the input text
-  const handleChange = (e) => {
-    e.preventDefault()
-    setSearchInput(e.target.value)
-  }
+  // const [searchInput, setSearchInput] = useState('')
+  // //captures and sets value of the input text
+  // const handleChange = (e) => {
+  //   e.preventDefault()
+  //   setSearchInput(e.target.value)
+  // }
 
-  
-  var filteredEvents = clinicEvents.filter((events) => {
-    // if (searchInput === '') {
-    //   return 'please select an event'
-    // } else {
-      return events.toString().toLowerCase().includes(searchInput)
-    // } 
-  })
+
+  // var filteredEvents = clinicEvents.filter((events) => {
+  //   // if (searchInput === '') {
+  //   //   return 'please select an event'
+  //   // } else {
+  //     return events.toString().toLowerCase().includes(searchInput)
+  //   // } 
+  // })
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className="form-grid-containers modalContainer">
-        <div className="div-items">          
-          <div className="forms-group">
-            <div className="form-group">
-              <label htmlFor="firstName">
-                Firstname
-                <input
-                  type="text"
-                  className="form-control"
-                  name="firstName"
-                  value={visit.firstName}
-                  onChange={onChange}
-                />
-              </label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="middleName">
-                Middlename
-                <input
-                  type="text"
-                  name="middleName"
-                  value={visit.middleName}
-                  className="form-control"
-                  onChange={onChange}
-                />
-              </label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastName">
-                Lastname
-                <input
-                  type="text"
-                  className="form-control"
-                  name="lastName"
-                  value={visit.lastName}
-                  onChange={onChange}
-                />
-              </label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="hourOfVisit">
-                Hour of Visit
-                <select
-                  className="form-control select"
-                  name="hourOfVisit"
-                  value={visit.hourOfVisit}
-                  onChange={onChange}
-                >
-                  {' '}
-                  {hourValues.map((hourval) => (
-                    <option key={hourval.value} value={hourval.value}>
-                      {hourval.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="event">
-                Scheduled Event
-                <select
-                  key={visit.event._id}
-                  className="form-control select"
-                  name="event"
-                  value={visit.name}
-                  onChange={onChange}
-                >
-                  {' '}
-                  <option key="0" value="Select Event">
-                    Select Event
-                  </option>
-                  {clinicEvents.map((doc) => (
-                    <option key={doc._id} value={doc.name}>
-                      {doc}
-                    </option>
-                  ))}
-                </select>
-              </label>
+        <div className="div-items">
 
-
-            </div>
-
-            {/* <div className="form-group">
-              <label htmlFor="search" className="searchLabel">
-
-                Search Event :{' '}
-                <div>
-                  <textarea
-                    wrap="hard"
-                    cols="23"
-                    rows="1"
-                    defaultValue='Search Event'
-                    placeholder='Search Event'
-                    value={filteredEvents}>
-                    {filteredEvents}
-                    </textarea>
-                </div>
-                <input
-                  className="searchInput"
-                  id="search"
-                  type="text"
-                  placeholder="Type here to search"
-                  onChange={handleChange}
-                  value={searchInput}
-                >
-                </input>
-              </label>
-            </div> */}
+          <div className="form-group">
+            <label htmlFor="firstName">
+              Firstname
+              <input
+                type="text"
+                className="form-control"
+                name="firstName"
+                value={visit.firstName}
+                onChange={onChange}
+              />
+            </label>
           </div>
-        </div>
-        <div className="div-items updateRegistrationGrp">
+          <div className="form-group">
+            <label htmlFor="middleName">
+              Middlename
+              <input
+                type="text"
+                name="middleName"
+                value={visit.middleName}
+                className="form-control"
+                onChange={onChange}
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">
+              Lastname
+              <input
+                type="text"
+                className="form-control"
+                name="lastName"
+                value={visit.lastName}
+                onChange={onChange}
+              />
+            </label>
+          </div>
           <div className="form-group">
             <label htmlFor="email">
               Email
@@ -251,6 +180,77 @@ const CreateVisitMonthly = (props) => {
                 onChange={onChange}
               />
             </label>
+          </div>
+
+        </div>
+        <div className="div-items">
+          <div className="form-group">
+            <label htmlFor="provider">
+              Provider
+              <select
+                className="form-control select"
+                name="provider"
+                value={visit.provider}
+                onChange={onChange}
+              >
+                {' '}
+                <option value="" disabled selected>
+                  Select Provider
+                </option>
+                {providerMD.map((doc) => (
+                  <option key={doc._id} value={doc.provider}>
+                    {doc}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="hourOfVisit">
+              Hour of Visit
+              <select
+                className="form-control select"
+                name="hourOfVisit"
+                value={visit.hourOfVisit}
+                onChange={onChange}
+              >
+                {' '}
+                {hourValues.map((hourval) => (
+                  <option key={hourval.value} value={hourval.value}>
+                    {hourval.label}
+                  </option>
+                ))}
+              </select>
+              <SelectedHour />
+            </label>
+          </div>
+          {/* create an hour grid using css */}
+
+        </div>
+        <div className="div-items updateRegistrationGrp">
+        <div className="form-group">
+            <label htmlFor="event">
+              Scheduled Event
+              <select
+                key={visit.event._id}
+                className="form-control select"
+                name="event"
+                value={visit.name}
+                onChange={onChange}
+              >
+                {' '}
+                <option key="0" value="Select Event">
+                  Select Event
+                </option>
+                {clinicEvents.map((doc) => (
+                  <option key={doc._id} value={doc.name}>
+                    {doc}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+
           </div>
           <div className="form-group">
             <label htmlFor="addedDate">
@@ -275,27 +275,7 @@ const CreateVisitMonthly = (props) => {
               />
             </label>
           </div>
-          <div className="form-group">
-            <label htmlFor="provider">
-              Provider
-              <select
-                className="form-control select"
-                name="provider"
-                value={visit.provider}
-                onChange={onChange}
-              >
-                {' '}
-                <option value="" disabled selected>
-                  Select Provider
-                </option>
-                {providerMD.map((doc) => (
-                  <option key={doc._id} value={doc.provider}>
-                    {doc}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
+
           <div
             className="form-group updateRegistrationBtn"
             style={{
@@ -313,32 +293,6 @@ const CreateVisitMonthly = (props) => {
             Cras mattis consectetur purus sit amet fermentum.
           </p>
         </Alert> */}
-          </div>
-        </div>
-        <div className="div-items" style={{ display: 'none' }}>
-          <div className="form-group">
-            <label htmlFor="medicalRecordNumber">MRN</label>
-            <input
-              type="text"
-              placeholder="Please register client"
-              className="form-control"
-              name="medicalRecordNumber"
-              value={visit.medicalRecordNumber}
-              onChange={onChange}
-              readOnly
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="visitNumber">Visit ID</label>
-            <input
-              placeholder="Please register client"
-              type="text"
-              className="form-control"
-              name="visitNumber"
-              value={visit.visitNumber}
-              onChange={onChange}
-              readOnly
-            />
           </div>
         </div>
       </div>

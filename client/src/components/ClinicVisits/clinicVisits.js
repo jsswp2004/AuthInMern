@@ -65,6 +65,7 @@ export default function ClinicVisit() {
   // const [monthDate, setMonthDate] = useState('')
   //#endregion
   //#region for setting state and pulling data for provider MD
+  const [selectExceptionMD, setSelectExceptionMD] = useState([])
   const [selectAvailabilityMD, setSelectAvailabilityMD] = useState([])
   // const selectedDR = selectAvailabilityMD.filter((doc) => {
   //   return doc.name.toString().toLowerCase().includes(selectAvailabilityMD) 
@@ -172,7 +173,7 @@ export default function ClinicVisit() {
   let startOfTheWeek = startOfWeek(newdate).getDate()
   let startOfTheWeekDate = startOfWeek(newdate)
   let startOfTheWeekEndOfMonth = endOfMonth(startOfTheWeekDate).getDate()
-  console.log(startOfTheWeekEndOfMonth)
+  // console.log(startOfTheWeekEndOfMonth)
   // startDayOfTheWeek < 1
   //   ? daysOfPreviousMonth - (dayOfTheWeek - 1)
   //   : startDayOfTheWeek
@@ -239,7 +240,7 @@ export default function ClinicVisit() {
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-  const { firstName, lastName, middleName, email } = CreatePatientModal
+  const { firstName, lastName, middleName, email, provider, hourOfVisit } = CreatePatientModal
   const [modalDisplay, setModalDisplay] = useState('visit')
   // const displayVisitMonthlyMode = {
   //   display: modalDisplay === 'show' ? '' : 'none',
@@ -247,7 +248,7 @@ export default function ClinicVisit() {
   // console.log(modalDisplay)
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
-      <Modal show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
+      <Modal className='modal-xl' show={showMonthly} onHide={handleMonthlyClose} size="xg" centered>
         <Modal.Header closeButton onClick={() => setNewPatient(true)}>
           <Modal.Title>
             Add a quick visit
@@ -275,6 +276,8 @@ export default function ClinicVisit() {
               middleName={middleName}
               email={email}
               visitDate={selectedDate}
+              selectedProvider={selectedDr}
+              // hourOfVisit={hourOfVisit}
             />
           </div>
           {/*  */}
@@ -402,10 +405,6 @@ export default function ClinicVisit() {
   const visitMonthlyDay1 = visits.filter((el) => {
     return el.visitDate.toString().toLowerCase().includes(monthlyDay)
   })
-  // const { houfOfVisit , visitDate, firstName, lastName } = visitMonthlyDay1
-  // console.log(houfOfVisit , visitDate, firstName, lastName)
-  // const visitDay1 = visitMonthlyDay1
-  // console.log(visitDay1.map((el) => el))
 
   function visitListMonthlyDay1() {
     return [...visitMonthlyDay1]
@@ -1470,10 +1469,52 @@ export default function ClinicVisit() {
   }
 
   //#endregion
+  //#region for pulling the exceptions based on selected provider 
+  const [staffExceptions, setStaffExceptions] = useState([])
+  const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+  const {
+    exceptionMon: exceptionMons,
+    exceptionTues: exceptionTue,
+    exceptionWed: exceptionWeds,
+    exceptionThurs: exceptionThur,
+    exceptionFri: exceptionFris,
+    providerID: selectedExceptionMDID,
+    startDate: selectedExceptionMDStart,
+    endDate: selectedExceptionMDEnd } = exceptionMD[0] === undefined ? 'Test User' : exceptionMD[0]
+
+    function isException(dateItem) {
+      const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
+      const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
+      const isException = isDayException && isExcept ? true : false
+      return isException
+    }
+
+  // console.log(exceptionMons)
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/exceptions')
+      .then((response) => {
+        const data = response.data//.find(doc => doc.name === exceptionMD)
+        setStaffExceptions(data)
+      })
+      .catch((error) => {
+        console.log('Error from exception list')
+      })
+  }, [])
+// console.log(selectExceptionMD)
+  //#endregion
   //#region for pulling the schedules based on selected provider availability
   const [staffSchedules, setStaffSchedules] = useState([])
   const availableMD = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
-  const { scheduledMon: scheduledMons, scheduledTues: scheduledTue, scheduledWed: scheduledWeds, scheduledThurs: scheduledThur, scheduledFri: scheduledFris, providerID: selectedAvailableMDID, startDate: selectedAvailableMDStart, endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
+  const {
+    scheduledMon: scheduledMons,
+    scheduledTues: scheduledTue,
+    scheduledWed: scheduledWeds,
+    scheduledThurs: scheduledThur,
+    scheduledFri: scheduledFris,
+    providerID: selectedAvailableMDID,
+    startDate: selectedAvailableMDStart,
+    endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
 
   useEffect(() => {
     axios
@@ -1547,11 +1588,6 @@ export default function ClinicVisit() {
   // }
   // console.log(DailyDate)
   //#endregion
-  // console.log(scheduledMons, scheduledTue, scheduledWeds, scheduledThur, format(addDays(new Date(MonthDayDate9), 1), 'iii'))
-  // console.log(scheduledThur === format(addDays(new Date(MonthDayDate9),1),'iii') ? true : false)
-  // console.log(addDays(new Date(MonthDayDate11), 1), MonthDayDate11, MonthDayDate12)
-  // console.log(isWeekend(addDays(new Date(MonthDayDate11), 1)), isWeekend(addDays(new Date(MonthDayDate12), 1)))
-  // console.log(addDays(new Date(MonthDayDate11), 1), MonthDayDate11, MonthDayDate12)
   //#region for delete confirmation modal
   const [showDelete, setShowDelete] = useState(false)
   const handleCloseDelete = () => setShowDelete(false)
@@ -1584,6 +1620,9 @@ export default function ClinicVisit() {
   }
 
   //#endregion
+  
+  const [selectedDr, setSelectedDr] = useState([])
+
   return (
     <div className="grid_container">
       <div className="item1">
@@ -1693,6 +1732,8 @@ export default function ClinicVisit() {
                     value={visits.provider}
                     onChange={(e) => {
                       setSelectAvailabilityMD(e.target.value)
+                      setSelectExceptionMD(e.target.value)
+                      setSelectedDr(e.target.value)
                     }}
                   >
                     {' '}
@@ -1730,45 +1771,42 @@ export default function ClinicVisit() {
           <div>{displayVisitMonthlyModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
           <div>{displayEditVisitModal()}</div>
-          
-            <div className="itemCalendar2">
+
+          <div className="itemCalendar2">
 
             {/* monthly */}
-           
-              <div
-                className="monthly"
-                style={{
-                  display: selectViewValue === 'Monthly' ? '' : 'none',
-                  paddingLeft: '0px',
-                  marginBottom: '0px',
-                }}
-              >
-                <div className="weekDayTitleParent">
-                  <div id="weekDayTitleChild" className="weekDayTitleChild">
-                    Su
-                  </div>
-                  <div
-                    className="weekDayTitleChild"
-                  // onClick={() => {
-                  //   alert.show('Oh look, an alert!')
-                  // }}
-                  >
-                    Mo
-                  </div>
-                  <div className="weekDayTitleChild">Tu</div>
-                  <div className="weekDayTitleChild">We</div>
-                  <div className="weekDayTitleChild">Th</div>
-                  <div className="weekDayTitleChild">Fr</div>
-                  <div className="weekDayTitleChild">Sa</div>
+            <div
+              className="monthly"
+              style={{
+                display: selectViewValue === 'Monthly' ? '' : 'none',
+                paddingLeft: '0px',
+                marginBottom: '0px',
+              }}
+            >
+              <div className="weekDayTitleParent">
+                <div id="weekDayTitleChild" className="weekDayTitleChild">
+                  Su
                 </div>
-                <div style={{ overflowY: 'auto' }}>
+                <div
+                  className="weekDayTitleChild"
+                // onClick={() => {
+                //   alert.show('Oh look, an alert!')
+                // }}
+                >
+                  Mo
+                </div>
+                <div className="weekDayTitleChild">Tu</div>
+                <div className="weekDayTitleChild">We</div>
+                <div className="weekDayTitleChild">Th</div>
+                <div className="weekDayTitleChild">Fr</div>
+                <div className="weekDayTitleChild">Sa</div>
+              </div>
+              <div style={{ overflowY: 'auto' }}>
                 <div className="monthDayTitleParent">
-                  <div
-                    className="monthDayTitleChild"
+                  <div className="monthDayTitleChild"
                     style={{
                       gridColumnStart: startOfTheMonthDayNumber + 1,
-                      backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) ? 'white' : '#cefad0' : 'white',
-
+                      backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) || isException(MonthDayDate1) ? 'white' : '#cefad0' : 'white',
                     }}
                   >
                     <span id="day1" >
@@ -1788,10 +1826,11 @@ export default function ClinicVisit() {
                       </button>
                     </span>
                     {visitListMonthlyDay1()}
+                    {/* {console.log(isException(MonthDayDate1), MonthDayDate1, exceptionWeds)} */}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span id="day2" className="day">
                       <button
@@ -1812,7 +1851,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) || isException(MonthDayDate3) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span className="day" id="day3">
                       <button
@@ -1833,7 +1872,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) || isException(MonthDayDate4) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span className="day4" id="day4">
                       <button
@@ -1860,7 +1899,7 @@ export default function ClinicVisit() {
 
                     }}
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) || isException(MonthDayDate5) ? 'white' : '#cefad0' : 'white',
 
                     }}
                   >
@@ -1882,7 +1921,7 @@ export default function ClinicVisit() {
                     {visitListMonthlyDay5()}
                   </div>
                   <div className="monthDayTitleChild" style={{
-                    backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) || isException(MonthDayDate6) ? 'white' : '#cefad0' : 'white',
                   }}>
                     <span className="day6" id="day6">
                       <button
@@ -1903,7 +1942,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) || isException(MonthDayDate7) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -1927,7 +1966,7 @@ export default function ClinicVisit() {
                     style={{
                       pointerEvents: weekendDay ? 'none' : '',
 
-                      backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) || isException(MonthDayDate8) ? 'white' : '#cefad0' : 'white',
 
                     }}
                   >
@@ -1949,7 +1988,7 @@ export default function ClinicVisit() {
                     {visitListMonthlyDay8()}
                   </div>
                   <div className="monthDayTitleChild" style={{
-                    backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) ? 'white' : '#cefad0' : 'white',
+                    backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) || isException(MonthDayDate9) ? 'white' : '#cefad0' : 'white',
                   }}>
                     <span>
                       <button
@@ -1970,7 +2009,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) || isException(MonthDayDate10) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -1993,7 +2032,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: weekendDay ? 'none' : '',
-                      backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) || isException(MonthDayDate11) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2015,7 +2054,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) || isException(MonthDayDate12) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2037,7 +2076,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) || isException(MonthDayDate13) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2059,7 +2098,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) || isException(MonthDayDate14) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2081,7 +2120,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) || isException(MonthDayDate15) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2103,7 +2142,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) || isException(MonthDayDate16) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2125,7 +2164,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) || isException(MonthDayDate17) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2147,7 +2186,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) || isException(MonthDayDate18) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2169,7 +2208,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) || isException(MonthDayDate19) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2191,7 +2230,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) || isException(MonthDayDate20) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2213,7 +2252,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) || isException(MonthDayDate21) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2235,7 +2274,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) || isException(MonthDayDate22) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2257,7 +2296,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) || isException(MonthDayDate23) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2279,7 +2318,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) || isException(MonthDayDate24) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2301,7 +2340,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) || isException(MonthDayDate25) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2323,7 +2362,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) || isException(MonthDayDate26) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2345,7 +2384,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) || isException(MonthDayDate27) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2367,7 +2406,7 @@ export default function ClinicVisit() {
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) || isException(MonthDayDate28) ? 'white' : '#cefad0' : 'white',
                     }}>
                     <span>
                       <button
@@ -2394,7 +2433,7 @@ export default function ClinicVisit() {
                         startOfTheMonthDay + 28 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) || isException(MonthDayDate29) ? 'white' : '#cefad0' : 'white',
                     }}
                   >
                     <span>
@@ -2422,7 +2461,7 @@ export default function ClinicVisit() {
                         startOfTheMonthDay + 29 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) || isException(MonthDayDate30) ? 'white' : '#cefad0' : 'white',
                     }}
                   >
                     <span>
@@ -2450,7 +2489,7 @@ export default function ClinicVisit() {
                         startOfTheMonthDay + 30 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) ? 'white' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) || isException(MonthDayDate31) ? 'white' : '#cefad0' : 'white',
                     }}
 
                   >
@@ -2472,288 +2511,287 @@ export default function ClinicVisit() {
 
                     {visitListMonthlyDay31()}
                   </div>
-                  </div>
-                  </div>
-              </div>
-            
-              {/* Weekly  */}
-              <div
-                className="weekly"
-                style={{
-                  display: selectViewValue === 'Weekly' ? 'inline' : 'none',
-                  paddingLeft: '0px',
-                  marginBottom: '0px',
-                  height: '100%',
-                  // backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
-                }}
-              >
-                <div className="grid-weeklycalcontainer">
-                  <div style={{
-                    fontSize: '14px',
-                    // height: 'calc(100vh - 132px)',
-                    height: '100%',
-                    // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                    <li className="calendar-item weekday">
-                      <div>
-                        SUN
-                        <span style={{ float: 'right', marginRight: '10px' }}>
-                          {startOfTheWeek}
-                        </span>
-                      </div>
-                    </li>
-                    <li
-                      className="calendar-item calendar-day"
-                      style={gridWeeklyStartSun}
-                    ></li>
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    // height: 'calc(100vh - 132px)',
-                    height: '100%',
-                    backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                    <li className="calendar-item weekday">
-                      <div>
-                        MON
-                        <span style={{
-                          float: 'right', marginRight: '10px',
-
-
-                        }}
-
-                        >
-                          {startOfTheWeek + 1 > startOfTheWeekEndOfMonth && startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
-                            ? startOfTheWeek + 1 - startOfTheWeekEndOfMonth
-                            : startOfTheWeek + 1}
-
-
-                        </span>
-                      </div>
-                    </li>
-                    <li className="calendar-item calendar-day" >
-                      {visitListWeeklyMonday()}
-                    </li>
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    height: '100%',
-                    backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) ? 'white' : '#cefad0' : 'white',
-                  }} >
-                    <li className="calendar-item weekday">
-                      <div>
-                        TUE
-                        <span style={{ float: 'right', marginRight: '10px' }}>
-                          {startOfTheWeek + 2 > startOfTheWeekEndOfMonth && startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
-                            ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
-                            : startOfTheWeek + 2}
-                        </span>
-                      </div>
-                    </li>
-                    <li className="calendar-item calendar-day" >
-                      {visitListWeeklyTuesday()}
-                    </li>
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    height: '100%',
-                    backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                    <li className="calendar-item weekday">
-                      <div>
-                        WED
-                        <span style={{ float: 'right', marginRight: '10px' }}>
-                          {startOfTheWeek + 3 > startOfTheWeekEndOfMonth && startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
-                            ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
-                            : startOfTheWeek + 3}
-                          {console.log(startOfTheWeek
-
-                            , startOfTheWeek + 3
-                            , startOfTheWeekEndOfMonth,
-                            startOfTheWeek + 3 - startOfTheWeekEndOfMonth)}
-                        </span>
-                      </div>
-                    </li>
-                    <li className="calendar-item calendar-day" >
-                      {visitListWeeklyWednesday()}
-                      {/* {console.log(startOfTheWeek + 3 > startOfTheWeekEndOfMonth
-                          ? 1
-                          : startOfTheWeek + 3, startOfTheWeek + 3)} */}
-                    </li>
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    height: '100%',
-                    backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                    <li className="calendar-item weekday">
-                      <div>
-                        THU
-                        <span style={{ float: 'right', marginRight: '10px' }}>
-                          {startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
-                            ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
-                            : startOfTheWeek + 4}
-                        </span>
-                      </div>
-                    </li>
-                    <li className="calendar-item calendar-day" >
-                      {/* style={gridWeekly} */}
-                      {visitListWeeklyThursday()}
-                    </li>
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    height: '100%',
-                    backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                    <li className="calendar-item weekday">
-                      <div>
-                        FRI
-                        <span style={{ float: 'right', marginRight: '10px' }}>
-                          {startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
-                            ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
-                            : startOfTheWeek + 5}
-                        </span>
-                      </div>
-                    </li>
-
-                    <li className="calendar-item calendar-day">
-                      {visitListWeeklyFriday()}
-                      {/* {console.log(WeekDayDate6)} */}
-                    </li>
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    height: '100%',
-                    backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) ? 'white' : '#cefad0' : 'white',
-                  }}>
-                    <li className="calendar-item weekday">
-                      <div>
-                        SAT
-                        <span style={{ float: 'right', marginRight: '10px' }}>
-                          {startOfTheWeek + 6 > startOfTheWeekEndOfMonth && startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
-                            ? startOfTheWeek + 6 - startOfTheWeekEndOfMonth
-                            : startOfTheWeek + 6}
-                        </span>
-                      </div>
-                    </li>
-                    <li
-                      className="calendar-item calendar-day"
-                      style={gridWeekly}
-                    ></li>
-                  </div>
                 </div>
               </div>
-              {/* Daily  */}
-              <div
-                className="daily"
-                style={{
-                  display: selectViewValue === 'Daily' ? '' : 'none',
-                  columnSpan: 'all',
-                }}
-              >
-                <li
-                  className="calendar-item calendar-day"
-                  id="calendarDaily"
-                  style={gridWeeklyStart}
-                >
-                  <div className="calendarDailyDate" id="calendarDailyDate">
-                    <h5 className="calendarDailyDateHeader">
-                      {format(new Date(showDateValue.toLocaleString()), 'PPP')}
-                    </h5>
-                  </div>
+            </div>
+            {/* Weekly  */}
+            <div
+              className="weekly"
+              style={{
+                display: selectViewValue === 'Weekly' ? 'inline' : 'none',
+                paddingLeft: '0px',
+                marginBottom: '0px',
+                height: '100%',
+                // backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
+              }}
+            >
+              <div className="grid-weeklycalcontainer">
+                <div style={{
+                  fontSize: '14px',
+                  // height: 'calc(100vh - 132px)',
+                  height: '100%',
+                  // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(MonthDayDate1) ? 'white' : '#cefad0' : 'white',
+                }}>
+                  <li className="calendar-item weekday">
+                    <div>
+                      SUN
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek}
+                      </span>
+                    </div>
+                  </li>
+                  <li
+                    className="calendar-item calendar-day"
+                    style={gridWeeklyStartSun}
+                  ></li>
+                </div>
+                <div style={{
+                  fontSize: '14px',
+                  // height: 'calc(100vh - 132px)',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(WeekDayDate2) ? 'white' : '#cefad0' : 'white',
+                }}>
+                  <li className="calendar-item weekday">
+                    <div>
+                      MON
+                      <span style={{
+                        float: 'right', marginRight: '10px',
 
-                  <div>
-                    <TableContainer component={Paper}>
-                      <Table
-                        sx={{ minWidth: 650 }}
-                        size="small"
-                        aria-label="a dense table"
-                      // className='table-striped'
+
+                      }}
+
                       >
-                        <TableHead>
-                          <TableRow>
-                            <StyledTableCell align="left">MRN</StyledTableCell>
+                        {startOfTheWeek + 1 > startOfTheWeekEndOfMonth && startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
+                          ? startOfTheWeek + 1 - startOfTheWeekEndOfMonth
+                          : startOfTheWeek + 1}
+
+
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" >
+                    {visitListWeeklyMonday()}
+                  </li>
+                </div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) || isException(WeekDayDate3) ? 'white' : '#cefad0' : 'white',
+                }} >
+                  <li className="calendar-item weekday">
+                    <div>
+                      TUE
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 2 > startOfTheWeekEndOfMonth && startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
+                          ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
+                          : startOfTheWeek + 2}
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" >
+                    {visitListWeeklyTuesday()}
+                  </li>
+                </div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) || isException(WeekDayDate4) ? 'white' : '#cefad0' : 'white',
+                }}>
+                  <li className="calendar-item weekday">
+                    <div>
+                      WED
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 3 > startOfTheWeekEndOfMonth && startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
+                          ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
+                          : startOfTheWeek + 3}
+                        {/* {console.log(startOfTheWeek
+
+                          , startOfTheWeek + 3
+                          , startOfTheWeekEndOfMonth,
+                          startOfTheWeek + 3 - startOfTheWeekEndOfMonth)} */}
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" >
+                    {visitListWeeklyWednesday()}
+                    {/* {console.log(startOfTheWeek + 3 > startOfTheWeekEndOfMonth
+                          ? 1
+                          : startOfTheWeek + 3, startOfTheWeek + 3)} */}
+                  </li>
+                </div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) || isException(WeekDayDate5) ? 'white' : '#cefad0' : 'white',
+                }}>
+                  <li className="calendar-item weekday">
+                    <div>
+                      THU
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                          ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
+                          : startOfTheWeek + 4}
+                      </span>
+                    </div>
+                  </li>
+                  <li className="calendar-item calendar-day" >
+                    {/* style={gridWeekly} */}
+                    {visitListWeeklyThursday()}
+                  </li>
+                </div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) || isException(WeekDayDate6) ? 'white' : '#cefad0' : 'white',
+                }}>
+                  <li className="calendar-item weekday">
+                    <div>
+                      FRI
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
+                          ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
+                          : startOfTheWeek + 5}
+                      </span>
+                    </div>
+                  </li>
+
+                  <li className="calendar-item calendar-day">
+                    {visitListWeeklyFriday()}
+                    {/* {console.log(WeekDayDate6)} */}
+                  </li>
+                </div>
+                <div style={{
+                  fontSize: '14px',
+                  height: '100%',
+                  backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) || isException(WeekDayDate7) ? 'white' : '#cefad0' : 'white',
+                }}>
+                  <li className="calendar-item weekday">
+                    <div>
+                      SAT
+                      <span style={{ float: 'right', marginRight: '10px' }}>
+                        {startOfTheWeek + 6 > startOfTheWeekEndOfMonth && startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
+                          ? startOfTheWeek + 6 - startOfTheWeekEndOfMonth
+                          : startOfTheWeek + 6}
+                      </span>
+                    </div>
+                  </li>
+                  <li
+                    className="calendar-item calendar-day"
+                    style={gridWeekly}
+                  ></li>
+                </div>
+              </div>
+            </div>
+            {/* Daily  */}
+            <div
+              className="daily"
+              style={{
+                display: selectViewValue === 'Daily' ? '' : 'none',
+                columnSpan: 'all',
+              }}
+            >
+              <li
+                className="calendar-item calendar-day"
+                id="calendarDaily"
+                style={gridWeeklyStart}
+              >
+                <div className="calendarDailyDate" id="calendarDailyDate">
+                  <h5 className="calendarDailyDateHeader">
+                    {format(new Date(showDateValue.toLocaleString()), 'PPP')}
+                  </h5>
+                </div>
+
+                <div>
+                  <TableContainer component={Paper}>
+                    <Table
+                      sx={{ minWidth: 650 }}
+                      size="small"
+                      aria-label="a dense table"
+                    // className='table-striped'
+                    >
+                      <TableHead>
+                        <TableRow>
+                          <StyledTableCell align="left">MRN</StyledTableCell>
+                          <StyledTableCell align="left">
+                            Visit ID
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Firstname
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Middlename
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Lastname
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Visit Date
+                          </StyledTableCell>
+                          <StyledTableCell align="left">Time</StyledTableCell>
+                          <StyledTableCell align="left">Email</StyledTableCell>
+                          <StyledTableCell align="left">
+                            Provider
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Date Created
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            Actions
+                          </StyledTableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {(rowsPerPage > 0
+                          ? filterDataWithDate.slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage,
+                          )
+                          : filterDataWithDate
+                        ).map((pt) => (
+                          <StyledTableRow key={pt._id}
+                            onClick={() => handleItemClick(pt)}
+                          >
                             <StyledTableCell align="left">
-                              Visit ID
+                              {pt.medicalRecordNumber}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Firstname
+                              {pt.visitNumber}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Middlename
+                              {pt.firstName}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Lastname
+                              {pt.middleName}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Visit Date
-                            </StyledTableCell>
-                            <StyledTableCell align="left">Time</StyledTableCell>
-                            <StyledTableCell align="left">Email</StyledTableCell>
-                            <StyledTableCell align="left">
-                              Provider
+                              {pt.lastName}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Date Created
+                              {pt.visitDate}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Actions
+                              {pt.hourOfVisit}
                             </StyledTableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {(rowsPerPage > 0
-                            ? filterDataWithDate.slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage,
-                            )
-                            : filterDataWithDate
-                          ).map((pt) => (
-                            <StyledTableRow key={pt._id}
-                              onClick={() => handleItemClick(pt)}
-                            >
-                              <StyledTableCell align="left">
-                                {pt.medicalRecordNumber}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.visitNumber}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.firstName}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.middleName}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.lastName}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.visitDate}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.hourOfVisit}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.email}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.provider}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.addedDate}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                <button
-                                  className="btn btn-primary btn-sm registerBtn"
-                                  onClick={() => { handleEditVisitShow(pt._id) }}>
-                                  <i
-                                    className="fa fa-pencil-square-o fa-sm"
-                                    aria-hidden="true"
-                                    title='edit visit'
-                                  />
-                                </button>
-                                {/* <Link
+                            <StyledTableCell align="left">
+                              {pt.email}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.provider}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              {pt.addedDate}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              <button
+                                className="btn btn-primary btn-sm registerBtn"
+                                onClick={() => { handleEditVisitShow(pt._id) }}>
+                                <i
+                                  className="fa fa-pencil-square-o fa-sm"
+                                  aria-hidden="true"
+                                  title='edit visit'
+                                />
+                              </button>
+                              {/* <Link
                                 className="btn btn-info btn-sm"
                                 to={`/editVisit/${pt._id}`}
                               >
@@ -2762,16 +2800,16 @@ export default function ClinicVisit() {
                                   aria-hidden="true"
                                 />
                               </Link> */}
-                                <Link
-                                  className="btn btn-success btn-sm registerBtn"
-                                  to={`/detailsVisit/${pt._id}`}
-                                >
-                                  <i
-                                    className="fa fa-clipboard fa-sm"
-                                    aria-hidden="true"
-                                  />
-                                </Link>
-                                {/* <button
+                              <Link
+                                className="btn btn-success btn-sm registerBtn"
+                                to={`/detailsVisit/${pt._id}`}
+                              >
+                                <i
+                                  className="fa fa-clipboard fa-sm"
+                                  aria-hidden="true"
+                                />
+                              </Link>
+                              {/* <button
                                 className="btn btn-danger btn-sm registerBtn"
                                 onClick={() => {
                                   deleteRecord(pt._id)
@@ -2782,65 +2820,65 @@ export default function ClinicVisit() {
                                   aria-hidden="true"
                                 />
                               </button> */}
-                                <button
-                                  className="btn btn-danger btn-sm registerBtn"
-                                  // onClick={() => {
-                                  //   deleteRecord(pt._id)
-                                  // }}
-                                  onClick={handleShowDelete}
-                                >
-                                  <i
-                                    title="delete visit"
-                                    className="fa fa-trash-o fa-sm"
-                                    aria-hidden="true"
-                                  />
-                                </button>
-                              </StyledTableCell>
-                            </StyledTableRow>
-                          ))}
-                          {emptyRows > 0 && (
-                            <StyledTableRow
-                              style={{
-                                height: 53 * emptyRows,
-                              }}
-                            >
-                              <StyledTableCell colSpan={6} />
-                            </StyledTableRow>
-                          )}
-                        </TableBody>
-                        <TableFooter>
-                          <TableRow>
-                            <TablePagination
-                              // style={{float:'right'}}
-                              rowsPerPageOptions={[
-                                5,
-                                10,
-                                25,
-                                { label: 'All', value: -1 },
-                              ]}
-                              colSpan={12}
-                              count={filterDataWithDate.length}
-                              rowsPerPage={rowsPerPage}
-                              page={page}
-                              SelectProps={{
-                                inputProps: {
-                                  'aria-label': 'rows per page',
-                                },
-                                native: true,
-                              }}
-                              onPageChange={handleChangePage}
-                              onRowsPerPageChange={handleChangeRowsPerPage}
-                              ActionsComponent={TablePaginationActions}
-                            />
-                          </TableRow>
-                        </TableFooter>
-                      </Table>
-                    </TableContainer>
-                  </div>
-                </li>
-              </div>
+                              <button
+                                className="btn btn-danger btn-sm registerBtn"
+                                // onClick={() => {
+                                //   deleteRecord(pt._id)
+                                // }}
+                                onClick={handleShowDelete}
+                              >
+                                <i
+                                  title="delete visit"
+                                  className="fa fa-trash-o fa-sm"
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </StyledTableCell>
+                          </StyledTableRow>
+                        ))}
+                        {emptyRows > 0 && (
+                          <StyledTableRow
+                            style={{
+                              height: 53 * emptyRows,
+                            }}
+                          >
+                            <StyledTableCell colSpan={6} />
+                          </StyledTableRow>
+                        )}
+                      </TableBody>
+                      <TableFooter>
+                        <TableRow>
+                          <TablePagination
+                            // style={{float:'right'}}
+                            rowsPerPageOptions={[
+                              5,
+                              10,
+                              25,
+                              { label: 'All', value: -1 },
+                            ]}
+                            colSpan={12}
+                            count={filterDataWithDate.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            SelectProps={{
+                              inputProps: {
+                                'aria-label': 'rows per page',
+                              },
+                              native: true,
+                            }}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            ActionsComponent={TablePaginationActions}
+                          />
+                        </TableRow>
+                      </TableFooter>
+                    </Table>
+                  </TableContainer>
+                </div>
+              </li>
             </div>
-          
+          </div>
+
         </div>
       </div>
     </div>
