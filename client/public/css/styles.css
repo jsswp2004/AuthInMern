@@ -903,6 +903,14 @@ display: none;
 
 .visitMonthDayContainerItem:hover > .visitMonthDayContainerItems { 
   display: block;
+  
+}
+
+
+.visitMonthDayContainer:hover > .visitMonthDayContainerItemAction { 
+  /* background-color: #0c4879; */
+color: white;
+  
 }
 /* end code for calendar hover display */
 
@@ -922,6 +930,7 @@ display: none;
   margin-bottom: 0;
   padding-bottom: 0;
   padding-top: 0;
+  /* color:white; */
 }
 
 

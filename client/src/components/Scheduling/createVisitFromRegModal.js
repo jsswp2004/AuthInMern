@@ -8,7 +8,7 @@ import axios from 'axios'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
 
 const CreateVisitFromReg = (props) => {
-  
+
   const [selectedHour, setSelectedHour] = useState('')
 
   const navigate = useNavigate()
@@ -116,7 +116,7 @@ const CreateVisitFromReg = (props) => {
 
   const [schedEvent, setSchedEvent] = useState([])
   const schedEvents = schedEvent.filter((event) => {
-    return event.name.toString().toLowerCase() 
+    return event.name.toString().toLowerCase()
   })
   const clinicEvents = schedEvents.map((doc) => doc.name)
 
@@ -151,7 +151,37 @@ const CreateVisitFromReg = (props) => {
   })
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
+//pull scheduled days
+  const [schedDays, setSchedDays] = useState([])
+  // const schedDay = schedDays.filter((event) => {
+  //   return event.name.toString().toLowerCase()
+  // })
+  // const clinicDays = schedDay.map((doc) => doc.day)
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/schedules')
+      .then((response) => {
+        setSchedDays(response.data)
+      })
+      .catch((error) => {
+        console.log('Error from schedule list')
+      })
+  }, [])
+
+  const filteredSchedDays = schedDays.filter((event) => {
+    return event.toString().includes(selectedMD)
+  })
+
+  // const { provider } = filteredSchedDays
+  console.log(selectedMD, filteredSchedDays, schedDays, schedDays.map((doc) => doc.provider === selectedMD ? doc.provider : ''))
+  // const filteredSchedDaysWithMD = filteredSchedDays.map((doc) => doc.day)
+
+  // const filteredSchedDaysWithMDAndDate = filteredSchedDays.filter((event) => {
+    // return event.day.toString().toLowerCase().includes(selectedDate)
+  // })
+  
+      
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -230,24 +260,24 @@ const CreateVisitFromReg = (props) => {
                     </label>
                   </div>
                   <div className="form-group">
-                  <label htmlFor="email">
-                    Email
-                    <input
-                      type="text"
-                      name="email"
-                      className="form-control"
-                      defaultValue={email}
-                      // value={visit.email}
-                      onChange={onChange}
-                    />
-                  </label>
-                </div>
+                    <label htmlFor="email">
+                      Email
+                      <input
+                        type="text"
+                        name="email"
+                        className="form-control"
+                        defaultValue={email}
+                        // value={visit.email}
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
 
                 </div>
               </div>
 
               <div className="div-items">
-              <div className="form-group">
+                <div className="form-group">
                   <label htmlFor="medicalRecordNumber">
                     MRN
                     <input
@@ -298,10 +328,7 @@ const CreateVisitFromReg = (props) => {
                     />
                   </label>
                 </div>
-
-              </div>
-              <div className="div-items updateRegistrationGrp">
-              <div className="form-group">
+                <div className="form-group">
                   <label htmlFor="provider">
                     Provider
                     <select
@@ -323,6 +350,9 @@ const CreateVisitFromReg = (props) => {
                     </select>
                   </label>
                 </div>
+              </div>
+              <div className="div-items updateRegistrationGrp">
+
                 <div className="form-group">
                   <label htmlFor="event">
                     Scheduled Event
@@ -346,9 +376,9 @@ const CreateVisitFromReg = (props) => {
                   </label>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="hourOfVisit">
-                      Hour of Visit
-                      <input
+                  <label htmlFor="hourOfVisit">
+                    Hour of Visit
+                    <input
                       type="text"
                       name="hourOfVisit"
                       className="form-control"
@@ -408,8 +438,8 @@ const CreateVisitFromReg = (props) => {
                       <div className='hour-flex_Item' onClick={() => setSelectedHour('17:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('17:30') ? '#AA336A' : '#90EE90' }}>17:30</div>
                       <div className='hour-flex_Item' onClick={() => setSelectedHour('17:45')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('17:45') ? '#AA336A' : '#90EE90' }}>17:45</div>
                     </div>
-                    </label>
-                  </div>
+                  </label>
+                </div>
                 <div
                   className="form-group"
                   style={{

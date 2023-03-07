@@ -144,7 +144,7 @@ const VisitMonthDaily = (props) => {
             className="fa fa-pencil-square-o fa-sm"
             aria-hidden="true"
             title='edit visit'
-            style={{ color: 'blue', paddingTop: '5px', paddingLeft: '3px' }}
+            style={{ color: '#72bcd4', paddingTop: '5px', paddingLeft: '3px' }}
             onClick={() => { handleEditVisitShow(visitID) }}
           />
         </span>
