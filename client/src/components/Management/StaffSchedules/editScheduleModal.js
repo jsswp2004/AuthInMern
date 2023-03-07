@@ -5,6 +5,11 @@ import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
 function EditSchedule(props) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
+  };
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -24,11 +29,11 @@ function EditSchedule(props) {
 
   // const navigate = useNavigate()
   const hourValues = Hour
-  const [hourvalue, sethourValue] = useState('')
+  // const [hourvalue, sethourValue] = useState('')
 
-  const hourvalueChange = (event) => {
-    sethourValue(event.target.value)
-  }
+  // const hourvalueChange = (event) => {
+  //   sethourValue(event.target.value)
+  // }
   const [schedule, setSchedule] = useState({
     providerID: '',
     provider: 'Select Doctor',
@@ -170,6 +175,9 @@ function EditSchedule(props) {
                       onClick={() => setScheduleDay1('Mon')}
                       name="scheduledDays"
                       value={schedule.scheduledMon}
+                      // defaultChecked={schedule.scheduledMon === 'Mon' ? true : false}
+                      // checked={schedule.scheduledMon === 'Mon' ? checked : ''}
+                      // isChecked={schedule.scheduledMon === 'Mon' ? true : false}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
@@ -177,9 +185,13 @@ function EditSchedule(props) {
                     Tuesdays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay2('Tue')}
+                      onClick={() => { setScheduleDay2('Tue')}}
                       name="scheduledDays"
                       value={schedule.scheduledTues}
+                      // checked={isChecked}
+                      // onChange={handleOnChange}
+                      // checked={schedule.scheduledTues}
+                      // defaultChecked ={schedule.scheduledTues !== ' ' ? true : false}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
@@ -190,6 +202,8 @@ function EditSchedule(props) {
                       onClick={() => setScheduleDay3('Wed')}
                       name="scheduledDays"
                       value={schedule.scheduledWed}
+                      // checked={schedule.scheduledWed !== ' ' ? 'checked' : ''}
+                      // isChecked={schedule.scheduledWed === 'Wed' ? true : false}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
@@ -200,6 +214,7 @@ function EditSchedule(props) {
                       onClick={() => setScheduleDay4('Thu')}
                       name="scheduledDays"
                       value={schedule.scheduledThurs}
+                      // checked={schedule.scheduledThurs !== ' ' ? 'checked' : ''}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
@@ -210,6 +225,7 @@ function EditSchedule(props) {
                       onClick={() => setScheduleDay5('Fri')}
                       name="scheduledDays"
                       value={schedule.scheduledFri}
+                      // checked={schedule.scheduledFri !== ' ' ? 'checked' : ''}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>

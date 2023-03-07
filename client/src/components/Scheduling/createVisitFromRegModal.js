@@ -151,12 +151,8 @@ const CreateVisitFromReg = (props) => {
   })
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
-//pull scheduled days
+//#region pull scheduled days
   const [schedDays, setSchedDays] = useState([])
-  // const schedDay = schedDays.filter((event) => {
-  //   return event.name.toString().toLowerCase()
-  // })
-  // const clinicDays = schedDay.map((doc) => doc.day)
 
   useEffect(() => {
     axios
@@ -169,16 +165,14 @@ const CreateVisitFromReg = (props) => {
       })
   }, [])
 
-  // const filteredSchedDays = schedDays.find((event) =>event.provider === selectedMD )
+  const filteredSchedDays = schedDays.find((event) =>event.provider.includes(selectedMD) )
 
-  // const { scheduledMon, scheduledTues, scheduledWed, scheduledThurs, SsheduledFri } = filteredSchedDays
-  // console.log(scheduledMon, filteredSchedDays.scheduledTues, filteredSchedDays.scheduledWed,selectedMD)//, schedDays, schedDays.find((doc) => doc.provider === selectedMD))
-  // const filteredSchedDaysWithMD = filteredSchedDays.map((doc) => doc.day)
+  if (filteredSchedDays === undefined) {
+    return <div>Loading...</div>
+  }
+  const { scheduledMon, scheduledTues, scheduledWed, scheduledThurs, scheduledFri } = filteredSchedDays
 
-  // const filteredSchedDaysWithMDAndDate = filteredSchedDays.filter((event) => {
-    // return event.day.toString().toLowerCase().includes(selectedDate)
-  // })
-  
+  //#endregion
       
   const onSubmit = (e) => {
     e.preventDefault()
@@ -347,12 +341,12 @@ const CreateVisitFromReg = (props) => {
                       ))}
                     </select>
                     <label>Available days:</label>
-                    {/* <span> {[filteredSchedDays.scheduledMon,' ',
-                      filteredSchedDays.scheduledTues,' ',
-                      filteredSchedDays.scheduledWed,' ',
-                      filteredSchedDays.scheduledThurs,' ',
-                      filteredSchedDays.scheduledFri]}
-                    </span> */}
+                    <span> {[scheduledMon,' ',
+                      scheduledTues,' ',
+                      scheduledWed,' ',
+                      scheduledThurs,' ',
+                      scheduledFri]}
+                    </span>
                   </label>
                 </div>
               </div>
