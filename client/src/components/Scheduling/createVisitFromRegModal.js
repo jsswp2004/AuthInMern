@@ -169,12 +169,10 @@ const CreateVisitFromReg = (props) => {
       })
   }, [])
 
-  const filteredSchedDays = schedDays.filter((event) => {
-    return event.toString().includes(selectedMD)
-  })
+  // const filteredSchedDays = schedDays.find((event) =>event.provider === selectedMD )
 
-  // const { provider } = filteredSchedDays
-  console.log(selectedMD, filteredSchedDays, schedDays, schedDays.map((doc) => doc.provider === selectedMD ? doc.provider : ''))
+  // const { scheduledMon, scheduledTues, scheduledWed, scheduledThurs, SsheduledFri } = filteredSchedDays
+  // console.log(scheduledMon, filteredSchedDays.scheduledTues, filteredSchedDays.scheduledWed,selectedMD)//, schedDays, schedDays.find((doc) => doc.provider === selectedMD))
   // const filteredSchedDaysWithMD = filteredSchedDays.map((doc) => doc.day)
 
   // const filteredSchedDaysWithMDAndDate = filteredSchedDays.filter((event) => {
@@ -348,6 +346,13 @@ const CreateVisitFromReg = (props) => {
                         </option>
                       ))}
                     </select>
+                    <label>Available days:</label>
+                    {/* <span> {[filteredSchedDays.scheduledMon,' ',
+                      filteredSchedDays.scheduledTues,' ',
+                      filteredSchedDays.scheduledWed,' ',
+                      filteredSchedDays.scheduledThurs,' ',
+                      filteredSchedDays.scheduledFri]}
+                    </span> */}
                   </label>
                 </div>
               </div>
