@@ -145,8 +145,13 @@ function EditSchedule(props) {
 
   const handleOnChangeMon = () => {
     setIsChecked((prev) => !prev);
-    setScheduleDay1('Mon')
-  };
+    if (isChecked === true) {
+      setScheduleDay1('Mon')
+    } else {
+      setScheduleDay1(' ')
+    }
+      
+  }
 
   const handleOnChangeMonFalse = () => {
     setIsChecked(false);
@@ -154,7 +159,7 @@ function EditSchedule(props) {
   };
 
   console.log(scheduledMon === 'Mon' ? true : false)
-  console.log(isChecked)
+  console.log(isChecked, scheduleMon)
   return (
     <div className="grid_containers">
       <div className="item3">
