@@ -141,15 +141,18 @@ function EditSchedule(props) {
       })
   }
 
-  const [isChecked, setIsChecked] = useState(scheduledMon === 'Mon' ? true : false);
+  const [isChecked, setIsChecked] = useState('');
+  //scheduledMon === 'Mon' ? true : false
 
-  const handleOnChangeMon = () => {
+  function HandleOnChangeMon() {
     setIsChecked((prev) => !prev);
+    useEffect(() => {
     if (isChecked === true) {
       setScheduleDay1('Mon')
     } else {
       setScheduleDay1(' ')
-    }
+      }
+    }, [])
       
   }
 
@@ -213,7 +216,7 @@ function EditSchedule(props) {
                       // onDoubleClick={handleOnChangeMonFalse}
                       name="scheduledDays"
                       value={schedule.scheduledMon}
-                      onChange={handleOnChangeMon}
+                      onChange={HandleOnChangeMon}
                       // defaultChecked={schedule.scheduledMon === 'Mon' ? true : false}
                       // checked={schedule.scheduledMon === 'Mon' ? checked : ''}
                       // checked={ scheduledMon === 'Mon' ? true : false}
