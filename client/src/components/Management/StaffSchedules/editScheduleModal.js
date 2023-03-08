@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 // import { useNavigate } from 'react-router'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
+import CheckBoxes from './checkBoxScheduledDays'
 
 function EditSchedule(props) {
-
+  //useRef
+  const checkboxRef = useRef(null)
+  
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -240,12 +243,13 @@ function EditSchedule(props) {
                       // onDoubleClick={handleOnChangeMonFalse}
                       // name="scheduledDays"
                       value={schedule.scheduledMon}
+                      // defaultChecked={preValueMon.toString() === 'Mon' ? true : false}
                       onChange={handleOnChangeMon}
                       // defaultChecked={schedule.scheduledMon === 'Mon' ? true : false}
                       // checked={preValueMon === 'Mon' ? true : false}
                       // isChecked={true}
                       // isChecked={schedule.scheduledMon === 'Mon' ? t rue : false}
-                      checked={isCheckedMonday}
+                      // checked={isCheckedMonday}
                     // checked={preValueMon === 'Mon' ? true : isChecked}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
@@ -426,6 +430,14 @@ function EditSchedule(props) {
           </form>
         </div>
       </div>
+      <CheckBoxes
+        preValueMonday={preValueMonday.toString()}
+        preValueTuesday={preValueTuesday.toString()}
+        preValueWednesday={preValueWednesday.toString()}
+        preValueThursday={preValueThursday.toString()}
+        preValueFriday={preValueFriday.toString()}
+      />
+      {console.log(preValueMonday.toString())}
     </div>
   )
 }
