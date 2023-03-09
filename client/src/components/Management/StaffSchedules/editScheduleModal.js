@@ -82,14 +82,12 @@ function EditSchedule(props) {
         // })
         setSchedule(res.data)
         // console.log(res.data)
-        setIsCheckedMonday(preValueMonday);
+        setIsCheckedMonday(res.data.scheduleMon.toString() === 'Mon' ? true : false);
       })
       .catch((err) => {
         console.log('Error from EditSchedule')
       })
   }, [DrID])
-
-
   //deconstruct schedule object
   let {
     providerID,
@@ -106,6 +104,15 @@ function EditSchedule(props) {
     scheduledThurs: preValueThurs,
     scheduledFri: preValueFri,
     addedDate } = schedule
+
+  let preValueMonday = preValueMon.toString() === 'Mon' ? true : false
+  const preValueTuesday = preValueTues.toString() === 'Tue' ? true : false
+  const preValueWednesday = preValueWed.toString() === 'Wed' ? true : false
+  const preValueThursday = preValueThurs.toString() === 'Thu' ? true : false
+  const preValueFriday = preValueFri.toString() === 'Fri' ? true : false
+
+
+
 
   console.log(preValueMon.toString(), preValueThurs.toString()) //, scheduledWed,  scheduledThurs, scheduledFri)
   const onChange = (e) => {
@@ -144,17 +151,13 @@ function EditSchedule(props) {
       })
   }
 
-  let preValueMonday = preValueMon.toString() === 'Mon' ? true : false
-  const preValueTuesday = preValueTues.toString() === 'Tue' ? true : false
-  const preValueWednesday = preValueWed.toString() === 'Wed' ? true : false
-  const preValueThursday = preValueThurs.toString() === 'Thu' ? true : false
-  const preValueFriday = preValueFri.toString() === 'Fri' ? true : false
+
 
   // const { name: checkNameMonday, checked: checkMonday } = preValueMonday
 
   // const { checked } = preValueTuesday
 
-  let [isCheckedMonday, setIsCheckedMonday] = useState(false)
+  let [isCheckedMonday, setIsCheckedMonday] = useState(preValueMonday)
   // let [isCheckedMonday, setIsCheckedMonday] = useState(false)
 
   const [isCheckedTuesday, setIsCheckedTuesday] = useState(preValueTuesday)
@@ -169,8 +172,8 @@ function EditSchedule(props) {
     // setIsCheckedMonday(preValueMonday.toString()=== 'true' ? true : false);
     // setIsCheckedMonday((e)=> e.target.checked)
     // preValueMonday = isCheckedMonday
-    setIsCheckedMonday(!isCheckedMonday);
-    console.log(!isCheckedMonday)
+    setIsCheckedMonday(isCheckedMonday);
+    // console.log(isCheckedMonday)
     // setScheduleDay1(' ')
   }
 
