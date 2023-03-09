@@ -19,15 +19,17 @@ export const Checkbox = ({ isChecked, label, checkHandler, index }) => {
 
 function CheckBox(props) {
 
-  const allDays = () => [
-    { name: "Monday", checked: props.preValueMonday.toString() === 'true' ? true : false },
+  const preValueMond = props.preValueMonday.toString().toLowerCase().trim() === 'true' ? true : false
+  const allDays = [
+    { name: "Monday", checked: preValueMond  },
     { name: "Tuesday", checked: props.preValueTuesday },
     { name: "Wednesday", checked: props.preValueWednesday },
     { name: "Thursday", checked: props.preValueThursday },
     { name: "Friday", checked: props.preValueFriday },
     
   ]
-  console.log(props.preValueMonday)
+  console.log(preValueMond)
+  console.log(allDays)
 
   const [schedDays, setSchedDays] = useState(allDays)
 

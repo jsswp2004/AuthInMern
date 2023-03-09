@@ -82,7 +82,7 @@ function EditSchedule(props) {
         // })
         setSchedule(res.data)
         // console.log(res.data)
-        setIsCheckedMonday(res.data.scheduleMon.toString() === 'Mon' ? true : false);
+        // setIsCheckedMonday(res.data.scheduleMon.toString() === 'Mon' ? true : false);
       })
       .catch((err) => {
         console.log('Error from EditSchedule')
@@ -105,7 +105,7 @@ function EditSchedule(props) {
     scheduledFri: preValueFri,
     addedDate } = schedule
 
-  let preValueMonday = preValueMon.toString() === 'Mon' ? true : false
+  const preValueMonday = preValueMon.toString().trim() === 'Mon' ? true : false
   const preValueTuesday = preValueTues.toString() === 'Tue' ? true : false
   const preValueWednesday = preValueWed.toString() === 'Wed' ? true : false
   const preValueThursday = preValueThurs.toString() === 'Thu' ? true : false
@@ -114,7 +114,7 @@ function EditSchedule(props) {
 
 
 
-  console.log(preValueMon.toString(), preValueThurs.toString()) //, scheduledWed,  scheduledThurs, scheduledFri)
+  console.log(preValueMon.toString(),preValueMonday, preValueThurs.toString()) //, scheduledWed,  scheduledThurs, scheduledFri)
   const onChange = (e) => {
     setSchedule({ ...schedule, [e.target.name]: e.target.value })
   }
@@ -156,11 +156,14 @@ function EditSchedule(props) {
   // const { name: checkNameMonday, checked: checkMonday } = preValueMonday
 
   // const { checked } = preValueTuesday
-
-  let [isCheckedMonday, setIsCheckedMonday] = useState(preValueMonday)
+  
+  // const preValueMondString = preValueMonday.toString() 
+  // const preValueM = preValueMondString === 'true' ? true : false
+  // console.log(preValueMonday, preValueMondString, preValueM)
+  const [isCheckedMonday, setIsCheckedMonday] = useState(preValueMonday.toString() === 'true' ? true : false)
   // let [isCheckedMonday, setIsCheckedMonday] = useState(false)
 
-  const [isCheckedTuesday, setIsCheckedTuesday] = useState(preValueTuesday)
+  const [isCheckedTuesday, setIsCheckedTuesday] = useState(preValueTuesday.toString() === 'true' ? true : false)
   const [isCheckedWednesday, setIsCheckedWednesday] = useState(preValueWednesday)
   const [isCheckedThursday, setIsCheckedThursday] = useState(preValueThursday)
   const [isCheckedFriday, setIsCheckedFriday] = useState(preValueFriday)
@@ -172,7 +175,7 @@ function EditSchedule(props) {
     // setIsCheckedMonday(preValueMonday.toString()=== 'true' ? true : false);
     // setIsCheckedMonday((e)=> e.target.checked)
     // preValueMonday = isCheckedMonday
-    setIsCheckedMonday(isCheckedMonday);
+    setIsCheckedMonday(!isCheckedMonday);
     // console.log(isCheckedMonday)
     // setScheduleDay1(' ')
   }
@@ -262,10 +265,11 @@ function EditSchedule(props) {
                       // checked={preValueMon === 'Mon' ? true : false}
                       onChange={handleOnChangeMon}
                       // checked={preValueMon === 'Mon' ? true : false}
-                      checked={isCheckedMonday}
+                      // checked={isCheckedMonday}
                     // isChecked={schedule.scheduledMon === 'Mon' ? true : false}
                     // checked={isCheckedMonday === 'true' ? true : false}
-                    // checked={preValueMonday.toString()=== 'true' ? true : false}
+                      defaultChecked= {false}
+                    checked={preValueMonday === true ? true : false}
 
 
                     />
@@ -284,7 +288,7 @@ function EditSchedule(props) {
                       value={schedule.scheduledTues}
                       // checked={scheduledTues === 'Tue' ? true : false}
                       onChange={handleOnChangeTue}
-                      checked={isCheckedTuesday === 'true' ? true : false}
+                      checked={preValueTuesday === true ? true : false}
                     // checked={schedule.scheduledTues}
                     // defaultChecked ={schedule.scheduledTues !== ' ' ? true : false}
                     />
