@@ -452,7 +452,7 @@ function EditSchedule(props) {
         preValueThursday={preValueThursday.toString()}
         preValueFriday={preValueFriday.toString()}
       />
-      {console.log(preValueMonday.toString()=== 'true' ? true : false)}')}
+      {console.log(preValueMonday.toString()=== 'true' ? true : false)}
     </div>
   )
 }

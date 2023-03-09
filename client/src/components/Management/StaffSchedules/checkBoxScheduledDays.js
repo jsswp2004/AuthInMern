@@ -1,6 +1,8 @@
 import { useState } from "react"
 
 
+
+
 export const Checkbox = ({ isChecked, label, checkHandler, index }) => {
   return (
     <div>
@@ -16,26 +18,27 @@ export const Checkbox = ({ isChecked, label, checkHandler, index }) => {
 }
 
 function CheckBox(props) {
-  const allDays = [
-    { name: "Monday", checked: props.preValueMonday },
+
+  const allDays = () => [
+    { name: "Monday", checked: props.preValueMonday.toString() === 'true' ? true : false },
     { name: "Tuesday", checked: props.preValueTuesday },
     { name: "Wednesday", checked: props.preValueWednesday },
     { name: "Thursday", checked: props.preValueThursday },
     { name: "Friday", checked: props.preValueFriday },
     
   ]
-  console.log(allDays)
+  console.log(props.preValueMonday)
+
   const [schedDays, setSchedDays] = useState(allDays)
 
   const updateCheckStatus = index => {
     setSchedDays(
         schedDays.map((schedDay, currentIndex) =>
-        currentIndex === index
-          ? { ...schedDay, checked: !schedDay.checked }: schedDay,
-           
+        currentIndex === index ? { ...schedDay, checked: !schedDay.checked }: schedDay,
+        
       )
     )
-
+// console.log(updateCheckStatus())
     // or
     // setToppings([
     //   ...toppings.slice(0, index),
@@ -44,12 +47,15 @@ function CheckBox(props) {
     // ]);
   }
 
+  console.log(schedDays)
+
   return (
     <div className="App">
       {schedDays.map((schedDay, index) => (
         <Checkbox
           key={schedDay.name}
           isChecked={schedDay.checked}
+
           checkHandler={() => updateCheckStatus(index)}
           label={schedDay.name}
           index={index}
