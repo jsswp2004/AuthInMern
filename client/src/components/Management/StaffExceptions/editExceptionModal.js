@@ -155,7 +155,12 @@ function EditException(props) {
                   </label>
                 </div>
                 <div>
-                  <label>Exception Days:</label>
+                  <label><b>Exception Days:</b></label>
+                  <br/>
+                  <span>{exception.exceptionMon}{' '}{exception.exceptionTues}{' '}{exception.exceptionWed}{' '}{exception.exceptionThurs}{' '}{ exception.exceptionFri}</span>
+                  <br/>
+                  <label><b>Change to:</b></label>
+                  <br/>
                   <label className="scheduleCheckboxContainer">
                     Mondays
                     <input

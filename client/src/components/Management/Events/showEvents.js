@@ -62,7 +62,7 @@ const ShowEventsList = () => {
     setEditShow(false)
     // navigate('/settingsPage')
     // window.location.reload()
-    window.location.close()
+    // window.location.close()
   }
 
   // console.log(events)
