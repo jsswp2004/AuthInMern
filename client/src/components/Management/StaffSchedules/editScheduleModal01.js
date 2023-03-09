@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+// import { useNavigate } from 'react-router'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
+import CheckBoxes from './checkBoxScheduledDays'
 
 function EditSchedule(props) {
+  //useRef
+  // const checkboxRef = useRef(null)
 
-  //#region for provider field
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -22,32 +25,16 @@ function EditSchedule(props) {
         console.log('Error from user list')
       })
   }, [])
-  //#endregion
 
-  //for time fields
   const hourValues = Hour
 
-  //#region to pull schedule
-  //for prop ID for context of schedule
   const DrID = props.providerID
-  //set initial state of schedule
-  const [schedule, setSchedule] = useState({
-    providerID: '',
-    provider: 'Select Doctor',
-    startDate: '',
-    endDate: '',
-    amStartTime: '',
-    amEndTime: '',
-    pmStartTime: '',
-    pmEndTime: '',
-    scheduledMon: '',
-    scheduledTues: '',
-    scheduledWed: '',
-    scheduledThurs: '',
-    scheduledFri: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-  })
-  console.log(schedule)
+
+  // const [scheduleMon, setScheduleDay1] = useState(' ')
+  // const [scheduleTues, setScheduleDay2] = useState(' ')
+  // const [scheduleWed, setScheduleDay3] = useState(' ')
+  // const [scheduleThurs, setScheduleDay4] = useState(' ')
+  // const [scheduleFri, setScheduleDay5] = useState(' ')
 
   useEffect(() => {
     axios
@@ -76,26 +63,39 @@ function EditSchedule(props) {
       })
   }, [DrID])
 
-  //#endregion
-
-  //#region to set initial  value of checkbox for schedule
+  const [schedule, setSchedule] = useState({
+    providerID: '',
+    provider: 'Select Doctor',
+    startDate: '',
+    endDate: '',
+    amStartTime: '',
+    amEndTime: '',
+    pmStartTime: '',
+    pmEndTime: '',
+    scheduledMon: '',
+    scheduledTues: '',
+    scheduledWed: '',
+    scheduledThurs: '',
+    scheduledFri: '',
+    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+  })
+console.log(schedule)
   //deconstruct schedule object
   let {
-    // providerID,
-    // provider,
-    // startDate,
-    // endDate,
-    // amStartTime,
-    // amEndTime,
-    // pmStartTime,
-    // pmEndTime,
+    providerID,
+    provider,
+    startDate,
+    endDate,
+    amStartTime,
+    amEndTime,
+    pmStartTime,
+    pmEndTime,
     scheduledMon: preValueMon,
     scheduledTues: preValueTues,
     scheduledWed: preValueWed,
     scheduledThurs: preValueThurs,
     scheduledFri: preValueFri,
-    // addedDate
-  } = schedule
+    addedDate } = schedule
 
   const preValueMonday = preValueMon.toString().trim() === 'Mon' ? true : false
   const preValueTuesday = preValueTues.toString().trim() === 'Tue' ? true : false
@@ -103,27 +103,7 @@ function EditSchedule(props) {
   const preValueThursday = preValueThurs.toString().trim() === 'Thu' ? true : false
   const preValueFriday = preValueFri.toString().trim() === 'Fri' ? true : false
 
-  console.log(preValueMon, preValueTues, preValueWed, preValueThurs, preValueFri) //, scheduledWed,  scheduledThurs, scheduledFri)
-  console.log(preValueMonday, preValueTuesday, preValueWednesday, preValueThursday, preValueFriday)
-  //#endregion
-  let [isCheckedMonday, setIsCheckedMonday] = useState(false)
-  const ischeckmonday = preValueMonday.toString() === 'true' ? true : false
-  if (ischeckmonday) {
-    console.log('true')
-   isCheckedMonday = true
-  }
-
-  let [isCheckedTuesday, setIsCheckedTuesday] = useState(false)
-  const ischecktuesday = preValueTuesday.toString() === 'true' ? true : false
-  if (ischecktuesday) {
-    console.log('true')
-   isCheckedTuesday = true
-  }
-
-  console.log(isCheckedMonday, !isCheckedMonday)
-  // const [isCheckedMonday, setIsCheckedMonday] = useState(true)
-  // console.log(ischeckmonday, isCheckedMonday)
-  //#region to set value of checkbox for schedule
+  console.log(preValueMon,preValueTues,preValueWed,preValueThurs, preValueFri) //, scheduledWed,  scheduledThurs, scheduledFri)
   const onChange = (e) => {
     setSchedule({ ...schedule, [e.target.name]: e.target.value })
   }
@@ -160,25 +140,26 @@ function EditSchedule(props) {
       })
   }
 
-//#endregion
+
+
   // const { name: checkNameMonday, checked: checkMonday } = preValueMonday
 
   // const { checked } = preValueTuesday
-
+  
   // const preValueMondString = preValueMonday.toString() 
   // const preValueM = preValueMondString === 'true' ? true : false
   // console.log(preValueMonday, preValueMondString, preValueM)
   // const [isCheckedMonday, setIsCheckedMonday] = useState(preValueMonday.toString() === 'true' ? true : false)
-
+  let ischeckmonday = preValueMonday  ? true : false
   // const [isCheckedMonday, setIsCheckedMonday] = useState(ischeckmonday.toString() === 'true' ? true : false)
- 
+  const [isCheckedMonday, setIsCheckedMonday] = useState(ischeckmonday)
 
 
-
+  const [isCheckedTuesday, setIsCheckedTuesday] = useState(preValueTuesday.toString() === 'true' ? true : false)
   const [isCheckedWednesday, setIsCheckedWednesday] = useState(preValueWednesday)
   const [isCheckedThursday, setIsCheckedThursday] = useState(preValueThursday)
   const [isCheckedFriday, setIsCheckedFriday] = useState(preValueFriday)
-
+  console.log(ischeckmonday, isCheckedMonday, ischeckmonday.toString() === 'true' ? true : false)
   console.log(preValueMonday, preValueTuesday, preValueWednesday, preValueThursday, preValueFriday)
 
   const handleOnChangeMon = () => {
@@ -186,10 +167,10 @@ function EditSchedule(props) {
     // setIsCheckedMonday(preValueMonday.toString()=== 'true' ? true : false);
     // setIsCheckedMonday((e)=> e.target.checked)
     // preValueMonday = isCheckedMonday
-    setIsCheckedMonday((isCheckedMonday) => !isCheckedMonday);
+    // setIsCheckedMonday(false);
     // console.log(isCheckedMonday)
     // setScheduleDay1(' ')
-    // ischeckmonday = !ischeckmonday
+    ischeckmonday = !ischeckmonday
   }
 
 
@@ -215,7 +196,7 @@ function EditSchedule(props) {
 
 
   // console.log(scheduledMon === 'Mon' ? true : false)
-  // console.log(preValueMonday.toString() === 'true' ? true : false)
+  console.log(preValueMonday.toString() === 'true' ? true : false)
   return (
     <div className="grid_containers">
       <div className="item3">
@@ -267,27 +248,26 @@ function EditSchedule(props) {
                       type="checkbox"
                       // onClick={() => setIsCheckedMonday(!isCheckedMonday)}
                       // onClick={() => setScheduleDay1('Mon')}
-                      onClick={handleOnChangeMon}
+                       onClick={handleOnChangeMon}
                       // onDoubleClick={handleOnChangeMonFalse}
                       name="Mon"
                       value={schedule.scheduledMon}
-                      // defaultChecked={true}
-                      // checked
-
+                      // defaultChecked={preValueMon.toString() === 'Mon' ? true : false}
+                      
                       // defaultChecked={schedule.scheduledMon === 'Mon' ? true : false}
                       // checked={preValueMon === 'Mon' ? true : false}
                       onChange={handleOnChangeMon}
                       // checked={preValueMon === 'Mon' ? true : false}
-                      // checked={ischeckmonday}
+                      checked={ischeckmonday}
                     // isChecked={schedule.scheduledMon === 'Mon' ? true : false}
-                    checked={isCheckedMonday}
-                    // defaultChecked= {false}
+                    // checked={isCheckedMonday === 'true' ? true : false}
+                      // defaultChecked= {false}
                     // checked={preValueMonday === true ? true : false}
 
 
                     />
-                    {/* {console.log(isCheckedMonday === 'true' ? true : false)}
-                    {console.log(isCheckedMonday)} */}
+                    {console.log(isCheckedMonday === 'true' ? true : false)}
+                    {console.log(isCheckedMonday)}
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                   <label className="scheduleCheckboxContainer">
@@ -301,7 +281,7 @@ function EditSchedule(props) {
                       value={schedule.scheduledTues}
                       checked={isCheckedTuesday}
                       onChange={handleOnChangeTue}
-                    // checked={preValueTuesday === true ? true : false}
+                      // checked={preValueTuesday === true ? true : false}
                     // checked={schedule.scheduledTues === 'Tue' ? true : false}
                     // defaultChecked ={schedule.scheduledTues !== ' ' ? true : false}
                     />
@@ -315,9 +295,8 @@ function EditSchedule(props) {
                       id='Wed'
                       type="checkbox"
                       // onClick={() => setScheduleDay3('Wed')}
-                      name="Wed"
+                      // name="scheduledDays"
                       value={schedule.scheduledWed}
-                      // defaultChecked={true}
                       checked={isCheckedWednesday}
                       // checked={scheduledWed === 'Wed' ? true : false}
                       // isChecked={schedule.scheduledWed === 'Wed' ? true : false}
