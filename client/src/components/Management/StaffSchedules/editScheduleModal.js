@@ -105,8 +105,8 @@ function EditSchedule(props) {
     scheduledFri: preValueFri,
     addedDate } = schedule
 
-  const preValueMonday = preValueMon.toString().trim() === 'Mon' ? true : false
-  const preValueTuesday = preValueTues.toString() === 'Tue' ? true : false
+  let preValueMonday = preValueMon.toString().trim() === 'Mon' ? true : false
+  let preValueTuesday = preValueTues.toString() === 'Tue' ? true : false
   const preValueWednesday = preValueWed.toString() === 'Wed' ? true : false
   const preValueThursday = preValueThurs.toString() === 'Thu' ? true : false
   const preValueFriday = preValueFri.toString() === 'Fri' ? true : false
@@ -255,7 +255,7 @@ function EditSchedule(props) {
                       type="checkbox"
                       // onClick={() => setIsCheckedMonday(!isCheckedMonday)}
                       // onClick={() => setScheduleDay1('Mon')}
-                      // onClick={handleOnChangeMon}
+                      onClick={handleOnChangeMon}
                       // onDoubleClick={handleOnChangeMonFalse}
                       name="Mon"
                       value={schedule.scheduledMon}
@@ -263,12 +263,12 @@ function EditSchedule(props) {
                       // onChange={handleOnChangeMon}
                       // defaultChecked={schedule.scheduledMon === 'Mon' ? true : false}
                       // checked={preValueMon === 'Mon' ? true : false}
-                      onChange={handleOnChangeMon}
+                      // onChange={handleOnChangeMon}
                       // checked={preValueMon === 'Mon' ? true : false}
                       // checked={isCheckedMonday}
                     // isChecked={schedule.scheduledMon === 'Mon' ? true : false}
                     // checked={isCheckedMonday === 'true' ? true : false}
-                      defaultChecked= {false}
+                      // defaultChecked= {false}
                     checked={preValueMonday === true ? true : false}
 
 
