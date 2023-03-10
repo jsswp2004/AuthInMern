@@ -19,6 +19,9 @@ const recordSchema = new mongoose.Schema({
     zipCode: { type: Number,required: false },
     state: { type: String, required: false },
     email: { type: String, required: false },
+    homePhone: { type: Number, required: false },
+    cellphone: { type: Number, required: false },
+    businessPhone: { type: Number, required: false },
     addedDate: { type: String,required: true },
 });
 
@@ -41,6 +44,9 @@ const validate = (data) => {
         zipCode: Joi.number().label("Zip Code"),
         state: Joi.string().label("State"),
         email: Joi.string().email().required().label("Email"),
+        homePhone: Joi.number().label("Home phone"),
+        cellphone: Joi.number().label("Cellphone"),
+        businessPhone: Joi.number().label("Business Phone"),
         addedDate: Joi.string().required().label("Added Date"),
 	});
 	return schema.validate(data);
