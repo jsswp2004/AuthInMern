@@ -387,7 +387,7 @@ body {
   text-align: center;
   vertical-align: middle;
   /* padding: 0px 0; */
-
+position:sticky;
   margin: 0px;
   display: flex;
   /* height: 34px; */
