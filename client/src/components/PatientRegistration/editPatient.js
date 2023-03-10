@@ -158,7 +158,7 @@ function UpdateRecordInfo(props) {
   return (
     <div className="grid_container">
       <div className="item1">
-        <Header />
+        <Header style={{position: 'sticky'}} />
       </div>
       <div className="item2">
         <Navbar />
@@ -167,8 +167,8 @@ function UpdateRecordInfo(props) {
         <div className="item3A">
           <div className="item3AItem left">
             <h4 className="createPageHeader">Patient Registration</h4>
-            <form noValidate onSubmit={onSubmit}>
-              <div className="form-grid-container">
+            <form noValidate onSubmit={onSubmit} className='formEditPatient'>
+              <div className="form-grid-container" >
                 <div className="div-items">
                   <div className="forms-group">
                     <div className="form-group">
@@ -396,7 +396,7 @@ function UpdateRecordInfo(props) {
                     </label>
                   </div>
                   <div className="form-group">
-                  <label htmlFor="homePhone">Home Phone </label>
+                  <label htmlFor="homePhone">Home Phone 
                   <input
                     type="phone"
                     className="form-control"
@@ -404,10 +404,11 @@ function UpdateRecordInfo(props) {
                     // placeholder="Automatically generated"
                     value={record.homePhone}
                     onChange={onChange}
-                  />
+                    />
+                    </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="cellphone">Cellphone </label>
+                  <label htmlFor="cellphone">Cellphone 
                   <input
                     type="phone"
                     className="form-control"
@@ -416,10 +417,11 @@ function UpdateRecordInfo(props) {
                     value={record.cellphone}
 
                     onChange={onChange}
-                  />
+                    />
+                    </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="businessPhone">Business Phone </label>
+                  <label htmlFor="businessPhone">Business Phone 
                   <input
                     type="phone"
                     className="form-control"
@@ -428,7 +430,8 @@ function UpdateRecordInfo(props) {
                     value={record.businessPhone}
 
                     onChange={onChange}
-                  />
+                      />
+                      </label>
                 </div>
 
                   <div

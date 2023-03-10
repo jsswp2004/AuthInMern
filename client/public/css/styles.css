@@ -387,7 +387,7 @@ body {
   text-align: center;
   vertical-align: middle;
   /* padding: 0px 0; */
-position:sticky;
+  /* position: fixed; */
   margin: 0px;
   display: flex;
   /* height: 34px; */
@@ -1777,10 +1777,11 @@ tfoot > .MuiTableFooter-root {
   /* padding-top: 10px; */
   /* bottom: 0px; */
   /* position: absolute; */
-  padding: 5px 5px 5px 10px;
+  padding: 5px 5px 5px 5px;
   margin-left: auto;
   margin-right: 5px;
   margin-bottom: 5px;
+  margin-top: 5px;
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -1848,4 +1849,8 @@ tfoot > .MuiTableFooter-root {
   /*form modal*/
   .formModal {
 width: 100%;
+  }
+
+  .formEditPatient{
+    height: 100%;
   }

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import {  useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-import Navbar from '../navigation/navbar'
-import Header from '../shared/Header'
+// import Navbar from '../navigation/navbar'
+// import Header from '../shared/Header'
 import RegistrationDetail from './RegistrationDetail'
-import {
-  Race,
-  Gender,
-  Language,
-  States,
-} from '../listDictionaries/listData/listDictionariesData'
+// import {
+//   Race,
+//   Gender,
+//   Language,
+//   States,
+// } from '../listDictionaries/listData/listDictionariesData'
 
 function RegistrationDetails(props) {
   const [record, setRecord] = useState({
@@ -29,6 +29,9 @@ function RegistrationDetails(props) {
     zipCode: '',
     state: '',
     email: '',
+    homePhone: '',
+    cellphone: '',
+    businessPhone: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const { id } = useParams()
@@ -54,6 +57,9 @@ function RegistrationDetails(props) {
           zipCode: res.data.zipCode,
           state: res.data.state,
           email: res.data.email,
+          homePhone: res.data.homePhone,
+          cellphone: res.data.cellphone,
+          businessPhone: res.data.businessPhone,
           addedDate: res.data.addedDate,
         })
       })

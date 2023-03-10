@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   viewer: {
     width: '100%', //window.innerWidth, //the pdf viewer will take up all of the width and height
-    height: '800px',
+    height: '88dvh',
   },
   body: {
     paddingTop: 12,
@@ -199,7 +199,9 @@ const RegistrationDetail = (props) => {
                 </Text>
                 <Text style={styles.text}>Date Registered: {props.visit.addedDate}</Text>
                 <Text style={styles.text}>Email: {props.visit.email}</Text>
-                <Text style={styles.text}>Phone: xxx-xxx-xxxx</Text>
+                <Text style={styles.text}>Home phone: {props.visit.homePhone}</Text>
+                <Text style={styles.text}>Cell phone: {props.visit.cellphone}</Text>
+                <Text style={styles.text}>Work phone: {props.visit.businessPhone}</Text>
               </View>
             </View>
           </View>
