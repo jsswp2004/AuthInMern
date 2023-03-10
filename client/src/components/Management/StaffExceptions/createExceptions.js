@@ -112,7 +112,7 @@ const CreateException = (props) => {
         {/* <h5 className="createPageHeader">Create Exception</h5> */}
         <div className="item3A createRoleModalBody">
         {/* <label className="createPageHeader">Create Exception</label> */}
-          <form noValidate onSubmit={onSubmit}>
+          <form noValidate onSubmit={onSubmit} className='formModal'>
             <div className="form-grid-containers" style={{display:'flex', columnGap: '10px'}}>
               <div className="form-group">
                 <div>
@@ -215,7 +215,7 @@ const CreateException = (props) => {
                       onChange={onChange}
                     />
                   </label>
-                  <label>
+                  <label style={{marginLeft: '2px'}}>
                     End Date
                     <input
                       type="date"

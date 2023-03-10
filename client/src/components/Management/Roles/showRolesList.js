@@ -252,11 +252,11 @@ const ShowRolesList = () => {
     setPage(0)
   }
 
-    //setting the ID of the role for the property
-    const handleItemClick = item => {
-      const rolID = item._id
-      setRoleID(rolID)
-    }
+  //setting the ID of the role for the property
+  const handleItemClick = item => {
+    const rolID = item._id
+    setRoleID(rolID)
+  }
 
   return (
     <div className="grid_container">
@@ -330,7 +330,7 @@ const ShowRolesList = () => {
                       : roles
                     ).map((role) => (
                       <StyledTableRow key={role._id}
-                      onClick={() => handleItemClick(role)}
+                        onClick={() => handleItemClick(role)}
                       >
                         <StyledTableCell align="left">
                           {role.name}
@@ -359,15 +359,15 @@ const ShowRolesList = () => {
                           //   />
                           // </button> */}
                           <button
-                              className="btn btn-danger btn-sm registerBtn"
-                              onClick={handleShowDelete}
-                            >
-                              <i
-                                title="delete visit"
-                                className="fa fa-trash-o fa-sm"
-                                aria-hidden="true"
-                              />
-                            </button>
+                            className="btn btn-danger btn-sm registerBtn"
+                            onClick={handleShowDelete}
+                          >
+                            <i
+                              title="delete visit"
+                              className="fa fa-trash-o fa-sm"
+                              aria-hidden="true"
+                            />
+                          </button>
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}

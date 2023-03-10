@@ -57,20 +57,14 @@ const ShowEventsList = () => {
 
   const handleEditClick = (e) => {
     e.preventDefault()
-    // setSearchInput(e.target.value)
-    // alert('Create event button clicked')
     setEditShow(false)
-    // navigate('/settingsPage')
-    // window.location.reload()
-    // window.location.close()
   }
 
-  // console.log(events)
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/events')
       .then((res) => {
-        // const data = response.data
         setEvents(res.data)
       })
       .catch((error) => {
@@ -80,7 +74,6 @@ const ShowEventsList = () => {
   // Define visitID state for prop
   const [eventID, setEventID] = useState('')
 //#region for delete confirmation modal
-  // const [staffSchedID, setStaffSchedID] = useState('')
   const [showDelete, setShowDelete] = useState(false)
   const handleCloseDelete = () => setShowDelete(false)
   const handleShowDelete = () => setShowDelete(true)
@@ -129,16 +122,19 @@ const ShowEventsList = () => {
       <Modal show={show} onHide={handleClose} size="med" centered>
         <Modal.Header>
           <Modal.Title>Add Event</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <CreateEvent />
           {/* handleClick={ handleClick} */}
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -152,15 +148,18 @@ const ShowEventsList = () => {
       <Modal show={editShow} onHide={handleEditClose} size="med" centered>
         <Modal.Header>
           <Modal.Title>Edit Event</Modal.Title>
+          <Button variant="secondary" onClick={handleEditClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <EditEventsModal eventID={ eventID} />          
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )

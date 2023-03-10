@@ -116,7 +116,7 @@ function EditException(props) {
     <div className="grid_containers">      
       <div className="item3">
         <div className="item3A createRoleModalBody">
-          <form noValidate onSubmit={onSubmit}>
+          <form noValidate onSubmit={onSubmit} className='formModal'>
             <div
               className="form-grid-containers"
               style={{ display: 'flex', columnGap: '10px' }}
@@ -225,7 +225,7 @@ function EditException(props) {
                       onChange={onChange}
                     />
                   </label>
-                  <label>
+                  <label style={{ marginLeft: '2px' }}>
                     End Date
                     <input
                       type="date"
@@ -274,7 +274,7 @@ function EditException(props) {
                   <label htmlFor="pmStartTime">
                     PM Start Time
                     <select
-                      key={exception.pmStartTime._id}
+                      key={exception.hourOfVisit}
                       className="form-control select"
                       name="pmStartTime"
                       value={exception.pmStartTime}

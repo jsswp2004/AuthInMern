@@ -45,20 +45,20 @@ const CreateEvent = (props) => {
             >
               <div className="form-group" >
                 <div >
-                  <label htmlFor="name">Event </label>
-                  <input
-                    type="text"
-                    className="form-control eventInput"
-                    name="name"
-                    value={event.name}
-                    onChange={onChange}
-                  />
-                  <input
-                    value="Add"
-                    type="submit"
-                    className="btn btn-success"
-                  />
-                  {/* onClick={ props.handleClick}  */}
+                  <label htmlFor="name">Event
+                    <input
+                      type="text"
+                      className="form-control eventInput"
+                      name="name"
+                      value={event.name}
+                      onChange={onChange}
+                    />
+                    <input
+                      value="Add"
+                      type="submit"
+                      className="btn btn-success"
+                    />
+                  </label>
                 </div>
               </div>
             </div>

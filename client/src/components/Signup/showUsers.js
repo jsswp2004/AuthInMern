@@ -41,7 +41,7 @@ export default function ShowUsersList() {
   const handleEditClick = (e) => {
     e.preventDefault()
     setEditShow(false)
-    window.location.close()
+    // window.location.close()
   }
 
   //setting the ID of the user for the property
@@ -54,15 +54,18 @@ export default function ShowUsersList() {
       <Modal show={editShow} onHide={handleEditClose} size="med" centered>
         <Modal.Header>
           <Modal.Title>Edit User</Modal.Title>
+          <Button variant="secondary" onClick={handleEditClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <EditUser userID={userID} />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -343,8 +346,7 @@ export default function ShowUsersList() {
                       <i
                         title="delete role"
                         className="fa fa-trash-o fa-sm"
-                        aria-hidden="true"
-                        t
+                        aria-hidden="true"                        
                       />
                     </button>
                   </StyledTableCell>

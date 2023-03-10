@@ -132,15 +132,18 @@ const ShowSchedulesList = () => {
       <Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header>
           <Modal.Title>Add a Schedule</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <CreateSchedule />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -161,15 +164,18 @@ const ShowSchedulesList = () => {
       >
         <Modal.Header>
           <Modal.Title>Edit Schedule</Modal.Title>
+          <Button variant="secondary" onClick={handleEditClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <EditSchedule providerID={mdID} />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -340,7 +346,6 @@ const ShowSchedulesList = () => {
                   <StyledTableCell align="left">PM Start</StyledTableCell>
                   <StyledTableCell align="left">PM End</StyledTableCell>
                   <StyledTableCell align="left">Scheduled Days</StyledTableCell>
-                  {/* <StyledTableCell align="left">Date Created</StyledTableCell> */}
                   <StyledTableCell align="left">Actions</StyledTableCell>
                 </TableRow>
               </TableHead>
@@ -384,29 +389,8 @@ const ShowSchedulesList = () => {
                       {schedule.scheduledFri + ' '}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {/* <Link
-                        className="btn btn-info btn-sm"
-                        to={`/editSchedule/${schedule._id}`}
-                      >
-                        <i
-                          className="fa fa-hospital-o fa-sm"
-                          aria-hidden="true"
-                          title="Edit Schedule"
-                        />
-                      </Link>{' '} */}
-                      {/* <button className='btn btn-info btn-sm registerBtn'                      
-                        onClick={handleEditShow}
-                        // providerID={schedule._id}
-                      >
-                        <i
-                          className="fa fa-list-alt fa-sm"
-                          aria-hidden="true"
-                          title="Add an exception"
-                        />
-                      </button> */}
                       <button className='btn btn-info btn-sm registerBtn'
                         onClick={handleEditShow}
-                      // providerID={schedule._id}
                       >
                         <i
                           className="fa fa-hospital-o fa-sm"
@@ -414,18 +398,6 @@ const ShowSchedulesList = () => {
                           title="Edit Schedule"
                         />
                       </button>
-                      {/* <button
-                        className="btn btn-danger btn-sm registerBtn"
-                        onClick={() => {
-                          deleteRecord(schedule._id)
-                        }}
-                      >
-                        <i
-                          title="delete patient"
-                          className="fa fa-trash-o fa-sm"
-                          aria-hidden="true"
-                        />
-                      </button> */}
                       <button
                         className="btn btn-danger btn-sm registerBtn"
                         onClick={handleShowDelete}

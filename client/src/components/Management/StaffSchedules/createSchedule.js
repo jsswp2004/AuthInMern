@@ -121,10 +121,10 @@ const CreateSchedule = (props) => {
         {/* <h5 className="createPageHeader">Create Schedule</h5> */}
         <div className="item3A createRoleModalBody">
         {/* <label className="createPageHeader">Create Schedule</label> */}
-          <form noValidate onSubmit={onSubmit}>
+          <form noValidate onSubmit={onSubmit} className='formModal'>
             <div className="form-grid-containers" style={{display:'flex', columnGap: '10px'}}>
               <div className="form-group">
-                <div>
+                <div style={{flexGrow:'1'}}>
                   <label style={{display: 'none'}} >
                   {/* style={{display: 'none'}} */}
                     Provider ID
@@ -224,7 +224,7 @@ const CreateSchedule = (props) => {
                       onChange={onChange}
                     />
                   </label>
-                  <label>
+                  <label style={{ marginLeft: '2px' }}>
                     End Date
                     <input
                       type="date"
@@ -273,7 +273,7 @@ const CreateSchedule = (props) => {
                   <label htmlFor="pmStartTime">
                     PM Start Time
                     <select
-                      key={schedule.pmStartTime._id}
+                      key={schedule.hourOfVisit}
                       className="form-control select"
                       name="pmStartTime"
                       value={schedule.pmStartTime}

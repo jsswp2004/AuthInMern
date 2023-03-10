@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-// import { Link, useParams, useNavigate } from 'react-router-dom'
-
 
 
 function EditUserModal(props) {
@@ -15,7 +13,7 @@ function EditUserModal(props) {
   })
 
   const UserID = props.userID
-  // console.log(UserID)
+
   const [rolex, setRoles] = useState([])
   const roles = rolex.filter((role) => {
     return role.name.toString().toLowerCase()
@@ -34,11 +32,6 @@ function EditUserModal(props) {
         console.log('Error from roles list')
       })
   }, [])
-
-
-
-  // const { id } = useParams()
-  // const RoleID = props.roleID
 
 
   useEffect(() => {
@@ -60,10 +53,9 @@ function EditUserModal(props) {
       })
   }, [UserID])
 
-  console.log(user)
+ 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
-    // window.location.reload()
   }
 
   const onSubmit = (e) => {
@@ -82,11 +74,8 @@ function EditUserModal(props) {
     axios
       .put(`http://localhost:8081/api/users/${UserID}`, data)
       .then((res) => {
-        // Push to /
-        // navigate('/settingsPage')
-
         window.location.reload()
-        // window.location.close()
+     
 
       })
       .catch((err) => {
@@ -104,29 +93,31 @@ function EditUserModal(props) {
               style={{ display: 'flex', columnGap: '10px' }}>
               <div>
                 <div className="form-group">
-                  <label htmlFor="firstName">First Name</label>
+                  <label htmlFor="firstName">First Name
                   <input
                     type="text"
                     name="firstName"
                     value={user.firstName}
                     onChange={handleChange}
                     className="form-control"
-                  />
+                    />
+                    </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="lastName">Last Name</label>
+                  <label htmlFor="lastName">Last Name
                   <input
                     type="text"
                     name="lastName"
                     value={user.lastName}
                     onChange={handleChange}
                     className="form-control"
-                  />
+                    />
+                    </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="role">Role</label>
+                  <label htmlFor="role">Role
                   <select
-                    key={rolex._id}
+                    key={rolex.role}
                     placeholder="Select Role"
                     name="role"
                     className="form-control select"
@@ -137,26 +128,28 @@ function EditUserModal(props) {
                       Select Role
                     </option>
                     {userRoles.map((role) => (
-                      <option key={role._id} value={role.name}>
+                      <option key={role.name} value={role.name}>
                         {role}
                       </option>
                     ))}
-                  </select>
+                    </select>
+                    </label>
                 </div>
               </div>
               <div className='updateRegistrationGrp'>
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">Email
                   <input
                     type="text"
                     name="email"
                     value={user.email}
                     onChange={handleChange}
                     className="form-control"
-                  />
+                    />
+                    </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="addedDate">Added Date</label>
+                  <label htmlFor="addedDate">Added Date
                   <input
                     type="text"
                     name="addedDate"
@@ -164,6 +157,7 @@ function EditUserModal(props) {
                     onChange={handleChange}
                     className="form-control"
                   />
+                  </label>
                 </div>
                 <br />
                 <div className="form-group ">

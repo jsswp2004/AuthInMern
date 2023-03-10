@@ -45,7 +45,7 @@ const Signup = () => {
     
   }
 
-  console.log(data)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -119,7 +119,7 @@ const Signup = () => {
               className={styles.input}
             /> */}
               <select
-                key={rolex._id}
+                key={rolex.role}
                 placeholder="Select Role"
                 name="role"
                 className="form-control select"

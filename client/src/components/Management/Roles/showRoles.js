@@ -62,7 +62,7 @@ const ShowRolesList = () => {
     // setSearchInput(e.target.value)
     // alert('Create role button clicked')
     setEditShow(false)
-    window.location.close()
+    // window.location.close()
     // navigate('/settingsPage')
   }
 
@@ -129,15 +129,18 @@ const ShowRolesList = () => {
       <Modal show={show} onHide={handleClose} size="med" centered>
         <Modal.Header>
           <Modal.Title>Add a Role</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <CreateRole />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -151,15 +154,18 @@ const ShowRolesList = () => {
       <Modal show={editShow} onHide={handleEditClose} size="med" centered>
         <Modal.Header>
           <Modal.Title>Edit Role</Modal.Title>
+          <Button variant="secondary" onClick={handleEditClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <EditRole roleID={ roleID} />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -356,7 +362,7 @@ const ShowRolesList = () => {
                           title="delete role"
                           className="fa fa-trash-o fa-sm"
                           aria-hidden="true"
-                          t
+                          
                         />
                       </button>
                     </StyledTableCell>

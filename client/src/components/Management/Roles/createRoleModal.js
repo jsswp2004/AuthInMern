@@ -41,26 +41,27 @@ const CreateRole = (props) => {
         <div className="item3A createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Role </label>
-              <input
-                type="text"
-                className="form-control roleInput"
-                name="name"
-                value={role.name}
-                onChange={onChange}
-              />
-              
+              <label htmlFor="name">Role
+                <input
+                  type="text"
+                  className="form-control roleInput"
+                  name="name"
+                  value={role.name}
+                  onChange={onChange}
+                />
+              </label>
               <div className="form-group re">
-              <label htmlFor="addedDate">Date Created </label>
-              <input
-                type="text"
-                className="form-control roleInput"
-                name="addedDate"
-                value={role.addedDate}
-                onChange={onChange}
-              />
-              <input value="Add" type="submit" className="btn btn-success updateRegistrationBtn" />
-            </div>
+                <label htmlFor="addedDate">Date Created
+                  <input
+                    type="text"
+                    className="form-control roleInput"
+                    name="addedDate"
+                    value={role.addedDate}
+                    onChange={onChange}
+                  />
+                  <input value="Add" type="submit" className="btn btn-success updateRegistrationBtn" />
+                </label>
+              </div>
             </div>
           </form>
         </div>

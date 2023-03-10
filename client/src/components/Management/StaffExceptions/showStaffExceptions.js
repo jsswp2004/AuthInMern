@@ -137,15 +137,18 @@ const ShowExceptionsList = () => {
       <Modal show={exceptionShow} onHide={handleExceptionClose} size="lg" centered>
         <Modal.Header>
           <Modal.Title>Add an Exception</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <CreateException />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -166,15 +169,18 @@ const ShowExceptionsList = () => {
       >
         <Modal.Header>
           <Modal.Title>Edit Exception</Modal.Title>
+          <Button variant="secondary" onClick={handleEditClick}>
+            Close
+          </Button>
         </Modal.Header>
         <Modal.Body>
           <EditException providerID={mdID} />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
             Close
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   )
@@ -398,18 +404,6 @@ const ShowExceptionsList = () => {
                           title="Edit Exception"
                         />
                       </button>
-                      {/* <button
-                        className="btn btn-danger btn-sm registerBtn"
-                        onClick={() => {
-                          deleteRecord(exception._id)
-                        }}
-                      >
-                        <i
-                          title="delete patient"
-                          className="fa fa-trash-o fa-sm"
-                          aria-hidden="true"
-                        />
-                      </button> */}
                       <button
                         className="btn btn-danger btn-sm registerBtn"
                         onClick={handleShowDelete}

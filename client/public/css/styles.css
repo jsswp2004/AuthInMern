@@ -1768,6 +1768,7 @@ tfoot > .MuiTableFooter-root {
 .updateRegistrationGrp {
   /* height: 800px; */
   position: relative;
+  flex-grow: 1;
   /* background-color: #efefef */
 }
 .updateRegistrationBtn {
@@ -1842,3 +1843,9 @@ tfoot > .MuiTableFooter-root {
   /* .hour-flex_Item:nth-child(3n) {
     background-color: yellow;
   } */
+
+
+  /*form modal*/
+  .formModal {
+width: 100%;
+  }
