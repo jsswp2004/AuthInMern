@@ -72,6 +72,9 @@ export default function Navbar() {
     <div id="navbarSupportedContent">
       <div className="header-bodynavbar">
         <ul className="body_navbar">
+          <li id="link" className="body_navbarlist">
+            <Link to="/clinicVisit">Clinic Schedule</Link>
+          </li>
           {/* <li id="link" className="body_navbarlist">
             <Link to="/">Home</Link>
           </li> */}
@@ -96,15 +99,13 @@ export default function Navbar() {
             <Link to="/createVisit">Create Schedule</Link>
           </li> */}
 
-          <li id="link" className="body_navbarlist">
-            <Link to="/clinicVisit">Clinic Schedule</Link>
-          </li>
+
           <li id="link" className="body_navbarlist">
             <Link to="/settingsPage">Manage Settings</Link>
           </li>
-          <li id="link" className="body_navbarlist">
+          {/* <li id="link" className="body_navbarlist">
             <Link to="/testPage">Test Page</Link>
-          </li>
+          </li> */}
           {/* <ul className="body_navbarlist dropdown">
             <span>Settings</span>
             <li className="dropdown-content">

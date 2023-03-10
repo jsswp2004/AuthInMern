@@ -25,12 +25,6 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 
 
 const ShowExceptionsList = () => {
-  // Define the Create Modal state
-  // const [show, setShow] = useState(false)
-  // const handleClose = () => setShow(false)
-  // const handleShow = () => {
-  //   setShow(true)    
-  // }
 
   //Define the exception Modal state
   const [exceptionShow, setExceptionShow] = useState(false)
@@ -305,7 +299,7 @@ const ShowExceptionsList = () => {
   return (
     <div className="exceptionItemContainerBox">
       <div className="item3A">
-        <h4 className="createExceptionHeader">Add Exception</h4>
+        <h4 className="createScheduleHeader">Add Exception</h4>
         <div>{displayVisitModal()}</div>
         <div>{displayEditExceptionModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>

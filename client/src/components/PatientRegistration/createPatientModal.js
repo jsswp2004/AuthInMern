@@ -146,6 +146,7 @@ const CreateRecord = (props) => {
                     <label htmlFor="gender">
                       Gender
                       <select
+                        key={record.gender}
                         className="form-control select"
                         name="gender"
                         value={record.gender}
@@ -163,14 +164,14 @@ const CreateRecord = (props) => {
                     <label htmlFor="race">
                       Race
                       <select
-
+                        key={record.race}
                         className="form-control select"
                         name="race"
                         value={record.race}
                         onChange={onChange}
                       >
                         {racevalues.map((raceval) => (
-                          <option key={raceval.id} value={raceval.value}>{raceval.label}</option>
+                          <option key={raceval.value} value={raceval.value}>{raceval.label}</option>
                         ))}
                       </select>
                     </label>
@@ -206,6 +207,7 @@ const CreateRecord = (props) => {
                   <label htmlFor="language">
                     Language
                     <select
+                      key={record.language}
                       className="form-control select"
                       name="language"
                       value={record.language}
@@ -277,6 +279,7 @@ const CreateRecord = (props) => {
                   <label htmlFor="state">
                     State
                     <select
+                      key={record.state}
                       className="form-control select"
                       name="state"
                       value={record.state}

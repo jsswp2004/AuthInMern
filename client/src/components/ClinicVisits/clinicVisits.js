@@ -1643,7 +1643,9 @@ export default function ClinicVisit() {
                 />
               </div>
               <div className="searchLabel viewlabel">
-                <select className="form-control"
+                <select
+                  key={selectViewValue}
+                  className="form-control"
                   id="calendarView"
                   value={selectViewValue}
                   onChange={viewValueChange}

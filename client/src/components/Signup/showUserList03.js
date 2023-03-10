@@ -313,7 +313,7 @@ export default function ShowUsersList() {
       </div>
       <div className="item3">
         <div className="item3A">
-          <h4>Registered Users</h4>
+          <h4 className='createScheduleHeader'>Registered Users</h4>
 
           <label htmlFor="search" className="searchLabel">
           <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>

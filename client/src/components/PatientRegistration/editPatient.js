@@ -217,13 +217,16 @@ function UpdateRecordInfo(props) {
                       <label htmlFor="gender">
                         Gender
                         <select
+                          key={record.gender}
                           className="form-control select"
                           name="gender"
                           value={record.gender}
                           onChange={onChange}
                         >
                           {gendervalues.map((genderval) => (
-                            <option value={genderval.value}>
+                            <option
+                              key={genderval.value}
+                              value={genderval.value}>
                               {genderval.label}
                             </option>
                           ))}
@@ -234,13 +237,15 @@ function UpdateRecordInfo(props) {
                       <label htmlFor="race">
                         Race
                         <select
+                          key={record.race}
                           className="form-control select"
                           name="race"
                           value={record.race}
                           onChange={onChange}
                         >
                           {racevalues.map((raceval) => (
-                            <option value={raceval.value}>
+                            <option
+                              keu={ raceval.value} value={raceval.value}>
                               {raceval.label}
                             </option>
                           ))}
@@ -282,13 +287,15 @@ function UpdateRecordInfo(props) {
                     <label htmlFor="language">
                       Language
                       <select
+                        key={record.language }
                         className="form-control select"
                         name="language"
                         value={record.language}
                         onChange={onChange}
                       >
                         {languagevalues.map((languageval) => (
-                          <option value={languageval.value}>
+                          <option
+                            key={ languageval.value } value={languageval.value}>
                             {languageval.label}
                           </option>
                         ))}
@@ -363,13 +370,14 @@ function UpdateRecordInfo(props) {
                     <label htmlFor="state">
                       State
                       <select
+                        key={record.state}
                         className="form-control select"
                         name="state"
                         value={record.state}
                         onChange={onChange}
                       >
                         {statevalues.map((stateval) => (
-                          <option value={stateval.value}>
+                          <option key={stateval.label} value={stateval.value}>
                             {stateval.name}
                           </option>
                         ))}

@@ -2,7 +2,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import Main from './components/Main'
 import Signup from './components/Signup'
 import Login from './components/Login'
-import ShowUsersList from './components/Signup/showUserList'
+// import ShowUsersList from './components/Signup/showUserList'
 import EditUser from './components/Signup/editUser'
 import CreateUser from './components/Signup/createUser'
 import CreatePatient from './components/PatientRegistration/createPatient'
@@ -19,7 +19,7 @@ import EditVisit from './components/Scheduling/editVisit'
 import VisitDetails from './components/Scheduling/detailsVisit'
 import About from './components/Main/About'
 import ClinicVisit from './components/ClinicVisits/clinicVisits'
-import RolesList from './components/Management/Roles/showRolesList'
+// import RolesList from './components/Management/Roles/showRolesList'
 import CreateRole from './components/Management/Roles/createRole'
 import EditRole from './components/Management/Roles/editRole'
 import ManageSettings from './components/Management/Settings/settingsPage'
@@ -51,10 +51,10 @@ function App() {
       <Route path="/detailsVisit/:id" exact element={<VisitDetails />} />
       <Route path="/createUser" exact element={<CreateUser />} />
       <Route path="/login" exact element={<Login />} />
-      <Route path="/usersList" exact element={<ShowUsersList />} />
+      {/* <Route path="/usersList" exact element={<ShowUsersList />} /> */}
       <Route path="/editUser/:id" exact element={<EditUser />} />
       <Route path="/about" exact element={<About />} />
-      <Route path="/rolesList" exact element={<RolesList />} />
+      {/* <Route path="/rolesList" exact element={<RolesList />} /> */}
       <Route path="/" exact element={<Navigate replace to="/login" />} />
       <Route path="/createRole" exact element={<CreateRole />} />
       <Route path="/editRole/:id" exact element={<EditRole />} />

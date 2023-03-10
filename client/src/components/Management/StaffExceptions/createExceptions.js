@@ -264,7 +264,7 @@ const CreateException = (props) => {
                   <label htmlFor="pmStartTime">
                     PM Start Time
                     <select
-                      key={exception.pmStartTime._id}
+                      key={exception.hourOfVisit}
                       className="form-control select"
                       name="pmStartTime"
                       value={exception.pmStartTime}

@@ -147,7 +147,7 @@ function EditException(props) {
                         Select Provider
                       </option>
                       {providerMD.map((doc) => (
-                        <option key={doc._id} value={doc.name}>
+                        <option key={doc.providerID} value={doc.name}>
                           {doc}
                         </option>
                       ))}
