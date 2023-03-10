@@ -33,6 +33,9 @@ const CreateRecord = (props) => {
     zipCode: '',
     state: '',
     email: '',
+    homePhone: '',
+    cellphone: '',
+    businessPhone: '',
     addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
 
@@ -72,6 +75,9 @@ const CreateRecord = (props) => {
           zipCode: '',
           state: '',
           email: '',
+          homePhone: '',
+          cellphone: '',
+          businessPhone: '',
           addedDate: '',
         })
 

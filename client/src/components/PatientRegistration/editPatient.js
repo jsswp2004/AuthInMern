@@ -29,6 +29,9 @@ function UpdateRecordInfo(props) {
     zipCode: '',
     state: '',
     email: '',
+    homePhone: '',
+    cellphone: '',
+    businessPhone: '',
     addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
 
@@ -56,6 +59,9 @@ function UpdateRecordInfo(props) {
           zipCode: res.data.zipCode,
           state: res.data.state,
           email: res.data.email,
+          homePhone: res.data.homePhone,
+          cellphone: res.data.cellphone,
+          businessPhone: res.data.businessPhone,
           addedDate: res.data.addedDate,
         })
       })
@@ -98,6 +104,9 @@ function UpdateRecordInfo(props) {
       zipCode: record.zipCode,
       state: record.state,
       email: record.email,
+      homePhone: record.homePhone,
+      cellphone: record.cellphone,
+      businessPhone: record.businessPhone,
       addedDate: record.addedDate,
     }
 
@@ -255,34 +264,7 @@ function UpdateRecordInfo(props) {
                   </div>
                 </div>
                 <div className="div-items">
-                  <div className="form-group">
-                    <label htmlFor="medicalRecordNumber">
-                      MRN
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="medicalRecordNumber"
-                        placeholder="Automatically generated"
-                        value={record.medicalRecordNumber}
-                        readOnly
-                        onChange={onChange}
-                      />
-                    </label>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="visitNumber">
-                      Visit Number
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="visitNumber"
-                        placeholder="Automatically generated"
-                        value={record.visitNumber}
-                        readOnly
-                        onChange={onChange}
-                      />
-                    </label>
-                  </div>
+
                   <div className="form-group">
                     <label htmlFor="language">
                       Language
@@ -302,20 +284,7 @@ function UpdateRecordInfo(props) {
                       </select>
                     </label>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="age">
-                      Age
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="age"
-                        placeholder="Automatically generated"
-                        value={record.age}
-                        readOnly
-                        onChange={onChange}
-                      />
-                    </label>
-                  </div>
+
                   <div className="form-group">
                     <label htmlFor="email">
                       Email
@@ -329,8 +298,6 @@ function UpdateRecordInfo(props) {
                       />
                     </label>
                   </div>
-                </div>
-                <div className="div-items updateRegistrationGrp">
                   <div className="form-group">
                     <label htmlFor="address">
                       Address
@@ -384,6 +351,86 @@ function UpdateRecordInfo(props) {
                       </select>
                     </label>
                   </div>
+                </div>
+                <div className="div-items updateRegistrationGrp">
+                <div className="form-group">
+                    <label htmlFor="age">
+                      Age
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="age"
+                        placeholder="Automatically generated"
+                        value={record.age}
+                        readOnly
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="medicalRecordNumber">
+                      MRN
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="medicalRecordNumber"
+                        placeholder="Automatically generated"
+                        value={record.medicalRecordNumber}
+                        readOnly
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="visitNumber">
+                      Visit Number
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="visitNumber"
+                        placeholder="Automatically generated"
+                        value={record.visitNumber}
+                        readOnly
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                  <label htmlFor="homePhone">Home Phone </label>
+                  <input
+                    type="phone"
+                    className="form-control"
+                    name="homePhone"
+                    // placeholder="Automatically generated"
+                    value={record.homePhone}
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="cellphone">Cellphone </label>
+                  <input
+                    type="phone"
+                    className="form-control"
+                    name="cellphone"
+                    // placeholder="Automatically generated"
+                    value={record.cellphone}
+
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="businessPhone">Business Phone </label>
+                  <input
+                    type="phone"
+                    className="form-control"
+                    name="businessPhone"
+                    // placeholder="Automatically generated"
+                    value={record.businessPhone}
+
+                    onChange={onChange}
+                  />
+                </div>
+
                   <div
                     className="form-group">
                     <input
