@@ -288,23 +288,6 @@ export default function ClinicVisit() {
   )
   //console.log(filterDataWithDat)
   //#endregion
-  //#region for mapping and sorting data by date
-  // function patientListDaily() {
-  //   return [...filterDataWithDate]
-  //     .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
-
-  //     .map((visit) => {
-  //       return (
-  //         <VisitCard
-  //           visit={visit}
-  //           deleteRecord={deleteRecord}
-  //           key={visit._id}
-  //         />
-  //       )
-  //     })
-  // }
-  // console.log(filterDataWithDate)
-  //#endregion
   //#region for first day of the month
   const monthlyDay = formatDay(startOfTheMonth) //format(startOfTheMonth, 'yyyy-MM-dd')
   const visitMonthlyDay1 = visits.filter((el) => {

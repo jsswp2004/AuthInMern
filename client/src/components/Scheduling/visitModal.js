@@ -230,7 +230,7 @@ const CreateVisitMonthly = (props) => {
                 onChange={onChange}
               >
                 {' '}
-                <option value="" disabled selected>
+                <option value="Select Provider" disabled>
                   Select Provider
                 </option>
                 {providerMD.map((doc) => (
