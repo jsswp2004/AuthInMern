@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
@@ -35,7 +35,6 @@ function UpdateRecordInfo(props) {
     addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
 
-  // console.log('record', record)
   const { id } = useParams()
   const navigate = useNavigate()
 
