@@ -34,7 +34,6 @@ import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createVisitModal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
 import CreatePatientModal from '../PatientRegistration/createPatientModal'
-import VisitCard from '../Scheduling/VisitCard'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -61,20 +60,14 @@ export default function ClinicVisit() {
   //#region for alert declaration
   // const alert = useAlert()
   //#endregion
-  //#region for setting state for monthdate with in schedule
-  // const [monthDate, setMonthDate] = useState('')
-  //#endregion
   //#region for setting state and pulling data for provider MD
   const [selectExceptionMD, setSelectExceptionMD] = useState([])
   const [selectAvailabilityMD, setSelectAvailabilityMD] = useState([])
-  // const selectedDR = selectAvailabilityMD.filter((doc) => {
-  //   return doc.name.toString().toLowerCase().includes(selectAvailabilityMD) 
-  // })
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
-  // console.log(selectAvailabilityMD)
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -89,10 +82,6 @@ export default function ClinicVisit() {
   }, [])
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
-  // const availableMD = selectedDR
-
-  // console.log(selectAvailabilityMD, availableMD._id)
-
   //#endregion
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
@@ -106,7 +95,7 @@ export default function ClinicVisit() {
         console.log('Error from ShowVisitList')
       })
   }, [])
-  //console.log(visits)
+
   //#endregion
   //#region code for calendar view select dropdown
   const [selectViewValue, setViewValue] = React.useState('Monthly')
@@ -115,103 +104,36 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region base date values for calendar
-  function getDaysInMonth(month, year) {
-    return new Date(year, month, 0).getDate()
-  }
-
   const [showDateValue, setShowDateValue] = useState(new Date())
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex].value
   let startOfTheMonth = startOfMonth(new Date(showDateValue))
-  //   console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
   const currentYear = newdate.getFullYear()
-  // const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
-  // let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
-  // let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
-
-  // let startOfTheMonthDayNumber = getDay(new Date(startOfTheMonth)) // moment(startOfTheMonth).day()
   let startOfTheMonthDayNumber = getDay(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  // let endOfTheMonthDayNumber = getDay(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  //   console.log(endOfTheMonthDayNumber)
   let startOfTheMonthDay = getDate(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  //   console.log(startOfTheMonthDay)
   let endOfTheMonthDay = getDate(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  //   console.log(endOfTheMonthDay)
-  // const endOfThePreviousMonth = parseInt(
-  //   // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
-  //   getDate(endOfMonth(subMonths(newdate, 1))),
-  // )
-
-  // const gridMonthlyColumnStart = {
-  //   gridColumnStart: startOfTheMonthDayNumber + 1, // this is not 0 based
-  //   // backgroundColor: ' #eeee',
-  //   // height: '100px',
-  // }
-
   const gridWeekly = {
     fontSize: '14px',
-    // backgroundColor: 'white',
     height: 'calc(100vh - 132px)',
   }
 
-  // const gridMonthly = {
-  //   backgroundColor: ' #eeee',
-  //   height: '100px',
-  // }
-  const previousMonth = newdate.getMonth()
-  let daysOfPreviousMonth = getDaysInMonth(previousMonth, currentYear)
-  //pulls the number date of the month
-  // let dayOfTheMonth = newdate.getDate()
-  //pull the day number of the week - o based
-  // let dayOfTheWeek = newdate.getDay() > 7 ? 1 : newdate.getDay()
-  //pulls date number of the date
-  // let startDayOfTheWeek =
-  //   newdate === '2022-05-01' ? 1 : dayOfTheMonth - dayOfTheWeek
   //pulls date number of the week
   let startOfTheWeek = startOfWeek(newdate).getDate()
   let startOfTheWeekDate = startOfWeek(newdate)
   let startOfTheWeekEndOfMonth = endOfMonth(startOfTheWeekDate).getDate()
-  // console.log(startOfTheWeekEndOfMonth)
-  // startDayOfTheWeek < 1
-  //   ? daysOfPreviousMonth - (dayOfTheWeek - 1)
-  //   : startDayOfTheWeek
-
-  // console.log(newdate)
-  // console.log(previousMonth)
-  // console.log(daysOfPreviousMonth)
-
-  // console.log(dayOfTheMonth)
-
-  // console.log(dayOfTheWeek)
-
-  // console.log(startDayOfTheWeek)
-  // console.log(startOfTheWeek)
-  // console.log(startOfWeek(newdate))
-  //#endregion
-  //#region captures and sets value of the search input text
-  const [searchInput, setSearchInput] = useState(
-    format(showDateValue, 'yyyy-MM-dd'),
-  )
-  const handleChange = (e) => {
-    e.preventDefault()
-    setSearchInput(e.target.value)
-  }
   //#endregion
   //#region code for Modal methods for creating visit
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
   const [showMonthly, setShowMonthly] = useState(false)
   const handleMonthlyClose = () => setShowMonthly(false)
   const handleMonthlyShow = () => {
     setShowMonthly(true)
   }
-
   //#endregion
   //#region for Modal
-
   const selectedDateDaily = format(showDateValue, 'yyyy-MM-dd')
   const VisitModal = () => (
     <Modal show={show} onHide={handleClose} size="lg" centered>
@@ -234,18 +156,9 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region for Modal from monthly days
-
   const [newPatient, setNewPatient] = useState(false)
-  // console.log(newPatient)
-  const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
-  //autocreate visit number
-  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
   const { firstName, lastName, middleName, email, provider, hourOfVisit } = CreatePatientModal
   const [modalDisplay, setModalDisplay] = useState('visit')
-  // const displayVisitMonthlyMode = {
-  //   display: modalDisplay === 'show' ? '' : 'none',
-  // }
-  // console.log(modalDisplay)
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal className='modal-xl' show={showMonthly} onHide={handleMonthlyClose} size="xg" centered>
@@ -277,7 +190,7 @@ export default function ClinicVisit() {
               email={email}
               visitDate={selectedDate}
               selectedProvider={provider}
-              // hourOfVisit={hourOfVisit}
+            // hourOfVisit={hourOfVisit}
             />
           </div>
           {/*  */}
@@ -294,13 +207,6 @@ export default function ClinicVisit() {
   function displayVisitMonthlyModal() {
     return <VisitModalMonthly />
   }
-
-  // const onChangeHandler = (e) => {
-  //   const index = e.target.selectedIndex;
-  //   const el = e.target.childNodes[index]
-  //   const option =  el.getAttribute('id');  
-  // }
-
   //#endregion
   //#region for setting the ID of the provider for the property
   const handleItemClick = item => {
@@ -374,8 +280,7 @@ export default function ClinicVisit() {
   //#endregion
   //#region for filtering data with selected date
   const filterDataWithDat = visits.filter((visit) => {
-    return visit.visitDate.toString().toLowerCase().includes(dateSelected)
-    // .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
+    return visit.visitDate.toString().toLowerCase().includes(dateSelected)    
   })
 
   const filterDataWithDate = filterDataWithDat.sort((a, b) =>
@@ -384,20 +289,20 @@ export default function ClinicVisit() {
   //console.log(filterDataWithDat)
   //#endregion
   //#region for mapping and sorting data by date
-  function patientListDaily() {
-    return [...filterDataWithDate]
-      .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
+  // function patientListDaily() {
+  //   return [...filterDataWithDate]
+  //     .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
 
-      .map((visit) => {
-        return (
-          <VisitCard
-            visit={visit}
-            deleteRecord={deleteRecord}
-            key={visit._id}
-          />
-        )
-      })
-  }
+  //     .map((visit) => {
+  //       return (
+  //         <VisitCard
+  //           visit={visit}
+  //           deleteRecord={deleteRecord}
+  //           key={visit._id}
+  //         />
+  //       )
+  //     })
+  // }
   // console.log(filterDataWithDate)
   //#endregion
   //#region for first day of the month
@@ -1024,56 +929,25 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region code for each weekly daily visit dates
-
-  // const dateSelectedMonday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
-  //   .format('YYYY-MM-DD')
   const dateSelectedMonday = format(
     addDays(startOfWeek(showDateValue), 1),
     'yyyy-MM-dd',
   )
-  // console.log(dateSelectedMonday, 'dateSelectedMonday')
-  // console.log(moment(showDateValue).date(), 'moment(showDateValue).date()')
-  // console.log(startDayOfTheWeek + 1, 'startDayOfTheWeek + 1')
-  // const dateSelectedMonday = format(showDateValue, 'MM-dd-yyyy')
-  //const dateSelectedMonday4 = addDays(showDateValue, (startDayOfTheWeek + 1))
-  // const dateSelectedMonday3 = format(addDays(startOfWeek(showDateValue),1),'yyyy-MM-dd')
-  // console.log(dateSelectedMonday3, 'dateSelectedMonday3')
-  // const s = getDate(showDateValue)
-  // const t = (startDayOfTheWeek + 1)
-  // const u = getDate(showDateValue) - (startDayOfTheWeek + 1)
-  // console.log(s, t ,u)
-  // console.log(u, 'getDate(showDateValue) - (startDayOfTheWeek + 1)')
-  // console.log(getDate(showDateValue), 'getDate()')
-
-  // console.log(dateSelectedMonday3)
-  // console.log(getDate(dateSelectedMonday2), 'getDate()')
-
-  // const dateSelectedTuesday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
-  //   .format('YYYY-MM-DD')
   const dateSelectedTuesday = format(
     addDays(startOfWeek(showDateValue), 2),
     'yyyy-MM-dd',
   )
-  //   console.log(dateSelectedTuesday, 'dateSelectedTuesday')
-  // const dateSelectedWednesday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
-  //   .format('YYYY-MM-DD')
+
   const dateSelectedWednesday = format(
     addDays(startOfWeek(showDateValue), 3),
     'yyyy-MM-dd',
   )
-  // const dateSelectedThursday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 4), 'days')
-  //   .format('YYYY-MM-DD')
+
   const dateSelectedThursday = format(
     addDays(startOfWeek(showDateValue), 4),
     'yyyy-MM-dd',
   )
-  // const dateSelectedFriday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 5), 'days')
-  //   .format('YYYY-MM-DD')
+
   const dateSelectedFriday = format(
     addDays(startOfWeek(showDateValue), 5),
     'yyyy-MM-dd',
@@ -1090,115 +964,38 @@ export default function ClinicVisit() {
     )
   })
   const filteredDataWeeklyTuesday = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedTuesday)
-    // }
-    // //return the item which contains the user input
-    // else {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedTuesday)
-    // }
     return (
       el.visitDate
-        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedTuesday)
     )
   })
-
-  // console.log(filteredDataWeeklyTuesday, 'filteredDataWeeklyTuesday')
   const filteredDataWeeklyWed = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedWednesday)
-    // }
-    //return the item which contains the user input
-    // else {
     return (
       el.visitDate
-        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedWednesday)
     )
-    // }
   })
 
   const filteredDataWeeklyThursday = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedThursday)
-    // }
-    // //return the item which contains the user input
-    // else {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedThursday)
-    // }
     return (
       el.visitDate
-        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedThursday)
     )
   })
   const filteredDataWeeklyFri = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedFriday)
-    // }
-    // //return the item which contains the user input
-    // else {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedFriday)
-    // }
     return (
-      el.visitDate
-        // Object.values(el)
+      el.visitDate       
         .toString()
         .toLowerCase()
         .includes(dateSelectedFriday)
     )
   })
-
-  // const filteredDataMonthly = visits.filter((el) => {
-  //   // const date = '2022-11-10'
-  //   //if no input the return the with the original default date
-  //   if (searchInput === '') {
-  //     // return el
-  //     return el.visitDate
-  //     .toString()
-  //       .toLowerCase()
-  //     // .filter((el) => el.visitDate === date)
-  //   }
-  //   //return the item which contains the user input
-  //   else {
-  //     return el.visitDate
-  //     .toString()
-  //       .toLowerCase()
-  //     // .filter((el) => el.visitDate === date)
-  //   }
-  // })
   //#endregion
   //#region for weekly calendar base date values
   let dayOfSunday = 1
@@ -1291,32 +1088,14 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region code for monthly calendar create visits
-  // const weekdayTitle = document.getElementById('weekDayTitleChild').innerHTML
-  // console.log(weekdayTitle)
   const month = getMonth(startOfTheMonth)
   const year = getYear(startOfTheMonth)
   const [selectedNumber, setSelectedNumber] = useState('')
   const day = selectedNumber
-  // const sel = new Date(year, month, day)
-  // const select = format(sel, 'yyyy-MM-dd')
-  // const selectDate = select
-  // const [selectedElement, setSelectedElement] = useState('')
   const [selectedDate, setSelectedDate] = useState('')
-
-  // const weekenddate = addDays(new Date(selectedDate), 1)
-  // const weekendTrue = isSaturday(weekenddate) || isSunday(weekenddate)
   const [weekendDay, setWeekendDay] = useState()
   const wekendSunday = isSunday(addDays(new Date(selectedDate), 1))
   const wekendSaturday = isSaturday(addDays(new Date(selectedDate), 1))
-
-  // console.log(
-  //   weekendDay,
-  //   wekendSunday,
-  //   wekendSaturday,
-  //   selectedDate,
-  //   addDays(new Date(selectedDate), 1),
-  // )
-  // console.log(selectedDate,weekendTrue,isSaturday(weekenddate),isSunday(weekenddate))
   const handleClick = (event) => {
     var target = event.target || event.srcElement
 
@@ -1324,32 +1103,9 @@ export default function ClinicVisit() {
     handleMonthlyShow()
     setNewPatient(true)
   }
-  // const weekendSat = isSaturday(addDays(new Date(selectedDate), 1))
-  // const weekendSun = isSunday(addDays(new Date(selectedDate), 1))
-  // const weekend = weekendSat || weekendSun
-  // console.log(weekend, selectedDate, new Date(selectedDate))
-  // function weekending() {
-  //   if (wekendSunday) {
-  //     setWeekendDay('true')
-  //   } else if (wekendSaturday) {
-  //     setWeekendDay('true')
-  //   } else {
-  //     setWeekendDay('false')
-  //   }
-  // }
   useEffect(
     (e) => {
-      // e.preventDefault()
       let isSubscribed = true
-      // function weekending () {
-      //   if (wekendSunday) {
-      //     setWeekendDay('true')
-      //   } else if (wekendSaturday) {
-      //     setWeekendDay('true')
-      //   } else {
-      //     setWeekendDay('false')
-      //   }
-      // }
       const sel = new Date(year, month, day)
       const selectDate = format(sel, 'yyyy-MM-dd')
       setSelectedDate(selectDate)
@@ -1478,30 +1234,27 @@ export default function ClinicVisit() {
     exceptionWed: exceptionWeds,
     exceptionThurs: exceptionThur,
     exceptionFri: exceptionFris,
-    providerID: selectedExceptionMDID,
+    // providerID: selectedExceptionMDID,
     startDate: selectedExceptionMDStart,
     endDate: selectedExceptionMDEnd } = exceptionMD[0] === undefined ? 'Test User' : exceptionMD[0]
 
-    function isException(dateItem) {
-      const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
-      const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
-      const isException = isDayException && isExcept ? true : false
-      return isException
-    }
-
-  // console.log(exceptionMons)
+  function isException(dateItem) {
+    const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
+    const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
+    const isException = isDayException && isExcept ? true : false
+    return isException
+  }
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/exceptions')
       .then((response) => {
-        const data = response.data//.find(doc => doc.name === exceptionMD)
+        const data = response.data
         setStaffExceptions(data)
       })
       .catch((error) => {
         console.log('Error from exception list')
       })
   }, [])
-// console.log(selectExceptionMD)
   //#endregion
   //#region for pulling the schedules based on selected provider availability
   const [staffSchedules, setStaffSchedules] = useState([])
@@ -1512,7 +1265,7 @@ export default function ClinicVisit() {
     scheduledWed: scheduledWeds,
     scheduledThurs: scheduledThur,
     scheduledFri: scheduledFris,
-    providerID: selectedAvailableMDID,
+    // providerID: selectedAvailableMDID,
     startDate: selectedAvailableMDStart,
     endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
 
@@ -1568,7 +1321,7 @@ export default function ClinicVisit() {
   }
 
   //Weekly
-  const WeekDayDate1 = format(new Date(startOfTheWeekDate), 'yyyy-MM-dd') //Sunday
+  // const WeekDayDate1 = format(new Date(startOfTheWeekDate), 'yyyy-MM-dd') //Sunday
   const WeekDayDate2 = format(addDays(new Date(startOfTheWeekDate), 1), 'yyyy-MM-dd') //Monday
   const WeekDayDate3 = format(addDays(new Date(startOfTheWeekDate), 2), 'yyyy-MM-dd')//Tuesday
   const WeekDayDate4 = format(addDays(new Date(startOfTheWeekDate), 3), 'yyyy-MM-dd') //Wednesday
@@ -1609,8 +1362,6 @@ export default function ClinicVisit() {
   }
 
   //#endregion
-  
-  const [selectedDr, setSelectedDr] = useState([])
 
   return (
     <div className="grid_container">
@@ -1724,7 +1475,7 @@ export default function ClinicVisit() {
                     onChange={(e) => {
                       setSelectAvailabilityMD(e.target.value)
                       setSelectExceptionMD(e.target.value)
-                      setSelectedDr(e.target.value)
+                      
                     }}
                   >
                     {' '}
@@ -1739,6 +1490,7 @@ export default function ClinicVisit() {
                   </select>
                 </label>
               </div>
+
               {/* provider end */}
               {/* search start */}
 
@@ -1817,7 +1569,7 @@ export default function ClinicVisit() {
                       </button>
                     </span>
                     {visitListMonthlyDay1()}
-                    {/* {console.log(isException(MonthDayDate1), MonthDayDate1, exceptionWeds)} */}
+
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
