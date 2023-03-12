@@ -940,7 +940,10 @@ h5 {
   z-index: 1;
 }
 
-.dailySpanContainerItemstooltip:hover .dailySpanContainerItemstooltiptext {
+/* .dailySpanContainerItemstooltip:hover .dailySpanContainerItemstooltiptext {
+  visibility: visible;
+} */
+.dailySpanContainerItemstooltip:hover {
   visibility: visible;
 }
 /* end code for calendar hover display */
