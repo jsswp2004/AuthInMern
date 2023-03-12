@@ -33,7 +33,7 @@ import {
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createVisitModal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
-import CreatePatientModal from '../PatientRegistration/createPatientModal'
+// import CreatePatientModal from '../PatientRegistration/createPatientModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -103,19 +103,19 @@ export default function ClinicVisit() {
     setViewValue(event.target.value)
   }
   //changes view value to daily when clicked
-  const dailyValueChange = (event) => {
-    setViewValue('Daily')
-  }
+  // const dailyValueChange = (event) => {
+  //   setViewValue('Daily')
+  // }
 
   //#endregion
   //#region base date values for calendar
   const [showDateValue, setShowDateValue] = useState(new Date())
-  const [showDateValue2, setShowDateValue2] = useState(new Date())
+  // const [showDateValue2, setShowDateValue2] = useState(new Date())
   //changes value of date when clicked on daily calendar
-  function dailyShowDateChange(e) { 
-    setShowDateValue2(e)
-  }
-console.log(showDateValue2)
+  // function dailyShowDateChange(e) {
+  //   setShowDateValue2(e)
+  // }
+  // console.log(showDateValue2)
 
 
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
@@ -1383,8 +1383,9 @@ console.log(showDateValue2)
                 </h4>
               </div>
               <div className="customDatePickerWidth searchLabel select">
+                {console.log(showDateValue)}
                 <DatePicker
-                  selected={showDateValue || showDateValue2}
+                  selected={showDateValue}
                   className="form-control"
                   value={showDateValue}
                   onChange={(newValue) => {
@@ -1552,13 +1553,15 @@ console.log(showDateValue2)
                       backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) || isException(MonthDayDate1) ? '#f3aac0' : '#cefad0' : 'white',
                     }}
                   >
-                    {console.log(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}
-                    {/* <div onClick={dailyValueChange} style={{ backgroundColor: 'white' }}>*/}
-                     <div onClick={dailyShowDateChange} style={{ backgroundColor: 'white' }}> 
-                      {/* {format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd')} */}
-                      <span id="day1"  >
-                      {/* onClick={setShowDateValue(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}> 
-                      onClick={setShowDateValue2(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}*/}
+                    {/* {console.log(new Date(currentYear, monthIndex, startOfTheMonthDay), showDateValue)} */}
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay))
+                      }} >
+                      {/* style={{ backgroundColor: 'white' }} */}
+                      <span id="day1" className='day1'  >
+
                         <button
                           style={{
                             fontSize: '10px',
@@ -1572,8 +1575,13 @@ console.log(showDateValue2)
                         >
                           {startOfTheMonthDay}
                         </button>
+                        {/* <p className='dailySpanContainerItems'>Switch to Daily view</p> */}
+                        <div class="dailySpanContainerItemstooltip">Test
+                          <span class="dailySpanContainerItemstooltiptext">Switch to Daily view</span>
+                        </div>
                       </span>
-                      1557
+
+
                     </div>
                     <div>
                       {visitListMonthlyDay1()}
@@ -1583,23 +1591,25 @@ console.log(showDateValue2)
                     style={{
                       backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? '#f3aac0' : '#cefad0' : 'white',
                     }}>
-                    <div onClick={dailyShowDateChange}  style={{ backgroundColor: 'white' }}>
-                      {format(new Date(currentYear, monthIndex, startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31), 'yyyy-MM-dd')}
-                    <span id="day2" className="day">
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
-                      </button>
-                    </span>
+                    <div onClick={() => {
+                      setViewValue('Daily');
+                      setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2))
+                    }} style={{ backgroundColor: 'white' }}>
+                      <span id="day2" className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn btn-info btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
+                        </button>
+                      </span>
                     </div>
                     {visitListMonthlyDay2()}
                   </div>
