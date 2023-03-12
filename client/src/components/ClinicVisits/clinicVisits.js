@@ -1576,7 +1576,7 @@ export default function ClinicVisit() {
                           {startOfTheMonthDay}
                         </button>
                         {/* <p className='dailySpanContainerItems'>Switch to Daily view</p> */}
-                        <div class="dailySpanContainerItemstooltip">Test
+                        <div class="dailySpanContainerItemstooltip"> TEST
                           <span class="dailySpanContainerItemstooltiptext">Switch to Daily view</span>
                         </div>
                       </span>
