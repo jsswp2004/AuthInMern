@@ -110,20 +110,13 @@ export default function ClinicVisit() {
   //#endregion
   //#region base date values for calendar
   const [showDateValue, setShowDateValue] = useState(new Date())
+  const [showDateValue2, setShowDateValue2] = useState(new Date())
   //changes value of date when clicked on daily calendar
-  function dailyShowDateChange() { 
-    setShowDateValue(date => addDays(date, 1))
+  function dailyShowDateChange(e) { 
+    setShowDateValue2(e)
   }
+console.log(showDateValue2)
 
-  // function dailyViewChange() { 
-  //   setViewValue('Daily')
-  //   // setShowDateValue(date)
-  // }
-
-  function dailyView(date) { 
-    setViewValue('Daily')
-    dailyShowDateChange(date)
-  }
 
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
@@ -1391,7 +1384,7 @@ export default function ClinicVisit() {
               </div>
               <div className="customDatePickerWidth searchLabel select">
                 <DatePicker
-                  selected={showDateValue}
+                  selected={showDateValue || showDateValue2}
                   className="form-control"
                   value={showDateValue}
                   onChange={(newValue) => {
@@ -1560,10 +1553,12 @@ export default function ClinicVisit() {
                     }}
                   >
                     {console.log(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}
-                    <div onClick={dailyValueChange} style={{ backgroundColor: 'white' }}>
+                    {/* <div onClick={dailyValueChange} style={{ backgroundColor: 'white' }}>*/}
+                     <div onClick={dailyShowDateChange} style={{ backgroundColor: 'white' }}> 
                       {/* {format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd')} */}
                       <span id="day1"  >
-                      {/* onClick={setShowDateValue(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}> */}
+                      {/* onClick={setShowDateValue(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}> 
+                      onClick={setShowDateValue2(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}*/}
                         <button
                           style={{
                             fontSize: '10px',
@@ -1588,7 +1583,7 @@ export default function ClinicVisit() {
                     style={{
                       backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? '#f3aac0' : '#cefad0' : 'white',
                     }}>
-                    <div onClick={newValue => setShowDateValue(monthlyDay2)} style={{ backgroundColor: 'white' }}>
+                    <div onClick={dailyShowDateChange}  style={{ backgroundColor: 'white' }}>
                       {format(new Date(currentYear, monthIndex, startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31), 'yyyy-MM-dd')}
                     <span id="day2" className="day">
                       <button
