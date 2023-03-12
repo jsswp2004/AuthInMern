@@ -58,7 +58,7 @@ import EditVisitModal from '../Scheduling/editVisitModal'
 
 export default function ClinicVisit() {
   //#region for alert declaration
-  // const alert = useAlert()
+  const alert = useAlert()
   //#endregion
   //#region for setting state and pulling data for provider MD
   const [selectExceptionMD, setSelectExceptionMD] = useState([])
@@ -102,9 +102,29 @@ export default function ClinicVisit() {
   const viewValueChange = (event) => {
     setViewValue(event.target.value)
   }
+  //changes view value to daily when clicked
+  const dailyValueChange = (event) => {
+    setViewValue('Daily')
+  }
+
   //#endregion
   //#region base date values for calendar
   const [showDateValue, setShowDateValue] = useState(new Date())
+  //changes value of date when clicked on daily calendar
+  function dailyShowDateChange() { 
+    setShowDateValue(date => addDays(date, 1))
+  }
+
+  // function dailyViewChange() { 
+  //   setViewValue('Daily')
+  //   // setShowDateValue(date)
+  // }
+
+  function dailyView(date) { 
+    setViewValue('Daily')
+    dailyShowDateChange(date)
+  }
+
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
   let monthIndex = newdate.getMonth()
@@ -157,7 +177,8 @@ export default function ClinicVisit() {
   //#endregion
   //#region for Modal from monthly days
   const [newPatient, setNewPatient] = useState(false)
-  const { firstName, lastName, middleName, email, provider, hourOfVisit } = CreatePatientModal
+  // const { firstName, lastName, middleName, email, provider, hourOfVisit } = CreatePatientModal
+  // console.log(firstName)
   const [modalDisplay, setModalDisplay] = useState('visit')
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
@@ -184,12 +205,12 @@ export default function ClinicVisit() {
             }}
           >
             <VisitMonthlyModal
-              firstName={firstName}
-              lastName={lastName}
-              middleName={middleName}
-              email={email}
+              // firstName={firstName}
+              // lastName={lastName}
+              // middleName={middleName}
+              // email={email}
               visitDate={selectedDate}
-              selectedProvider={provider}
+              provider={provider}
             // hourOfVisit={hourOfVisit}
             />
           </div>
@@ -202,7 +223,7 @@ export default function ClinicVisit() {
         </Modal.Footer>
       </Modal>
     ) : null
-
+  // console.log(provider, selectedDate)
   // This method will map out the visits on the table
   function displayVisitMonthlyModal() {
     return <VisitModalMonthly />
@@ -280,7 +301,7 @@ export default function ClinicVisit() {
   //#endregion
   //#region for filtering data with selected date
   const filterDataWithDat = visits.filter((visit) => {
-    return visit.visitDate.toString().toLowerCase().includes(dateSelected)    
+    return visit.visitDate.toString().toLowerCase().includes(dateSelected)
   })
 
   const filterDataWithDate = filterDataWithDat.sort((a, b) =>
@@ -973,7 +994,7 @@ export default function ClinicVisit() {
   })
   const filteredDataWeeklyFri = visits.filter((el) => {
     return (
-      el.visitDate       
+      el.visitDate
         .toString()
         .toLowerCase()
         .includes(dateSelectedFriday)
@@ -1085,6 +1106,7 @@ export default function ClinicVisit() {
     setSelectedNumber(target.innerText)
     handleMonthlyShow()
     setNewPatient(true)
+
   }
   useEffect(
     (e) => {
@@ -1242,6 +1264,9 @@ export default function ClinicVisit() {
   //#region for pulling the schedules based on selected provider availability
   const [staffSchedules, setStaffSchedules] = useState([])
   const availableMD = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
+  //provider below is used for props.provider
+  const { provider } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
+
   const {
     scheduledMon: scheduledMons,
     scheduledTues: scheduledTue,
@@ -1458,7 +1483,7 @@ export default function ClinicVisit() {
                     onChange={(e) => {
                       setSelectAvailabilityMD(e.target.value)
                       setSelectExceptionMD(e.target.value)
-                      
+
                     }}
                   >
                     {' '}
@@ -1511,21 +1536,20 @@ export default function ClinicVisit() {
             >
               <div className="weekDayTitleParent">
                 <div id="weekDayTitleChild" className="weekDayTitleChild">
-                  Su
+                  Sun
                 </div>
-                <div
-                  className="weekDayTitleChild"
+                <div className="weekDayTitleChild"
                 // onClick={() => {
                 //   alert.show('Oh look, an alert!')
                 // }}
                 >
-                  Mo
+                  Mon
                 </div>
-                <div className="weekDayTitleChild">Tu</div>
-                <div className="weekDayTitleChild">We</div>
-                <div className="weekDayTitleChild">Th</div>
-                <div className="weekDayTitleChild">Fr</div>
-                <div className="weekDayTitleChild">Sa</div>
+                <div className="weekDayTitleChild">Tue</div>
+                <div className="weekDayTitleChild">Wed</div>
+                <div className="weekDayTitleChild">Thu</div>
+                <div className="weekDayTitleChild">Fri</div>
+                <div className="weekDayTitleChild">Sat</div>
               </div>
               <div style={{ overflowY: 'auto' }}>
                 <div className="monthDayTitleParent">
@@ -1535,29 +1559,37 @@ export default function ClinicVisit() {
                       backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) || isException(MonthDayDate1) ? '#f3aac0' : '#cefad0' : 'white',
                     }}
                   >
-                    <span id="day1" >
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay}
-
-                      </button>
-                    </span>
-                    {visitListMonthlyDay1()}
-
+                    {console.log(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}
+                    <div onClick={dailyValueChange} style={{ backgroundColor: 'white' }}>
+                      {/* {format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd')} */}
+                      <span id="day1"  >
+                      {/* onClick={setShowDateValue(format(new Date(currentYear, monthIndex, startOfTheMonthDay), 'yyyy-MM-dd'))}> */}
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn btn-info btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay}
+                        </button>
+                      </span>
+                      1557
+                    </div>
+                    <div>
+                      {visitListMonthlyDay1()}
+                    </div>
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
                       backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? '#f3aac0' : '#cefad0' : 'white',
                     }}>
+                    <div onClick={newValue => setShowDateValue(monthlyDay2)} style={{ backgroundColor: 'white' }}>
+                      {format(new Date(currentYear, monthIndex, startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31), 'yyyy-MM-dd')}
                     <span id="day2" className="day">
                       <button
                         style={{
@@ -1573,6 +1605,7 @@ export default function ClinicVisit() {
                         {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                       </button>
                     </span>
+                    </div>
                     {visitListMonthlyDay2()}
                   </div>
                   <div className="monthDayTitleChild"
@@ -1619,12 +1652,13 @@ export default function ClinicVisit() {
                   </div>
                   <div
                     className="monthDayTitleChild"
-                    onClick={() => {
-                      handleMonthlyShow()
-                      setSelectedDate()
-
-                    }}
+                    // onClick={() => {
+                    // handleMonthlyShow()
+                    // setSelectedDate()
+                    // isWeekend(addDays(new Date(MonthDayDate5), 1)) ? alert.show('This is a weekend!') : alert.show('Oh look, an alert!')
+                    // }}
                     style={{
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'none' : 'auto',
                       backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) || isException(MonthDayDate5) ? '#f3aac0' : '#cefad0' : 'white',
 
                     }}

@@ -30,6 +30,7 @@ const CreateVisitMonthly = (props) => {
     workPhone: '',
   })
 
+
   //selected hour of visit
   let { hourOfVisit } = visit
   hourOfVisit = selectedHour
@@ -226,6 +227,8 @@ const CreateVisitMonthly = (props) => {
               <select
                 className="form-control select"
                 name="provider"
+                placeholder="Select Provider"
+                // defaultValue={props.provider}
                 value={visit.provider}
                 onChange={onChange}
               >
