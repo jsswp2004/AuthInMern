@@ -1839,7 +1839,7 @@ export default function ClinicVisit() {
                      <div className='dailySpanContainer'
                       onClick={() => {
                         setViewValue('Daily');
-                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3))
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 3))
                       }} >
                     <span>
                       <button
@@ -1866,7 +1866,7 @@ export default function ClinicVisit() {
                      <div className='dailySpanContainer'
                       onClick={() => {
                         setViewValue('Daily');
-                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3))
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 3))
                       }} >
                     <span>
                       <button
@@ -1893,7 +1893,7 @@ export default function ClinicVisit() {
                      <div className='dailySpanContainer'
                       onClick={() => {
                         setViewValue('Daily');
-                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3))
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13))
                       }} >
                     <span>
                       <button
