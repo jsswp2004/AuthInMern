@@ -841,9 +841,9 @@ h5 {
   /* background-color: white; */
 }
 
-.day:hover {
+/* .day:hover {
   background-color: white;
-}
+} */
 
 .calendar-item {
   width: auto;
@@ -907,8 +907,8 @@ h5 {
 }
 
 .dailySpanContainer:hover {
-  background-color: #72bcd4;
-  color: white;
+  background-color: #0dcaf0;
+  color: black;
 }
 
 .dailySpanContainerItems {
@@ -916,8 +916,10 @@ h5 {
   
 }
 
-.dailySpanContainer:hover > .day1 >.dailySpanContainerItems {
-  display: block;
+.dailySpanContainer:hover > .day >.dailySpanContainerItems {
+  display: inline-flex;
+  margin-left: 5px;
+  /* font-weight: bold; */
 }
 
 .dailySpanContainerItemstooltip {
