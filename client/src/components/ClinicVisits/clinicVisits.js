@@ -1383,7 +1383,7 @@ export default function ClinicVisit() {
                 </h4>
               </div>
               <div className="customDatePickerWidth searchLabel select">
-                {console.log(showDateValue)}
+
                 <DatePicker
                   selected={showDateValue}
                   className="form-control"
