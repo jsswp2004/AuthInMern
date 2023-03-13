@@ -1551,7 +1551,7 @@ export default function ClinicVisit() {
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate1), 1)) ? 'none' : 'auto',
                       gridColumnStart: startOfTheMonthDayNumber + 1,
-                      backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) || isException(MonthDayDate1) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) || isException(MonthDayDate1) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
                   >
                     <div className='dailySpanContainer'
@@ -1583,7 +1583,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate2), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1612,7 +1612,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate3), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) || isException(MonthDayDate3) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) || isException(MonthDayDate3) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1641,7 +1641,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate4), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) || isException(MonthDayDate4) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) || isException(MonthDayDate4) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1670,7 +1670,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) || isException(MonthDayDate5) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) || isException(MonthDayDate5) ? '#ffdbe6' : '#ebfcec' : 'white',
 
                     }}
                   >
@@ -1701,7 +1701,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate6), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) || isException(MonthDayDate6) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) || isException(MonthDayDate6) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1730,7 +1730,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate7), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) || isException(MonthDayDate7) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) || isException(MonthDayDate7) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1759,7 +1759,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate8), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) || isException(MonthDayDate8) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) || isException(MonthDayDate8) ? '#ffdbe6' : '#ebfcec' : 'white',
 
                     }}
                   >
@@ -1790,7 +1790,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate9), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) || isException(MonthDayDate9) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) || isException(MonthDayDate9) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1819,7 +1819,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate10), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) || isException(MonthDayDate10) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) || isException(MonthDayDate10) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1849,7 +1849,7 @@ export default function ClinicVisit() {
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate11), 1)) ? 'none' : 'auto',
 
-                      backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) || isException(MonthDayDate11) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) || isException(MonthDayDate11) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1878,7 +1878,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate12), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) || isException(MonthDayDate12) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) || isException(MonthDayDate12) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1907,7 +1907,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate13), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) || isException(MonthDayDate13) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) || isException(MonthDayDate13) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1936,7 +1936,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate14), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) || isException(MonthDayDate14) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) || isException(MonthDayDate14) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1965,7 +1965,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate15), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) || isException(MonthDayDate15) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) || isException(MonthDayDate15) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -1994,7 +1994,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate16), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) || isException(MonthDayDate16) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) || isException(MonthDayDate16) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2023,7 +2023,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate17), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) || isException(MonthDayDate17) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) || isException(MonthDayDate17) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2052,7 +2052,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate18), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) || isException(MonthDayDate18) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) || isException(MonthDayDate18) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2081,7 +2081,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate19), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) || isException(MonthDayDate19) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) || isException(MonthDayDate19) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2110,7 +2110,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate20), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) || isException(MonthDayDate20) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) || isException(MonthDayDate20) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2139,7 +2139,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate21), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) || isException(MonthDayDate21) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) || isException(MonthDayDate21) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2168,7 +2168,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate22), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) || isException(MonthDayDate22) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) || isException(MonthDayDate22) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2197,7 +2197,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate23), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) || isException(MonthDayDate23) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) || isException(MonthDayDate23) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2226,7 +2226,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate24), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) || isException(MonthDayDate24) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) || isException(MonthDayDate24) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2255,7 +2255,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate25), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) || isException(MonthDayDate25) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) || isException(MonthDayDate25) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2284,7 +2284,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate26), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) || isException(MonthDayDate26) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) || isException(MonthDayDate26) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2313,7 +2313,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate27), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) || isException(MonthDayDate27) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) || isException(MonthDayDate27) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2342,7 +2342,7 @@ export default function ClinicVisit() {
                   <div className="monthDayTitleChild"
                     style={{
                       pointerEvents: isWeekend(addDays(new Date(MonthDayDate28), 1)) ? 'none' : 'auto',
-                      backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) || isException(MonthDayDate28) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) || isException(MonthDayDate28) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
                     <div className='dailySpanContainer'
                       onClick={() => {
@@ -2376,7 +2376,7 @@ export default function ClinicVisit() {
                         startOfTheMonthDay + 28 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) || isException(MonthDayDate29) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) || isException(MonthDayDate29) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
                   >
                     <div className='dailySpanContainer'
@@ -2411,7 +2411,7 @@ export default function ClinicVisit() {
                         startOfTheMonthDay + 29 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) || isException(MonthDayDate30) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) || isException(MonthDayDate30) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
                   >
                     <div className='dailySpanContainer'
@@ -2446,7 +2446,7 @@ export default function ClinicVisit() {
                         startOfTheMonthDay + 30 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) || isException(MonthDayDate31) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) || isException(MonthDayDate31) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
                   >
                     <div className='dailySpanContainer'
@@ -2485,7 +2485,7 @@ export default function ClinicVisit() {
                 paddingLeft: '0px',
                 marginBottom: '0px',
                 height: '100%',
-                // backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
+                // backgroundColor: isScheduled(MonthDayDate31) ? '#ebfcec' : 'white',
               }}
             >
               <div className="grid-weeklycalcontainer">
@@ -2493,7 +2493,7 @@ export default function ClinicVisit() {
                   fontSize: '14px',
                   // height: 'calc(100vh - 132px)',
                   height: '100%',
-                  // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(MonthDayDate1) ? 'white' : '#cefad0' : 'white',
+                  // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(MonthDayDate1) ? 'white' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2512,7 +2512,7 @@ export default function ClinicVisit() {
                   fontSize: '14px',
                   // height: 'calc(100vh - 132px)',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(WeekDayDate2) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(WeekDayDate2) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2539,7 +2539,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) || isException(WeekDayDate3) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) || isException(WeekDayDate3) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }} >
                   <li className="calendar-item weekday">
                     <div>
@@ -2558,7 +2558,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) || isException(WeekDayDate4) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) || isException(WeekDayDate4) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2585,7 +2585,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) || isException(WeekDayDate5) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) || isException(WeekDayDate5) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2605,7 +2605,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) || isException(WeekDayDate6) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) || isException(WeekDayDate6) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2626,7 +2626,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) || isException(WeekDayDate7) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) || isException(WeekDayDate7) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
