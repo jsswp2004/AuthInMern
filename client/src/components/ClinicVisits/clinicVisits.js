@@ -1567,7 +1567,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn btn-info btn-sm calendarBtn"
                           onClick={handleClick}
                           title="Click to add visit"
                         >

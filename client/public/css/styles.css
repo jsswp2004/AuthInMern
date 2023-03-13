@@ -116,6 +116,10 @@ body {
   margin-left: 2px;
 }
 
+.calendarBtn {
+  background-color: #abd6f8;
+}
+
 .btnCalDate {
   padding-top: 2px;
   padding-bottom: 2px;
@@ -913,12 +917,14 @@ h5 {
 
 .dailySpanContainerItems {
   display: none;
-  
 }
 
-.dailySpanContainer:hover > .day >.dailySpanContainerItems {
+.dailySpanContainer:hover > .day > .dailySpanContainerItems {
   display: inline-flex;
   margin-left: 5px;
+  margin-right: 5px;
+  float: right;
+  font-style: italic;
   /* font-weight: bold; */
 }
 
