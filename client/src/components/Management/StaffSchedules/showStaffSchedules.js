@@ -22,7 +22,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
-
+import * as XLSX from "xlsx"
 
 const ShowSchedulesList = () => {
   // Define the Create Modal state
@@ -64,6 +64,40 @@ const ShowSchedulesList = () => {
     setEditShow(false)
     // navigate('/settingsPage')
     // window.location.reload()
+  }
+
+  const handleDownloadExcel = () => {
+    const rows = schedules.map((schedule) => ({
+      _id: schedule._id,
+      providerID: schedule.providerID,
+      provider: schedule.provider,
+      startDate: schedule.startDate,
+      endDate: schedule.endDate,
+      amStartTime: schedule.amStartTime,
+      amEndTime: schedule.amEndTime,
+      pmStartTime: schedule.pmStartTime,
+      pmEndTime: schedule.pmEndTime,
+      scheduledMon: schedule.scheduledMon,
+      scheduledTues: schedule.scheduledTues,
+      scheduledWed: schedule.scheduledWed,
+      scheduledThurs: schedule.scheduledThurs,
+      scheduledFri: schedule.scheduledFri,
+      addedDate: schedule.addedDate,
+
+    }))
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Schedules");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ["Schedule ID", "Provider ID", "Provider", 'Start Date', 'End Date', 'AM Start Time', 'AM End Time', 'PM Start Time', 'PM End Time', 'Schedule Monday', 'Schedule Tuesday', 'Schedule Wednesday', 'Schedule Thursday', 'Schedule Friday', 'Added Date'],
+    ]);
+
+    XLSX.writeFile(workbook, "Providers_Schedule_List_Report.xlsx", { compression: true });
+
   }
 
   useEffect(() => {
@@ -316,6 +350,16 @@ const ShowSchedulesList = () => {
               title="Add Schedule"
             />
           </Button>
+          {/* export to excel button */}
+          <button className='btn btn-success btn-sm registerBtn'
+            onClick={handleDownloadExcel}
+          >
+            <i
+              className="fa fa-file-excel-o"
+              aria-hidden="true"
+              title="Export to Excel"
+            />
+          </button>
           Search :{' '}
           <input
             // className="searchLabel"

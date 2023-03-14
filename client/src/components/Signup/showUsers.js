@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 // import logo from '../../components/shared/images/logoPOWER.png'
-import Navbar from '../navigation/navbar'
-import Header from '../shared/Header'
+// import Navbar from '../navigation/navbar'
+// import Header from '../shared/Header'
 import { Link } from 'react-router-dom'
 // import LogoutIcon from '@mui/icons-material/Logout'
 import { styled } from '@mui/material/styles'
@@ -27,7 +27,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditUser from './editUserModal'
-
+import * as XLSX from "xlsx"
 
 export default function ShowUsersList() {
 
@@ -73,6 +73,34 @@ export default function ShowUsersList() {
   function displayEditRoleModal() {
     return <EditUserModal />
   }
+
+  //for excel download
+  const handleDownloadExcel = (e) => {
+    const rows = users.map((e) =>
+    ({
+      _id: e._id,
+      name: e.name,
+      firstName: e.firstName,
+      lastName: e.lastName,
+      email: e.email,
+      role: e.role,
+      addedDate: e.addedDate,
+    }))
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Users");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ["User ID", "Name", 'firstName', 'lastName', 'Email', 'Role', 'Added Date'],
+    ]);
+
+    XLSX.writeFile(workbook, "User_List_Report.xlsx", { compression: true });
+
+  }
+
 
   const [users, setUsers] = useState([])
   const [searchInput, setSearchInput] = useState('')
@@ -275,119 +303,128 @@ export default function ShowUsersList() {
   return (
     <div className="grid_containers">
       {/* <div className="item3"> */}
-        <div className="item3A">
-          <h4 className='createScheduleHeader'>Registered Users</h4>
-          <div>{displayEditRoleModal()}</div>
-          <div>{displayDeleteRegistrationModal()}</div>
-          <label htmlFor="search" className="searchLabel" >
-            <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
-              <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User' />
-            </Link>{' '}
-            Search :{' '}
-            <input
-              id="search"
-              type="text"
-              placeholder="Search users"
-              onChange={handleChange}
-              value={searchInput}
+      <div className="item3A">
+        <h4 className='createScheduleHeader'>Registered Users</h4>
+        <div>{displayEditRoleModal()}</div>
+        <div>{displayDeleteRegistrationModal()}</div>
+        <label htmlFor="search" className="searchLabel" >
+          <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
+            <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User' />
+          </Link>{' '}
+          <button className='btn btn-success btn-sm registerBtn'
+            onClick={handleDownloadExcel}
+          >
+            <i
+              className="fa fa-file-excel-o"
+              aria-hidden="true"
+              title="Export to Excel"
             />
-          </label>
+          </button>
+          Search :{' '}
+          <input
+            id="search"
+            type="text"
+            placeholder="Search users"
+            onChange={handleChange}
+            value={searchInput}
+          />
+        </label>
 
-        </div>
+      </div>
 
-        <div className="roleItemContainerBox">
-          <div className="card-body table-responsive p-0">
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="left">Firsts Name</StyledTableCell>
-                    <StyledTableCell align="left">Last Name</StyledTableCell>
-                    <StyledTableCell align="left">Email</StyledTableCell>
-                    <StyledTableCell align="left">Role</StyledTableCell>
-                    <StyledTableCell align="left">Date Added</StyledTableCell>
-                    <StyledTableCell align="left">Actions</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {(rowsPerPage > 0
-                    ? filteredData.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage,
-                    )
-                    : filteredData
-                  ).map((user) => (
-                    <StyledTableRow key={user._id}
-                      onClick={() => handleItemClick(user)}
-                    >
-                      <StyledTableCell align="left">
-                        {user.firstName}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        {user.lastName}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">{user.email}</StyledTableCell>
-                      <StyledTableCell align="left">{user.role}</StyledTableCell>
-                      <StyledTableCell align="left">
-                        {user.addedDate}
-                      </StyledTableCell>
-                      <StyledTableCell align="left">
-                        <button className='btn btn-info btn-sm registerBtn'
-                          onClick={handleEditShow}
-                        >
-                          <i
-                            className="fa fa-pencil-square-o fa-sm"
-                            aria-hidden="true"
-                            title="Edit User"
-                          />
-                        </button>
-                        <button
-                          className="btn btn-danger btn-sm registerBtn"
-                          onClick={handleShowDelete}
-                        >
-                          <i
-                            title="delete role"
-                            className="fa fa-trash-o fa-sm"
-                            aria-hidden="true"
-                          />
-                        </button>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                  {emptyRows > 0 && (
-                    <StyledTableRow
-                      style={{
-                        height: 53 * emptyRows,
-                      }}
-                    >
-                      <StyledTableCell colSpan={6} />
-                    </StyledTableRow>
-                  )}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                      colSpan={6}
-                      count={filteredData.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      SelectProps={{
-                        inputProps: {
-                          'aria-label': 'rows per page',
-                        },
-                        native: true,
-                      }}
-                      onPageChange={handleChangePage}
-                      onRowsPerPageChange={handleChangeRowsPerPage}
-                      ActionsComponent={TablePaginationActions}
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
-            </TableContainer>
-          </div>
+      <div className="roleItemContainerBox">
+        <div className="card-body table-responsive p-0">
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="left">Firsts Name</StyledTableCell>
+                  <StyledTableCell align="left">Last Name</StyledTableCell>
+                  <StyledTableCell align="left">Email</StyledTableCell>
+                  <StyledTableCell align="left">Role</StyledTableCell>
+                  <StyledTableCell align="left">Date Added</StyledTableCell>
+                  <StyledTableCell align="left">Actions</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? filteredData.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage,
+                  )
+                  : filteredData
+                ).map((user) => (
+                  <StyledTableRow key={user._id}
+                    onClick={() => handleItemClick(user)}
+                  >
+                    <StyledTableCell align="left">
+                      {user.firstName}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {user.lastName}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">{user.email}</StyledTableCell>
+                    <StyledTableCell align="left">{user.role}</StyledTableCell>
+                    <StyledTableCell align="left">
+                      {user.addedDate}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      <button className='btn btn-info btn-sm registerBtn'
+                        onClick={handleEditShow}
+                      >
+                        <i
+                          className="fa fa-pencil-square-o fa-sm"
+                          aria-hidden="true"
+                          title="Edit User"
+                        />
+                      </button>
+                      <button
+                        className="btn btn-danger btn-sm registerBtn"
+                        onClick={handleShowDelete}
+                      >
+                        <i
+                          title="delete role"
+                          className="fa fa-trash-o fa-sm"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {emptyRows > 0 && (
+                  <StyledTableRow
+                    style={{
+                      height: 53 * emptyRows,
+                    }}
+                  >
+                    <StyledTableCell colSpan={6} />
+                  </StyledTableRow>
+                )}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                    colSpan={6}
+                    count={filteredData.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    SelectProps={{
+                      inputProps: {
+                        'aria-label': 'rows per page',
+                      },
+                      native: true,
+                    }}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    ActionsComponent={TablePaginationActions}
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </TableContainer>
         </div>
+      </div>
       {/* </div> */}
     </div>
   )

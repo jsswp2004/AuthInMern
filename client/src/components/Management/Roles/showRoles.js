@@ -26,6 +26,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import * as XLSX from "xlsx"
 
 const ShowRolesList = () => {
   // Define the modal state with useState hook
@@ -66,6 +67,28 @@ const ShowRolesList = () => {
     // navigate('/settingsPage')
   }
 
+
+  const handleDownloadExcel = (e) => {
+    const rows = roles.map((e) =>
+    ({
+      _id: e._id,
+      name: e.name,
+      addedDate: e.addedDate,
+    }))
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Roles");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ["Role ID", "Name", 'Added Date'],
+    ]);
+
+    XLSX.writeFile(workbook, "Role_List_Report.xlsx", { compression: true });
+
+  }
   // console.log(roles)
   useEffect(() => {
     axios
@@ -81,7 +104,7 @@ const ShowRolesList = () => {
 
   //Define role id for prop
   const [roleID, setRoleID] = useState('')
-//#region for delete confirmation modal
+  //#region for delete confirmation modal
   // const [staffSchedID, setStaffSchedID] = useState('')
   const [showDelete, setShowDelete] = useState(false)
   const handleCloseDelete = () => setShowDelete(false)
@@ -159,7 +182,7 @@ const ShowRolesList = () => {
           </Button>
         </Modal.Header>
         <Modal.Body>
-          <EditRole roleID={ roleID} />
+          <EditRole roleID={roleID} />
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
@@ -280,11 +303,11 @@ const ShowRolesList = () => {
     setPage(0)
   }
 
-      //setting the ID of the event for the property
-      const handleItemClick = item => {
-        const roleID = item._id
-        setRoleID(roleID)
-      }
+  //setting the ID of the event for the property
+  const handleItemClick = item => {
+    const roleID = item._id
+    setRoleID(roleID)
+  }
 
   return (
     <div className="roleItemContainerBox">
@@ -305,6 +328,15 @@ const ShowRolesList = () => {
               title="Add Role"
             />
           </Button>
+          <button className='btn btn-success btn-sm registerBtn'
+            onClick={handleDownloadExcel}
+          >
+            <i
+              className="fa fa-file-excel-o"
+              aria-hidden="true"
+              title="Export to Excel"
+            />
+          </button>
           Search :{' '}
           <input
             id="search"
@@ -334,18 +366,18 @@ const ShowRolesList = () => {
               <TableBody>
                 {(rowsPerPage > 0
                   ? roles.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage,
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage,
+                  )
                   : roles
                 ).map((role) => (
                   <StyledTableRow key={role._id}
-                  onClick={() => handleItemClick(role)}>
+                    onClick={() => handleItemClick(role)}>
                     <StyledTableCell align="left">{role.name}</StyledTableCell>
                     <StyledTableCell align="left">{role.addedDate}</StyledTableCell>
-                    
+
                     <StyledTableCell align="left">
-                      <button className='btn btn-info btn-sm registerBtn'                      
+                      <button className='btn btn-info btn-sm registerBtn'
                         onClick={handleEditShow}
                       >
                         <i
@@ -362,7 +394,7 @@ const ShowRolesList = () => {
                           title="delete role"
                           className="fa fa-trash-o fa-sm"
                           aria-hidden="true"
-                          
+
                         />
                       </button>
                     </StyledTableCell>
@@ -380,7 +412,7 @@ const ShowRolesList = () => {
               </TableBody>
               <TableFooter>
                 <TableRow>
-                  <TablePagination                    
+                  <TablePagination
                     rowsPerPageOptions={[
                       5,
                       10,

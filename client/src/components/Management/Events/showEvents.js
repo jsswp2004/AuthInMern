@@ -23,6 +23,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import * as XLSX from "xlsx"
 
 const ShowEventsList = () => {
   // Define the state with useState hook
@@ -30,14 +31,14 @@ const ShowEventsList = () => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-    // Define the state with useState hook
-    const [editShow, setEditShow] = useState(false)
-    const handleEditClose = () => setEditShow(false)
-    const handleEditShow = () => setEditShow(true)
+  // Define the state with useState hook
+  const [editShow, setEditShow] = useState(false)
+  const handleEditClose = () => setEditShow(false)
+  const handleEditShow = () => setEditShow(true)
 
   const [events, setEvents] = useState([])
   // const navigate = useNavigate()
-//   console.log(events)
+  //   console.log(events)
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
@@ -60,6 +61,28 @@ const ShowEventsList = () => {
     setEditShow(false)
   }
 
+  const handleDownloadExcel = (e) => {
+    const rows = events.map((e) =>
+    ({
+      _id: e._id,
+      name: e.name,
+      addedDate: e.addedDate,
+    }))
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Events");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ["Event ID", "Name", 'Added Date'],
+    ]);
+
+    XLSX.writeFile(workbook, "Event_List_Report.xlsx", { compression: true });
+
+  }
 
   useEffect(() => {
     axios
@@ -73,7 +96,7 @@ const ShowEventsList = () => {
   }, [])
   // Define visitID state for prop
   const [eventID, setEventID] = useState('')
-//#region for delete confirmation modal
+  //#region for delete confirmation modal
   const [showDelete, setShowDelete] = useState(false)
   const handleCloseDelete = () => setShowDelete(false)
   const handleShowDelete = () => setShowDelete(true)
@@ -153,7 +176,7 @@ const ShowEventsList = () => {
           </Button>
         </Modal.Header>
         <Modal.Body>
-          <EditEventsModal eventID={ eventID} />          
+          <EditEventsModal eventID={eventID} />
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClick}>
@@ -274,7 +297,7 @@ const ShowEventsList = () => {
     setPage(0)
   }
 
-    //setting the ID of the event for the property
+  //setting the ID of the event for the property
   const handleItemClick = item => {
     const eventID = item._id
     setEventID(eventID)
@@ -300,6 +323,15 @@ const ShowEventsList = () => {
               title="Add Event"
             />
           </Button>
+          <button className='btn btn-success btn-sm registerBtn'
+            onClick={handleDownloadExcel}
+          >
+            <i
+              className="fa fa-file-excel-o"
+              aria-hidden="true"
+              title="Export to Excel"
+            />
+          </button>
           Search :{' '}
           <input
             id="search"
@@ -329,19 +361,19 @@ const ShowEventsList = () => {
               <TableBody>
                 {(rowsPerPage > 0
                   ? events.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage,
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage,
+                  )
                   : events
                 ).map((event) => (
                   <StyledTableRow key={event._id}
-                  onClick={() => handleItemClick(event)}
+                    onClick={() => handleItemClick(event)}
                   >
                     <StyledTableCell align="left">{event.name}</StyledTableCell>
                     <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
                     <StyledTableCell align="left">
-  
-                      <button className='btn btn-info btn-sm registerBtn'                      
+
+                      <button className='btn btn-info btn-sm registerBtn'
                         onClick={handleEditShow}
                       >
                         <i
@@ -387,7 +419,7 @@ const ShowEventsList = () => {
               </TableBody>
               <TableFooter>
                 <TableRow>
-                  <TablePagination                    
+                  <TablePagination
                     rowsPerPageOptions={[
                       5,
                       10,

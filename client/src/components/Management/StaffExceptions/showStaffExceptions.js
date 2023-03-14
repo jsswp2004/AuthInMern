@@ -68,8 +68,9 @@ const ShowExceptionsList = () => {
     // window.location.reload()
   }
 
+  // Method to show exceptions to excel
   const handleDownloadExcel = () => {
-    // console.log(exceptions)
+
     const rows = exceptions.map((exception) => ({
       _id: exception._id,
       providerID: exception.providerID,
