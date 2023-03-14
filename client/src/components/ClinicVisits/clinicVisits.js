@@ -1374,146 +1374,150 @@ export default function ClinicVisit() {
       </div>
       <div className="item3">
         <div className="grid_calendar">
-          <div className="itemCalendar1">
-            <div style={{ display: 'flex' }}>
-              {/* className="month-indicator item3C" */}
-              <div className="month-name">
-                <h4 className='patientListHeader'
-                >
-                  {monthName}
-                </h4>
-              </div>
-              <div className="customDatePickerWidth searchLabel select">
-                <DatePicker
-                  selected={showDateValue}
-                  className="form-control"
-                  value={showDateValue}
-                  onChange={(newValue) => {
-                    setShowDateValue(newValue)
-                  }}
-                  monthsShown={2}
-                  todayButton="Today"
-                />
-              </div>
-              <div className="searchLabel viewlabel">
+          <div className="itemCalendar1 ">
+            {/* <div style={{ display: 'flex' }}> */}
+            {/* className="month-indicator item3C" */}
+            <div className="month-name">
+              <h4 className='patientListHeader'
+              >
+                {monthName}
+              </h4>
+            </div>
+            <div className="customDatePickerWidth searchLabel select">
+
+              <DatePicker
+                selected={showDateValue}
+                className="form-control"
+                value={showDateValue}
+                onChange={(newValue) => {
+                  setShowDateValue(newValue)
+                }}
+                monthsShown={2}
+                todayButton="Today"
+              />
+            </div>
+            <div className="searchLabel viewlabel" >
+
+              <select
+                key={selectViewValue}
+                className="form-control"
+                id="calendarView"
+                value={selectViewValue}
+                onChange={viewValueChange}
+              >
+                {viewValues.map((viewval) => (
+                  <option key={viewval.value} value={viewval.value}>
+                    {viewval.name}
+                  </option>
+                ))}
+              </select>
+
+            </div>
+            <div>
+              <img
+                className="directionArrows"
+                src={backward}
+                alt="backward"
+                onClick={(newValue) =>
+                  selectViewValue === 'Monthly'
+                    ? setShowDateValue(addDays(showDateValue, -31))
+                    : selectViewValue === 'Weekly'
+                      ? setShowDateValue(addDays(showDateValue, -7))
+                      : selectViewValue === 'Daily'
+                        ? setShowDateValue(addDays(showDateValue, -1))
+                        : setShowDateValue(showDateValue)
+                }
+              ></img>
+            </div>
+            <div>
+              <img
+                className="directionArrows"
+                src={forward}
+                alt="forward"
+                onClick={(newValue) =>
+                  selectViewValue === 'Monthly'
+                    ? setShowDateValue(addMonths(showDateValue, 1))
+                    : selectViewValue === 'Weekly'
+                      ? setShowDateValue(addWeeks(showDateValue, 1))
+                      : selectViewValue === 'Daily'
+                        ? setShowDateValue(addDays(showDateValue, 1))
+                        : setShowDateValue(showDateValue)
+                }
+              ></img>
+            </div>
+            <div
+              style={{
+                marginLeft: 'auto',
+                // height: '30px',
+                marginTop: '5px',
+              }}
+            >
+              <Button
+                className="openVisitModalButton"
+                onClick={handleClick}
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Add Visit"
+                style={{
+                  display: selectViewValue === 'Monthly' ? 'none' : '',
+                }}
+              >
+                <i className="fa fa-solid fa-plus"></i>
+              </Button>
+              <div>{displayVisitModal()}</div>
+            </div>
+            {/* modal end*/}
+            {/* provider availability start */}
+            <div className="searchLabel viewlabel">
+              {/*  */}
+              <label>
+                {/* Provider: */}
                 <select
-                  key={selectViewValue}
-                  className="form-control"
-                  id="calendarView"
-                  value={selectViewValue}
-                  onChange={viewValueChange}
+                  key={visits.provider}
+                  className="selectlabel"
+                  name="provider"
+                  value={visits.provider}
+                  onChange={(e) => {
+                    setSelectAvailabilityMD(e.target.value)
+                    setSelectExceptionMD(e.target.value)
+
+                  }}
                 >
-                  {viewValues.map((viewval) => (
-                    <option key={viewval.value} value={viewval.value}>
-                      {viewval.name}
+                  {' '}
+                  <option key="Select" value="">
+                    Select Provider for Availability
+                  </option>
+                  {providerMD.map((doc) => (
+                    <option id={doc._id} key={doc._id} value={doc._id}>
+                      {doc}
                     </option>
                   ))}
                 </select>
+              </label>
+            </div>
 
-              </div>
-              <div>
-                <img
-                  className="directionArrows"
-                  src={backward}
-                  alt="backward"
-                  onClick={(newValue) =>
-                    selectViewValue === 'Monthly'
-                      ? setShowDateValue(addDays(showDateValue, -31))
-                      : selectViewValue === 'Weekly'
-                        ? setShowDateValue(addDays(showDateValue, -7))
-                        : selectViewValue === 'Daily'
-                          ? setShowDateValue(addDays(showDateValue, -1))
-                          : setShowDateValue(showDateValue)
-                  }
-                ></img>
-              </div>
-              <div>
-                <img
-                  className="directionArrows"
-                  src={forward}
-                  alt="forward"
-                  onClick={(newValue) =>
-                    selectViewValue === 'Monthly'
-                      ? setShowDateValue(addMonths(showDateValue, 1))
-                      : selectViewValue === 'Weekly'
-                        ? setShowDateValue(addWeeks(showDateValue, 1))
-                        : selectViewValue === 'Daily'
-                          ? setShowDateValue(addDays(showDateValue, 1))
-                          : setShowDateValue(showDateValue)
-                  }
-                ></img>
-              </div>
+            {/* provider end */}
+            {/* search start */}
+
+            <div className='div-items'  >
               <div
-                style={{
-                  marginLeft: 'auto',
-                  // height: '30px',
-                  marginTop: '5px',
-                }}
+                className="searchButton"
               >
-                <Button
-                  className="openVisitModalButton"
-                  onClick={handleClick}
+                <a
                   data-toggle="tooltip"
                   data-placement="right"
-                  title="Add Visit"
-                  style={{
-                    display: selectViewValue === 'Monthly' ? 'none' : '',
-                  }}
+                  title="Search for Visit"
+                  href="/visitlist"
+                  className="btn btn-sm"
+                  role="button"
                 >
-                  <i className="fa fa-solid fa-plus"></i>
-                </Button>
-                <div>{displayVisitModal()}</div>
+                  Search Visits {' '}
+                  <i className="fa fa-search fa-sm" aria-hidden="true"></i>
+                </a>
               </div>
-              {/* modal end*/}
-              {/* provider availability start */}
-              <div >
-                {/* className="searchLabel viewlabel" */}
-                <label>
-                  {/* Provider: */}
-                  <select
-                    key={visits.provider}
-                    className="selectlabel"
-                    name="provider"
-                    value={visits.provider}
-                    onChange={(e) => {
-                      setSelectAvailabilityMD(e.target.value)
-                      setSelectExceptionMD(e.target.value)
-
-                    }}
-                  >
-                    {' '}
-                    <option key="Select" value="">
-                      Select Provider for Availability
-                    </option>
-                    {providerMD.map((doc) => (
-                      <option id={doc._id} key={doc._id} value={doc._id}>
-                        {doc}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-
-              {/* provider end */}
-              {/* search start */}
-
-              <div className="div-items" >
-                <div className="searchButton">
-                  <a
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="Search for Visit"
-                    href="/visitlist"
-                    className="btn btn-sm"
-                    role="button"
-                  >
-                    Search Visits {' '}
-                    <i className="fa fa-search fa-sm" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-              {/* search end */}
             </div>
+            {/* search end */}
+            {/* </div> */}
           </div>
           <div>{displayVisitMonthlyModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
