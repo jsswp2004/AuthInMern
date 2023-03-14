@@ -1445,12 +1445,12 @@ export default function ClinicVisit() {
                 }
               ></img>
             </div>
-            <div
-              style={{
-                marginLeft: 'auto',
-                // height: '30px',
-                marginTop: '5px',
-              }}
+            <div className='registerBtn'
+            // style={{
+            //   marginLeft: 'auto',
+            //   // height: '30px',
+            //   marginTop: '1px',
+            // }}
             >
               <Button
                 className="openVisitModalButton"
@@ -2752,10 +2752,10 @@ export default function ClinicVisit() {
                             </StyledTableCell>
                             <StyledTableCell align="left">
                               <button
-                                className="btn btn-primary btn-sm registerBtn"
+                                className="btn btn-primary registerBtn"
                                 onClick={() => { handleEditVisitShow(pt._id) }}>
                                 <i
-                                  className="fa fa-pencil-square-o fa-sm"
+                                  className="fa fa-pencil-square-o "
                                   aria-hidden="true"
                                   title='edit visit'
                                 />
@@ -2770,11 +2770,11 @@ export default function ClinicVisit() {
                                 />
                               </Link> */}
                               <Link
-                                className="btn btn-success btn-sm registerBtn"
+                                className="btn btn-success registerBtn"
                                 to={`/detailsVisit/${pt._id}`}
                               >
                                 <i
-                                  className="fa fa-clipboard fa-sm"
+                                  className="fa fa-clipboard"
                                   aria-hidden="true"
                                 />
                               </Link>
@@ -2790,7 +2790,7 @@ export default function ClinicVisit() {
                                 />
                               </button> */}
                               <button
-                                className="btn btn-danger btn-sm registerBtn"
+                                className="btn btn-danger registerBtn"
                                 // onClick={() => {
                                 //   deleteRecord(pt._id)
                                 // }}
@@ -2798,7 +2798,7 @@ export default function ClinicVisit() {
                               >
                                 <i
                                   title="delete visit"
-                                  className="fa fa-trash-o fa-sm"
+                                  className="fa fa-trash-o"
                                   aria-hidden="true"
                                 />
                               </button>

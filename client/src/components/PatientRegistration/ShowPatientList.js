@@ -404,7 +404,7 @@ export default function ShowRecordList() {
                 className="btn btn-info  registerBtn"
                 onClick={handleShow}
               >
-                <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient' />
+                <i className="fa fa-hospital-user" aria-hidden="true" title='Add Patient' />
               </Button>
               <button className='btn btn-success registerBtn'
                 onClick={handleDownloadExcel}

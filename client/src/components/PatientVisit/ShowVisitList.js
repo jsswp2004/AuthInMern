@@ -430,9 +430,10 @@ export default function ShowVisitList() {
           </div>
           {/* .filter_navbar */}
           <div className="right searchLabel filter_navbarRight">
-            <button className='btn btn-success btn-sm registerBtn'
+            <button className='btn btn-success  registerBtn'
               onClick={handleDownloadExcel}
             >
+              {/* className='btn btn-success registerBtn' */}
               <i
                 className="fa fa-file-excel-o"
                 aria-hidden="true"
