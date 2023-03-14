@@ -1503,10 +1503,11 @@ export default function ClinicVisit() {
                     data-placement="right"
                     title="Search for Visit"
                     href="/visitlist"
-                    className="btn btn-info"
+                    className="btn btn-sm"
                     role="button"
                   >
-                    <i className="fa fa-search" aria-hidden="true"></i>
+                    Search Visits {' '}
+                    <i className="fa fa-search fa-sm" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>
@@ -1567,13 +1568,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm calendarBtn"
+                          className="btn calendarBtn btn-sm "
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     <div>
@@ -1598,13 +1599,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay2()}
@@ -1627,13 +1628,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay3()}
@@ -1656,13 +1657,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay4()}
@@ -1687,13 +1688,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay5()}
@@ -1716,13 +1717,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay6()}
@@ -1745,13 +1746,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay7()}
@@ -1776,13 +1777,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay8()}
@@ -1805,13 +1806,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay9()}
@@ -1834,13 +1835,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay10()}
@@ -1864,13 +1865,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay11()}
@@ -1893,13 +1894,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay12()}
@@ -1922,13 +1923,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay13()}
@@ -1951,13 +1952,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay14()}
@@ -1980,13 +1981,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay15()}
@@ -2009,13 +2010,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 15 > endOfTheMonthDay ? 1 : 16}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay16()}
@@ -2038,13 +2039,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay17()}
@@ -2067,13 +2068,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay18()}
@@ -2096,13 +2097,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay19()}
@@ -2125,13 +2126,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay20()}
@@ -2154,13 +2155,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay21()}
@@ -2183,13 +2184,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay22()}
@@ -2212,13 +2213,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay23()}
@@ -2241,13 +2242,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay24()}
@@ -2270,13 +2271,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay25()}
@@ -2299,13 +2300,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay26()}
@@ -2328,13 +2329,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay27()}
@@ -2357,13 +2358,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay28()}
@@ -2392,13 +2393,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay29()}
@@ -2427,13 +2428,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay30()}
@@ -2462,13 +2463,13 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn btn-info btn-sm"
+                          className="btn calendarBtn btn-sm"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
                           {startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31}
                         </button>
-                        <div class="dailySpanContainerItems"> Click for daily view</div>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
                       </span>
                     </div>
                     {visitListMonthlyDay31()}

@@ -744,7 +744,7 @@ tbody tr {
 .searchButton {
   margin-left: auto;
   margin-right: 3px;
-  height: 38px;
+  height: 30px;
   border-radius: 5px;
   float: right;
   margin-top: 5px;
@@ -893,8 +893,8 @@ h5 {
 
 /* this is the css for the calendar hover display */
 .visitMonthDayContainer:hover {
-  background-color: #0c4879;
-  color: white;
+  background-color: #c5f5ff;
+  color: black;
 }
 
 .visitMonthDayContainerItems {
@@ -911,7 +911,7 @@ h5 {
 }
 
 .dailySpanContainer:hover {
-  background-color: #0dcaf0;
+  background-color: #c5f5ff;
   color: black;
 }
 
@@ -1256,10 +1256,10 @@ background-color: #2196F3;
   height: 20px;
 }
 
-.directionArrows:hover {
+/* .directionArrows:hover {
   height: 20px;
   width: 25px;
-}
+} */
 
 /* code for test calendar */
 

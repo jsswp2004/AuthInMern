@@ -23,6 +23,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
+import { Link } from 'react-router-dom'
 //#endregion
 
 export default function ShowVisitList() {
@@ -349,7 +350,7 @@ export default function ShowVisitList() {
       </div>
 
       <div className="item3" >
-        
+
         <div className="item3A">
           <div className="left filter_navbarLeft">
             <h4 className='patientListHeader'>Visit List</h4>
@@ -409,8 +410,8 @@ export default function ShowVisitList() {
         </div>
         <div>{displayEditVisitModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>
-        
-<div className="item3B" style={{overflowY: 'auto'}}>
+
+        <div className="item3B" style={{ overflowY: 'auto' }}>
           <TableContainer component={Paper}>
             <Table
               sx={{ minWidth: 650 }}
@@ -481,7 +482,7 @@ export default function ShowVisitList() {
                           aria-hidden="true"
                         />
                       </Link>{' '} */}
-  
+
                       <button
                         className="btn btn-primary btn-sm registerBtn"
                         onClick={() => { handleEditVisitShow(pt._id) }}>
@@ -491,6 +492,15 @@ export default function ShowVisitList() {
                           title='edit visit'
                         />
                       </button>
+                      <Link
+                        className="btn btn-success btn-sm registerBtn"
+                        to={`/detailsVisit/${pt._id}`}
+                      >
+                        <i
+                          className="fa fa-clipboard fa-sm"
+                          aria-hidden="true"
+                        />
+                      </Link>
                       <button
                         className="btn btn-danger btn-sm registerBtn"
                         onClick={handleShowDelete}
@@ -542,7 +552,7 @@ export default function ShowVisitList() {
               </TableFooter>
             </Table>
           </TableContainer>
-          </div>
+        </div>
       </div>
     </div>
   )
