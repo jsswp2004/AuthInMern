@@ -55,6 +55,9 @@ const CreateVisitFromReg = (props) => {
           state: res.data.state,
           email: res.data.email,
           addedDate: res.data.addedDate,
+          homePhone: res.data.homePhone,
+          cellphone: res.data.cellphone,
+          businessPhone: res.data.businessPhone,
         })
       })
       .catch((err) => {
@@ -72,6 +75,9 @@ const CreateVisitFromReg = (props) => {
     provider,
     email,
     event,
+    homePhone,
+    cellphone,
+    businessPhone,
   } = record
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
@@ -88,6 +94,9 @@ const CreateVisitFromReg = (props) => {
     provider: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     event: '',
+    homePhone: '',
+    cellphone: '',
+    businessPhone: '',
   })
 
   //Hour of visit
@@ -194,6 +203,9 @@ const CreateVisitFromReg = (props) => {
       hourOfVisit: hourOfVisit,
       provider: visit.provider,
       event: visit.event,
+      homePhone: visit.homePhone,
+      cellphone: visit.cellphone,
+      businessPhone: visit.businessPhone,
     }
     axios
       .post('http://localhost:8081/api/visits', data)
@@ -264,7 +276,19 @@ const CreateVisitFromReg = (props) => {
                       />
                     </label>
                   </div>
-
+                  <div className="form-group">
+                    <label htmlFor="cellpphone">
+                      Cellphone
+                      <input
+                        type="text"
+                        name="email"
+                        className="form-control"
+                        defaultValue={cellphone}
+                        // value={visit.email}
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
                 </div>
               </div>
 

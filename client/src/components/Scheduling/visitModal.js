@@ -5,6 +5,7 @@ import axios from 'axios'
 
 
 const CreateVisitMonthly = (props) => {
+  //autocreate medical record number
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
@@ -24,9 +25,12 @@ const CreateVisitMonthly = (props) => {
     provider: props.provider,
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     event: '',
+    homePhone: '',
+    mobilePhone: '',
+    workPhone: '',
   })
 
-  // console.lopg(props.selectedProvider)
+
   //selected hour of visit
   let { hourOfVisit } = visit
   hourOfVisit = selectedHour
@@ -112,6 +116,9 @@ const CreateVisitMonthly = (props) => {
       provider: visit.provider,
       event: visit.event,
       addedDate: visit.addedDate,
+      homePhone: visit.homePhone,
+      mobilePhone: visit.mobilePhone,
+      workPhone: visit.workPhone,
 
     }
 
@@ -131,6 +138,9 @@ const CreateVisitMonthly = (props) => {
           provider: '',
           addedDate: '',
           event: '',
+          homePhone: '',
+          mobilePhone: '',
+          workPhone: '',
         })
 
         // Push to /patientlist
@@ -197,7 +207,18 @@ const CreateVisitMonthly = (props) => {
               />
             </label>
           </div>
-
+          <div className="form-group">
+            <label htmlFor="cellphone">
+              Cellphone
+              <input
+                type="phone"
+                name="Cellphone"
+                className="form-control"
+                value={visit.cellphone}
+                onChange={onChange}
+              />
+            </label>
+          </div>
         </div>
         <div className="div-items">
           <div className="form-group">
@@ -206,11 +227,13 @@ const CreateVisitMonthly = (props) => {
               <select
                 className="form-control select"
                 name="provider"
+                placeholder="Select Provider"
+                // defaultValue={props.provider}
                 value={visit.provider}
                 onChange={onChange}
               >
                 {' '}
-                <option value="" disabled selected>
+                <option value="Select Provider" disabled>
                   Select Provider
                 </option>
                 {providerMD.map((doc) => (

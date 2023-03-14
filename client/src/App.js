@@ -10,7 +10,7 @@ import RegistrationDetails from './components/PatientRegistration/registrationDe
 import EditPatient from './components/PatientRegistration/editPatient'
 import PatientList from './components/PatientRegistration/ShowPatientList'
 import CreatePatientFromVisit from './components/PatientRegistration/createPatientFromVisit'
-import VisitList from './components/PatientVisit/ShowVisitList'
+import VisitList from './components/PatientVisit/showVisitList'
 import VisitSchedule from './components/Scheduling/VisitScheduleList'
 import CalendarSchedule from './components/Scheduling/calendarSchedule'
 import CreateVisit from './components/Scheduling/createVisit'
@@ -29,6 +29,7 @@ import TestPage from './components/TestFolder/testPage'
 import TestStaffTable from './components/TestFolder/testStaffTable01'
 import CreateSchedule from './components/Management/StaffSchedules/createSchedule'
 import EditSchedule from './components/Management/StaffSchedules/editSchedule'
+import ShowPatientVisitList from './components/PatientVisit/showPatientVisitList'
 
 function App() {
   const user = localStorage.getItem('token')
@@ -39,8 +40,8 @@ function App() {
       <Route path="/signup" exact element={<Signup />} />
       <Route path="/createPatient" exact element={<CreatePatient />} />
       <Route path="/editPatient/:id" exact element={<EditPatient />} />
-      <Route path="/patientlist" exact element={<PatientList />} /> 
-      <Route path="/visitlist" exact element={<VisitList />} /> 
+      <Route path="/patientlist" exact element={<PatientList />} />
+      <Route path="/visitlist" exact element={<VisitList />} />
       <Route path="/visitSchedule" exact element={<VisitSchedule />} />
       <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
       <Route path="/createVisit/:id" exact element={<CreateVisit />} />
@@ -59,13 +60,14 @@ function App() {
       <Route path="/createRole" exact element={<CreateRole />} />
       <Route path="/editRole/:id" exact element={<EditRole />} />
       <Route path="/settingsPage" exact element={<ManageSettings />} />
-      <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit/>}/>
+      <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit />} />
       <Route path="/createEvent" exact element={<CreateEvent />} />
       <Route path="/editEvent/:id" exact element={<EditEvent />} />
       <Route path="/testPage" exact element={<TestPage />} />
       <Route path="/testStaffTable" exact element={<TestStaffTable />} />
       <Route path="/createSchedule" exact element={<CreateSchedule />} />
       <Route path="/editSchedule/:id" exact element={<EditSchedule />} />
+      <Route path="/showPatientVisitList/:id" exact element={<ShowPatientVisitList />} />
     </Routes>
   )
 }

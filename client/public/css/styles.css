@@ -116,6 +116,10 @@ body {
   margin-left: 2px;
 }
 
+.calendarBtn {
+  background-color: #abd6f8;
+}
+
 .btnCalDate {
   padding-top: 2px;
   padding-bottom: 2px;
@@ -387,7 +391,7 @@ body {
   text-align: center;
   vertical-align: middle;
   /* padding: 0px 0; */
-position:sticky;
+  /* position: fixed; */
   margin: 0px;
   display: flex;
   /* height: 34px; */
@@ -579,7 +583,6 @@ position:sticky;
 .roleItemContainer > .roleItemContainerBoxLeft {
   width: 250px;
   margin-left: 2px;
-  
 }
 
 .roleItemContainer > .roleItemContainerBoxRight {
@@ -741,7 +744,7 @@ tbody tr {
 .searchButton {
   margin-left: auto;
   margin-right: 3px;
-  height: 38px;
+  height: 30px;
   border-radius: 5px;
   float: right;
   margin-top: 5px;
@@ -842,11 +845,9 @@ h5 {
   /* background-color: white; */
 }
 
-.day:hover {
+/* .day:hover {
   background-color: white;
-}
-
-
+} */
 
 .calendar-item {
   width: auto;
@@ -890,27 +891,68 @@ h5 {
   padding-top: 0;
 }
 
-
 /* this is the css for the calendar hover display */
 .visitMonthDayContainer:hover {
-background-color: #0c4879;
-color: white;
+  background-color: #c5f5ff;
+  color: black;
 }
 
 .visitMonthDayContainerItems {
-display: none;
+  display: none;
 }
 
-.visitMonthDayContainerItem:hover > .visitMonthDayContainerItems { 
+.visitMonthDayContainerItem:hover > .visitMonthDayContainerItems {
   display: block;
-  
 }
 
-
-.visitMonthDayContainer:hover > .visitMonthDayContainerItemAction { 
+.visitMonthDayContainer:hover > .visitMonthDayContainerItemAction {
   /* background-color: #0c4879; */
-color: white;
-  
+  color: white;
+}
+
+.dailySpanContainer:hover {
+  background-color: #c5f5ff;
+  color: black;
+}
+
+.dailySpanContainerItems {
+  display: none;
+}
+
+.dailySpanContainer:hover > .day > .dailySpanContainerItems {
+  display: inline-flex;
+  margin-left: 5px;
+  margin-right: 5px;
+  float: right;
+  font-style: italic;
+  /* font-weight: bold; */
+}
+
+.dailySpanContainerItemstooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.dailySpanContainerItemstooltip .dailySpanContainerItemstooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+/* .dailySpanContainerItemstooltip:hover .dailySpanContainerItemstooltiptext {
+  visibility: visible;
+} */
+.dailySpanContainerItemstooltip:hover {
+  visibility: visible;
 }
 /* end code for calendar hover display */
 
@@ -932,8 +974,6 @@ color: white;
   padding-top: 0;
   /* color:white; */
 }
-
-
 
 .weekday {
   font-size: 14px;
@@ -1036,7 +1076,7 @@ ul .calendar {
   height: 30px;
 } */
 
-.customDatePickerWidth{
+.customDatePickerWidth {
   width: 300px;
   padding: 0px;
   height: 30px;
@@ -1050,9 +1090,9 @@ ul .calendar {
   grid-template-columns: 5% 18% 18% 18% 18% 18% 4.5%;
   /* repeat(10, 1fr); minmax(100px, 1fr)) */
   grid-template-rows: repeat(1, auto);
-height: 100%;
+  height: 100%;
   /* align-content: space-evenly; */
-/* : #6d6d6d; */
+  /* : #6d6d6d; */
   column-gap: 1px;
 }
 .grid-weeklycalcontainer > div {
@@ -1216,10 +1256,10 @@ background-color: #2196F3;
   height: 20px;
 }
 
-.directionArrows:hover {
+/* .directionArrows:hover {
   height: 20px;
   width: 25px;
-}
+} */
 
 /* code for test calendar */
 
@@ -1279,7 +1319,6 @@ main {
   font-weight: 500;
   display: flex;
 }
-
 
 .month-name {
   width: 300px;
@@ -1496,7 +1535,7 @@ text-align: center;
   color: black;
   font-size: 14px;
   font-style: normal;
-  margin-left: 10px; 
+  margin-left: 10px;
 }
 
 .filterTitle {
@@ -1778,10 +1817,11 @@ tfoot > .MuiTableFooter-root {
   /* padding-top: 10px; */
   /* bottom: 0px; */
   /* position: absolute; */
-  padding: 5px 5px 5px 10px;
+  padding: 5px 5px 5px 5px;
   margin-left: auto;
   margin-right: 5px;
   margin-bottom: 5px;
+  margin-top: 5px;
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -1804,49 +1844,51 @@ tfoot > .MuiTableFooter-root {
 
 /*for select  css*/
 .select {
-  width: '400px';
-  height: '30px';
-  text-align: 'center';
-  vertical-align: 'middle';
-  margin-left: '10px';
+  width: "400px";
+  height: "30px";
+  text-align: "center";
+  vertical-align: "middle";
+  margin-left: "10px";
   padding: 0px;
-
 }
 
 /*for hourly availability css*/
-  .hour-flex {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin-top: 5px;
-  }
+.hour-flex {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 5px;
+}
 
-  .hour-flex_Item  {
-    flex: 1 0 20%; /* explanation below */
-    margin: 2px;
-    height: 30px;
-    width: 30px;
-    border-color: #2196f3;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    /* background-color: blue; */
-  }
+.hour-flex_Item {
+  flex: 1 0 20%; /* explanation below */
+  margin: 2px;
+  height: 30px;
+  width: 30px;
+  border-color: #2196f3;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  /* background-color: blue; */
+}
 
-  .hour-flex_Item:nth-child(odd) {
-    background-color: #efefef;
-  }  
+.hour-flex_Item:nth-child(odd) {
+  background-color: #efefef;
+}
 
-  .hour-flex_Item:nth-child(even) {
-    background-color: white;
-  }
+.hour-flex_Item:nth-child(even) {
+  background-color: white;
+}
 
-  /* .hour-flex_Item:nth-child(3n) {
+/* .hour-flex_Item:nth-child(3n) {
     background-color: yellow;
   } */
 
+/*form modal*/
+.formModal {
+  width: 100%;
+}
 
-  /*form modal*/
-  .formModal {
-width: 100%;
-  }
+.formEditPatient {
+  height: 100%;
+}

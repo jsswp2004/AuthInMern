@@ -124,7 +124,7 @@ export default function ShowRecordList() {
     <>
       <Modal show={showVisit} onHide={handleVisitClose} size="lg" centered>
         <Modal.Header>
-          <Modal.Title>Add a visit</Modal.Title>
+          <Modal.Title>Add a Clinic Schedule</Modal.Title>
           <Button variant="secondary" onClick={handleVisitClick}>
             Close
           </Button>
@@ -353,7 +353,7 @@ export default function ShowRecordList() {
       </div>
       <div className="item3">
         <div className="item3A">
-          <h4 className='patientListHeader'>Patient List</h4>
+          <h4 className='patientListHeader'>Registered Patients</h4>
           <div>{displayRegistrationModal()}</div>
           <div>{displayVisitFromRegistrationModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
@@ -439,15 +439,16 @@ export default function ShowRecordList() {
                         aria-hidden="true" title='Create visit'
                       />
                     </Button>
-                    {/* <Link
-                      className="btn btn-success btn-sm "
-                      to={`/createvisitFromReg/${pt._id}`}
+                    <Link
+                      className="btn btn-success btn-sm registerBtn"
+                      // to={`/showPatientVisitList/${pt._id}`}
+                      to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                     >
                       <i
-                        className="fa fa-stethoscope fa-sm"
-                        aria-hidden="true" title='Create visit'
+                        className="fa fa-h-square fa-sm"
+                        aria-hidden="true" title='Display patient visits'
                       />
-                    </Link>{' '} */}
+                    </Link>{' '}
                     <Link
                       className="btn btn-info btn-sm registerBtn"
                       to={`/editPatient/${pt._id}`}

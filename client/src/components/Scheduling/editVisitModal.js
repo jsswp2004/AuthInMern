@@ -96,6 +96,7 @@ function UpdateVisitInfo(props) {
           hourOfVisit: res.data.hourOfVisit,
           provider: res.data.provider,
           event: res.data.event,
+          cellphone: res.data.cellphone,
         })
       })
       .catch((err) => {
@@ -146,6 +147,7 @@ function UpdateVisitInfo(props) {
       hourOfVisit: hourOfVisit,
       provider: visit.provider,
       event: visit.event,
+      cellphone: visit.cellphone,
     }
 
     setData(data)
@@ -218,6 +220,18 @@ function UpdateVisitInfo(props) {
                         name="email"
                         className="form-control"
                         value={visit.email}
+                        onChange={onChange}
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <label htmlFor="cellphone">
+                      Cellphone
+                      <input
+                        type="text"
+                        name="cellphone"
+                        className="form-control"
+                        value={visit.cellphone}
                         onChange={onChange}
                       />
                     </label>
@@ -390,36 +404,36 @@ function UpdateVisitInfo(props) {
                     </div>
                   </label>
                 </div>
-                
-                  <div
-                    className="form-group updateRegistrationBtn"
-                    style={{
-                      float: 'left',
-                      textAlign: 'left',
-                      paddingTop: '10px',
-                    }}
-                  >
-                    <input
-                      value="Update"
-                      type="submit"
-                      className="btn btn-success btn-sm "
-                    />
 
-                    <Link
-                      className="btn btn-info btn-sm "
-                      to={`/createPatientFromVisit/${visitID}`}
-                      // data={data}
-                      firstName={data.firstName}
-                    >
-                      <i
-                        className="fa fa-hospital-o fa-sm"
-                        aria-hidden="true"
-                        title="Add registration"
-                      />{' '}
-                      Register
-                    </Link>
-                  </div>
-                
+                <div
+                  className="form-group updateRegistrationBtn"
+                  style={{
+                    float: 'left',
+                    textAlign: 'left',
+                    paddingTop: '10px',
+                  }}
+                >
+                  <input
+                    value="Update"
+                    type="submit"
+                    className="btn btn-success btn-sm "
+                  />
+
+                  <Link
+                    className="btn btn-info btn-sm "
+                    to={`/createPatientFromVisit/${visitID}`}
+                    // data={data}
+                    firstName={data.firstName}
+                  >
+                    <i
+                      className="fa fa-hospital-o fa-sm"
+                      aria-hidden="true"
+                      title="Add registration"
+                    />{' '}
+                    Register
+                  </Link>
+                </div>
+
               </div>
             </div>
           </form>

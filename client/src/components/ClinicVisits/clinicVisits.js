@@ -33,8 +33,7 @@ import {
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createVisitModal'
 import VisitMonthlyModal from '../Scheduling/visitModal'
-import CreatePatientModal from '../PatientRegistration/createPatientModal'
-import VisitCard from '../Scheduling/VisitCard'
+// import CreatePatientModal from '../PatientRegistration/createPatientModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -59,22 +58,16 @@ import EditVisitModal from '../Scheduling/editVisitModal'
 
 export default function ClinicVisit() {
   //#region for alert declaration
-  // const alert = useAlert()
-  //#endregion
-  //#region for setting state for monthdate with in schedule
-  // const [monthDate, setMonthDate] = useState('')
+  const alert = useAlert()
   //#endregion
   //#region for setting state and pulling data for provider MD
   const [selectExceptionMD, setSelectExceptionMD] = useState([])
   const [selectAvailabilityMD, setSelectAvailabilityMD] = useState([])
-  // const selectedDR = selectAvailabilityMD.filter((doc) => {
-  //   return doc.name.toString().toLowerCase().includes(selectAvailabilityMD) 
-  // })
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
-  // console.log(selectAvailabilityMD)
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -89,10 +82,6 @@ export default function ClinicVisit() {
   }, [])
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
-  // const availableMD = selectedDR
-
-  // console.log(selectAvailabilityMD, availableMD._id)
-
   //#endregion
   //#region code for setting state for visits
   const [visits, setVisits] = useState([])
@@ -106,112 +95,58 @@ export default function ClinicVisit() {
         console.log('Error from ShowVisitList')
       })
   }, [])
-  //console.log(visits)
+
   //#endregion
   //#region code for calendar view select dropdown
   const [selectViewValue, setViewValue] = React.useState('Monthly')
   const viewValueChange = (event) => {
     setViewValue(event.target.value)
   }
+  //changes view value to daily when clicked
+  // const dailyValueChange = (event) => {
+  //   setViewValue('Daily')
+  // }
+
   //#endregion
   //#region base date values for calendar
-  function getDaysInMonth(month, year) {
-    return new Date(year, month, 0).getDate()
-  }
-
   const [showDateValue, setShowDateValue] = useState(new Date())
+  // const [showDateValue2, setShowDateValue2] = useState(new Date())
+  //changes value of date when clicked on daily calendar
+  // function dailyShowDateChange(e) {
+  //   setShowDateValue2(e)
+  // }
+  // console.log(showDateValue2)
+
+
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex].value
   let startOfTheMonth = startOfMonth(new Date(showDateValue))
-  //   console.log(format(startOfTheMonth, 'yyyy-MM-dd'))
   const currentYear = newdate.getFullYear()
-  // const currentMonth = newdate.getMonth() + 1 // 👈️ months are 0-based
-  // let startOfTheMonthDate = getDate(startOfTheMonth) //parseInt(moment(startOfTheMonth).format('D')) //
-  // let daysOfTheMonth = getDaysInMonth(currentMonth, currentYear)
-
-  // let startOfTheMonthDayNumber = getDay(new Date(startOfTheMonth)) // moment(startOfTheMonth).day()
   let startOfTheMonthDayNumber = getDay(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  // let endOfTheMonthDayNumber = getDay(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  //   console.log(endOfTheMonthDayNumber)
   let startOfTheMonthDay = getDate(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  //   console.log(startOfTheMonthDay)
   let endOfTheMonthDay = getDate(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  //   console.log(endOfTheMonthDay)
-  // const endOfThePreviousMonth = parseInt(
-  //   // moment(dateSelected).subtract(1, 'months').endOf('month').format('DD'),
-  //   getDate(endOfMonth(subMonths(newdate, 1))),
-  // )
-
-  // const gridMonthlyColumnStart = {
-  //   gridColumnStart: startOfTheMonthDayNumber + 1, // this is not 0 based
-  //   // backgroundColor: ' #eeee',
-  //   // height: '100px',
-  // }
-
   const gridWeekly = {
     fontSize: '14px',
-    // backgroundColor: 'white',
     height: 'calc(100vh - 132px)',
   }
 
-  // const gridMonthly = {
-  //   backgroundColor: ' #eeee',
-  //   height: '100px',
-  // }
-  const previousMonth = newdate.getMonth()
-  let daysOfPreviousMonth = getDaysInMonth(previousMonth, currentYear)
-  //pulls the number date of the month
-  // let dayOfTheMonth = newdate.getDate()
-  //pull the day number of the week - o based
-  // let dayOfTheWeek = newdate.getDay() > 7 ? 1 : newdate.getDay()
-  //pulls date number of the date
-  // let startDayOfTheWeek =
-  //   newdate === '2022-05-01' ? 1 : dayOfTheMonth - dayOfTheWeek
   //pulls date number of the week
   let startOfTheWeek = startOfWeek(newdate).getDate()
   let startOfTheWeekDate = startOfWeek(newdate)
   let startOfTheWeekEndOfMonth = endOfMonth(startOfTheWeekDate).getDate()
-  // console.log(startOfTheWeekEndOfMonth)
-  // startDayOfTheWeek < 1
-  //   ? daysOfPreviousMonth - (dayOfTheWeek - 1)
-  //   : startDayOfTheWeek
-
-  // console.log(newdate)
-  // console.log(previousMonth)
-  // console.log(daysOfPreviousMonth)
-
-  // console.log(dayOfTheMonth)
-
-  // console.log(dayOfTheWeek)
-
-  // console.log(startDayOfTheWeek)
-  // console.log(startOfTheWeek)
-  // console.log(startOfWeek(newdate))
-  //#endregion
-  //#region captures and sets value of the search input text
-  const [searchInput, setSearchInput] = useState(
-    format(showDateValue, 'yyyy-MM-dd'),
-  )
-  const handleChange = (e) => {
-    e.preventDefault()
-    setSearchInput(e.target.value)
-  }
   //#endregion
   //#region code for Modal methods for creating visit
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
   const [showMonthly, setShowMonthly] = useState(false)
   const handleMonthlyClose = () => setShowMonthly(false)
   const handleMonthlyShow = () => {
     setShowMonthly(true)
   }
-
   //#endregion
   //#region for Modal
-
   const selectedDateDaily = format(showDateValue, 'yyyy-MM-dd')
   const VisitModal = () => (
     <Modal show={show} onHide={handleClose} size="lg" centered>
@@ -234,18 +169,10 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region for Modal from monthly days
-
   const [newPatient, setNewPatient] = useState(false)
-  // console.log(newPatient)
-  const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
-  //autocreate visit number
-  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-  const { firstName, lastName, middleName, email, provider, hourOfVisit } = CreatePatientModal
+  // const { firstName, lastName, middleName, email, provider, hourOfVisit } = CreatePatientModal
+  // console.log(firstName)
   const [modalDisplay, setModalDisplay] = useState('visit')
-  // const displayVisitMonthlyMode = {
-  //   display: modalDisplay === 'show' ? '' : 'none',
-  // }
-  // console.log(modalDisplay)
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal className='modal-xl' show={showMonthly} onHide={handleMonthlyClose} size="xg" centered>
@@ -271,13 +198,13 @@ export default function ClinicVisit() {
             }}
           >
             <VisitMonthlyModal
-              firstName={firstName}
-              lastName={lastName}
-              middleName={middleName}
-              email={email}
+              // firstName={firstName}
+              // lastName={lastName}
+              // middleName={middleName}
+              // email={email}
               visitDate={selectedDate}
-              selectedProvider={provider}
-              // hourOfVisit={hourOfVisit}
+              provider={provider}
+            // hourOfVisit={hourOfVisit}
             />
           </div>
           {/*  */}
@@ -289,18 +216,11 @@ export default function ClinicVisit() {
         </Modal.Footer>
       </Modal>
     ) : null
-
+  // console.log(provider, selectedDate)
   // This method will map out the visits on the table
   function displayVisitMonthlyModal() {
     return <VisitModalMonthly />
   }
-
-  // const onChangeHandler = (e) => {
-  //   const index = e.target.selectedIndex;
-  //   const el = e.target.childNodes[index]
-  //   const option =  el.getAttribute('id');  
-  // }
-
   //#endregion
   //#region for setting the ID of the provider for the property
   const handleItemClick = item => {
@@ -375,30 +295,12 @@ export default function ClinicVisit() {
   //#region for filtering data with selected date
   const filterDataWithDat = visits.filter((visit) => {
     return visit.visitDate.toString().toLowerCase().includes(dateSelected)
-    // .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
   })
 
   const filterDataWithDate = filterDataWithDat.sort((a, b) =>
     a.hourOfVisit > b.hourOfVisit ? 1 : -1,
   )
   //console.log(filterDataWithDat)
-  //#endregion
-  //#region for mapping and sorting data by date
-  function patientListDaily() {
-    return [...filterDataWithDate]
-      .sort((a, b) => (a.hourOfVisit > b.hourOfVisit ? 1 : -1))
-
-      .map((visit) => {
-        return (
-          <VisitCard
-            visit={visit}
-            deleteRecord={deleteRecord}
-            key={visit._id}
-          />
-        )
-      })
-  }
-  // console.log(filterDataWithDate)
   //#endregion
   //#region for first day of the month
   const monthlyDay = formatDay(startOfTheMonth) //format(startOfTheMonth, 'yyyy-MM-dd')
@@ -1024,56 +926,25 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region code for each weekly daily visit dates
-
-  // const dateSelectedMonday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 1), 'days')
-  //   .format('YYYY-MM-DD')
   const dateSelectedMonday = format(
     addDays(startOfWeek(showDateValue), 1),
     'yyyy-MM-dd',
   )
-  // console.log(dateSelectedMonday, 'dateSelectedMonday')
-  // console.log(moment(showDateValue).date(), 'moment(showDateValue).date()')
-  // console.log(startDayOfTheWeek + 1, 'startDayOfTheWeek + 1')
-  // const dateSelectedMonday = format(showDateValue, 'MM-dd-yyyy')
-  //const dateSelectedMonday4 = addDays(showDateValue, (startDayOfTheWeek + 1))
-  // const dateSelectedMonday3 = format(addDays(startOfWeek(showDateValue),1),'yyyy-MM-dd')
-  // console.log(dateSelectedMonday3, 'dateSelectedMonday3')
-  // const s = getDate(showDateValue)
-  // const t = (startDayOfTheWeek + 1)
-  // const u = getDate(showDateValue) - (startDayOfTheWeek + 1)
-  // console.log(s, t ,u)
-  // console.log(u, 'getDate(showDateValue) - (startDayOfTheWeek + 1)')
-  // console.log(getDate(showDateValue), 'getDate()')
-
-  // console.log(dateSelectedMonday3)
-  // console.log(getDate(dateSelectedMonday2), 'getDate()')
-
-  // const dateSelectedTuesday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 2), 'days')
-  //   .format('YYYY-MM-DD')
   const dateSelectedTuesday = format(
     addDays(startOfWeek(showDateValue), 2),
     'yyyy-MM-dd',
   )
-  //   console.log(dateSelectedTuesday, 'dateSelectedTuesday')
-  // const dateSelectedWednesday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 3), 'days')
-  //   .format('YYYY-MM-DD')
+
   const dateSelectedWednesday = format(
     addDays(startOfWeek(showDateValue), 3),
     'yyyy-MM-dd',
   )
-  // const dateSelectedThursday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 4), 'days')
-  //   .format('YYYY-MM-DD')
+
   const dateSelectedThursday = format(
     addDays(startOfWeek(showDateValue), 4),
     'yyyy-MM-dd',
   )
-  // const dateSelectedFriday = moment(showDateValue)
-  //   .subtract(moment(showDateValue).date() - (startDayOfTheWeek + 5), 'days')
-  //   .format('YYYY-MM-DD')
+
   const dateSelectedFriday = format(
     addDays(startOfWeek(showDateValue), 5),
     'yyyy-MM-dd',
@@ -1090,115 +961,38 @@ export default function ClinicVisit() {
     )
   })
   const filteredDataWeeklyTuesday = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedTuesday)
-    // }
-    // //return the item which contains the user input
-    // else {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedTuesday)
-    // }
     return (
       el.visitDate
-        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedTuesday)
     )
   })
-
-  // console.log(filteredDataWeeklyTuesday, 'filteredDataWeeklyTuesday')
   const filteredDataWeeklyWed = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedWednesday)
-    // }
-    //return the item which contains the user input
-    // else {
     return (
       el.visitDate
-        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedWednesday)
     )
-    // }
   })
 
   const filteredDataWeeklyThursday = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedThursday)
-    // }
-    // //return the item which contains the user input
-    // else {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedThursday)
-    // }
     return (
       el.visitDate
-        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedThursday)
     )
   })
   const filteredDataWeeklyFri = visits.filter((el) => {
-    //if no input the return the with the original default date
-    // if (searchInput === '') {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedFriday)
-    // }
-    // //return the item which contains the user input
-    // else {
-    //   return Object.values(el)
-    //     .toString()
-    //     .toLowerCase()
-    //     .includes(dateSelectedFriday)
-    // }
     return (
       el.visitDate
-        // Object.values(el)
         .toString()
         .toLowerCase()
         .includes(dateSelectedFriday)
     )
   })
-
-  // const filteredDataMonthly = visits.filter((el) => {
-  //   // const date = '2022-11-10'
-  //   //if no input the return the with the original default date
-  //   if (searchInput === '') {
-  //     // return el
-  //     return el.visitDate
-  //     .toString()
-  //       .toLowerCase()
-  //     // .filter((el) => el.visitDate === date)
-  //   }
-  //   //return the item which contains the user input
-  //   else {
-  //     return el.visitDate
-  //     .toString()
-  //       .toLowerCase()
-  //     // .filter((el) => el.visitDate === date)
-  //   }
-  // })
   //#endregion
   //#region for weekly calendar base date values
   let dayOfSunday = 1
@@ -1291,65 +1085,25 @@ export default function ClinicVisit() {
   }
   //#endregion
   //#region code for monthly calendar create visits
-  // const weekdayTitle = document.getElementById('weekDayTitleChild').innerHTML
-  // console.log(weekdayTitle)
   const month = getMonth(startOfTheMonth)
   const year = getYear(startOfTheMonth)
   const [selectedNumber, setSelectedNumber] = useState('')
   const day = selectedNumber
-  // const sel = new Date(year, month, day)
-  // const select = format(sel, 'yyyy-MM-dd')
-  // const selectDate = select
-  // const [selectedElement, setSelectedElement] = useState('')
   const [selectedDate, setSelectedDate] = useState('')
-
-  // const weekenddate = addDays(new Date(selectedDate), 1)
-  // const weekendTrue = isSaturday(weekenddate) || isSunday(weekenddate)
   const [weekendDay, setWeekendDay] = useState()
   const wekendSunday = isSunday(addDays(new Date(selectedDate), 1))
   const wekendSaturday = isSaturday(addDays(new Date(selectedDate), 1))
-
-  // console.log(
-  //   weekendDay,
-  //   wekendSunday,
-  //   wekendSaturday,
-  //   selectedDate,
-  //   addDays(new Date(selectedDate), 1),
-  // )
-  // console.log(selectedDate,weekendTrue,isSaturday(weekenddate),isSunday(weekenddate))
   const handleClick = (event) => {
     var target = event.target || event.srcElement
 
     setSelectedNumber(target.innerText)
     handleMonthlyShow()
     setNewPatient(true)
+
   }
-  // const weekendSat = isSaturday(addDays(new Date(selectedDate), 1))
-  // const weekendSun = isSunday(addDays(new Date(selectedDate), 1))
-  // const weekend = weekendSat || weekendSun
-  // console.log(weekend, selectedDate, new Date(selectedDate))
-  // function weekending() {
-  //   if (wekendSunday) {
-  //     setWeekendDay('true')
-  //   } else if (wekendSaturday) {
-  //     setWeekendDay('true')
-  //   } else {
-  //     setWeekendDay('false')
-  //   }
-  // }
   useEffect(
     (e) => {
-      // e.preventDefault()
       let isSubscribed = true
-      // function weekending () {
-      //   if (wekendSunday) {
-      //     setWeekendDay('true')
-      //   } else if (wekendSaturday) {
-      //     setWeekendDay('true')
-      //   } else {
-      //     setWeekendDay('false')
-      //   }
-      // }
       const sel = new Date(year, month, day)
       const selectDate = format(sel, 'yyyy-MM-dd')
       setSelectedDate(selectDate)
@@ -1478,41 +1232,41 @@ export default function ClinicVisit() {
     exceptionWed: exceptionWeds,
     exceptionThurs: exceptionThur,
     exceptionFri: exceptionFris,
-    providerID: selectedExceptionMDID,
+    // providerID: selectedExceptionMDID,
     startDate: selectedExceptionMDStart,
     endDate: selectedExceptionMDEnd } = exceptionMD[0] === undefined ? 'Test User' : exceptionMD[0]
 
-    function isException(dateItem) {
-      const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
-      const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
-      const isException = isDayException && isExcept ? true : false
-      return isException
-    }
-
-  // console.log(exceptionMons)
+  function isException(dateItem) {
+    const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
+    const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
+    const isException = isDayException && isExcept ? true : false
+    return isException
+  }
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/exceptions')
       .then((response) => {
-        const data = response.data//.find(doc => doc.name === exceptionMD)
+        const data = response.data
         setStaffExceptions(data)
       })
       .catch((error) => {
         console.log('Error from exception list')
       })
   }, [])
-// console.log(selectExceptionMD)
   //#endregion
   //#region for pulling the schedules based on selected provider availability
   const [staffSchedules, setStaffSchedules] = useState([])
   const availableMD = staffSchedules.filter((doc) => doc.provider === selectAvailabilityMD)
+  //provider below is used for props.provider
+  const { provider } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
+
   const {
     scheduledMon: scheduledMons,
     scheduledTues: scheduledTue,
     scheduledWed: scheduledWeds,
     scheduledThurs: scheduledThur,
     scheduledFri: scheduledFris,
-    providerID: selectedAvailableMDID,
+    // providerID: selectedAvailableMDID,
     startDate: selectedAvailableMDStart,
     endDate: selectedAvailableMDEnd } = availableMD[0] === undefined ? 'Test User' : availableMD[0]
 
@@ -1568,7 +1322,7 @@ export default function ClinicVisit() {
   }
 
   //Weekly
-  const WeekDayDate1 = format(new Date(startOfTheWeekDate), 'yyyy-MM-dd') //Sunday
+  // const WeekDayDate1 = format(new Date(startOfTheWeekDate), 'yyyy-MM-dd') //Sunday
   const WeekDayDate2 = format(addDays(new Date(startOfTheWeekDate), 1), 'yyyy-MM-dd') //Monday
   const WeekDayDate3 = format(addDays(new Date(startOfTheWeekDate), 2), 'yyyy-MM-dd')//Tuesday
   const WeekDayDate4 = format(addDays(new Date(startOfTheWeekDate), 3), 'yyyy-MM-dd') //Wednesday
@@ -1609,8 +1363,6 @@ export default function ClinicVisit() {
   }
 
   //#endregion
-  
-  const [selectedDr, setSelectedDr] = useState([])
 
   return (
     <div className="grid_container">
@@ -1631,6 +1383,7 @@ export default function ClinicVisit() {
                 </h4>
               </div>
               <div className="customDatePickerWidth searchLabel select">
+
                 <DatePicker
                   selected={showDateValue}
                   className="form-control"
@@ -1724,7 +1477,7 @@ export default function ClinicVisit() {
                     onChange={(e) => {
                       setSelectAvailabilityMD(e.target.value)
                       setSelectExceptionMD(e.target.value)
-                      setSelectedDr(e.target.value)
+
                     }}
                   >
                     {' '}
@@ -1739,6 +1492,7 @@ export default function ClinicVisit() {
                   </select>
                 </label>
               </div>
+
               {/* provider end */}
               {/* search start */}
 
@@ -1749,10 +1503,11 @@ export default function ClinicVisit() {
                     data-placement="right"
                     title="Search for Visit"
                     href="/visitlist"
-                    className="btn btn-info"
+                    className="btn btn-sm"
                     role="button"
                   >
-                    <i className="fa fa-search" aria-hidden="true"></i>
+                    Search Visits {' '}
+                    <i className="fa fa-search fa-sm" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>
@@ -1776,730 +1531,947 @@ export default function ClinicVisit() {
             >
               <div className="weekDayTitleParent">
                 <div id="weekDayTitleChild" className="weekDayTitleChild">
-                  Su
+                  Sun
                 </div>
-                <div
-                  className="weekDayTitleChild"
+                <div className="weekDayTitleChild"
                 // onClick={() => {
                 //   alert.show('Oh look, an alert!')
                 // }}
                 >
-                  Mo
+                  Mon
                 </div>
-                <div className="weekDayTitleChild">Tu</div>
-                <div className="weekDayTitleChild">We</div>
-                <div className="weekDayTitleChild">Th</div>
-                <div className="weekDayTitleChild">Fr</div>
-                <div className="weekDayTitleChild">Sa</div>
+                <div className="weekDayTitleChild">Tue</div>
+                <div className="weekDayTitleChild">Wed</div>
+                <div className="weekDayTitleChild">Thu</div>
+                <div className="weekDayTitleChild">Fri</div>
+                <div className="weekDayTitleChild">Sat</div>
               </div>
               <div style={{ overflowY: 'auto' }}>
                 <div className="monthDayTitleParent">
                   <div className="monthDayTitleChild"
                     style={{
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate1), 1)) ? 'none' : 'auto',
                       gridColumnStart: startOfTheMonthDayNumber + 1,
-                      backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) || isException(MonthDayDate1) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate1) ? isWeekend(addDays(new Date(MonthDayDate1), 1)) || isException(MonthDayDate1) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
                   >
-                    <span id="day1" >
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay}
-
-                      </button>
-                    </span>
-                    {visitListMonthlyDay1()}
-                    {/* {console.log(isException(MonthDayDate1), MonthDayDate1, exceptionWeds)} */}
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay))
+                      }} >
+                      <span id="day1" className='day'  >
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm "
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
+                    <div>
+                      {visitListMonthlyDay1()}
+                    </div>
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate2), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate2) ? isWeekend(addDays(new Date(MonthDayDate2), 1)) || isException(MonthDayDate2) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span id="day2" className="day">
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
-                      </button>
-                    </span>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2))
+                      }} >
+                      <span id="day2" className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 2}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay2()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) || isException(MonthDayDate3) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate3), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate3) ? isWeekend(addDays(new Date(MonthDayDate3), 1)) || isException(MonthDayDate3) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span className="day" id="day3">
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
-                      </button>
-                    </span>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3))
+                      }} >
+                      <span className="day" id="day3">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 2 > endOfTheMonthDay ? 1 : 3}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay3()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) || isException(MonthDayDate4) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate4), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate4) ? isWeekend(addDays(new Date(MonthDayDate4), 1)) || isException(MonthDayDate4) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span className="day4" id="day4">
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
-                      </button>
-                    </span>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4))
+                      }} >
+                      <span className="day" id="day4">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 3 > endOfTheMonthDay ? 1 : 4}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay4()}
                   </div>
-                  <div
-                    className="monthDayTitleChild"
-                    onClick={() => {
-                      handleMonthlyShow()
-                      setSelectedDate()
-
-                    }}
+                  <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) || isException(MonthDayDate5) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate5) ? isWeekend(addDays(new Date(MonthDayDate5), 1)) || isException(MonthDayDate5) ? '#ffdbe6' : '#ebfcec' : 'white',
 
                     }}
                   >
-                    <span className="day5" id="day5">
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
-                      </button>
-                    </span>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5))
+                      }} >
+                      <span className="day" id="day5">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 4 > endOfTheMonthDay ? 1 : 5}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay5()}
                   </div>
-                  <div className="monthDayTitleChild" style={{
-                    backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) || isException(MonthDayDate6) ? '#f3aac0' : '#cefad0' : 'white',
-                  }}>
-                    <span className="day6" id="day6">
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
-                      </button>
-                    </span>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate6), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate6) ? isWeekend(addDays(new Date(MonthDayDate6), 1)) || isException(MonthDayDate6) ? '#ffdbe6' : '#ebfcec' : 'white',
+                    }}>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6))
+                      }} >
+                      <span className="day" id="day6">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 5 > endOfTheMonthDay ? 1 : 6}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay6()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) || isException(MonthDayDate7) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate7), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate7) ? isWeekend(addDays(new Date(MonthDayDate7), 1)) || isException(MonthDayDate7) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
-                      </button>
-                    </span>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 6 > endOfTheMonthDay ? 1 : 7}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay7()}
                   </div>
-                  <div
-                    className="monthDayTitleChild"
+                  <div className="monthDayTitleChild"
                     style={{
-                      pointerEvents: weekendDay ? 'none' : '',
-
-                      backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) || isException(MonthDayDate8) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate8), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate8) ? isWeekend(addDays(new Date(MonthDayDate8), 1)) || isException(MonthDayDate8) ? '#ffdbe6' : '#ebfcec' : 'white',
 
                     }}
                   >
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
-                      </button>
-                    </span>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 7 > endOfTheMonthDay ? 1 : 8}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay8()}
                   </div>
-                  <div className="monthDayTitleChild" style={{
-                    backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) || isException(MonthDayDate9) ? '#f3aac0' : '#cefad0' : 'white',
-                  }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
-                      </button>
-                    </span>
+                  <div className="monthDayTitleChild"
+                    style={{
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate9), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate9) ? isWeekend(addDays(new Date(MonthDayDate9), 1)) || isException(MonthDayDate9) ? '#ffdbe6' : '#ebfcec' : 'white',
+                    }}>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 8 > endOfTheMonthDay ? 1 : 9}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay9()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) || isException(MonthDayDate10) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate10), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate10) ? isWeekend(addDays(new Date(MonthDayDate10), 1)) || isException(MonthDayDate10) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 9 > endOfTheMonthDay ? 1 : 10}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay10()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      pointerEvents: weekendDay ? 'none' : '',
-                      backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) || isException(MonthDayDate11) ? '#f3aac0' : '#cefad0' : 'white',
-                    }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
-                      </button>
-                    </span>
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate11), 1)) ? 'none' : 'auto',
 
+                      backgroundColor: isScheduled(MonthDayDate11) ? isWeekend(addDays(new Date(MonthDayDate11), 1)) || isException(MonthDayDate11) ? '#ffdbe6' : '#ebfcec' : 'white',
+                    }}>
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 10 > endOfTheMonthDay ? 1 : 11}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay11()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) || isException(MonthDayDate12) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate12), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate12) ? isWeekend(addDays(new Date(MonthDayDate12), 1)) || isException(MonthDayDate12) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 11 > endOfTheMonthDay ? 1 : 12}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay12()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) || isException(MonthDayDate13) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate13), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate13) ? isWeekend(addDays(new Date(MonthDayDate13), 1)) || isException(MonthDayDate13) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 12 > endOfTheMonthDay ? 1 : 13}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay13()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) || isException(MonthDayDate14) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate14), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate14) ? isWeekend(addDays(new Date(MonthDayDate14), 1)) || isException(MonthDayDate14) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 13 > endOfTheMonthDay ? 1 : 14}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay14()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) || isException(MonthDayDate15) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate15), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate15) ? isWeekend(addDays(new Date(MonthDayDate15), 1)) || isException(MonthDayDate15) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 14 > endOfTheMonthDay ? 1 : 15}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay15()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) || isException(MonthDayDate16) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate16), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate16) ? isWeekend(addDays(new Date(MonthDayDate16), 1)) || isException(MonthDayDate16) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 1 > endOfTheMonthDay ? 1 : 16}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 15 > endOfTheMonthDay ? 1 : 16))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 15 > endOfTheMonthDay ? 1 : 16}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay16()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) || isException(MonthDayDate17) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate17), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate17) ? isWeekend(addDays(new Date(MonthDayDate17), 1)) || isException(MonthDayDate17) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 16 > endOfTheMonthDay ? 1 : 17}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay17()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) || isException(MonthDayDate18) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate18), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate18) ? isWeekend(addDays(new Date(MonthDayDate18), 1)) || isException(MonthDayDate18) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 17 > endOfTheMonthDay ? 1 : 18}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay18()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) || isException(MonthDayDate19) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate19), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate19) ? isWeekend(addDays(new Date(MonthDayDate19), 1)) || isException(MonthDayDate19) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 18 > endOfTheMonthDay ? 1 : 19}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay19()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) || isException(MonthDayDate20) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate20), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate20) ? isWeekend(addDays(new Date(MonthDayDate20), 1)) || isException(MonthDayDate20) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 19 > endOfTheMonthDay ? 1 : 20}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay20()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) || isException(MonthDayDate21) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate21), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate21) ? isWeekend(addDays(new Date(MonthDayDate21), 1)) || isException(MonthDayDate21) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 20 > endOfTheMonthDay ? 1 : 21}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay21()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) || isException(MonthDayDate22) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate22), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate22) ? isWeekend(addDays(new Date(MonthDayDate22), 1)) || isException(MonthDayDate22) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 21 > endOfTheMonthDay ? 1 : 22}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay22()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) || isException(MonthDayDate23) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate23), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate23) ? isWeekend(addDays(new Date(MonthDayDate23), 1)) || isException(MonthDayDate23) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 22 > endOfTheMonthDay ? 1 : 23}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay23()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) || isException(MonthDayDate24) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate24), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate24) ? isWeekend(addDays(new Date(MonthDayDate24), 1)) || isException(MonthDayDate24) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 23 > endOfTheMonthDay ? 1 : 24}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay24()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) || isException(MonthDayDate25) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate25), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate25) ? isWeekend(addDays(new Date(MonthDayDate25), 1)) || isException(MonthDayDate25) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 24 > endOfTheMonthDay ? 1 : 25}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay25()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) || isException(MonthDayDate26) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate26), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate26) ? isWeekend(addDays(new Date(MonthDayDate26), 1)) || isException(MonthDayDate26) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 25 > endOfTheMonthDay ? 1 : 26}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay26()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) || isException(MonthDayDate27) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate27), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate27) ? isWeekend(addDays(new Date(MonthDayDate27), 1)) || isException(MonthDayDate27) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 26 > endOfTheMonthDay ? 1 : 27}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay27()}
                   </div>
                   <div className="monthDayTitleChild"
                     style={{
-                      backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) || isException(MonthDayDate28) ? '#f3aac0' : '#cefad0' : 'white',
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate28), 1)) ? 'none' : 'auto',
+                      backgroundColor: isScheduled(MonthDayDate28) ? isWeekend(addDays(new Date(MonthDayDate28), 1)) || isException(MonthDayDate28) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}>
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 27 > endOfTheMonthDay ? 1 : 28}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay28()}
                   </div>
                   <div
                     className="monthDayTitleChild"
                     style={{
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate29), 1)) ? 'none' : 'auto',
                       display:
                         startOfTheMonthDay + 28 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) || isException(MonthDayDate29) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate29) ? isWeekend(addDays(new Date(MonthDayDate29), 1)) || isException(MonthDayDate29) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
                   >
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 28 > endOfTheMonthDay ? 1 : 29}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay29()}
                   </div>
                   <div
                     className="monthDayTitleChild"
                     style={{
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate30), 1)) ? 'none' : 'auto',
                       display:
                         startOfTheMonthDay + 29 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) || isException(MonthDayDate30) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate30) ? isWeekend(addDays(new Date(MonthDayDate30), 1)) || isException(MonthDayDate30) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
                   >
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 29 > endOfTheMonthDay ? 1 : 30}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay30()}
                   </div>
                   <div
                     className="monthDayTitleChild"
                     style={{
+                      pointerEvents: isWeekend(addDays(new Date(MonthDayDate31), 1)) ? 'none' : 'auto',
                       display:
                         startOfTheMonthDay + 30 > endOfTheMonthDay
                           ? 'none'
                           : 'inline',
-                      backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) || isException(MonthDayDate31) ? '#f3aac0' : '#cefad0' : 'white',
+                      backgroundColor: isScheduled(MonthDayDate31) ? isWeekend(addDays(new Date(MonthDayDate31), 1)) || isException(MonthDayDate31) ? '#ffdbe6' : '#ebfcec' : 'white',
                     }}
-
                   >
-                    <span>
-                      <button
-                        style={{
-                          fontSize: '10px',
-                          paddingTop: '1px',
-                          paddingBottom: '1px',
-                          borderRadius: '10px',
-                        }}
-                        className="btn btn-info btn-sm"
-                        onClick={handleClick}
-                        title="Click to add visit"
-                      >
-                        {startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31}
-                      </button>
-                    </span>
-
+                    <div className='dailySpanContainer'
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex, startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31))
+                      }} >
+                      <span className="day">
+                        <button
+                          style={{
+                            fontSize: '10px',
+                            paddingTop: '1px',
+                            paddingBottom: '1px',
+                            borderRadius: '10px',
+                          }}
+                          className="btn calendarBtn btn-sm"
+                          onClick={handleClick}
+                          title="Click to add visit"
+                        >
+                          {startOfTheMonthDay + 30 > endOfTheMonthDay ? 1 : 31}
+                        </button>
+                        <div className="dailySpanContainerItems"> Click for daily view</div>
+                      </span>
+                    </div>
                     {visitListMonthlyDay31()}
                   </div>
                 </div>
@@ -2509,11 +2481,12 @@ export default function ClinicVisit() {
             <div
               className="weekly"
               style={{
+                // pointerEvents: isWeekend(addDays(new Date(MonthDayDate5), 1)) ? 'none' : 'auto',
                 display: selectViewValue === 'Weekly' ? 'inline' : 'none',
                 paddingLeft: '0px',
                 marginBottom: '0px',
                 height: '100%',
-                // backgroundColor: isScheduled(MonthDayDate31) ? '#cefad0' : 'white',
+                // backgroundColor: isScheduled(MonthDayDate31) ? '#ebfcec' : 'white',
               }}
             >
               <div className="grid-weeklycalcontainer">
@@ -2521,7 +2494,7 @@ export default function ClinicVisit() {
                   fontSize: '14px',
                   // height: 'calc(100vh - 132px)',
                   height: '100%',
-                  // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(MonthDayDate1) ? 'white' : '#cefad0' : 'white',
+                  // backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(MonthDayDate1) ? 'white' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2540,7 +2513,7 @@ export default function ClinicVisit() {
                   fontSize: '14px',
                   // height: 'calc(100vh - 132px)',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(WeekDayDate2) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(WeekDayDate2) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2567,7 +2540,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) || isException(WeekDayDate3) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) || isException(WeekDayDate3) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }} >
                   <li className="calendar-item weekday">
                     <div>
@@ -2586,7 +2559,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) || isException(WeekDayDate4) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) || isException(WeekDayDate4) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2613,7 +2586,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) || isException(WeekDayDate5) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) || isException(WeekDayDate5) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2633,7 +2606,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) || isException(WeekDayDate6) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) || isException(WeekDayDate6) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
@@ -2654,7 +2627,7 @@ export default function ClinicVisit() {
                 <div style={{
                   fontSize: '14px',
                   height: '100%',
-                  backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) || isException(WeekDayDate7) ? '#f3aac0' : '#cefad0' : 'white',
+                  backgroundColor: isScheduled(WeekDayDate7) ? isWeekend(addDays(new Date(WeekDayDate7), 1)) || isException(WeekDayDate7) ? '#ffdbe6' : '#ebfcec' : 'white',
                 }}>
                   <li className="calendar-item weekday">
                     <div>
