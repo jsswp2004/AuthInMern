@@ -314,7 +314,7 @@ const ShowEventsList = () => {
         <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel">
           <Button
-            className="btn btn-info btn-sm registerBtn"
+            className="btn btn-info registerBtn"
             onClick={handleShow}
           >
             <i
@@ -323,7 +323,7 @@ const ShowEventsList = () => {
               title="Add Event"
             />
           </Button>
-          <button className='btn btn-success btn-sm registerBtn'
+          <button className='btn btn-success registerBtn'
             onClick={handleDownloadExcel}
           >
             <i
@@ -373,7 +373,7 @@ const ShowEventsList = () => {
                     <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
                     <StyledTableCell align="left">
 
-                      <button className='btn btn-info btn-sm registerBtn'
+                      <button className='btn btn-info registerBtn'
                         onClick={handleEditShow}
                       >
                         <i
@@ -395,7 +395,7 @@ const ShowEventsList = () => {
                         />
                       </button> */}
                       <button
-                        className="btn btn-danger btn-sm registerBtn"
+                        className="btn btn-danger registerBtn"
                         onClick={handleShowDelete}
                       >
                         <i

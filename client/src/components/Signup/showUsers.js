@@ -308,10 +308,10 @@ export default function ShowUsersList() {
         <div>{displayEditRoleModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel" >
-          <Link className="btn btn-info btn-sm registerBtn" to={`/signup`}>
+          <Link className="btn btn-info  registerBtn" to={`/signup`}>
             <i className="fa fa-user fa-sm" aria-hidden="true" title='Add User' />
           </Link>{' '}
-          <button className='btn btn-success btn-sm registerBtn'
+          <button className='btn btn-success  registerBtn'
             onClick={handleDownloadExcel}
           >
             <i
@@ -369,7 +369,7 @@ export default function ShowUsersList() {
                       {user.addedDate}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      <button className='btn btn-info btn-sm registerBtn'
+                      <button className='btn btn-info  registerBtn'
                         onClick={handleEditShow}
                       >
                         <i
@@ -379,7 +379,7 @@ export default function ShowUsersList() {
                         />
                       </button>
                       <button
-                        className="btn btn-danger btn-sm registerBtn"
+                        className="btn btn-danger registerBtn"
                         onClick={handleShowDelete}
                       >
                         <i

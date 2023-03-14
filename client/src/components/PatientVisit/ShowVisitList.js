@@ -24,6 +24,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
 import { Link } from 'react-router-dom'
+import * as XLSX from "xlsx"
 //#endregion
 
 export default function ShowVisitList() {
@@ -303,6 +304,40 @@ export default function ShowVisitList() {
     rowsPerPage: PropTypes.number.isRequired,
   }
 
+
+  //for excel download
+  const handleDownloadExcel = (e) => {
+    const rows = visits.map((e) =>
+    ({
+      _id: e._id,
+      medicalRecordNumber: e.medicalRecordNumber,
+      visitNumber: e.visitNumber,
+      hourOfVisit: e.hourOfVisit,
+      provider: e.provider,
+      visitDate: e.visitDate,
+      addedDate: e.addedDate,
+      firstName: e.firstName,
+      lastName: e.lastName,
+      middleName: e.middleName,
+      email: e.email,
+
+    }))
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Visits");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ["User ID", "Name", 'firstName', 'lastName', 'Email', 'Role', 'Added Date'],
+    ]);
+
+    XLSX.writeFile(workbook, "Visit_List_Report.xlsx", { compression: true });
+
+  }
+
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(15)
 
@@ -395,6 +430,15 @@ export default function ShowVisitList() {
           </div>
           {/* .filter_navbar */}
           <div className="right searchLabel filter_navbarRight">
+            <button className='btn btn-success btn-sm registerBtn'
+              onClick={handleDownloadExcel}
+            >
+              <i
+                className="fa fa-file-excel-o"
+                aria-hidden="true"
+                title="Export to Excel"
+              />
+            </button>
             <label htmlFor="search" className=" filter_search-label">
               Search :{' '}
               <input
@@ -484,7 +528,7 @@ export default function ShowVisitList() {
                       </Link>{' '} */}
 
                       <button
-                        className="btn btn-primary btn-sm registerBtn"
+                        className="btn btn-primary registerBtn"
                         onClick={() => { handleEditVisitShow(pt._id) }}>
                         <i
                           className="fa fa-pencil-square-o"
@@ -492,22 +536,26 @@ export default function ShowVisitList() {
                           title='edit visit'
                         />
                       </button>
-                      <Link
-                        className="btn btn-success btn-sm registerBtn"
+                      {/* <button className="btn btn-success btn-sm registerBtn"> */}
+                      <Link className="btn btn-success registerBtn"
                         to={`/detailsVisit/${pt._id}`}
                       >
                         <i
-                          className="fa fa-clipboard fa-sm"
+                          title="visit details"
+                          className="fa fa-edit"
                           aria-hidden="true"
                         />
                       </Link>
+
+                      {/* </button> */}
+
                       <button
-                        className="btn btn-danger btn-sm registerBtn"
+                        className="btn btn-danger registerBtn"
                         onClick={handleShowDelete}
                       >
                         <i
                           title="delete visit"
-                          className="fa fa-trash-o fa-sm"
+                          className="fa fa-trash-o"
                           aria-hidden="true"
                         />
                       </button>

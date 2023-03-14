@@ -341,7 +341,7 @@ const ShowSchedulesList = () => {
         <label htmlFor="search" className="searchLabel">
           {/* create schedule button */}
           <Button
-            className="btn btn-info btn-sm registerBtn"
+            className="btn btn-info  registerBtn"
             onClick={handleShow}
           >
             <i
@@ -351,7 +351,7 @@ const ShowSchedulesList = () => {
             />
           </Button>
           {/* export to excel button */}
-          <button className='btn btn-success btn-sm registerBtn'
+          <button className='btn btn-success  registerBtn'
             onClick={handleDownloadExcel}
           >
             <i
@@ -433,7 +433,7 @@ const ShowSchedulesList = () => {
                       {schedule.scheduledFri + ' '}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      <button className='btn btn-info btn-sm registerBtn'
+                      <button className='btn btn-info  registerBtn'
                         onClick={handleEditShow}
                       >
                         <i
@@ -443,7 +443,7 @@ const ShowSchedulesList = () => {
                         />
                       </button>
                       <button
-                        className="btn btn-danger btn-sm registerBtn"
+                        className="btn btn-danger  registerBtn"
                         onClick={handleShowDelete}
                       >
                         <i

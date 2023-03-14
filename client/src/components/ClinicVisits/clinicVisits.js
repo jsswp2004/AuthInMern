@@ -1375,7 +1375,8 @@ export default function ClinicVisit() {
       <div className="item3">
         <div className="grid_calendar">
           <div className="itemCalendar1">
-            <div className="month-indicator item3C">
+            <div style={{ display: 'flex' }}>
+              {/* className="month-indicator item3C" */}
               <div className="month-name">
                 <h4 className='patientListHeader'
                 >
@@ -1383,7 +1384,6 @@ export default function ClinicVisit() {
                 </h4>
               </div>
               <div className="customDatePickerWidth searchLabel select">
-
                 <DatePicker
                   selected={showDateValue}
                   className="form-control"
@@ -1446,7 +1446,7 @@ export default function ClinicVisit() {
               <div
                 style={{
                   marginLeft: 'auto',
-                  height: '30px',
+                  // height: '30px',
                   marginTop: '5px',
                 }}
               >
@@ -1466,7 +1466,8 @@ export default function ClinicVisit() {
               </div>
               {/* modal end*/}
               {/* provider availability start */}
-              <div className="searchLabel viewlabel">
+              <div >
+                {/* className="searchLabel viewlabel" */}
                 <label>
                   {/* Provider: */}
                   <select

@@ -25,6 +25,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import CreateRegistration from './createPatientModal'
 import CreateVisitRegistration from '../Scheduling/createVisitFromRegModal'
+import * as XLSX from "xlsx"
 //#endregion
 
 export default function ShowRecordList() {
@@ -63,6 +64,46 @@ export default function ShowRecordList() {
   const handleVisitClick = (e) => {
     e.preventDefault()
     setVisitShow(false)
+  }
+
+  const handleDownloadExcel = (e) => {
+    const rows = records.map((e) =>
+    ({
+      _id: e._id,
+      medicalRecordNumber: e.medicalRecordNumber,
+      visitNumber: e.visitNumber,
+      firstName: e.firstName,
+      lastName: e.lastName,
+      middleName: e.middleName,
+      gender: e.gender,
+      race: e.race,
+      dateOfBirth: e.dateOfBirth,
+      age: e.age,
+      language: e.language,
+      address: e.address,
+      city: e.city,
+      state: e.state,
+      zipCode: e.zipCode,
+      email: e.email,
+      homePhone: e.homePhone,
+      cellphone: e.cellphone,
+      businessPhone: e.businessPhone,
+      addedDate: e.addedDate,
+    }))
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Records");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ["Event ID", "Name", 'Added Date'],
+    ]);
+
+    XLSX.writeFile(workbook, "Record_List_Report.xlsx", { compression: true });
+
   }
 
   useEffect(() => {
@@ -358,160 +399,169 @@ export default function ShowRecordList() {
           <div>{displayVisitFromRegistrationModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
           <div className="searchLabel">
-          <label htmlFor="search" >
-            <Button
-              className="btn btn-info btn-sm registerBtn"
-              onClick={handleShow}
-            >
-              <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient' />
-            </Button>
-            Search :{' '}
-            <input
-              className="searchInput"
-              id="search"
-              type="text"
-              placeholder="Search patients"
-              onChange={handleChange}
-              value={searchInput}
-            />
+            <label htmlFor="search" >
+              <Button
+                className="btn btn-info  registerBtn"
+                onClick={handleShow}
+              >
+                <i className="fa fa-hospital-user fa-sm " aria-hidden="true" title='Add Patient' />
+              </Button>
+              <button className='btn btn-success registerBtn'
+                onClick={handleDownloadExcel}
+              >
+                <i
+                  className="fa fa-file-excel-o"
+                  aria-hidden="true"
+                  title="Export to Excel"
+                />
+              </button>
+              Search :{' '}
+              <input
+                className="searchInput"
+                id="search"
+                type="text"
+                placeholder="Search patients"
+                onChange={handleChange}
+                value={searchInput}
+              />
             </label>
-            </div>
+          </div>
         </div>
         <div className="item3B" style={{ overflowY: 'auto' }}>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="left">MRN</StyledTableCell>
-                {/* <StyledTableCell align="left">Visit Number</StyledTableCell> */}
-                <StyledTableCell align="left">Firstname</StyledTableCell>
-                <StyledTableCell align="left">Middlename</StyledTableCell>
-                <StyledTableCell align="left">Lastname</StyledTableCell>
-                <StyledTableCell align="left">DOB</StyledTableCell>
-                <StyledTableCell align="left">Gender</StyledTableCell>
-                <StyledTableCell align="left">Age</StyledTableCell>
-                <StyledTableCell align="left">Race</StyledTableCell>
-                <StyledTableCell align="left">Date Added</StyledTableCell>
-                <StyledTableCell align="left">Actions</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(rowsPerPage > 0
-                ? filteredData.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage,
-                )
-                : filteredData
-              ).map((pt) => (
-                <StyledTableRow key={pt._id}
-                  onClick={() => handleItemClick(pt)}
-                >
-                  <StyledTableCell align="left">
-                    {pt.medicalRecordNumber}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {pt.firstName}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {pt.middleName}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">{pt.lastName}</StyledTableCell>
-                  <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
-                  <StyledTableCell align="left">
-                    {pt.gender}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {pt.age}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {pt.race}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {pt.addedDate}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    <Button
-                      className="btn btn-primary btn-sm registerBtn"
-                      onClick={handleVisitShow}
-                    >
-                      <i
-                        className="fa fa-stethoscope fa-sm"
-                        aria-hidden="true" title='Create visit'
-                      />
-                    </Button>
-                    <Link
-                      className="btn btn-success btn-sm registerBtn"
-                      // to={`/showPatientVisitList/${pt._id}`}
-                      to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
-                    >
-                      <i
-                        className="fa fa-h-square fa-sm"
-                        aria-hidden="true" title='Display patient visits'
-                      />
-                    </Link>{' '}
-                    <Link
-                      className="btn btn-info btn-sm registerBtn"
-                      to={`/editPatient/${pt._id}`}
-                    >
-                      <i
-                        className="fa fa-hospital-o fa-sm"
-                        aria-hidden="true" title='Edit registration'
-                      />
-                    </Link>{' '}
-                    {/* <button
-                      className="btn btn-danger btn-sm"
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="left">MRN</StyledTableCell>
+                  {/* <StyledTableCell align="left">Visit Number</StyledTableCell> */}
+                  <StyledTableCell align="left">Firstname</StyledTableCell>
+                  <StyledTableCell align="left">Middlename</StyledTableCell>
+                  <StyledTableCell align="left">Lastname</StyledTableCell>
+                  <StyledTableCell align="left">DOB</StyledTableCell>
+                  <StyledTableCell align="left">Gender</StyledTableCell>
+                  <StyledTableCell align="left">Age</StyledTableCell>
+                  <StyledTableCell align="left">Race</StyledTableCell>
+                  <StyledTableCell align="left">Date Added</StyledTableCell>
+                  <StyledTableCell align="left">Actions</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? filteredData.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage,
+                  )
+                  : filteredData
+                ).map((pt) => (
+                  <StyledTableRow key={pt._id}
+                    onClick={() => handleItemClick(pt)}
+                  >
+                    <StyledTableCell align="left">
+                      {pt.medicalRecordNumber}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {pt.firstName}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {pt.middleName}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">{pt.lastName}</StyledTableCell>
+                    <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
+                    <StyledTableCell align="left">
+                      {pt.gender}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {pt.age}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {pt.race}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {pt.addedDate}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      <Button
+                        className="btn btn-primary  registerBtn"
+                        onClick={handleVisitShow}
+                      >
+                        <i
+                          className="fa fa-stethoscope fa-sm"
+                          aria-hidden="true" title='Create visit'
+                        />
+                      </Button>
+                      <Link
+                        className="btn btn-success  registerBtn"
+                        // to={`/showPatientVisitList/${pt._id}`}
+                        to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
+                      >
+                        <i
+                          className="fa fa-h-square fa-sm"
+                          aria-hidden="true" title='Display patient visits'
+                        />
+                      </Link>{' '}
+                      <Link
+                        className="btn btn-info  registerBtn"
+                        to={`/editPatient/${pt._id}`}
+                      >
+                        <i
+                          className="fa fa-hospital-o fa-sm"
+                          aria-hidden="true" title='Edit registration'
+                        />
+                      </Link>{' '}
+                      {/* <button
+                      className="btn btn-danger "
                       onClick={
                         handleShowDelete()
                       }
                     >
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
                     </button> */}
-                    {/* <button
-                      className="btn btn-danger btn-sm"
+                      {/* <button
+                      className="btn btn-danger "
                       onClick={() => { deleteRecord(pt._id) }}                      
                     >
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
                     </button> */}
-                    <button onClick={handleShowDelete}
-                      className="btn btn-danger btn-sm registerBtn"
-                    >
-                      <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" /></button>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-              {emptyRows > 0 && (
-                <StyledTableRow
-                  style={{
-                    height: 53 * emptyRows,
-                  }}
-                >
-                  <StyledTableCell colSpan={6} />
-                </StyledTableRow>
-              )}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  // style={{float:'right'}}
-                  rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
-                  colSpan={12}
-                  count={filteredData.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  SelectProps={{
-                    inputProps: {
-                      'aria-label': 'rows per page',
-                    },
-                    native: true,
-                  }}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={TablePaginationActions}
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
+                      <button onClick={handleShowDelete}
+                        className="btn btn-danger  registerBtn"
+                      >
+                        <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" /></button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {emptyRows > 0 && (
+                  <StyledTableRow
+                    style={{
+                      height: 53 * emptyRows,
+                    }}
+                  >
+                    <StyledTableCell colSpan={6} />
+                  </StyledTableRow>
+                )}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    // style={{float:'right'}}
+                    rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
+                    colSpan={12}
+                    count={filteredData.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    SelectProps={{
+                      inputProps: {
+                        'aria-label': 'rows per page',
+                      },
+                      native: true,
+                    }}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    ActionsComponent={TablePaginationActions}
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </div>
