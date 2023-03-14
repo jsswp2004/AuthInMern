@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
@@ -22,6 +22,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import * as XLSX from "xlsx";
 
 
 const ShowExceptionsList = () => {
@@ -30,14 +31,14 @@ const ShowExceptionsList = () => {
   const [exceptionShow, setExceptionShow] = useState(false)
   const handleExceptionClose = () => setExceptionShow(false)
   const handleExceptionShow = () => {
-    setExceptionShow(true)    
+    setExceptionShow(true)
   }
 
   // Define the Edit Modal state
   const [editShow, setEditShow] = useState(false)
   const handleEditClose = () => setEditShow(false)
   const handleEditShow = () => {
-    setEditShow(true)    
+    setEditShow(true)
   }
   // Define the Exception state
   const [exceptions, setExceptions] = useState([])
@@ -66,6 +67,44 @@ const ShowExceptionsList = () => {
     // navigate('/settingsPage')
     // window.location.reload()
   }
+
+  const handleDownloadExcel = () => {
+    // console.log(exceptions)
+    const rows = exceptions.map((exception) => ({
+      _id: exception._id,
+      providerID: exception.providerID,
+      provider: exception.provider,
+      startDate: exception.startDate,
+      endDate: exception.endDate,
+      amStartTime: exception.amStartTime,
+      amEndTime: exception.amEndTime,
+      pmStartTime: exception.pmStartTime,
+      pmEndTime: exception.pmEndTime,
+      exceptionMon: exception.exceptionMon,
+      exceptionTues: exception.exceptionTues,
+      exceptionWed: exception.exceptionWed,
+      exceptionThurs: exception.exceptionThurs,
+      exceptionFri: exception.exceptionFri,
+      addedDate: exception.addedDate,
+
+    }));
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Exceptions");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ["ID", "Provider ID", "Provider", 'Start Date', 'End Date', 'AM Start Time', 'AM End Time', 'PM Start Time', 'PM End Time', 'Exception Monday', 'Exception Tuesday', 'Exception Wednesday', 'Exception Thursday', 'Exception Friday', 'Added Date'],
+    ]);
+
+    XLSX.writeFile(workbook, "Providers_Exception_List_Report.xlsx", { compression: true });
+
+  }
+
+
 
   useEffect(() => {
     axios
@@ -304,6 +343,7 @@ const ShowExceptionsList = () => {
         <div>{displayEditExceptionModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel">
+
           {/* create exception button */}
           <Button
             className="btn btn-info btn-sm registerBtn"
@@ -315,6 +355,16 @@ const ShowExceptionsList = () => {
               title="Add Exception"
             />
           </Button>
+          {/* export to excel button */}
+          <button className='btn btn-success btn-sm registerBtn'
+            onClick={handleDownloadExcel}
+          >
+            <i
+              className="fa fa-file-excel-o"
+              aria-hidden="true"
+              title="Export to Excel"
+            />
+          </button>
           Search :{' '}
           <input
             // className="searchLabel"
@@ -324,6 +374,7 @@ const ShowExceptionsList = () => {
             onChange={handleChange}
             value={searchInput}
           />
+
         </label>
       </div>
 
@@ -352,9 +403,9 @@ const ShowExceptionsList = () => {
               <TableBody >
                 {(rowsPerPage > 0
                   ? exceptions.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage,
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage,
+                  )
                   : exceptions
                 ).map((exception) => (
                   <StyledTableRow key={exception._id}
@@ -389,11 +440,20 @@ const ShowExceptionsList = () => {
                       {exception.exceptionFri + ' '}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      <button className='btn btn-info btn-sm registerBtn'                      
-                        onClick={handleEditShow}                        
+                      {/* <button className='btn btn-success btn-sm registerBtn'
+                        onClick={handleDownloadExcel}
                       >
                         <i
-                          className="fa fa-list-alt fa-sm"
+                          className="fa fa-file-excel-o"
+                          aria-hidden="true"
+                          title="Export to Excel"
+                        />
+                      </button> */}
+                      <button className='btn btn-info btn-sm registerBtn'
+                        onClick={handleEditShow}
+                      >
+                        <i
+                          className="fa fa-list-alt"
                           aria-hidden="true"
                           title="Edit Exception"
                         />
@@ -404,7 +464,7 @@ const ShowExceptionsList = () => {
                       >
                         <i
                           title="delete visit"
-                          className="fa fa-trash-o fa-sm"
+                          className="fa fa-trash-o"
                           aria-hidden="true"
                         />
                       </button>
