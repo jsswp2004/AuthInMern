@@ -1468,8 +1468,8 @@ export default function ClinicVisit() {
             </div>
             {/* modal end*/}
             {/* provider availability start */}
-            <div className="searchLabel viewlabel">
-              {/*  */}
+            <div >
+              {/* className="searchLabels viewlabels" */}
               <label>
                 {/* Provider: */}
                 <select
@@ -1508,11 +1508,11 @@ export default function ClinicVisit() {
                   data-placement="right"
                   title="Search for Visit"
                   href="/visitlist"
-                  className="btn btn-sm"
+                  className="btn btn-info"
                   role="button"
                 >
                   Search Visits {' '}
-                  <i className="fa fa-search fa-sm" aria-hidden="true"></i>
+                  <i className="fa fa-search" aria-hidden="true"></i>
                 </a>
               </div>
             </div>
