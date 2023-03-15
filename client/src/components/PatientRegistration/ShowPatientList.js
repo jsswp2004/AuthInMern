@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@material-ui/styles";
 import Box from '@mui/material/Box'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
@@ -26,8 +27,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import CreateRegistration from './createPatientModal'
 import CreateVisitRegistration from '../Scheduling/createVisitFromRegModal'
 import * as XLSX from "xlsx"
-import { createTheme } from '@mui/material/styles';
-import grey from '@mui/material/colors/grey';
+import themeDesign from '../Functions/theme'
 //#endregion
 
 export default function ShowRecordList() {
@@ -280,7 +280,7 @@ export default function ShowRecordList() {
   //#region Table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.info.dark,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -436,86 +436,94 @@ export default function ShowRecordList() {
           </div>
         </div>
         <div className="item3B" style={{ overflowY: 'auto' }}>
-          <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
-            <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a sticky table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell align="left">MRN</StyledTableCell>
-                  <StyledTableCell align="left">Firstname</StyledTableCell>
-                  <StyledTableCell align="left">Middlename</StyledTableCell>
-                  <StyledTableCell align="left">Lastname</StyledTableCell>
-                  <StyledTableCell align="left">DOB</StyledTableCell>
-                  <StyledTableCell align="left">Gender</StyledTableCell>
-                  <StyledTableCell align="left">Age</StyledTableCell>
-                  <StyledTableCell align="left">Race</StyledTableCell>
-                  <StyledTableCell align="left">Date Added</StyledTableCell>
-                  <StyledTableCell align="left">Actions</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? filteredData.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
-                  : filteredData
-                ).map((pt) => (
-                  <StyledTableRow key={pt._id}
-                    onClick={() => handleItemClick(pt)}
-                  >
-                    <StyledTableCell align="left">
-                      {pt.medicalRecordNumber}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {pt.firstName}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {pt.middleName}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">{pt.lastName}</StyledTableCell>
-                    <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
-                    <StyledTableCell align="left">
-                      {pt.gender}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {pt.age}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {pt.race}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {pt.addedDate}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <Button
-                        className="btn btn-primary  btn-sm"
-                        onClick={handleVisitShow}
-                      >
-                        <i
-                          className="fa fa-stethoscope"
-                          aria-hidden="true" title='Create visit'
-                        />
-                      </Button>
-                      <Link
-                        className="btn btn-success  btn-sm"
-                        // to={`/showPatientVisitList/${pt._id}`}
-                        to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
-                      >
-                        <i
-                          className="fa fa-h-square"
-                          aria-hidden="true" title='Display patient visits'
-                        />
-                      </Link>{' '}
-                      <Link
-                        className="btn btn-info  btn-sm"
-                        to={`/editPatient/${pt._id}`}
-                      >
-                        <i
-                          className="fa fa-hospital-o"
-                          aria-hidden="true" title='Edit registration'
-                        />
-                      </Link>{' '}
-                      {/* <button
+          <ThemeProvider theme={themeDesign}>
+            <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+              <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a sticky table">
+
+
+                <TableHead  >
+                  <TableRow>
+                    <StyledTableCell align="left">MRN</StyledTableCell>
+                    <StyledTableCell align="left">Firstname</StyledTableCell>
+                    <StyledTableCell align="left">Middlename</StyledTableCell>
+                    <StyledTableCell align="left">Lastname</StyledTableCell>
+                    <StyledTableCell align="left">DOB</StyledTableCell>
+                    <StyledTableCell align="left">Gender</StyledTableCell>
+                    <StyledTableCell align="left">Age</StyledTableCell>
+                    <StyledTableCell align="left">Race</StyledTableCell>
+                    <StyledTableCell align="left">Date Added</StyledTableCell>
+                    <StyledTableCell align="left">Actions</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+
+
+                <TableBody>
+                  {(rowsPerPage > 0
+                    ? filteredData.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage,
+                    )
+                    : filteredData
+                  ).map((pt) => (
+                    <StyledTableRow key={pt._id}
+                      onClick={() => handleItemClick(pt)}
+                    >
+                      <StyledTableCell align="left">
+                        {pt.medicalRecordNumber}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {pt.firstName}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {pt.middleName}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">{pt.lastName}</StyledTableCell>
+                      <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
+                      <StyledTableCell align="left">
+                        {pt.gender}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {pt.age}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {pt.race}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {pt.addedDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        <Button
+                          className="btn btn-primary  btn-sm"
+                          onClick={handleVisitShow}
+                        >
+                          <i
+                            className="fa fa-stethoscope"
+                            aria-hidden="true" title='Create visit'
+                          />
+                        </Button>
+                        {/* <Button onclick="window.location.href='https://w3docs.com';" className="btn btn-success  btn-m">
+
+                        </Button> */}
+                        <Link
+                          className="btn btn-success  btn-m"
+                          // to={`/showPatientVisitList/${pt._id}`}
+                          to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
+                        >
+                          <i
+                            className="fa fa-h-square fa-sm"
+                            aria-hidden="true" title='Display patient visits'
+                          />
+                        </Link>
+                        <Link
+                          className="btn btn-info  btn-m"
+                          to={`/editPatient/${pt._id}`}
+                        >
+                          <i
+                            className="fa fa-hospital-o fa-sm"
+                            aria-hidden="true" title='Edit registration'
+                          />
+                        </Link>
+                        {/* <button
                       className="btn btn-danger "
                       onClick={
                         handleShowDelete()
@@ -523,52 +531,53 @@ export default function ShowRecordList() {
                     >
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
                     </button> */}
-                      {/* <button
+                        {/* <button
                       className="btn btn-danger "
                       onClick={() => { deleteRecord(pt._id) }}                      
                     >
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
                     </button> */}
-                      <button onClick={handleShowDelete}
-                        className="btn btn-danger  btn-sm"
-                      >
-                        <i title="delete patient" className="fa fa-trash-o" aria-hidden="true" /></button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-                {emptyRows > 0 && (
-                  <StyledTableRow
-                    style={{
-                      height: 53 * emptyRows,
-                    }}
-                  >
-                    <StyledTableCell colSpan={6} />
-                  </StyledTableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    // style={{float:'right'}}
-                    rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
-                    colSpan={12}
-                    count={filteredData.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        'aria-label': 'rows per page',
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
+                        <button onClick={handleShowDelete}
+                          className="btn btn-danger  btn-sm"
+                        >
+                          <i title="delete patient" className="fa fa-trash-o" aria-hidden="true" /></button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                  {emptyRows > 0 && (
+                    <StyledTableRow
+                      style={{
+                        height: 53 * emptyRows,
+                      }}
+                    >
+                      <StyledTableCell colSpan={6} />
+                    </StyledTableRow>
+                  )}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      // style={{float:'right'}}
+                      rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
+                      colSpan={12}
+                      count={filteredData.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      SelectProps={{
+                        inputProps: {
+                          'aria-label': 'rows per page',
+                        },
+                        native: true,
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </TableContainer>
+          </ThemeProvider>
         </div>
       </div>
     </div>

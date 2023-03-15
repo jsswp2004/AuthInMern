@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
-// import Navbar from '../navigation/navbar'
-// import Header from '../shared/Header'
-import { Hour } from '../listDictionaries/listData/listDictionariesData'
-// import CreatePatientFromVisit from '../PatientRegistration/createPatientFromVisit'
 import Input from 'react-phone-number-input/input'
 
 function UpdateVisitInfo(props) {
@@ -33,9 +29,10 @@ function UpdateVisitInfo(props) {
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
+  //create event object
   const [schedEvent, setSchedEvent] = useState([])
   const schedEvents = schedEvent.filter((event) => {
-    return event.name //.toString().toLowerCase() //.includes('attending')
+    return event.name
   })
   const clinicEvents = schedEvents.map((doc) => doc.name)
   useEffect(() => {
@@ -49,13 +46,10 @@ function UpdateVisitInfo(props) {
       })
   }, [])
 
-  // const hourValues = Hour
-  // const [hourvalue, sethourValue] = useState('')
+  const visitID = props.visitID
+  const navigate = useNavigate()
 
-  // const hourvalueChange = (event) => {
-  //   sethourValue(event.target.value)
-  //   // onChange({ gendervalue })
-  // }
+  //create visit object
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
     visitNumber: '',
@@ -69,9 +63,6 @@ function UpdateVisitInfo(props) {
     hourOfVisit: selectedHour,
     event: '',
   })
-
-  const visitID = props.visitID
-  const navigate = useNavigate()
 
 
 
@@ -100,6 +91,25 @@ function UpdateVisitInfo(props) {
 
   }, [visitID])
 
+  const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate } = visit
+
+  //pull patient record to determine registration
+  const [patientRecord, setPatientRecord] = useState([])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/records/${medicalRecordNumber}`)
+      .then((response) => {
+        setPatientRecord(response.data)
+
+      })
+      .catch((error) => {
+        console.log('Error from patient record')
+      })
+  }, [medicalRecordNumber])
+  // console.log(response.data)
+  // console.log(medicalRecordNumber)
+
+  //pull visits to know available hours in a day
   const [getVisits, setGetVisits] = useState([])
   useEffect(() => {
     axios
@@ -248,6 +258,34 @@ function UpdateVisitInfo(props) {
                     </label>
                   </div>
                 </div>
+                <div className="form-group "
+                  style={{
+                    float: 'left',
+                    textAlign: 'left',
+                    marginTop: '10px',
+                  }}
+                >
+                  <input
+                    value="Update"
+                    type="submit"
+                    className="btn btn-success btngap "
+                  />
+
+                  <Link
+                    className="btn btn-info"
+                    to={`/createPatientFromVisit/${visitID}`}
+                    // data={data}
+                    firstName={data.firstName}
+                    style={{ display: medicalRecordNumber !== null ? 'none' : 'auto' }}
+                  >
+                    <i
+                      className="fa fa-hospital-o "
+                      aria-hidden="true"
+                      title="Add registration"
+                    />{' '}
+                    Register
+                  </Link>
+                </div>
               </div>
               <div className="div-items">
                 <div className="form-group">
@@ -349,7 +387,6 @@ function UpdateVisitInfo(props) {
                 </div>
               </div>
               <div className="div-items updateRegistrationGrp">
-
                 <div className="form-group">
                   <label htmlFor="hourOfVisit">
                     Hour of Visit
@@ -404,34 +441,7 @@ function UpdateVisitInfo(props) {
                   </label>
                 </div>
 
-                <div
-                  className="form-group updateRegistrationBtn"
-                  style={{
-                    float: 'left',
-                    textAlign: 'left',
-                    paddingTop: '10px',
-                  }}
-                >
-                  <input
-                    value="Update"
-                    type="submit"
-                    className="btn btn-success btngap "
-                  />
 
-                  <Link
-                    className="btn btn-info"
-                    to={`/createPatientFromVisit/${visitID}`}
-                    // data={data}
-                    firstName={data.firstName}
-                  >
-                    <i
-                      className="fa fa-hospital-o "
-                      aria-hidden="true"
-                      title="Add registration"
-                    />{' '}
-                    Register
-                  </Link>
-                </div>
 
               </div>
             </div>
