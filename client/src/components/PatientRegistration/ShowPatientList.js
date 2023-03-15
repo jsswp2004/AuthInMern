@@ -495,14 +495,16 @@ export default function ShowRecordList() {
                             aria-hidden="true" title='Create visit'
                           />
                         </Button>
+                        {/* <Button onclick="window.location.href='https://w3docs.com';" className="btn btn-success  btn-m">
 
+                        </Button> */}
                         <Link
                           className="btn btn-success  btn-m"
                           // to={`/showPatientVisitList/${pt._id}`}
                           to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                         >
                           <i
-                            className="fa fa-h-square"
+                            className="fa fa-h-square fa-sm"
                             aria-hidden="true" title='Display patient visits'
                           />
                         </Link>
@@ -511,7 +513,7 @@ export default function ShowRecordList() {
                           to={`/editPatient/${pt._id}`}
                         >
                           <i
-                            className="fa fa-hospital-o"
+                            className="fa fa-hospital-o fa-sm"
                             aria-hidden="true" title='Edit registration'
                           />
                         </Link>
