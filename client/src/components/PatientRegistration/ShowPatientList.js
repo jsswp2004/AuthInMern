@@ -26,6 +26,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import CreateRegistration from './createPatientModal'
 import CreateVisitRegistration from '../Scheduling/createVisitFromRegModal'
 import * as XLSX from "xlsx"
+import Palette from '../Functions/pallette'
 //#endregion
 
 export default function ShowRecordList() {
@@ -272,7 +273,7 @@ export default function ShowRecordList() {
   //#region Table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.info.dark,
+      backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
