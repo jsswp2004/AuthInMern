@@ -3,12 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import {
-Hour
+  Hour
 } from '../listDictionaries/listData/listDictionariesData'
 
 const CreateVisit = (props) => {
   const [record, setRecord] = useState({
-    medicalRecordNumber:'',
+    medicalRecordNumber: '',
     visitNumber: '',
     firstName: '',
     lastName: '',
@@ -35,22 +35,22 @@ const CreateVisit = (props) => {
       .get(`http://localhost:8081/api/records/${id}`)
       .then((res) => {
         setRecord({
-            medicalRecordNumber: res.data.medicalRecordNumber,
-            visitNumber: res.data.visitNumber,
-            firstName: res.data.firstName,
-            lastName: res.data.lastName,
-            middleName: res.data.middleName,
-            gender: res.data.gender,
-            race: res.data.race,
-            dateOfBirth: res.data.dateOfBirth,
-            age: res.data.age,
-            language: res.data.language,
-            address: res.data.address,
-            city: res.data.city,
-            zipCode: res.data.zipCode,
-            state: res.data.state,
-            email: res.data.email,
-            addedDate: res.data.addedDate,
+          medicalRecordNumber: res.data.medicalRecordNumber,
+          visitNumber: res.data.visitNumber,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          middleName: res.data.middleName,
+          gender: res.data.gender,
+          race: res.data.race,
+          dateOfBirth: res.data.dateOfBirth,
+          age: res.data.age,
+          language: res.data.language,
+          address: res.data.address,
+          city: res.data.city,
+          zipCode: res.data.zipCode,
+          state: res.data.state,
+          email: res.data.email,
+          addedDate: res.data.addedDate,
         })
       })
       .catch((err) => {
@@ -71,18 +71,18 @@ const CreateVisit = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
   })
   const hourValues = Hour
-  const [hourvalue, sethourValue] = useState('')
+  // const [hourvalue, sethourValue] = useState('')
 
-  const hourvalueChange = (event) => {
-    sethourValue(event.target.value)
-    // onChange({ gendervalue })
-  }
+  // const hourvalueChange = (event) => {
+  //   sethourValue(event.target.value)
+  //   // onChange({ gendervalue })
+  // }
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
   }
   const [userMD, setUserMD] = useState([])
   const attendings = userMD//.filter((user) => user.role === 'Attending')
-  
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -119,7 +119,7 @@ const CreateVisit = (props) => {
       })
   }
 
- 
+
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className="form-grid-container">
@@ -157,22 +157,22 @@ const CreateVisit = (props) => {
               />
             </div>
             <div className="form-group">
-                    <label htmlFor="hourOfVisit">
-                      Gender
-                      <select
-                        className="form-control select"
-                        name="hourOfVisit"
-                        value={visit.hourOfVisit}
-                        onChange={onChange}
-                      >
-                        {hourValues.map((hourval) => (
-                          <option value={hourval.value}>
-                            {hourval.label}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
+              <label htmlFor="hourOfVisit">
+                Gender
+                <select
+                  className="form-control select"
+                  name="hourOfVisit"
+                  value={visit.hourOfVisit}
+                  onChange={onChange}
+                >
+                  {hourValues.map((hourval) => (
+                    <option value={hourval.value}>
+                      {hourval.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
           </div>
         </div>
         <div className="div-items">
@@ -208,29 +208,29 @@ const CreateVisit = (props) => {
           <div className="form-group">
             <label htmlFor="provider">Provider</label>
 
-                        <select
+            <select
               type="text"
               className="form-control"
               name="provider"
               value={visit.provider}
               onChange={onChange}
-            >    
+            >
               {attendings.map((doc) => (
                 <option key={doc.name} value={doc.name}>{doc.firstName} {doc.lastName}</option>
-                
+
               ))}
             </select>
           </div>
-          
+
           <div
             className="form-group"
-            
+
             style={{
               float: 'left',
               textAlign: 'left',
               paddingTop: '10px',
             }}
-            
+
           >
             <input value="Add" type="submit" className="btn btn-success" />
           </div>

@@ -7,6 +7,7 @@ import axios from 'axios'
 // import Header from '../shared/Header'
 import { Hour } from '../listDictionaries/listData/listDictionariesData'
 // import CreatePatientFromVisit from '../PatientRegistration/createPatientFromVisit'
+import Input from 'react-phone-number-input/input'
 
 function UpdateVisitInfo(props) {
 
@@ -48,13 +49,13 @@ function UpdateVisitInfo(props) {
       })
   }, [])
 
-  const hourValues = Hour
-  const [hourvalue, sethourValue] = useState('')
+  // const hourValues = Hour
+  // const [hourvalue, sethourValue] = useState('')
 
-  const hourvalueChange = (event) => {
-    sethourValue(event.target.value)
-    // onChange({ gendervalue })
-  }
+  // const hourvalueChange = (event) => {
+  //   sethourValue(event.target.value)
+  //   // onChange({ gendervalue })
+  // }
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
     visitNumber: '',
@@ -70,15 +71,9 @@ function UpdateVisitInfo(props) {
   })
 
   const visitID = props.visitID
-  // const { id } = useParams()
   const navigate = useNavigate()
 
-  // const [prevID, setprevID] = useState('')
-  // const previousID = useRef('')
 
-  // useEffect(() => {
-  //   previousID.current = prevID
-  // }, [prevID])
 
   useEffect(() => {
     axios
@@ -227,13 +222,29 @@ function UpdateVisitInfo(props) {
                   <div>
                     <label htmlFor="cellphone">
                       Cellphone
-                      <input
+                      {/* <input
                         type="text"
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                         name="cellphone"
                         className="form-control"
                         value={visit.cellphone}
                         onChange={onChange}
                       />
+                    */}
+
+                      <Input
+                        className="form-control"
+                        Country='US'
+                        international
+                        withCountryCallingCode
+                        placeholder="Enter phone number"
+                        value={visit.cellphone}
+                        onChange={(value) => {
+                          setVisit({ ...visit, cellphone: value })
+                        }}
+                      >
+
+                      </Input>
                     </label>
                   </div>
                 </div>
@@ -346,23 +357,11 @@ function UpdateVisitInfo(props) {
                       type="text"
                       name="hourOfVisit"
                       className="form-control"
-                      // value={visit.hourOfVisit}
+                      placeholder={visit.hourOfVisit}
+                      defaultValue={visit.hourOfVisit}
                       value={selectedHour}
                       onChange={onChange}
                     />
-                    {/* <select
-                      key={visit.hourOfVisit}
-                      className="form-control select"
-                      name="hourOfVisit"
-                      value={visit.hourOfVisit}
-                      onChange={onChange}
-                    >
-                      {hourValues.map((hourval) => (
-                        <option key={hourval.value} value={hourval.value}>
-                          {hourval.label}
-                        </option>
-                      ))}
-                    </select> */}
                     <div className='hour-flex'>
 
                       <div className='hour-flex_Item' onClick={() => setSelectedHour('09:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#AA336A' : '#90EE90' }}>9:00</div>

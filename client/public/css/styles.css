@@ -1361,6 +1361,11 @@ main {
   display: flex;
 }
 
+.divLabelWidth {
+  width: 250px;
+  display: flex;
+}
+
 .month-name {
   width: 300px;
 }

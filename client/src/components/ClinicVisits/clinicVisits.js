@@ -1377,8 +1377,8 @@ export default function ClinicVisit() {
           <div className="itemCalendar1 ">
             {/* <div style={{ display: 'flex' }}> */}
             {/* className="month-indicator item3C" */}
-            <div className="month-name">
-              <h4 className='patientListHeader'
+            <div>
+              <h4 className='patientListHeader divLabelWidth'
               >
                 {monthName}
               </h4>
@@ -1415,45 +1415,41 @@ export default function ClinicVisit() {
               </select>
 
             </div>
-            <div>
-              <img
-                className="directionArrows"
-                src={backward}
-                alt="backward"
-                onClick={(newValue) =>
-                  selectViewValue === 'Monthly'
-                    ? setShowDateValue(addDays(showDateValue, -31))
-                    : selectViewValue === 'Weekly'
-                      ? setShowDateValue(addDays(showDateValue, -7))
-                      : selectViewValue === 'Daily'
-                        ? setShowDateValue(addDays(showDateValue, -1))
-                        : setShowDateValue(showDateValue)
-                }
-              ></img>
+            <div className='divLabelWidth'>
+              <div>
+                <img
+                  className="directionArrows"
+                  src={backward}
+                  alt="backward"
+                  onClick={(newValue) =>
+                    selectViewValue === 'Monthly'
+                      ? setShowDateValue(addDays(showDateValue, -31))
+                      : selectViewValue === 'Weekly'
+                        ? setShowDateValue(addDays(showDateValue, -7))
+                        : selectViewValue === 'Daily'
+                          ? setShowDateValue(addDays(showDateValue, -1))
+                          : setShowDateValue(showDateValue)
+                  }
+                ></img>
+              </div>
+              <div>
+                <img
+                  className="directionArrows"
+                  src={forward}
+                  alt="forward"
+                  onClick={(newValue) =>
+                    selectViewValue === 'Monthly'
+                      ? setShowDateValue(addMonths(showDateValue, 1))
+                      : selectViewValue === 'Weekly'
+                        ? setShowDateValue(addWeeks(showDateValue, 1))
+                        : selectViewValue === 'Daily'
+                          ? setShowDateValue(addDays(showDateValue, 1))
+                          : setShowDateValue(showDateValue)
+                  }
+                ></img>
+              </div>
             </div>
-            <div>
-              <img
-                className="directionArrows"
-                src={forward}
-                alt="forward"
-                onClick={(newValue) =>
-                  selectViewValue === 'Monthly'
-                    ? setShowDateValue(addMonths(showDateValue, 1))
-                    : selectViewValue === 'Weekly'
-                      ? setShowDateValue(addWeeks(showDateValue, 1))
-                      : selectViewValue === 'Daily'
-                        ? setShowDateValue(addDays(showDateValue, 1))
-                        : setShowDateValue(showDateValue)
-                }
-              ></img>
-            </div>
-            <div className='registerBtn'
-            // style={{ className='registerBtn
-            //   marginLeft: 'auto',
-            //   // height: '30px',
-            //   marginTop: '1px',
-            // }}
-            >
+            <div className='divLabelWidth'>
               <Button
                 className="btn-sm"
                 onClick={handleClick}
@@ -1470,7 +1466,7 @@ export default function ClinicVisit() {
             </div>
             {/* modal end*/}
             {/* provider availability start */}
-            <div >
+            <div className='divLabelWidth' >
               {/* className="searchLabels viewlabels" */}
               <label>
                 {/* Provider: */}
@@ -2852,6 +2848,6 @@ export default function ClinicVisit() {
 
         </div>
       </div>
-    </div>
+    </div >
   )
 }

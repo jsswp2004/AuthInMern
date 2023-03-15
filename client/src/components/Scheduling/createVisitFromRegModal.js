@@ -160,7 +160,7 @@ const CreateVisitFromReg = (props) => {
   })
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
-//#region pull scheduled days
+  //#region pull scheduled days
   const [schedDays, setSchedDays] = useState([])
 
   useEffect(() => {
@@ -174,7 +174,7 @@ const CreateVisitFromReg = (props) => {
       })
   }, [])
 
-  const filteredSchedDays = schedDays.find((event) =>event.provider.includes(selectedMD) )
+  const filteredSchedDays = schedDays.find((event) => event.provider.includes(selectedMD))
 
   if (filteredSchedDays === undefined) {
     return <div>Loading...</div>
@@ -182,7 +182,7 @@ const CreateVisitFromReg = (props) => {
   const { scheduledMon, scheduledTues, scheduledWed, scheduledThurs, scheduledFri } = filteredSchedDays
 
   //#endregion
-      
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -221,7 +221,7 @@ const CreateVisitFromReg = (props) => {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-containers modalContainer " >
               <div className="div-items">
@@ -365,10 +365,10 @@ const CreateVisitFromReg = (props) => {
                       ))}
                     </select>
                     <label>Available days:</label>
-                    <span> {[scheduledMon,' ',
-                      scheduledTues,' ',
-                      scheduledWed,' ',
-                      scheduledThurs,' ',
+                    <span> {[scheduledMon, ' ',
+                      scheduledTues, ' ',
+                      scheduledWed, ' ',
+                      scheduledThurs, ' ',
                       scheduledFri]}
                     </span>
                   </label>
