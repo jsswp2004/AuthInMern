@@ -272,7 +272,7 @@ export default function ShowRecordList() {
   //#region Table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.gray,
+      backgroundColor: theme.palette.info.dark,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -428,12 +428,11 @@ export default function ShowRecordList() {
           </div>
         </div>
         <div className="item3B" style={{ overflowY: 'auto' }}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+            <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a sticky table">
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="left">MRN</StyledTableCell>
-                  {/* <StyledTableCell align="left">Visit Number</StyledTableCell> */}
                   <StyledTableCell align="left">Firstname</StyledTableCell>
                   <StyledTableCell align="left">Middlename</StyledTableCell>
                   <StyledTableCell align="left">Lastname</StyledTableCell>

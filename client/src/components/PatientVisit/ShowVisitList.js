@@ -217,7 +217,7 @@ export default function ShowVisitList() {
   //#region table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.gray,
+      backgroundColor: theme.palette.info.dark,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -458,7 +458,7 @@ export default function ShowVisitList() {
 
         <div className="item3B" style={{ overflowY: 'auto' }}>
           <TableContainer component={Paper}>
-            <Table
+            <Table stickyHeader
               sx={{ minWidth: 650 }}
               size="small"
               aria-label="a dense table"
