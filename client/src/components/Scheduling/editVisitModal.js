@@ -248,6 +248,33 @@ function UpdateVisitInfo(props) {
                     </label>
                   </div>
                 </div>
+                <div className="form-group updateRegistrationBtn"
+                  style={{
+                    float: 'left',
+                    textAlign: 'left',
+                    marginTop: '10px',
+                  }}
+                >
+                  <input
+                    value="Update"
+                    type="submit"
+                    className="btn btn-success btngap "
+                  />
+
+                  <Link
+                    className="btn btn-info"
+                    to={`/createPatientFromVisit/${visitID}`}
+                    // data={data}
+                    firstName={data.firstName}
+                  >
+                    <i
+                      className="fa fa-hospital-o "
+                      aria-hidden="true"
+                      title="Add registration"
+                    />{' '}
+                    Register
+                  </Link>
+                </div>
               </div>
               <div className="div-items">
                 <div className="form-group">
@@ -349,7 +376,6 @@ function UpdateVisitInfo(props) {
                 </div>
               </div>
               <div className="div-items updateRegistrationGrp">
-
                 <div className="form-group">
                   <label htmlFor="hourOfVisit">
                     Hour of Visit
@@ -404,34 +430,7 @@ function UpdateVisitInfo(props) {
                   </label>
                 </div>
 
-                <div
-                  className="form-group updateRegistrationBtn"
-                  style={{
-                    float: 'left',
-                    textAlign: 'left',
-                    paddingTop: '10px',
-                  }}
-                >
-                  <input
-                    value="Update"
-                    type="submit"
-                    className="btn btn-success btngap "
-                  />
 
-                  <Link
-                    className="btn btn-info"
-                    to={`/createPatientFromVisit/${visitID}`}
-                    // data={data}
-                    firstName={data.firstName}
-                  >
-                    <i
-                      className="fa fa-hospital-o "
-                      aria-hidden="true"
-                      title="Add registration"
-                    />{' '}
-                    Register
-                  </Link>
-                </div>
 
               </div>
             </div>
