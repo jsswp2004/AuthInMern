@@ -41,7 +41,7 @@ function HeaderImageTitle() {
           {/* <li> */}
           {/* <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon> */}
           <button className="navbar_list_exit" onClick={handleLogout}>
-            <i className='fa fa-sign-out' />
+            <i className='fa fa-sign-out fa-sm' />
           </button>
           {/* </li> */}
         </ul>
