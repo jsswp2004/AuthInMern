@@ -1,7 +1,7 @@
 //#region imports
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@material-ui/styles";
 import Box from '@mui/material/Box'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
@@ -24,12 +25,15 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
+import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
+import * as XLSX from "xlsx"
+import themeDesign from '../Functions/theme'
 //#endregion
 
 export default function ShowVisitList() {
     //#region for params
     const { id } = useParams()
-    const navigate = useNavigate()
+
     //#endregion
     //#region for state definition
     const [regDate, setRegFilterDate] = useState('')
@@ -53,6 +57,46 @@ export default function ShowVisitList() {
     //#region Define patient ID for create visit from registration modal
     const [visitID, setVisitID] = useState('')
     //#endregion
+    //#region for Visit Details Modal
+    const ShowDetailVisitModal = () => (
+        <>
+            <Modal show={showDetailVisit} onHide={handleDetailVisitClose} size="lg" centered>
+                <Modal.Header>
+                    <Modal.Title>Visit Details</Modal.Title>
+                    <Button variant="secondary" onClick={handleDetailVisitClick}>
+                        Close
+                    </Button>
+                </Modal.Header>
+                <Modal.Body>
+                    <DetailVisitModal visitID={visitID} />
+                </Modal.Body>
+                {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleVisitClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+            </Modal>
+        </>
+    )
+
+    //Function to display create visit from registration modal
+    function displayDetailVisitModal() {
+        return <ShowDetailVisitModal />
+    }
+
+    //Define the state for edit visit from registration modal 
+    const [showDetailVisit, setDetailVisitShow] = useState(false)
+    const handleDetailVisitClose = () => setDetailVisitShow(false)
+    const handleDetailVisitShow = () => {
+        setDetailVisitShow(true)
+    }
+
+    const handleDetailVisitClick = (e) => {
+        e.preventDefault()
+        setDetailVisitShow(false)
+    }
+
+    //#endRegion
     //#region Edit Visit Modal from Registration
     const ShowEditVisitModal = () => (
         <>
@@ -135,8 +179,8 @@ export default function ShowVisitList() {
             .catch((err) => {
                 console.log('Error from ShowVisitList')
             })
-            // .includes(id)
-    },[id])
+        // .includes(id)
+    }, [id])
     //#endregion
     //#region Delete visit function
     const deleteRecord = (id) => {
@@ -228,7 +272,7 @@ export default function ShowVisitList() {
     //#region table functions
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.gray,
+            backgroundColor: themeDesign.palette.primary.main,
             color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
@@ -313,6 +357,40 @@ export default function ShowVisitList() {
         onPageChange: PropTypes.func.isRequired,
         page: PropTypes.number.isRequired,
         rowsPerPage: PropTypes.number.isRequired,
+    }
+
+
+    //for excel download
+    const handleDownloadExcel = (e) => {
+        const rows = visits.map((e) =>
+        ({
+            _id: e._id,
+            medicalRecordNumber: e.medicalRecordNumber,
+            visitNumber: e.visitNumber,
+            hourOfVisit: e.hourOfVisit,
+            provider: e.provider,
+            visitDate: e.visitDate,
+            addedDate: e.addedDate,
+            firstName: e.firstName,
+            lastName: e.lastName,
+            middleName: e.middleName,
+            email: e.email,
+
+        }))
+
+        // create workbook and worksheet
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.json_to_sheet(rows);
+
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Visits");
+
+        // customize header names
+        XLSX.utils.sheet_add_aoa(worksheet, [
+            ["User ID", "Name", 'firstName', 'lastName', 'Email', 'Role', 'Added Date'],
+        ]);
+
+        XLSX.writeFile(workbook, "Visit_List_Report.xlsx", { compression: true });
+
     }
 
     const [page, setPage] = useState(0)
@@ -407,6 +485,16 @@ export default function ShowVisitList() {
                     </div>
                     {/* .filter_navbar */}
                     <div className="right searchLabel filter_navbarRight">
+                        <button className='btn btn-success  btn-sm'
+                            onClick={handleDownloadExcel}
+                        >
+                            {/* className='btn btn-success btn-sm' */}
+                            <i
+                                className="fa fa-file-excel-o"
+                                aria-hidden="true"
+                                title="Export to Excel"
+                            />
+                        </button>
                         <label htmlFor="search" className=" filter_search-label">
                             Search :{' '}
                             <input
@@ -421,140 +509,152 @@ export default function ShowVisitList() {
                     </div>
                 </div>
                 <div>{displayEditVisitModal()}</div>
+                <div>{displayDetailVisitModal()}</div>
                 <div>{displayDeleteRegistrationModal()}</div>
 
                 <div className="item3B" style={{ overflowY: 'auto' }}>
-                    <TableContainer component={Paper}>
-                        <Table
-                            sx={{ minWidth: 650 }}
-                            size="small"
-                            aria-label="a dense table"
-                        >
-                            <TableHead>
-                                <TableRow>
-                                    <StyledTableCell align="left">MRN</StyledTableCell>
-                                    <StyledTableCell align="left">Visit Number</StyledTableCell>
-                                    <StyledTableCell align="left">Firstname</StyledTableCell>
-                                    <StyledTableCell align="left">Middlename</StyledTableCell>
-                                    <StyledTableCell align="left">Lastname</StyledTableCell>
-                                    <StyledTableCell align="left">Visit Date</StyledTableCell>
-                                    <StyledTableCell align="left">Hour of visit</StyledTableCell>
-                                    <StyledTableCell align="left">Email</StyledTableCell>
-                                    <StyledTableCell align="left">Provider</StyledTableCell>
-                                    <StyledTableCell align="left">Date Added</StyledTableCell>
-                                    <StyledTableCell align="left">Actions</StyledTableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {(rowsPerPage > 0
-                                    ? filteredData.slice(
-                                        page * rowsPerPage,
-                                        page * rowsPerPage + rowsPerPage,
-                                    )
-                                    : filteredData
-                                ).map((pt) => (
-                                    <StyledTableRow key={pt._id}
-                                        onClick={() => handleItemClick(pt)}
-                                    >
-                                        <StyledTableCell align="left">
-                                            {pt.medicalRecordNumber}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.visitNumber}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.firstName}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.middleName}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.lastName}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.visitDate}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.hourOfVisit}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">{pt.email}</StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.provider}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {pt.addedDate}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            {/* <Link
-                        className="btn btn-info btn-sm"
-                        to={`/editVisit/${pt._id}`}
-                      >
-                        <i
-                          className="fa fa-pencil-square-o"
-                          aria-hidden="true"
-                        />
-                      </Link>{' '} */}
+                    <ThemeProvider theme={themeDesign}>
+                        <TableContainer component={Paper}>
+                            <Table
+                                sx={{ minWidth: 650 }}
+                                size="small"
+                                aria-label="a dense table"
+                            >
+                                <TableHead>
+                                    <TableRow>
+                                        <StyledTableCell align="left">MRN</StyledTableCell>
+                                        <StyledTableCell align="left">Visit Number</StyledTableCell>
+                                        <StyledTableCell align="left">Firstname</StyledTableCell>
+                                        <StyledTableCell align="left">Middlename</StyledTableCell>
+                                        <StyledTableCell align="left">Lastname</StyledTableCell>
+                                        <StyledTableCell align="left">Visit Date</StyledTableCell>
+                                        <StyledTableCell align="left">Hour of visit</StyledTableCell>
+                                        <StyledTableCell align="left">Email</StyledTableCell>
+                                        <StyledTableCell align="left">Provider</StyledTableCell>
+                                        <StyledTableCell align="left">Date Added</StyledTableCell>
+                                        <StyledTableCell align="left">Actions</StyledTableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {(rowsPerPage > 0
+                                        ? filteredData.slice(
+                                            page * rowsPerPage,
+                                            page * rowsPerPage + rowsPerPage,
+                                        )
+                                        : filteredData
+                                    ).map((pt) => (
+                                        <StyledTableRow key={pt._id}
+                                            onClick={() => handleItemClick(pt)}
+                                        >
+                                            <StyledTableCell align="left">
+                                                {pt.medicalRecordNumber}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.visitNumber}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.firstName}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.middleName}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.lastName}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.visitDate}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.hourOfVisit}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">{pt.email}</StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.provider}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
+                                                {pt.addedDate}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">
 
-                                            <button
-                                                className="btn btn-primary btn-sm registerBtn"
-                                                onClick={() => { handleEditVisitShow(pt._id) }}>
-                                                <i
-                                                    className="fa fa-pencil-square-o"
-                                                    aria-hidden="true"
-                                                    title='edit visit'
-                                                />
-                                            </button>
-                                            <button
-                                                className="btn btn-danger btn-sm registerBtn"
-                                                onClick={handleShowDelete}
-                                            >
-                                                <i
-                                                    title="delete visit"
-                                                    className="fa fa-trash-o fa-sm"
-                                                    aria-hidden="true"
-                                                />
-                                            </button>
-                                        </StyledTableCell>
-                                    </StyledTableRow>
-                                ))}
-                                {emptyRows > 0 && (
-                                    <StyledTableRow
-                                        style={{
-                                            height: 53 * emptyRows,
-                                        }}
-                                    >
-                                        <StyledTableCell colSpan={6} />
-                                    </StyledTableRow>
-                                )}
-                            </TableBody>
-                            <TableFooter>
-                                <TableRow>
-                                    <TablePagination
-                                        // style={{float:'right'}}
-                                        rowsPerPageOptions={[
-                                            5,
-                                            15,
-                                            25,
-                                            { label: 'All', value: -1 },
-                                        ]}
-                                        colSpan={12}
-                                        count={filteredData.length}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        SelectProps={{
-                                            inputProps: {
-                                                'aria-label': 'rows per page',
-                                            },
-                                            native: true,
-                                        }}
-                                        onPageChange={handleChangePage}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                        ActionsComponent={TablePaginationActions}
-                                    />
-                                </TableRow>
-                            </TableFooter>
-                        </Table>
-                    </TableContainer>
+                                                <button
+                                                    className="btn btn-primary btn-sm"
+                                                    onClick={() => { handleEditVisitShow(pt._id) }}>
+                                                    <i
+                                                        className="fa fa-edit"
+                                                        aria-hidden="true"
+                                                        title='edit visit'
+                                                    />
+                                                </button>
+                                                <button
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => { handleDetailVisitShow(pt._id) }}>
+                                                    <i
+                                                        className="fa fa-pencil-square-o"
+                                                        aria-hidden="true"
+                                                        title='Visit details'
+                                                    />
+                                                </button>
+                                                {/* <Link className="btn btn-success btn-m "
+                                                    to={`/detailsVisit/${pt._id}`}
+                                                >
+                                                    <i
+                                                        title="visit details"
+                                                        className="fa fa-edit"
+                                                        aria-hidden="true"
+                                                    />
+                                                </Link> */}
+                                                <button
+                                                    className="btn btn-danger btn-sm"
+                                                    onClick={handleShowDelete}
+                                                >
+                                                    <i
+                                                        title="delete visit"
+                                                        className="fa fa-trash-o"
+                                                        aria-hidden="true"
+                                                    />
+                                                </button>
+                                            </StyledTableCell>
+                                        </StyledTableRow>
+                                    ))}
+                                    {emptyRows > 0 && (
+                                        <StyledTableRow
+                                            style={{
+                                                height: 53 * emptyRows,
+                                            }}
+                                        >
+                                            <StyledTableCell colSpan={6} />
+                                        </StyledTableRow>
+                                    )}
+                                </TableBody>
+                                <TableFooter>
+                                    <TableRow>
+                                        <TablePagination
+                                            // style={{float:'right'}}
+                                            rowsPerPageOptions={[
+                                                5,
+                                                15,
+                                                25,
+                                                { label: 'All', value: -1 },
+                                            ]}
+                                            colSpan={12}
+                                            count={filteredData.length}
+                                            rowsPerPage={rowsPerPage}
+                                            page={page}
+                                            SelectProps={{
+                                                inputProps: {
+                                                    'aria-label': 'rows per page',
+                                                },
+                                                native: true,
+                                            }}
+                                            onPageChange={handleChangePage}
+                                            onRowsPerPageChange={handleChangeRowsPerPage}
+                                            ActionsComponent={TablePaginationActions}
+                                        />
+                                    </TableRow>
+                                </TableFooter>
+                            </Table>
+                        </TableContainer>
+                    </ThemeProvider>
                 </div>
             </div>
         </div>

@@ -497,7 +497,7 @@ export default function ShowRecordList() {
                         </Button>
 
                         <Link
-                          className="btn btn-success  btn-sm"
+                          className="btn btn-success  btn-m"
                           // to={`/showPatientVisitList/${pt._id}`}
                           to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                         >
@@ -507,7 +507,7 @@ export default function ShowRecordList() {
                           />
                         </Link>
                         <Link
-                          className="btn btn-info  btn-sm"
+                          className="btn btn-info  btn-m"
                           to={`/editPatient/${pt._id}`}
                         >
                           <i

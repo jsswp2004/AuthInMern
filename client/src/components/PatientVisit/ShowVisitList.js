@@ -24,6 +24,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
+import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
 import { Link } from 'react-router-dom'
 import * as XLSX from "xlsx"
 import themeDesign from '../Functions/theme'
@@ -52,6 +53,46 @@ export default function ShowVisitList() {
   //#region Define patient ID for create visit from registration modal
   const [visitID, setVisitID] = useState('')
   //#endregion
+  //#region for Visit Details Modal
+  const ShowDetailVisitModal = () => (
+    <>
+      <Modal show={showDetailVisit} onHide={handleDetailVisitClose} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Visit Details</Modal.Title>
+          <Button variant="secondary" onClick={handleDetailVisitClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <DetailVisitModal visitID={visitID} />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleVisitClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+
+  //Function to display create visit from registration modal
+  function displayDetailVisitModal() {
+    return <ShowDetailVisitModal />
+  }
+
+  //Define the state for edit visit from registration modal 
+  const [showDetailVisit, setDetailVisitShow] = useState(false)
+  const handleDetailVisitClose = () => setDetailVisitShow(false)
+  const handleDetailVisitShow = () => {
+    setDetailVisitShow(true)
+  }
+
+  const handleDetailVisitClick = (e) => {
+    e.preventDefault()
+    setDetailVisitShow(false)
+  }
+
+  //#endRegion
   //#region Edit Visit Modal from Registration
   const ShowEditVisitModal = () => (
     <>
@@ -456,6 +497,7 @@ export default function ShowVisitList() {
           </div>
         </div>
         <div>{displayEditVisitModal()}</div>
+        <div>{displayDetailVisitModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>
 
         <div className="item3B" style={{ overflowY: 'auto' }}>
@@ -535,13 +577,22 @@ export default function ShowVisitList() {
                           className="btn btn-primary btn-sm"
                           onClick={() => { handleEditVisitShow(pt._id) }}>
                           <i
-                            className="fa fa-pencil-square-o"
+                            className="fa fa-edit"
                             aria-hidden="true"
                             title='edit visit'
                           />
                         </button>
+                        <button
+                          className="btn btn-success btn-sm"
+                          onClick={() => { handleDetailVisitShow(pt._id) }}>
+                          <i
+                            className="fa fa-pencil-square-o"
+                            aria-hidden="true"
+                            title='Visit details'
+                          />
+                        </button>
                         {/* <button className="btn btn-success btn-sm btn-sm"> */}
-                        <Link className="btn btn-success btn-sm"
+                        {/* <Link className="btn btn-success btn-m "
                           to={`/detailsVisit/${pt._id}`}
                         >
                           <i
@@ -549,7 +600,7 @@ export default function ShowVisitList() {
                             className="fa fa-edit"
                             aria-hidden="true"
                           />
-                        </Link>
+                        </Link> */}
 
                         {/* </button> */}
 

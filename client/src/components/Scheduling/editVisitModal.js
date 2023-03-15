@@ -248,7 +248,7 @@ function UpdateVisitInfo(props) {
                     </label>
                   </div>
                 </div>
-                <div className="form-group updateRegistrationBtn"
+                <div className="form-group "
                   style={{
                     float: 'left',
                     textAlign: 'left',

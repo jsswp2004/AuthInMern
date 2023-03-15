@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   viewer: {
     width: '100%', //window.innerWidth, //the pdf viewer will take up all of the width and height
-    height: '880px',
+    height: '500px',
   },
   body: {
     paddingTop: 12,
@@ -93,7 +93,7 @@ const PatientDetails = (props) => {
       {/* Start of the document*/}
       <Document>
         {/*render a single page*/}
-        <Page size="A4" style={styles.page}>
+        <Page size="A5" style={styles.page}>
           <View style={styles.section}>
             <Text style={styles.header} fixed>
               POEHR&#174;
