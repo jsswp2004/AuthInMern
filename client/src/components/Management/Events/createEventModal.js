@@ -37,7 +37,7 @@ const CreateEvent = (props) => {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div
               className="form-grid-containers"

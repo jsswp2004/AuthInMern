@@ -47,10 +47,10 @@ function EditRoleModal(props) {
       .then((res) => {
         // Push to /
         // navigate('/settingsPage')
-            
-      window.location.reload()
-      // window.location.close()
-  
+
+        window.location.reload()
+        // window.location.close()
+
       })
       .catch((err) => {
         console.log('Error in EditRole!')
@@ -61,7 +61,7 @@ function EditRoleModal(props) {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group ">
               <label style={{ display: 'none' }}>

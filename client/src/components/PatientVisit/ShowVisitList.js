@@ -430,10 +430,10 @@ export default function ShowVisitList() {
           </div>
           {/* .filter_navbar */}
           <div className="right searchLabel filter_navbarRight">
-            <button className='btn btn-success  registerBtn'
+            <button className='btn btn-success  btn-sm'
               onClick={handleDownloadExcel}
             >
-              {/* className='btn btn-success registerBtn' */}
+              {/* className='btn btn-success btn-sm' */}
               <i
                 className="fa fa-file-excel-o"
                 aria-hidden="true"
@@ -529,7 +529,7 @@ export default function ShowVisitList() {
                       </Link>{' '} */}
 
                       <button
-                        className="btn btn-primary registerBtn"
+                        className="btn btn-primary btn-sm"
                         onClick={() => { handleEditVisitShow(pt._id) }}>
                         <i
                           className="fa fa-pencil-square-o"
@@ -537,8 +537,8 @@ export default function ShowVisitList() {
                           title='edit visit'
                         />
                       </button>
-                      {/* <button className="btn btn-success btn-sm registerBtn"> */}
-                      <Link className="btn btn-success registerBtn"
+                      {/* <button className="btn btn-success btn-sm btn-sm"> */}
+                      <Link className="btn btn-success btn-sm"
                         to={`/detailsVisit/${pt._id}`}
                       >
                         <i
@@ -551,7 +551,7 @@ export default function ShowVisitList() {
                       {/* </button> */}
 
                       <button
-                        className="btn btn-danger registerBtn"
+                        className="btn btn-danger btn-sm"
                         onClick={handleShowDelete}
                       >
                         <i

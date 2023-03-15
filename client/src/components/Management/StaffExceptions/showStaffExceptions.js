@@ -347,17 +347,17 @@ const ShowExceptionsList = () => {
 
           {/* create exception button */}
           <Button
-            className="btn btn-info  registerBtn"
+            className="btn btn-info  btn-sm"
             onClick={handleExceptionShow}
           >
             <i
-              className="fa fa-calendar-plus-o fa-sm"
+              className="fa fa-calendar-plus-o"
               aria-hidden="true"
               title="Add Exception"
             />
           </Button>
           {/* export to excel button */}
-          <button className='btn btn-success  registerBtn'
+          <button className='btn btn-success  btn-sm'
             onClick={handleDownloadExcel}
           >
             <i
@@ -441,7 +441,7 @@ const ShowExceptionsList = () => {
                       {exception.exceptionFri + ' '}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {/* <button className='btn btn-success  registerBtn'
+                      {/* <button className='btn btn-success  btn-sm'
                         onClick={handleDownloadExcel}
                       >
                         <i
@@ -450,7 +450,7 @@ const ShowExceptionsList = () => {
                           title="Export to Excel"
                         />
                       </button> */}
-                      <button className='btn btn-info  registerBtn'
+                      <button className='btn btn-info  btn-sm'
                         onClick={handleEditShow}
                       >
                         <i
@@ -460,7 +460,7 @@ const ShowExceptionsList = () => {
                         />
                       </button>
                       <button
-                        className="btn btn-danger  registerBtn"
+                        className="btn btn-danger  btn-sm"
                         onClick={handleShowDelete}
                       >
                         <i

@@ -115,7 +115,7 @@ function EditSchedule(props) {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit} className='formModal'>
             <div
               className="form-grid-containers"
@@ -156,17 +156,17 @@ function EditSchedule(props) {
                 </div>
                 <div>
                   <label><b>Scheduled Days:</b></label>
-                  <br/>
-                  <span>{schedule.scheduledMon}{' '}{schedule.scheduledTues}{' '}{schedule.scheduledWed}{' '}{schedule.scheduledThurs}{' '}{ schedule.scheduledFri}</span>
-                  <br/>
+                  <br />
+                  <span>{schedule.scheduledMon}{' '}{schedule.scheduledTues}{' '}{schedule.scheduledWed}{' '}{schedule.scheduledThurs}{' '}{schedule.scheduledFri}</span>
+                  <br />
                   <label><b>Change to:</b></label>
-                  <br/>
+                  <br />
                   <label className="scheduleCheckboxContainer">
                     Mondays
                     <input
                       id='Mon'
                       type="checkbox"
-                    
+
                       onClick={() => setScheduleDay1('Mon')}
                       name="Mon"
                       value={schedule.scheduledMon}
@@ -233,7 +233,7 @@ function EditSchedule(props) {
                       onChange={onChange}
                     />
                   </label>
-                  <label  style={{ marginLeft: '2px' }}>
+                  <label style={{ marginLeft: '2px' }}>
                     End Date
                     <input
                       type="date"

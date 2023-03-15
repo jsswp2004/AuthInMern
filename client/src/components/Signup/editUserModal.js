@@ -53,7 +53,7 @@ function EditUserModal(props) {
       })
   }, [UserID])
 
- 
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
@@ -75,7 +75,7 @@ function EditUserModal(props) {
       .put(`http://localhost:8081/api/users/${UserID}`, data)
       .then((res) => {
         window.location.reload()
-     
+
 
       })
       .catch((err) => {
@@ -87,76 +87,76 @@ function EditUserModal(props) {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
-            <div             
+            <div
               style={{ display: 'flex', columnGap: '10px' }}>
               <div>
                 <div className="form-group">
                   <label htmlFor="firstName">First Name
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={user.firstName}
-                    onChange={handleChange}
-                    className="form-control"
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={user.firstName}
+                      onChange={handleChange}
+                      className="form-control"
                     />
-                    </label>
+                  </label>
                 </div>
                 <div className="form-group">
                   <label htmlFor="lastName">Last Name
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={user.lastName}
-                    onChange={handleChange}
-                    className="form-control"
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={user.lastName}
+                      onChange={handleChange}
+                      className="form-control"
                     />
-                    </label>
+                  </label>
                 </div>
                 <div className="form-group">
                   <label htmlFor="role">Role
-                  <select
-                    key={rolex.role}
-                    placeholder="Select Role"
-                    name="role"
-                    className="form-control select"
-                    value={user.role}
-                    onChange={handleChange}
-                  >
-                    <option key="0" value="">
-                      Select Role
-                    </option>
-                    {userRoles.map((role) => (
-                      <option key={role.name} value={role.name}>
-                        {role}
+                    <select
+                      key={rolex.role}
+                      placeholder="Select Role"
+                      name="role"
+                      className="form-control select"
+                      value={user.role}
+                      onChange={handleChange}
+                    >
+                      <option key="0" value="">
+                        Select Role
                       </option>
-                    ))}
+                      {userRoles.map((role) => (
+                        <option key={role.name} value={role.name}>
+                          {role}
+                        </option>
+                      ))}
                     </select>
-                    </label>
+                  </label>
                 </div>
               </div>
               <div className='updateRegistrationGrp'>
                 <div className="form-group">
                   <label htmlFor="email">Email
-                  <input
-                    type="text"
-                    name="email"
-                    value={user.email}
-                    onChange={handleChange}
-                    className="form-control"
+                    <input
+                      type="text"
+                      name="email"
+                      value={user.email}
+                      onChange={handleChange}
+                      className="form-control"
                     />
-                    </label>
+                  </label>
                 </div>
                 <div className="form-group">
                   <label htmlFor="addedDate">Added Date
-                  <input
-                    type="text"
-                    name="addedDate"
-                    value={user.addedDate}
-                    onChange={handleChange}
-                    className="form-control"
-                  />
+                    <input
+                      type="text"
+                      name="addedDate"
+                      value={user.addedDate}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
                   </label>
                 </div>
                 <br />

@@ -45,7 +45,7 @@ const CreateException = (props) => {
     // setSelectedMD(exception.provider.name)
   }
 
-  const providerSelected = attendings.find((user) => user.name === exception.provider )
+  const providerSelected = attendings.find((user) => user.name === exception.provider)
   // console.log(providerSelected)
   // const { _id, name } = providerSelected
   const [exceptionMon, setExceptionDay1] = useState(' ')
@@ -110,14 +110,14 @@ const CreateException = (props) => {
     <div className="grid_containers">
       <div className="item3">
         {/* <h5 className="createPageHeader">Create Exception</h5> */}
-        <div className="item3A createRoleModalBody">
-        {/* <label className="createPageHeader">Create Exception</label> */}
+        <div className="createRoleModalBody">
+          {/* <label className="createPageHeader">Create Exception</label> */}
           <form noValidate onSubmit={onSubmit} className='formModal'>
-            <div className="form-grid-containers" style={{display:'flex', columnGap: '10px'}}>
+            <div className="form-grid-containers" style={{ display: 'flex', columnGap: '10px' }}>
               <div className="form-group">
                 <div>
-                  <label style={{display: 'none'}} >
-                  {/* style={{display: 'none'}} */}
+                  <label style={{ display: 'none' }} >
+                    {/* style={{display: 'none'}} */}
                     Provider ID
                     <input
                       type="text"
@@ -215,7 +215,7 @@ const CreateException = (props) => {
                       onChange={onChange}
                     />
                   </label>
-                  <label style={{marginLeft: '2px'}}>
+                  <label style={{ marginLeft: '2px' }}>
                     End Date
                     <input
                       type="date"

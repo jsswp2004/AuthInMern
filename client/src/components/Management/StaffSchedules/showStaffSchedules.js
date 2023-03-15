@@ -341,17 +341,17 @@ const ShowSchedulesList = () => {
         <label htmlFor="search" className="searchLabel">
           {/* create schedule button */}
           <Button
-            className="btn btn-info  registerBtn"
+            className="btn btn-info  btn-sm"
             onClick={handleShow}
           >
             <i
-              className="fa fa-calendar-plus-o fa-sm"
+              className="fa fa-calendar-plus-o"
               aria-hidden="true"
               title="Add Schedule"
             />
           </Button>
           {/* export to excel button */}
-          <button className='btn btn-success  registerBtn'
+          <button className='btn btn-success  btn-sm'
             onClick={handleDownloadExcel}
           >
             <i
@@ -433,22 +433,22 @@ const ShowSchedulesList = () => {
                       {schedule.scheduledFri + ' '}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      <button className='btn btn-info  registerBtn'
+                      <button className='btn btn-info  btn-sm'
                         onClick={handleEditShow}
                       >
                         <i
-                          className="fa fa-hospital-o fa-sm"
+                          className="fa fa-hospital-o "
                           aria-hidden="true"
                           title="Edit Schedule"
                         />
                       </button>
                       <button
-                        className="btn btn-danger  registerBtn"
+                        className="btn btn-danger  btn-sm"
                         onClick={handleShowDelete}
                       >
                         <i
                           title="delete visit"
-                          className="fa fa-trash-o fa-sm"
+                          className="fa fa-trash-o"
                           aria-hidden="true"
                         />
                       </button>

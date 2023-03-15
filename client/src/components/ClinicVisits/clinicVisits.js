@@ -1383,11 +1383,12 @@ export default function ClinicVisit() {
                 {monthName}
               </h4>
             </div>
-            <div className="customDatePickerWidth searchLabel select">
+            <div className="customDatePickerWidth searchLabel select" >
+              {/* */}
 
               <DatePicker
                 selected={showDateValue}
-                className="form-control"
+                className="selectlabel"
                 value={showDateValue}
                 onChange={(newValue) => {
                   setShowDateValue(newValue)
@@ -1396,11 +1397,12 @@ export default function ClinicVisit() {
                 todayButton="Today"
               />
             </div>
-            <div className="searchLabel viewlabel" >
+            <div className=" searchLabel " >
+              {/* viewlabel */}
 
               <select
                 key={selectViewValue}
-                className="form-control"
+                className="selectlabel"
                 id="calendarView"
                 value={selectViewValue}
                 onChange={viewValueChange}
@@ -1446,14 +1448,14 @@ export default function ClinicVisit() {
               ></img>
             </div>
             <div className='registerBtn'
-            // style={{
+            // style={{ className='registerBtn
             //   marginLeft: 'auto',
             //   // height: '30px',
             //   marginTop: '1px',
             // }}
             >
               <Button
-                className="openVisitModalButton"
+                className="btn-sm"
                 onClick={handleClick}
                 data-toggle="tooltip"
                 data-placement="right"
@@ -1508,7 +1510,7 @@ export default function ClinicVisit() {
                   data-placement="right"
                   title="Search for Visit"
                   href="/visitlist"
-                  className="btn btn-info"
+                  className="searchlabel"
                   role="button"
                 >
                   Search Visits {' '}
@@ -2752,7 +2754,7 @@ export default function ClinicVisit() {
                             </StyledTableCell>
                             <StyledTableCell align="left">
                               <button
-                                className="btn btn-primary registerBtn"
+                                className="btn btn-primary btn-sm"
                                 onClick={() => { handleEditVisitShow(pt._id) }}>
                                 <i
                                   className="fa fa-pencil-square-o "
@@ -2770,7 +2772,7 @@ export default function ClinicVisit() {
                                 />
                               </Link> */}
                               <Link
-                                className="btn btn-success registerBtn"
+                                className="btn btn-success btn-sm"
                                 to={`/detailsVisit/${pt._id}`}
                               >
                                 <i
@@ -2790,7 +2792,7 @@ export default function ClinicVisit() {
                                 />
                               </button> */}
                               <button
-                                className="btn btn-danger registerBtn"
+                                className="btn btn-danger btn-sm"
                                 // onClick={() => {
                                 //   deleteRecord(pt._id)
                                 // }}

@@ -41,7 +41,7 @@ function EditException(props) {
   })
 
   const DrID = props.providerID
-  
+
   const [exceptionMon, setExceptionDay1] = useState(' ')
   const [exceptionTues, setExceptionDay2] = useState(' ')
   const [exceptionWed, setExceptionDay3] = useState(' ')
@@ -75,7 +75,7 @@ function EditException(props) {
       })
   }, [DrID])
 
-  
+
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
   }
@@ -84,28 +84,28 @@ function EditException(props) {
 
     const data = {
       providerID: props.providerID,
-          provider: exception.provider,
-          startDate: exception.startDate,
-          endDate: exception.endDate,
-          amStartTime: exception.amStartTime,
-          amEndTime: exception.amEndTime,
-          pmStartTime: exception.pmStartTime,
-          pmEndTime: exception.pmEndTime,
-          exceptionMon: exceptionMon,
-          exceptionTues: exceptionTues,
-          exceptionWed: exceptionWed,
-          exceptionThurs: exceptionThurs,
-          exceptionFri: exceptionFri,
-          addedDate: exception.addedDate,
+      provider: exception.provider,
+      startDate: exception.startDate,
+      endDate: exception.endDate,
+      amStartTime: exception.amStartTime,
+      amEndTime: exception.amEndTime,
+      pmStartTime: exception.pmStartTime,
+      pmEndTime: exception.pmEndTime,
+      exceptionMon: exceptionMon,
+      exceptionTues: exceptionTues,
+      exceptionWed: exceptionWed,
+      exceptionThurs: exceptionThurs,
+      exceptionFri: exceptionFri,
+      addedDate: exception.addedDate,
     }
-    
+
     axios
       .put(`http://localhost:8081/api/exceptions/${props.providerID}`, data)
       .then((res) => {
         // Push to      
         window.location.reload()
         window.location.close()
-        
+
       })
       .catch((err) => {
         console.log('Error in EditException!')
@@ -113,9 +113,9 @@ function EditException(props) {
   }
 
   return (
-    <div className="grid_containers">      
+    <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit} className='formModal'>
             <div
               className="form-grid-containers"
@@ -156,11 +156,11 @@ function EditException(props) {
                 </div>
                 <div>
                   <label><b>Exception Days:</b></label>
-                  <br/>
-                  <span>{exception.exceptionMon}{' '}{exception.exceptionTues}{' '}{exception.exceptionWed}{' '}{exception.exceptionThurs}{' '}{ exception.exceptionFri}</span>
-                  <br/>
+                  <br />
+                  <span>{exception.exceptionMon}{' '}{exception.exceptionTues}{' '}{exception.exceptionWed}{' '}{exception.exceptionThurs}{' '}{exception.exceptionFri}</span>
+                  <br />
                   <label><b>Change to:</b></label>
-                  <br/>
+                  <br />
                   <label className="scheduleCheckboxContainer">
                     Mondays
                     <input

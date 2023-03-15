@@ -11,7 +11,7 @@ const CreateSchedule = (props) => {
   })
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
-  
+
 
   useEffect(() => {
     axios
@@ -53,7 +53,7 @@ const CreateSchedule = (props) => {
     // setSelectedMD(schedule.provider.name)
   }
 
-  const providerSelected = attendings.find((user) => user.name === schedule.provider )
+  const providerSelected = attendings.find((user) => user.name === schedule.provider)
   // console.log(providerSelected)
   // const { _id, name } = providerSelected
   const [scheduleMon, setScheduleDay1] = useState(' ')
@@ -119,14 +119,14 @@ const CreateSchedule = (props) => {
     <div className="grid_containers">
       <div className="item3">
         {/* <h5 className="createPageHeader">Create Schedule</h5> */}
-        <div className="item3A createRoleModalBody">
-        {/* <label className="createPageHeader">Create Schedule</label> */}
+        <div className="createRoleModalBody">
+          {/* <label className="createPageHeader">Create Schedule</label> */}
           <form noValidate onSubmit={onSubmit} className='formModal'>
-            <div className="form-grid-containers" style={{display:'flex', columnGap: '10px'}}>
+            <div className="form-grid-containers" style={{ display: 'flex', columnGap: '10px' }}>
               <div className="form-group">
-                <div style={{flexGrow:'1'}}>
-                  <label style={{display: 'none'}} >
-                  {/* style={{display: 'none'}} */}
+                <div style={{ flexGrow: '1' }}>
+                  <label style={{ display: 'none' }} >
+                    {/* style={{display: 'none'}} */}
                     Provider ID
                     <input
                       type="text"

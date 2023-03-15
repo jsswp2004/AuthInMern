@@ -401,12 +401,12 @@ export default function ShowRecordList() {
           <div className="searchLabel">
             <label htmlFor="search" >
               <Button
-                className="btn btn-info  registerBtn"
+                className="btn btn-info btn-sm"
                 onClick={handleShow}
               >
                 <i className="fa fa-hospital-user" aria-hidden="true" title='Add Patient' />
               </Button>
-              <button className='btn btn-success registerBtn'
+              <button className='btn btn-success btn-sm'
                 onClick={handleDownloadExcel}
               >
                 <i
@@ -481,30 +481,30 @@ export default function ShowRecordList() {
                     </StyledTableCell>
                     <StyledTableCell align="left">
                       <Button
-                        className="btn btn-primary  registerBtn"
+                        className="btn btn-primary  btn-sm"
                         onClick={handleVisitShow}
                       >
                         <i
-                          className="fa fa-stethoscope fa-sm"
+                          className="fa fa-stethoscope"
                           aria-hidden="true" title='Create visit'
                         />
                       </Button>
                       <Link
-                        className="btn btn-success  registerBtn"
+                        className="btn btn-success  btn-sm"
                         // to={`/showPatientVisitList/${pt._id}`}
                         to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                       >
                         <i
-                          className="fa fa-h-square fa-sm"
+                          className="fa fa-h-square"
                           aria-hidden="true" title='Display patient visits'
                         />
                       </Link>{' '}
                       <Link
-                        className="btn btn-info  registerBtn"
+                        className="btn btn-info  btn-sm"
                         to={`/editPatient/${pt._id}`}
                       >
                         <i
-                          className="fa fa-hospital-o fa-sm"
+                          className="fa fa-hospital-o"
                           aria-hidden="true" title='Edit registration'
                         />
                       </Link>{' '}
@@ -523,9 +523,9 @@ export default function ShowRecordList() {
                       <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
                     </button> */}
                       <button onClick={handleShowDelete}
-                        className="btn btn-danger  registerBtn"
+                        className="btn btn-danger  btn-sm"
                       >
-                        <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" /></button>
+                        <i title="delete patient" className="fa fa-trash-o" aria-hidden="true" /></button>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

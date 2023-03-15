@@ -77,7 +77,7 @@ function EditEventModal(props) {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group ">
               <label style={{ display: 'none' }}>

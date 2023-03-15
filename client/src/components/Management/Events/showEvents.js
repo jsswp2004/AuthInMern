@@ -314,16 +314,16 @@ const ShowEventsList = () => {
         <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel">
           <Button
-            className="btn btn-info registerBtn"
+            className="btn btn-info btn-sm"
             onClick={handleShow}
           >
             <i
-              className="fa fa-calendar fa-sm"
+              className="fa fa-calendar "
               aria-hidden="true"
               title="Add Event"
             />
           </Button>
-          <button className='btn btn-success registerBtn'
+          <button className='btn btn-success btn-sm'
             onClick={handleDownloadExcel}
           >
             <i
@@ -373,34 +373,34 @@ const ShowEventsList = () => {
                     <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
                     <StyledTableCell align="left">
 
-                      <button className='btn btn-info registerBtn'
+                      <button className='btn btn-info btn-sm'
                         onClick={handleEditShow}
                       >
                         <i
-                          className="fa fa-hospital-o fa-sm"
+                          className="fa fa-hospital-o "
                           aria-hidden="true"
                           title="Edit Event"
                         />
                       </button>
                       {/* <button
-                        className="btn btn-danger btn-sm registerBtn"
+                        className="btn btn-danger btn-sm btn-sm"
                         onClick={() => {
                           deleteRecord(event._id)
                         }}
                       >
                         <i
                           title="delete patient"
-                          className="fa fa-trash-o fa-sm"
+                          className="fa fa-trash-o "
                           aria-hidden="true"
                         />
                       </button> */}
                       <button
-                        className="btn btn-danger registerBtn"
+                        className="btn btn-danger btn-sm"
                         onClick={handleShowDelete}
                       >
                         <i
                           title="delete event"
-                          className="fa fa-trash-o fa-sm"
+                          className="fa fa-trash-o "
                           aria-hidden="true"
                         />
                       </button>

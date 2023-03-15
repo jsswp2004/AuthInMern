@@ -169,7 +169,7 @@ function UpdateVisitInfo(props) {
     <div className="grid_containers">
       <div className="item3">
 
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-grid-containers modalContainer ">
               <div className="div-items">
@@ -416,17 +416,17 @@ function UpdateVisitInfo(props) {
                   <input
                     value="Update"
                     type="submit"
-                    className="btn btn-success btn-sm "
+                    className="btn btn-success btngap "
                   />
 
                   <Link
-                    className="btn btn-info btn-sm "
+                    className="btn btn-info"
                     to={`/createPatientFromVisit/${visitID}`}
                     // data={data}
                     firstName={data.firstName}
                   >
                     <i
-                      className="fa fa-hospital-o fa-sm"
+                      className="fa fa-hospital-o "
                       aria-hidden="true"
                       title="Add registration"
                     />{' '}

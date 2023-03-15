@@ -38,7 +38,7 @@ const CreateRole = (props) => {
   return (
     <div className="grid_containers">
       <div className="item3">
-        <div className="item3A createRoleModalBody">
+        <div className="createRoleModalBody">
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group">
               <label htmlFor="name">Role
@@ -50,7 +50,7 @@ const CreateRole = (props) => {
                   onChange={onChange}
                 />
               </label>
-              <div className="form-group re">
+              <div className="form-group">
                 <label htmlFor="addedDate">Date Created
                   <input
                     type="text"
