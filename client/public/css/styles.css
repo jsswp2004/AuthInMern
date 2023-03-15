@@ -272,9 +272,9 @@ body {
 
 .navigation .navbar_list_exit {
   /* text-decoration: none; */
-  display: block;
+  /* display: block; */
   /* padding-top: 5px; */
-  align-self: center;
+  /* align-self: center; */
   margin-top: 5px;
   margin-bottom: 5px;
   /* padding-right: 5px; */
