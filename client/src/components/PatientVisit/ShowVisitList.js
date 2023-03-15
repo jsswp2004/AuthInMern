@@ -24,7 +24,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
-import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
+import DetailVisitModal from './detailsPatientVisitModal'
 import { Link } from 'react-router-dom'
 import * as XLSX from "xlsx"
 import themeDesign from '../Functions/theme'
