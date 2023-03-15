@@ -180,7 +180,7 @@ export default function ClinicVisit() {
           <Modal.Title>
             Add a quick visit
             <Link
-              className="btn btn-secondary btn-sm addVisitModalBtn"
+              className="btn btn-secondary addVisitModalBtn"
               to={`/patientlist`}
             >
               <i
@@ -1451,13 +1451,14 @@ export default function ClinicVisit() {
             </div>
             <div className='divLabelWidth'>
               <Button
-                className="btn-sm"
+                className="btn-sm btn-smTopMargin"
                 onClick={handleClick}
                 data-toggle="tooltip"
                 data-placement="right"
                 title="Add Visit"
                 style={{
                   display: selectViewValue === 'Monthly' ? 'none' : '',
+                  marginTop: '2px',
                 }}
               >
                 <i className="fa fa-solid fa-plus"></i>
@@ -2848,6 +2849,6 @@ export default function ClinicVisit() {
 
         </div>
       </div>
-    </div >
+    </div>
   )
 }

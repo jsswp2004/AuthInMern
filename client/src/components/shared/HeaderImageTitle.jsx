@@ -20,7 +20,7 @@ function HeaderImageTitle() {
       <div className="header">
         <div className="headerItem">
           <img src={logo} className="App_logo" alt="logo" />{' '}
-          <h3  className="h3header">            
+          <h3 className="h3header">
             POEHR
           </h3>
         </div>
@@ -36,11 +36,14 @@ function HeaderImageTitle() {
             <Link to="/contact">Contact</Link>
           </li> */}
           <li id="link" className="navbar_list">
-          <Link to="/about">About</Link>
+            <Link to="/about">About</Link>
           </li>
-          <li className="navbar_list_exit">
-            <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon>
-          </li>
+          {/* <li> */}
+          {/* <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon> */}
+          <button className="navbar_list_exit" onClick={handleLogout}>
+            <i className='fa fa-sign-out' />
+          </button>
+          {/* </li> */}
         </ul>
       </div>
     </nav>

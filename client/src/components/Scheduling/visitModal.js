@@ -20,14 +20,14 @@ const CreateVisitMonthly = (props) => {
     lastName: props.lastName,
     middleName: props.middleName,
     visitDate: props.visitDate,
-    hourOfVisit: selectedHour ,
+    hourOfVisit: selectedHour,
     email: props.email,
     provider: props.provider,
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     event: '',
     homePhone: '',
-    mobilePhone: '',
-    workPhone: '',
+    cellphone: '',
+    businessPhone: '',
   })
 
 
@@ -84,7 +84,7 @@ const CreateVisitMonthly = (props) => {
   const selectedDate = visit.visitDate
 
   const filteredVisitsWithMD = getVisits.filter((visit) => {
-    return visit.provider === selectedMD && visit.visitDate === selectedDate 
+    return visit.provider === selectedMD && visit.visitDate === selectedDate
   })
 
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
@@ -111,14 +111,14 @@ const CreateVisitMonthly = (props) => {
       lastName: visit.lastName,
       middleName: visit.middleName,
       visitDate: visit.visitDate,
-      hourOfVisit:hourOfVisit,
+      hourOfVisit: hourOfVisit,
       email: visit.email,
       provider: visit.provider,
       event: visit.event,
       addedDate: visit.addedDate,
       homePhone: visit.homePhone,
-      mobilePhone: visit.mobilePhone,
-      workPhone: visit.workPhone,
+      cellphone: visit.cellphone,
+      businessPhone: visit.businessPhone,
 
     }
 
@@ -139,8 +139,8 @@ const CreateVisitMonthly = (props) => {
           addedDate: '',
           event: '',
           homePhone: '',
-          mobilePhone: '',
-          workPhone: '',
+          cellphone: '',
+          businessPhone: '',
         })
 
         // Push to /patientlist
@@ -152,7 +152,7 @@ const CreateVisitMonthly = (props) => {
       })
   }
 
-  
+
 
   return (
     <form noValidate onSubmit={onSubmit}>
@@ -211,10 +211,34 @@ const CreateVisitMonthly = (props) => {
             <label htmlFor="cellphone">
               Cellphone
               <input
-                type="phone"
-                name="Cellphone"
+                type="tel"
+                name="cellphone"
                 className="form-control"
                 value={visit.cellphone}
+                onChange={onChange}
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="cellphone">
+              Home Phone
+              <input
+                type="tel"
+                name="homePhone"
+                className="form-control"
+                value={visit.homePhone}
+                onChange={onChange}
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="cellphone">
+              Business Phone
+              <input
+                type="tel"
+                name="businessPhone"
+                className="form-control"
+                value={visit.businessPhone}
                 onChange={onChange}
               />
             </label>
@@ -254,7 +278,7 @@ const CreateVisitMonthly = (props) => {
                 //value={visit.hourOfVisit}
                 value={selectedHour}
                 onChange={onChange}
-              />              
+              />
               <div className='hour-flex'>
 
                 <div className='hour-flex_Item' onClick={() => setSelectedHour('09:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#AA336A' : '#90EE90' }}>9:00</div>
