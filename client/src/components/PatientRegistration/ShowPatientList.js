@@ -26,9 +26,17 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import CreateRegistration from './createPatientModal'
 import CreateVisitRegistration from '../Scheduling/createVisitFromRegModal'
 import * as XLSX from "xlsx"
+import { createTheme } from '@mui/material/styles';
+import grey from '@mui/material/colors/grey';
 //#endregion
 
 export default function ShowRecordList() {
+  //color theme
+  const theme = createTheme({
+    palette: {
+      primary: { main: grey[500], }
+    },
+  });
   //#region Define the state for create registration modal
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
@@ -272,7 +280,7 @@ export default function ShowRecordList() {
   //#region Table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.info.dark,
+      backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
