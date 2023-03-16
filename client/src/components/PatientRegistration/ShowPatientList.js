@@ -28,15 +28,18 @@ import CreateRegistration from './createPatientModal'
 import CreateVisitRegistration from '../Scheduling/createVisitFromRegModal'
 import * as XLSX from "xlsx"
 import themeDesign from '../Functions/theme'
+import { Tooltip } from '@mui/material';
+import EditNotificationsIcon from '@mui/icons-material/EditNotifications'
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 //#endregion
 
 export default function ShowRecordList() {
   //color theme
-  const theme = createTheme({
-    palette: {
-      primary: { main: grey[500], }
-    },
-  });
+  // const theme = createTheme({
+  //   palette: {
+  //     primary: { main: grey[500], }
+  //   },
+  // });
   //#region Define the state for create registration modal
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
@@ -280,12 +283,15 @@ export default function ShowRecordList() {
   //#region Table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.info.dark,
+      backgroundColor: themeDesign.palette.primary.main,
       color: theme.palette.common.white,
+
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
+
     },
+
   }))
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -468,30 +474,30 @@ export default function ShowRecordList() {
                     <StyledTableRow key={pt._id}
                       onClick={() => handleItemClick(pt)}
                     >
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" >
                         {pt.medicalRecordNumber}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" >
                         {pt.firstName}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" >
                         {pt.middleName}
                       </StyledTableCell>
-                      <StyledTableCell align="left">{pt.lastName}</StyledTableCell>
+                      <StyledTableCell align="left" >{pt.lastName}</StyledTableCell>
                       <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width='200px'>
                         {pt.gender}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width='50px'>
                         {pt.age}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width='250px'>
                         {pt.race}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width='250px'>
                         {pt.addedDate}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width='250px'>
                         <Button
                           className="btn btn-primary  btn-sm"
                           onClick={handleVisitShow}
@@ -501,42 +507,23 @@ export default function ShowRecordList() {
                             aria-hidden="true" title='Create visit'
                           />
                         </Button>
-                        {/* <Button onclick="window.location.href='https://w3docs.com';" className="btn btn-success  btn-m">
-
-                        </Button> */}
                         <Link
-                          className="btn btn-success  btn-m"
-                          // to={`/showPatientVisitList/${pt._id}`}
+                          className="btn btn-success  btn-sm"
                           to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                         >
-                          <i
-                            className="fa fa-h-square fa-sm"
-                            aria-hidden="true" title='Display patient visits'
-                          />
+                          <Tooltip title="Display patient visits">
+                            <LocalHospitalIcon sx={{ fontSize: "18px", size: 'small', color: 'white', paddingRight: '5px' }} />
+                          </Tooltip>
                         </Link>
                         <Link
-                          className="btn btn-info  btn-m"
+                          className="btn btn-info btn-sm "
                           to={`/editPatient/${pt._id}`}
                         >
-                          <i
-                            className="fa fa-hospital-o fa-sm"
-                            aria-hidden="true" title='Edit registration'
-                          />
+                          <Tooltip title="Edit patient">
+                            <EditNotificationsIcon sx={{ fontSize: "18px", size: 'medium', color: 'white', paddingRight: '5px' }} />
+                          </Tooltip>
+
                         </Link>
-                        {/* <button
-                      className="btn btn-danger "
-                      onClick={
-                        handleShowDelete()
-                      }
-                    >
-                      <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
-                    </button> */}
-                        {/* <button
-                      className="btn btn-danger "
-                      onClick={() => { deleteRecord(pt._id) }}                      
-                    >
-                      <i title="delete patient" className="fa fa-trash-o fa-sm" aria-hidden="true" />
-                    </button> */}
                         <button onClick={handleShowDelete}
                           className="btn btn-danger  btn-sm"
                         >
