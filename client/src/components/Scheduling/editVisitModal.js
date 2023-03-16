@@ -159,7 +159,7 @@ function UpdateVisitInfo(props) {
       email: visit.email,
       addedDate: visit.addedDate,
       visitDate: visit.visitDate,
-      hourOfVisit: hourOfVisit,
+      hourOfVisit: visit.hourOfVisit,
       provider: visit.provider,
       event: visit.event,
       cellphone: visit.cellphone,
@@ -406,8 +406,8 @@ function UpdateVisitInfo(props) {
                       name="hourOfVisit"
                       className="form-control"
                       placeholder={visit.hourOfVisit}
-                      defaultValue={visit.hourOfVisit}
-                      value={selectedHour}
+                      // defaultValue={visit.hourOfVisit}
+                      value={hourOfVisit}
                       onChange={onChange}
                     />
                     <div className='hour-flex'>
