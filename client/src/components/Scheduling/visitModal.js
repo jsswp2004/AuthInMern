@@ -14,8 +14,8 @@ const CreateVisitMonthly = (props) => {
 
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
-    medicalRecordNumber: setMedicalRecordNumber,
-    visitNumber: setVisitNumber,
+    medicalRecordNumber: '',//0,//setMedicalRecordNumber,
+    visitNumber: '',//0,//setVisitNumber,
     firstName: props.firstName,
     lastName: props.lastName,
     middleName: props.middleName,

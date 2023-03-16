@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { format } from 'date-fns'
+import { format, set } from 'date-fns'
 import axios from 'axios'
 import Input from 'react-phone-number-input/input'
 
 function UpdateVisitInfo(props) {
+  //autocreate medical record number
+  const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
+  //autocreate visit number
+  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
 
   const [selectedHour, setSelectedHour] = useState('')
 
@@ -97,17 +101,23 @@ function UpdateVisitInfo(props) {
   const [patientRecord, setPatientRecord] = useState([])
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/records/${medicalRecordNumber}`)
+      .get('http://localhost:8081/api/records/')
       .then((response) => {
         setPatientRecord(response.data)
 
-      })
+      })//.includes(medicalRecordNumber)
       .catch((error) => {
         console.log('Error from patient record')
       })
   }, [medicalRecordNumber])
   // console.log(response.data)
-  // console.log(medicalRecordNumber)
+  // console.log(patientRecord)
+  const selectedRecord = patientRecord.filter((patient) => {
+    return patient.medicalRecordNumber === medicalRecordNumber
+    // console.log(patient)
+    // console.log(medicalRecordNumber)
+  })
+  console.log(selectedRecord === '0' ? 'true' : 'false', selectedRecord.length)
 
   //pull visits to know available hours in a day
   const [getVisits, setGetVisits] = useState([])
@@ -141,8 +151,8 @@ function UpdateVisitInfo(props) {
     e.preventDefault()
 
     const data = {
-      medicalRecordNumber: visit.medicalRecordNumber,
-      visitNumber: visit.visitNumber,
+      medicalRecordNumber: setMedicalRecordNumber,
+      visitNumber: setVisitNumber,
       firstName: visit.firstName,
       lastName: visit.lastName,
       middleName: visit.middleName,
@@ -269,14 +279,15 @@ function UpdateVisitInfo(props) {
                     value="Update"
                     type="submit"
                     className="btn btn-success btngap "
+                    style={{ display: selectedRecord.length === 0 ? 'none' : 'inline' }}
                   />
 
                   <Link
                     className="btn btn-info"
                     to={`/createPatientFromVisit/${visitID}`}
                     // data={data}
-                    firstName={data.firstName}
-                    style={{ display: medicalRecordNumber !== null ? 'none' : 'auto' }}
+                    // firstName={data.firstName}
+                    style={{ display: selectedRecord.length === 0 ? 'inline' : 'none' }}
                   >
                     <i
                       className="fa fa-hospital-o "
@@ -292,7 +303,7 @@ function UpdateVisitInfo(props) {
                   <label htmlFor="medicalRecordNumber">
                     MRN
                     <input
-                      placeholder="Please register client"
+                      placeholder="Auto-generated MRN"
                       type="text"
                       name="medicalRecordNumber"
                       className="form-control"
@@ -306,7 +317,7 @@ function UpdateVisitInfo(props) {
                   <label htmlFor="visitNumber">
                     Visit ID
                     <input
-                      placeholder="Please register client"
+                      placeholder="Auto-generated Visit ID"
                       type="text"
                       name="visitNumber"
                       className="form-control"

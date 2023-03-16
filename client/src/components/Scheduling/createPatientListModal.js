@@ -132,7 +132,7 @@ const CreateVisit = (props) => {
                 className="form-control"
                 name="firstName"
                 value={visit.firstName}
-                // defaultValue={visit.firstName}
+
                 onChange={onChange}
               />
             </div>

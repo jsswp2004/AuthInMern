@@ -79,7 +79,7 @@ const CreateVisit = (props) => {
                 type="text"
                 className="form-control"
                 name="firstName"
-                value={visit.firstName}                
+                value={visit.firstName}
                 onChange={onChange}
               />
             </div>
@@ -105,7 +105,7 @@ const CreateVisit = (props) => {
             </div>
             <div className="form-group">
               <label htmlFor="hourOfVisit">
-              Hour of Visit
+                Hour of Visit
                 <select
                   className="form-control select"
                   name="hourOfVisit"
