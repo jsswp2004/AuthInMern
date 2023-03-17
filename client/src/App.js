@@ -44,6 +44,16 @@ function App() {
   let userData = useremail
 
   const [currentUser, setCurrentUser] = useState([])
+  // const [currentUser, setCurrentUser] = useState({
+  //   firstName: '',
+  //   lastName: '',
+  //   email: '',
+  //   role: '',
+  //   _id: '',
+  //   addedDate: '',
+
+
+  // })
   const currentLoggedInUser = currentUser
   //.filter((user) => {
   //   return user.email.toString().toLowerCase().includes(useremail)
@@ -56,6 +66,7 @@ function App() {
   // console.log(xx)
   // let { firstName } = xx
   // console.log(firstName)
+
 
   const loggedUserRole = currentLoggedInUser.map((user) => user.role)
   // const { firstName } = loggedUser

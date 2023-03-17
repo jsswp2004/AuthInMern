@@ -58,9 +58,9 @@ import { UserContext } from '../../App'
 //#endregion
 
 export default function ClinicVisit() {
-  const userx = useContext(UserContext);
+  // const userx = useContext(UserContext);
   //#region for alert declaration
-  const alert = useAlert()
+  // const alert = useAlert()
   //#endregion
   //#region for setting state and pulling data for provider MD
   const [selectExceptionMD, setSelectExceptionMD] = useState([])
