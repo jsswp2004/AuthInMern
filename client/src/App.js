@@ -66,6 +66,11 @@ function App() {
   // console.log(xx)
   // let { firstName } = xx
   // console.log(firstName)
+  // const loggedUserRoles = currentLoggedInUser.map((user) => user)
+  // console.log(loggedUserRoles[0])
+  // const firstNamed = loggedUserRoles[0]
+  // const { firstName: '' } = firstNamed
+  // console.log(firstName)
 
 
   const loggedUserRole = currentLoggedInUser.map((user) => user.role)
