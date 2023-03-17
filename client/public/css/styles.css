@@ -127,6 +127,21 @@ body {
   height: 30px;
   width: 30px;
 }
+
+.btn-smCal {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  /* margin: 8px; */
+  /* margin-right: 5px; */
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  /* height: 30px;
+  width: 30px; */
+}
 /* for Links */
 .btn-m {
   margin-left: 5px;
@@ -978,6 +993,7 @@ h5 {
 
 .dailySpanContainer:hover > .day > .dailySpanContainerItems {
   display: inline-flex;
+  margin-top: 5px;
   margin-left: 5px;
   margin-right: 5px;
   float: right;

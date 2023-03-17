@@ -1,5 +1,5 @@
 //#region Imports
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import backward from '../shared/images/backward.jpg'
 import forward from '../shared/images/forward.jpg'
@@ -54,9 +54,11 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
+import { UserContext } from '../../App'
 //#endregion
 
 export default function ClinicVisit() {
+  const userx = useContext(UserContext);
   //#region for alert declaration
   const alert = useAlert()
   //#endregion
@@ -1381,8 +1383,9 @@ export default function ClinicVisit() {
             <div>
               <h4 className='patientListHeader divLabelWidth'
               >
-                {monthName}
+                {monthName} Hello!! {userx}
               </h4>
+
             </div>
             <div className="customDatePickerWidth searchLabel select" >
               {/* */}
@@ -1573,7 +1576,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm "
+                          className="btn calendarBtn btn-smCal "
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1604,7 +1607,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1633,7 +1636,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1662,7 +1665,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1693,7 +1696,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1722,7 +1725,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1751,7 +1754,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1782,7 +1785,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1811,7 +1814,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1840,7 +1843,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1870,7 +1873,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1899,7 +1902,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1928,7 +1931,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1957,7 +1960,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -1986,7 +1989,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2015,7 +2018,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2044,7 +2047,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2073,7 +2076,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2102,7 +2105,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2131,7 +2134,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2160,7 +2163,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2189,7 +2192,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2218,7 +2221,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2247,7 +2250,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2276,7 +2279,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2305,7 +2308,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2334,7 +2337,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2363,7 +2366,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2398,7 +2401,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2433,7 +2436,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >
@@ -2468,7 +2471,7 @@ export default function ClinicVisit() {
                             paddingBottom: '1px',
                             borderRadius: '10px',
                           }}
-                          className="btn calendarBtn btn-sm"
+                          className="btn calendarBtn btn-smCal"
                           onClick={handleClick}
                           title="Click to add visit"
                         >

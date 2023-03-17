@@ -3,9 +3,13 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 
+
+
 const Login = () => {
+
   const [data, setData] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
+  // const [user, setUser] = useState()
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value })
@@ -16,7 +20,11 @@ const Login = () => {
     try {
       const url = 'http://localhost:8081/api/auth'
       const { data: res } = await axios.post(url, data)
+      // set the state of the user
+      // setUser(res.data)
       localStorage.setItem('token', res.data)
+      // localStorage.setItem(res.data)
+      // console.log(res.data)
       window.location = '/'
     } catch (error) {
       if (
