@@ -1383,7 +1383,8 @@ export default function ClinicVisit() {
             <div>
               <h4 className='patientListHeader divLabelWidth'
               >
-                {monthName} Hello!! {userx}
+                {monthName}
+                {/* Hello!! {userx} */}
               </h4>
 
             </div>

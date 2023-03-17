@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { format } from 'date-fns'
-import axios from 'axios'
+import React, { useContext } from 'react'
+// import { useParams, useNavigate } from 'react-router-dom'
+// import { format } from 'date-fns'
+// import axios from 'axios' useState, useEffect, UserContext
 import 'bootstrap/dist/css/bootstrap.css'
-
+import { RoleContext } from '../../App'
 
 import { Link } from 'react-router-dom'
 
 
 export default function Navbar() {
-
+  // const userx = useContext(UserContext);
+  const userRole = useContext(RoleContext);
+  // console.log(userRole[0])
   return (
     <div id="navbarSupportedContent">
       <div className="header-bodynavbar">
         <ul className="body_navbar">
           <li id="link" className="body_navbarlist">
-            <Link to="/clinicVisit">Clinic Schedule</Link>
+            <Link to="/clinicVisit">Clinic Schedule </Link>
           </li>
           {/* <li id="link" className="body_navbarlist">
             <Link to="/">Home</Link>
@@ -42,8 +44,8 @@ export default function Navbar() {
           </li> */}
 
 
-          <li id="link" className="body_navbarlist" >
-            {/* style={{ display: 'none' }} */}
+          <li id="link" className="body_navbarlist" style={{ display: userRole[0] === 'Admin' ? 'inline' : 'none' }} >
+
             <Link to="/settingsPage">Manage Settings</Link>
           </li>
           {/* <li id="link" className="body_navbarlist">

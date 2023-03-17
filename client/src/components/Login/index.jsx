@@ -11,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState('')
   // const [user, setUser] = useState()
 
+  console.log(data)
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value })
   }
@@ -23,7 +24,7 @@ const Login = () => {
       // set the state of the user
       // setUser(res.data)
       localStorage.setItem('token', res.data)
-      // localStorage.setItem(res.data)
+      localStorage.setItem('email', data.email)
       // console.log(res.data)
       window.location = '/'
     } catch (error) {
