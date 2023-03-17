@@ -29,10 +29,10 @@ const CreateException = (props) => {
     provider: 'Select Doctor',
     startDate: '',
     endDate: '',
-    amStartTime: '',
-    amEndTime: '',
-    pmStartTime: '',
-    pmEndTime: '',
+    amStartTime: '09:00',
+    amEndTime: '12:00',
+    pmStartTime: '13:00',
+    pmEndTime: '18:00',
     exceptionMon: '',
     exceptionTues: '',
     exceptionWed: '',
@@ -50,10 +50,10 @@ const CreateException = (props) => {
 
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
-    setDefaultAmStartTime(e.target.value)
-    setDefaultAmEndTime(e.target.value)
-    setDefaultPmStartTime(e.target.value)
-    setDefaultPmEndTime(e.target.value)
+    // setDefaultAmStartTime(e.target.value)
+    // setDefaultAmEndTime(e.target.value)
+    // setDefaultPmStartTime(e.target.value)
+    // setDefaultPmEndTime(e.target.value)
   }
   // const onAmStartChange = (e) => {
   //   setDefaultAmStartTime({ ...exception.amStartTime, [e.target.name]: e.target.value })
@@ -102,7 +102,7 @@ const CreateException = (props) => {
       providerID: providerSelected._id,
       startDate: exception.startDate,
       endDate: exception.endDate,
-      amStartTime: exception.amStartTime,
+      amStartTime: defaultAmStartTime, //exception.amStartTime,
       amEndTime: exception.amEndTime,
       pmStartTime: exception.pmStartTime,
       pmEndTime: exception.pmEndTime,
@@ -271,9 +271,10 @@ const CreateException = (props) => {
                       key={exception.hourOfVisit}
                       className="form-control select"
                       name="amStartTime"
-                      //value={exception.amStartTime}
+                      // value={exception.amStartTime}
                       value={defaultAmStartTime}
-                      onChange={onChange}
+                      // onChange={onChange}
+                      onChange={e => setDefaultAmStartTime(e.target.value)}
                     >
                       {hourValues.map((hourval) => (
                         <option key={hourval.value} value={hourval.value}>
@@ -290,7 +291,8 @@ const CreateException = (props) => {
                       name="amEndTime"
                       // value={exception.amEndTime}
                       value={defaultAmEndTime}
-                      onChange={onChange}
+                      // onChange={onChange}
+                      onChange={e => setDefaultAmEndTime(e.target.value)}
                     >
                       {hourValues.map((hourval) => (
                         <option key={hourval.value} value={hourval.value}>
@@ -309,7 +311,8 @@ const CreateException = (props) => {
                       name="pmStartTime"
                       // value={exception.pmStartTime}
                       value={defaultPmStartTime}
-                      onChange={onChange}
+                      // onChange={onChange}
+                      onChange={e => setDefaultPmStartTime(e.target.value)}
                     >
                       {hourValues.map((hourval) => (
                         <option key={hourval.value} value={hourval.value}>
@@ -326,7 +329,8 @@ const CreateException = (props) => {
                       name="pmEndTime"
                       // value={exception.pmEndTime}
                       value={defaultPmEndTime}
-                      onChange={onChange}
+                      // onChange={onChange}
+                      onChange={e => setDefaultPmEndTime(e.target.value)}
                     >
                       {hourValues.map((hourval) => (
                         <option key={hourval.value} value={hourval.value}>
