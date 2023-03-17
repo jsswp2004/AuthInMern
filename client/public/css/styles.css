@@ -298,6 +298,16 @@ body {
   color: white;
 }
 
+.navigation .navbar_listHeaderGreeting {
+  text-decoration: none;
+  display: block;
+  padding-top: 10px;
+  padding-right: 8px;
+  color: white;
+  font-size: large;
+  font-style: italic;
+}
+
 .navigation .navbar_list_exit {
   /* text-decoration: none; */
   /* display: block; */

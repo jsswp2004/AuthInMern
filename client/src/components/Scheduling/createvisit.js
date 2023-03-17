@@ -87,12 +87,12 @@ const CreateVisit = (props) => {
   // const patientVisit = visit
   // console.log(visitDate, hourOfVisit, provider)
   const hourValues = Hour
-  const [hourvalue, sethourValue] = useState('')
+  // const [hourvalue, sethourValue] = useState('')
 
-  const hourvalueChange = (event) => {
-    sethourValue(event.target.value)
-    // onChange({ gendervalue })
-  }
+  // const hourvalueChange = (event) => {
+  //   sethourValue(event.target.value)
+  //   // onChange({ gendervalue })
+  // }
 
   const onChange = (e) => {
     setVisit({ ...visit, [e.target.name]: e.target.value })
@@ -260,7 +260,7 @@ const CreateVisit = (props) => {
 
               </div>
               <div className="div-items">
-              <div
+                <div
                   className="form-group"
                   style={{
                     float: 'left',

@@ -35,6 +35,7 @@ import ShowPatientVisitList from './components/PatientVisit/showPatientVisitList
 
 export const UserContext = createContext();
 export const RoleContext = createContext();
+export const FirstNameContext = createContext();
 
 function App() {
   const user = localStorage.getItem('token')
@@ -44,7 +45,7 @@ function App() {
   let userData = useremail
 
   const [currentUser, setCurrentUser] = useState([])
-  // const [currentUser, setCurrentUser] = useState({
+  // const [currentLoginUser, setCurrentLoginUser] = useState({
   //   firstName: '',
   //   lastName: '',
   //   email: '',
@@ -54,14 +55,14 @@ function App() {
 
 
   // })
-  const currentLoggedInUser = currentUser
+  // const currentLoggedInUser = currentUser//.filter((user) => user.email === useremail)
   //.filter((user) => {
   //   return user.email.toString().toLowerCase().includes(useremail)
   // })
   // .toString().includes((user) => {
   // return user.email === useremail//.includes(useremail)
   // })
-  // console.log(currentLoggedInUser)
+  // console.log(currentLoginUser)
   // const xx = currentLoggedInUser[0]
   // console.log(xx)
   // let { firstName } = xx
@@ -71,24 +72,79 @@ function App() {
   // const firstNamed = loggedUserRoles[0]
   // const { firstName: '' } = firstNamed
   // console.log(firstName)
+  // const [userDataxx, setUserDataxx] = useState([])
+  // function getUserData() {
+  //   return (
+  //     currentUser.find((user) => user.email === useremail))
 
+  // }
 
-  const loggedUserRole = currentLoggedInUser.map((user) => user.role)
+  // const functionResult = getUserData()
+  // const first = Array.of(functionResult)
+  // console.log(first[0])
+  // console.log(first.map((user) => user))
+  // console.log(getUserData())
+  // const loggedUserRole2 = currentUser.map(({ name, firstName, lastName, role }) => {
+  //   return (
+  //     <div>{name}</div>)
+  // })
+  // console.log(loggedUserRole2)
+  const loggedUserRole = currentUser.map((user) => user.role)
+  const loggedUserID = currentUser.map((user) => user._id)
+  const loggedUserName = currentUser.map((user) => user.name)
+  const loggedUserFirstName = currentUser.map((user) => user.firstName)
+  const loggedUserlastName = currentUser.map((user) => user.lastName)
   // const { firstName } = loggedUser
-  // console.log(loggedUserRole[0])
+  console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0])
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/users`)
       .then((response) => {
         const data = response.data
         setCurrentUser(data.filter((user) => user.email === useremail))
+        // setCurrentLoginUser({
+        //   // const filteredxx = data.filter((user) => user.email === useremail),
+        //   // const filteredDataXX = {
+        //   name: data.name,
+        //   firstName: data.firstName,
+        //   lastName: data.lastName,
+        //   email: data.email,
+        //   role: data.role,
+        //   _id: data._id,
+        //   addedDate: data.addedDate,
+        //   // }
+        // })
 
+
+        // console.log(data)
+        // const datax = {
+        //   name: response.data.name,
+        //   firstName: data.firstName,
+        //   lastName: data.lastName,
+        //   email: data.email,
+        //   role: data.role,
+        //   _id: data._id,
+        //   addedDate: data.addedDate,
+        // }
+
+        // console.log(name)
       })
       .catch((error) => {
         console.log('Error from user list')
       })
   }, [useremail])
 
+  // const {
+  //   name,
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   role,
+  //   _id,
+  //   addedDate,
+  // } = currentUser
+
+  // console.log(name)
   // const firstNamex = {
   //   firstName: currentLoggedInUser.firstName,
   //   lastName: currentLoggedInUser.lastName,
@@ -105,42 +161,44 @@ function App() {
   return (
     <UserContext.Provider value={userData}>
       <RoleContext.Provider value={loggedUserRole}>
-        <Routes>
+        <FirstNameContext.Provider value={loggedUserFirstName}>
+          <Routes>
 
-          {user && <Route path="/" exact element={<Main />} />}
-          <Route path="/signup" exact element={<Signup />} />
-          <Route path="/createPatient" exact element={<CreatePatient />} />
-          <Route path="/editPatient/:id" exact element={<EditPatient />} />
-          <Route path="/patientlist" exact element={<PatientList />} />
-          <Route path="/visitlist" exact element={<VisitList />} />
-          <Route path="/visitSchedule" exact element={<VisitSchedule />} />
-          <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
-          <Route path="/createVisit/:id" exact element={<CreateVisit />} />
-          <Route path="/createvisitFromReg/:id" exact element={<CreateVisitFromReg />} />
-          <Route path="/registrationDetails/:id" exact element={<RegistrationDetails />} />
-          <Route path="/clinicVisit" exact element={<ClinicVisit />} />
-          <Route path="/editVisit/:id" exact element={<EditVisit />} />
-          <Route path="/detailsVisit/:id" exact element={<VisitDetails />} />
-          <Route path="/createUser" exact element={<CreateUser />} />
-          <Route path="/login" exact element={<Login />} />
-          {/* <Route path="/usersList" exact element={<ShowUsersList />} /> */}
-          <Route path="/editUser/:id" exact element={<EditUser />} />
-          <Route path="/about" exact element={<About />} />
-          {/* <Route path="/rolesList" exact element={<RolesList />} /> */}
-          <Route path="/" exact element={<Navigate replace to="/login" />} />
-          <Route path="/createRole" exact element={<CreateRole />} />
-          <Route path="/editRole/:id" exact element={<EditRole />} />
-          <Route path="/settingsPage" exact element={<ManageSettings />} />
-          <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit />} />
-          <Route path="/createEvent" exact element={<CreateEvent />} />
-          <Route path="/editEvent/:id" exact element={<EditEvent />} />
-          <Route path="/testPage" exact element={<TestPage />} />
-          <Route path="/testStaffTable" exact element={<TestStaffTable />} />
-          <Route path="/createSchedule" exact element={<CreateSchedule />} />
-          <Route path="/editSchedule/:id" exact element={<EditSchedule />} />
-          <Route path="/showPatientVisitList/:id" exact element={<ShowPatientVisitList />} />
+            {user && <Route path="/" exact element={<Main />} />}
+            <Route path="/signup" exact element={<Signup />} />
+            <Route path="/createPatient" exact element={<CreatePatient />} />
+            <Route path="/editPatient/:id" exact element={<EditPatient />} />
+            <Route path="/patientlist" exact element={<PatientList />} />
+            <Route path="/visitlist" exact element={<VisitList />} />
+            <Route path="/visitSchedule" exact element={<VisitSchedule />} />
+            <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
+            <Route path="/createVisit/:id" exact element={<CreateVisit />} />
+            <Route path="/createvisitFromReg/:id" exact element={<CreateVisitFromReg />} />
+            <Route path="/registrationDetails/:id" exact element={<RegistrationDetails />} />
+            <Route path="/clinicVisit" exact element={<ClinicVisit />} />
+            <Route path="/editVisit/:id" exact element={<EditVisit />} />
+            <Route path="/detailsVisit/:id" exact element={<VisitDetails />} />
+            <Route path="/createUser" exact element={<CreateUser />} />
+            <Route path="/login" exact element={<Login />} />
+            {/* <Route path="/usersList" exact element={<ShowUsersList />} /> */}
+            <Route path="/editUser/:id" exact element={<EditUser />} />
+            <Route path="/about" exact element={<About />} />
+            {/* <Route path="/rolesList" exact element={<RolesList />} /> */}
+            <Route path="/" exact element={<Navigate replace to="/login" />} />
+            <Route path="/createRole" exact element={<CreateRole />} />
+            <Route path="/editRole/:id" exact element={<EditRole />} />
+            <Route path="/settingsPage" exact element={<ManageSettings />} />
+            <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit />} />
+            <Route path="/createEvent" exact element={<CreateEvent />} />
+            <Route path="/editEvent/:id" exact element={<EditEvent />} />
+            <Route path="/testPage" exact element={<TestPage />} />
+            <Route path="/testStaffTable" exact element={<TestStaffTable />} />
+            <Route path="/createSchedule" exact element={<CreateSchedule />} />
+            <Route path="/editSchedule/:id" exact element={<EditSchedule />} />
+            <Route path="/showPatientVisitList/:id" exact element={<ShowPatientVisitList />} />
 
-        </Routes>
+          </Routes>
+        </FirstNameContext.Provider>
       </RoleContext.Provider>
     </UserContext.Provider>
   )
