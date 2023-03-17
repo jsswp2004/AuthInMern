@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
@@ -37,16 +37,26 @@ function EditException(props) {
     exceptionWed: '',
     exceptionThurs: '',
     exceptionFri: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    addedDate: format(new Date(), 'yyyy-MM-dd'),
+    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
+
+  const [defaultAmStartTime, setDefaultAmStartTime] = useState('09:00')
+  // const ref = useRef(null);
+  // const handleClick = () => {
+  //   console.log(ref.current.value);
+  // };
+
+  // const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
+  // console.log(exception.exceptionMon)
 
   const DrID = props.providerID
 
-  const [exceptionMon, setExceptionDay1] = useState(' ')
-  const [exceptionTues, setExceptionDay2] = useState(' ')
-  const [exceptionWed, setExceptionDay3] = useState(' ')
-  const [exceptionThurs, setExceptionDay4] = useState(' ')
-  const [exceptionFri, setExceptionDay5] = useState(' ')
+  const [exceptionMon1, setExceptionDay1] = useState(' ')
+  const [exceptionTues1, setExceptionDay2] = useState(' ')
+  const [exceptionWed1, setExceptionDay3] = useState(' ')
+  const [exceptionThurs1, setExceptionDay4] = useState(' ')
+  const [exceptionFri1, setExceptionDay5] = useState(' ')
 
   useEffect(() => {
     axios
@@ -67,8 +77,9 @@ function EditException(props) {
           exceptionThurs: res.data.exceptionThurs,
           exceptionFri: res.data.exceptionFri,
           addedDate: res.data.addedDate,
+          lastUpdated: res.data.lastUpdated,
         })
-
+        console.log('res.data.addedDate', res.data.addedDate)
       })
       .catch((err) => {
         console.log('Error from EditException')
@@ -78,6 +89,7 @@ function EditException(props) {
 
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
+    setDefaultAmStartTime(e.target.value)
   }
   const onSubmit = (e) => {
     e.preventDefault()
@@ -87,16 +99,17 @@ function EditException(props) {
       provider: exception.provider,
       startDate: exception.startDate,
       endDate: exception.endDate,
-      amStartTime: exception.amStartTime,
-      amEndTime: exception.amEndTime,
-      pmStartTime: exception.pmStartTime,
-      pmEndTime: exception.pmEndTime,
-      exceptionMon: exceptionMon,
-      exceptionTues: exceptionTues,
-      exceptionWed: exceptionWed,
-      exceptionThurs: exceptionThurs,
-      exceptionFri: exceptionFri,
-      addedDate: exception.addedDate,
+      amStartTime: exception.amStartTime.length > 0 ? exception.amStartTime : '09:00',
+      amEndTime: exception.amEndTime.length > 0 ? exception.amEndTime : '12:00',
+      pmStartTime: exception.pmStartTime.length > 0 ? exception.pmStartTime : '13:00',
+      pmEndTime: exception.pmEndTime.length > 0 ? exception.pmEndTime : '18:00',
+      exceptionMon: exceptionMon1,
+      exceptionTues: exceptionTues1,
+      exceptionWed: exceptionWed1,
+      exceptionThurs: exceptionThurs1,
+      exceptionFri: exceptionFri1,
+      addedDate: format(exception.addedDate, 'yyyy-MM-dd'),// 
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'), //exception.lastUpdated,
     }
 
     axios
@@ -244,6 +257,7 @@ function EditException(props) {
                       className="form-control select"
                       name="amStartTime"
                       value={exception.amStartTime}
+                      // value={defaultAmStartTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -314,13 +328,30 @@ function EditException(props) {
                     name="addedDate"
                     value={exception.addedDate}
                     onChange={onChange}
+                    readOnly
                   />
-                  <input
+                  {/* <input
                     value="Update"
                     type="submit"
                     className="btn btn-success updateRegistrationBtn"
-                  />
+                  /> */}
                 </label>
+                <label htmlFor="lastUpdated">
+                  Last Updated
+                  <input
+                    type="date"
+                    className="form-control scheduleInput"
+                    name="lastUpdated"
+                    value={exception.lastUpdated}
+                    onChange={onChange}
+                  />
+
+                </label>
+                <input
+                  value="Update"
+                  type="submit"
+                  className="btn btn-success updateRegistrationBtn"
+                />
               </div>
             </div>
           </form>

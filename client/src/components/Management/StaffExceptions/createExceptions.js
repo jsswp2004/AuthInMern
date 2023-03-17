@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
 const CreateException = (props) => {
+
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -37,13 +38,50 @@ const CreateException = (props) => {
     exceptionWed: '',
     exceptionThurs: '',
     exceptionFri: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
+
+  const [defaultAmStartTime, setDefaultAmStartTime] = useState('09:00')
+  const [defaultAmEndTime, setDefaultAmEndTime] = useState('12:00')
+  const [defaultPmStartTime, setDefaultPmStartTime] = useState('13:00')
+  const [defaultPmEndTime, setDefaultPmEndTime] = useState('18:00')
+
+
 
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
-    // setSelectedMD(exception.provider.name)
+    setDefaultAmStartTime(e.target.value)
+    setDefaultAmEndTime(e.target.value)
+    setDefaultPmStartTime(e.target.value)
+    setDefaultPmEndTime(e.target.value)
   }
+  // const onAmStartChange = (e) => {
+  //   setDefaultAmStartTime({ ...exception.amStartTime, [e.target.name]: e.target.value })
+  // }
+  // const onAMEndChange = (e) => {
+  //   setException({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultAmStartTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultAmEndTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultPmStartTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultPmEndTime({ ...exception, [e.target.name]: e.target.value })
+  //   // setSelectedMD(exception.provider.name)
+  // }
+  // const onPmStartChange = (e) => {
+  //   setException({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultAmStartTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultAmEndTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultPmStartTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultPmEndTime({ ...exception, [e.target.name]: e.target.value })
+  //   // setSelectedMD(exception.provider.name)
+  // }
+  // const onPmEndChange = (e) => {
+  //   setException({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultAmStartTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultAmEndTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultPmStartTime({ ...exception, [e.target.name]: e.target.value })
+  //   setDefaultPmEndTime({ ...exception, [e.target.name]: e.target.value })
+  //   // setSelectedMD(exception.provider.name)
+  // }
 
   const providerSelected = attendings.find((user) => user.name === exception.provider)
   // console.log(providerSelected)
@@ -73,7 +111,7 @@ const CreateException = (props) => {
       exceptionWed: exceptionWed,
       exceptionThurs: exceptionThurs,
       exceptionFri: exceptionFri,
-      addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      addedDate: format(new Date(), 'yyyy-MM-dd'),
     }
 
     axios
@@ -93,7 +131,7 @@ const CreateException = (props) => {
           exceptionWed: '',
           exceptionThurs: '',
           exceptionFri: '',
-          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          addedDate: format(new Date(), 'yyyy-MM-dd'),
         })
 
         // Push to /
@@ -233,7 +271,8 @@ const CreateException = (props) => {
                       key={exception.hourOfVisit}
                       className="form-control select"
                       name="amStartTime"
-                      value={exception.amStartTime}
+                      //value={exception.amStartTime}
+                      value={defaultAmStartTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -249,7 +288,8 @@ const CreateException = (props) => {
                       key={exception.hourOfVisit}
                       className="form-control select"
                       name="amEndTime"
-                      value={exception.amEndTime}
+                      // value={exception.amEndTime}
+                      value={defaultAmEndTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -267,7 +307,8 @@ const CreateException = (props) => {
                       key={exception.hourOfVisit}
                       className="form-control select"
                       name="pmStartTime"
-                      value={exception.pmStartTime}
+                      // value={exception.pmStartTime}
+                      value={defaultPmStartTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (
@@ -283,7 +324,8 @@ const CreateException = (props) => {
                       key={exception.hourOfVisit}
                       className="form-control select"
                       name="pmEndTime"
-                      value={exception.pmEndTime}
+                      // value={exception.pmEndTime}
+                      value={defaultPmEndTime}
                       onChange={onChange}
                     >
                       {hourValues.map((hourval) => (

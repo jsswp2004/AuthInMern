@@ -17,6 +17,7 @@ const exceptionSchema = new mongoose.Schema({
   exceptionThurs: { type: String, required: true },
   exceptionFri: { type: String, required: true },
   addedDate: { type: String, required: true },
+  lastUpdated: { type: String, required: false },
 })
 
 const Exception = mongoose.model('exception', exceptionSchema)
@@ -32,13 +33,15 @@ const validate = (data) => {
     pmStartTime: Joi.string().required().label('PM Start Time'),
     pmEndTime: Joi.string().required().label('PM End Time'),
     exceptionMon: Joi.string().required().label('Exception'),
-    exceptionTues:Joi.string().required().label('Exception'),
-    exceptionWed:Joi.string().required().label('Exception'),
-    exceptionThurs:Joi.string().required().label('Exception'),
-    exceptionFri:Joi.string().required().label('Exception'),
+    exceptionTues: Joi.string().required().label('Exception'),
+    exceptionWed: Joi.string().required().label('Exception'),
+    exceptionThurs: Joi.string().required().label('Exception'),
+    exceptionFri: Joi.string().required().label('Exception'),
     addedDate: Joi.string().required().label('Date Created'),
+    lastUpdated: Joi.string().label('Last Updated'),
+
   })
   return schema.validate(data)
 }
 
-module.exports = {Exception, validate }
+module.exports = { Exception, validate }
