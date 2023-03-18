@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
-import { Modal, Button, ThemeProvider } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import CreateException from '../StaffExceptions/createExceptions'
 import EditException from '../StaffExceptions/editExceptionModal'
 import { styled } from '@mui/material/styles'
@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@material-ui/styles";
 import Box from '@mui/material/Box'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
@@ -255,7 +256,7 @@ const ShowExceptionsList = () => {
   //table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.gray,
+      backgroundColor: themeDesign.palette.primary.main,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -411,10 +412,9 @@ const ShowExceptionsList = () => {
         <div className="card-body table-responsive p-0">
           <ThemeProvider theme={themeDesign}>
             <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
-              <Table
+              <Table stickyHeader aria-label="sticky table"
                 sx={{ minWidth: 650 }}
                 size="small"
-                aria-label="a dense table"
               >
                 <TableHead>
                   <TableRow>

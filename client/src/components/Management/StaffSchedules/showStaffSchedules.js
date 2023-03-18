@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import CreateSchedule from '../StaffSchedules/createSchedule'
@@ -14,6 +13,7 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@material-ui/styles";
 import Box from '@mui/material/Box'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
@@ -23,7 +23,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import * as XLSX from "xlsx"
-
+import themeDesign from '../../Functions/theme'
 const ShowSchedulesList = () => {
   // Define the Create Modal state
   const [show, setShow] = useState(false)
@@ -248,7 +248,7 @@ const ShowSchedulesList = () => {
   //table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.gray,
+      backgroundColor: themeDesign.palette.primary.main,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -400,124 +400,126 @@ const ShowSchedulesList = () => {
 
       <div className="scheduleItemContainerBox">
         <div className="card-body table-responsive p-0">
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 650 }}
-              size="small"
-              aria-label="a dense table"
-            >
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell align="left">Provider</StyledTableCell>
-                  <StyledTableCell align="left">Start Date</StyledTableCell>
-                  <StyledTableCell align="left">End Date</StyledTableCell>
-                  <StyledTableCell align="left">AM Start</StyledTableCell>
-                  <StyledTableCell align="left">AM End</StyledTableCell>
-                  <StyledTableCell align="left">PM Start</StyledTableCell>
-                  <StyledTableCell align="left">PM End</StyledTableCell>
-                  <StyledTableCell align="left">Scheduled Days</StyledTableCell>
-                  <StyledTableCell align="left">Actions</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody >
-                {(rowsPerPage > 0
-                  ? filteredData.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
-                  : filteredData
-                ).map((schedule) => (
-                  <StyledTableRow key={schedule._id}
-                    onClick={() => handleItemClick(schedule)}
-                  >
-                    <StyledTableCell align="left">
-                      {schedule.provider}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {schedule.startDate}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {schedule.endDate}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {schedule.amStartTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {schedule.amEndTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {schedule.pmStartTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {schedule.pmEndTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {schedule.scheduledMon + ' '}{' '}
-                      {schedule.scheduledTues + ' '}
-                      {schedule.scheduledWed + ' '}{' '}
-                      {schedule.scheduledThurs + ' '}
-                      {schedule.scheduledFri + ' '}
-                    </StyledTableCell>
-                    <StyledTableCell align="left" width='250px'>
-                      <button className='btn btn-info  btn-sm'
-                        onClick={handleEditShow}
-                      >
-                        <i
-                          className="fa fa-hospital-o "
-                          aria-hidden="true"
-                          title="Edit Schedule"
-                        />
-                      </button>
-                      <button
-                        className="btn btn-danger  btn-sm"
-                        onClick={handleShowDelete}
-                      >
-                        <i
-                          title="delete visit"
-                          className="fa fa-trash-o"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-                {emptyRows > 0 && (
-                  <StyledTableRow
-                    style={{
-                      height: 53 * emptyRows,
-                    }}
-                  >
-                    <StyledTableCell colSpan={6} />
-                  </StyledTableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[
-                      5,
-                      10,
-                      25,
-                      { label: 'All', value: -1 },
-                    ]}
-                    colSpan={12}
-                    count={filteredData.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        'aria-label': 'rows per page',
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
+          <ThemeProvider theme={themeDesign}>
+            <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+              <Table stickyHeader
+                sx={{ minWidth: 650 }}
+                size="small"
+                aria-label="a dense table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell align="left">Provider</StyledTableCell>
+                    <StyledTableCell align="left">Start Date</StyledTableCell>
+                    <StyledTableCell align="left">End Date</StyledTableCell>
+                    <StyledTableCell align="left">AM Start</StyledTableCell>
+                    <StyledTableCell align="left">AM End</StyledTableCell>
+                    <StyledTableCell align="left">PM Start</StyledTableCell>
+                    <StyledTableCell align="left">PM End</StyledTableCell>
+                    <StyledTableCell align="left">Scheduled Days</StyledTableCell>
+                    <StyledTableCell align="left">Actions</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody >
+                  {(rowsPerPage > 0
+                    ? filteredData.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage,
+                    )
+                    : filteredData
+                  ).map((schedule) => (
+                    <StyledTableRow key={schedule._id}
+                      onClick={() => handleItemClick(schedule)}
+                    >
+                      <StyledTableCell align="left">
+                        {schedule.provider}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {schedule.startDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {schedule.endDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {schedule.amStartTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {schedule.amEndTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {schedule.pmStartTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {schedule.pmEndTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {schedule.scheduledMon + ' '}{' '}
+                        {schedule.scheduledTues + ' '}
+                        {schedule.scheduledWed + ' '}{' '}
+                        {schedule.scheduledThurs + ' '}
+                        {schedule.scheduledFri + ' '}
+                      </StyledTableCell>
+                      <StyledTableCell align="left" width='250px'>
+                        <button className='btn btn-info  btn-sm'
+                          onClick={handleEditShow}
+                        >
+                          <i
+                            className="fa fa-hospital-o "
+                            aria-hidden="true"
+                            title="Edit Schedule"
+                          />
+                        </button>
+                        <button
+                          className="btn btn-danger  btn-sm"
+                          onClick={handleShowDelete}
+                        >
+                          <i
+                            title="delete visit"
+                            className="fa fa-trash-o"
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                  {emptyRows > 0 && (
+                    <StyledTableRow
+                      style={{
+                        height: 53 * emptyRows,
+                      }}
+                    >
+                      <StyledTableCell colSpan={6} />
+                    </StyledTableRow>
+                  )}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPageOptions={[
+                        5,
+                        10,
+                        25,
+                        { label: 'All', value: -1 },
+                      ]}
+                      colSpan={12}
+                      count={filteredData.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      SelectProps={{
+                        inputProps: {
+                          'aria-label': 'rows per page',
+                        },
+                        native: true,
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </TableContainer>
+          </ThemeProvider>
         </div>
       </div>
     </div>

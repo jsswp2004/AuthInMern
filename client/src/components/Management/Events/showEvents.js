@@ -1,10 +1,10 @@
+//#region for imports and styling
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import CreateEvent from './createEventModal'
 import EditEventsModal from './editEventModal'
-// import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@material-ui/styles";
 import Box from '@mui/material/Box'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
@@ -24,9 +25,11 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import * as XLSX from "xlsx"
-
-const ShowEventsList = () => {
-  // Define the state with useState hook
+import themeDesign from '../../Functions/theme'
+//#endregion for imports and styling
+//#region for main component //#region  //#endregion
+export default function ShowEventsList() {
+  //#region  Define the modal state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -37,8 +40,8 @@ const ShowEventsList = () => {
   const handleEditShow = () => setEditShow(true)
 
   const [events, setEvents] = useState([])
-  // #region for search input
-
+  //#endregion  Define the modal state with useState hook
+  //#region for search input
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
@@ -69,12 +72,11 @@ const ShowEventsList = () => {
     )
 
   //#endregion
+  //#region for modal functions
   const navigate = useNavigate()
 
   const handleClick = (e) => {
     e.preventDefault()
-    // setSearchInput(e.target.value)
-    // alert('Create event button clicked')
     setShow(false)
     navigate('/settingsPage')
   }
@@ -83,7 +85,8 @@ const ShowEventsList = () => {
     e.preventDefault()
     setEditShow(false)
   }
-
+  //#endregion
+  //#region for for excel download
   const handleDownloadExcel = (e) => {
     const rows = events.map((e) =>
     ({
@@ -106,7 +109,8 @@ const ShowEventsList = () => {
     XLSX.writeFile(workbook, "Event_List_Report.xlsx", { compression: true });
 
   }
-
+  //#endregion
+  //#region to pull events from the database
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/events')
@@ -119,6 +123,7 @@ const ShowEventsList = () => {
   }, [])
   // Define visitID state for prop
   const [eventID, setEventID] = useState('')
+  //#endregion
   //#region for delete confirmation modal
   const [showDelete, setShowDelete] = useState(false)
   const handleCloseDelete = () => setShowDelete(false)
@@ -148,7 +153,7 @@ const ShowEventsList = () => {
     return <DeleteVisitModal />
   }
 
-  //#endregion
+
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/events/${id}`)
@@ -162,7 +167,8 @@ const ShowEventsList = () => {
     window.location.reload()
     window.location.close()
   }
-  // console.log('events', events)
+  //#endregion
+  //#region for event modal
   const EventModal = () => (
     <>
       <Modal show={show} onHide={handleClose} size="med" centered>
@@ -213,11 +219,11 @@ const ShowEventsList = () => {
   function displayEditEventModal() {
     return <EditEventModal />
   }
-
-  //table functions
+  //#endregion
+  //#region for table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.gray,
+      backgroundColor: themeDesign.palette.primary.main,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -319,14 +325,14 @@ const ShowEventsList = () => {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-
-  //setting the ID of the event for the property
+  //#endregion
+  //#region for setting the ID of the event for the property
   const handleItemClick = item => {
     const eventID = item._id
     setEventID(eventID)
   }
-  // console.log(eventID)
-
+  //#endregion
+  //#region for main return statement
   return (
     <div className="eventItemContainerBox">
       <div className="item3A">
@@ -368,109 +374,100 @@ const ShowEventsList = () => {
 
       <div className="eventItemContainerBox">
         <div className="card-body table-responsive p-0">
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 650 }}
-              size="small"
-              aria-label="a dense table"
-            >
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell align="left">Event</StyledTableCell>
-                  <StyledTableCell align="left">Date Created</StyledTableCell>
-                  <StyledTableCell align="left">Actions</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? filteredData.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
-                  : filteredData
-                ).map((event) => (
-                  <StyledTableRow key={event._id}
-                    onClick={() => handleItemClick(event)}
-                  >
-                    <StyledTableCell align="left">{event.name}</StyledTableCell>
-                    <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
-                    <StyledTableCell align="left" width='250px'>
+          <ThemeProvider theme={themeDesign}>
+            <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+              <Table stickyHeader aria-label="sticky table"
+                sx={{ minWidth: 650 }}
+                size="small"
 
-                      <button className='btn btn-info btn-sm'
-                        onClick={handleEditShow}
-                      >
-                        <i
-                          className="fa fa-hospital-o "
-                          aria-hidden="true"
-                          title="Edit Event"
-                        />
-                      </button>
-                      {/* <button
-                        className="btn btn-danger btn-sm btn-sm"
-                        onClick={() => {
-                          deleteRecord(event._id)
-                        }}
-                      >
-                        <i
-                          title="delete patient"
-                          className="fa fa-trash-o "
-                          aria-hidden="true"
-                        />
-                      </button> */}
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={handleShowDelete}
-                      >
-                        <i
-                          title="delete event"
-                          className="fa fa-trash-o "
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-                {emptyRows > 0 && (
-                  <StyledTableRow
-                    style={{
-                      height: 53 * emptyRows,
-                    }}
-                  >
-                    <StyledTableCell colSpan={6} />
-                  </StyledTableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[
-                      5,
-                      10,
-                      25,
-                      { label: 'All', value: -1 },
-                    ]}
-                    colSpan={12}
-                    count={filteredData.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        'aria-label': 'rows per page',
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
+              >
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell align="left">Event</StyledTableCell>
+                    <StyledTableCell align="left">Date Created</StyledTableCell>
+                    <StyledTableCell align="left">Actions</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {(rowsPerPage > 0
+                    ? filteredData.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage,
+                    )
+                    : filteredData
+                  ).map((event) => (
+                    <StyledTableRow key={event._id}
+                      onClick={() => handleItemClick(event)}
+                    >
+                      <StyledTableCell align="left">{event.name}</StyledTableCell>
+                      <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
+                      <StyledTableCell align="left" width='250px'>
+
+                        <button className='btn btn-info btn-sm'
+                          onClick={handleEditShow}
+                        >
+                          <i
+                            className="fa fa-hospital-o "
+                            aria-hidden="true"
+                            title="Edit Event"
+                          />
+                        </button>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={handleShowDelete}
+                        >
+                          <i
+                            title="delete event"
+                            className="fa fa-trash-o "
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                  {emptyRows > 0 && (
+                    <StyledTableRow
+                      style={{
+                        height: 53 * emptyRows,
+                      }}
+                    >
+                      <StyledTableCell colSpan={6} />
+                    </StyledTableRow>
+                  )}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPageOptions={[
+                        5,
+                        10,
+                        25,
+                        { label: 'All', value: -1 },
+                      ]}
+                      colSpan={12}
+                      count={filteredData.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      SelectProps={{
+                        inputProps: {
+                          'aria-label': 'rows per page',
+                        },
+                        native: true,
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </TableContainer>
+          </ThemeProvider>
         </div>
       </div>
     </div>
   )
+  //#endregion 
 }
 
-export default ShowEventsList
+//#endregion

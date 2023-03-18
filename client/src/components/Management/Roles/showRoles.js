@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@material-ui/styles";
 import Box from '@mui/material/Box'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
@@ -24,8 +25,9 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import * as XLSX from "xlsx"
+import themeDesign from '../../Functions/theme'
 //#endregion
-//#region fro main component //#region  //#endregion
+//#region for main component 
 export default function ShowRolesList() {
   //#region  Define the modal state with useState hook
   const [show, setShow] = useState(false)
@@ -35,10 +37,6 @@ export default function ShowRolesList() {
   const [editShow, setEditShow] = useState(false)
   const handleEditClose = () => setEditShow(false)
   const handleEditShow = () => setEditShow(true)
-
-
-  // const navigate = useNavigate()
-  // console.log(roles)
 
   //#endregion
   //#region for search input
@@ -223,7 +221,7 @@ export default function ShowRolesList() {
   //#region  table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.gray,
+      backgroundColor: themeDesign.palette.primary.main,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -373,93 +371,95 @@ export default function ShowRolesList() {
 
       <div className="roleItemContainerBox">
         <div className="card-body table-responsive p-0">
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 650 }}
-              size="small"
-              aria-label="a dense table"
-            >
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell align="left">Role</StyledTableCell>
-                  <StyledTableCell align="left">Date Created</StyledTableCell>
-                  <StyledTableCell align="left">Actions</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? filteredData.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
-                  : filteredData
-                ).map((role) => (
-                  <StyledTableRow key={role._id}
-                    onClick={() => handleItemClick(role)}>
-                    <StyledTableCell align="left">{role.name}</StyledTableCell>
-                    <StyledTableCell align="left">{role.addedDate}</StyledTableCell>
+          <ThemeProvider theme={themeDesign}>
+            <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+              <Table stickyHeader
+                sx={{ minWidth: 650 }}
+                size="small"
+                aria-label="a dense table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell align="left">Role</StyledTableCell>
+                    <StyledTableCell align="left">Date Created</StyledTableCell>
+                    <StyledTableCell align="left">Actions</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {(rowsPerPage > 0
+                    ? filteredData.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage,
+                    )
+                    : filteredData
+                  ).map((role) => (
+                    <StyledTableRow key={role._id}
+                      onClick={() => handleItemClick(role)}>
+                      <StyledTableCell align="left">{role.name}</StyledTableCell>
+                      <StyledTableCell align="left">{role.addedDate}</StyledTableCell>
 
-                    <StyledTableCell align="left" width='250px'>
-                      <button className='btn btn-info btn-sm'
-                        onClick={handleEditShow}
-                      >
-                        <i
-                          className="fa fa-hospital-o "
-                          aria-hidden="true"
-                          title="Edit Role"
-                        />
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={handleShowDelete}
-                      >
-                        <i
-                          title="delete role"
-                          className="fa fa-trash-o "
-                          aria-hidden="true"
+                      <StyledTableCell align="left" width='250px'>
+                        <button className='btn btn-info btn-sm'
+                          onClick={handleEditShow}
+                        >
+                          <i
+                            className="fa fa-hospital-o "
+                            aria-hidden="true"
+                            title="Edit Role"
+                          />
+                        </button>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={handleShowDelete}
+                        >
+                          <i
+                            title="delete role"
+                            className="fa fa-trash-o "
+                            aria-hidden="true"
 
-                        />
-                      </button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-                {emptyRows > 0 && (
-                  <StyledTableRow
-                    style={{
-                      height: 53 * emptyRows,
-                    }}
-                  >
-                    <StyledTableCell colSpan={6} />
-                  </StyledTableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[
-                      5,
-                      10,
-                      25,
-                      { label: 'All', value: -1 },
-                    ]}
-                    colSpan={12}
-                    count={filteredData.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        'aria-label': 'rows per page',
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
+                          />
+                        </button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                  {emptyRows > 0 && (
+                    <StyledTableRow
+                      style={{
+                        height: 53 * emptyRows,
+                      }}
+                    >
+                      <StyledTableCell colSpan={6} />
+                    </StyledTableRow>
+                  )}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPageOptions={[
+                        5,
+                        10,
+                        25,
+                        { label: 'All', value: -1 },
+                      ]}
+                      colSpan={12}
+                      count={filteredData.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      SelectProps={{
+                        inputProps: {
+                          'aria-label': 'rows per page',
+                        },
+                        native: true,
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </TableContainer>
+          </ThemeProvider>
         </div>
       </div>
     </div>

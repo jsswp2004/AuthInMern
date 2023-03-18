@@ -1,7 +1,7 @@
 //#region for imports and styling 
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Modal, Button, ThemeProvider } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -13,6 +13,7 @@ import Paper from '@mui/material/Paper'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
+import { ThemeProvider } from "@material-ui/styles";
 import Box from '@mui/material/Box'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
@@ -345,7 +346,7 @@ export default function ShowUsersList() {
         <div className="card-body table-responsive p-0">
           <ThemeProvider theme={themeDesign}>
             <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
-              <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+              <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell align="left">Firsts Name</StyledTableCell>
