@@ -445,8 +445,6 @@ export default function ShowRecordList() {
           <ThemeProvider theme={themeDesign}>
             <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
               <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a sticky table">
-
-
                 <TableHead  >
                   <TableRow>
                     <StyledTableCell align="left">MRN</StyledTableCell>
@@ -461,8 +459,6 @@ export default function ShowRecordList() {
                     <StyledTableCell align="left">Actions</StyledTableCell>
                   </TableRow>
                 </TableHead>
-
-
                 <TableBody>
                   {(rowsPerPage > 0
                     ? filteredData.slice(
@@ -498,21 +494,23 @@ export default function ShowRecordList() {
                         {pt.addedDate}
                       </StyledTableCell>
                       <StyledTableCell align="left" width='250px'>
-                        <Button
-                          className="btn btn-primary  btn-sm"
-                          onClick={handleVisitShow}
-                        >
-                          <i
-                            className="fa fa-stethoscope"
-                            aria-hidden="true" title='Create visit'
-                          />
-                        </Button>
+                        <Tooltip title="Create patient">
+                          <Button
+                            className="btn btn-primary  btn-sm"
+                            onClick={handleVisitShow}
+                          >
+                            <i
+                              className="fa fa-stethoscope"
+                              aria-hidden="true"
+                            />
+                          </Button>
+                        </Tooltip>
                         <Link
                           className="btn btn-success  btn-sm"
                           to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                         >
                           <Tooltip title="Display patient visits">
-                            <LocalHospitalIcon sx={{ fontSize: "18px", size: 'small', color: 'white', paddingRight: '5px' }} />
+                            <LocalHospitalIcon sx={{ size: 'small', color: 'white', paddingRight: '10px' }} />
                           </Tooltip>
                         </Link>
                         <Link
@@ -520,14 +518,16 @@ export default function ShowRecordList() {
                           to={`/editPatient/${pt._id}`}
                         >
                           <Tooltip title="Edit patient">
-                            <EditNotificationsIcon sx={{ fontSize: "18px", size: 'medium', color: 'white', paddingRight: '5px' }} />
+                            <EditNotificationsIcon sx={{ size: 'small', color: 'white', paddingRight: '10px' }} />
                           </Tooltip>
 
                         </Link>
-                        <button onClick={handleShowDelete}
-                          className="btn btn-danger  btn-sm"
-                        >
-                          <i title="delete patient" className="fa fa-trash-o" aria-hidden="true" /></button>
+                        <Tooltip title="Delete patient">
+                          <button onClick={handleShowDelete}
+                            className="btn btn-danger  btn-sm"
+                          >
+                            <i className="fa fa-trash-o" aria-hidden="true" /></button>
+                        </Tooltip>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
