@@ -1,37 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { format } from 'date-fns'
 
 
 function EditEventModal(props) {
-  // const [clinicEvents, setClinicEvents] = useState([])
-
-  // const ClinicEvents = clinicEvents.filter((event) => {
-  //   return event.name //.toString().toLowerCase()
-  // })
-  // const clinicVisitEvents = ClinicEvents.map((doc) => doc.name)
-  // console.log(clinicVisitEvents)
-
-  // const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
-  // pull event values from database
-  // useEffect(() => {
-  //   axios
-  //     .get('http://localhost:8081/api/events')
-  //     .then((res) => {
-  //       setClinicEvents(res.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error from events list')
-  //     })
-  // }, [])
   const [clinicEvent, setClinicEvent] = useState({
     name: '',
     addedDate: '',
+    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const EventID = props.eventID
-  // console.log(clinicEvent)
 
-  // const navigate = useNavigate()
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/events/${EventID}`)
@@ -40,6 +20,7 @@ function EditEventModal(props) {
           // _id: res.data._id,
           name: res.data.name,
           addedDate: res.data.addedDate,
+          lastUpdated: res.data.lastUpdated,
         })
       })
       .catch((err) => {
@@ -58,7 +39,8 @@ function EditEventModal(props) {
     const data = {
       _id: props.eventID,
       name: clinicEvent.name,
-      addedDate: clinicEvent.addedDate,//format(new Date(), 'MM-dd-yyyy'),
+      addedDate: clinicEvent.addedDate,
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'),
     }
 
     axios
@@ -67,7 +49,7 @@ function EditEventModal(props) {
         // Push to /
         // navigate('/settingsPage')
         window.location.reload()
-        // window.location.close()
+        window.location.close()
       })
       .catch((err) => {
         console.log('Error in EditEvent!')
@@ -99,26 +81,9 @@ function EditEventModal(props) {
                   value={clinicEvent.name}
                   onChange={handleChange}
                 />
-                {/* <select
-                  key={clinicEvent._id}
-                  // placeholder="Select Event"
-                  name="name"
-                  className="form-control select"
-                  value={clinicEvent.name}
-                  onChange={handleChange}
-                >
-                  <option key="0" value="Select Event">
-                    Select Event
-                  </option>
-                  {clinicVisitEvents.map((event) => (
-                    <option key={event._id} value={event.name}>
-                      {event}
-                    </option>
-                  ))}
-                </select> */}
               </label>
             </div>
-            <div>
+            <div className="form-group ">
               <label>
                 Date Added
                 <input
@@ -129,8 +94,19 @@ function EditEventModal(props) {
                   onChange={handleChange}
                 />
               </label>
+              <label htmlFor="lastUpdated" style={{ marginLeft: '2px' }}>
+                Last Updated
+                <input
+                  type="date"
+                  className="form-control scheduleInput"
+                  name="lastUpdated"
+                  value={clinicEvent.lastUpdated}
+                  onChange={handleChange}
+                />
+
+              </label>
             </div>
-            <div>
+            <div className="form-group ">
               <input
                 value="Update"
                 type="submit"

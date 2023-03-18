@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { format } from 'date-fns'
 
 
 function EditRoleModal(props) {
   const [clinicRole, setClinicRole] = useState({
     name: '',
     addedDate: '',
+    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const RoleID = props.roleID
@@ -20,6 +22,7 @@ function EditRoleModal(props) {
           // _id: res.data._id,
           name: res.data.name,
           addedDate: res.data.addedDate,
+          lastUpdated: res.data.lastUpdated,
         })
       })
       .catch((err) => {
@@ -39,7 +42,8 @@ function EditRoleModal(props) {
     const data = {
       _id: props.roleID,
       name: clinicRole.name,
-      addedDate: clinicRole.addedDate,//format(new Date(), 'MM-dd-yyyy'),
+      addedDate: clinicRole.addedDate,
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'),
     }
 
     axios
@@ -49,7 +53,7 @@ function EditRoleModal(props) {
         // navigate('/settingsPage')
 
         window.location.reload()
-        // window.location.close()
+        window.location.close()
 
       })
       .catch((err) => {
@@ -87,7 +91,7 @@ function EditRoleModal(props) {
               </label>
             </div>
 
-            <div>
+            <div className="form-group ">
               <label>
                 Date Added
                 <input
@@ -98,8 +102,19 @@ function EditRoleModal(props) {
                   onChange={handleChange}
                 />
               </label>
+              <label htmlFor="lastUpdated" style={{ marginLeft: '2px' }}>
+                Last Updated
+                <input
+                  type="date"
+                  className="form-control scheduleInput"
+                  name="lastUpdated"
+                  value={clinicRole.lastUpdated}
+                  onChange={handleChange}
+                />
+
+              </label>
             </div>
-            <div>
+            <div className="form-group ">
               <input
                 value="Update"
                 type="submit"

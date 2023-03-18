@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { format } from 'date-fns'
 
 
 function EditUserModal(props) {
@@ -10,6 +11,7 @@ function EditUserModal(props) {
     email: '',
     password: '',
     addedDate: '',
+    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const UserID = props.userID
@@ -46,6 +48,7 @@ function EditUserModal(props) {
           email: res.data.email,
           password: res.data.password,
           addedDate: res.data.addedDate,
+          lastUpdated: res.data.lastUpdated,
         })
       })
       .catch((err) => {
@@ -69,6 +72,7 @@ function EditUserModal(props) {
       email: user.email,
       password: user.password,
       addedDate: user.addedDate,
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'),
     }
 
     axios
@@ -154,6 +158,17 @@ function EditUserModal(props) {
                       type="text"
                       name="addedDate"
                       value={user.addedDate}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="lastUpdated">Last Updated
+                    <input
+                      type="text"
+                      name="lastUpdated"
+                      value={user.lastUpdated}
                       onChange={handleChange}
                       className="form-control"
                     />
