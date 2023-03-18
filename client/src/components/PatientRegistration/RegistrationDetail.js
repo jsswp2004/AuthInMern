@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   viewer: {
     width: '100%', //window.innerWidth, //the pdf viewer will take up all of the width and height
-    height: '88dvh',
+    height: '91dvh',
   },
   body: {
     paddingTop: 12,

@@ -119,45 +119,16 @@ function UpdateRecordInfo(props) {
         console.log('Error in UpdateRecordInfo!')
       })
   }
-
   //Race
   const racevalues = Race
-  const [racevalue, setraceValue] = React.useState('')
-
-  const racevalueChange = (event) => {
-    setraceValue(event.target.value)
-    // onChange({ race: event.target.value })
-    // onChange({ racevalue })
-  }
-
-  // console.log(racevalue)
   //Gender
   const gendervalues = Gender
-  const [gendervalue, setgenderValue] = React.useState('')
-
-  const gendervalueChange = (event) => {
-    setgenderValue(event.target.value)
-    // onChange({ gendervalue })
-  }
-
   const languagevalues = Language
-  const [selectedLanguage, setSelectedLanguage] = useState('')
-
-  const languagevalueChange = (event) => {
-    setSelectedLanguage(event.target.value)
-  }
-
   const statevalues = States
-  const [selectedState, setSelectedState] = useState('')
-
-  const statevalueChange = (event) => {
-    setSelectedState(event.target.value)
-  }
-
   return (
     <div className="grid_container">
       <div className="item1">
-        <Header style={{position: 'sticky'}} />
+        <Header style={{ position: 'sticky' }} />
       </div>
       <div className="item2">
         <Navbar />
@@ -169,106 +140,87 @@ function UpdateRecordInfo(props) {
             <form noValidate onSubmit={onSubmit} className='formEditPatient'>
               <div className="form-grid-container" >
                 <div className="div-items">
-                  <div className="forms-group">
-                    <div className="form-group">
-                      <label htmlFor="firstName">
-                        Firstname
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="firstName"
-                          value={record.firstName}
-                          // defaultValue={record.firstName}
-                          onChange={onChange}
-                        />
-                      </label>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="middleName">
-                        Middlename
-                        <input
-                          type="text"
-                          name="middleName"
-                          defaultValue={record.middleName}
-                          className="form-control"
-                          onChange={onChange}
-                        />
-                      </label>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="lastName">
-                        Lastname
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="lastName"
-                          defaultValue={record.lastName}
-                          onChange={onChange}
-                        />
-                      </label>
-                    </div>
-                  </div>
                   <div className="form-group">
-                    <div className="form-group">
-                      <label htmlFor="dateOfBirth">
-                        Date of Birth
-                        <input
-                          type="date"
-                          name="dateOfBirth"
-                          value={record.dateOfBirth}
-                          className="form-control"
-                          onChange={onChange}
-                        />
-                      </label>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="gender">
-                        Gender
-                        <select
-                          key={record.gender}
-                          className="form-control select"
-                          name="gender"
-                          value={record.gender}
-                          onChange={onChange}
-                        >
-                          {gendervalues.map((genderval) => (
-                            <option
-                              key={genderval.value}
-                              value={genderval.value}>
-                              {genderval.label}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="race">
-                        Race
-                        <select
-                          key={record.race}
-                          className="form-control select"
-                          name="race"
-                          value={record.race}
-                          onChange={onChange}
-                        >
-                          {racevalues.map((raceval) => (
-                            <option
-                              keu={ raceval.value} value={raceval.value}>
-                              {raceval.label}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="div-items">
-
-                  <div className="form-group">
+                    <label htmlFor="firstName">
+                      Firstname
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="firstName"
+                        value={record.firstName}
+                        // defaultValue={record.firstName}
+                        onChange={onChange}
+                      />
+                    </label>
+                    <label htmlFor="middleName">
+                      Middlename
+                      <input
+                        type="text"
+                        name="middleName"
+                        defaultValue={record.middleName}
+                        className="form-control"
+                        onChange={onChange}
+                      />
+                    </label>
+                    <label htmlFor="lastName">
+                      Lastname
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="lastName"
+                        defaultValue={record.lastName}
+                        onChange={onChange}
+                      />
+                    </label>
+                    <label htmlFor="dateOfBirth">
+                      Date of Birth
+                      <input
+                        type="date"
+                        name="dateOfBirth"
+                        value={record.dateOfBirth}
+                        className="form-control"
+                        onChange={onChange}
+                      />
+                    </label>
+                    <label htmlFor="gender">
+                      Gender
+                      <select
+                        key={record.gender}
+                        className="form-control select"
+                        name="gender"
+                        value={record.gender}
+                        onChange={onChange}
+                      >
+                        {gendervalues.map((genderval) => (
+                          <option
+                            key={genderval.value}
+                            value={genderval.value}>
+                            {genderval.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label htmlFor="race">
+                      Race
+                      <select
+                        key={record.race}
+                        className="form-control select"
+                        name="race"
+                        value={record.race}
+                        onChange={onChange}
+                      >
+                        {racevalues.map((raceval) => (
+                          <option
+                            keu={raceval.value} value={raceval.value}>
+                            {raceval.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
                     <label htmlFor="language">
                       Language
                       <select
-                        key={record.language }
+                        key={record.language}
                         className="form-control select"
                         name="language"
                         value={record.language}
@@ -276,15 +228,17 @@ function UpdateRecordInfo(props) {
                       >
                         {languagevalues.map((languageval) => (
                           <option
-                            key={ languageval.value } value={languageval.value}>
+                            key={languageval.value} value={languageval.value}>
                             {languageval.label}
                           </option>
                         ))}
                       </select>
                     </label>
                   </div>
-
+                </div>
+                <div className="div-items">
                   <div className="form-group">
+
                     <label htmlFor="email">
                       Email
                       <input
@@ -296,8 +250,6 @@ function UpdateRecordInfo(props) {
                         onChange={onChange}
                       />
                     </label>
-                  </div>
-                  <div className="form-group">
                     <label htmlFor="address">
                       Address
                       <input
@@ -308,8 +260,6 @@ function UpdateRecordInfo(props) {
                         onChange={onChange}
                       />
                     </label>
-                  </div>
-                  <div className="form-group">
                     <label htmlFor="city">
                       City
                       <input
@@ -319,8 +269,6 @@ function UpdateRecordInfo(props) {
                         onChange={onChange}
                       />
                     </label>
-                  </div>
-                  <div className="form-group">
                     <label htmlFor="zipCode">
                       Zip Code
                       <input
@@ -331,8 +279,6 @@ function UpdateRecordInfo(props) {
                         onChange={onChange}
                       />
                     </label>
-                  </div>
-                  <div className="form-group">
                     <label htmlFor="state">
                       State
                       <select
@@ -349,10 +295,6 @@ function UpdateRecordInfo(props) {
                         ))}
                       </select>
                     </label>
-                  </div>
-                </div>
-                <div className="div-items updateRegistrationGrp">
-                <div className="form-group">
                     <label htmlFor="age">
                       Age
                       <input
@@ -366,7 +308,10 @@ function UpdateRecordInfo(props) {
                       />
                     </label>
                   </div>
+                </div>
+                <div className="div-items updateRegistrationGrp">
                   <div className="form-group">
+
                     <label htmlFor="medicalRecordNumber">
                       MRN
                       <input
@@ -379,8 +324,6 @@ function UpdateRecordInfo(props) {
                         onChange={onChange}
                       />
                     </label>
-                  </div>
-                  <div className="form-group">
                     <label htmlFor="visitNumber">
                       Visit Number
                       <input
@@ -393,55 +336,48 @@ function UpdateRecordInfo(props) {
                         onChange={onChange}
                       />
                     </label>
-                  </div>
-                  <div className="form-group">
-                  <label htmlFor="homePhone">Home Phone 
-                  <input
-                    type="phone"
-                    className="form-control"
-                    name="homePhone"
-                    // placeholder="Automatically generated"
-                    value={record.homePhone}
-                    onChange={onChange}
-                    />
-                    </label>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="cellphone">Cellphone 
-                  <input
-                    type="phone"
-                    className="form-control"
-                    name="cellphone"
-                    // placeholder="Automatically generated"
-                    value={record.cellphone}
-
-                    onChange={onChange}
-                    />
-                    </label>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="businessPhone">Business Phone 
-                  <input
-                    type="phone"
-                    className="form-control"
-                    name="businessPhone"
-                    // placeholder="Automatically generated"
-                    value={record.businessPhone}
-
-                    onChange={onChange}
+                    <label htmlFor="homePhone">Home Phone
+                      <input
+                        type="tel"
+                        className="form-control"
+                        name="homePhone"
+                        // placeholder="Automatically generated"
+                        value={record.homePhone}
+                        onChange={onChange}
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                       />
-                      </label>
-                </div>
-
-                  <div
-                    className="form-group">
+                    </label>
+                    <label htmlFor="cellphone">Cellphone
+                      <input
+                        type="tel"
+                        className="form-control"
+                        name="cellphone"
+                        // placeholder="Automatically generated"
+                        value={record.cellphone}
+                        onChange={onChange}
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                      />
+                    </label>
+                    <label htmlFor="businessPhone">Business Phone
+                      <input
+                        type="tel"
+                        className="form-control"
+                        name="businessPhone"
+                        // placeholder="Automatically generated"
+                        value={record.businessPhone}
+                        onChange={onChange}
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                      />
+                    </label>
                     <input
                       value="Update"
                       type="submit"
-                      className="btn btn-success  updateRegistrationBtn"
+                      className="btn btn-success updateRegistrationBtn "
                     />
                   </div>
+
                 </div>
+
               </div>
             </form>
           </div>
