@@ -1,13 +1,8 @@
+//#region for imports and styling 
 import React, { useState, useEffect } from 'react'
-// import { useNavigate } from 'react-router'
-// import User from './userlist'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
-// import logo from '../../components/shared/images/logoPOWER.png'
-// import Navbar from '../navigation/navbar'
-// import Header from '../shared/Header'
 import { Link } from 'react-router-dom'
-// import LogoutIcon from '@mui/icons-material/Logout'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -28,15 +23,15 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditUser from './editUserModal'
 import * as XLSX from "xlsx"
-
+//#endregion
+//#region fro main component
 export default function ShowUsersList() {
-
-  //for edit button
+  //#region for state and edit button 
   const [editShow, setEditShow] = useState(false)
   const handleEditClose = () => setEditShow(false)
   const handleEditShow = () => setEditShow(true)
-
-  //Define role id for prop
+  //#endregion
+  //#region for role ID to define role id for prop
   const [userID, setUserID] = useState('')
   const handleEditClick = (e) => {
     e.preventDefault()
@@ -49,6 +44,8 @@ export default function ShowUsersList() {
     const userID = item._id
     setUserID(userID)
   }
+  //#endregion for main component
+  //#region for edit modal
   const EditUserModal = () => (
     <>
       <Modal show={editShow} onHide={handleEditClose} size="med" centered>
@@ -73,8 +70,8 @@ export default function ShowUsersList() {
   function displayEditRoleModal() {
     return <EditUserModal />
   }
-
-  //for excel download
+  //#endregion
+  //#region for for excel download
   const handleDownloadExcel = (e) => {
     const rows = users.map((e) =>
     ({
@@ -101,15 +98,9 @@ export default function ShowUsersList() {
 
   }
 
-
+  //#endregion
+  //#region for pulling users from the database
   const [users, setUsers] = useState([])
-  const [searchInput, setSearchInput] = useState('')
-  //captures and sets value of the search input text
-  const handleChange = (e) => {
-    e.preventDefault()
-    setSearchInput(e.target.value)
-  }
-
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/users')
@@ -120,7 +111,7 @@ export default function ShowUsersList() {
         console.log('Error from user list')
       })
   }, [])
-
+  //#endregion
   //#region for delete confirmation modal
   // const [staffSchedID, setStaffSchedID] = useState('')
   const [showDelete, setShowDelete] = useState(false)
@@ -151,7 +142,7 @@ export default function ShowUsersList() {
     return <DeleteVisitModal />
   }
 
-  //#endregion
+
 
   const deleteRecord = (id) => {
     axios
@@ -163,7 +154,16 @@ export default function ShowUsersList() {
         console.log('Unable to delete record')
       })
   }
-
+  //#endregion
+  //#region for search input
+  const [searchInput, setSearchInput] = useState('')
+  //captures and sets value of the search input text
+  const handleChange = (e) => {
+    e.preventDefault()
+    setSearchInput(e.target.value)
+  }
+  //#endregion
+  //#region for filtering data based on search input
   const filteredData = users
     .filter((user) => {
       if (searchInput === '') {
@@ -193,7 +193,12 @@ export default function ShowUsersList() {
         )
       }
     })
-    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1))
+    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1)
+
+    )
+  //#endregion
+  //#region for table styling
+  //table cell
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.gray,
@@ -204,6 +209,7 @@ export default function ShowUsersList() {
     },
   }))
 
+  //table row
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
@@ -212,9 +218,11 @@ export default function ShowUsersList() {
     '&:last-child td, &:last-child th': {
       border: 0,
     },
-  }))
+  })
 
-  //pagination
+  )
+
+  //table pagination
   function TablePaginationActions(props) {
     const theme = useTheme()
     const { count, page, rowsPerPage, onPageChange } = props
@@ -286,8 +294,8 @@ export default function ShowUsersList() {
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-
-  // Avoid a layout jump when reaching the last page with empty rows.
+  //#endregion
+  //#region for avoiding a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredData.length) : 0
 
@@ -299,18 +307,18 @@ export default function ShowUsersList() {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-
+  //#endregion
+  //#region for main return statement
   return (
     <div className="grid_containers">
-      {/* <div className="item3"> */}
       <div className="item3A">
-        <h4 className='createScheduleHeader'>Registered Users</h4>
+        <h4 className='createPageHeader'>Users</h4>
         <div>{displayEditRoleModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>
         <label htmlFor="search" className="searchLabel" >
           <Link className="btn btn-info  btn-sm" to={`/signup`}>
             <i className="fa fa-user" aria-hidden="true" title='Add User' />
-          </Link>{' '}
+          </Link>
           <button className='btn btn-success  btn-sm'
             onClick={handleDownloadExcel}
           >
@@ -425,7 +433,9 @@ export default function ShowUsersList() {
           </TableContainer>
         </div>
       </div>
-      {/* </div> */}
+
     </div>
   )
+  //#endregion 
 }
+//#endregion

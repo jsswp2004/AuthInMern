@@ -1,13 +1,10 @@
+//#region for imports and styling
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-// import Role from './rolesList'
 import axios from 'axios'
-// import Navbar from '../../navigation/navbar'
-// import Header from '../../shared/Header'
 import { Modal, Button } from 'react-bootstrap'
 import CreateRole from './createRoleModal'
 import EditRole from './editRoleModal'
-// import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -27,9 +24,10 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import * as XLSX from "xlsx"
-
-const ShowRolesList = () => {
-  // Define the modal state with useState hook
+//#endregion
+//#region fro main component //#region  //#endregion
+export default function ShowRolesList() {
+  //#region  Define the modal state with useState hook
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -41,13 +39,16 @@ const ShowRolesList = () => {
   const [roles, setRoles] = useState([])
   // const navigate = useNavigate()
   // console.log(roles)
+
+  //#endregion
+  //#region for search input
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
-
+  //#endregion
   const navigate = useNavigate()
 
   const handleClick = (e) => {
@@ -67,7 +68,7 @@ const ShowRolesList = () => {
     // navigate('/settingsPage')
   }
 
-
+  //#region for for excel download
   const handleDownloadExcel = (e) => {
     const rows = roles.map((e) =>
     ({
@@ -89,6 +90,8 @@ const ShowRolesList = () => {
     XLSX.writeFile(workbook, "Role_List_Report.xlsx", { compression: true });
 
   }
+
+  //#endregion
   // console.log(roles)
   useEffect(() => {
     axios
@@ -197,6 +200,31 @@ const ShowRolesList = () => {
     return <EditRoleModal />
   }
 
+  //#region for filtering data based on search input
+  const filteredData = roles
+    .filter((role) => {
+      if (searchInput === '') {
+        return role
+      } else {
+        return (
+          role.name
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          role.addedDate
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase())
+        )
+      }
+    })
+    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1)
+
+    )
+
+  //#endregion
+
+
   //table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -292,7 +320,7 @@ const ShowRolesList = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - roles.length) : 0
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredData.length) : 0
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -308,12 +336,11 @@ const ShowRolesList = () => {
     const roleID = item._id
     setRoleID(roleID)
   }
-
+  //#region for main return statement
   return (
-    <div className="roleItemContainerBox">
+    <div className="grid_containers">
       <div className="item3A">
         <h4 className="createPageHeader">Roles</h4>
-
         <div>{displayRoleModal()}</div>
         <div>{displayEditRoleModal()}</div>
         <div>{displayDeleteRegistrationModal()}</div>
@@ -365,11 +392,11 @@ const ShowRolesList = () => {
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? roles.slice(
+                  ? filteredData.slice(
                     page * rowsPerPage,
                     page * rowsPerPage + rowsPerPage,
                   )
-                  : roles
+                  : filteredData
                 ).map((role) => (
                   <StyledTableRow key={role._id}
                     onClick={() => handleItemClick(role)}>
@@ -420,7 +447,7 @@ const ShowRolesList = () => {
                       { label: 'All', value: -1 },
                     ]}
                     colSpan={12}
-                    count={roles.length}
+                    count={filteredData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{
@@ -441,6 +468,6 @@ const ShowRolesList = () => {
       </div>
     </div>
   )
+  //#endregion 
 }
-
-export default ShowRolesList
+//#endregion
