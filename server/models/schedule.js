@@ -17,6 +17,7 @@ const scheduleSchema = new mongoose.Schema({
   scheduledThurs: { type: String, required: true },
   scheduledFri: { type: String, required: true },
   addedDate: { type: String, required: true },
+  lastUpdated: { type: String, required: false },
 })
 
 const Schedule = mongoose.model('schedule', scheduleSchema)
@@ -32,11 +33,12 @@ const validate = (data) => {
     pmStartTime: Joi.string().required().label('PM Start Time'),
     pmEndTime: Joi.string().required().label('PM End Time'),
     scheduledMon: Joi.string().required().label('Scheduled'),
-    scheduledTues:Joi.string().required().label('Scheduled'),
-    scheduledWed:Joi.string().required().label('Scheduled'),
-    scheduledThurs:Joi.string().required().label('Scheduled'),
-    scheduledFri:Joi.string().required().label('Scheduled'),
+    scheduledTues: Joi.string().required().label('Scheduled'),
+    scheduledWed: Joi.string().required().label('Scheduled'),
+    scheduledThurs: Joi.string().required().label('Scheduled'),
+    scheduledFri: Joi.string().required().label('Scheduled'),
     addedDate: Joi.string().required().label('Date Created'),
+    lastUpdated: Joi.string().label('Last Updated'),
   })
   return schema.validate(data)
 }

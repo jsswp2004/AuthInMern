@@ -41,7 +41,7 @@ function EditException(props) {
     lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
 
-  const [defaultAmStartTime, setDefaultAmStartTime] = useState('09:00')
+  // const [defaultAmStartTime, setDefaultAmStartTime] = useState('09:00')
   // const ref = useRef(null);
   // const handleClick = () => {
   //   console.log(ref.current.value);
@@ -79,7 +79,7 @@ function EditException(props) {
           addedDate: res.data.addedDate,
           lastUpdated: res.data.lastUpdated,
         })
-        console.log('res.data.addedDate', res.data.addedDate)
+        // console.log('res.data.addedDate', res.data.addedDate)
       })
       .catch((err) => {
         console.log('Error from EditException')
@@ -89,7 +89,7 @@ function EditException(props) {
 
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
-    setDefaultAmStartTime(e.target.value)
+    // setDefaultAmStartTime(e.target.value)
   }
   const onSubmit = (e) => {
     e.preventDefault()
@@ -99,19 +99,19 @@ function EditException(props) {
       provider: exception.provider,
       startDate: exception.startDate,
       endDate: exception.endDate,
-      amStartTime: exception.amStartTime.length > 0 ? exception.amStartTime : '09:00',
-      amEndTime: exception.amEndTime.length > 0 ? exception.amEndTime : '12:00',
-      pmStartTime: exception.pmStartTime.length > 0 ? exception.pmStartTime : '13:00',
-      pmEndTime: exception.pmEndTime.length > 0 ? exception.pmEndTime : '18:00',
+      amStartTime: exception.amStartTime,//.length > 0 ? exception.amStartTime : '09:00',
+      amEndTime: exception.amEndTime,//.length > 0 ? exception.amEndTime : '12:00',
+      pmStartTime: exception.pmStartTime,//.length > 0 ? exception.pmStartTime : '13:00',
+      pmEndTime: exception.pmEndTime,//.length > 0 ? exception.pmEndTime : '18:00',
       exceptionMon: exceptionMon1,
       exceptionTues: exceptionTues1,
       exceptionWed: exceptionWed1,
       exceptionThurs: exceptionThurs1,
       exceptionFri: exceptionFri1,
-      addedDate: format(exception.addedDate, 'yyyy-MM-dd'),// 
+      addedDate: exception.addedDate,// format( new Date(), 'yyyy-MM-dd'),// 
       lastUpdated: format(new Date(), 'yyyy-MM-dd'), //exception.lastUpdated,
     }
-
+    // console.log(exception.addedDate)
     axios
       .put(`http://localhost:8081/api/exceptions/${props.providerID}`, data)
       .then((res) => {
@@ -319,7 +319,7 @@ function EditException(props) {
                   </label>
                 </div>
               </div>
-              <div className="form-group updateRegistrationGrp ">
+              <div className="form-group updateRegistrationGrp" style={{ display: 'flex', flexDirection: 'column' }}>
                 <label htmlFor="addedDate">
                   Date Created
                   <input
@@ -330,11 +330,6 @@ function EditException(props) {
                     onChange={onChange}
                     readOnly
                   />
-                  {/* <input
-                    value="Update"
-                    type="submit"
-                    className="btn btn-success updateRegistrationBtn"
-                  /> */}
                 </label>
                 <label htmlFor="lastUpdated">
                   Last Updated

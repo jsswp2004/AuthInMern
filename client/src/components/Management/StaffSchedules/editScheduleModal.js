@@ -46,7 +46,8 @@ function EditSchedule(props) {
     scheduledWed: '',
     scheduledThurs: '',
     scheduledFri: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    addedDate: format(new Date(), 'yyyy-MM-dd'),
+    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
 
   useEffect(() => {
@@ -98,6 +99,7 @@ function EditSchedule(props) {
       scheduledThurs: scheduleThurs,
       scheduledFri: scheduleFri,
       addedDate: schedule.addedDate,
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'),
     }
 
     axios
@@ -323,6 +325,17 @@ function EditSchedule(props) {
                     value={schedule.addedDate}
                     onChange={onChange}
                   />
+                  <label htmlFor="lastUpdated">
+                    Last Updated
+                    <input
+                      type="date"
+                      className="form-control scheduleInput"
+                      name="lastUpdated"
+                      value={schedule.lastUpdated}
+                      onChange={onChange}
+                    />
+
+                  </label>
                   <input
                     value="Update"
                     type="submit"

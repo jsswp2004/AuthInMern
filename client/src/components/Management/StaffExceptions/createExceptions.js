@@ -102,7 +102,7 @@ const CreateException = (props) => {
       providerID: providerSelected._id,
       startDate: exception.startDate,
       endDate: exception.endDate,
-      amStartTime: defaultAmStartTime, //exception.amStartTime,
+      amStartTime: exception.amStartTime,
       amEndTime: exception.amEndTime,
       pmStartTime: exception.pmStartTime,
       pmEndTime: exception.pmEndTime,

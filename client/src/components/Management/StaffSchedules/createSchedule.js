@@ -45,7 +45,7 @@ const CreateSchedule = (props) => {
     scheduledWed: '',
     scheduledThurs: '',
     scheduledFri: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const onChange = (e) => {
@@ -81,7 +81,7 @@ const CreateSchedule = (props) => {
       scheduledWed: scheduleWed,
       scheduledThurs: scheduleThurs,
       scheduledFri: scheduleFri,
-      addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      addedDate: format(new Date(), 'yyyy-MM-dd'),
     }
 
     axios
@@ -101,7 +101,7 @@ const CreateSchedule = (props) => {
           scheduledWed: '',
           scheduledThurs: '',
           scheduledFri: '',
-          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          addedDate: format(new Date(), 'yyyy-MM-dd'),
         })
 
         // Push to /
