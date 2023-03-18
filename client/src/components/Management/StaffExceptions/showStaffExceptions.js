@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, ThemeProvider } from 'react-bootstrap'
 import CreateException from '../StaffExceptions/createExceptions'
 import EditException from '../StaffExceptions/editExceptionModal'
 import { styled } from '@mui/material/styles'
@@ -23,7 +23,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import * as XLSX from "xlsx";
-
+import themeDesign from '../../Functions/theme'
 
 const ShowExceptionsList = () => {
 
@@ -42,13 +42,41 @@ const ShowExceptionsList = () => {
   }
   // Define the Exception state
   const [exceptions, setExceptions] = useState([])
-  // Define the Search state
+  //#region for search input
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
+  //#endregion
+  //#region for filtering data based on search input
+  const filteredData = exceptions
+    .filter((exception) => {
+      if (searchInput === '') {
+        return exception
+      } else {
+        return (
+          exception.provider
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          exception.startDate
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          exception.endDate
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase())
+
+        )
+      }
+    })
+    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1)
+
+    )
+  //#endregion
   // Navigation
   // const navigate = useNavigate()
 
@@ -319,7 +347,7 @@ const ShowExceptionsList = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - exceptions.length) : 0
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredData.length) : 0
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -381,134 +409,127 @@ const ShowExceptionsList = () => {
 
       <div className="exceptionItemContainerBox">
         <div className="card-body table-responsive p-0">
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 650 }}
-              size="small"
-              aria-label="a dense table"
-            >
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell align="left">Provider</StyledTableCell>
-                  <StyledTableCell align="left">Start Date</StyledTableCell>
-                  <StyledTableCell align="left">End Date</StyledTableCell>
-                  <StyledTableCell align="left">AM Start</StyledTableCell>
-                  <StyledTableCell align="left">AM End</StyledTableCell>
-                  <StyledTableCell align="left">PM Start</StyledTableCell>
-                  <StyledTableCell align="left">PM End</StyledTableCell>
-                  <StyledTableCell align="left">Exception Days</StyledTableCell>
-                  {/* <StyledTableCell align="left">Date Created</StyledTableCell> */}
-                  <StyledTableCell align="left">Actions</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody >
-                {(rowsPerPage > 0
-                  ? exceptions.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
-                  : exceptions
-                ).map((exception) => (
-                  <StyledTableRow key={exception._id}
-                    onClick={() => handleItemClick(exception)}
-                  >
-                    <StyledTableCell align="left">
-                      {exception.provider}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {exception.startDate}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {exception.endDate}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {exception.amStartTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {exception.amEndTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {exception.pmStartTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {exception.pmEndTime}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {exception.exceptionMon + ' '}{' '}
-                      {exception.exceptionTues + ' '}
-                      {exception.exceptionWed + ' '}{' '}
-                      {exception.exceptionThurs + ' '}
-                      {exception.exceptionFri + ' '}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {/* <button className='btn btn-success  btn-sm'
-                        onClick={handleDownloadExcel}
-                      >
-                        <i
-                          className="fa fa-file-excel-o"
-                          aria-hidden="true"
-                          title="Export to Excel"
-                        />
-                      </button> */}
-                      <button className='btn btn-info  btn-sm'
-                        onClick={handleEditShow}
-                      >
-                        <i
-                          className="fa fa-list-alt"
-                          aria-hidden="true"
-                          title="Edit Exception"
-                        />
-                      </button>
-                      <button
-                        className="btn btn-danger  btn-sm"
-                        onClick={handleShowDelete}
-                      >
-                        <i
-                          title="delete visit"
-                          className="fa fa-trash-o"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-                {emptyRows > 0 && (
-                  <StyledTableRow
-                    style={{
-                      height: 53 * emptyRows,
-                    }}
-                  >
-                    <StyledTableCell colSpan={6} />
-                  </StyledTableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[
-                      5,
-                      10,
-                      25,
-                      { label: 'All', value: -1 },
-                    ]}
-                    colSpan={12}
-                    count={exceptions.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        'aria-label': 'rows per page',
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
+          <ThemeProvider theme={themeDesign}>
+            <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+              <Table
+                sx={{ minWidth: 650 }}
+                size="small"
+                aria-label="a dense table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell align="left">Provider</StyledTableCell>
+                    <StyledTableCell align="left">Start Date</StyledTableCell>
+                    <StyledTableCell align="left">End Date</StyledTableCell>
+                    <StyledTableCell align="left">AM Start</StyledTableCell>
+                    <StyledTableCell align="left">AM End</StyledTableCell>
+                    <StyledTableCell align="left">PM Start</StyledTableCell>
+                    <StyledTableCell align="left">PM End</StyledTableCell>
+                    <StyledTableCell align="left">Exception Days</StyledTableCell>
+                    {/* <StyledTableCell align="left">Date Created</StyledTableCell> */}
+                    <StyledTableCell align="left">Actions</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody >
+                  {(rowsPerPage > 0
+                    ? filteredData.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage,
+                    )
+                    : filteredData
+                  ).map((exception) => (
+                    <StyledTableRow key={exception._id}
+                      onClick={() => handleItemClick(exception)}
+                    >
+                      <StyledTableCell align="left">
+                        {exception.provider}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {exception.startDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {exception.endDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {exception.amStartTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {exception.amEndTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {exception.pmStartTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {exception.pmEndTime}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {exception.exceptionMon + ' '}{' '}
+                        {exception.exceptionTues + ' '}
+                        {exception.exceptionWed + ' '}{' '}
+                        {exception.exceptionThurs + ' '}
+                        {exception.exceptionFri + ' '}
+                      </StyledTableCell>
+                      <StyledTableCell align="left" width='250px'>
+                        <button className='btn btn-info  btn-sm'
+                          onClick={handleEditShow}
+                        >
+                          <i
+                            className="fa fa-list-alt"
+                            aria-hidden="true"
+                            title="Edit Exception"
+                          />
+                        </button>
+                        <button
+                          className="btn btn-danger  btn-sm"
+                          onClick={handleShowDelete}
+                        >
+                          <i
+                            title="delete visit"
+                            className="fa fa-trash-o"
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                  {emptyRows > 0 && (
+                    <StyledTableRow
+                      style={{
+                        height: 53 * emptyRows,
+                      }}
+                    >
+                      <StyledTableCell colSpan={6} />
+                    </StyledTableRow>
+                  )}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPageOptions={[
+                        5,
+                        10,
+                        25,
+                        { label: 'All', value: -1 },
+                      ]}
+                      colSpan={12}
+                      count={filteredData.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      SelectProps={{
+                        inputProps: {
+                          'aria-label': 'rows per page',
+                        },
+                        native: true,
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </TableContainer>
+          </ThemeProvider>
         </div>
       </div>
     </div>

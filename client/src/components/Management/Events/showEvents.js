@@ -37,15 +37,38 @@ const ShowEventsList = () => {
   const handleEditShow = () => setEditShow(true)
 
   const [events, setEvents] = useState([])
-  // const navigate = useNavigate()
-  //   console.log(events)
+  // #region for search input
+
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
+  //#endregion
+  //#region for filtering data based on search input
+  const filteredData = events
+    .filter((event) => {
+      if (searchInput === '') {
+        return event
+      } else {
+        return (
+          event.name
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          event.addedDate
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase())
+        )
+      }
+    })
+    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1)
 
+    )
+
+  //#endregion
   const navigate = useNavigate()
 
   const handleClick = (e) => {
@@ -286,7 +309,7 @@ const ShowEventsList = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - events.length) : 0
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredData.length) : 0
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -307,7 +330,7 @@ const ShowEventsList = () => {
   return (
     <div className="eventItemContainerBox">
       <div className="item3A">
-        <h4 className="createPageHeader">Event</h4>
+        <h4 className="createPageHeader">Events</h4>
 
         <div>{displayEventModal()}</div>
         <div>{displayEditEventModal()}</div>
@@ -360,18 +383,18 @@ const ShowEventsList = () => {
               </TableHead>
               <TableBody>
                 {(rowsPerPage > 0
-                  ? events.slice(
+                  ? filteredData.slice(
                     page * rowsPerPage,
                     page * rowsPerPage + rowsPerPage,
                   )
-                  : events
+                  : filteredData
                 ).map((event) => (
                   <StyledTableRow key={event._id}
                     onClick={() => handleItemClick(event)}
                   >
                     <StyledTableCell align="left">{event.name}</StyledTableCell>
                     <StyledTableCell align="left">{event.addedDate}</StyledTableCell>
-                    <StyledTableCell align="left">
+                    <StyledTableCell align="left" width='250px'>
 
                       <button className='btn btn-info btn-sm'
                         onClick={handleEditShow}
@@ -427,7 +450,7 @@ const ShowEventsList = () => {
                       { label: 'All', value: -1 },
                     ]}
                     colSpan={12}
-                    count={events.length}
+                    count={filteredData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{

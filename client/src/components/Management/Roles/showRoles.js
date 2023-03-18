@@ -36,7 +36,7 @@ export default function ShowRolesList() {
   const handleEditClose = () => setEditShow(false)
   const handleEditShow = () => setEditShow(true)
 
-  const [roles, setRoles] = useState([])
+
   // const navigate = useNavigate()
   // console.log(roles)
 
@@ -49,25 +49,20 @@ export default function ShowRolesList() {
     setSearchInput(e.target.value)
   }
   //#endregion
+  //#region for modal functions
   const navigate = useNavigate()
 
   const handleClick = (e) => {
     e.preventDefault()
-    // setSearchInput(e.target.value)
-    // alert('Create role button clicked')
     setShow(false)
     navigate('/settingsPage')
   }
 
   const handleEditClick = (e) => {
     e.preventDefault()
-    // setSearchInput(e.target.value)
-    // alert('Create role button clicked')
     setEditShow(false)
-    // window.location.close()
-    // navigate('/settingsPage')
   }
-
+  //#endregion
   //#region for for excel download
   const handleDownloadExcel = (e) => {
     const rows = roles.map((e) =>
@@ -92,12 +87,12 @@ export default function ShowRolesList() {
   }
 
   //#endregion
-  // console.log(roles)
+  //#region to pull roles
+  const [roles, setRoles] = useState([])
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/roles')
       .then((res) => {
-        // const data = response.data
         setRoles(res.data)
       })
       .catch((error) => {
@@ -107,8 +102,10 @@ export default function ShowRolesList() {
 
   //Define role id for prop
   const [roleID, setRoleID] = useState('')
+
+  //#endregion
   //#region for delete confirmation modal
-  // const [staffSchedID, setStaffSchedID] = useState('')
+
   const [showDelete, setShowDelete] = useState(false)
   const handleCloseDelete = () => setShowDelete(false)
   const handleShowDelete = () => setShowDelete(true)
@@ -137,7 +134,6 @@ export default function ShowRolesList() {
     return <DeleteVisitModal />
   }
 
-  //#endregion
   const deleteRecord = (id) => {
     axios
       .delete(`http://localhost:8081/api/roles/${id}`)
@@ -149,7 +145,8 @@ export default function ShowRolesList() {
         console.log('Unable to delete visit')
       })
   }
-  // console.log('roles', roles)
+  //#endregion
+  //#region  for role modal
   const RoleModal = () => (
     <>
       <Modal show={show} onHide={handleClose} size="med" centered>
@@ -170,7 +167,7 @@ export default function ShowRolesList() {
       </Modal>
     </>
   )
-  // console.log(show)
+
   function displayRoleModal() {
     return <RoleModal />
   }
@@ -195,11 +192,11 @@ export default function ShowRolesList() {
       </Modal>
     </>
   )
-  // console.log(show)
+
   function displayEditRoleModal() {
     return <EditRoleModal />
   }
-
+  //#endregion
   //#region for filtering data based on search input
   const filteredData = roles
     .filter((role) => {
@@ -223,9 +220,7 @@ export default function ShowRolesList() {
     )
 
   //#endregion
-
-
-  //table functions
+  //#region  table functions
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.gray,
@@ -330,12 +325,13 @@ export default function ShowRolesList() {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-
-  //setting the ID of the event for the property
+  //#endregion
+  //#region setting the ID of the role for the prop
   const handleItemClick = item => {
     const roleID = item._id
     setRoleID(roleID)
   }
+  //#endregion
   //#region for main return statement
   return (
     <div className="grid_containers">
@@ -403,7 +399,7 @@ export default function ShowRolesList() {
                     <StyledTableCell align="left">{role.name}</StyledTableCell>
                     <StyledTableCell align="left">{role.addedDate}</StyledTableCell>
 
-                    <StyledTableCell align="left">
+                    <StyledTableCell align="left" width='250px'>
                       <button className='btn btn-info btn-sm'
                         onClick={handleEditShow}
                       >

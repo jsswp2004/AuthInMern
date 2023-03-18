@@ -40,15 +40,41 @@ const ShowSchedulesList = () => {
   }
   // Define the Schedule state
   const [schedules, setSchedules] = useState([])
-  // Define the Search state
+  //#region for search input
   const [searchInput, setSearchInput] = useState('')
   //captures and sets value of the search input text
   const handleChange = (e) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
-  // Navigation
-  // const navigate = useNavigate()
+  //#endregion
+  //#region for filtering data based on search input
+  const filteredData = schedules
+    .filter((exception) => {
+      if (searchInput === '') {
+        return exception
+      } else {
+        return (
+          exception.provider
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          exception.startDate
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase()) ||
+          exception.endDate
+            .toString()
+            .toLowerCase()
+            .includes(searchInput.toLowerCase())
+
+        )
+      }
+    })
+    .sort((a, b) => (a.addedDate < b.addedDate ? 1 : -1)
+
+    )
+  //#endregion
 
   // Method to set show for create modal to false
   const handleClick = (e) => {
@@ -314,7 +340,7 @@ const ShowSchedulesList = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - schedules.length) : 0
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredData.length) : 0
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -395,11 +421,11 @@ const ShowSchedulesList = () => {
               </TableHead>
               <TableBody >
                 {(rowsPerPage > 0
-                  ? schedules.slice(
+                  ? filteredData.slice(
                     page * rowsPerPage,
                     page * rowsPerPage + rowsPerPage,
                   )
-                  : schedules
+                  : filteredData
                 ).map((schedule) => (
                   <StyledTableRow key={schedule._id}
                     onClick={() => handleItemClick(schedule)}
@@ -432,7 +458,7 @@ const ShowSchedulesList = () => {
                       {schedule.scheduledThurs + ' '}
                       {schedule.scheduledFri + ' '}
                     </StyledTableCell>
-                    <StyledTableCell align="left">
+                    <StyledTableCell align="left" width='250px'>
                       <button className='btn btn-info  btn-sm'
                         onClick={handleEditShow}
                       >
@@ -475,7 +501,7 @@ const ShowSchedulesList = () => {
                       { label: 'All', value: -1 },
                     ]}
                     colSpan={12}
-                    count={schedules.length}
+                    count={filteredData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{

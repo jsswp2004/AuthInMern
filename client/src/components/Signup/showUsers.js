@@ -1,7 +1,7 @@
 //#region for imports and styling 
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, ThemeProvider } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
@@ -23,6 +23,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditUser from './editUserModal'
 import * as XLSX from "xlsx"
+import themeDesign from '../Functions/theme'
 //#endregion
 //#region fro main component
 export default function ShowUsersList() {
@@ -201,7 +202,7 @@ export default function ShowUsersList() {
   //table cell
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.gray,
+      backgroundColor: themeDesign.palette.primary.main,
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -342,95 +343,97 @@ export default function ShowUsersList() {
 
       <div className="roleItemContainerBox">
         <div className="card-body table-responsive p-0">
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell align="left">Firsts Name</StyledTableCell>
-                  <StyledTableCell align="left">Last Name</StyledTableCell>
-                  <StyledTableCell align="left">Email</StyledTableCell>
-                  <StyledTableCell align="left">Role</StyledTableCell>
-                  <StyledTableCell align="left">Date Added</StyledTableCell>
-                  <StyledTableCell align="left">Actions</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? filteredData.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
-                  : filteredData
-                ).map((user) => (
-                  <StyledTableRow key={user._id}
-                    onClick={() => handleItemClick(user)}
-                  >
-                    <StyledTableCell align="left">
-                      {user.firstName}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {user.lastName}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">{user.email}</StyledTableCell>
-                    <StyledTableCell align="left">{user.role}</StyledTableCell>
-                    <StyledTableCell align="left">
-                      {user.addedDate}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <button className='btn btn-info  btn-sm'
-                        onClick={handleEditShow}
-                      >
-                        <i
-                          className="fa fa-pencil-square-o "
-                          aria-hidden="true"
-                          title="Edit User"
-                        />
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={handleShowDelete}
-                      >
-                        <i
-                          title="delete role"
-                          className="fa fa-trash-o "
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-                {emptyRows > 0 && (
-                  <StyledTableRow
-                    style={{
-                      height: 53 * emptyRows,
-                    }}
-                  >
-                    <StyledTableCell colSpan={6} />
-                  </StyledTableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                    colSpan={6}
-                    count={filteredData.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        'aria-label': 'rows per page',
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
+          <ThemeProvider theme={themeDesign}>
+            <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+              <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell align="left">Firsts Name</StyledTableCell>
+                    <StyledTableCell align="left">Last Name</StyledTableCell>
+                    <StyledTableCell align="left">Email</StyledTableCell>
+                    <StyledTableCell align="left">Role</StyledTableCell>
+                    <StyledTableCell align="left">Date Added</StyledTableCell>
+                    <StyledTableCell align="left">Actions</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {(rowsPerPage > 0
+                    ? filteredData.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage,
+                    )
+                    : filteredData
+                  ).map((user) => (
+                    <StyledTableRow key={user._id}
+                      onClick={() => handleItemClick(user)}
+                    >
+                      <StyledTableCell align="left">
+                        {user.firstName}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        {user.lastName}
+                      </StyledTableCell>
+                      <StyledTableCell align="left">{user.email}</StyledTableCell>
+                      <StyledTableCell align="left">{user.role}</StyledTableCell>
+                      <StyledTableCell align="left">
+                        {user.addedDate}
+                      </StyledTableCell>
+                      <StyledTableCell align="left" width='250px'>
+                        <button className='btn btn-info  btn-sm'
+                          onClick={handleEditShow}
+                        >
+                          <i
+                            className="fa fa-pencil-square-o "
+                            aria-hidden="true"
+                            title="Edit User"
+                          />
+                        </button>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={handleShowDelete}
+                        >
+                          <i
+                            title="delete role"
+                            className="fa fa-trash-o "
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                  {emptyRows > 0 && (
+                    <StyledTableRow
+                      style={{
+                        height: 53 * emptyRows,
+                      }}
+                    >
+                      <StyledTableCell colSpan={6} />
+                    </StyledTableRow>
+                  )}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                      colSpan={6}
+                      count={filteredData.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      SelectProps={{
+                        inputProps: {
+                          'aria-label': 'rows per page',
+                        },
+                        native: true,
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </TableContainer>
+          </ThemeProvider>
         </div>
       </div>
 
