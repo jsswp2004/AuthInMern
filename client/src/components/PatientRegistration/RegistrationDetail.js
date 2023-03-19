@@ -9,9 +9,9 @@ import {
   PDFViewer,
   Font,
 } from '@react-pdf/renderer'
-import { borderRadius, height } from '@mui/system'
+// import { borderRadius, height } from '@mui/system'
 import { blue, lightBlue } from '@mui/material/colors'
-import { light } from '@mui/material/styles/createPalette'
+// import { light } from '@mui/material/styles/createPalette'
 
 // Register font
 
