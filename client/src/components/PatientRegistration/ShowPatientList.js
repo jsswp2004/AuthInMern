@@ -505,23 +505,23 @@ export default function ShowRecordList() {
                             />
                           </Button>
                         </Tooltip>
-                        <Link
+                        <a
                           className="btn btn-success  btn-sm"
-                          to={`/showPatientVisitList/${pt.medicalRecordNumber}`}
+                          href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                         >
                           <Tooltip title="Display patient visits">
-                            <LocalHospitalIcon sx={{ size: 'small', color: 'white', paddingRight: '10px' }} />
+                            <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
                           </Tooltip>
-                        </Link>
-                        <Link
+                        </a>
+                        <a
                           className="btn btn-info btn-sm "
-                          to={`/editPatient/${pt._id}`}
+                          href={`/editPatient/${pt._id}`}
                         >
                           <Tooltip title="Edit patient">
-                            <EditNotificationsIcon sx={{ size: 'small', color: 'white', paddingRight: '10px' }} />
+                            <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
                           </Tooltip>
 
-                        </Link>
+                        </a>
                         <Tooltip title="Delete patient">
                           <button onClick={handleShowDelete}
                             className="btn btn-danger  btn-sm"
