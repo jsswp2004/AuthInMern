@@ -567,7 +567,7 @@ export default function ShowVisitList() {
                           className="btn btn-primary btn-sm"
                           onClick={() => { handleEditVisitShow(pt._id) }}>
                           <i
-                            className="fa fa-edit"
+                            className="fa fa-pencil"
                             aria-hidden="true"
                             title='edit visit'
                           />
