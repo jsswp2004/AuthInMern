@@ -92,7 +92,7 @@ export default function ShowVisitList() {
     setDetailVisitShow(false)
   }
 
-  //#endRegion
+  //#endregion 
   //#region Edit Visit Modal from Registration
   const ShowEditVisitModal = () => (
     <>
@@ -563,16 +563,6 @@ export default function ShowVisitList() {
                         {pt.addedDate}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {/* <Link
-                        className="btn btn-info btn-sm"
-                        to={`/editVisit/${pt._id}`}
-                      >
-                        <i
-                          className="fa fa-pencil-square-o"
-                          aria-hidden="true"
-                        />
-                      </Link>{' '} */}
-
                         <button
                           className="btn btn-primary btn-sm"
                           onClick={() => { handleEditVisitShow(pt._id) }}>
@@ -591,19 +581,6 @@ export default function ShowVisitList() {
                             title='Visit details'
                           />
                         </button>
-                        {/* <button className="btn btn-success btn-sm btn-sm"> */}
-                        {/* <Link className="btn btn-success btn-m "
-                          to={`/detailsVisit/${pt._id}`}
-                        >
-                          <i
-                            title="visit details"
-                            className="fa fa-edit"
-                            aria-hidden="true"
-                          />
-                        </Link> */}
-
-                        {/* </button> */}
-
                         <button
                           className="btn btn-danger btn-sm"
                           onClick={handleShowDelete}

@@ -54,7 +54,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
-import { UserContext } from '../../App'
+import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
 //#endregion
 
 export default function ClinicVisit() {
@@ -139,6 +139,46 @@ export default function ClinicVisit() {
   let startOfTheWeekDate = startOfWeek(newdate)
   let startOfTheWeekEndOfMonth = endOfMonth(startOfTheWeekDate).getDate()
   //#endregion
+  //#region for Visit Details Modal
+  const ShowDetailVisitModal = () => (
+    <>
+      <Modal show={showDetailVisit} onHide={handleDetailVisitClose} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Visit Details</Modal.Title>
+          <Button variant="secondary" onClick={handleDetailVisitClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <DetailVisitModal visitID={visitID} />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleVisitClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+
+  //Function to display create visit from registration modal
+  function displayDetailVisitModal() {
+    return <ShowDetailVisitModal />
+  }
+
+  //Define the state for edit visit from registration modal 
+  const [showDetailVisit, setDetailVisitShow] = useState(false)
+  const handleDetailVisitClose = () => setDetailVisitShow(false)
+  const handleDetailVisitShow = () => {
+    setDetailVisitShow(true)
+  }
+
+  const handleDetailVisitClick = (e) => {
+    e.preventDefault()
+    setDetailVisitShow(false)
+  }
+
+  //#endregion 
   //#region code for Modal methods for creating visit
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
@@ -177,21 +217,24 @@ export default function ClinicVisit() {
   const [modalDisplay, setModalDisplay] = useState('visit')
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
-      <Modal className='modal-xl' show={showMonthly} onHide={handleMonthlyClose} size="xg" centered>
-        <Modal.Header closeButton onClick={() => setNewPatient(true)}>
+      <Modal dialogClassName='modal-xl' show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
+        <Modal.Header onClick={() => setNewPatient(true)}>
           <Modal.Title>
             Add a quick visit
-            <Link
-              className="btn btn-secondary addVisitModalBtn"
-              to={`/patientlist`}
-            >
-              <i
-                className="fas fa-laptop-medical fa-sm"
-                aria-hidden="true"
-                title="Search patient"
-              /> Search Patient
-            </Link>{' '}
+
           </Modal.Title>
+
+          <Link
+            to={`/patientlist`} className="btn btn-secondary addVisitModalBtn "
+          >
+            <i
+              className="fas fa-laptop-medical fa-sm"
+              aria-hidden="true"
+              title="Search patient"
+            /> Search Patient
+          </Link>
+
+
         </Modal.Header>
         <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>
           <div
@@ -215,6 +258,10 @@ export default function ClinicVisit() {
           <span style={{ textAlign: 'center' }}>
             PLEASE MAKE SURE TO REGISTER CLIENT AFTER ADDING QUICK VISIT TO SCHEDULE.
           </span>
+          <Button variant="secondary" onClick={handleMonthlyClose}>
+            Close
+          </Button>
+
         </Modal.Footer>
       </Modal>
     ) : null
@@ -271,6 +318,12 @@ export default function ClinicVisit() {
     e.preventDefault()
     setEditVisitShow(false)
   }
+
+
+  // const handleDetailVisitClick = (e) => {
+  //   e.preventDefault()
+  //   setEditVisitShow(false)
+  // }
 
 
   //#endregion
@@ -1526,6 +1579,7 @@ export default function ClinicVisit() {
           <div>{displayVisitMonthlyModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
           <div>{displayEditVisitModal()}</div>
+          <div>{displayDetailVisitModal()}</div>
 
           <div className="itemCalendar2">
 
@@ -2759,45 +2813,22 @@ export default function ClinicVisit() {
                                 className="btn btn-primary btn-sm"
                                 onClick={() => { handleEditVisitShow(pt._id) }}>
                                 <i
-                                  className="fa fa-pencil-square-o "
+                                  className="fa fa-pencil"
                                   aria-hidden="true"
                                   title='edit visit'
                                 />
                               </button>
-                              {/* <Link
-                                className="btn btn-info btn-sm"
-                                to={`/editVisit/${pt._id}`}
-                              >
+                              <button
+                                className="btn btn-success btn-sm"
+                                onClick={() => { handleDetailVisitShow(pt._id) }}>
                                 <i
                                   className="fa fa-pencil-square-o"
                                   aria-hidden="true"
+                                  title='Visit details'
                                 />
-                              </Link> */}
-                              <Link
-                                className="btn btn-success btn-sm"
-                                to={`/detailsVisit/${pt._id}`}
-                              >
-                                <i
-                                  className="fa fa-clipboard"
-                                  aria-hidden="true"
-                                />
-                              </Link>
-                              {/* <button
-                                className="btn btn-danger btn-sm registerBtn"
-                                onClick={() => {
-                                  deleteRecord(pt._id)
-                                }}
-                              >
-                                <i
-                                  className="fa fa-trash-o"
-                                  aria-hidden="true"
-                                />
-                              </button> */}
+                              </button>
                               <button
                                 className="btn btn-danger btn-sm"
-                                // onClick={() => {
-                                //   deleteRecord(pt._id)
-                                // }}
                                 onClick={handleShowDelete}
                               >
                                 <i

@@ -23,6 +23,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
+  container: {
+    flex: 1,
+    paddingTop: 30,
+    paddingLeft: 15,
+    '@media max-width: 400': {
+      paddingTop: 10,
+      paddingLeft: 0,
+    },
+  },
   section: {
     flexDirection: 'column',
     margin: 10,
@@ -44,7 +53,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
     fontFamily: 'Oswald',
   },
@@ -70,14 +79,14 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 12,
-    marginBottom: 12,
+    marginBottom: 10,
     textAlign: 'left',
     color: 'grey',
   },
   pageNumber: {
     position: 'absolute',
     fontSize: 12,
-    bottom: 30,
+    bottom: 10,
     left: 0,
     right: 0,
     textAlign: 'center',
@@ -93,8 +102,8 @@ const PatientDetails = (props) => {
       {/* Start of the document*/}
       <Document>
         {/*render a single page*/}
-        <Page size="A5" style={styles.page}>
-          <View style={styles.section}>
+        <Page size="letter" style={styles.page}>
+          <View style={styles.container}>
             <Text style={styles.header} fixed>
               POEHR&#174;
             </Text>
@@ -103,13 +112,30 @@ const PatientDetails = (props) => {
             <View style={styles.section}>
               <table>
                 <tr>
+                  <th>MRN</th>
+                  <th>Visit ID</th>
                   <th>Patient Name</th>
                   <th>Email</th>
                   <th>Visit Date</th>
+                  <th>Time</th>
                   <th>Physician</th>
+                  <th>Cellphone</th>
                 </tr>
-
                 <tr>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      MRN:{' '}
+                      <Text style={styles.text}>{props.visit.medicalRecordNumber}</Text>
+                    </Text>
+                  </td>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Visit ID:{' '}
+                      <Text style={styles.text}>
+                        {props.visit.visitNumber}
+                      </Text>
+                    </Text>
+                  </td>
                   <td>
                     <Text style={styles.subtitle}>
                       Patient Name:{' '}
@@ -139,44 +165,17 @@ const PatientDetails = (props) => {
                       <Text style={styles.text}>{props.visit.provider}</Text>
                     </Text>
                   </td>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Cellphone:{' '}
+                      <Text style={styles.text}>
+                        {props.visit.cellphone}
+                      </Text>
+                    </Text>
+                  </td>
                 </tr>
               </table>
-              {/* <Text style={styles.subtitle}>
-                Patient Name:{' '}
-                <Text style={styles.text}>
-                  {props.visit.firstName} {props.visit.middleName}{' '}
-                  {props.visit.lastName}
-                </Text>
-              </Text>
-              <Text style={styles.subtitle}>
-                Email: <Text style={styles.text}>{props.visit.email}</Text>
-              </Text>
-              <Text style={styles.subtitle}>
-                Visit Date:{' '}
-                <Text style={styles.text}>
-                  {props.visit.visitDate} {props.visit.hourOfVisit}
-                </Text>
-              </Text>
-              <Text style={styles.subtitle}>
-                Physician:{' '}
-                <Text style={styles.text}>{props.visit.provider}</Text>
-              </Text> */}
             </View>
-            {/* <View style={styles.section}>
-              <Text style={styles.subtitle}>Patient Name:</Text>
-              <Text style={styles.text}>
-                {props.visit.firstName} {props.visit.middleName}{' '}
-                {props.visit.lastName}
-              </Text>
-              <Text style={styles.subtitle}>Email:</Text>
-              <Text style={styles.text}>{props.visit.email}</Text>
-              <Text style={styles.subtitle}>Visit Date:</Text>
-              <Text style={styles.text}>
-                {props.visit.visitDate} {props.visit.hourOfVisit}
-              </Text>
-              <Text style={styles.subtitle}>Physician:</Text>
-              <Text style={styles.text}>{props.visit.provider}</Text>
-            </View> */}
           </View>
         </Page>
       </Document>

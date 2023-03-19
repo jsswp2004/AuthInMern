@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
 import EditVisitModal from '../Scheduling/editVisitModal'
+import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
 const VisitMonthDaily = (props) => {
   //#region for setting the ID of the provider for the property
   const handleItemClick = item => {
@@ -52,6 +53,46 @@ const VisitMonthDaily = (props) => {
     setEditVisitShow(false)
   }
 
+
+  //#endregion
+  //#region for Visit Details Modal
+  const ShowDetailVisitModal = () => (
+    <>
+      <Modal show={showDetailVisit} onHide={handleDetailVisitClose} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Visit Details</Modal.Title>
+          <Button variant="secondary" onClick={handleDetailVisitClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <DetailVisitModal visitID={visitID} />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleVisitClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+
+  //Function to display create visit from registration modal
+  function displayDetailVisitModal() {
+    return <ShowDetailVisitModal />
+  }
+
+  //Define the state for edit visit from registration modal 
+  const [showDetailVisit, setDetailVisitShow] = useState(false)
+  const handleDetailVisitClose = () => setDetailVisitShow(false)
+  const handleDetailVisitShow = () => {
+    setDetailVisitShow(true)
+  }
+
+  const handleDetailVisitClick = (e) => {
+    e.preventDefault()
+    setDetailVisitShow(false)
+  }
 
   //#endregion
   //#region for delete confirmation modal
@@ -121,6 +162,7 @@ const VisitMonthDaily = (props) => {
 
       <div>{displayEditVisitModal()}</div>
       <div>{displayDeleteRegistrationModal()}</div>
+      <div>{displayDetailVisitModal()}</div>
       <div className="visitMonthDayContainerItem" onClick={() => handleItemClick(props.visit)}>
 
         <span className="visitMonthDayContainerItemSpan">{props.visit.hourOfVisit} {props.visit.firstName}{' '}
@@ -137,26 +179,28 @@ const VisitMonthDaily = (props) => {
           </ul>
         </div>
       </div>
-      
+
       <div className="visitMonthDayContainerItemAction" onClick={() => setVisitID(props.visit._id)}>
         <span>
           <i
-            className="fa fa-pencil-square-o fa-sm"
+            className="fa fa-pencil fa-sm "
             aria-hidden="true"
             title='edit visit'
             style={{ color: '#72bcd4', paddingTop: '5px', paddingLeft: '3px' }}
             onClick={() => { handleEditVisitShow(visitID) }}
           />
         </span>
-        <Link className='hovertest' to={`/detailsVisit/${props.visit._id}`}>
-          <i
-            className="fa fa-clipboard fa-sm"
-            aria-hidden="true"
-            style={{ color: 'green', paddingTop: '5px', paddingLeft: '3px' }}
-            title="add details"
 
+        <span>
+          <i
+            className="fa fa-pencil-square-o fa-sm"
+            aria-hidden="true"
+            title='Visit details'
+            onClick={() => { handleDetailVisitShow(props.visit._id) }}
+            style={{ paddingTop: '5px', marginLeft: '5px' }}
           />
-        </Link>{' '}
+        </span>
+
 
         <span>
           <i

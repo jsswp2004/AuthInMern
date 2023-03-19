@@ -1775,7 +1775,7 @@ tfoot > .MuiTableFooter-root {
 
 /*visit modal additional css*/
 .addVisitModalBtn {
-  margin-left: 400px;
+  margin-left: auto;
 }
 
 /*settings page css*/
