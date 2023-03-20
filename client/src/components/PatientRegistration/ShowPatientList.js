@@ -444,10 +444,11 @@ export default function ShowRecordList() {
   //#region for returning the table
   return (
     <div className="grid_container">
-      <div className="item1">
+      <div className="item1" >
         <Header />
       </div>
-      <div className="item2">
+      <div className="item2" >
+        {/* style={{ display: 'none' }} */}
         <Navbar />
       </div>
       <div className="item3">
