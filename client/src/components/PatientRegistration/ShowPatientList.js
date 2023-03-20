@@ -77,8 +77,63 @@ export default function ShowRecordList() {
     setVisitShow(false)
   }
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/records')
+      .then((res) => {
+        setRecords(res.data)
+      })
+      .catch((err) => {
+        console.log('Error from ShowRecordList')
+      })
+  }, [])
+  //#endregion
+  //#region to export to excel
+
   const handleDownloadExcel = (e) => {
-    const rows = records.map((e) =>
+    const rowRecords = records.filter((record) => {
+      return record.medicalRecordNumber
+        .toString()
+        .toLowerCase()
+        .includes(searchInput.toLowerCase()) ||
+        record.visitNumber
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.firstName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.middleName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.lastName
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.dateOfBirth
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.addedDate
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.race
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.age
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase()) ||
+        record.gender
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toLowerCase())
+    })
+    const rows = rowRecords.map((e) =>
     ({
       _id: e._id,
       medicalRecordNumber: e.medicalRecordNumber,
@@ -110,23 +165,12 @@ export default function ShowRecordList() {
 
     // customize header names
     XLSX.utils.sheet_add_aoa(worksheet, [
-      ["Event ID", "Name", 'Added Date'],
+      ['ID', "MRN", "Firstname", 'Lastname', 'Middlename', 'Gender', 'Race', 'DOB', 'Age', 'Language', 'Address', 'City', 'State', 'Zip Code', 'Email', 'Homephone', 'Cellphone', 'Business phone', 'Added Date'],
     ]);
 
     XLSX.writeFile(workbook, "Record_List_Report.xlsx", { compression: true });
 
   }
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:8081/api/records')
-      .then((res) => {
-        setRecords(res.data)
-      })
-      .catch((err) => {
-        console.log('Error from ShowRecordList')
-      })
-  }, [])
   //#endregion
   //#region Define patient ID for create visit from registration modal
   const [patientID, setPatientID] = useState('')

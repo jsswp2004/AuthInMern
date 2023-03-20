@@ -369,7 +369,8 @@ export default function ShowVisitList() {
   //#region for excel export
   //for excel download
   const handleDownloadExcel = (e) => {
-    const rows = visits.map((e) =>
+    const visitData = visits.filter((visit) => { return visit.visitDate === regDate || visit.provider.toString().includes(selectMD) })
+    const rows = visitData.map((e) =>
     ({
       _id: e._id,
       medicalRecordNumber: e.medicalRecordNumber,
@@ -459,6 +460,7 @@ export default function ShowVisitList() {
                   setRegFilterDate(newValue.target.value)
                 }}
               />
+
             </label>
             <label className="filter_search-label">
               {' '}
