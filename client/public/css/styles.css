@@ -1605,7 +1605,7 @@ text-align: center;
 } */
 
 .filter_navbarlist {
-  background-color: #efefef;
+  /* background-color: #efefef; */
   padding: 0px;
   margin-top: 1px;
   height: 100%;
@@ -1623,7 +1623,7 @@ text-align: center;
 }
 
 .filter_search-label {
-  background-color: #efefef;
+  /* background-color: #efefef; */
   color: black;
   font-size: 14px;
   font-style: normal;

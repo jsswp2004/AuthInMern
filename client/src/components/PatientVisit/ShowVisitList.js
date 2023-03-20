@@ -436,7 +436,17 @@ export default function ShowVisitList() {
           <div className="left filter_navbarLeft">
             <h4 className='patientListHeader'>Visit List</h4>
           </div>
-          <div className="right filter_navbarlist searchLabel">
+          <div className="right searchLabel filter_navbarRight">
+            <button className='btn btn-success  btn-sm'
+              onClick={handleDownloadExcel}
+            >
+              {/* className='btn btn-success btn-sm' */}
+              <i
+                className="fa fa-file-excel-o"
+                aria-hidden="true"
+                title="Export to Excel"
+              />
+            </button>
             <span className="filter_search-label filterTitle">Filter: </span>
             <label className="filter_search-label">
               Visit Date:
@@ -473,19 +483,6 @@ export default function ShowVisitList() {
                 ))}
               </select>
             </label>
-          </div>
-          {/* .filter_navbar */}
-          <div className="right searchLabel filter_navbarRight">
-            <button className='btn btn-success  btn-sm'
-              onClick={handleDownloadExcel}
-            >
-              {/* className='btn btn-success btn-sm' */}
-              <i
-                className="fa fa-file-excel-o"
-                aria-hidden="true"
-                title="Export to Excel"
-              />
-            </button>
             <label htmlFor="search" className=" filter_search-label">
               Search :{' '}
               <input
@@ -558,14 +555,14 @@ export default function ShowVisitList() {
                       <StyledTableCell align="left">
                         {pt.hourOfVisit}
                       </StyledTableCell>
-                      <StyledTableCell align="left">{pt.email}</StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" >{pt.email}</StyledTableCell>
+                      <StyledTableCell align="left" width={'200px'}>
                         {pt.provider}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width={'200px'}>
                         {pt.addedDate}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width={'200px'}>
                         <button
                           className="btn btn-primary btn-sm"
                           onClick={() => { handleEditVisitShow(pt._id) }}>
