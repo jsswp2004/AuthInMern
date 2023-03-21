@@ -24,7 +24,7 @@ const Main = () => {
       <div className="item3">
         <div className='HomeGreeting'>
           <h1 >Welcome to POEHR</h1>
-          {/* <ClassicHome /> */}
+          <ClassicHome />
         </div>
 
 
