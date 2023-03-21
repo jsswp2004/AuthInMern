@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Arial:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@600;700&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-raleway: Raleway;
+  --font-arial: Arial;
+  --font-noto-sans: "Noto Sans";
+  --font-proxima-nova: "Proxima Nova";
+
+  /* font sizes */
+  --font-size-xs: 12px;
+  --font-size-base: 16px;
+  --font-size-10xs: 3px;
+  --font-size-xl: 20px;
+  --font-size-15xl: 34px;
+  --font-size-sm: 14px;
+  --font-size-6xl: 25px;
+  --font-size-lg: 18px;
+  --font-size-33xl: 52px;
+  --font-size-7xl: 26px;
+  --font-size-smi: 13px;
+
+  /* Colors */
+  --color-whitesmoke-100: #f2f4f8;
+  --color-whitesmoke-200: #ededed;
+  --color-black: #000;
+  --color-mediumslateblue: #3164f4;
+  --color-white: #fff;
+  --color-gray-100: #fefefe;
+  --color-gray-200: #fcfcfc;
+  --color-gray-300: #8b8b8b;
+  --color-gray-400: #8a8484;
+  --color-gray-500: #1c2126;
+  --color-dimgray-100: #707070;
+  --color-darkslategray-100: #464646;
+  --color-darkslategray-200: #3e3e3e;
+  --color-silver: #aec1ba;
+  --color-mediumvioletred: rgba(253, 73, 198, 0.35);
+  --color-darkgray: #a1a1a1;
+  --color-mediumblue: #4525f2;
+  --color-cornflowerblue: #b4a8f9;
+
+  /* border radiuses */
+  --br-xl: 20px;
+  --br-3xs: 10px;
+  --br-241xl: 260px;
+  --br-mini: 15px;
+  --br-981xl: 1000px;
+  --br-81xl: 100px;
+}

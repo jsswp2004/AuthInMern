@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../components/shared/images/logoPOWER.png'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
+import ClassicHome from './ClassicHome'
 
 const Main = () => {
   // const handleLogout = () => {
@@ -23,8 +24,9 @@ const Main = () => {
       <div className="item3">
         <div className='HomeGreeting'>
           <h1 >Welcome to POEHR</h1>
+          {/* <ClassicHome /> */}
         </div>
-        
+
 
       </div>
     </div>
