@@ -14,18 +14,19 @@ const Main = () => {
 
 
   return (
-    <div className="grid_container">
-      <div className="item1">
+    <div className="grid_container_home">
+      <div className="item1_home">
         <Header />
       </div>
-      <div className="item2">
+      {/* <div className="item2">
         <Navbar />
-      </div>
-      <div className="item3">
-        <div className='HomeGreeting'>
+      </div> */}
+      <div className="item3_home">
+        <ClassicHome />
+        {/* <div className='HomeGreeting'>
           <h1 >Welcome to POEHR</h1>
-          <ClassicHome />
-        </div>
+
+        </div> */}
 
 
       </div>

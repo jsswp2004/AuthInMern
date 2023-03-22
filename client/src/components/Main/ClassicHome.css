@@ -1,7 +1,8 @@
 .classic-home-child {
   position: absolute;
   top: 2804px;
-  right: 123px;
+  /* right: 123px; */
+  left: 123px;
   border-radius: var(--br-xl);
   background-color: var(--color-whitesmoke-200);
   box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.16);
@@ -58,7 +59,7 @@
   bottom: 0px;
   left: 0px;
   background-color: var(--color-silver);
-  width: 1366px;
+  /* width: 1366px; */
   height: 80px;
   text-align: center;
   font-size: var(--font-size-sm);
@@ -336,7 +337,7 @@
 }
 .resources-stylestyle3tagh {
   position: absolute;
-  right: 175px;
+  left: 1063px;
   bottom: 419px;
   font-size: var(--font-size-6xl);
   letter-spacing: 0.35px;
@@ -631,6 +632,7 @@
   position: absolute;
   top: 93px;
   left: calc(50% - 130px);
+  /* left: -100.93px; */
   display: none;
   width: 11px;
   height: 10px;
@@ -638,7 +640,8 @@
 .image {
   position: absolute;
   top: 129px;
-  right: 55px;
+  /* right: 550px; */
+  left: 750px;
   border-radius: 280px;
   width: 550px;
   height: 550px;

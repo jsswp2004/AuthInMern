@@ -40,11 +40,19 @@ function HeaderImageTitle() {
         <li id="link" className="navbar_list">
           <Link to="/">Home</Link>
         </li>
+
+        <li id="link" className="navbar_list">
+          <Link to="/">Pricing</Link>
+        </li>
         {/* <li id="link" className="navbar_list">
             <Link to="/contact">Contact</Link>
           </li> */}
         <li id="link" className="navbar_list">
-          <Link to="/about">About</Link>
+          <Link to="/about">About us</Link>
+        </li>
+
+        <li id="link" className="navbar_list">
+          <Link to="/about">Contact</Link>
         </li>
         {/* <li> */}
         {/* <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon> */}
