@@ -15,6 +15,7 @@
   left: 0px;
   width: 1364px;
   height: 753px;
+  z-index: -1;
 }
 .metadata {
   position: absolute;
@@ -373,16 +374,7 @@
   width: 1366px;
   height: 616px;
 }
-.classic-home-item {
-  position: absolute;
-  top: 1014px;
-  left: 292px;
-  border-radius: var(--br-xl);
-  background-color: #dfdfdf;
-  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.16);
-  width: 538px;
-  height: 362px;
-}
+
 .metadata12 {
   position: absolute;
   top: -36px;
@@ -619,15 +611,7 @@
   height: 48px;
   font-family: var(--font-arial);
 }
-.classic-home-inner {
-  position: absolute;
-  top: 984px;
-  left: 261px;
-  border-radius: var(--br-xl);
-  background-color: var(--color-white);
-  width: 538px;
-  height: 362px;
-}
+
 .metadata28 {
   position: absolute;
   top: 93px;
@@ -660,10 +644,10 @@
   width: 11px;
   height: 10px;
 }
-.the-best-scheduling {
+.textInPage {
   margin: 0;
 }
-.lorem-ipsum-dolor-container {
+.homeIntro-container {
   position: absolute;
   width: calc(100% + 1px);
   top: calc(50% - 202.16px);
@@ -674,20 +658,9 @@
   display: inline-block;
   font-family: var(--font-raleway);
   height: 223.28px;
+  z-index: 100;
 }
-.hero-text {
-  position: absolute;
-  width: calc(100% - 53.33px);
-  top: calc(50% + 36.25px);
-  left: 0px;
-  font-size: var(--font-size-base);
-  letter-spacing: 0.32px;
-  line-height: 25px;
-  font-weight: 600;
-  font-family: var(--font-raleway);
-  display: inline-block;
-  height: 74px;
-}
+
 .label7 {
   position: absolute;
   top: calc(50% - 9px);
@@ -696,6 +669,7 @@
   letter-spacing: 0.64px;
   font-family: var(--font-raleway);
   text-align: center;
+  /* align-items: center; */
 }
 .icon7 {
   position: absolute;
@@ -715,19 +689,20 @@
   left: 0px;
   border-radius: var(--br-mini);
   background-color: var(--color-mediumslateblue);
-  width: 208px;
+  width: 200px;
   height: 48px;
   color: var(--color-white);
+  /* border-color: #707070; */
 }
 .label8 {
   position: absolute;
-  top: calc(50% - 9.5px);
-  left: calc(50% - 69.5px);
+  top: calc(50% - 9px);
+  left: calc(50% - 70px);
   font-size: var(--font-size-base);
   letter-spacing: 0.64px;
   font-family: var(--font-raleway);
   text-align: center;
-  -webkit-text-stroke: 1px #707070;
+  /* -webkit-text-stroke: 1px #707070; */
 }
 .button-display-elementslabel3 {
   position: absolute;
@@ -737,34 +712,117 @@
   background-color: var(--color-white);
   border: 1px solid var(--color-dimgray-100);
   box-sizing: border-box;
-  width: 208px;
+  width: 200px;
+  /* width: 50%; */
   height: 48px;
 }
-.hero {
+/* home input[type="troduction section */
+.homeIntro {
   position: absolute;
-  top: 218.67px;
+  top: 200px;
   left: 25%;
   width: 614.33px;
   height: 404.33px;
   font-family: var(--font-arial);
+  z-index: 100;
+}
+
+.homeIntro-text {
+  position: absolute;
+  width: calc(100% - 53.33px);
+  top: calc(50% + 36.25px);
+  left: 0px;
+  font-size: var(--font-size-base);
+  letter-spacing: 0.32px;
+  line-height: 25px;
+  font-weight: 600;
+  font-family: var(--font-raleway);
+  display: inline-block;
+  height: 74px;
+  z-index: 100;
 }
 .trusted-by-providers {
   position: absolute;
-  top: 699px;
-  left: 502px;
+  top: 700px;
+  left: 25%;
   font-size: 19px;
   letter-spacing: 0.15px;
+  /* margin: 0 auto; */
+  width: 50%;
+  text-align: center;
 }
+
+/* home input[type="troduction section */
+
+/* introducing the poehr solution */
 .h6-tagh4 {
   position: absolute;
-  top: 1056px;
-  left: 314px;
+  top: 1050px;
+  /* left: 314px; */
+  /* left: calc(40% + 10px); */
+  right: calc(30% + 100px);
+
   font-size: var(--font-size-15xl);
   line-height: 45px;
   display: inline-block;
   width: 345px;
   height: 101px;
+  z-index: 100;
 }
+
+.image-block {
+  position: absolute;
+  top: 1150px;
+  /* left: 314px; */
+  /* left: calc(40% + 10px); */
+  right: calc(30% + 100px);
+
+  width: 285px;
+  height: 107px;
+  font-family: var(--font-arial);
+}
+.image-assetsmallsizedefau {
+  position: absolute;
+  top: 929.17px;
+  /* left: 688.35px; */
+  /* left: calc(40% + 400px); */
+  right: calc(15%);
+
+  border-radius: var(--br-241xl);
+  width: 433.65px;
+  height: 430.67px;
+  background-image: url("/public/image-assetsmallsizedefaultstatedefault@3x.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  font-family: var(--font-arial);
+}
+
+.classic-home-inner {
+  position: absolute;
+  top: 984px;
+  /* left: 261px; */
+  /* left: 40%; */
+  right: calc(30%);
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  width: 538px;
+  height: 362px;
+}
+.classic-home-item {
+  position: absolute;
+  top: 1014px;
+  /* left: 292px; */
+  /* left: calc(40% + 20px); */
+  right: calc(30% - 20px);
+  border-radius: var(--br-xl);
+  background-color: #dfdfdf;
+  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.16);
+  width: 538px;
+  height: 362px;
+}
+/* end introducing the poehr solution */
+
 .metadata34 {
   position: absolute;
   top: -142.56px;
@@ -823,14 +881,7 @@
   height: 48px;
   color: var(--color-white);
 }
-.image-block {
-  position: absolute;
-  top: 1157px;
-  left: 314px;
-  width: 285px;
-  height: 107px;
-  font-family: var(--font-arial);
-}
+
 .metadata37 {
   position: absolute;
   top: calc(50% - 74.46px);
@@ -839,19 +890,7 @@
   width: 11px;
   height: 10px;
 }
-.image-assetsmallsizedefau {
-  position: absolute;
-  top: 929.17px;
-  left: 688.35px;
-  border-radius: var(--br-241xl);
-  width: 433.65px;
-  height: 430.67px;
-  background-image: url("/public/image-assetsmallsizedefaultstatedefault@3x.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  font-family: var(--font-arial);
-}
+
 .image1 {
   position: absolute;
   top: 1520px;
@@ -884,6 +923,7 @@
   font-size: var(--font-size-15xl);
   line-height: 45px;
 }
+
 .smartsave {
   position: absolute;
   top: 1629px;
@@ -951,6 +991,7 @@
   background-color: var(--color-white);
   width: 1036px;
   height: 520px;
+  z-index: 0;
 }
 .metadata41 {
   position: absolute;
