@@ -45,23 +45,14 @@ const ClassicHome = () => {
 
             <div>
                 <div className="classic-home-item" />
-
-
                 <div className="classic-home-inner" />
-
-
-
-
                 <b className="h6-tagh4">
                     <p className="textInPage">Introducing </p>
                     <p className="textInPage">the POEHR solution.</p>
+                    <p className="textInPage h6">Join our community and experience</p>
+                    <p className="textInPage h6">the benefits today!</p>
                 </b>
                 <div className="image-block">
-                    {/* <div className="metadata34">{`{"config":{},"nodeName":"Image Block","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:26.375Z"}`}</div> */}
-                    <div className="h6">
-                        <p className="textInPage">Join our community and experience</p>
-                        <p className="textInPage">the benefits today!</p>
-                    </div>
                     <div className="button-display-elementslabel4">
                         <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:26.374Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
                         <b className="label9">Try for free</b>
@@ -134,7 +125,7 @@ const ClassicHome = () => {
             </div>
 
             <div className="we-believe-that-container">
-                <p className="textInPage">{`Just 3 simple steps to optimize your `}</p>
+                <p className="textInPage">Just 3 simple steps to optimize your</p>
                 <p className="textInPage">scheduling operations.</p>
             </div>
             <div className="button-display-elementslabel7">

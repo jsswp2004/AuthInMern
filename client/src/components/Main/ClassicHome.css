@@ -8,6 +8,8 @@
   box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.16);
   width: 1036px;
   height: 520px;
+  /* margin: auto; */
+  /* z-index: 100; */
 }
 .background-icon {
   position: absolute;
@@ -780,17 +782,20 @@
   width: 285px;
   height: 107px;
   font-family: var(--font-arial);
+  z-index: 100;
 }
 .image-assetsmallsizedefau {
   position: absolute;
-  top: 929.17px;
+  top: 930px;
   /* left: 688.35px; */
   /* left: calc(40% + 400px); */
   right: calc(15%);
 
   border-radius: var(--br-241xl);
-  width: 433.65px;
-  height: 430.67px;
+  min-width: 130px;
+  width: 430px;
+  max-height: 430px;
+  height: 430px;
   background-image: url("/public/image-assetsmallsizedefaultstatedefault@3x.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -832,7 +837,7 @@
   height: 10px;
 }
 .h6 {
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   left: 0px;
   font-size: var(--font-size-base);
@@ -890,11 +895,12 @@
   width: 11px;
   height: 10px;
 }
-
+/*smartsave */
 .image1 {
   position: absolute;
   top: 1520px;
-  left: 121px;
+  /* left: 121px; */
+  left: calc(15%);
   border-radius: var(--br-xl);
   width: 567px;
   height: 459px;
@@ -907,7 +913,8 @@
 .h61 {
   position: absolute;
   top: 1750px;
-  left: 722px;
+  /* left: 722px; */
+  left: calc(45%);
   font-size: var(--font-size-base);
   letter-spacing: 0.32px;
   line-height: 25px;
@@ -919,7 +926,8 @@
 .h6-tagh41 {
   position: absolute;
   top: 1655px;
-  left: 722px;
+  /* left: 722px; */
+  left: calc(45%);
   font-size: var(--font-size-15xl);
   line-height: 45px;
 }
@@ -927,7 +935,8 @@
 .smartsave {
   position: absolute;
   top: 1629px;
-  left: 722px;
+  /* left: 722px; */
+  left: calc(45%);
   font-size: var(--font-size-sm);
   letter-spacing: 0.28px;
   font-weight: 600;
@@ -946,7 +955,8 @@
 .button-display-elementslabel5 {
   position: absolute;
   top: 1866px;
-  left: 719px;
+  /* left: 719px; */
+  left: calc(45%);
   border-radius: var(--br-3xs);
   background-color: var(--color-whitesmoke-200);
   border: 1px solid var(--color-dimgray-100);
@@ -955,10 +965,14 @@
   height: 48px;
   font-family: var(--font-arial);
 }
+/* end of smartsave */
+/* cost saver */
 .h62 {
   position: absolute;
   top: 2334px;
-  left: 161px;
+  /* left: 161px; */
+  /* right: calc(45%); */
+  left: calc(30%);
   font-size: var(--font-size-base);
   letter-spacing: 0.32px;
   line-height: 25px;
@@ -970,14 +984,18 @@
 .h6-tagh42 {
   position: absolute;
   top: 2239px;
-  left: 161px;
+  /* left: 161px; */
+  left: calc(30%);
+  /* right: calc(45%); */
   font-size: var(--font-size-15xl);
   line-height: 45px;
 }
 .costsaver {
   position: absolute;
   top: 2213px;
-  left: 161px;
+  /* left: 161px; */
+  /* right: calc(45%); */
+  left: calc(30%);
   font-size: var(--font-size-sm);
   letter-spacing: 0.28px;
   font-weight: 600;
@@ -1013,7 +1031,9 @@
 .button-display-elementslabel6 {
   position: absolute;
   top: 2419px;
-  left: 161px;
+  /* left: 161px; */
+  /* right: calc(45%); */
+  left: calc(30%);
   border-radius: var(--br-3xs);
   background-color: var(--color-whitesmoke-200);
   border: 1px solid var(--color-dimgray-100);
@@ -1033,7 +1053,8 @@
 .image2 {
   position: absolute;
   top: 2087px;
-  right: 156px;
+  /* right: 156px; */
+  right: calc(15%);
   border-radius: var(--br-241xl);
   width: 500px;
   height: 505px;
@@ -1043,6 +1064,7 @@
   background-position: top;
   font-family: var(--font-arial);
 }
+/* end of cost saver */
 .lorem-ipsum-dolor-container1 {
   position: absolute;
   top: 3029px;
