@@ -641,7 +641,8 @@
   position: absolute;
   top: 129px;
   /* right: 550px; */
-  left: 750px;
+  /* left: 850px; */
+  left: 50%;
   border-radius: 280px;
   width: 550px;
   height: 550px;
@@ -742,7 +743,7 @@
 .hero {
   position: absolute;
   top: 218.67px;
-  left: 243px;
+  left: 25%;
   width: 614.33px;
   height: 404.33px;
   font-family: var(--font-arial);
