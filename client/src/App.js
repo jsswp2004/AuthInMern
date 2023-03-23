@@ -165,8 +165,9 @@ function App() {
       <RoleContext.Provider value={loggedUserRole}>
         <FirstNameContext.Provider value={loggedUserFirstName}>
           <Routes>
-            {user && <Route path="/" exact element={<Main />} />}
-            <Route path="/login" exact element={<Login />} />
+            <Route path="/" exact element={<Main />} />
+            {user && <Route path="/login" exact element={<Login />} />}
+            {/* <Route path="/login" exact element={<Login />} /> */}
 
 
             <Route path="/signup" exact element={<Signup />} />

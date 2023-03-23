@@ -1,8 +1,10 @@
-import LogoutIcon from '@mui/icons-material/Logout'
-import { Link } from 'react-router-dom'
-import logo from '../../components/shared/images/logoPOWER.png'
-import Navbar from '../navigation/navbar'
-import Header from '../shared/Header'
+// import LogoutIcon from '@mui/icons-material/Logout'
+// import { Link } from 'react-router-dom'
+// import logo from '../../components/shared/images/logoPOWER.png'
+// import Navbar from '../navigation/navbar'
+// import Header from '../shared/Header'
+import HeaderMain from '../shared/HeaderMain'
+
 import ClassicHome from './ClassicHome'
 
 const Main = () => {
@@ -16,7 +18,9 @@ const Main = () => {
   return (
     <div className="grid_container_home">
       <div className="item1_home">
-        <Header />
+        {/* <Header /> */}
+        <HeaderMain />
+
       </div>
       {/* <div className="item2">
         <Navbar />

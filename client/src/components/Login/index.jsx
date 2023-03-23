@@ -26,7 +26,7 @@ const Login = () => {
       localStorage.setItem('token', res.data)
       localStorage.setItem('email', data.email)
       // console.log(res.data)
-      window.location = '/'
+      window.location = '/patientlist'
     } catch (error) {
       if (
         error.response &&
