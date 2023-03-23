@@ -39,7 +39,7 @@ function HeaderImageTitle() {
           </li> */}
 
         <li id="link" className="navbar_list">
-          <Link to="/Login">Login</Link>
+          <Link to="/login">Login</Link>
         </li>
         <li id="link" className="navbar_list">
           <Link to="/Signup">Register</Link>

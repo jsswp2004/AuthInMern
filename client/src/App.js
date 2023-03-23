@@ -166,14 +166,14 @@ function App() {
         <FirstNameContext.Provider value={loggedUserFirstName}>
           <Routes>
             <Route path="/" exact element={<Main />} />
-            {user && <Route path="/login" exact element={<Login />} />}
+            <Route path="/login" exact element={<Login />} />
             {/* <Route path="/login" exact element={<Login />} /> */}
 
-
+            {user && <Route path="/patientlist" exact element={<PatientList />} />}
             <Route path="/signup" exact element={<Signup />} />
             <Route path="/createPatient" exact element={<CreatePatient />} />
             <Route path="/editPatient/:id" exact element={<EditPatient />} />
-            <Route path="/patientlist" exact element={<PatientList />} />
+
             <Route path="/visitlist" exact element={<VisitList />} />
             <Route path="/visitSchedule" exact element={<VisitSchedule />} />
             <Route path="/calendarSchedule" exact element={<CalendarSchedule />} />
