@@ -38,22 +38,22 @@ function HeaderImageTitle() {
             <Link to="/createPatient">Registration</Link>
           </li> */}
         <li id="link" className="navbar_list">
-          <Link to="/">Home</Link>
+          <Link to="/patientlist">Home</Link>
         </li>
 
-        <li id="link" className="navbar_list">
+        {/* <li id="link" className="navbar_list">
           <Link to="/">Pricing</Link>
-        </li>
+        </li> */}
         {/* <li id="link" className="navbar_list">
             <Link to="/contact">Contact</Link>
           </li> */}
-        <li id="link" className="navbar_list">
+        {/* <li id="link" className="navbar_list">
           <Link to="/about">About us</Link>
-        </li>
+        </li> */}
 
-        <li id="link" className="navbar_list">
+        {/* <li id="link" className="navbar_list">
           <Link to="/about">Contact</Link>
-        </li>
+        </li> */}
         {/* <li> */}
         {/* <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon> */}
         <button className="navbar_list_exit" onClick={handleLogout}>

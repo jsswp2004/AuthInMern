@@ -8,7 +8,7 @@ import { useContext } from 'react'
 // create context
 // const UserContext = createContext();
 // import Home from "../pages/Home.page"
-function HeaderImageTitle() {
+function HeaderImageMain() {
 
   const userFirstName = useContext(FirstNameContext);
   let navigate = useNavigate()
@@ -39,12 +39,6 @@ function HeaderImageTitle() {
           </li> */}
 
         <li id="link" className="navbar_list">
-          <Link to="/login">Login</Link>
-        </li>
-        <li id="link" className="navbar_list">
-          <Link to="/Signup">Register</Link>
-        </li>
-        <li id="link" className="navbar_list">
           <Link to="/">Home</Link>
         </li>
 
@@ -61,6 +55,16 @@ function HeaderImageTitle() {
         <li id="link" className="navbar_list">
           <Link to="/about">Contact</Link>
         </li>
+        <button className='btn btn-info mainHeaderBtn '>
+          {/* <li id="link" className="navbar_list"> */}
+          <Link to="/login">Login</Link>
+          {/* </li> */}
+        </button>
+        <button className='btn btn-success mainHeaderBtn '>
+          {/* <li id="link" className="navbar_list"> */}
+          <Link to="/Signup">Register</Link>
+          {/* </li> */}
+        </button>
         {/* <li> */}
         {/* <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon> */}
         {/* <button className="navbar_list_exit" onClick={handleLogout}>
@@ -73,4 +77,4 @@ function HeaderImageTitle() {
   )
 }
 
-export default HeaderImageTitle
+export default HeaderImageMain

@@ -241,6 +241,7 @@ body {
   padding-bottom: 0px;
   padding-top: 0px;
   height: 40px;
+  position: sticky;
 }
 
 /* .header {
@@ -1763,6 +1764,20 @@ tfoot > .MuiTableFooter-root {
 } */
 
 /**/
+/* main page css */
+.mainHeaderBtn {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  /* margin-bottom: 5px; */
+  margin-left: auto;
+  margin-right: 10px;
+  height: 30px;
+  /* width: 30px; */
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
 
 /*registration page css*/
 .registerBtn {
