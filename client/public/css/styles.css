@@ -1766,7 +1766,7 @@ tfoot > .MuiTableFooter-root {
 /**/
 /* main page css */
 .mainHeaderBtn {
-  margin-top: 2px;
+  margin-top: 4px;
   margin-bottom: 2px;
   /* margin-bottom: 5px; */
   margin-left: auto;
@@ -1777,6 +1777,11 @@ tfoot > .MuiTableFooter-root {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
+  color: black;
+}
+
+.mainHeaderBtn:hover {
+  color: white;
 }
 
 /*registration page css*/
