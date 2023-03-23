@@ -1,16 +1,3 @@
-.classic-home-child {
-  position: absolute;
-  top: 2804px;
-  /* right: 123px; */
-  left: 123px;
-  border-radius: var(--br-xl);
-  background-color: var(--color-whitesmoke-200);
-  box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.16);
-  width: 1036px;
-  height: 520px;
-  /* margin: auto; */
-  /* z-index: 100; */
-}
 .background-icon {
   position: absolute;
   top: 768px;
@@ -58,6 +45,9 @@
   letter-spacing: 0.14px;
 }
 .footer-strip {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   position: absolute;
   bottom: 0px;
   left: 0px;
@@ -65,7 +55,9 @@
   /* width: 1366px; */
   height: 80px;
   text-align: center;
+  align-items: center;
   font-size: var(--font-size-sm);
+  width: 100%;
 }
 .background-stylestyle3 {
   position: absolute;
@@ -348,19 +340,24 @@
 .duis-aute-irure {
   position: absolute;
   top: 3466px;
-  left: 465px;
+  left: 38%;
   font-size: var(--font-size-base);
   letter-spacing: 0.32px;
   font-weight: 600;
   text-align: center;
   display: inline-block;
-  width: 437px;
+  width: 30%;
   height: 22px;
 }
 .newsletter-tagh4 {
   position: absolute;
   top: 3420px;
-  left: 551px;
+  /* left: 551px; */
+  margin: auto;
+  left: 45%;
+
+  /* right: auto; */
+  width: 20%;
   font-size: var(--font-size-15xl);
   line-height: 45px;
   display: inline-block;
@@ -980,6 +977,7 @@
   display: inline-block;
   width: 540px;
   height: 75px;
+  z-index: 100;
 }
 .h6-tagh42 {
   position: absolute;
@@ -989,6 +987,7 @@
   /* right: calc(45%); */
   font-size: var(--font-size-15xl);
   line-height: 45px;
+  z-index: 100;
 }
 .costsaver {
   position: absolute;
@@ -1001,16 +1000,7 @@
   font-weight: 600;
   color: var(--color-gray-400);
 }
-.rectangle-div {
-  position: absolute;
-  top: 2783px;
-  left: 182px;
-  border-radius: var(--br-xl);
-  background-color: var(--color-white);
-  width: 1036px;
-  height: 520px;
-  z-index: 0;
-}
+
 .metadata41 {
   position: absolute;
   top: 0px;
@@ -1041,6 +1031,7 @@
   width: 160px;
   height: 48px;
   font-family: var(--font-arial);
+  z-index: 100;
 }
 .metadata43 {
   position: absolute;
@@ -1065,18 +1056,48 @@
   font-family: var(--font-arial);
 }
 /* end of cost saver */
-.lorem-ipsum-dolor-container1 {
+/* join community */
+.rectangle-div {
+  position: absolute;
+  top: 2783px;
+  /* left: 182px; */
+  left: calc(25%);
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  width: 1036px;
+  height: 520px;
+  z-index: 0;
+}
+
+.classic-home-child {
+  position: absolute;
+  top: 2804px;
+  /* right: 123px; */
+  /* left: 123px; */
+  left: calc(25% + 20px);
+  border-radius: var(--br-xl);
+  background-color: var(--color-whitesmoke-200);
+  box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.16);
+  width: 1036px;
+  height: 520px;
+  /* margin: auto; */
+  /* z-index: 100; */
+}
+.joinCommunityContainer {
   position: absolute;
   top: 3029px;
-  left: 229px;
+  /* left: 229px; */
+  left: calc(25% + 40px);
   font-size: 48px;
   line-height: 45px;
   font-weight: 600;
+  z-index: 100;
 }
-.we-believe-that-container {
+.joinCommunityContainerText {
   position: absolute;
   top: 3140px;
-  left: 229px;
+  /* left: 229px; */
+  left: calc(25% + 40px);
   font-size: var(--font-size-xl);
   letter-spacing: 0.4px;
   line-height: 25px;
@@ -1084,11 +1105,13 @@
   display: inline-block;
   width: 583px;
   height: 62px;
+  z-index: 100;
 }
 .button-display-elementslabel7 {
   position: absolute;
   top: 3212px;
-  left: 229px;
+  /* left: 229px; */
+  left: calc(30% + 20px);
   border-radius: var(--br-3xs);
   background-color: var(--color-mediumslateblue);
   width: 160px;
@@ -1106,8 +1129,9 @@
 }
 .image3 {
   position: absolute;
-  top: 2634px;
-  left: 332px;
+  top: 2680px;
+  /* left: 332px; */
+  left: calc(30% + 20px);
   border-radius: 50px;
   width: 320px;
   height: 342px;
@@ -1117,35 +1141,42 @@
   background-position: top;
   font-family: var(--font-arial);
 }
-.lorem-ipsum-dolor {
-  position: absolute;
-  top: 2994px;
-  left: 811px;
-  font-size: var(--font-size-15xl);
-  font-weight: 600;
-}
-.lorem-ipsum-dolor1 {
+
+.joinCommunityContainerStep0 {
   position: absolute;
   top: 2838px;
-  left: 811px;
+  /* left: 811px; */
+  left: calc(55%);
   font-size: var(--font-size-15xl);
   line-height: 45px;
   font-weight: 600;
   display: inline-block;
   width: 171px;
   height: 44px;
+  z-index: 100;
 }
-.lorem-ipsum-dolor2 {
+.joinCommunityContainerStep1 {
+  position: absolute;
+  top: 2994px;
+  /* left: 811px; */
+  left: calc(55%);
+  font-size: var(--font-size-15xl);
+  font-weight: 600;
+  z-index: 100;
+}
+.joinCommunityContainerStep2 {
   position: absolute;
   top: 3130px;
-  left: 811px;
+  /* left: 811px; */
+  left: calc(55%);
   font-size: var(--font-size-15xl);
   font-weight: 600;
 }
-.we-believe-that {
+.joinCommunityContainerStep0Text {
   position: absolute;
   top: 2896px;
-  left: 811px;
+  /* left: 811px; */
+  left: calc(55%);
   font-size: var(--font-size-xl);
   letter-spacing: 0.4px;
   line-height: 25px;
@@ -1154,10 +1185,11 @@
   width: 322px;
   height: 84px;
 }
-.we-believe-that1 {
+.joinCommunityContainerStep1Text {
   position: absolute;
   top: 3048px;
-  left: 811px;
+  /* left: 811px; */
+  left: calc(55%);
   font-size: var(--font-size-xl);
   letter-spacing: 0.4px;
   line-height: 25px;
@@ -1166,10 +1198,11 @@
   width: 322px;
   height: 60px;
 }
-.we-believe-that2 {
+.joinCommunityContainerStep2Text {
   position: absolute;
   top: 3184px;
-  left: 811px;
+  /* left: 811px; */
+  left: calc(55%);
   font-size: var(--font-size-xl);
   letter-spacing: 0.4px;
   line-height: 25px;
@@ -1178,67 +1211,69 @@
   width: 322px;
   height: 104px;
 }
-.background1 {
+.testimonialBackground1 {
   position: absolute;
   bottom: 538px;
-  left: 175px;
+  /* left: 175px; */
+  left: calc(20%);
   border-radius: var(--br-xl);
   background-color: var(--color-white);
   width: 304px;
   height: 296px;
 }
-.background2 {
+.testimonialBackground2 {
   position: absolute;
-  right: 161px;
+  /* right: 161px; */
+  left: calc(45%);
   bottom: 539px;
   border-radius: var(--br-xl);
   background-color: var(--color-white);
   width: 304px;
   height: 296px;
 }
-.background3 {
+.testimonialBackground3 {
   position: absolute;
   bottom: 538px;
-  left: 538px;
+  /* left: 538px; */
+  left: calc(70%);
   border-radius: var(--br-xl);
   background-color: var(--color-white);
   width: 304px;
   height: 296px;
 }
-.i-recommend-poehr-container {
+.starIcon {
+  width: 24px;
+  height: 24px;
+  color: blue;
+}
+
+.testimonialContainer1 {
   position: absolute;
   bottom: 660px;
-  left: 593px;
+  /* left: 593px; */
+  left: calc(20% + 50px);
   font-size: var(--font-size-base);
   letter-spacing: 0.32px;
   line-height: 22px;
   font-weight: 600;
   text-align: center;
 }
-.since-implementing-poehr-our-container {
+.testimonialContainer2 {
   position: absolute;
   bottom: 660px;
-  left: 229px;
+  /* left: 229px; */
+  left: calc(45% + 50px);
   font-size: var(--font-size-base);
   letter-spacing: 0.32px;
   line-height: 22px;
   font-weight: 600;
   text-align: center;
 }
-.div {
-  position: absolute;
-  bottom: 665px;
-  left: 1012px;
-  font-size: var(--font-size-base);
-  letter-spacing: 0.32px;
-  line-height: 22px;
-  font-weight: 600;
-  text-align: center;
-}
-.i-cant-imagine-container {
+.testimonialContainer3 {
   position: absolute;
   bottom: 671px;
-  left: 968px;
+  /* left: 968px; */
+  left: calc(70% + 50px);
   font-size: var(--font-size-base);
   letter-spacing: 0.32px;
   line-height: 22px;
@@ -1386,34 +1421,38 @@
   font-size: var(--font-size-xs);
   letter-spacing: 0.24px;
 }
-.kirk-diaz-lead-manager-container {
+.testimonyAuthorContainer0 {
   position: absolute;
   bottom: 596px;
-  left: 262px;
+  /* left: 262px; */
+  left: calc(20% + 80px);
   line-height: 22px;
   font-weight: 600;
   text-align: center;
   font-size: var(--font-size-base);
 }
-.adele-muniz-project-leader-container {
+.testimonyAuthorContainer1 {
   position: absolute;
   bottom: 596px;
-  left: 637px;
+  /* left: 637px; */
+  left: calc(45% + 80px);
   line-height: 22px;
   font-weight: 600;
   text-align: center;
   font-size: var(--font-size-base);
 }
-.charice-cramer-cto-healthwork-container {
+.testimonyAuthorContainer2 {
   position: absolute;
   bottom: 596px;
-  left: 1002px;
+  /* left: 1002px; */
+  left: calc(70% + 80px);
   line-height: 22px;
   font-weight: 600;
   text-align: center;
   font-size: var(--font-size-base);
 }
 .classic-home {
+  /* display: flex; */
   position: relative;
   background-color: var(--color-whitesmoke-200);
   width: 100%;

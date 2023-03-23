@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import axios from 'axios'
-import Main from './components/Main'
+import Main from './components/Main/index'
 import Signup from './components/Signup'
 import Login from './components/Login'
 // import ShowUsersList from './components/Signup/showUserList'
@@ -159,12 +159,16 @@ function App() {
   // const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
 
   return (
+
+
     <UserContext.Provider value={userData}>
       <RoleContext.Provider value={loggedUserRole}>
         <FirstNameContext.Provider value={loggedUserFirstName}>
           <Routes>
-
             {user && <Route path="/" exact element={<Main />} />}
+            <Route path="/login" exact element={<Login />} />
+
+
             <Route path="/signup" exact element={<Signup />} />
             <Route path="/createPatient" exact element={<CreatePatient />} />
             <Route path="/editPatient/:id" exact element={<EditPatient />} />
@@ -179,7 +183,7 @@ function App() {
             <Route path="/editVisit/:id" exact element={<EditVisit />} />
             <Route path="/detailsVisit/:id" exact element={<VisitDetails />} />
             <Route path="/createUser" exact element={<CreateUser />} />
-            <Route path="/login" exact element={<Login />} />
+
             {/* <Route path="/usersList" exact element={<ShowUsersList />} /> */}
             <Route path="/editUser/:id" exact element={<EditUser />} />
             <Route path="/about" exact element={<About />} />
@@ -201,6 +205,7 @@ function App() {
         </FirstNameContext.Provider>
       </RoleContext.Provider>
     </UserContext.Provider>
+
   )
 }
 
