@@ -41,135 +41,42 @@ function App() {
   const user = localStorage.getItem('token')
   const useremail = localStorage.getItem('email')
 
-  // console.log(useremail)
   let userData = useremail
 
   const [currentUser, setCurrentUser] = useState([])
-  // const [currentLoginUser, setCurrentLoginUser] = useState({
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  //   role: '',
-  //   _id: '',
-  //   addedDate: '',
-
-
-  // })
-  // const currentLoggedInUser = currentUser//.filter((user) => user.email === useremail)
-  //.filter((user) => {
-  //   return user.email.toString().toLowerCase().includes(useremail)
-  // })
-  // .toString().includes((user) => {
-  // return user.email === useremail//.includes(useremail)
-  // })
-  // console.log(currentLoginUser)
-  // const xx = currentLoggedInUser[0]
-  // console.log(xx)
-  // let { firstName } = xx
-  // console.log(firstName)
-  // const loggedUserRoles = currentLoggedInUser.map((user) => user)
-  // console.log(loggedUserRoles[0])
-  // const firstNamed = loggedUserRoles[0]
-  // const { firstName: '' } = firstNamed
-  // console.log(firstName)
-  // const [userDataxx, setUserDataxx] = useState([])
-  // function getUserData() {
-  //   return (
-  //     currentUser.find((user) => user.email === useremail))
-
-  // }
-
-  // const functionResult = getUserData()
-  // const first = Array.of(functionResult)
-  // console.log(first[0])
-  // console.log(first.map((user) => user))
-  // console.log(getUserData())
-  // const loggedUserRole2 = currentUser.map(({ name, firstName, lastName, role }) => {
-  //   return (
-  //     <div>{name}</div>)
-  // })
-  // console.log(loggedUserRole2)
   const loggedUserRole = currentUser.map((user) => user.role)
   const loggedUserID = currentUser.map((user) => user._id)
   const loggedUserName = currentUser.map((user) => user.name)
   const loggedUserFirstName = currentUser.map((user) => user.firstName)
   const loggedUserlastName = currentUser.map((user) => user.lastName)
-  // const { firstName } = loggedUser
-  console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0])
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8081/api/users`)
-      .then((response) => {
-        const data = response.data
-        setCurrentUser(data.filter((user) => user.email === useremail))
-        // setCurrentLoginUser({
-        //   // const filteredxx = data.filter((user) => user.email === useremail),
-        //   // const filteredDataXX = {
-        //   name: data.name,
-        //   firstName: data.firstName,
-        //   lastName: data.lastName,
-        //   email: data.email,
-        //   role: data.role,
-        //   _id: data._id,
-        //   addedDate: data.addedDate,
-        //   // }
-        // })
 
-
-        // console.log(data)
-        // const datax = {
-        //   name: response.data.name,
-        //   firstName: data.firstName,
-        //   lastName: data.lastName,
-        //   email: data.email,
-        //   role: data.role,
-        //   _id: data._id,
-        //   addedDate: data.addedDate,
-        // }
-
-        // console.log(name)
-      })
-      .catch((error) => {
-        console.log('Error from user list')
-      })
-  }, [useremail])
-
-  // const {
-  //   name,
-  //   firstName,
-  //   lastName,
-  //   email,
-  //   role,
-  //   _id,
-  //   addedDate,
-  // } = currentUser
-
-  // console.log(name)
-  // const firstNamex = {
-  //   firstName: currentLoggedInUser.firstName,
-  //   lastName: currentLoggedInUser.lastName,
-  //   email: currentLoggedInUser.email,
-  //   phone: currentLoggedInUser.phone,
-  //   address: currentLoggedInUser.address,
-  // }
-  // // console.log(firstName)
-  // const { firstName } = firstNamex
-  // console.log(firstName)
-
-  // const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
+  // console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0])
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8081/api/users`)
+  //     .then((response) => {
+  //       const data = response.data
+  //       setCurrentUser(data.filter((user) => user.email === useremail))
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from user list')
+  //     })
+  // }, [useremail])
 
   return (
+
 
 
     <UserContext.Provider value={userData}>
       <RoleContext.Provider value={loggedUserRole}>
         <FirstNameContext.Provider value={loggedUserFirstName}>
           <Routes>
-            <Route path="/" exact element={<Main />} />
-            <Route path="/login" exact element={<Login />} />
+            {/* <Route path="/" exact element={<Main />} /> */}
             {/* <Route path="/login" exact element={<Login />} /> */}
-
+            {/*  */}
+            <Route path="/" exact element={<Main />} />
             {user && <Route path="/patientlist" exact element={<PatientList />} />}
+            <Route path="/login" exact element={<Login />} />
             <Route path="/signup" exact element={<Signup />} />
             <Route path="/createPatient" exact element={<CreatePatient />} />
             <Route path="/editPatient/:id" exact element={<EditPatient />} />
@@ -206,6 +113,7 @@ function App() {
         </FirstNameContext.Provider>
       </RoleContext.Provider>
     </UserContext.Provider>
+
 
   )
 }

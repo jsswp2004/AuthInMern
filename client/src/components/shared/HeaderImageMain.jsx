@@ -10,11 +10,16 @@ import { useContext } from 'react'
 // import Home from "../pages/Home.page"
 function HeaderImageMain() {
 
-  const userFirstName = useContext(FirstNameContext);
+  // const userFirstName = useContext(FirstNameContext);
   let navigate = useNavigate()
-  const handleLogout = () => {
+  const toLogin = () => {
     localStorage.removeItem('token')
     navigate('/login')
+  }
+
+  const toSignup = () => {
+    localStorage.removeItem('token')
+    navigate('/Signup')
   }
 
   return (
@@ -55,16 +60,14 @@ function HeaderImageMain() {
         <li id="link" className="navbar_list">
           <Link to="/about">Contact</Link>
         </li>
-        <button className='btn btn-info mainHeaderBtn' onClick={navigate('/login')}>
+        <button className='mainHeaderBtn btn-info btn' onClick={toLogin}>
           {/* <li id="link" className="navbar_list"> */}
           {/* <Link to="/login">Login</Link> */}
           {/* </li> */}
           Login
         </button>
-        <button className='btn btn-success mainHeaderBtn' onClick={navigate('/Signup')} >
-          {/* <li id="link" className="navbar_list"> */}
-          {/* <Link to="/Signup">Register</Link> */}
-          {/* </li> */}
+        <button className='btn btn-success mainHeaderBtn' onClick={toSignup} >
+
           Signup
         </button>
         {/* <li> */}
@@ -75,7 +78,7 @@ function HeaderImageMain() {
         {/* </li> */}
       </ul>
       {/* </div> */}
-    </nav>
+    </nav >
   )
 }
 
