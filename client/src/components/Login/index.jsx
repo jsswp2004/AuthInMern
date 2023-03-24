@@ -8,11 +8,16 @@ export const RoleContext = createContext();
 export const FirstNameContext = createContext();
 
 const Login = () => {
+  const user = localStorage.getItem('token')
+  const useremail = localStorage.getItem('email')
 
+  let userData = useremail
   const [data, setData] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
   // const [user, setUser] = useState()
   const [currentUser, setCurrentUser] = useState([])
+  // const loggedUserRole = currentUser.map((user) => user.role)
+  // const loggedUserFirstName = currentUser.map((user) => user.firstName)
   // console.log(data)
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value })
@@ -42,6 +47,9 @@ const Login = () => {
   }
 
   return (
+    // <UserContext.Provider value={userData}>
+    //   <RoleContext.Provider value={loggedUserRole}>
+    //     <FirstNameContext.Provider value={loggedUserFirstName}>
     <div className={styles.login_container}>
       <div className={styles.login_form_container}>
         <div className={styles.left}>
@@ -81,6 +89,10 @@ const Login = () => {
         </div>
       </div>
     </div>
+    //     </FirstNameContext.Provider>
+    //   </RoleContext.Provider>
+    // </UserContext.Provider>
+
   )
 }
 
