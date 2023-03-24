@@ -55,15 +55,17 @@ function HeaderImageMain() {
         <li id="link" className="navbar_list">
           <Link to="/about">Contact</Link>
         </li>
-        <button className='btn btn-info mainHeaderBtn '>
+        <button className='btn btn-info mainHeaderBtn' onClick={navigate('/login')}>
           {/* <li id="link" className="navbar_list"> */}
-          <Link to="/login">Login</Link>
+          {/* <Link to="/login">Login</Link> */}
           {/* </li> */}
+          Login
         </button>
-        <button className='btn btn-success mainHeaderBtn '>
+        <button className='btn btn-success mainHeaderBtn' onClick={navigate('/Signup')} >
           {/* <li id="link" className="navbar_list"> */}
-          <Link to="/Signup">Register</Link>
+          {/* <Link to="/Signup">Register</Link> */}
           {/* </li> */}
+          Signup
         </button>
         {/* <li> */}
         {/* <LogoutIcon onClick={handleLogout}>Log Out</LogoutIcon> */}
