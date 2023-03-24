@@ -50,18 +50,20 @@ function App() {
   const loggedUserFirstName = currentUser.map((user) => user.firstName)
   const loggedUserlastName = currentUser.map((user) => user.lastName)
 
-  // console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0])
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8081/api/users`)
-  //     .then((response) => {
-  //       const data = response.data
-  //       setCurrentUser(data.filter((user) => user.email === useremail))
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error from user list')
-  //     })
-  // }, [useremail])
+  console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/users`)
+      .then((response) => {
+        const data = response.data
+        setCurrentUser(data.filter((user) => user.email === useremail))
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [useremail])
+
+  // console.log(data)
 
   return (
 

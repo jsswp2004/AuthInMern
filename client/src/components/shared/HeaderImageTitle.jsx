@@ -14,6 +14,8 @@ function HeaderImageTitle() {
   let navigate = useNavigate()
   const handleLogout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    localStorage.removeItem('email')
     navigate('/')
   }
 

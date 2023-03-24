@@ -8,17 +8,17 @@ export const RoleContext = createContext();
 export const FirstNameContext = createContext();
 
 const Login = () => {
-  const user = localStorage.getItem('token')
-  const useremail = localStorage.getItem('email')
+  // const userToken = localStorage.getItem('token')
+  // const useremail = localStorage.getItem('email')
 
-  let userData = useremail
+  // let userData = useremail
   const [data, setData] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
   // const [user, setUser] = useState()
-  const [currentUser, setCurrentUser] = useState([])
+  // const [currentUser, setCurrentUser] = useState([])
   // const loggedUserRole = currentUser.map((user) => user.role)
   // const loggedUserFirstName = currentUser.map((user) => user.firstName)
-  // console.log(data)
+  // console.log(userToken, useremail)
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value })
   }
@@ -32,7 +32,7 @@ const Login = () => {
       // setUser(res.data)
       localStorage.setItem('token', res.data)
       localStorage.setItem('email', data.email)
-      setCurrentUser(data.email)
+      // setCurrentUser(data.email)
       // console.log(res.data)
       window.location = '/patientlist'
     } catch (error) {
