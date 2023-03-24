@@ -1777,7 +1777,7 @@ tfoot > .MuiTableFooter-root {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
-  color: black;
+  /* color: black; */
 }
 
 .mainHeaderBtn:hover {

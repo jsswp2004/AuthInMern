@@ -1,17 +1,19 @@
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 
-
+export const UserContext = createContext();
+export const RoleContext = createContext();
+export const FirstNameContext = createContext();
 
 const Login = () => {
 
   const [data, setData] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
   // const [user, setUser] = useState()
-
-  console.log(data)
+  const [currentUser, setCurrentUser] = useState([])
+  // console.log(data)
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value })
   }
@@ -25,6 +27,7 @@ const Login = () => {
       // setUser(res.data)
       localStorage.setItem('token', res.data)
       localStorage.setItem('email', data.email)
+      setCurrentUser(data.email)
       // console.log(res.data)
       window.location = '/patientlist'
     } catch (error) {

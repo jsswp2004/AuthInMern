@@ -3,6 +3,7 @@ import { FirstNameContext } from '../../App'
 import logo from './images/logoPOWER.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
+import { width } from '@mui/system'
 // import { UserContext } from '../contexts/user.context'
 // import LogoutIcon from '@mui/icons-material/Logout'
 // create context
@@ -60,13 +61,13 @@ function HeaderImageMain() {
         <li id="link" className="navbar_list">
           <Link to="/about">Contact</Link>
         </li>
-        <button className='mainHeaderBtn btn-info btn' onClick={toLogin}>
+        <button className='mainHeaderBtn btn-info btn navbar_list' onClick={toLogin} style={{ padding: '0', width: '100px', margin: '5px' }}>
           {/* <li id="link" className="navbar_list"> */}
           {/* <Link to="/login">Login</Link> */}
           {/* </li> */}
           Login
         </button>
-        <button className='btn btn-success mainHeaderBtn' onClick={toSignup} >
+        <button className='btn btn-success mainHeaderBtn' onClick={toSignup} style={{ padding: '0', width: '100px', margin: '5px' }}>
 
           Signup
         </button>
