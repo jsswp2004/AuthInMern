@@ -5,7 +5,7 @@ import StarIcon from '@mui/icons-material/Star';
 const ClassicHome = () => {
     return (
         <div className="classic-home">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            <div className="homeIntrosContainer" >
                 <div className="homeIntros">
                     {/* <div className="metadata29">{`{"config":{},"nodeName":"Hero","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.094Z"}`}</div> */}
                     <b className="homeIntro-containers">
@@ -35,14 +35,18 @@ const ClassicHome = () => {
                             <img className="icon7" alt="" src="/icon6.svg" />
                         </div>
                     </div>
+                    <div>
+                        <b className="trusted-by-providerss">
+                            Trusted by providers and patients alike.
+                        </b>
+                    </div>
+
                 </div>
                 <div className="images">
                     {/* <div className="metadata28">{`{"config":{"ASSET_ID":"92521fabe5e6290cd8c5657c26290ecc"},"type":"Image","nodeName":"Image","children":["d513ae97-42da-4a54-8bb9-246472b80ce5","982f20a8-531a-438b-ab45-86a4b5aeebe9"],"__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:48:30.924Z"}`}</div> */}
                 </div>
 
-                <b className="trusted-by-providerss">
-                    Trusted by providers and patients alike.
-                </b>
+
             </div>
             {/* Introducing the poehr solution */}
 
