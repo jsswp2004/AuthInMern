@@ -25,7 +25,7 @@ function HeaderImageTitle() {
       <div className="headerItem">
         <img src={logo} className="App_logo" alt="logo" />{' '}
         <h3 className="h3header">
-          POEHR
+          POEHR Scheduling
         </h3>
         {/* <h5 className="h3header">
             Welcome {userFirstName}!

@@ -2,6 +2,7 @@ import { createContext, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
+import HeaderMain from '../shared/HeaderMain'
 
 export const UserContext = createContext();
 export const RoleContext = createContext();
@@ -50,45 +51,56 @@ const Login = () => {
     // <UserContext.Provider value={userData}>
     //   <RoleContext.Provider value={loggedUserRole}>
     //     <FirstNameContext.Provider value={loggedUserFirstName}>
-    <div className={styles.login_container}>
-      <div className={styles.login_form_container}>
-        <div className={styles.left}>
-          <form className={styles.form_container} onSubmit={handleSubmit}>
-            <h1>Login to Your Account</h1>
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-              value={data.email}
-              required
-              className={styles.input}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={data.password}
-              required
-              className={styles.input}
-            />
-            {error && <div className={styles.error_msg}>{error}</div>}
-            <button type="submit" className={styles.green_btn}>
-              Sign In
-            </button>
-          </form>
-        </div>
-        <div className={styles.right}>
-          <h1>New Here?</h1>
-          <Link to="/signup">
-            <button type="button" className={styles.white_btn}>
-              Sign Up
-            </button>
-          </Link>
+    <div className="grid_container_home">
+      <div className="item1_home">
+        {/* <Header /> */}
+        <HeaderMain />
+
+      </div>
+      <div className="item3_home">
+        <div className={styles.login_container}>
+
+
+          <div className={styles.login_form_container}>
+            <div className={styles.left}>
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <h1>Login to Your Account</h1>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  onChange={handleChange}
+                  value={data.email}
+                  required
+                  className={styles.input}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={handleChange}
+                  value={data.password}
+                  required
+                  className={styles.input}
+                />
+                {error && <div className={styles.error_msg}>{error}</div>}
+                <button type="submit" className={styles.green_btn}>
+                  Sign In
+                </button>
+              </form>
+            </div>
+            <div className={styles.right}>
+              <h1>New Here?</h1>
+              <Link to="/signup">
+                <button type="button" className={styles.white_btn}>
+                  Sign Up
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </div >
     //     </FirstNameContext.Provider>
     //   </RoleContext.Provider>
     // </UserContext.Provider>
