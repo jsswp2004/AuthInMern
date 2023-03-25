@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 import HeaderMain from '../shared/HeaderMain'
+import HeaderLogo from '../shared/HeaderLogo'
 
 export const UserContext = createContext();
 export const RoleContext = createContext();
@@ -53,18 +54,17 @@ const Login = () => {
     //     <FirstNameContext.Provider value={loggedUserFirstName}>
     <div className="grid_container_home">
       <div className="item1_home">
-        {/* <Header /> */}
         <HeaderMain />
-
       </div>
       <div className="item3_home">
         <div className={styles.login_container}>
-
-
           <div className={styles.login_form_container}>
             <div className={styles.left}>
               <form className={styles.form_container} onSubmit={handleSubmit}>
-                <h1>Login to Your Account</h1>
+                <div style={{ marginBottom: '30px' }} >
+                  <HeaderLogo />
+                </div>
+                <h5>Login to Your Account</h5>
                 <input
                   type="email"
                   placeholder="Email"

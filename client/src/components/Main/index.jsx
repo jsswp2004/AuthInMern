@@ -22,6 +22,7 @@ const Main = () => {
         <HeaderMain />
 
       </div>
+
       {/* <div className="item2">
         <Navbar />
       </div> */}
@@ -32,9 +33,9 @@ const Main = () => {
 
         </div> */}
 
-
       </div>
-    </div>
+
+    </div >
   )
 }
 

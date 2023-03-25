@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import styles from './styles.module.css'
+import HeaderMain from '../shared/HeaderMain'
+import HeaderLogo from '../shared/HeaderLogo'
 
 export const UserContext = createContext()
 
@@ -39,10 +41,10 @@ const Signup = () => {
   })
 
   const [error, setError] = useState('')
- 
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
-    
+
   }
 
 
@@ -66,50 +68,57 @@ const Signup = () => {
   }
 
   return (
-    // <UserContext.Provider value={userID}>
-      <div className={styles.signup_container}>
-        <div className={styles.signup_form_container}>
-          <div className={styles.left}>
-            <h1>Welcome Back</h1>
-            <Link to="/login">
-              <button type="button" className={styles.white_btn}>
-                Sign in
-              </button>
-            </Link>
-          </div>
-          <div className={styles.right}>
-            <form className={styles.form_container} onSubmit={handleSubmit}>
-              <h1>Create Account</h1>
+    <div className="grid_container_home">
+      <div className="item1_home">
+        <HeaderMain />
+      </div>
+      <div className="item3_home">
+        <div className={styles.signup_container}>
+          <div className={styles.signup_form_container}>
+            <div className={styles.left}>
+              <h1>Welcome Back</h1>
+              <Link to="/login">
+                <button type="button" className={styles.white_btn}>
+                  Sign in
+                </button>
+              </Link>
+            </div>
+            <div className={styles.right}>
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <div style={{ marginBottom: '30px' }} >
+                  <HeaderLogo />
+                </div>
+                <h1>Create Account</h1>
 
-              <input
-                type="text"
-                placeholder="First Name"
-                name="firstName"
-                onChange={handleChange}
-                value={data.firstName}
-                required
-                className={styles.input}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                name="lastName"
-                onChange={handleChange}
-                value={data.lastName}
-                required
-                className={styles.input}
-              />
-              <input
-                display="none"
-                type="text"
-                placeholder="Full Name (optional)"
-                name="name"
-                defaultValue={data.firstName + '' + data.lastName}
-                value={data.name}
-                onChange={handleChange}
-                className={styles.input}
-              />
-              {/* <input
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  name="firstName"
+                  onChange={handleChange}
+                  value={data.firstName}
+                  required
+                  className={styles.input}
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  name="lastName"
+                  onChange={handleChange}
+                  value={data.lastName}
+                  required
+                  className={styles.input}
+                />
+                <input
+                  display="none"
+                  type="text"
+                  placeholder="Full Name (optional)"
+                  name="name"
+                  defaultValue={data.firstName + '' + data.lastName}
+                  value={data.name}
+                  onChange={handleChange}
+                  className={styles.input}
+                />
+                {/* <input
               type="text"
               placeholder="Role"
               name="role"
@@ -118,59 +127,60 @@ const Signup = () => {
               required
               className={styles.input}
             /> */}
-              <select
-                key={rolex.role}
-                placeholder="Select Role"
-                name="role"
-                className="form-control select"
-                value={data.role}
-                onChange={handleChange}
-              >
-                <option key="0" value="">
-                  Select Role
-                </option>
-                {userRoles.map((role) => (
-                  <option key={role._id} value={role.name}>
-                    {role}
+                <select
+                  key={rolex.role}
+                  placeholder="Select Role"
+                  name="role"
+                  className="form-control select"
+                  value={data.role}
+                  onChange={handleChange}
+                >
+                  <option key="0" value="">
+                    Select Role
                   </option>
-                ))}
-              </select>
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                onChange={handleChange}
-                value={data.email}
-                required
-                className={styles.input}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={handleChange}
-                value={data.password}
-                required
-                className={styles.input}
-              />
-              <input
-                type="text"
-                name="dateAdded"
-                onChange={handleChange}
-                value={dateAdded}
-                required
-                readOnly
-                className={styles.input}
-              />
-              {error && <div className={styles.error_msg}>{error}</div>}
-              <button type="submit" className={styles.green_btn}>
-                Sign Up
-              </button>
-            </form>
+                  {userRoles.map((role) => (
+                    <option key={role._id} value={role.name}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  onChange={handleChange}
+                  value={data.email}
+                  required
+                  className={styles.input}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={handleChange}
+                  value={data.password}
+                  required
+                  className={styles.input}
+                />
+                <input
+                  type="text"
+                  name="dateAdded"
+                  onChange={handleChange}
+                  value={dateAdded}
+                  required
+                  readOnly
+                  className={styles.input}
+                />
+                {error && <div className={styles.error_msg}>{error}</div>}
+                <button type="submit" className={styles.green_btn}>
+                  Sign Up
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    // </UserContext.Provider>
+    </div>
   )
 }
 
