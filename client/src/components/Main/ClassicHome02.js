@@ -5,45 +5,43 @@ import StarIcon from '@mui/icons-material/Star';
 const ClassicHome = () => {
     return (
         <div className="classic-home">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
-                <div className="homeIntros">
-                    {/* <div className="metadata29">{`{"config":{},"nodeName":"Hero","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.094Z"}`}</div> */}
-                    <b className="homeIntro-containers">
-                        <p className="textInPages">The scheduling system to efficiently manage patient appointments.</p>
-                        <p className="textInPages">User-friendly, cloud-based.</p>
-                    </b>
-                    <div className="homeIntro-texts">
-                        Features real-time scheduling, automated reminders, patient
-                        self-scheduling, and reminder options with robust reporting
-                        capabilities to enhance operational efficiency and patient experience.
-                    </div>
-                    <div className="btn btn-info">
-                        {/* button-display-elementslabel2s */}
-                        {/* <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.091Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
-                        <b className="label7s">Try for Free</b>
-                        <div className="icon-display-elementslabels">
-                            {/* <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
-                            {/* <img className="icon7" alt="" src="/icon6.svg" /> */}
-                        </div>
-                    </div>
-                    <div className="btn btn-secondary btnMargin">
-                        {/* button-display-elementslabel3s */}
-                        {/* <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.091Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
-                        <b className="label8s">See how it works</b>
-                        <div className="icon-display-elementslabels">
-                            {/* <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
-                            <img className="icon7" alt="" src="/icon6.svg" />
-                        </div>
-                    </div>
-                </div>
-                <div className="images">
-                    {/* <div className="metadata28">{`{"config":{"ASSET_ID":"92521fabe5e6290cd8c5657c26290ecc"},"type":"Image","nodeName":"Image","children":["d513ae97-42da-4a54-8bb9-246472b80ce5","982f20a8-531a-438b-ab45-86a4b5aeebe9"],"__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:48:30.924Z"}`}</div> */}
-                </div>
 
-                <b className="trusted-by-providerss">
-                    Trusted by providers and patients alike.
+            <div className="homeIntro">
+                <div className="metadata29">{`{"config":{},"nodeName":"Hero","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.094Z"}`}</div>
+                <b className="homeIntro-container">
+                    <p className="textInPage">The scheduling system to efficiently manage patient appointments.</p>
+                    <p className="textInPage">User-friendly, cloud-based.</p>
                 </b>
+                <div className="homeIntro-text">
+                    Features real-time scheduling, automated reminders, patient
+                    self-scheduling, and reminder options with robust reporting
+                    capabilities to enhance operational efficiency and patient experience.
+                </div>
+                <div className="button-display-elementslabel2">
+                    <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.091Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
+                    <b className="label7">Try for Free</b>
+                    <div className="icon-display-elementslabel">
+                        <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
+                        <img className="icon7" alt="" src="/icon6.svg" />
+                    </div>
+                </div>
+                <div className="button-display-elementslabel3">
+                    <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.091Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
+                    <b className="label8">See how it works</b>
+                    <div className="icon-display-elementslabel">
+                        <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
+                        <img className="icon7" alt="" src="/icon6.svg" />
+                    </div>
+                </div>
             </div>
+            <div className="image">
+                <div className="metadata28">{`{"config":{"ASSET_ID":"92521fabe5e6290cd8c5657c26290ecc"},"type":"Image","nodeName":"Image","children":["d513ae97-42da-4a54-8bb9-246472b80ce5","982f20a8-531a-438b-ab45-86a4b5aeebe9"],"__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:48:30.924Z"}`}</div>
+            </div>
+
+            <b className="trusted-by-providers">
+                Trusted by providers and patients alike.
+            </b>
+
             {/* Introducing the poehr solution */}
 
             <div>
