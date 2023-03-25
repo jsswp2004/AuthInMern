@@ -21,19 +21,19 @@ const ClassicHome = () => {
                         {/* button-display-elementslabel2s */}
                         {/* <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.091Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
                         <b className="label7s">Try for Free</b>
-                        <div className="icon-display-elementslabels">
-                            {/* <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
-                            {/* <img className="icon7" alt="" src="/icon6.svg" /> */}
-                        </div>
+                        {/* <div className="icon-display-elementslabels">
+                            <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
+                            <img className="icon7" alt="" src="/icon6.svg" />
+                        </div> */}
                     </div>
                     <div className="btn btn-secondary btnMargin">
                         {/* button-display-elementslabel3s */}
                         {/* <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.091Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
                         <b className="label8s">See how it works</b>
-                        <div className="icon-display-elementslabels">
-                            {/* <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div> */}
+                        {/* <div className="icon-display-elementslabels">
+                            <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:27.086Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
                             <img className="icon7" alt="" src="/icon6.svg" />
-                        </div>
+                        </div> */}
                     </div>
                     <div>
                         <b className="trusted-by-providerss">

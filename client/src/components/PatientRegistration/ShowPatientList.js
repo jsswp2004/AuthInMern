@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import Navbar from '../navigation/navbar'
 import Header from '../shared/Header'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -34,6 +34,12 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 //#endregion
 
 export default function ShowRecordList() {
+  // const [patientIDx, setPatientIDx] = useState('')
+  const toEditReg = (pt) => {
+    // localStorage.removeItem('token')
+    // setPatientIDx(pt._id)
+    navigate(`/editPatient/${patientID}`)
+  }
   //color theme
   // const theme = createTheme({
   //   palette: {
@@ -41,6 +47,7 @@ export default function ShowRecordList() {
   //   },
   // });
   //#region Define the state for create registration modal
+  const navigate = useNavigate()
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => {
@@ -539,7 +546,7 @@ export default function ShowRecordList() {
                         {pt.addedDate}
                       </StyledTableCell>
                       <StyledTableCell align="left" width='250px'>
-                        <Tooltip title="Create patient">
+                        <Tooltip title="Create visit schedule">
                           <Button
                             className="btn btn-primary  btn-sm"
                             onClick={handleVisitShow}
@@ -550,23 +557,33 @@ export default function ShowRecordList() {
                             />
                           </Button>
                         </Tooltip>
-                        <a
-                          className="btn btn-success  btn-sm"
-                          href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
-                        >
-                          <Tooltip title="Display patient visits">
-                            <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
-                          </Tooltip>
-                        </a>
-                        <a
-                          className="btn btn-info btn-sm "
-                          href={`/editPatient/${pt._id}`}
-                        >
-                          <Tooltip title="Edit patient">
-                            <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
-                          </Tooltip>
+                        <Tooltip title="Display patient visits">
+                          <a
+                            className="btn btn-success  btn-sm"
+                            href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
+                          >
 
-                        </a>
+                            <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
+
+                          </a>
+                        </Tooltip>
+
+                        <Tooltip title="Edit patient">
+                          <a
+                            className="btn btn-info btn-sm "
+                            href={`/editPatient/${pt._id}`}
+                          >
+                            <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
+                          </a>
+                        </Tooltip>
+                        {/* <Tooltip title="Edit patient">
+                          <Button onClick={toEditReg}>
+
+                            <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
+
+                          </Button>
+                        </Tooltip> */}
+
                         <Tooltip title="Delete patient">
                           <button onClick={handleShowDelete}
                             className="btn btn-danger  btn-sm"
