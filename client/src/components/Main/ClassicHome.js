@@ -24,10 +24,10 @@ const ClassicHome = () => {
                         self-scheduling, and reminder options with robust reporting
                         capabilities to enhance operational efficiency and patient experience.
                     </div>
-                    <button className='btn  btn-info mainHeaderBtn' onClick={toSignup} style={{ padding: '5px', width: '100px' }}>
+                    <button className='btn  btn-info mainHeaderBtn btnleft' onClick={toSignup} >
                         Try for free
                     </button>
-                    <div className="btn btn-secondary mainHeaderBtn" style={{ width: 'auto', padding: '5px' }}>
+                    <div className="btn btn-secondary mainHeaderBtn btnleft" >
                         See how it works
                     </div>
                     <div>
@@ -50,7 +50,7 @@ const ClassicHome = () => {
                             <p className="textInPage h6">Join our community and experience</p>
                             <p className="textInPage h6">the benefits today!</p>
                         </b>
-                        <button className='btn  btn-primary mainHeaderBtn' onClick={toSignup} >
+                        <button className='btn  btn-primary mainHeaderBtn btnleft' onClick={toSignup} >
                             Try for free
                         </button>
                     </div>
@@ -72,7 +72,7 @@ const ClassicHome = () => {
                             <p className="textInPage">with us</p>
                         </b>
                     </div>
-                    <button className='btn  btn-primary mainHeaderBtn h6-tagh41' onClick={toSignup} >
+                    <button className='btn  btn-primary mainHeaderBtn btnleft' onClick={toSignup} >
                         Try now
                     </button>
                 </div>
@@ -109,7 +109,7 @@ const ClassicHome = () => {
                             <p className="textInPage">smart way</p>
                         </b>
                     </div>
-                    <button className='btn  btn-primary mainHeaderBtn' onClick={toSignup} >
+                    <button className='btn  btn-primary mainHeaderBtn btnleft' onClick={toSignup} >
                         Try now
                     </button>
                 </div>
@@ -152,123 +152,147 @@ const ClassicHome = () => {
             </div>
             {/* end of join our community community */}
             {/* testimonial */}
-            <div className="testimonialBackground1" />
-            <div className="testimonialBackground2" />
-            <div className="testimonialBackground3" />
+            <div className="homeIntrosContainerPoehrSolution">
+                <div className="testimonialHeader">
+                    <div className="testimonial-tagh4"> <b>Testimonials</b></div>
+                    <div className="testimonial-tagText">
+                        People love what we do and we want to let your know
+                    </div>
 
-            {/* <div className="background" /> */}
-            <b className="newsletter-tagh4">Testimonials</b>
-            <div className="duis-aute-irure">
-                People love what we do and we want to let your know
-            </div>
-            <div className="testimonialContainer1">
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <p className="textInPage">"I recommend POEHR to</p>
-                <p className="textInPage">any business looking for</p>
-                <p className="textInPage">improvement."</p>
-            </div>
-            <div className="testimonialContainer2">
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <p className="textInPage">"Since implementing</p>
-                <p className="textInPage">POEHR our business has</p>
-                <p className="textInPage">seen significant growth."</p>
-            </div>
-            <div className="testimonialContainer3">
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <StarIcon className="starIcon" />
-                <p className="textInPage">"I can't imagine running</p>
-                <p className="textInPage">our clinic without it."</p>
+                    <div className="testimonialHeaderText" >
+                        <div className="testimonialBackground1" >
+                            <div className="testimonialContainer1">
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <p className="textInPage">"I recommend POEHR to</p>
+                                <p className="textInPage">any business looking for</p>
+                                <p className="textInPage">improvement."</p>
+                            </div>
+                            <div className="testimonyAuthorContainer0">
+                                <p className="kirk-diaz">Kirk Diaz</p>
+                                <p className="lead-manager-suny">Lead Manager, SUNY</p>
+                            </div>
+                        </div>
+                        <div className="testimonialBackground2">
+                            <div className="testimonialContainer2">
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <p className="textInPage">"Since implementing</p>
+                                <p className="textInPage">POEHR our business has</p>
+                                <p className="textInPage">seen significant growth."</p>
+                            </div>
+                            <div className="testimonyAuthorContainer1">
+                                <p className="kirk-diaz">Adele Muniz</p>
+                                <p className="lead-manager-suny">Project Leader, NYP</p>
+                            </div>
+                        </div>
+                        <div className="testimonialBackground3">
+                            <div className="testimonialContainer3">
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <StarIcon className="starIcon" />
+                                <p className="textInPage">"I can't imagine running</p>
+                                <p className="textInPage">our clinic without it."</p>
+                            </div>
+
+                            <div className="testimonyAuthorContainer2">
+                                <p className="kirk-diaz">Charice Cramer</p>
+                                <p className="lead-manager-suny">CTO, Healthworks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-
-            <div className="testimonyAuthorContainer0">
-                <p className="kirk-diaz">Kirk Diaz</p>
-                <p className="lead-manager-suny">Lead Manager, SUNY</p>
-            </div>
-            <div className="testimonyAuthorContainer1">
-                <p className="kirk-diaz">Adele Muniz</p>
-                <p className="lead-manager-suny">Project Leader, NYP</p>
-            </div>
-            <div className="testimonyAuthorContainer2">
-                <p className="kirk-diaz">Charice Cramer</p>
-                <p className="lead-manager-suny">CTO, Healthworks</p>
-            </div>
             {/* end of testimonial */}
 
             {/* <div className="background-stylestyle3" /> */}
-            <div style={{ display: "flex" }}>
-                <b className="company-stylestyle3tagh4">POEHR</b>
-                <div className="description-stylestyle3tag">Unleash possibilities...</div>
-            </div>
-            {/* <b className="company-stylestyle3tagh4">POEHR</b>
-            <div className="description-stylestyle3tag">Unleash possibilities...</div> */}
-            <div className="circle-button-sizemediumst">
-                <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.038Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                <div className="icon-iconfeatherlinkedins">
-                    <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/linkedin"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.031Z","nodeName":"Icon [ICON=feather/linkedin][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                    <img className="icon" alt="" src="/icon.svg" />
+
+            {/* products and services section */}
+            <div className="homeIntrosContainerPoehrSolution">
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+
+                    <div className="company-stylestyle3tagh4"><b >POEHR</b></div>
+                    <div className="description-stylestyle3tag">Unleash possibilities...</div>
+                    <div className='iconContainer' >
+                        <div className="circle-button-sizemediumst">
+                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.038Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                            <div className="icon-iconfeatherlinkedins">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/linkedin"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.031Z","nodeName":"Icon [ICON=feather/linkedin][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <img className="icon" alt="" src="/icon.svg" />
+                            </div>
+                        </div>
+                        <div className="circle-button-sizemediumst1">
+                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.060Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                            <div className="icon-iconfeatherlinkedins">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/youtube"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.056Z","nodeName":"Icon [ICON=feather/youtube][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <img className="icon1" alt="" src="/icon1.svg" />
+                            </div>
+                        </div>
+                        <div className="circle-button-sizemediumst2">
+                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.089Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                            <div className="icon-iconfeatherlinkedins">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/twitter"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.085Z","nodeName":"Icon [ICON=feather/twitter][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <img className="icon2" alt="" src="/icon2.svg" />
+                            </div>
+                        </div>
+                        <div className="circle-button-sizemediumst3">
+                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.107Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                            <div className="icon-iconfeatherlinkedins">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.104Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <img className="icon3" alt="" src="/icon3.svg" />
+                            </div>
+                        </div>
+                        <div className="circle-button-sizemediumst4">
+                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.126Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                            <div className="icon-iconfeatherlinkedins">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/phone"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.123Z","nodeName":"Icon [ICON=feather/phone][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <img className="icon4" alt="" src="/icon4.svg" />
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div className="circle-button-sizemediumst1">
-                <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.060Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                <div className="icon-iconfeatherlinkedins">
-                    <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/youtube"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.056Z","nodeName":"Icon [ICON=feather/youtube][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                    <img className="icon1" alt="" src="/icon1.svg" />
+
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div>
+                        <b className="services-stylestyle3tagh5">Services</b>
+                        <div className="service-stylestyle3tagui-3">Service 1</div>
+                        <div className="service-stylestyle3tagui-2">Service 2</div>
+                        <div className="service-stylestyle3tagui-1">Service 3</div>
+                        <div className="service-stylestyle3tagui-">Service 4</div>
+                    </div>
+                    <div>
+                        <b className="products-stylestyle3tagh5">Products</b>
+                        <div className="product-stylestyle3tagui-3">Product 1</div>
+                        <div className="product-stylestyle3tagui-2">Product 2</div>
+                        <div className="product-stylestyle3tagui-1">Product 3</div>
+                        <div className="product-stylestyle3tagui-">Product 4</div>
+                    </div>
+                    <div>
+                        <b className="resources-stylestyle3tagh">Resources</b>
+                        <div className="resource-stylestyle3tagui3">News</div>
+                        <div className="resource-stylestyle3tagui2">Blog</div>
+                        <div className="resource-stylestyle3tagui1">Videos</div>
+                        <div className="resource-stylestyle3tagui">FAQs</div>
+                    </div>
                 </div>
+
+
+
+
+
+
             </div>
-            <div className="circle-button-sizemediumst2">
-                <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.089Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                <div className="icon-iconfeatherlinkedins">
-                    <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/twitter"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.085Z","nodeName":"Icon [ICON=feather/twitter][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                    <img className="icon2" alt="" src="/icon2.svg" />
-                </div>
-            </div>
-            <div className="circle-button-sizemediumst3">
-                <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.107Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                <div className="icon-iconfeatherlinkedins">
-                    <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.104Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                    <img className="icon3" alt="" src="/icon3.svg" />
-                </div>
-            </div>
-            <div className="circle-button-sizemediumst4">
-                <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.126Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                <div className="icon-iconfeatherlinkedins">
-                    <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/phone"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.123Z","nodeName":"Icon [ICON=feather/phone][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div>
-                    <img className="icon4" alt="" src="/icon4.svg" />
-                </div>
-            </div>
-
-
-
-
-            <b className="services-stylestyle3tagh5">Services</b>
-            <div className="service-stylestyle3tagui-3">Service 1</div>
-            <div className="service-stylestyle3tagui-2">Service 2</div>
-            <div className="service-stylestyle3tagui-1">Service 3</div>
-            <div className="service-stylestyle3tagui-">Service 4</div>
-            <b className="products-stylestyle3tagh5">Products</b>
-            <div className="product-stylestyle3tagui-3">Product 1</div>
-            <div className="product-stylestyle3tagui-2">Product 2</div>
-            <div className="product-stylestyle3tagui-1">Product 3</div>
-            <div className="product-stylestyle3tagui-">Product 4</div>
-            <b className="resources-stylestyle3tagh">Resources</b>
-            <div className="resource-stylestyle3tagui3">News</div>
-            <div className="resource-stylestyle3tagui2">Blog</div>
-            <div className="resource-stylestyle3tagui1">Videos</div>
-            <div className="resource-stylestyle3tagui">FAQs</div>
-
-
+            {/* end of products and services section */}
             <div className="footer-strip" >
                 {/* <div className="metadata1">{`{"config":{},"nodeName":"Footer Strip","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:24.467Z"}`}</div> */}
                 <b className="terms-of-services">Terms of Service</b>
