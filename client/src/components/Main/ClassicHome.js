@@ -168,7 +168,7 @@ const ClassicHome = () => {
                 {/* <div className="dataSafeImg" /> */}
                 {/* <div className="alignContentCenter"> */}
                 <div className="poehrdataSafe-Image">
-                    <div className="alignContentCenter"></div>
+                    {/* <div className="alignContentCenter"></div> */}
                 </div>
 
                 {/* </div> */}
@@ -177,8 +177,8 @@ const ClassicHome = () => {
                 <div className="poehrdataSafe-TextContainer">
                     <div className="poehrdataSafe-Text">
                         <div className="smartsave">SMARTSAVE</div>
-                        <div className="h61">We take your security seriously, which is why we use advanced encryption protocols to protect your files in the cloud. Your data is safe and secure with us.</div>
-                        <div className="h6-tagh41">
+                        <div className="textInPageh6">We take your security seriously, which is why we use advanced encryption protocols to protect your files in the cloud. Your data is safe and secure with POEHR.</div>
+                        <div className="textInPage">
                             <b>
                                 <p className="textInPage">All your data is safe</p>
                                 <p className="textInPage">with us</p>
@@ -207,26 +207,35 @@ const ClassicHome = () => {
             </div>
             {/* END SMARTSAVE */}
             {/* cost saving */}
-            <div className="homeIntrosContainerPoehrSolution">
-                <div className='costsaverDiv'>
-                    <div className="costsaver">COSTSAVER</div>
-                    <div className="h62">
-                        POEHR scheduling solutions help you reduce costs and save money on your
-                        patient management operations. We streamline scheduling workflows and
-                        continually identify areas for improvement.
-                    </div>
+            {/* <div className="homeIntrosContainerPoehrSolution"> */}
+            <div className="poehrIntrosFlexContainer" >
+                <div className="poehrcostsaver-TextContainer">
+                    {/* <div className='costsaverDiv'> */}
+                    <div className='poehrcostsaver-Text'>
 
-                    <div className="h6-tagh42">
-                        <b>
-                            <p className="textInPage">Cost saving in a</p>
-                            <p className="textInPage">smart way</p>
-                        </b>
+                        <div className="costsaver">COSTSAVER</div>
+                        <div className="textInPageh6">
+                            POEHR scheduling solutions help you reduce costs and save money on your
+                            patient management operations.
+                        </div>
+                        <div className="textInPageh6">
+                            We streamline scheduling workflows and
+                            continually identify areas for improvement.
+                        </div>
+                        <div className="textInPage">
+                            <b>
+                                <p className="textInPage">Cost saving in a smart way</p>
+                                {/* <p className="textInPage">smart way</p> */}
+                            </b>
+                        </div>
+                        <button className='btn  btn-primary' onClick={toSignup} >
+                            Try now
+                        </button>
                     </div>
-                    <button className='btn  btn-primary mainHeaderBtn btnleft' onClick={toSignup} >
-                        Try now
-                    </button>
                 </div>
-                <div className="image2" />
+                {/* <div className="image2" /> */}
+                <div className="poehrcostsaver-Image" />
+
             </div>
             {/* end of cost saving */}
             {/* join our community */}

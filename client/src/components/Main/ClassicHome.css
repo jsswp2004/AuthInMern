@@ -1440,7 +1440,7 @@
   /* width: 550px; */
   width: 50%;
   /* height: 750px; */
-  /* margin-left: 300px; */
+  margin-left: 30%;
   /* margin-right: 0px; */
   height: 550px;
   max-width: 100%;
@@ -1467,6 +1467,18 @@
   font-weight: 600;
   /* font-family: var(--font-arial); */
   font-size: var(--font-size-sm);
+}
+.poehrdataSafe-Text {
+  font-size: 2vw;
+  display: inline-block;
+  width: 50%;
+  height: auto;
+  z-index: 100;
+  /* grid-column-start: 5;
+  grid-column-end: span 2;
+  grid-row-start: 1; */
+  margin-top: 30px;
+  margin-left: 10px;
 }
 .smartsaveDiv {
   /* position: absolute; */
@@ -1638,6 +1650,58 @@
   width: 11px;
   height: 10px;
 } */
+.poehrcostsaver-TextContainer {
+  margin-top: 20%;
+  height: 550px;
+  max-width: 100%;
+  flex-grow: 1;
+  flex-shrink: 3;
+  font-weight: 600;
+  /* font-family: var(--font-arial); */
+  font-size: var(--font-size-sm);
+}
+.poehrcostsaver-Text {
+  font-size: 2vw;
+  display: inline-block;
+  /* width: 50%; */
+  width: auto;
+  height: auto;
+  z-index: 100;
+  /* grid-column-start: 5;
+  grid-column-end: span 2;
+  grid-row-start: 1; */
+  margin-top: 30px;
+  margin-left: 30%;
+}
+.poehrcostsaver-Image {
+  /* position: absolute; */
+  margin-top: 15%;
+  /* right: 550px; */
+  /* left: 850px; */
+  /* left: 50%; */
+  /* margin-right: 250px; */
+  margin-left: -30px;
+  /* border-radius: 280px; */
+  /* width: 550px; */
+  width: 50%;
+  /* height: 750px; */
+  /* margin-left: 300px; */
+  /* margin-right: 0px; */
+  height: 650px;
+  max-width: 100%;
+  background-image: url("/public/image2@3x.png");
+  /* background-size: contain; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+  font-family: var(--font-arial);
+  /* grid-column: 3/3; */
+  /* grid-column-start: 5;
+  grid-column-end: span 3;
+  grid-row-start: 1; */
+  flex-grow: 1;
+  flex-shrink: 3;
+}
 .image2 {
   /* position: absolute;
   top: 2087px; */
