@@ -1,7 +1,11 @@
 import "./ClassicHome.css";
 import "../../global.css";
+import { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import { useNavigate } from 'react-router-dom'
+import { Modal, Button } from 'react-bootstrap'
+import TermsOfService from './TermsOfService'
+import PrivacyPolicy from './PrivacyPolicy'
 
 const ClassicHome = () => {
 
@@ -10,6 +14,82 @@ const ClassicHome = () => {
         localStorage.removeItem('token')
         navigate('/Signup')
     }
+    //#region Define the state for create registration modal
+
+    const [showPrivacy, setShowPrivacy] = useState(false)
+    const handleClosePrivacy = () => setShowPrivacy(false)
+    const handleShowPrivacy = () => {
+        setShowPrivacy(true)
+    }
+    //#endregion
+    //#region Method to set show for create modal to false
+    const handleClickPrivacy = (e) => {
+        e.preventDefault()
+        // alert('Create schedule button clicked')
+        setShowPrivacy(false)
+        // navigate('/settingsPage')
+    }
+    //#endregion
+    //#region Create Registration Modal
+    const PrivacyModal = () => (
+        <>
+            <Modal show={showPrivacy} onHide={handleClosePrivacy} size="lg" centered>
+                <Modal.Header>
+                    <Modal.Title>Privacy Policy</Modal.Title>
+                    <Button variant="secondary" onClick={handleClickPrivacy} >
+                        Close
+                    </Button>
+                </Modal.Header>
+                <Modal.Body>
+                    <PrivacyPolicy />
+                </Modal.Body>
+            </Modal>
+        </>
+    )
+
+    // Function to display create registration modal
+    function displayPrivacyModal() {
+        return <PrivacyModal />
+    }
+    //#endregion
+    //#region Define the state for create registration modal
+
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false)
+    const handleShow = () => {
+        setShow(true)
+    }
+    //#endregion
+    //#region Method to set show for create modal to false
+    const handleClick = (e) => {
+        e.preventDefault()
+        // alert('Create schedule button clicked')
+        setShow(false)
+        // navigate('/settingsPage')
+    }
+    //#endregion
+    //#region Create Registration Modal
+    const TermsOfServiceModal = () => (
+        <>
+            <Modal show={show} onHide={handleClose} size="lg" centered>
+                <Modal.Header>
+                    <Modal.Title>Terms of Service</Modal.Title>
+                    <Button variant="secondary" onClick={handleClick} >
+                        Close
+                    </Button>
+                </Modal.Header>
+                <Modal.Body>
+                    <TermsOfService />
+                </Modal.Body>
+            </Modal>
+        </>
+    )
+
+    // Function to display create registration modal
+    function displayTermsOfServiceModal() {
+        return <TermsOfServiceModal />
+    }
+    //#endregion
     return (
         <div className="classic-home">
             {/* Introduction */}
@@ -238,72 +318,75 @@ const ClassicHome = () => {
             {/* <div className="background-stylestyle3" /> */}
 
             {/* products and services section */}
-            <div className="homeIntrosContainerPoehrSolution">
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {/* <div className="homeIntrosContainerPoehrSolution"> */}
+            <div className="homeIntrosFlexContainer" >
+                <div className="homeIntros-TextUnleash">
 
-                    <div className="company-stylestyle3tagh4"><b >POEHR</b></div>
-                    <div className="description-stylestyle3tag">Unleash possibilities...</div>
-                    <div className='iconContainer' >
-                        <div className="circle-button-sizemediumst">
-                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.038Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                            <div className="icon-iconfeatherlinkedins">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/linkedin"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.031Z","nodeName":"Icon [ICON=feather/linkedin][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                                <img className="icon" alt="" src="/icon.svg" />
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+
+                        <div className="company-stylestyle3tagh4"><b >POEHR</b></div>
+                        <div className="description-stylestyle3tag">Unleash possibilities...</div>
+                        <div className='iconContainer' >
+                            <div className="circle-button-sizemediumst">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.038Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <div className="icon-iconfeatherlinkedins">
+                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/linkedin"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.031Z","nodeName":"Icon [ICON=feather/linkedin][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                    <img className="icon" alt="" src="/icon.svg" />
+                                </div>
+                            </div>
+                            <div className="circle-button-sizemediumst1">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.060Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <div className="icon-iconfeatherlinkedins">
+                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/youtube"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.056Z","nodeName":"Icon [ICON=feather/youtube][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                    <img className="icon1" alt="" src="/icon1.svg" />
+                                </div>
+                            </div>
+                            <div className="circle-button-sizemediumst2">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.089Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <div className="icon-iconfeatherlinkedins">
+                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/twitter"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.085Z","nodeName":"Icon [ICON=feather/twitter][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                    <img className="icon2" alt="" src="/icon2.svg" />
+                                </div>
+                            </div>
+                            <div className="circle-button-sizemediumst3">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.107Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <div className="icon-iconfeatherlinkedins">
+                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.104Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                    <img className="icon3" alt="" src="/icon3.svg" />
+                                </div>
+                            </div>
+                            <div className="circle-button-sizemediumst4">
+                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.126Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                <div className="icon-iconfeatherlinkedins">
+                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/phone"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.123Z","nodeName":"Icon [ICON=feather/phone][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
+                                    <img className="icon4" alt="" src="/icon4.svg" />
+                                </div>
                             </div>
                         </div>
-                        <div className="circle-button-sizemediumst1">
-                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.060Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                            <div className="icon-iconfeatherlinkedins">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/youtube"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.056Z","nodeName":"Icon [ICON=feather/youtube][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                                <img className="icon1" alt="" src="/icon1.svg" />
-                            </div>
-                        </div>
-                        <div className="circle-button-sizemediumst2">
-                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.089Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                            <div className="icon-iconfeatherlinkedins">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/twitter"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.085Z","nodeName":"Icon [ICON=feather/twitter][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                                <img className="icon2" alt="" src="/icon2.svg" />
-                            </div>
-                        </div>
-                        <div className="circle-button-sizemediumst3">
-                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.107Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                            <div className="icon-iconfeatherlinkedins">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.104Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                                <img className="icon3" alt="" src="/icon3.svg" />
-                            </div>
-                        </div>
-                        <div className="circle-button-sizemediumst4">
-                            {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.126Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                            <div className="icon-iconfeatherlinkedins">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/phone"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.123Z","nodeName":"Icon [ICON=feather/phone][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
-                                <img className="icon4" alt="" src="/icon4.svg" />
-                            </div>
-                        </div>
+
                     </div>
-
                 </div>
-
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div className="homeIntros-TextUnleash2">
                     <div>
                         <b className="services-stylestyle3tagh5">Services</b>
-                        <div className="service-stylestyle3tagui-3">Service 1</div>
-                        <div className="service-stylestyle3tagui-2">Service 2</div>
-                        <div className="service-stylestyle3tagui-1">Service 3</div>
-                        <div className="service-stylestyle3tagui-">Service 4</div>
+                        <div className="service-stylestyle3taguis-3">Patient Management</div>
+                        <div className="service-stylestyle3taguis-2">Service 2</div>
+                        <div className="service-stylestyle3taguis-1">Service 3</div>
+                        <div className="service-stylestyle3taguis-">Service 4</div>
                     </div>
                     <div>
                         <b className="products-stylestyle3tagh5">Products</b>
-                        <div className="product-stylestyle3tagui-3">Product 1</div>
-                        <div className="product-stylestyle3tagui-2">Product 2</div>
-                        <div className="product-stylestyle3tagui-1">Product 3</div>
-                        <div className="product-stylestyle3tagui-">Product 4</div>
+                        <div className="product-stylestyle3taguis-3">POEHR Scheduling</div>
+                        <div className="product-stylestyle3taguis-2">Product 2</div>
+                        <div className="product-stylestyle3taguis-1">Product 3</div>
+                        <div className="product-stylestyle3taguis-">Product 4</div>
                     </div>
                     <div>
                         <b className="resources-stylestyle3tagh">Resources</b>
-                        <div className="resource-stylestyle3tagui3">News</div>
-                        <div className="resource-stylestyle3tagui2">Blog</div>
-                        <div className="resource-stylestyle3tagui1">Videos</div>
-                        <div className="resource-stylestyle3tagui">FAQs</div>
+                        <div className="resource-stylestyle3taguis-3">News</div>
+                        <div className="resource-stylestyle3taguis-2">Blog</div>
+                        <div className="resource-stylestyle3taguis-1">Videos</div>
+                        <div className="resource-stylestyle3taguis-">FAQs</div>
                     </div>
                 </div>
 
@@ -314,15 +397,18 @@ const ClassicHome = () => {
 
             </div>
             {/* end of products and services section */}
+            <div>{displayTermsOfServiceModal()}</div>
+            <div>{displayPrivacyModal()}</div>
             <div className="footer-strip" >
                 {/* <div className="metadata1">{`{"config":{},"nodeName":"Footer Strip","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:24.467Z"}`}</div> */}
-                <b className="terms-of-services">Terms of Service</b>
-                <b className="privacy-policy-stylestyle2s">Privacy Policy</b>
+                <b className="terms-of-services"><button className="btn" onClick={handleShow}>Terms of Service</button></b>
+                <b className="privacy-policy-stylestyle2s"><button className="btn" onClick={handleShowPrivacy}>Privacy Policy</button></b>
+                {/* <b className="privacy-policy-stylestyle2s">Privacy Policy</b> */}
                 <b className="copyright-stylestyle2tagus">
                     © 2023 POEHR. All Rights Reserved.
                 </b>
             </div>
-        </div >
+        </div>
     );
 };
 

@@ -47,7 +47,7 @@
 .footer-strip {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   /* position: absolute; */
   /* bottom: 0px;
   left: 0px; */
@@ -221,6 +221,7 @@
   font-family: var(--font-arial);
   margin-left: 5px;
 }
+
 .service-stylestyle3tagui- {
   /* position: absolute;
   bottom: 215px;
@@ -821,6 +822,51 @@
   flex-wrap: wrap;
   /* // To view the letter better */
   /* font-size: 65px; */
+}
+.homeIntros-TextUnleash {
+  /* width: 140px; */
+
+  width: 50%;
+  height: auto;
+  /* height: 140px; */
+  /* background-color: skyblue;
+  border: 2px solid black; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  /* align-content: center; */
+  flex-wrap: wrap;
+  /* // To view the letter better */
+  /* font-size: 65px; */
+  margin: 20px;
+}
+.homeIntros-TextUnleash2 {
+  /* width: 140px; */
+
+  width: 50%;
+  height: auto;
+  /* height: 140px; */
+  /* background-color: skyblue;
+  border: 2px solid black; */
+  display: flex;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  flex-direction: row;
+  /* align-content: flex-end; */
+  flex-wrap: wrap;
+  /* // To view the letter better */
+  /* font-size: 65px; */
+  margin: 20px;
+}
+[class^="service-stylestyle3taguis-"] {
+  font-size: 16px;
+}
+[class^="product-stylestyle3taguis-"] {
+  font-size: 16px;
+}
+[class^="resource-stylestyle3taguis-"] {
+  font-size: 16px;
 }
 .homeIntros-TextContainer {
   /* position: absolute; */
@@ -2012,7 +2058,8 @@
   /* position: relative; */
   background-color: var(--color-whitesmoke-200);
   width: 100%;
-  height: 4500px;
+  /* height: 4500px; */
+  height: auto;
 
   text-align: left;
   font-size: var(--font-size-10xs);
