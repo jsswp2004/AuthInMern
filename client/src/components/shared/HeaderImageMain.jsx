@@ -39,7 +39,7 @@ function HeaderImageMain() {
         <li id="link" className="navbar_list">
           <Link to="/about">Contact</Link>
         </li>
-        <button className='mainHeaderBtn btn-info btn navbar_list' onClick={toLogin} style={{ padding: '0', width: '100px', margin: '5px' }}>
+        <button className='mainHeaderBtn btn-primary btn navbar_list' onClick={toLogin} style={{ padding: '0', width: '100px', margin: '5px' }}>
           Login
         </button>
         <button className='btn btn-success mainHeaderBtn' onClick={toSignup} style={{ padding: '0', width: '100px', margin: '5px' }}>

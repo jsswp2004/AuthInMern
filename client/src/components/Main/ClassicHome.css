@@ -795,6 +795,127 @@
   /* width: 50%; */
   height: 48px;
 }
+/* flexbox */
+.homeIntrosFlexContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: auto;
+  /* grid-template-rows: 1fr;
+  grid-template-columns: repeat(9, 1fr);
+  min-width: 600px; */
+}
+.homeIntros-Text {
+  /* width: 140px; */
+
+  width: 50%;
+  height: auto;
+  /* height: 140px; */
+  /* background-color: skyblue;
+  border: 2px solid black; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  /* align-content: flex-end; */
+  flex-wrap: wrap;
+  /* // To view the letter better */
+  /* font-size: 65px; */
+}
+.homeIntros-TextContainer {
+  /* position: absolute; */
+  width: auto;
+  height: auto;
+  /* width: 100%; */
+  /* top: calc(50% - 200px); */
+  /* left: 0px; */
+  /* font-size: 40px; */
+  margin-left: 20%;
+  font-size: 2.5vw;
+  letter-spacing: 0.5px;
+  /* letter-spacing: auto; */
+
+  line-height: normal;
+  /* display: inline-block; */
+  font-family: var(--font-raleway);
+  /* height: 223.28px; */
+  z-index: 100;
+}
+.homeIntros-TextContainer2 {
+  /* width: auto; */
+  height: auto;
+  margin-left: 20%;
+  /* position: absolute; */
+  width: calc(100% - 54px);
+  /* top: calc(50% + 36px);
+  left: 0px; */
+  /* font-size: var(--font-size-base); */
+  font-size: 1vw;
+  letter-spacing: 0.3px;
+  line-height: normal;
+  font-weight: 600;
+  font-family: var(--font-raleway);
+  /* display: inline-block; */
+  /* height: 74px; */
+  z-index: 100;
+  margin-top: 10px;
+}
+.homeIntros-TextContainerTrusted {
+  /* position: absolute; */
+  top: 700px;
+  /* left: 25%; */
+  /* font-size: 20px; */
+  font-size: 1.5vw;
+  letter-spacing: 0.15px;
+  margin-top: 20px;
+  margin-left: 20%;
+  /* margin: 0 auto; */
+  /* width: 50%; */
+  /* text-align: center; */
+}
+.btnMaxWidth {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+.homeIntros-TextContainerBtns {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-left: 20%;
+  gap: 10px;
+  z-index: 100;
+  flex-shrink: 3;
+  flex-wrap: wrap;
+}
+.homeIntros-Image {
+  /* position: absolute; */
+  margin-top: 5%;
+  /* right: 550px; */
+  /* left: 850px; */
+  /* left: 50%; */
+  /* margin-right: 250px; */
+
+  border-radius: 280px;
+  /* width: 550px; */
+  width: 50%;
+  /* height: 750px; */
+  height: 750px;
+  max-width: 100%;
+  background-image: url("/public/image@3x.png");
+  /* background-size: contain; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+  font-family: var(--font-arial);
+  /* grid-column: 3/3; */
+  /* grid-column-start: 5;
+  grid-column-end: span 3;
+  grid-row-start: 1; */
+  flex-grow: 1;
+  flex-shrink: 3;
+}
+/* end of flex container */
 /* home input[type="troduction section */
 .homeIntro {
   position: absolute;
@@ -930,11 +1051,118 @@
   font-size: 1.5vw;
   letter-spacing: 0.15px;
   /* margin: 0 auto; */
-  width: 50%;
-  text-align: center;
+  /* width: 50%; */
+  /* text-align: center; */
 }
 
 /* home input[type="troduction section */
+/* introducing the poehr solution flex option*/
+.poehrIntrosFlexContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: auto;
+  /* grid-template-rows: 1fr;
+  grid-template-columns: repeat(9, 1fr);
+  min-width: 600px; */
+}
+.poehrIntros-Text {
+  /* width: 140px; */
+
+  width: 50%;
+  height: auto;
+  /* height: 140px; */
+  /* background-color: skyblue;
+  border: 2px solid black; */
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
+  /* align-items: center; */
+  flex-direction: column;
+  /* align-content: flex-end; */
+  flex-wrap: wrap;
+  /* // To view the letter better */
+  /* font-size: 65px; */
+}
+.poehrIntros-Image {
+  /* position: absolute; */
+  margin-top: 10%;
+  /* right: 550px; */
+  /* left: 850px; */
+  /* left: 50%; */
+  /* margin-right: 250px; */
+  margin-left: -40px;
+  border-radius: 280px;
+  /* width: 550px; */
+  width: 50%;
+  /* height: 750px; */
+  height: 650px;
+  max-width: 100%;
+  background-image: url("/public/image-assetsmallsizedefaultstatedefault@3x.png");
+  /* background-size: contain; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+  font-family: var(--font-arial);
+  /* grid-column: 3/3; */
+  /* grid-column-start: 5;
+  grid-column-end: span 3;
+  grid-row-start: 1; */
+  flex-grow: 1;
+  flex-shrink: 3;
+}
+.poehrIntros-InnerBackground {
+  /* position: absolute; */
+  /* top: 984px; */
+  /* left: 261px; */
+  /* left: 40%; */
+  /* right: calc(30%); */
+  margin-top: 20%;
+  /* grid-column-start: 4;
+  grid-column-end: span 3;
+  grid-row-start: 1; */
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  width: 30dvw;
+  height: 30dvh;
+  justify-content: flex-end;
+  box-shadow: 15px 15px 10px #888888;
+}
+.poehrIntros-InnerBackground2 {
+  /* position: absolute; */
+  /* top: 1014px; */
+  /* left: 292px; */
+  /* left: calc(40% + 20px); */
+  /* right: calc(30% - 20px); */
+  margin-top: 70%;
+  grid-column-start: 4;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+  border-radius: var(--br-xl);
+  background-color: #dfdfdf;
+  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.16);
+  width: 30vw;
+  height: 30vh;
+  margin-left: 15px;
+}
+.poehrIntros-InnerBackgroundText {
+  font-size: 2vw;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  grid-column-start: 5;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.textInPageh6 {
+  font-size: 1vw;
+  line-height: normal;
+  margin-top: 20px;
+}
 
 /* introducing the poehr solution */
 .homeIntrosContainerPoehrSolution {
@@ -943,6 +1171,7 @@
   grid-template-columns: repeat(9, 1fr);
   min-width: 600px;
 }
+
 .h6-tagh4 {
   /* position: absolute; */
   /* top: 1050px; */

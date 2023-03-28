@@ -13,50 +13,71 @@ const ClassicHome = () => {
     return (
         <div className="classic-home">
             {/* Introduction */}
-            <div className="homeIntrosContainer" >
-                <div className="homeIntros">
-                    <b className="homeIntro-containers">
-                        <p className="textInPages">The scheduling system to efficiently manage patient appointments.</p>
-                        <p className="textInPages">User-friendly, cloud-based.</p>
+            {/* <div className="homeIntrosContainer" > */}
+            <div className="homeIntrosFlexContainer" >
+                <div className="homeIntros-Text">
+                    <b className="homeIntros-TextContainer">
+                        {/* <b className="homeIntro-containers">*/}
+                        <p className="textInPage">The scheduling system to efficiently manage patient appointments.</p>
+                        <p className="textInPage">User-friendly, cloud-based.</p>
                     </b>
-                    <div className="homeIntro-texts">
-                        Features real-time scheduling, automated reminders, patient
-                        self-scheduling, and reminder options with robust reporting
-                        capabilities to enhance operational efficiency and patient experience.
+                    {/* <div className="homeIntro-texts"> */}
+                    <div className="homeIntros-TextContainer2">
+                        <p className="textInPage">
+                            Features real-time scheduling, automated reminders, patient
+                            self-scheduling, and reminder options with robust reporting
+                            capabilities to enhance operational efficiency and patient experience.
+                        </p>
                     </div>
-                    <button className='btn  btn-info mainHeaderBtn btnleft' onClick={toSignup} >
-                        Try for free
-                    </button>
-                    <div className="btn btn-secondary mainHeaderBtn btnleft" >
-                        See how it works
+                    <div className="homeIntros-TextContainerBtns">
+                        <button className='btn  btn-primary btnMaxWidth ' onClick={toSignup} >
+                            Try for free
+                        </button>
+                        <button className="btn btn-secondary btnMaxWidth" >
+                            See how it works
+                        </button>
                     </div>
-                    <div>
-                        <b className="trusted-by-providerss">
+                    {/* <div className="trusted-by-providerss"> */}
+                    <div className="homeIntros-TextContainerTrusted">
+                        <b >
                             Trusted by providers and patients alike.
                         </b>
                     </div>
 
                 </div>
-                <div className="images" />
+                <div className="homeIntros-Image"></div>
+                {/* <div className="images" /> */}
             </div>
             {/* Introducing the poehr solution */}
-            <div className="homeIntrosContainerPoehrSolution" >
-                <div className="classic-home-item" />
-                <div className="classic-home-inner">
-                    <div className="h6-tagh4s">
-                        <b>
-                            <p className="textInPage">Introducing </p>
-                            <p className="textInPage">the POEHR solution.</p>
-                            <p className="textInPage h6">Join our community and experience</p>
-                            <p className="textInPage h6">the benefits today!</p>
-                        </b>
-                        <button className='btn  btn-primary mainHeaderBtn btnleft' onClick={toSignup} >
-                            Try for free
-                        </button>
-                    </div>
+            {/* <div className="homeIntrosContainerPoehrSolution" > */}
+            <div className="poehrIntrosFlexContainer" >
 
+                <div className="poehrIntros-Text">
+                    {/* <div className="classic-home-item" /> */}
+                    {/* <div className="poehrIntros-InnerBackground2" /> */}
+                    {/* <div className="classic-home-inner"> */}
+                    <div className="poehrIntros-InnerBackground" >
+
+                        <div className="poehrIntros-InnerBackgroundText">
+                            {/* <div className="h6-tagh4s"> */}
+                            <b>
+                                <p className="textInPage">Introducing </p>
+                                <p className="textInPage">the POEHR solution.</p>
+                                <p className="textInPageh6">Join our community and experience the benefits today!</p>
+
+                            </b>
+                            <button className='btn  btn-primary  ' onClick={toSignup} >
+                                Try for free
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
-                <div className="image-assetsmallsizedefau" />
+                {/* <div className="homeIntros-Text"></div> */}
+
+                <div className="poehrIntros-Image">
+                    {/* <div className="image-assetsmallsizedefau" /> */}
+                </div>
             </div>
 
 
@@ -301,7 +322,7 @@ const ClassicHome = () => {
                     © 2023 POEHR. All Rights Reserved.
                 </b>
             </div>
-        </div>
+        </div >
     );
 };
 
