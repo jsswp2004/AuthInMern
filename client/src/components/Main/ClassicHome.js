@@ -403,10 +403,8 @@ const ClassicHome = () => {
                 {/* <div className="metadata1">{`{"config":{},"nodeName":"Footer Strip","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:24.467Z"}`}</div> */}
                 <b className="terms-of-services"><button className="btn" onClick={handleShow}>Terms of Service</button></b>
                 <b className="privacy-policy-stylestyle2s"><button className="btn" onClick={handleShowPrivacy}>Privacy Policy</button></b>
-                {/* <b className="privacy-policy-stylestyle2s">Privacy Policy</b> */}
-                <b className="copyright-stylestyle2tagus">
-                    © 2023 POEHR. All Rights Reserved.
-                </b>
+                <b className="copyright-stylestyle2tagus"><button className="btn" >© 2023 POEHR. All Rights Reserved.</button></b>
+
             </div>
         </div>
     );
