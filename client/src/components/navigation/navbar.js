@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 // import { useParams, useNavigate } from 'react-router-dom'
 // import { format } from 'date-fns'
 // import axios from 'axios' useState, useEffect, UserContext
@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 
 
 export default function Navbar() {
+
+  const [show, setShow] = useState(false)
   // const userx = useContext(UserContext);
   const userRole = useContext(RoleContext);
   // console.log(userRole[0])

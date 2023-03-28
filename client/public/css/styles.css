@@ -47,6 +47,11 @@ body {
   }
 }
 
+.fawhite {
+  color: white;
+  padding: 3px;
+}
+
 .HomeGreeting {
   display: flex;
   /* flex-flow: row wrap; */

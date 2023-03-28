@@ -7,8 +7,15 @@ import ShowEvents from '../Events/showEvents'
 import ShowStaffSchedules from '../StaffSchedules/showStaffSchedules'
 import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
 
-const ShowSettings = () => {
 
+const ShowSettings = () => {
+  //#region to hide navbar
+  const [showNav, setShowNav] = useState(true);
+  function toggleNav() {
+    setShowNav(!showNav);
+  }
+
+  //#endregion
   const [setting, setSetting] = useState('')
 
   const displayRolesSetting = {
@@ -31,94 +38,99 @@ const ShowSettings = () => {
     display: setting === 'Staff Exception' ? '' : 'none',
   }
   return (
-    <div className="grid_container">
+    <div className="grid_containerx" style={{ display: 'flex', flexDirection: 'column', position: 'sticky' }}>
       <div className="item1">
         <Header />
       </div>
-      <div className="item2">
-        <Navbar />
-      </div>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div className="item2" style={{ display: showNav === true ? 'inline' : 'none', height: '100dvh' }}>
+          <Navbar />
+        </div>
+        <div className="item2" style={{ height: '100dvh' }} >
+          <button className='btn-sm btn'> <i class="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
+          </button>
+        </div>
+        <div className="item3">
+          <div className="roleItemContainer">
+            <div className="roleItemContainerBoxLeft">
+              <div className="item3A settingsPage">
+                <div className="form-control">
+                  <h5 className="createPageHeader settingsTitle">Settings</h5>
 
-      <div className="item3">
-        <div className="roleItemContainer">
-          <div className="roleItemContainerBoxLeft">
-            <div className="item3A settingsPage">
-              <div className="form-control">
-                <h5 className="createPageHeader settingsTitle">Settings</h5>
-                
-                <label className="settingCheckboxContainer">
-                  User Profiles
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('User Profiles')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-                <label className="settingCheckboxContainer">
-                  Roles
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('Roles')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-                <label className="settingCheckboxContainer">
-                  Clinic Events
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('Clinic Events')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-                <label className="settingCheckboxContainer">
-                  Staff Schedules
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('Staff Schedule')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
-                <label className="settingCheckboxContainer">
-                  Staff Exceptions
-                  <input
-                    type="radio"
-                    onClick={() => setSetting('Staff Exception')}
-                    name="radio"
-                  />
-                  <span className="settingCheckboxCheckmark"></span>
-                </label>
+                  <label className="settingCheckboxContainer">
+                    User Profiles
+                    <input
+                      type="radio"
+                      onClick={() => setSetting('User Profiles')}
+                      name="radio"
+                    />
+                    <span className="settingCheckboxCheckmark"></span>
+                  </label>
+                  <label className="settingCheckboxContainer">
+                    Roles
+                    <input
+                      type="radio"
+                      onClick={() => setSetting('Roles')}
+                      name="radio"
+                    />
+                    <span className="settingCheckboxCheckmark"></span>
+                  </label>
+                  <label className="settingCheckboxContainer">
+                    Clinic Events
+                    <input
+                      type="radio"
+                      onClick={() => setSetting('Clinic Events')}
+                      name="radio"
+                    />
+                    <span className="settingCheckboxCheckmark"></span>
+                  </label>
+                  <label className="settingCheckboxContainer">
+                    Staff Schedules
+                    <input
+                      type="radio"
+                      onClick={() => setSetting('Staff Schedule')}
+                      name="radio"
+                    />
+                    <span className="settingCheckboxCheckmark"></span>
+                  </label>
+                  <label className="settingCheckboxContainer">
+                    Staff Exceptions
+                    <input
+                      type="radio"
+                      onClick={() => setSetting('Staff Exception')}
+                      name="radio"
+                    />
+                    <span className="settingCheckboxCheckmark"></span>
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="roleItemContainerBoxRight">
-            <div style={displayRolesSetting}>
-              <div className="card-body table-responsive p-0">
-                <ShowRoles />
+            <div className="roleItemContainerBoxRight">
+              <div style={displayRolesSetting}>
+                <div className="card-body table-responsive p-0">
+                  <ShowRoles />
+                </div>
               </div>
-            </div>
 
-            <div style={displayUserProfileSetting}>
-              <div className="card-body table-responsive p-0">
-                <ShowUsers />
+              <div style={displayUserProfileSetting}>
+                <div className="card-body table-responsive p-0">
+                  <ShowUsers />
+                </div>
               </div>
-            </div>
-            <div style={displayCliniEventsSetting}>
-              <div className="card-body table-responsive p-0">
-              <ShowEvents />
+              <div style={displayCliniEventsSetting}>
+                <div className="card-body table-responsive p-0">
+                  <ShowEvents />
+                </div>
               </div>
-            </div>
-            <div style={displayStaffScheduleSetting}>
-              <div className="card-body table-responsive p-0">
-              <ShowStaffSchedules />
+              <div style={displayStaffScheduleSetting}>
+                <div className="card-body table-responsive p-0">
+                  <ShowStaffSchedules />
+                </div>
               </div>
-            </div>
-            <div style={displayStaffExceptionSetting}>
-              <div className="card-body table-responsive p-0">
-              <ShowStaffExceptions />
+              <div style={displayStaffExceptionSetting}>
+                <div className="card-body table-responsive p-0">
+                  <ShowStaffExceptions />
+                </div>
               </div>
             </div>
           </div>

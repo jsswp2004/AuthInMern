@@ -448,135 +448,147 @@ export default function ShowRecordList() {
     setPatientID(patID)
   }
   //#endregion
+  //#region to hide navbar
+  const [showNav, setShowNav] = useState(true);
+  function toggleNav() {
+    setShowNav(!showNav);
+  }
+
+  //#endregion
   //#region for returning the table
   return (
-    <div className="grid_container">
+    <div className="grid_containerx" style={{ display: 'flex', flexDirection: 'column' }}>
       <div className="item1" >
         <Header />
+
       </div>
-      <div className="item2" >
-        {/* style={{ display: 'none' }} */}
-        <Navbar />
-      </div>
-      <div className="item3">
-        <div className="item3A">
-          <h4 className='patientListHeader'>Registered Patients</h4>
-          <div>{displayRegistrationModal()}</div>
-          <div>{displayVisitFromRegistrationModal()}</div>
-          <div>{displayDeleteRegistrationModal()}</div>
-          <div className="searchLabel">
-            <label htmlFor="search" >
-              <Button
-                className="btn btn-info btn-sm"
-                onClick={handleShow}
-              >
-                <i className="fa fa-hospital-user" aria-hidden="true" title='Add Patient' />
-              </Button>
-              <button className='btn btn-success btn-sm'
-                onClick={handleDownloadExcel}
-              >
-                <i
-                  className="fa fa-file-excel-o"
-                  aria-hidden="true"
-                  title="Export to Excel"
-                />
-              </button>
-              Search :{' '}
-              <input
-                className="searchInput"
-                id="search"
-                type="text"
-                placeholder="Search patients"
-                onChange={handleChange}
-                value={searchInput}
-              />
-            </label>
-          </div>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div className="item2" style={{ display: showNav === true ? 'inline' : 'none' }} >
+          <Navbar />
         </div>
-        <div className="item3B" style={{ overflowY: 'auto' }}>
-          <ThemeProvider theme={themeDesign}>
-            <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
-              <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a sticky table">
-                <TableHead  >
-                  <TableRow>
-                    <StyledTableCell align="left">MRN</StyledTableCell>
-                    <StyledTableCell align="left">Firstname</StyledTableCell>
-                    <StyledTableCell align="left">Middlename</StyledTableCell>
-                    <StyledTableCell align="left">Lastname</StyledTableCell>
-                    <StyledTableCell align="left">DOB</StyledTableCell>
-                    <StyledTableCell align="left">Gender</StyledTableCell>
-                    <StyledTableCell align="left">Age</StyledTableCell>
-                    <StyledTableCell align="left">Race</StyledTableCell>
-                    <StyledTableCell align="left">Date Added</StyledTableCell>
-                    <StyledTableCell align="left">Actions</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {(rowsPerPage > 0
-                    ? filteredData.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage,
-                    )
-                    : filteredData
-                  ).map((pt) => (
-                    <StyledTableRow key={pt._id}
-                      onClick={() => handleItemClick(pt)}
-                    >
-                      <StyledTableCell align="left" >
-                        {pt.medicalRecordNumber}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" >
-                        {pt.firstName}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" >
-                        {pt.middleName}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" >{pt.lastName}</StyledTableCell>
-                      <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
-                      <StyledTableCell align="left" width='200px'>
-                        {pt.gender}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" width='50px'>
-                        {pt.age}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" width='250px'>
-                        {pt.race}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" width='250px'>
-                        {pt.addedDate}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" width='250px'>
-                        <Tooltip title="Create visit schedule">
-                          <Button
-                            className="btn btn-primary  btn-sm"
-                            onClick={handleVisitShow}
-                          >
-                            <i
-                              className="fa fa-stethoscope"
-                              aria-hidden="true"
-                            />
-                          </Button>
-                        </Tooltip>
-                        <Tooltip title="Display patient visits">
-                          <a
-                            className="btn btn-success  btn-sm"
-                            href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
-                          >
+        <div className="item2" >
+          <button className='btn-sm btn'> <i class="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
+          </button>
+        </div>
+        <div className="item3">
+          <div className="item3A">
+            <h4 className='patientListHeader'>Registered Patients</h4>
+            <div>{displayRegistrationModal()}</div>
+            <div>{displayVisitFromRegistrationModal()}</div>
+            <div>{displayDeleteRegistrationModal()}</div>
+            <div className="searchLabel">
+              <label htmlFor="search" >
+                <Button
+                  className="btn btn-info btn-sm"
+                  onClick={handleShow}
+                >
+                  <i className="fa fa-hospital-user" aria-hidden="true" title='Add Patient' />
+                </Button>
+                <button className='btn btn-success btn-sm'
+                  onClick={handleDownloadExcel}
+                >
+                  <i
+                    className="fa fa-file-excel-o"
+                    aria-hidden="true"
+                    title="Export to Excel"
+                  />
+                </button>
+                Search :{' '}
+                <input
+                  className="searchInput"
+                  id="search"
+                  type="text"
+                  placeholder="Search patients"
+                  onChange={handleChange}
+                  value={searchInput}
+                />
+              </label>
+            </div>
+          </div>
+          <div className="item3B" style={{ overflowY: 'auto' }}>
+            <ThemeProvider theme={themeDesign}>
+              <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
+                <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a sticky table">
+                  <TableHead  >
+                    <TableRow>
+                      <StyledTableCell align="left">MRN</StyledTableCell>
+                      <StyledTableCell align="left">Firstname</StyledTableCell>
+                      <StyledTableCell align="left">Middlename</StyledTableCell>
+                      <StyledTableCell align="left">Lastname</StyledTableCell>
+                      <StyledTableCell align="left">DOB</StyledTableCell>
+                      <StyledTableCell align="left">Gender</StyledTableCell>
+                      <StyledTableCell align="left">Age</StyledTableCell>
+                      <StyledTableCell align="left">Race</StyledTableCell>
+                      <StyledTableCell align="left">Date Added</StyledTableCell>
+                      <StyledTableCell align="left">Actions</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {(rowsPerPage > 0
+                      ? filteredData.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage,
+                      )
+                      : filteredData
+                    ).map((pt) => (
+                      <StyledTableRow key={pt._id}
+                        onClick={() => handleItemClick(pt)}
+                      >
+                        <StyledTableCell align="left" >
+                          {pt.medicalRecordNumber}
+                        </StyledTableCell>
+                        <StyledTableCell align="left" >
+                          {pt.firstName}
+                        </StyledTableCell>
+                        <StyledTableCell align="left" >
+                          {pt.middleName}
+                        </StyledTableCell>
+                        <StyledTableCell align="left" >{pt.lastName}</StyledTableCell>
+                        <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
+                        <StyledTableCell align="left" width='200px'>
+                          {pt.gender}
+                        </StyledTableCell>
+                        <StyledTableCell align="left" width='50px'>
+                          {pt.age}
+                        </StyledTableCell>
+                        <StyledTableCell align="left" width='250px'>
+                          {pt.race}
+                        </StyledTableCell>
+                        <StyledTableCell align="left" width='250px'>
+                          {pt.addedDate}
+                        </StyledTableCell>
+                        <StyledTableCell align="left" width='250px'>
+                          <Tooltip title="Create visit schedule">
+                            <Button
+                              className="btn btn-primary  btn-sm"
+                              onClick={handleVisitShow}
+                            >
+                              <i
+                                className="fa fa-stethoscope"
+                                aria-hidden="true"
+                              />
+                            </Button>
+                          </Tooltip>
+                          <Tooltip title="Display patient visits">
+                            <a
+                              className="btn btn-success  btn-sm"
+                              href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
+                            >
 
-                            <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
+                              <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
 
-                          </a>
-                        </Tooltip>
+                            </a>
+                          </Tooltip>
 
-                        <Tooltip title="Edit patient">
-                          <a
-                            className="btn btn-info btn-sm "
-                            href={`/editPatient/${pt._id}`}
-                          >
-                            <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
-                          </a>
-                        </Tooltip>
-                        {/* <Tooltip title="Edit patient">
+                          <Tooltip title="Edit patient">
+                            <a
+                              className="btn btn-info btn-sm "
+                              href={`/editPatient/${pt._id}`}
+                            >
+                              <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
+                            </a>
+                          </Tooltip>
+                          {/* <Tooltip title="Edit patient">
                           <Button onClick={toEditReg}>
 
                             <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
@@ -584,49 +596,50 @@ export default function ShowRecordList() {
                           </Button>
                         </Tooltip> */}
 
-                        <Tooltip title="Delete patient">
-                          <button onClick={handleShowDelete}
-                            className="btn btn-danger  btn-sm"
-                          >
-                            <i className="fa fa-trash-o" aria-hidden="true" /></button>
-                        </Tooltip>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                  {emptyRows > 0 && (
-                    <StyledTableRow
-                      style={{
-                        height: 53 * emptyRows,
-                      }}
-                    >
-                      <StyledTableCell colSpan={6} />
-                    </StyledTableRow>
-                  )}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      // style={{float:'right'}}
-                      rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
-                      colSpan={12}
-                      count={filteredData.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      SelectProps={{
-                        inputProps: {
-                          'aria-label': 'rows per page',
-                        },
-                        native: true,
-                      }}
-                      onPageChange={handleChangePage}
-                      onRowsPerPageChange={handleChangeRowsPerPage}
-                      ActionsComponent={TablePaginationActions}
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
-            </TableContainer>
-          </ThemeProvider>
+                          <Tooltip title="Delete patient">
+                            <button onClick={handleShowDelete}
+                              className="btn btn-danger  btn-sm"
+                            >
+                              <i className="fa fa-trash-o" aria-hidden="true" /></button>
+                          </Tooltip>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                    {emptyRows > 0 && (
+                      <StyledTableRow
+                        style={{
+                          height: 53 * emptyRows,
+                        }}
+                      >
+                        <StyledTableCell colSpan={6} />
+                      </StyledTableRow>
+                    )}
+                  </TableBody>
+                  <TableFooter>
+                    <TableRow>
+                      <TablePagination
+                        // style={{float:'right'}}
+                        rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
+                        colSpan={12}
+                        count={filteredData.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        SelectProps={{
+                          inputProps: {
+                            'aria-label': 'rows per page',
+                          },
+                          native: true,
+                        }}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        ActionsComponent={TablePaginationActions}
+                      />
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </TableContainer>
+            </ThemeProvider>
+          </div>
         </div>
       </div>
     </div>
