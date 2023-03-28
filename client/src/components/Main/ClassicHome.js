@@ -159,10 +159,7 @@ const ClassicHome = () => {
                     {/* <div className="image-assetsmallsizedefau" /> */}
                 </div>
             </div>
-
-
             {/* SMARTSAVE */}
-
             {/* <div className="homeIntrosContainerPoehrSolution" > */}
             <div className="poehrIntrosFlexContainer" >
                 {/* <div className="dataSafeImg" /> */}
@@ -239,35 +236,47 @@ const ClassicHome = () => {
             </div>
             {/* end of cost saving */}
             {/* join our community */}
-            <div className="homeIntrosContainerPoehrSolution">
-                <div className="image3" />
-                <div className="classic-home-child" />
-                <div className="rectangle-div" >
-                    <div className="joinCommunityContainerDiv">
-                        <div className="joinCommunityContainer">
-                            <p className="textInPage">How to join our</p>
-                            <p className="textInPage">community</p>
+            <div className="poehrIntrosFlexContainer">
+                {/*  homeIntrosContainerPoehrSolution*/}
+                {/* <div className="image3" /> */}
+                {/* <div className="classic-home-child" /> */}
+                <div className="joinCommunityContainerRectangleBackground" >
+                    <div className="joinCommunity-TextContainer">
+                        <div> <div className="joinCommunityContainer-image" /></div>
+                        <div className="textInPage">
+                            <b>
+                                <p className="textInPage">How to join our</p>
+                                <p className="textInPage">community</p>
+                            </b>
                         </div>
                         <div className="joinCommunityContainerText">
-                            <p className="textInPage">Just 3 simple steps to optimize your</p>
-                            <p className="textInPage">scheduling operations.</p>
+                            <p className="textInPageh6">Just 3 simple steps to optimize your</p>
+                            <p className="textInPageh6">scheduling operations.</p>
                         </div>
-                        <div>
-                            <button className='btn  btn-primary mainHeaderBtn btnleft' onClick={toSignup} >
+                        <div style={{ marginBottom: '20px' }}>
+                            <button className='btn  btn-primary' onClick={toSignup} >
                                 Try for free
                             </button>
                         </div>
                     </div>
-                    <div className="joinCommunityContainerDiv">
-                        <div className="joinCommunityContainerStep0">Step 1</div>
-                        <div className="joinCommunityContainerStep0Text">Create an account. You only need to provide your email address and choose a password.</div>
-                        <div className="joinCommunityContainerStep1">Step 2</div>
-                        <div className="joinCommunityContainerStep1Text">
-                            Set up your profile and provide a way for us to contact you.
-                        </div>
-                        <div className="joinCommunityContainerStep2">Step 3</div>
-                        <div className="joinCommunityContainerStep2Text">
-                            Poof! you are now ready to schedule smart with optimized operations
+                    <div className="joinCommunity-TextContainer2">
+                        <div className="joinCommunityContainerText">
+                            <div className="textInPageh6"><h4>Step 1</h4></div>
+                            <div className="textInPageh6">Create an account. You only need to provide your</div>
+                            <div className="textInPageh6">email address and choose a password.</div>
+
+                            <div className="textInPageh6"><h4>Step 2</h4></div>
+                            <div className="textInPageh6">
+                                Set up your profile and provide a way for us to contact you.
+                            </div>
+                            <div className="textInPageh6"><h4>Step 3</h4></div>
+                            <div className="textInPageh6">
+                                Poof! you are now ready to schedule smart
+
+                            </div>
+                            <div className="textInPageh6">
+                                with optimized operations
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -276,7 +285,7 @@ const ClassicHome = () => {
             {/* testimonial */}
             <div className="homeIntrosContainerPoehrSolution">
                 <div className="testimonialHeader">
-                    <div className="testimonial-tagh4"> <b>Testimonials</b></div>
+                    <div className="testimonial-tagh4"><b>Testimonials</b></div>
                     <div className="testimonial-tagText">
                         People love what we do and we want to let your know
                     </div>
