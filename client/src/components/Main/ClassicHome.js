@@ -162,20 +162,32 @@ const ClassicHome = () => {
 
 
             {/* SMARTSAVE */}
-            <div className="homeIntrosContainerPoehrSolution" >
-                <div className="dataSafeImg" />
-                <div className="smartsaveDiv">
-                    <div className="smartsave">SMARTSAVE</div>
-                    <div className="h61">We take your security seriously, which is why we use advanced encryption protocols to protect your files in the cloud. Your data is safe and secure with us.</div>
-                    <div className="h6-tagh41">
-                        <b>
-                            <p className="textInPage">All your data is safe</p>
-                            <p className="textInPage">with us</p>
-                        </b>
+
+            {/* <div className="homeIntrosContainerPoehrSolution" > */}
+            <div className="poehrIntrosFlexContainer" >
+                {/* <div className="dataSafeImg" /> */}
+                {/* <div className="alignContentCenter"> */}
+                <div className="poehrdataSafe-Image">
+                    <div className="alignContentCenter"></div>
+                </div>
+
+                {/* </div> */}
+
+                {/* <div className="smartsaveDivs"> */}
+                <div className="poehrdataSafe-TextContainer">
+                    <div className="poehrdataSafe-Text">
+                        <div className="smartsave">SMARTSAVE</div>
+                        <div className="h61">We take your security seriously, which is why we use advanced encryption protocols to protect your files in the cloud. Your data is safe and secure with us.</div>
+                        <div className="h6-tagh41">
+                            <b>
+                                <p className="textInPage">All your data is safe</p>
+                                <p className="textInPage">with us</p>
+                            </b>
+                        </div>
+                        <button className='btn  btn-primary' onClick={toSignup} >
+                            Try now
+                        </button>
                     </div>
-                    <button className='btn  btn-primary mainHeaderBtn btnleft' onClick={toSignup} >
-                        Try now
-                    </button>
                 </div>
                 {/* 
                 <div className="button-display-elementslabel5">
@@ -312,7 +324,6 @@ const ClassicHome = () => {
                     </div>
                 </div>
             </div>
-
             {/* end of testimonial */}
 
             {/* <div className="background-stylestyle3" /> */}
@@ -389,12 +400,6 @@ const ClassicHome = () => {
                         <div className="resource-stylestyle3taguis-">FAQs</div>
                     </div>
                 </div>
-
-
-
-
-
-
             </div>
             {/* end of products and services section */}
             <div>{displayTermsOfServiceModal()}</div>
