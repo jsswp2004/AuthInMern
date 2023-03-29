@@ -77,6 +77,7 @@ function App() {
             {/* <Route path="/login" exact element={<Login />} /> */}
             {/*  */}
             <Route path="/" exact element={<Main />} />
+            <Route path="/about" exact element={<About />} />
             {user && <Route path="/patientlist" exact element={<PatientList />} />}
             <Route path="/login" exact element={<Login />} />
             <Route path="/signup" exact element={<Signup />} />
@@ -96,7 +97,7 @@ function App() {
 
             {/* <Route path="/usersList" exact element={<ShowUsersList />} /> */}
             <Route path="/editUser/:id" exact element={<EditUser />} />
-            <Route path="/about" exact element={<About />} />
+
             {/* <Route path="/rolesList" exact element={<RolesList />} /> */}
             <Route path="/" exact element={<Navigate replace to="/login" />} />
             <Route path="/createRole" exact element={<CreateRole />} />
