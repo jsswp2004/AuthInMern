@@ -25,9 +25,7 @@ const ClassicHome = () => {
     //#region Method to set show for create modal to false
     const handleClickPrivacy = (e) => {
         e.preventDefault()
-        // alert('Create schedule button clicked')
         setShowPrivacy(false)
-        // navigate('/settingsPage')
     }
     //#endregion
     //#region Create Registration Modal
@@ -53,7 +51,6 @@ const ClassicHome = () => {
     }
     //#endregion
     //#region Define the state for create registration modal
-
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => {
@@ -63,9 +60,7 @@ const ClassicHome = () => {
     //#region Method to set show for create modal to false
     const handleClick = (e) => {
         e.preventDefault()
-        // alert('Create schedule button clicked')
         setShow(false)
-        // navigate('/settingsPage')
     }
     //#endregion
     //#region Create Registration Modal
@@ -93,15 +88,12 @@ const ClassicHome = () => {
     return (
         <div className="classic-home">
             {/* Introduction */}
-            {/* <div className="homeIntrosContainer" > */}
             <div className="homeIntrosFlexContainer" >
                 <div className="homeIntros-Text">
                     <b className="homeIntros-TextContainer">
-                        {/* <b className="homeIntro-containers">*/}
                         <p className="textInPage">The scheduling system to efficiently manage patient appointments.</p>
                         <p className="textInPage">User-friendly, cloud-based.</p>
                     </b>
-                    {/* <div className="homeIntro-texts"> */}
                     <div className="homeIntros-TextContainer2">
                         <p className="textInPage">
                             Features real-time scheduling, automated reminders, patient
@@ -117,7 +109,6 @@ const ClassicHome = () => {
                             See how it works
                         </button>
                     </div>
-                    {/* <div className="trusted-by-providerss"> */}
                     <div className="homeIntros-TextContainerTrusted">
                         <b >
                             Trusted by providers and patients alike.
@@ -126,20 +117,12 @@ const ClassicHome = () => {
 
                 </div>
                 <div className="homeIntros-Image"></div>
-                {/* <div className="images" /> */}
             </div>
             {/* Introducing the poehr solution */}
-            {/* <div className="homeIntrosContainerPoehrSolution" > */}
             <div className="poehrIntrosFlexContainer" >
-
                 <div className="poehrIntros-Text">
-                    {/* <div className="classic-home-item" /> */}
-                    {/* <div className="poehrIntros-InnerBackground2" /> */}
-                    {/* <div className="classic-home-inner"> */}
                     <div className="poehrIntros-InnerBackground" >
-
                         <div className="poehrIntros-InnerBackgroundText">
-                            {/* <div className="h6-tagh4s"> */}
                             <b>
                                 <p className="textInPage">Introducing </p>
                                 <p className="textInPage">the POEHR solution.</p>
@@ -153,24 +136,13 @@ const ClassicHome = () => {
 
                     </div>
                 </div>
-                {/* <div className="homeIntros-Text"></div> */}
-
                 <div className="poehrIntros-Image">
-                    {/* <div className="image-assetsmallsizedefau" /> */}
                 </div>
             </div>
             {/* SMARTSAVE */}
-            {/* <div className="homeIntrosContainerPoehrSolution" > */}
             <div className="poehrIntrosFlexContainer" >
-                {/* <div className="dataSafeImg" /> */}
-                {/* <div className="alignContentCenter"> */}
                 <div className="poehrdataSafe-Image">
-                    {/* <div className="alignContentCenter"></div> */}
                 </div>
-
-                {/* </div> */}
-
-                {/* <div className="smartsaveDivs"> */}
                 <div className="poehrdataSafe-TextContainer">
                     <div className="poehrdataSafe-Text">
                         <div className="smartsave">SMARTSAVE</div>
@@ -186,28 +158,12 @@ const ClassicHome = () => {
                         </button>
                     </div>
                 </div>
-                {/* 
-                <div className="button-display-elementslabel5">
-                    <div className="metadata2">{`{"config":{},"type":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:26.374Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
-                    <b className="label10">Try now</b>
 
-                    <div className="icon-display-elementslabel4">
-                        <div className="metadata2">{`{"config":{"STATE":"DEFAULT"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:26.369Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}`}</div>
-                        <img className="icon9" alt="" src="/icon6.svg" />
-                    </div>
-
-                </div> */}
-
-
-                {/* <div className="metadata2">{`{"config":{"ASSET_ID":"92521fabe5e6290cd8c5657c26290ecc"},"type":"Image","nodeName":"Image","children":["f0196fad-49c2-470a-a4fd-0a9f11940ac9","81df152a-bfea-40fe-92a9-89702325acbe"],"__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T17:35:41.081Z"}`}</div> */}
-                {/* </div> */}
             </div>
             {/* END SMARTSAVE */}
             {/* cost saving */}
-            {/* <div className="homeIntrosContainerPoehrSolution"> */}
             <div className="poehrIntrosFlexContainer" >
                 <div className="poehrcostsaver-TextContainer">
-                    {/* <div className='costsaverDiv'> */}
                     <div className='poehrcostsaver-Text'>
 
                         <div className="costsaver">COSTSAVER</div>
@@ -222,7 +178,6 @@ const ClassicHome = () => {
                         <div className="textInPage">
                             <b>
                                 <p className="textInPage">Cost saving in a smart way</p>
-                                {/* <p className="textInPage">smart way</p> */}
                             </b>
                         </div>
                         <button className='btn  btn-primary' onClick={toSignup} >
@@ -230,16 +185,12 @@ const ClassicHome = () => {
                         </button>
                     </div>
                 </div>
-                {/* <div className="image2" /> */}
                 <div className="poehrcostsaver-Image" />
 
             </div>
             {/* end of cost saving */}
             {/* join our community */}
-            <div className="poehrIntrosFlexContainer">
-                {/*  homeIntrosContainerPoehrSolution*/}
-                {/* <div className="image3" /> */}
-                {/* <div className="classic-home-child" /> */}
+            <div className="poehrIntrosFlexContainerCommunity">
                 <div className="joinCommunityContainerRectangleBackground" >
                     <div className="joinCommunity-TextContainer">
                         <div> <div className="joinCommunityContainer-image" /></div>
@@ -291,7 +242,7 @@ const ClassicHome = () => {
                     </div>
 
                     <div className="testimonialHeaderText" >
-                        <div className="testimonialBackground1" >
+                        <div className="testimonialBackground" >
                             <div className="testimonialContainer1">
                                 <StarIcon className="starIcon" />
                                 <StarIcon className="starIcon" />
@@ -303,12 +254,12 @@ const ClassicHome = () => {
                                 <p className="textInPage">improvement."</p>
                             </div>
                             <div className="testimonyAuthorContainer0">
-                                <p className="kirk-diaz">Kirk Diaz</p>
-                                <p className="lead-manager-suny">Lead Manager, SUNY</p>
+                                <p className="testimonialAuthor">Kirk Diaz</p>
+                                <p className="testimonialAuthorJob">Lead Manager, SUNY</p>
                             </div>
                         </div>
-                        <div className="testimonialBackground2">
-                            <div className="testimonialContainer2">
+                        <div className="testimonialBackground">
+                            <div className="testimonialContainer1">
                                 <StarIcon className="starIcon" />
                                 <StarIcon className="starIcon" />
                                 <StarIcon className="starIcon" />
@@ -319,12 +270,12 @@ const ClassicHome = () => {
                                 <p className="textInPage">seen significant growth."</p>
                             </div>
                             <div className="testimonyAuthorContainer1">
-                                <p className="kirk-diaz">Adele Muniz</p>
-                                <p className="lead-manager-suny">Project Leader, NYP</p>
+                                <p className="testimonialAuthor">Adele Muniz</p>
+                                <p className="testimonialAuthorJob">Project Leader, NYP</p>
                             </div>
                         </div>
-                        <div className="testimonialBackground3">
-                            <div className="testimonialContainer3">
+                        <div className="testimonialBackground">
+                            <div className="testimonialContainer1">
                                 <StarIcon className="starIcon" />
                                 <StarIcon className="starIcon" />
                                 <StarIcon className="starIcon" />
@@ -335,59 +286,44 @@ const ClassicHome = () => {
                             </div>
 
                             <div className="testimonyAuthorContainer2">
-                                <p className="kirk-diaz">Charice Cramer</p>
-                                <p className="lead-manager-suny">CTO, Healthworks</p>
+                                <p className="testimonialAuthor">Charice Cramer</p>
+                                <p className="testimonialAuthorJob">CTO, Healthworks</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             {/* end of testimonial */}
-
-            {/* <div className="background-stylestyle3" /> */}
-
             {/* products and services section */}
-            {/* <div className="homeIntrosContainerPoehrSolution"> */}
             <div className="homeIntrosFlexContainer" >
                 <div className="homeIntros-TextUnleash">
-
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
 
-                        <div className="company-stylestyle3tagh4"><b >POEHR</b></div>
-                        <div className="description-stylestyle3tag">Unleash possibilities...</div>
-                        <div className='iconContainer' >
+                        <div className="company-bottomTag"><b >POEHR</b></div>
+                        <div className="company-bottomTagDescription">Unleash possibilities...</div>
+                        <div className='iconSocialMediaContainer' >
                             <div className="circle-button-sizemediumst">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.038Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                 <div className="icon-iconfeatherlinkedins">
-                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/linkedin"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.031Z","nodeName":"Icon [ICON=feather/linkedin][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                     <img className="icon" alt="" src="/icon.svg" />
                                 </div>
                             </div>
                             <div className="circle-button-sizemediumst1">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.060Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                 <div className="icon-iconfeatherlinkedins">
-                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/youtube"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.056Z","nodeName":"Icon [ICON=feather/youtube][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                     <img className="icon1" alt="" src="/icon1.svg" />
                                 </div>
                             </div>
                             <div className="circle-button-sizemediumst2">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.089Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                 <div className="icon-iconfeatherlinkedins">
-                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/twitter"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.085Z","nodeName":"Icon [ICON=feather/twitter][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                     <img className="icon2" alt="" src="/icon2.svg" />
                                 </div>
                             </div>
                             <div className="circle-button-sizemediumst3">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.107Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                 <div className="icon-iconfeatherlinkedins">
-                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.104Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                     <img className="icon3" alt="" src="/icon3.svg" />
                                 </div>
                             </div>
                             <div className="circle-button-sizemediumst4">
-                                {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3"},"type":"CircleButton","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.126Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                 <div className="icon-iconfeatherlinkedins">
-                                    {/* <div className="metadata2">{`{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/phone"},"type":"Icon","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:25.123Z","nodeName":"Icon [ICON=feather/phone][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}`}</div> */}
                                     <img className="icon4" alt="" src="/icon4.svg" />
                                 </div>
                             </div>
@@ -423,10 +359,9 @@ const ClassicHome = () => {
             <div>{displayTermsOfServiceModal()}</div>
             <div>{displayPrivacyModal()}</div>
             <div className="footer-strip" >
-                {/* <div className="metadata1">{`{"config":{},"nodeName":"Footer Strip","type":"Group","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-03-21T15:36:24.467Z"}`}</div> */}
-                <b className="terms-of-services"><button className="btn" onClick={handleShow}>Terms of Service</button></b>
-                <b className="privacy-policy-stylestyle2s"><button className="btn" onClick={handleShowPrivacy}>Privacy Policy</button></b>
-                <b className="copyright-stylestyle2tagus"><button className="btn" >© 2023 POEHR. All Rights Reserved.</button></b>
+                <b className="terms-of-service"><button className="btn" onClick={handleShow}>Terms of Service</button></b>
+                <b className="privacy-policy"><button className="btn" onClick={handleShowPrivacy}>Privacy Policy</button></b>
+                <b className="copyright"><button className="btn" >© 2023 POEHR. All Rights Reserved.</button></b>
 
             </div>
         </div>
