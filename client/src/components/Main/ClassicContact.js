@@ -182,7 +182,7 @@ const ClassicHome = () => {
                                     <label htmlFor="message" className="textInPageh6 contactFont">Message: </label>
                                     <textarea
                                         className="form-control"
-                                        rows='10'
+                                        rows='15'
                                         cols='40'
                                         type="textarea"
                                         name="message"
