@@ -20,6 +20,7 @@ import CreateVisitFromReg from './components/Scheduling/createVisitFromReg'
 import EditVisit from './components/Scheduling/editVisit'
 import VisitDetails from './components/Scheduling/detailsVisit'
 import About from './components/Main/About'
+import Contact from './components/Main/Contact'
 import ClinicVisit from './components/ClinicVisits/clinicVisits'
 // import RolesList from './components/Management/Roles/showRolesList'
 import CreateRole from './components/Management/Roles/createRole'
@@ -62,13 +63,7 @@ function App() {
         console.log('Error from user list')
       })
   }, [useremail])
-
-  // console.log(data)
-
   return (
-
-
-
     <UserContext.Provider value={userData}>
       <RoleContext.Provider value={loggedUserRole}>
         <FirstNameContext.Provider value={loggedUserFirstName}>
@@ -78,6 +73,7 @@ function App() {
             {/*  */}
             <Route path="/" exact element={<Main />} />
             <Route path="/about" exact element={<About />} />
+            <Route path="/contact" exact element={<Contact />} />
             {user && <Route path="/patientlist" exact element={<PatientList />} />}
             <Route path="/login" exact element={<Login />} />
             <Route path="/signup" exact element={<Signup />} />

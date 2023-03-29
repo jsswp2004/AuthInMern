@@ -108,16 +108,34 @@
 }
 .aboutIntrosTeam-Image {
   /* border-radius: 50px; */
-  width: 80px;
+  width: 100px;
   height: 100px;
   /* max-width: 100%; */
   background-image: url("/src/components/shared/images/image@5x.png");
-  background-size: cover;
+  background-size: 120px 120px;
   background-repeat: no-repeat;
   background-position: center;
   font-family: var(--font-arial);
-  flex-grow: 1;
-  flex-shrink: 3;
+  /* flex-grow: 1; */
+  /* flex-shrink: 3; */
+  box-shadow: 10px 10px 10px #888888;
+  border-radius: 280px;
+  /* align-content: center; */
+  /* align-self: center; */
+  /* flex-wrap: wrap; */
+}
+.aboutIntrosTeam-Image-Jess {
+  /* border-radius: 50px; */
+  width: 100px;
+  height: 100px;
+  /* max-width: 100%; */
+  background-image: url("/src/components/shared/images/Jess_Profile.jpg");
+  background-size: 120px 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: var(--font-arial);
+  /* flex-grow: 1; */
+  /* flex-shrink: 3; */
   box-shadow: 10px 10px 10px #888888;
   border-radius: 280px;
   /* align-content: center; */
@@ -129,7 +147,7 @@
   margin-top: 1%;
   width: 10%;
   /* height: auto; */
-  font-size: 1.5vw;
+  font-size: 1vw;
   letter-spacing: 0.5px;
   line-height: normal;
   font-family: var(--font-raleway);

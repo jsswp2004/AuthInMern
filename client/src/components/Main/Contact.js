@@ -1,8 +1,8 @@
 import HeaderMain from '../shared/HeaderMain'
 
-import ClassicAbout from './ClassicAbout'
+import ClassicContact from './ClassicContact'
 
-const Main = () => {
+const Contact = () => {
 
     return (
         <div className="grid_container_home">
@@ -10,10 +10,10 @@ const Main = () => {
                 <HeaderMain />
             </div>
             <div className="item3_home">
-                <ClassicAbout />
+                <ClassicContact />
             </div>
         </div>
     )
 }
 
-export default Main
+export default Contact
