@@ -1,13 +1,69 @@
 import "./ClassicAbout.css";
+import "./ClassicHome.css";
 import "../../global.css";
-import { useState } from 'react'
+import styles from '../Signup/styles.module.css'
+import { useState, useEffect } from 'react'
 import StarIcon from '@mui/icons-material/Star';
 import { useNavigate } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
 import TermsOfService from './TermsOfService'
 import PrivacyPolicy from './PrivacyPolicy'
+import { format } from 'date-fns'
+import axios from 'axios'
 
 const ClassicHome = () => {
+    const [role, setRoles] = useState(
+        {
+            name: '',
+        }
+    )
+    useEffect(() => {
+        axios
+            .get('http://localhost:8081/api/roles')
+            .then((response) => {
+                setRoles(response.data)
+                // .filter=(user) => user.role === 'Attending'
+            })
+            .catch((error) => {
+                console.log('Error from roles list')
+            })
+    }, [])
+    const [user, setUser] = useState({
+        name: '',
+        firstName: '',
+        lastName: '',
+        role: '',
+        email: '',
+        password: '',
+        addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    })
+
+    const fullName = user.firstName + ' ' + user.lastName
+    const onChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value })
+    }
+
+    const onSubmit = async (e) => {
+        e.preventDefault()
+
+        axios
+            .post('http://localhost:8081/api/users', user)
+            .then((res) => {
+                setUser({
+                    name: fullName,
+                    firstName: '',
+                    lastName: '',
+                    role: '',
+                    email: '',
+                    password: '',
+                    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+                })
+                navigate('/login')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     const navigate = useNavigate()
     const toSignup = () => {
@@ -89,54 +145,66 @@ const ClassicHome = () => {
         <div className="classic-home">
             {/* Introduction */}
             <div className="aboutIntrosFlexContainer" >
-                <div className="aboutIntros-Text">
-
-                    {/* <b className="aboutIntros-TextContainer">
-                        <p className="textInPage">Our mission</p>
-                    </b>
-                    <div className="aboutIntros-TextContainer2">
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            At POEHR, we are committed to providing excellent services to our customers </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            and clients and to help them achieve the best outcomes.
-                        </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            We believe that we can make a positive impact on our community, industry and the world. </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            Our POEHR team is dedicated to providing the best possible service and support,
-                        </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            and we are always looking for ways to improve and innovate.
-                        </p>
-                    </div> */}
+                <div className="aboutIntros-TextContact">
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5%' }}>
-                        <div className="aboutIntros-TextContainer1" >Let's start working more efficiently today!</div>
-                        <div className="poehrIntros-Image" />
+
+                        <div className="aboutIntros-TextContainerContact1" >
+                            <div className='homeIntros-TextContainer'>
+                                <p className="textInPage contactFontHeader">
+                                    Explore the future with us.
+                                    Feel free to get in touch.
+                                </p>
+                            </div>
+                            <form onSubmit={onSubmit} className='formInqury'>
+                                <div className='form-group'>
+                                    <label htmlFor="name" className="textInPageh6 contactFont">Name: </label>
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        name="name"
+                                        // value={user.name}
+                                        onChange={onChange}
+                                    // className={styles.formControl}
+                                    />
+                                </div>
+                                <div className='form-group'>
+                                    <label htmlFor="email" className="textInPageh6 contactFont">Email: </label>
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        name="email"
+                                        // value={user.email}
+                                        onChange={onChange}
+                                    // className={styles.formControl}
+                                    />
+                                </div>
+                                <div className='form-group'>
+                                    <label htmlFor="message" className="textInPageh6 contactFont">Message: </label>
+                                    <textarea
+                                        className="form-control"
+                                        rows='10'
+                                        cols='40'
+                                        type="textarea"
+                                        name="message"
+                                        // value={user.email}
+                                        onChange={onChange}
+                                    // className={styles.formControl}
+                                    />
+                                </div>
+                                <div >
+                                    {/* <div className={styles.formGroup} ></div>*/}
+                                    <button type="submit" className='btn btn-primary'>
+                                        Send message
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="poehrIntros-ImageContact" />
                     </div>
+
                 </div>
 
             </div>
-            {/* Introducing the poehr solution */}
-            {/* <div className="poehrIntrosFlexContainer" >
-                <div className="poehrIntros-Text">
-                    <div className="poehrIntros-InnerBackground" >
-                        <div className="poehrIntros-InnerBackgroundText">
-                            <b>
-                                <p className="textInPage">Get started  </p>
-                                <p className="textInPage">with POEHR.</p>
-                                <p className="textInPageh6">Start optimizing your scheduling processes today!</p>
-
-                            </b>
-                            <button className='btn  btn-primary  ' onClick={toSignup} >
-                                Try for free
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-                <div className="poehrIntros-Image">
-                </div>
-            </div> */}
 
             <div>{displayTermsOfServiceModal()}</div>
             <div>{displayPrivacyModal()}</div>

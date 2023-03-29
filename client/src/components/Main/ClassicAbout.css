@@ -33,6 +33,15 @@
   align-content: center;
   flex-wrap: wrap;
 }
+.aboutIntros-TextContact {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
 .aboutIntros-TextContainer {
   margin-top: 10%;
   width: 100%;
@@ -47,6 +56,18 @@
 }
 .aboutIntros-TextContainer1 {
   margin-top: 10%;
+  width: 50%;
+  height: auto;
+  font-size: 2.5vw;
+  letter-spacing: 0.5px;
+  line-height: normal;
+  font-family: var(--font-raleway);
+  z-index: 100;
+  text-align: center;
+  justify-content: center;
+}
+.aboutIntros-TextContainerContact1 {
+  /* margin-top: 10%; */
   width: 50%;
   height: auto;
   font-size: 2.5vw;
@@ -244,7 +265,21 @@
   flex-grow: 1;
   flex-shrink: 3;
 }
-
+.poehrIntros-ImageContact {
+  /* margin-top: 10%; */
+  /* margin-left: -40px; */
+  border-radius: 280px;
+  width: 550px;
+  height: 550px;
+  max-width: 100%;
+  background-image: url("/public/image-assetsmallsizedefaultstatedefault@3x.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: var(--font-arial);
+  flex-grow: 1;
+  flex-shrink: 3;
+}
 .poehrIntros-InnerBackground {
   margin-top: 20%;
   border-radius: var(--br-xl);
@@ -718,4 +753,37 @@
   height: 43px;
   align-self: center;
   align-content: center;
+}
+
+.formInquiry {
+  display: flex;
+  flex-direction: column;
+  grid-column-start: 1;
+  grid-column-end: span all;
+  margin-top: 100px;
+  margin: 15px;
+  flex-wrap: wrap;
+  font-size: medium;
+  /* justify-content: center; */
+  /* align-items: left; */
+}
+
+.contactFont {
+  font-size: 16px;
+  /* letter-spacing: 0.35px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px; */
+}
+.contactFontHeader {
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  font-weight: bold;
+  /* letter-spacing: 0.35px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px; */
 }
