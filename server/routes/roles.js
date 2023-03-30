@@ -12,12 +12,13 @@ router.get('/test', (req, res) => res.send('role route testing!'))
 // @route GET api/roles
 // @description Get all roles
 // @access Public
-router.get('/', (req, res) => {  Role.find()
-    
-    .then((roles) => res.json(roles))
-    .catch((err) =>
-      res.status(404).json({ norolesfound: 'No Roles found' }),
-    )
+router.get('/', (req, res) => {
+  Role.find()
+
+  .then((roles) => res.json(roles))
+  .catch((err) =>
+    res.status(404).json({ norolesfound: 'No Roles found' }),
+  )
 })
 
 // @route GET api/roles/:id
