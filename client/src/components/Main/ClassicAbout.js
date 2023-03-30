@@ -1,7 +1,6 @@
 import "./ClassicAbout.css";
 import "../../global.css";
 import { useState } from 'react'
-import StarIcon from '@mui/icons-material/Star';
 import { useNavigate } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
 import TermsOfService from './TermsOfService'
@@ -95,27 +94,16 @@ const ClassicHome = () => {
                     </b>
                     <div className="aboutIntros-TextContainer2">
                         <p className="textInPage aboutIntros-TextContainerWidth">
-                            We offer revolutionary solution to industry problems. Join POEHR community and experience the benefits of patient management optimization today!
+                            We offer revolutionary solution to industry problems.
+                        </p>
+                        <p className="textInPage aboutIntros-TextContainerWidth">
+                            Join POEHR community and experience the benefits of patient management optimization today!
                         </p>
                     </div>
-                    {/* <div className="homeIntros-TextContainerBtns">
-                        <button className='btn  btn-primary btnMaxWidth ' onClick={toSignup} >
-                            Try for free
-                        </button>
-                        <button className="btn btn-secondary btnMaxWidth" >
-                            See how it works
-                        </button>
-                    </div>
-                    <div className="homeIntros-TextContainerTrusted">
-                        <b >
-                            Trusted by providers and patients alike.
-                        </b>
-                    </div> */}
                     <div className="aboutIntros-Image"></div>
                     <b className="aboutIntros-TextContainer">
                         <p className="textInPage">Our mission</p>
                     </b>
-                    {/* <div style={{ width: '350px', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap' }}> */}
                     <div className="aboutIntros-TextContainer2">
                         <p className="textInPage aboutIntros-TextContainerWidth">
                             At POEHR, we are committed to providing excellent services to our customers </p>
@@ -147,7 +135,6 @@ const ClassicHome = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', width: '120px', height: '220px' }}>
                             <div className="aboutIntrosTeam-Image"></div>
                             <p className="aboutIntros-TeamContainer1" ><b>Charlina Pangilinan</b> COO</p>
-                            {/* <p className="aboutIntros-TeamContainer1" >COO</p> */}
                         </div>
                     </div>
 
@@ -155,7 +142,7 @@ const ClassicHome = () => {
 
             </div>
             {/* Introducing the poehr solution */}
-            <div className="poehrIntrosFlexContainer" >
+            <div className="poehrIntrosFlexContainer bottomMargin" >
                 <div className="poehrIntros-Text">
                     <div className="poehrIntros-InnerBackground" >
                         <div className="poehrIntros-InnerBackgroundText">

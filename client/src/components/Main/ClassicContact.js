@@ -149,57 +149,61 @@ const ClassicHome = () => {
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5%' }}>
 
                         <div className="aboutIntros-TextContainerContact1" >
-                            <div className='homeIntros-TextContainer'>
+                            <div className='homeIntros-TextContainerContact'>
                                 <p className="textInPage contactFontHeader">
                                     Explore the future with us.
                                     Feel free to get in touch.
                                 </p>
                             </div>
                             <form onSubmit={onSubmit} className='formInqury'>
-                                <div className='form-group'>
-                                    <label htmlFor="name" className="textInPageh6 contactFont">Name: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        name="name"
-                                        // value={user.name}
-                                        onChange={onChange}
-                                    // className={styles.formControl}
-                                    />
+                                <div className='form-group contactFont'>
+                                    <label htmlFor="name" className="textInPageh6 contactFont">Name:
+                                        <input
+                                            className="form-control"
+                                            type="text"
+                                            name="name"
+                                            // value={user.name}
+                                            onChange={onChange}
+                                        // className={styles.formControl}
+                                        />
+                                    </label>
                                 </div>
-                                <div className='form-group'>
-                                    <label htmlFor="email" className="textInPageh6 contactFont">Email: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        name="email"
-                                        // value={user.email}
-                                        onChange={onChange}
-                                    // className={styles.formControl}
-                                    />
+                                <div className='form-group contactFont'>
+                                    <label htmlFor="email" className="textInPageh6 contactFont">Email:
+                                        <input
+                                            className="form-control"
+                                            type="text"
+                                            name="email"
+                                            // value={user.email}
+                                            onChange={onChange}
+                                        // className={styles.formControl}
+                                        />
+                                    </label>
                                 </div>
-                                <div className='form-group'>
-                                    <label htmlFor="message" className="textInPageh6 contactFont">Message: </label>
-                                    <textarea
-                                        className="form-control"
-                                        rows='15'
-                                        cols='40'
-                                        type="textarea"
-                                        name="message"
-                                        // value={user.email}
-                                        onChange={onChange}
-                                    // className={styles.formControl}
-                                    />
+                                <div className='form-group contactFont'>
+                                    <label htmlFor="message" className="textInPageh6 contactFont">Message:
+                                        <textarea
+                                            className="form-control"
+                                            rows='15'
+                                            cols='40'
+                                            type="textarea"
+                                            name="message"
+                                            // value={user.email}
+                                            onChange={onChange}
+                                        // className={styles.formControl}
+                                        />
+                                    </label>
                                 </div>
-                                <div >
-                                    {/* <div className={styles.formGroup} ></div>*/}
+                                <div className='form-group contactFont' >
                                     <button type="submit" className='btn btn-primary'>
                                         Send message
                                     </button>
                                 </div>
                             </form>
                         </div>
-                        <div className="poehrIntros-ImageContact" />
+                        <div className="aboutIntros-TextContainerContact2" >
+                            <div className="poehrIntros-ImageContact" />
+                        </div>
                     </div>
 
                 </div>

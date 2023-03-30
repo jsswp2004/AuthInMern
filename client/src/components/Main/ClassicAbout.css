@@ -4,12 +4,15 @@
   flex-direction: column;
   background-color: var(--color-whitesmoke-200);
   width: 100%;
-  height: auto;
+  height: 100%;
 
   text-align: left;
   font-size: var(--font-size-10xs);
   color: var(--color-black);
   font-family: var(--font-raleway);
+  flex-flow: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
 }
 
 .textInPage {
@@ -77,6 +80,25 @@
   z-index: 100;
   text-align: center;
   justify-content: center;
+}
+.aboutIntros-TextContainerContact2 {
+  /* margin-top: 10%; */
+  width: 50%;
+  height: auto;
+  /* font-size: 2.5vw;
+  letter-spacing: 0.5px;
+  line-height: normal;
+  font-family: var(--font-raleway);
+  z-index: 100;
+  text-align: center; */
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.formInqury {
+  margin-top: 5%;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 .aboutIntros-TextContainer2 {
   height: auto;
@@ -265,12 +287,22 @@
   flex-grow: 1;
   flex-shrink: 3;
 }
+.homeIntros-TextContainerContact {
+  width: auto;
+  height: auto;
+  /* margin-left: 20%; */
+  font-size: 2.5vw;
+  letter-spacing: 0.5px;
+  line-height: normal;
+  font-family: var(--font-raleway);
+  z-index: 100;
+}
 .poehrIntros-ImageContact {
-  /* margin-top: 10%; */
-  /* margin-left: -40px; */
+  margin-top: 10%;
+  margin-left: 4%;
   border-radius: 280px;
-  width: 550px;
-  height: 550px;
+  width: 500px;
+  height: 500px;
   max-width: 100%;
   background-image: url("/public/image-assetsmallsizedefaultstatedefault@3x.png");
   background-size: contain;
@@ -279,6 +311,7 @@
   font-family: var(--font-arial);
   flex-grow: 1;
   flex-shrink: 3;
+  align-self: center;
 }
 .poehrIntros-InnerBackground {
   margin-top: 20%;
@@ -304,6 +337,7 @@
   font-size: 1vw;
   line-height: normal;
   margin: 5px;
+  text-align: left;
 }
 
 /*smartsave */
@@ -524,23 +558,6 @@
   text-align: center;
   font-size: var(--font-size-base);
 }
-
-.footer-strip {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  /* position: absolute; */
-  /* bottom: 0px;
-  left: 0px; */
-  background-color: var(--color-silver);
-  /* width: 1366px; */
-  height: 100px;
-  text-align: center;
-  align-items: center;
-  font-size: var(--font-size-sm);
-  width: 100%;
-}
-
 .company-bottomTagDescription {
   font-size: var(--font-size-base);
   letter-spacing: 0.48px;
@@ -720,13 +737,7 @@
   font-size: var(--font-size-6xl);
   letter-spacing: 0.35px;
 }
-.testimonialHeader {
-  display: flex;
-  flex-direction: column;
-  grid-column-start: 1;
-  grid-column-end: span all;
-  margin-top: 100px;
-}
+
 .testimonialHeaderText {
   display: flex;
   flex-direction: row;
@@ -770,6 +781,8 @@
 
 .contactFont {
   font-size: 16px;
+  text-align: left;
+  width: 450px;
   /* letter-spacing: 0.35px;
   font-weight: 600;
   text-align: center;
@@ -781,9 +794,13 @@
   font-weight: 600;
   font-style: normal;
   font-weight: bold;
+  text-align: left;
   /* letter-spacing: 0.35px;
   font-weight: 600;
-  text-align: center;
+ 
   margin-top: 50px;
   margin-bottom: 50px; */
+}
+.bottomMargin {
+  margin-bottom: 50px;
 }
