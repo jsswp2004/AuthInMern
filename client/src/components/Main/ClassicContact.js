@@ -3,7 +3,6 @@ import "./ClassicHome.css";
 import "../../global.css";
 import styles from '../Signup/styles.module.css'
 import { useState, useEffect } from 'react'
-import StarIcon from '@mui/icons-material/Star';
 import { useNavigate } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
 import TermsOfService from './TermsOfService'
@@ -11,23 +10,31 @@ import PrivacyPolicy from './PrivacyPolicy'
 import { format } from 'date-fns'
 import axios from 'axios'
 
-const ClassicHome = () => {
-    const [role, setRoles] = useState(
-        {
-            name: '',
-        }
-    )
-    useEffect(() => {
-        axios
-            .get('http://localhost:8081/api/roles')
-            .then((response) => {
-                setRoles(response.data)
-                // .filter=(user) => user.role === 'Attending'
-            })
-            .catch((error) => {
-                console.log('Error from roles list')
-            })
-    }, [])
+const ClassicContact = () => {
+    const [status, setStatus] = useState("Submit");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("Sending...");
+        const { name, email, message } = e.target.elements;
+        let details = {
+            name: name.value,
+            email: email.value,
+            message: message.value
+        };
+        let response = await fetch("http://localhost:8081/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(details),
+        });
+        setStatus("Submit");
+        let result = await response.json();
+        alert(result.status);
+    }
+
+
+    // end of new code
     const [user, setUser] = useState({
         name: '',
         firstName: '',
@@ -66,10 +73,10 @@ const ClassicHome = () => {
     }
 
     const navigate = useNavigate()
-    const toSignup = () => {
-        localStorage.removeItem('token')
-        navigate('/Signup')
-    }
+    // const toSignup = () => {
+    //     localStorage.removeItem('token')
+    //     navigate('/Signup')
+    // }
     //#region Define the state for create registration modal
 
     const [showPrivacy, setShowPrivacy] = useState(false)
@@ -143,7 +150,7 @@ const ClassicHome = () => {
     //#endregion
     return (
         <div className="classic-home">
-            {/* Introduction */}
+
             <div className="aboutIntrosFlexContainer" >
                 <div className="aboutIntros-TextContact">
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5%' }}>
@@ -155,15 +162,15 @@ const ClassicHome = () => {
                                     Feel free to get in touch.
                                 </p>
                             </div>
-                            <form onSubmit={onSubmit} className='formInqury'>
+                            <form onSubmit={handleSubmit} className='formInqury'>
                                 <div className='form-group contactFont'>
-                                    <label htmlFor="name" className="textInPageh6 contactFont">Name:
+                                    <label htmlFor="name" className="textInPageh6 contactFont" required>Name:
                                         <input
                                             className="form-control"
                                             type="text"
-                                            name="name"
-                                            // value={user.name}
-                                            onChange={onChange}
+                                            id="name"
+                                        // value={user.name}
+                                        // onChange={onChange}
                                         // className={styles.formControl}
                                         />
                                     </label>
@@ -172,10 +179,10 @@ const ClassicHome = () => {
                                     <label htmlFor="email" className="textInPageh6 contactFont">Email:
                                         <input
                                             className="form-control"
-                                            type="text"
-                                            name="email"
-                                            // value={user.email}
-                                            onChange={onChange}
+                                            type="email"
+                                            id="email"
+                                        // value={user.email}
+                                        // onChange={onChange}
                                         // className={styles.formControl}
                                         />
                                     </label>
@@ -186,17 +193,18 @@ const ClassicHome = () => {
                                             className="form-control"
                                             rows='15'
                                             cols='40'
-                                            type="textarea"
-                                            name="message"
-                                            // value={user.email}
-                                            onChange={onChange}
+                                            // type="textarea"
+                                            id="message"
+                                        // value={user.email}
+                                        // onChange={onChange}
                                         // className={styles.formControl}
                                         />
                                     </label>
                                 </div>
                                 <div className='form-group contactFont' >
                                     <button type="submit" className='btn btn-primary'>
-                                        Send message
+
+                                        {status}
                                     </button>
                                 </div>
                             </form>
@@ -222,4 +230,4 @@ const ClassicHome = () => {
     );
 };
 
-export default ClassicHome;
+export default ClassicContact;
