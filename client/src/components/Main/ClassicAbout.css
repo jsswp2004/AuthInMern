@@ -20,12 +20,99 @@
 }
 .aboutIntrosFlexContainer {
   display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: auto;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.pricingIntrosFlexContainer {
+  display: flex;
   flex-direction: column;
   gap: 10px;
   height: auto;
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
+  flex-flow: column;
+  flex: 1 1 auto;
+}
+.pricingIntros-Text {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.pricingIntros-TextContainer {
+  margin-top: 10%;
+  width: 100%;
+  height: auto;
+  font-size: 2.5vw;
+  letter-spacing: 0.5px;
+  line-height: normal;
+  font-family: var(--font-raleway);
+  z-index: 100;
+  text-align: center;
+  justify-content: center;
+}
+.pricingIntros-TextContainer2 {
+  height: auto;
+  width: 100%;
+  font-size: 1vw;
+  letter-spacing: 0.3px;
+  line-height: normal;
+  font-weight: 600;
+  font-family: var(--font-raleway);
+  z-index: 100;
+  margin-top: 10px;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.pricingContainerRectangleBackground {
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  width: 70%;
+  height: 15%;
+  z-index: 25;
+  margin: 10%;
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  /* box-shadow: 15px 15px 15px #888888; */
+}
+.pricingContainerRectangleBackground1 {
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  width: 50%;
+  height: 15%;
+  z-index: 25;
+  margin: 1%;
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  /* box-shadow: 15px 15px 15px #888888; */
+}
+.pricingContainerRectangleBackground2 {
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  width: 50%;
+  height: 15%;
+  z-index: 25;
+  margin: 1%;
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  /* box-shadow: 15px 15px 15px #888888; */
 }
 .aboutIntros-Text {
   width: auto;

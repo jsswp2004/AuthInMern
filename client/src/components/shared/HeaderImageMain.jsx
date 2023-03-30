@@ -30,7 +30,7 @@ function HeaderImageMain() {
         </li>
 
         <li id="link" className="navbar_list">
-          <Link to="/">Pricing</Link>
+          <Link to="/pricing">Pricing</Link>
         </li>
         <li id="link" className="navbar_list">
           <Link to="/about">About us</Link>

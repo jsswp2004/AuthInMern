@@ -21,6 +21,7 @@ import EditVisit from './components/Scheduling/editVisit'
 import VisitDetails from './components/Scheduling/detailsVisit'
 import About from './components/Main/About'
 import Contact from './components/Main/Contact'
+import Pricing from './components/Main/Pricing'
 import ClinicVisit from './components/ClinicVisits/clinicVisits'
 // import RolesList from './components/Management/Roles/showRolesList'
 import CreateRole from './components/Management/Roles/createRole'
@@ -74,6 +75,7 @@ function App() {
             <Route path="/" exact element={<Main />} />
             <Route path="/about" exact element={<About />} />
             <Route path="/contact" exact element={<Contact />} />
+            <Route path="/pricing" exact element={<Pricing />} />
             {user && <Route path="/patientlist" exact element={<PatientList />} />}
             <Route path="/login" exact element={<Login />} />
             <Route path="/signup" exact element={<Signup />} />
