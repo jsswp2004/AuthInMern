@@ -17,6 +17,8 @@ const ClassicContact = () => {
         email: '',
         message: '',
     })
+
+    const navigate = useNavigate();
     // const onChange = (e) => {
     //     setUser({ ...user, [e.target.name]: e.target.value })
     // }
@@ -46,14 +48,18 @@ const ClassicContact = () => {
                     email: '',
                     message: '',
                 })
-                // navigate('/login')
+                alert('Message sent successfully');
+                navigate('/')
+                // let result = res.json();
+                // alert(result.status);
             })
             .catch((err) => {
                 console.log(err)
+                alert('Message sent error. Please contact site administrator.');
             })
-        setStatus("Submit");
-        // let result = await response.json();
-        // alert(response.status);
+        setStatus("Submitted");
+
+
     }
 
 

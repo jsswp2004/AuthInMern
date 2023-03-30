@@ -37,7 +37,7 @@ app.use("/api/emails", emailRoutes);
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: "jsswp199427@gmail.com",
+        user: process.env.EMAIL, //"jsswp199427@gmail.com",
         // pass: "krat13Miko!",
         pass: 'fqejxdqxlonpagtp',
     },

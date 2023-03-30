@@ -3,6 +3,7 @@ const router = express.Router();
 // const cors = require("cors");
 const nodemailer = require("nodemailer");
 const { Email, validate } = require('../models/email')
+require('dotenv').config()
 
 // @route GET api/events/test
 // @description tests events route
@@ -127,12 +128,29 @@ router.post("/", async (req, res) => {
     const message = req.body.message;
     const mail = {
         from: name,
-        to: process.env.EMAIL,
-        subject: "Contact Form Submission",
+        // to: process.env.EMAIL,
+        to: 'jsswp199427@gmail.com; jsswp2004@outlook.com; cps197198@outlook.com', //process.env.EMAIL,
+
+        subject: "Application Inquiry",
         html: `<p>Name: ${name}</p>
            <p>Email: ${email}</p>
            <p>Message: ${message}</p>`,
     };
+    const contactEmail = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL, //"jsswp199427@gmail.com",
+            // pass: "krat13Miko!",
+            pass: 'fqejxdqxlonpagtp',
+        },
+    });
+    contactEmail.verify((error) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Ready to Send");
+        }
+    });
     contactEmail.sendMail(mail, (error) => {
         if (error) {
             res.json({ status: "ERROR" });
