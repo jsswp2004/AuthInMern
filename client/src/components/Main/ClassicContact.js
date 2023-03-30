@@ -12,6 +12,14 @@ import axios from 'axios'
 
 const ClassicContact = () => {
     const [status, setStatus] = useState("Submit");
+    const [mail, setMail] = useState({
+        name: '',
+        email: '',
+        message: '',
+    })
+    // const onChange = (e) => {
+    //     setUser({ ...user, [e.target.name]: e.target.value })
+    // }
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus("Sending...");
@@ -21,58 +29,73 @@ const ClassicContact = () => {
             email: email.value,
             message: message.value
         };
-        let response = await fetch("http://localhost:8081/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json;charset=utf-8",
-            },
-            body: JSON.stringify(details),
-        });
-        setStatus("Submit");
-        let result = await response.json();
-        alert(result.status);
-    }
-
-
-    // end of new code
-    const [user, setUser] = useState({
-        name: '',
-        firstName: '',
-        lastName: '',
-        role: '',
-        email: '',
-        password: '',
-        addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-    })
-
-    const fullName = user.firstName + ' ' + user.lastName
-    const onChange = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value })
-    }
-
-    const onSubmit = async (e) => {
-        e.preventDefault()
+        // let response =
+        // await fetch("http://localhost:8081/api/emails", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json;charset=utf-8",
+        //     },
+        //     body: JSON.stringify(details),
+        // });
 
         axios
-            .post('http://localhost:8081/api/users', user)
+            .post('http://localhost:8081/api/emails', details)
             .then((res) => {
-                setUser({
-                    name: fullName,
-                    firstName: '',
-                    lastName: '',
-                    role: '',
+                setMail({
+                    name: '',
                     email: '',
-                    password: '',
-                    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+                    message: '',
                 })
-                navigate('/login')
+                // navigate('/login')
             })
             .catch((err) => {
                 console.log(err)
             })
+        setStatus("Submit");
+        // let result = await response.json();
+        // alert(response.status);
     }
 
-    const navigate = useNavigate()
+
+    // end of new code
+    // const [user, setUser] = useState({
+    //     name: '',
+    //     firstName: '',
+    //     lastName: '',
+    //     role: '',
+    //     email: '',
+    //     password: '',
+    //     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    // })
+
+    // const fullName = user.firstName + ' ' + user.lastName
+    // const onChange = (e) => {
+    //     setUser({ ...user, [e.target.name]: e.target.value })
+    // }
+
+    // const onSubmit = async (e) => {
+    //     e.preventDefault()
+
+    //     axios
+    //         .post('http://localhost:8081/api/users', user)
+    //         .then((res) => {
+    //             setUser({
+    //                 name: fullName,
+    //                 firstName: '',
+    //                 lastName: '',
+    //                 role: '',
+    //                 email: '',
+    //                 password: '',
+    //                 addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    //             })
+    //             navigate('/login')
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
+
+    // const navigate = useNavigate()
     // const toSignup = () => {
     //     localStorage.removeItem('token')
     //     navigate('/Signup')
