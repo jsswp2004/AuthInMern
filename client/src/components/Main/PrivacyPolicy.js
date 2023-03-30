@@ -10,19 +10,19 @@ const TermsOfService = (props) => {
                     <p> Privacy Policy for Healthcare Web Application</p>
 
                     <p>
-                        This Privacy Policy outlines how we, as the owner and operator of the healthcare web application, collect, use, disclose, and protect your personal information. We are committed to protecting your privacy and will ensure that any personal information we collect from you is handled in accordance with applicable privacy laws.
+                        This Privacy Policy outlines how we, POEHR IT Systems, Inc., as the owner and operator of the POEHR Scheduling, collect, use, disclose, and protect your personal information. We are committed to protecting your privacy and will ensure that any personal information we collect from you is handled in accordance with applicable privacy laws.
                     </p>
                     <p>
                         Collection of Personal Information
                     </p>
                     <p>
-                        We collect personal information from you when you use our healthcare web application. This includes, but is not limited to, your name, email address, telephone number, and health-related information. We may also collect other information such as your IP address, browser type, and operating system.
+                        We collect personal information from you when you use our POEHR Scheduling. This includes, but is not limited to, your name, email address, telephone number, and health-related information. We may also collect other information such as your IP address, browser type, and operating system.
                     </p>
                     <p>
                         Use of Personal Information
                     </p>
                     <p>
-                        We use your personal information to provide you with access to our healthcare web application and to enable us to provide you with the best possible service. We may also use your personal information to communicate with you about our services, promotions, and other matters. We will not sell, rent, or trade your personal information with third parties unless you provide us with your explicit consent to do so.
+                        We use your personal information to provide you with access to our POEHR Scheduling application and to enable us to provide you with the best possible service. We may also use your personal information to communicate with you about our services, promotions, and other matters. We will not sell, rent, or trade your personal information with third parties unless you provide us with your explicit consent to do so.
                     </p>
                     <p>
                         Disclosure of Personal Information
@@ -40,7 +40,7 @@ const TermsOfService = (props) => {
                         Access to Personal Information
                     </p>
                     <p>
-                        You have the right to access, update, and correct your personal information. You may do so by logging into your account on our healthcare web application or by contacting us directly. We will respond to your request in a timely manner.
+                        You have the right to access, update, and correct your personal information. You may do so by logging into your account on our POEHR Scheduling or by contacting us directly. We will respond to your request in a timely manner.
                     </p>
                     <p>
                         Retention of Personal Information
@@ -53,13 +53,13 @@ const TermsOfService = (props) => {
                     </p>
                     <p>
 
-                        We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on our healthcare web application. You are advised to review this Privacy Policy periodically for any changes.
+                        We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on our POEHR Scheduling. You are advised to review this Privacy Policy periodically for any changes.
                     </p>
                     <p>
                         Consent
                     </p>
                     <p>
-                        By using our healthcare web application, you consent to the collection, use, and disclosure of your personal information as described in this Privacy Policy.
+                        By using our POEHR Scheduling, you consent to the collection, use, and disclosure of your personal information as described in this Privacy Policy.
                     </p>
                     <p>
                         Contact Us
