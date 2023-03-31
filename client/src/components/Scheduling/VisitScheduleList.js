@@ -303,7 +303,7 @@ export default function VisitList() {
     return [...filteredData]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -324,7 +324,7 @@ export default function VisitList() {
     return [...filteredDataWeeklyMonday]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -343,7 +343,7 @@ export default function VisitList() {
     return [...filteredDataWeeklyTuesday]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -363,7 +363,7 @@ export default function VisitList() {
     return [...filteredDataWeeklyWed]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -382,7 +382,7 @@ export default function VisitList() {
     return [...filteredDataWeeklyThursday]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -401,7 +401,7 @@ export default function VisitList() {
     return [...filteredDataWeeklyFri]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -429,7 +429,7 @@ export default function VisitList() {
 
         .sort((a, b) =>
           moment(a.visitDate + ', ' + a.hourOfVisit) >
-          moment(b.visitDate + ', ' + b.hourOfVisit)
+            moment(b.visitDate + ', ' + b.hourOfVisit)
             ? 1
             : -1,
         )
@@ -443,7 +443,7 @@ export default function VisitList() {
               visit={visit}
               deleteVisit={() => deleteVisit(visit._id)}
               key={visit._id}
-              // style={{ visibility: 'hidden' }}
+            // style={{ visibility: 'hidden' }}
             />
           )
         })
@@ -515,7 +515,7 @@ export default function VisitList() {
     return [...visitsMonthlyDay1]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -544,37 +544,37 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(1, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(2, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(3, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(4, 'days')
-          .format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(dateSelected)
+            .subtract(1, 'months')
+            .endOf('month')
+            .format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(dateSelected)
+              .subtract(1, 'months')
+              .endOf('month')
+              .subtract(1, 'days')
+              .format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(dateSelected)
+                .subtract(1, 'months')
+                .endOf('month')
+                .subtract(2, 'days')
+                .format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(dateSelected)
+                  .subtract(1, 'months')
+                  .endOf('month')
+                  .subtract(3, 'days')
+                  .format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(dateSelected)
+                    .subtract(1, 'months')
+                    .endOf('month')
+                    .subtract(4, 'days')
+                    .format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay2 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -591,7 +591,7 @@ export default function VisitList() {
     return [...visitMonthlyDay2]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -613,36 +613,36 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-      : // ? moment(startOfTheMonth)
-      //   .format('YYYY-MM-DD')
-      startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(0, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(1, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(2, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(3, 'days')
-          .format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+        : // ? moment(startOfTheMonth)
+        //   .format('YYYY-MM-DD')
+        startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(dateSelected)
+              .subtract(1, 'months')
+              .endOf('month')
+              .subtract(0, 'days')
+              .format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(dateSelected)
+                .subtract(1, 'months')
+                .endOf('month')
+                .subtract(1, 'days')
+                .format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(dateSelected)
+                  .subtract(1, 'months')
+                  .endOf('month')
+                  .subtract(2, 'days')
+                  .format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(dateSelected)
+                    .subtract(1, 'months')
+                    .endOf('month')
+                    .subtract(3, 'days')
+                    .format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay3 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -659,7 +659,7 @@ export default function VisitList() {
     return [...visitMonthlyDay3]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -680,36 +680,36 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
-      : // ? moment(startOfTheMonth)
-      //   .format('YYYY-MM-DD')
-      startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).format('YYYY-MM-DD')
-      : // .subtract(1, 'months')
-      // .endOf('month')
-      // .subtract(1, 'days')
-      // .format('YYYY-MM-DD')
-      startOfTheMonthDayNumber === 4
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(0, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(1, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(2, 'days')
-          .format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
+        : // ? moment(startOfTheMonth)
+        //   .format('YYYY-MM-DD')
+        startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).format('YYYY-MM-DD')
+            : // .subtract(1, 'months')
+            // .endOf('month')
+            // .subtract(1, 'days')
+            // .format('YYYY-MM-DD')
+            startOfTheMonthDayNumber === 4
+              ? moment(dateSelected)
+                .subtract(1, 'months')
+                .endOf('month')
+                .subtract(0, 'days')
+                .format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(dateSelected)
+                  .subtract(1, 'months')
+                  .endOf('month')
+                  .subtract(1, 'days')
+                  .format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(dateSelected)
+                    .subtract(1, 'months')
+                    .endOf('month')
+                    .subtract(2, 'days')
+                    .format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay4 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -726,7 +726,7 @@ export default function VisitList() {
     return [...visitMonthlyDay4]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -755,26 +755,26 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(0, 'days')
-          .format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(1, 'days')
-          .format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(dateSelected)
+                  .subtract(1, 'months')
+                  .endOf('month')
+                  .subtract(0, 'days')
+                  .format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(dateSelected)
+                    .subtract(1, 'months')
+                    .endOf('month')
+                    .subtract(1, 'days')
+                    .format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay5 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -791,7 +791,7 @@ export default function VisitList() {
     return [...visitMonthlyDay5]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -820,22 +820,22 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(dateSelected)
-          .subtract(1, 'months')
-          .endOf('month')
-          .subtract(0, 'days')
-          .format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(dateSelected)
+                    .subtract(1, 'months')
+                    .endOf('month')
+                    .subtract(0, 'days')
+                    .format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay6 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -852,7 +852,7 @@ export default function VisitList() {
     return [...visitMonthlyDay6]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -882,18 +882,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay7 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -910,7 +910,7 @@ export default function VisitList() {
     return [...visitMonthlyDay7]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -932,18 +932,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(1, 'days').format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay8 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -960,7 +960,7 @@ export default function VisitList() {
     return [...visitMonthlyDay8]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -990,18 +990,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(2, 'days').format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay9 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -1018,7 +1018,7 @@ export default function VisitList() {
     return [...visitMonthlyDay9]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1050,18 +1050,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(3, 'days').format('YYYY-MM-DD')
+                  : ''
 
   const visitMonthlyDay10 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -1078,7 +1078,7 @@ export default function VisitList() {
     return [...visitMonthlyDay10]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1099,18 +1099,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(4, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay11 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1126,7 +1126,7 @@ export default function VisitList() {
     return [...visitMonthlyDay11]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1159,18 +1159,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(5, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay12 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1186,7 +1186,7 @@ export default function VisitList() {
     return [...visitMonthlyDay12]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1219,18 +1219,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(6, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay13 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1246,7 +1246,7 @@ export default function VisitList() {
     return [...visitMonthlyDay13]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1279,18 +1279,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(7, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay14 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1306,7 +1306,7 @@ export default function VisitList() {
     return [...visitMonthlyDay14]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1330,18 +1330,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(8, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay15 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1357,7 +1357,7 @@ export default function VisitList() {
     return [...visitMonthlyDay14]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1381,18 +1381,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(9, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay16 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1408,7 +1408,7 @@ export default function VisitList() {
     return [...visitMonthlyDay16]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1433,18 +1433,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(10, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay17 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1460,7 +1460,7 @@ export default function VisitList() {
     return [...visitMonthlyDay17]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1485,18 +1485,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(11, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay18 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1512,7 +1512,7 @@ export default function VisitList() {
     return [...visitMonthlyDay18]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1537,18 +1537,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(12, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay19 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1564,7 +1564,7 @@ export default function VisitList() {
     return [...visitMonthlyDay19]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1589,18 +1589,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(13, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay20 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1616,7 +1616,7 @@ export default function VisitList() {
     return [...visitMonthlyDay20]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1641,18 +1641,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(14, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay21 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1668,7 +1668,7 @@ export default function VisitList() {
     return [...visitMonthlyDay21]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1693,18 +1693,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(15, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay22 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1720,7 +1720,7 @@ export default function VisitList() {
     return [...visitMonthlyDay22]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1745,18 +1745,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(16, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay23 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1772,7 +1772,7 @@ export default function VisitList() {
     return [...visitMonthlyDay23]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1797,18 +1797,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(17, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay24 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1824,7 +1824,7 @@ export default function VisitList() {
     return [...visitMonthlyDay24]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1849,18 +1849,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(18, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay25 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1876,7 +1876,7 @@ export default function VisitList() {
     return [...visitMonthlyDay25]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1900,18 +1900,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(19, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay26 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1927,7 +1927,7 @@ export default function VisitList() {
     return [...visitMonthlyDay26]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -1951,18 +1951,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(20, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay27 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -1978,7 +1978,7 @@ export default function VisitList() {
     return [...visitMonthlyDay27]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2002,18 +2002,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(21, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay28 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2029,7 +2029,7 @@ export default function VisitList() {
     return [...visitMonthlyDay28]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2053,18 +2053,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(22, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay29 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2080,7 +2080,7 @@ export default function VisitList() {
     return [...visitMonthlyDay29]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2104,18 +2104,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(23, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay30 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2131,7 +2131,7 @@ export default function VisitList() {
     return [...visitMonthlyDay30]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2162,18 +2162,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(24, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay31 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2189,7 +2189,7 @@ export default function VisitList() {
     return [...visitMonthlyDay31]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2223,18 +2223,18 @@ export default function VisitList() {
         ? ''
         : moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(25, 'days').format('YYYY-MM-DD')
+                  : ''
   // console.log(moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD'), startOfTheMonth, daysOfTheMonth )
   const visitMonthlyDay32 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -2251,7 +2251,7 @@ export default function VisitList() {
     return [...visitMonthlyDay32]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2282,18 +2282,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(26, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay33 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2309,7 +2309,7 @@ export default function VisitList() {
     return [...visitMonthlyDay33]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2340,18 +2340,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(27, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay34 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2367,7 +2367,7 @@ export default function VisitList() {
     return [...visitMonthlyDay34]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2398,18 +2398,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(28, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay35 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2425,7 +2425,7 @@ export default function VisitList() {
     return [...visitMonthlyDay35]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2457,18 +2457,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(29, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay36 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2484,7 +2484,7 @@ export default function VisitList() {
     return [...visitMonthlyDay36]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2516,17 +2516,17 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(36, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
+        ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(30, 'days').format('YYYY-MM-DD')
                   : ''
   const visitMonthlyDay37 = visits.filter((el) => {
     //if no input the return the with the original default date
@@ -2544,7 +2544,7 @@ export default function VisitList() {
     return [...visitMonthlyDay37]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2576,18 +2576,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(37, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(36, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(36, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(31, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay38 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2603,7 +2603,7 @@ export default function VisitList() {
     return [...visitMonthlyDay38]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2635,18 +2635,18 @@ export default function VisitList() {
     startOfTheMonthDayNumber === 0
       ? moment(startOfTheMonth).add(38, 'days').format('YYYY-MM-DD')
       : startOfTheMonthDayNumber === 1
-      ? moment(startOfTheMonth).add(37, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 2
-      ? moment(startOfTheMonth).add(36, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 3
-      ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 4
-      ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 5
-      ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
-      : startOfTheMonthDayNumber === 6
-      ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
-      : ''
+        ? moment(startOfTheMonth).add(37, 'days').format('YYYY-MM-DD')
+        : startOfTheMonthDayNumber === 2
+          ? moment(startOfTheMonth).add(36, 'days').format('YYYY-MM-DD')
+          : startOfTheMonthDayNumber === 3
+            ? moment(startOfTheMonth).add(35, 'days').format('YYYY-MM-DD')
+            : startOfTheMonthDayNumber === 4
+              ? moment(startOfTheMonth).add(34, 'days').format('YYYY-MM-DD')
+              : startOfTheMonthDayNumber === 5
+                ? moment(startOfTheMonth).add(33, 'days').format('YYYY-MM-DD')
+                : startOfTheMonthDayNumber === 6
+                  ? moment(startOfTheMonth).add(32, 'days').format('YYYY-MM-DD')
+                  : ''
   const visitMonthlyDay39 = visits.filter((el) => {
     //if no input the return the with the original default date
     if (searchInput === '') {
@@ -2662,7 +2662,7 @@ export default function VisitList() {
     return [...visitMonthlyDay39]
       .sort((a, b) =>
         moment(a.visitDate + ', ' + a.hourOfVisit) >
-        moment(b.visitDate + ', ' + b.hourOfVisit)
+          moment(b.visitDate + ', ' + b.hourOfVisit)
           ? 1
           : -1,
       )
@@ -2761,11 +2761,11 @@ export default function VisitList() {
             data-placement="right"
             title="Search for Visit"
             href="/visitSchedule"
-            class="btn btn-info"
+            className="btn btn-info"
             role="button"
           >
             {' '}
-            <i class="fa fa-search" aria-hidden="true"></i>
+            <i className="fa fa-search" aria-hidden="true"></i>
           </a>
         </div>
         <div className="div-items" style={{ float: 'right' }}>
@@ -2788,7 +2788,7 @@ export default function VisitList() {
       </div>
       <div
         className="item2"
-        // style={{ height: 'calc(100vh - 80px)' }}
+      // style={{ height: 'calc(100vh - 80px)' }}
       >
         <Navbar></Navbar>
       </div>
@@ -2816,25 +2816,25 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth - 1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth - 2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth - 3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth - 4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth - 5
-                          : ''}
+                            ? endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth - 1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth - 2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth - 3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth - 4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth - 5
+                                      : ''}
                       </span>
                     </div>
                   </li>
                   <li
                     className="calendar-item calendar-day"
                     style={gridMonthlyColumnStart}
-                    // style={gridMonthly}
+                  // style={gridMonthly}
                   >
                     <table className="table table-striped">
                       <thead>
@@ -2855,18 +2855,18 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 1
                           : startOfTheMonthDayNumber === 1
-                          ? startOfTheMonthDate
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth - 1
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth - 2
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth - 3
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth - 4
-                          : ''}
+                            ? startOfTheMonthDate
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth - 1
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth - 2
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth - 3
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth - 4
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -2892,18 +2892,18 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 2
                           : startOfTheMonthDayNumber === 1
-                          ? startOfTheMonthDate + 1
-                          : startOfTheMonthDayNumber === 2
-                          ? startOfTheMonthDate
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth - 1
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth - 2
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth - 3
-                          : ''}
+                            ? startOfTheMonthDate + 1
+                            : startOfTheMonthDayNumber === 2
+                              ? startOfTheMonthDate
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth - 1
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth - 2
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth - 3
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -2930,18 +2930,18 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 3
                           : startOfTheMonthDayNumber === 1
-                          ? startOfTheMonthDate + 2
-                          : startOfTheMonthDayNumber === 2
-                          ? startOfTheMonthDate + 1
-                          : startOfTheMonthDayNumber === 3
-                          ? startOfTheMonthDate
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth - 1
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth - 2
-                          : ''}
+                            ? startOfTheMonthDate + 2
+                            : startOfTheMonthDayNumber === 2
+                              ? startOfTheMonthDate + 1
+                              : startOfTheMonthDayNumber === 3
+                                ? startOfTheMonthDate
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth - 1
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth - 2
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -2967,18 +2967,18 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 4
                           : startOfTheMonthDayNumber === 1
-                          ? startOfTheMonthDate + 3
-                          : startOfTheMonthDayNumber === 2
-                          ? startOfTheMonthDate + 2
-                          : startOfTheMonthDayNumber === 3
-                          ? startOfTheMonthDate + 1
-                          : startOfTheMonthDayNumber === 4
-                          ? startOfTheMonthDate
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth - 1
-                          : ''}
+                            ? startOfTheMonthDate + 3
+                            : startOfTheMonthDayNumber === 2
+                              ? startOfTheMonthDate + 2
+                              : startOfTheMonthDayNumber === 3
+                                ? startOfTheMonthDate + 1
+                                : startOfTheMonthDayNumber === 4
+                                  ? startOfTheMonthDate
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth - 1
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3004,18 +3004,18 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 5
                           : startOfTheMonthDayNumber === 1
-                          ? startOfTheMonthDate + 4
-                          : startOfTheMonthDayNumber === 2
-                          ? startOfTheMonthDate + 3
-                          : startOfTheMonthDayNumber === 3
-                          ? startOfTheMonthDate + 2
-                          : startOfTheMonthDayNumber === 4
-                          ? startOfTheMonthDate + 1
-                          : startOfTheMonthDayNumber === 5
-                          ? startOfTheMonthDate
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth
-                          : ''}
+                            ? startOfTheMonthDate + 4
+                            : startOfTheMonthDayNumber === 2
+                              ? startOfTheMonthDate + 3
+                              : startOfTheMonthDayNumber === 3
+                                ? startOfTheMonthDate + 2
+                                : startOfTheMonthDayNumber === 4
+                                  ? startOfTheMonthDate + 1
+                                  : startOfTheMonthDayNumber === 5
+                                    ? startOfTheMonthDate
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3042,18 +3042,18 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 6
                           : startOfTheMonthDayNumber === 1
-                          ? startOfTheMonthDate + 5
-                          : startOfTheMonthDayNumber === 2
-                          ? startOfTheMonthDate + 4
-                          : startOfTheMonthDayNumber === 3
-                          ? startOfTheMonthDate + 3
-                          : startOfTheMonthDayNumber === 4
-                          ? startOfTheMonthDate + 2
-                          : startOfTheMonthDayNumber === 5
-                          ? startOfTheMonthDate + 1
-                          : startOfTheMonthDayNumber === 6
-                          ? startOfTheMonthDate
-                          : ''}
+                            ? startOfTheMonthDate + 5
+                            : startOfTheMonthDayNumber === 2
+                              ? startOfTheMonthDate + 4
+                              : startOfTheMonthDayNumber === 3
+                                ? startOfTheMonthDate + 3
+                                : startOfTheMonthDayNumber === 4
+                                  ? startOfTheMonthDate + 2
+                                  : startOfTheMonthDayNumber === 5
+                                    ? startOfTheMonthDate + 1
+                                    : startOfTheMonthDayNumber === 6
+                                      ? startOfTheMonthDate
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3073,33 +3073,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 7
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 7 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            7 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            7 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            7 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            7 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            7 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 7 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              7 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                7 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  7 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    7 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      7 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3118,33 +3118,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 8
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 8 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            8 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            8 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            8 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            8 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            8 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 8 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              8 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                8 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  8 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    8 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      8 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3170,33 +3170,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 9
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 9 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            9 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            9 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            9 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            9 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            9 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 9 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              9 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                9 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  9 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    9 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      9 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3223,33 +3223,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 10
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 10 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            10 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            10 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            10 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            10 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            10 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 10 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              10 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                10 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  10 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    10 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      10 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3275,33 +3275,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 11
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 11 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            11 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            11 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            11 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            11 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            11 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 11 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              11 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                11 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  11 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    11 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      11 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3327,33 +3327,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 12
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 12 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            12 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            12 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            12 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            12 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            12 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 12 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              12 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                12 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  12 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    12 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      12 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3380,33 +3380,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 13
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 13 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            13 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            13 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            13 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            13 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            13 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 13 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              13 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                13 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  13 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    13 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      13 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3434,33 +3434,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 14
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 14 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            14 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            14 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            14 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            14 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            14 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 14 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              14 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                14 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  14 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    14 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      14 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3479,33 +3479,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 15
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 15 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            15 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            15 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            15 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            15 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            15 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 15 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              15 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                15 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  15 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    15 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      15 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3531,33 +3531,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 16
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 16 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            16 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            16 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            16 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            16 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            16 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 16 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              16 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                16 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  16 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    16 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      16 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3584,33 +3584,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 17
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 17 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            17 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            17 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            17 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            17 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            17 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 17 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              17 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                17 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  17 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    17 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      17 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3639,33 +3639,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 18
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 18 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            18 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            18 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            18 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            18 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            18 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 18 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              18 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                18 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  18 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    18 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      18 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3691,33 +3691,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 19
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 19 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            19 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            19 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            19 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            19 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            19 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 19 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              19 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                19 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  19 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    19 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      19 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3744,33 +3744,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 20
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 20 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            20 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            20 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            20 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            20 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            20 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 20 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              20 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                20 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  20 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    20 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      20 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3801,33 +3801,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 21
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 21 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            21 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            21 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            21 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            21 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            21 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 21 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              21 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                21 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  21 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    21 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      21 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3846,33 +3846,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 22
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 22 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            22 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            22 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            22 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            22 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            22 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 22 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              22 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                22 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  22 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    22 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      22 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3901,33 +3901,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 23
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 23 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            23 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            23 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            23 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            23 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            23 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 23 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              23 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                23 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  23 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    23 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      23 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -3957,33 +3957,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 24
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 24 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            24 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            24 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            24 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            24 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            24 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 24 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              24 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                24 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  24 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    24 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      24 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4012,33 +4012,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 25
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 25 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            25 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            25 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            25 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            25 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            25 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 25 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              25 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                25 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  25 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    25 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      25 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4067,33 +4067,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 26
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 26 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            26 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            26 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            26 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            26 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            26 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 26 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              26 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                26 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  26 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    26 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      26 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4123,33 +4123,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 27
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 27 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            27 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            27 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            27 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            27 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            27 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 27 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              27 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                27 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  27 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    27 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      27 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4180,33 +4180,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 28
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 28 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            28 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            28 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            28 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            28 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            28 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 28 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              28 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                28 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  28 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    28 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      28 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4225,33 +4225,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 29
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 29 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            29 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            29 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            29 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            29 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            29 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 29 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              29 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                29 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  29 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    29 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      29 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4277,33 +4277,33 @@ export default function VisitList() {
                         {startOfTheMonthDayNumber === 0
                           ? startOfTheMonthDate + 30
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 30 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                            30 -
-                            endOfThePreviousMonth -
-                            1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                            30 -
-                            endOfThePreviousMonth -
-                            2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                            30 -
-                            endOfThePreviousMonth -
-                            3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                            30 -
-                            endOfThePreviousMonth -
-                            4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                            30 -
-                            endOfThePreviousMonth -
-                            5
-                          : ''}
+                            ? endOfThePreviousMonth + 30 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                              30 -
+                              endOfThePreviousMonth -
+                              1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                30 -
+                                endOfThePreviousMonth -
+                                2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                  30 -
+                                  endOfThePreviousMonth -
+                                  3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                    30 -
+                                    endOfThePreviousMonth -
+                                    4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                      30 -
+                                      endOfThePreviousMonth -
+                                      5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4539,7 +4539,7 @@ export default function VisitList() {
                     style={gridMonthly}
                   >
                     <table className="table table-striped"
-                                          style={{
+                      style={{
                         display:
                           moment(monthlyDay38).diff(
                             moment(monthlyDay38)
@@ -4575,7 +4575,7 @@ export default function VisitList() {
                     style={gridMonthly}
                   >
                     <table className="table table-striped"
-                                          style={{
+                      style={{
                         display:
                           moment(monthlyDay39).diff(
                             moment(monthlyDay39)
@@ -4610,66 +4610,66 @@ export default function VisitList() {
                             ? ''
                             : startOfTheMonthDate + 39
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 39 - endOfThePreviousMonth >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth + 39 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              1 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              2 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              3 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              4 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              5 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              39 -
-                              endOfThePreviousMonth -
-                              5
-                          : ''}
+                            ? endOfThePreviousMonth + 39 - endOfThePreviousMonth >
+                              daysOfTheMonth
+                              ? ''
+                              : endOfThePreviousMonth + 39 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                                39 -
+                                endOfThePreviousMonth -
+                                1 >
+                                daysOfTheMonth
+                                ? ''
+                                : endOfThePreviousMonth +
+                                39 -
+                                endOfThePreviousMonth -
+                                1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                  39 -
+                                  endOfThePreviousMonth -
+                                  2 >
+                                  daysOfTheMonth
+                                  ? ''
+                                  : endOfThePreviousMonth +
+                                  39 -
+                                  endOfThePreviousMonth -
+                                  2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                    39 -
+                                    endOfThePreviousMonth -
+                                    3 >
+                                    daysOfTheMonth
+                                    ? ''
+                                    : endOfThePreviousMonth +
+                                    39 -
+                                    endOfThePreviousMonth -
+                                    3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                      39 -
+                                      endOfThePreviousMonth -
+                                      4 >
+                                      daysOfTheMonth
+                                      ? ''
+                                      : endOfThePreviousMonth +
+                                      39 -
+                                      endOfThePreviousMonth -
+                                      4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                        39 -
+                                        endOfThePreviousMonth -
+                                        5 >
+                                        daysOfTheMonth
+                                        ? ''
+                                        : endOfThePreviousMonth +
+                                        39 -
+                                        endOfThePreviousMonth -
+                                        5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4695,66 +4695,66 @@ export default function VisitList() {
                             ? ''
                             : startOfTheMonthDate + 40
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 40 - endOfThePreviousMonth >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth + 40 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              1 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              2 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              3 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              4 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              5 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              40 -
-                              endOfThePreviousMonth -
-                              5
-                          : ''}
+                            ? endOfThePreviousMonth + 40 - endOfThePreviousMonth >
+                              daysOfTheMonth
+                              ? ''
+                              : endOfThePreviousMonth + 40 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                                40 -
+                                endOfThePreviousMonth -
+                                1 >
+                                daysOfTheMonth
+                                ? ''
+                                : endOfThePreviousMonth +
+                                40 -
+                                endOfThePreviousMonth -
+                                1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                  40 -
+                                  endOfThePreviousMonth -
+                                  2 >
+                                  daysOfTheMonth
+                                  ? ''
+                                  : endOfThePreviousMonth +
+                                  40 -
+                                  endOfThePreviousMonth -
+                                  2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                    40 -
+                                    endOfThePreviousMonth -
+                                    3 >
+                                    daysOfTheMonth
+                                    ? ''
+                                    : endOfThePreviousMonth +
+                                    40 -
+                                    endOfThePreviousMonth -
+                                    3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                      40 -
+                                      endOfThePreviousMonth -
+                                      4 >
+                                      daysOfTheMonth
+                                      ? ''
+                                      : endOfThePreviousMonth +
+                                      40 -
+                                      endOfThePreviousMonth -
+                                      4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                        40 -
+                                        endOfThePreviousMonth -
+                                        5 >
+                                        daysOfTheMonth
+                                        ? ''
+                                        : endOfThePreviousMonth +
+                                        40 -
+                                        endOfThePreviousMonth -
+                                        5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -4784,66 +4784,66 @@ export default function VisitList() {
                             ? ''
                             : startOfTheMonthDate + 41
                           : startOfTheMonthDayNumber === 1
-                          ? endOfThePreviousMonth + 41 - endOfThePreviousMonth >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth + 41 - endOfThePreviousMonth
-                          : startOfTheMonthDayNumber === 2
-                          ? endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              1 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              1
-                          : startOfTheMonthDayNumber === 3
-                          ? endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              2 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              2
-                          : startOfTheMonthDayNumber === 4
-                          ? endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              3 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              3
-                          : startOfTheMonthDayNumber === 5
-                          ? endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              4 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              4
-                          : startOfTheMonthDayNumber === 6
-                          ? endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              5 >
-                            daysOfTheMonth
-                            ? ''
-                            : endOfThePreviousMonth +
-                              41 -
-                              endOfThePreviousMonth -
-                              5
-                          : ''}
+                            ? endOfThePreviousMonth + 41 - endOfThePreviousMonth >
+                              daysOfTheMonth
+                              ? ''
+                              : endOfThePreviousMonth + 41 - endOfThePreviousMonth
+                            : startOfTheMonthDayNumber === 2
+                              ? endOfThePreviousMonth +
+                                41 -
+                                endOfThePreviousMonth -
+                                1 >
+                                daysOfTheMonth
+                                ? ''
+                                : endOfThePreviousMonth +
+                                41 -
+                                endOfThePreviousMonth -
+                                1
+                              : startOfTheMonthDayNumber === 3
+                                ? endOfThePreviousMonth +
+                                  41 -
+                                  endOfThePreviousMonth -
+                                  2 >
+                                  daysOfTheMonth
+                                  ? ''
+                                  : endOfThePreviousMonth +
+                                  41 -
+                                  endOfThePreviousMonth -
+                                  2
+                                : startOfTheMonthDayNumber === 4
+                                  ? endOfThePreviousMonth +
+                                    41 -
+                                    endOfThePreviousMonth -
+                                    3 >
+                                    daysOfTheMonth
+                                    ? ''
+                                    : endOfThePreviousMonth +
+                                    41 -
+                                    endOfThePreviousMonth -
+                                    3
+                                  : startOfTheMonthDayNumber === 5
+                                    ? endOfThePreviousMonth +
+                                      41 -
+                                      endOfThePreviousMonth -
+                                      4 >
+                                      daysOfTheMonth
+                                      ? ''
+                                      : endOfThePreviousMonth +
+                                      41 -
+                                      endOfThePreviousMonth -
+                                      4
+                                    : startOfTheMonthDayNumber === 6
+                                      ? endOfThePreviousMonth +
+                                        41 -
+                                        endOfThePreviousMonth -
+                                        5 >
+                                        daysOfTheMonth
+                                        ? ''
+                                        : endOfThePreviousMonth +
+                                        41 -
+                                        endOfThePreviousMonth -
+                                        5
+                                      : ''}
                       </span>
                     </div>
                   </li>
@@ -5044,7 +5044,7 @@ export default function VisitList() {
               style={gridWeeklyStart}
             >
               <div id="calendarDailyDate">
-                <h5 style={{backgroundColor:'white'}}>
+                <h5 style={{ backgroundColor: 'white' }}>
                   {/* {nameOfTheDay}, {dayOfTheMonth}  */}
                   {moment(dateSelected).format('MMMM Do YYYY')}
                 </h5>

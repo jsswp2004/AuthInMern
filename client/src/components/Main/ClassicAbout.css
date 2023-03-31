@@ -27,6 +27,11 @@
   align-content: center;
   flex-wrap: wrap;
 }
+.pricingFAQTextArea {
+  border: 0px;
+  margin: 1dvh;
+  width: 40vw;
+}
 .pricingIntrosFlexContainer {
   display: flex;
   flex-direction: column;
@@ -37,6 +42,23 @@
   flex-wrap: wrap;
   flex-flow: column;
   flex: 1 1 auto;
+}
+.pricingIntros-Image {
+  /* border-radius: 50px; */
+  width: auto;
+  height: 20vh;
+  max-width: 100%;
+  background-image: url("/src/components/shared/images/image@6x.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: var(--font-arial);
+  flex-grow: 1;
+  flex-shrink: 3;
+  margin: 5vh;
+  /* align-content: center; */
+  /* align-self: center; */
+  /* flex-wrap: wrap; */
 }
 .pricingIntros-Text {
   width: auto;
@@ -49,6 +71,18 @@
 }
 .pricingIntros-TextContainer {
   margin-top: 10%;
+  width: 100%;
+  height: auto;
+  font-size: 2.5vw;
+  letter-spacing: 0.5px;
+  line-height: normal;
+  font-family: var(--font-raleway);
+  z-index: 100;
+  text-align: center;
+  justify-content: center;
+}
+.pricingIntros-TextContainerFAQ {
+  /* margin-top: 10%; */
   width: 100%;
   height: auto;
   font-size: 2.5vw;
@@ -75,13 +109,34 @@
   flex-wrap: wrap;
 }
 
+.pricingIntros-TextContainer2FAQ {
+  height: auto;
+  width: 100%;
+  font-size: 1vw;
+  letter-spacing: 0.3px;
+  line-height: normal;
+  font-weight: 600;
+  font-family: var(--font-raleway);
+  z-index: 100;
+  margin-top: 10px;
+  text-align: center;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+.pricingWidth {
+  width: 40vw;
+  /* align-self: flex-end; */
+}
 .pricingContainerRectangleBackground {
   border-radius: var(--br-xl);
-  background-color: var(--color-white);
+  /* background-color: var(--color-white); */
+  background-color: #ededed;
   width: 70%;
-  height: 15%;
+  max-height: 350px;
+  min-height: auto;
   z-index: 25;
-  margin: 10%;
+  margin: 5%;
   display: flex;
   align-self: center;
   align-content: center;
@@ -89,30 +144,124 @@
   /* box-shadow: 15px 15px 15px #888888; */
 }
 .pricingContainerRectangleBackground1 {
-  border-radius: var(--br-xl);
+  /* border-radius: var(--br-xl); */
+  /* border-radius: var(--br-2xs); */
+  border-top-left-radius: var(--br-3xs);
+  border-bottom-left-radius: var(--br-3xs);
   background-color: var(--color-white);
   width: 50%;
-  height: 15%;
+  /* height: 100%; */
   z-index: 25;
-  margin: 1%;
+  /* margin: 1%; */
   display: flex;
   align-self: center;
   align-content: center;
   justify-content: center;
+  flex-direction: column;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  padding-bottom: 40px;
   /* box-shadow: 15px 15px 15px #888888; */
 }
 .pricingContainerRectangleBackground2 {
   border-radius: var(--br-xl);
   background-color: var(--color-white);
   width: 50%;
-  height: 15%;
+  /* height: 200px; */
   z-index: 25;
-  margin: 1%;
+  /* margin: 1%; */
   display: flex;
   align-self: center;
   align-content: center;
   justify-content: center;
+  flex-direction: column;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  /* flex-flow: column; */
   /* box-shadow: 15px 15px 15px #888888; */
+}
+.pricingContainerRectangleBackground2Price {
+  display: flex;
+  /* align-self: center; */
+  align-content: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  /* height: 100px; */
+  /* flex-flow: column; */
+  /* box-shadow: 15px 15px 15px #888888; */
+}
+.pricingContainerRectangleBackground2Price2 {
+  display: flex;
+  /* align-self: center; */
+  align-content: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  /* height: 100px; */
+  /* flex-flow: column; */
+  /* box-shadow: 15px 15px 15px #888888; */
+}
+
+.pricingTextBold {
+  font-weight: bold;
+}
+.pricingTextSize50 {
+  font-size: 50px;
+  /* var(--font-size-15xl); */
+  margin: 0;
+}
+.pricingTextSize30 {
+  font-size: 20px;
+  /* var(--font-size-15xl); */
+}
+.pricingTextSize10 {
+  font-size: 15px;
+  /* var(--font-size-15xl); */
+}
+.pricingTextMargin {
+  margin-top: 20px;
+  /* var(--font-size-15xl); */
+}
+.pricingContainerRectangleBackground3 {
+  border-top-right-radius: var(--br-3xs);
+  border-bottom-right-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  width: 50%;
+  /* height: 100%; */
+  z-index: 25;
+  /* margin: 1%; */
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* box-shadow: 15px 15px 15px #888888; */
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1.5px solid #888888;
+  margin: 0.5em;
+  padding: 0;
+}
+.hrPricing {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1.5px solid #888888;
+  margin: 1em;
+  padding: 0;
 }
 .aboutIntros-Text {
   width: auto;
@@ -325,6 +474,13 @@
   width: auto;
   height: auto;
 }
+
+.btnWidth {
+  /* max-width: 100%; */
+  width: auto;
+  height: auto;
+  margin: 4%;
+}
 .homeIntros-TextContainerBtns {
   display: flex;
   flex-direction: row;
@@ -418,6 +574,18 @@
   z-index: 100;
   margin-top: 30px;
   margin-left: 30px;
+}
+.poehrIntros-InnerBackgroundTextCenter {
+  font-size: 2vw;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  margin-top: 30px;
+  margin-left: 30px;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
 .textInPageh6 {

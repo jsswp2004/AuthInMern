@@ -94,7 +94,7 @@ const ClassicHome = () => {
                     </b>
                     <div className="aboutIntros-TextContainer2">
                         <p className="textInPage aboutIntros-TextContainerWidth">
-                            We offer revolutionary solution to industry problems.
+                            We offer practical solutions to patient management problems.
                         </p>
                         <p className="textInPage aboutIntros-TextContainerWidth">
                             Join POEHR community and experience the benefits of patient management optimization today!
@@ -108,15 +108,15 @@ const ClassicHome = () => {
                         <p className="textInPage aboutIntros-TextContainerWidth">
                             At POEHR, we are committed to providing excellent services to our customers </p>
                         <p className="textInPage aboutIntros-TextContainerWidth">
-                            and clients and to help them achieve the best outcomes.
+                            and clients, helping them achieve optimal outcomes.
                         </p>
                         <p className="textInPage aboutIntros-TextContainerWidth">
-                            We believe that we can make a positive impact on our community, industry and the world. </p>
+                            We strive to make a positive impact on our community, industry and the world. </p>
                         <p className="textInPage aboutIntros-TextContainerWidth">
-                            Our POEHR team is dedicated to providing the best possible service and support,
+                            Our team is committed to providing unparalleled service and support
                         </p>
                         <p className="textInPage aboutIntros-TextContainerWidth">
-                            and we are always looking for ways to improve and innovate.
+                            while continuously seeking ways to improve and innovate.
                         </p>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5%' }}>

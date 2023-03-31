@@ -47,7 +47,7 @@ const ShowSettings = () => {
           <Navbar />
         </div>
         <div className="item2" style={{ height: '100dvh' }} >
-          <button className='btn-sm btn'> <i class="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
+          <button className='btn-sm btn'> <i className="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
           </button>
         </div>
         <div className="item3">

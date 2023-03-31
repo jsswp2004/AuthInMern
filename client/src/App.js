@@ -52,7 +52,7 @@ function App() {
   const loggedUserFirstName = currentUser.map((user) => user.firstName)
   const loggedUserlastName = currentUser.map((user) => user.lastName)
 
-  console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0])
+  // console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0])
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/users`)

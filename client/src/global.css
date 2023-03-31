@@ -49,6 +49,7 @@ body {
   /* border radiuses */
   --br-xl: 20px;
   --br-3xs: 10px;
+  --br-2xs: 5px;
   --br-241xl: 260px;
   --br-mini: 15px;
   --br-981xl: 1000px;

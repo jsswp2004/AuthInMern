@@ -84,6 +84,14 @@ const ClassicHome = () => {
         return <TermsOfServiceModal />
     }
     //#endregion
+    const [showFAQ, setShowFAQ] = useState(false)
+    const [showFAQ1, setShowFAQ1] = useState(false)
+    const [showFAQ2, setShowFAQ2] = useState(false)
+    const [showFAQ3, setShowFAQ3] = useState(false)
+    const [showFAQ4, setShowFAQ4] = useState(false)
+    const [showFAQ5, setShowFAQ5] = useState(false)
+
+
     return (
         <div className="classic-home">
             {/* Introduction */}
@@ -100,67 +108,269 @@ const ClassicHome = () => {
                             but it's not cheap either, it's exactly what it should be
                         </p>
                     </div>
-
-
-
-                    {/* <b className="aboutIntros-TextContainer">
-                        <p className="textInPage">Compare Features</p>
-                    </b> */}
-                    {/* <div className="aboutIntros-TextContainer2">
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            At POEHR, we are committed to providing excellent services to our customers </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            and clients and to help them achieve the best outcomes.
-                        </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            We believe that we can make a positive impact on our community, industry and the world. </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            Our POEHR team is dedicated to providing the best possible service and support,
-                        </p>
-                        <p className="textInPage aboutIntros-TextContainerWidth">
-                            and we are always looking for ways to improve and innovate.
-                        </p>
-                    </div> */}
-                    {/* <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5%' }}>
-                        <div className="aboutIntros-TextContainer1" >Let's start working more efficiently today!</div>
-                        <div className="aboutIntrosWorkingEfficiently-Image"></div>
-                    </div> */}
-                    {/* <b className="aboutIntros-TextContainer">
-                        <p className="textInPage">Our Team</p>
-                    </b> */}
-                    {/* <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5%' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', width: '120px', height: '220px' }}>
-                            <div className="aboutIntrosTeam-Image-Jess" />
-                            <p className="aboutIntros-TeamContainer1" ><b>Jesus Salvacion</b> CEO/CTO</p>
-
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', width: '120px', height: '220px' }}>
-                            <div className="aboutIntrosTeam-Image"></div>
-                            <p className="aboutIntros-TeamContainer1" ><b>Charlina Pangilinan</b> COO</p>
-                        </div>
-                    </div> */}
-
                 </div>
                 <div className="pricingContainerRectangleBackground">
+
                     <div className="pricingContainerRectangleBackground1" >
-                        <p className="textInPage h6 aboutIntros-TextContainerWidth">
-                            For individuals and small
-                            teams
+                        <div>
+                            <p className="textInPage h6 pricingTextBold">
+                                BASIC
+                            </p>
+                        </div>
+                        <div className="pricingContainerRectangleBackground2Price" >
+                            <div style={{ marginTop: '5%' }}>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize10">
+                                    $
+                                </p>
+                            </div>
+                            <div>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize50">
+                                    9
+                                </p>
+                            </div>
+                            <div style={{ marginTop: '5%' }}>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize30">
+                                    /month
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <p className="textInPage h6 aboutIntros-TextContainerWidth">
+                                For individuals and small
+                                teams
+                            </p>
+                        </div>
+                        <button className="btn btn-primary btnWidth">Get Started with Basic</button>
+
+                    </div>
+                    {/* <div style={{ alignSelf: 'baseline', height: "400px", justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap' }}> */}
+                    <div className="pricingContainerRectangleBackground2">
+                        <div>
+                            <p className="textInPage h6 pricingTextBold">
+                                PRO
+                            </p>
+                        </div>
+                        <div className="pricingContainerRectangleBackground2Price2" >
+                            <div style={{ marginTop: '5%' }}>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize10">
+                                    $
+                                </p>
+                            </div>
+                            <div>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize50">
+                                    19
+                                </p>
+                            </div>
+                            <div style={{ marginTop: '5%' }}>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize30">
+                                    /month
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p className="textInPage h6 aboutIntros-TextContainerWidth">
+                                For startups and growing businesses
+                            </p>
+                        </div>
+                        <button className="btn btn-primary btnWidth">Get Started with Pro</button>
+                    </div>
+                    {/* </div> */}
+                    <div className="pricingContainerRectangleBackground3">
+                        <div>
+                            <p className="textInPage h6 pricingTextBold">
+                                BUSINESS
+                            </p>
+                        </div>
+                        <div className="pricingContainerRectangleBackground2Price" >
+                            <div style={{ marginTop: '5%' }}>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize10">
+                                    $
+                                </p>
+                            </div>
+                            <div>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize50">
+                                    199
+                                </p>
+                            </div>
+                            <div style={{ marginTop: '5%' }}>
+                                <p className="textInPage h6 pricingTextBold pricingTextSize30">
+                                    /month
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <p className="textInPage h6 aboutIntros-TextContainerWidth">
+                                For organizations with advanced needs
+                            </p>
+                        </div>
+                        <button className="btn btn-primary btnWidth">Get Started with Pro</button>
+
+                    </div>
+                </div>
+            </div>
+            <div className="poehrIntros-InnerBackgroundText">
+                <b>
+                    <p className="textInPage">Compare Features</p>
+                </b>
+                <hr />
+                <div style={{ justifyContent: 'center', display: 'flex', flexFlow: 'row', flexDirection: 'row' }}>
+                    <div style={{ width: '15%' }} >
+                        <p className="pricingTextSize30 ">BASIC</p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Process Analysis
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Schedule Management
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Time Tracking
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Retention Metrics
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Reports
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Email Integration
+                        </p>
+
+                    </div>
+                    <div style={{ width: '15%' }}>
+                        <p className="pricingTextSize30 ">PRO</p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Process Analysis
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Schedule Management
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Time Tracking
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Retention Metrics
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Reports
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Email Integration
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Real-time Collaboration
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Automated Workflows
                         </p>
                     </div>
-                    <div className="pricingContainerRectangleBackground1">
-                        <p className="textInPage h6 aboutIntros-TextContainerWidth">
-                            For startups and growing businesses
+                    <div style={{ width: '15%' }}>
+                        <p className="pricingTextSize30 ">BUSINESS</p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Process Analysis
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Schedule Management
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Time Tracking
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Retention Metrics
+                        </p>                  <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Reports
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Email Integration
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Real-time Collaboration
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Automated Workflows
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Analytics
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}SLA Management
                         </p>
                     </div>
-                    <div className="pricingContainerRectangleBackground1">
-                        <p className="textInPage h6 aboutIntros-TextContainerWidth">
-                            For organizations with advanced needs
+                </div>
+                <div className="pricingIntros-Image" />
+
+
+            </div>
+            <div className="pricingIntrosFlexContainer" >
+                <div className="pricingIntros-Text">
+                    <b className="pricingIntros-TextContainerFAQ">
+                        <p className="textInPage">Frequently asked questions</p>
+                    </b>
+                    <div className="pricingIntros-TextContainer2FAQ">
+                        <p className="textInPage aboutIntros-TextContainerWidth">
+                            How does this work?{' '}
+                            <i className="fa fa-chevron-down fa-sm" onClick={x => setShowFAQ(!showFAQ)} aria-hidden="true"></i>
                         </p>
+                        <label style={{ display: showFAQ === true ? 'inline-block' : 'none', width: '40vw' }} className="textInPage aboutIntros-TextContainerWidt pricingFAQTextArea" rows="15" cols="50">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
+                        </label>
+                        <hr className="hrPricing" />
+                        <p className="textInPage aboutIntros-TextContainerWidth">
+                            What are the benefits?{' '}
+                            <i className="fa fa-chevron-down fa-sm" onClick={x => setShowFAQ1(!showFAQ1)} aria-hidden="true"></i>
+                        </p>
+                        <label style={{ display: showFAQ1 === true ? 'inline-block' : 'none', width: '40vw' }} className="textInPage aboutIntros-TextContainerWidt pricingFAQTextArea" rows="15" cols="50">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
+                        </label>
+                        <hr className="hrPricing" />
+                        <p className="textInPage aboutIntros-TextContainerWidth">
+                            Is it difficult to use?{' '}
+                            <i className="fa fa-chevron-down fa-sm" onClick={x => setShowFAQ2(!showFAQ2)} aria-hidden="true"></i>
+                        </p>
+                        <label style={{ display: showFAQ2 === true ? 'inline-block' : 'none', width: '40vw' }} className="textInPage aboutIntros-TextContainerWidt pricingFAQTextArea" rows="15" cols="50">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
+                        </label>
+                        <hr className="hrPricing" />
+                        <p className="textInPage aboutIntros-TextContainerWidth">
+                            Can I have custom pricing?{' '}
+                            <i className="fa fa-chevron-down fa-sm" onClick={x => setShowFAQ3(!showFAQ3)} aria-hidden="true"></i>
+                        </p>
+                        <label style={{ display: showFAQ3 === true ? 'inline-block' : 'none', width: '40vw' }} className="textInPage aboutIntros-TextContainerWidt pricingFAQTextArea" rows="15" cols="50">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
+                        </label>
+                        <hr className="hrPricing" />
+                        <p className="textInPage aboutIntros-TextContainerWidth">
+                            Is there trial version available?{' '}
+                            <i className="fa fa-chevron-down fa-sm" onClick={x => setShowFAQ4(!showFAQ4)} aria-hidden="true"></i>
+                        </p>
+                        <label style={{ display: showFAQ4 === true ? 'inline-block' : 'none', width: '40vw' }} className="textInPage aboutIntros-TextContainerWidt pricingFAQTextArea" rows="15" cols="50">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
+                        </label>
+                        <hr className="hrPricing" />
+                        <p className="textInPage aboutIntros-TextContainerWidth">
+                            Where do I sign up?{' '}
+                            <i className="fa fa-chevron-down fa-sm" onClick={x => setShowFAQ5(!showFAQ5)} aria-hidden="true"></i>
+                        </p>
+                        <label style={{ display: showFAQ5 === true ? 'inline-block' : 'none', width: '40vw' }} className="textInPage aboutIntros-TextContainerWidt pricingFAQTextArea" rows="15" cols="50">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
+                        </label>
+                        <hr className="hrPricing" />
                     </div>
-
-
-
                 </div>
             </div>
             {/* Introducing the poehr solution */}
