@@ -1,4 +1,6 @@
 const express = require("express");
+const bodyParser = require('body-parser');
+const pino = require('express-pino-logger')();
 const app = express();
 const cors = require("cors");
 const connection = require("./db");
@@ -12,7 +14,9 @@ const eventRoutes = require("./routes/events");
 const scheduleRoutes = require("./routes/schedules")
 const exceptionRoutes = require("./routes/exceptions")
 const emailRoutes = require("./routes/emails");
+const smsRoutes = require("./routes/smsMessages");
 const nodemailer = require("nodemailer");
+
 require('dotenv').config()
 
 // database connection
@@ -21,6 +25,11 @@ connection();
 // middlewares 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
+
+// pino
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(pino);
 
 // routes
 app.use("/api/users", userRoutes);
@@ -33,6 +42,7 @@ app.use("/api/events", eventRoutes);
 app.use("/api/schedules", scheduleRoutes);
 app.use("/api/exceptions", exceptionRoutes);
 app.use("/api/emails", emailRoutes);
+app.use("/api/messages", smsRoutes);
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
