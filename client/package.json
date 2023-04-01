@@ -26,6 +26,7 @@
     "express-jwt": "^8.2.1",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^9.0.0",
+    "messagebird": "^4.0.1",
     "moment": "^2.29.4",
     "mongodb": "^4.13.0",
     "mongodb-legacy": "^4.0.0",
@@ -45,6 +46,7 @@
     "react-to-print": "^2.14.11",
     "react-transition-group": "^4.4.5",
     "start": "^5.1.0",
+    "twilio": "^4.9.0",
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.2",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz"
