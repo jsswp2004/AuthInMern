@@ -7,17 +7,30 @@ import axios from 'axios'
 
 function SendSMSMessage(props) {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
+
+    //iniitial state for mobile phone
     const [mobilePhone, setMobilePhone] = useState('')
+    //deconstruct mobile phone
+    const { cellphone } = mobilePhone
 
-    const onChange = (e) => {
-        setMobilePhone({ ...mobilePhone, [e.target.name]: e.target.value })
-    }
-
-    console.log(mobilePhone)
+    //visit ID of patient selected from props
     const visitID = props.visitID
 
-    const { cellphone } = mobilePhone
+
+
+    //initial state of the message
+    const [smsMessage, setSMSMassage] = useState({
+        to: '',
+        body: '',
+
+    })
+
+    //on change method to update the value from the jsx object
+    const onChange = (e) => {
+        setSMSMassage({ ...smsMessage, [e.target.name]: e.target.value })
+
+    }
     useEffect(() => {
         axios
             .get(`http://localhost:8081/api/visits/${visitID}`)
@@ -33,32 +46,38 @@ function SendSMSMessage(props) {
     }, [visitID])
 
 
-    // const onSubmit = (e) => {
-    //     e.preventDefault()
+    const onSubmit = (e) => {
+        e.preventDefault()
 
-    //     axios
-    //         .post('http://localhost:8081/api/roles', role)
-    //         .then((res) => {
-    //             setRole({
-    //                 name: '',
-    //                 addedDate: '',
-    //             })
+        const { to, body } = e.target.elements;
+        let message = {
+            to: to.value,
+            body: body.value
+        };
 
-    //             // Push to /
-    //             navigate('/settingsPage')
-    //         })
-    //         .catch((err) => {
-    //             console.log('Error in CreateRole!')
-    //         })
-    // }
-    // console.log(role)
+        axios
+            .post('http://localhost:8081/api/messages', message)
+            .then((res) => {
+                setSMSMassage({
+                    to: '',
+                    body: '',
+                })
+                console.log('Message successful!')
+                // Push to /
+                navigate('/clinicVisit')
+            })
+            .catch((err) => {
+                console.log('Error in Sending a message!')
+            })
+    }
+
 
     return (
         <div className="grid_containers">
             <div className="item3">
                 {/* <h5 className="createPageHeader">Send a reminder to patient</h5> */}
                 <div className="createRoleModalBody">
-                    <form noValidate >
+                    <form onSubmit={onSubmit} noValidate >
                         {/* onSubmit={onSubmit} */}
                         <div className="form-grid-containers modalContainer">
                             <div className="div-items">
@@ -83,7 +102,7 @@ function SendSMSMessage(props) {
                                             className="form-control roleInput"
                                             name="body"
                                             id="body"
-                                            value={'Your appointment is coming up on'}
+                                            // value={'Your appointment is coming up on'}
                                             onChange={onChange}
                                             rows='10'
                                             cols='40'

@@ -1,6 +1,6 @@
 const express = require("express");
-const bodyParser = require('body-parser');
-const pino = require('express-pino-logger')();
+// const bodyParser = require('body-parser');
+// const pino = require('express-pino-logger')();
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const { SMSMessage, validate } = require('../models/smsMessage')
@@ -37,16 +37,6 @@ router.get('/:id', (req, res) => {
         .catch((err) => res.status(404).json({ norecordfound: 'No SMSMessage found' }))
 })
 
-// @route GET api/events
-// @description add/save sMSMessage
-// @access Public
-// router.post('/', (req, res) => {
-//     SMSMessage.create(req.body)
-//         .then((sMSMessage) => res.json({ msg: 'SMSMessage added successfully' }))
-//         .catch((err) =>
-//             res.status(400).json({ error: 'Unable to add this sMSMessage' }),
-//         )
-// })
 
 // @route GET api/events/:id
 // @description Update sMSMessage
@@ -96,17 +86,6 @@ router.get('/:id', (req, res) => {
         .catch((err) => res.status(404).json({ norecordfound: 'No SMSMessage found' }))
 })
 
-// @route GET api/events
-// @description add/save sMSMessage
-// @access Public
-// router.post('/', (req, res) => {
-//     SMSMessage.create(req.body)
-//         .then((sMSMessage) => res.json({ msg: 'SMSMessage added successfully' }))
-//         .catch((err) =>
-//             res.status(400).json({ error: 'Unable to add this sMSMessage' }),
-//         )
-// })
-
 // @route GET api/events/:id
 // @description Update sMSMessage
 // @access Public
@@ -143,6 +122,23 @@ router.post('/', (req, res) => {
             console.log(err);
             res.send(JSON.stringify({ success: false }));
         });
+});
+
+// @description add/save message
+// @access Public
+router.post('/', (req, res) => {
+    client.messages
+    create({
+        from: phoneNumber, //process.env.TWILIO_PHONE_NUMBER,
+        to: req.body.to,
+        body: req.body.body
+    })
+        .then(() => res.json({ msg: 'Message saved successfully' }))
+        .catch((err) =>
+            console.log(err),
+            res.status(400).json({ error: 'Unable to add this message' }),
+        )
+
 });
 
 

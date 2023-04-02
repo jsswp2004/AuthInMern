@@ -1,3 +1,5 @@
+
+//not used
 const express = require('express')
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
@@ -14,7 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
 
-app.post('/api/messages', (req, res) => {
+// app.post('/api/messages', (req, res) => {
+app.post('/', (req, res) => {
     res.header('Content-Type', 'application/json');
     client.messages
         .create({

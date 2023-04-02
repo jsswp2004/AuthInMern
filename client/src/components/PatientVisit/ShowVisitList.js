@@ -623,7 +623,7 @@ export default function ShowVisitList() {
                           <button className='btn btn-info btn-sm'
                             onClick={() => { handleSMSMessageShow(pt._id) }}
                           >
-                            <i class="fa fa-envelope"
+                            <i className="fa fa-commenting-o"
                               aria-hidden="true"
                               title='Send message'></i>
 
