@@ -283,8 +283,9 @@ export default function ClinicVisit() {
   //#region Edit Visit Modal from Registration
   const ShowEditVisitModal = () => (
     <>
-      <Modal dialogClassName="modalSizeHeight" show={showEditVisit} onHide={handleEditVisitClose} centered>
+      <Modal size="lg" show={showEditVisit} onHide={handleEditVisitClose} centered>
         {/* size="lg" */}
+        {/* dialogClassName="modalSizeHeight"  */}
         <Modal.Header>
           <Modal.Title>Edit Visit</Modal.Title>
           <Button variant="secondary" onClick={handleEditVisitClick}>

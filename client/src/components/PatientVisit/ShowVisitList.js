@@ -25,6 +25,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
 import DetailVisitModal from './detailsPatientVisitModal'
+import SMSMessagesModal from '../SMSMessage/SMSForm'
 import { Link } from 'react-router-dom'
 import * as XLSX from "xlsx"
 import themeDesign from '../Functions/theme'
@@ -53,6 +54,49 @@ export default function ShowVisitList() {
   //#region Define patient ID for create visit from registration modal
   const [visitID, setVisitID] = useState('')
   //#endregion
+
+
+  //#region for SMS Modal
+  const SMSMessageModal = () => (
+    <>
+      <Modal show={showSMSMessage} onHide={handleSMSMessageClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Send a reminder</Modal.Title>
+          <Button variant="secondary" onClick={handleShowSMSMessageClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <SMSMessagesModal visitID={visitID} />
+        </Modal.Body>
+      </Modal>
+    </>
+  )
+
+  //Function to display create visit from registration modal
+  function displayShowSMSMessageModal() {
+    return <SMSMessageModal />
+  }
+
+  //Define the state for edit visit from registration modal 
+  const [showSMSMessage, setShowSMSMessage] = useState(false)
+  const handleSMSMessageClose = () => setShowSMSMessage(false)
+  const handleSMSMessageShow = () => {
+    setShowSMSMessage(true)
+  }
+
+  const handleShowSMSMessageClick = (e) => {
+    e.preventDefault()
+    setShowSMSMessage(false)
+  }
+
+  //#endregion 
+
+
+
+
+
+
   //#region for Visit Details Modal
   const ShowDetailVisitModal = () => (
     <>
@@ -351,7 +395,7 @@ export default function ShowVisitList() {
 
 
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(15)
+  const [rowsPerPage, setRowsPerPage] = React.useState(20)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -512,7 +556,7 @@ export default function ShowVisitList() {
           <div>{displayEditVisitModal()}</div>
           <div>{displayDetailVisitModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
-
+          <div>{displayShowSMSMessageModal()}</div>
           <div className="item3B" style={{ overflowY: 'auto' }}>
             <ThemeProvider theme={themeDesign}>
               <TableContainer component={Paper}>
@@ -576,6 +620,14 @@ export default function ShowVisitList() {
                           {pt.addedDate}
                         </StyledTableCell>
                         <StyledTableCell align="left" width={'200px'}>
+                          <button className='btn btn-info btn-sm'
+                            onClick={() => { handleSMSMessageShow(pt._id) }}
+                          >
+                            <i class="fa fa-envelope"
+                              aria-hidden="true"
+                              title='Send message'></i>
+
+                          </button>
                           <button
                             className="btn btn-primary btn-sm"
                             onClick={() => { handleEditVisitShow(pt._id) }}>
@@ -584,6 +636,7 @@ export default function ShowVisitList() {
                               aria-hidden="true"
                               title='edit visit'
                             />
+
                           </button>
                           <button
                             className="btn btn-success btn-sm"
@@ -622,9 +675,9 @@ export default function ShowVisitList() {
                       <TablePagination
                         // style={{float:'right'}}
                         rowsPerPageOptions={[
-                          5,
-                          15,
-                          25,
+                          10,
+                          20,
+                          30,
                           { label: 'All', value: -1 },
                         ]}
                         colSpan={12}

@@ -426,7 +426,7 @@ export default function ShowRecordList() {
 
 
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(15)
+  const [rowsPerPage, setRowsPerPage] = React.useState(20)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -619,7 +619,7 @@ export default function ShowRecordList() {
                     <TableRow>
                       <TablePagination
                         // style={{float:'right'}}
-                        rowsPerPageOptions={[5, 15, 25, { label: 'All', value: -1 }]}
+                        rowsPerPageOptions={[10, 20, 30, { label: 'All', value: -1 }]}
                         colSpan={12}
                         count={filteredData.length}
                         rowsPerPage={rowsPerPage}

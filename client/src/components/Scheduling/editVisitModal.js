@@ -66,6 +66,7 @@ function UpdateVisitInfo(props) {
     provider: '',
     hourOfVisit: selectedHour,
     event: '',
+    cellphone: '',
   })
 
 
@@ -285,8 +286,6 @@ function UpdateVisitInfo(props) {
                   <Link
                     className="btn btn-info"
                     to={`/createPatientFromVisit/${visitID}`}
-                    // data={data}
-                    // firstName={data.firstName}
                     style={{ display: selectedRecord.length === 0 ? 'inline' : 'none' }}
                   >
                     <i
