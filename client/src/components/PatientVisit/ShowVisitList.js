@@ -26,6 +26,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
 import DetailVisitModal from './detailsPatientVisitModal'
 import SMSMessagesModal from '../SMSMessage/SMSForm'
+import EmailMessagesModal from '../PatientVisit/sendEmailToPatient'
 import { Link } from 'react-router-dom'
 import * as XLSX from "xlsx"
 import themeDesign from '../Functions/theme'
@@ -73,12 +74,12 @@ export default function ShowVisitList() {
     </>
   )
 
-  //Function to display create visit from registration modal
+  //Function to display SMS Modal
   function displayShowSMSMessageModal() {
     return <SMSMessageModal />
   }
 
-  //Define the state for edit visit from registration modal 
+  //Define the state for SMS Modal
   const [showSMSMessage, setShowSMSMessage] = useState(false)
   const handleSMSMessageClose = () => setShowSMSMessage(false)
   const handleSMSMessageShow = () => {
@@ -90,9 +91,44 @@ export default function ShowVisitList() {
     setShowSMSMessage(false)
   }
 
-  //#endregion 
+  //#endregion
 
 
+  //#region for Email to Patient Modal
+  const EmailMessageModal = () => (
+    <>
+      <Modal show={showEmailMessage} onHide={handleEmailMessageClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Send an Email</Modal.Title>
+          <Button variant="secondary" onClick={handleShowEmailMessageClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <EmailMessagesModal visitID={visitID} />
+        </Modal.Body>
+      </Modal>
+    </>
+  )
+
+  //Function to display email message modal 
+  function displayShowEmailMessageModal() {
+    return <EmailMessageModal />
+  }
+
+  //Define the state for email message modal 
+  const [showEmailMessage, setShowEmailMessage] = useState(false)
+  const handleEmailMessageClose = () => setShowEmailMessage(false)
+  const handleEmailMessageShow = () => {
+    setShowEmailMessage(true)
+  }
+
+  const handleShowEmailMessageClick = (e) => {
+    e.preventDefault()
+    setShowEmailMessage(false)
+  }
+
+  //#endregion
 
 
 
@@ -557,6 +593,7 @@ export default function ShowVisitList() {
           <div>{displayDetailVisitModal()}</div>
           <div>{displayDeleteRegistrationModal()}</div>
           <div>{displayShowSMSMessageModal()}</div>
+          <div>{displayShowEmailMessageModal()}</div>
           <div className="item3B" style={{ overflowY: 'auto' }}>
             <ThemeProvider theme={themeDesign}>
               <TableContainer component={Paper}>
@@ -620,6 +657,14 @@ export default function ShowVisitList() {
                           {pt.addedDate}
                         </StyledTableCell>
                         <StyledTableCell align="left" width={'200px'}>
+                          <button className='btn btn-info btn-sm'
+                            onClick={() => { handleEmailMessageShow(pt._id) }}
+                          >
+                            <i className="fa fa-envelope"
+                              aria-hidden="true"
+                              title='Send email'></i>
+
+                          </button>
                           <button className='btn btn-info btn-sm'
                             onClick={() => { handleSMSMessageShow(pt._id) }}
                           >

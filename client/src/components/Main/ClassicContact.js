@@ -19,9 +19,7 @@ const ClassicContact = () => {
     })
 
     const navigate = useNavigate();
-    // const onChange = (e) => {
-    //     setUser({ ...user, [e.target.name]: e.target.value })
-    // }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus("Sending...");
@@ -31,14 +29,6 @@ const ClassicContact = () => {
             email: email.value,
             message: message.value
         };
-        // let response =
-        // await fetch("http://localhost:8081/api/emails", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json;charset=utf-8",
-        //     },
-        //     body: JSON.stringify(details),
-        // });
 
         axios
             .post('http://localhost:8081/api/emails', details)
@@ -58,54 +48,9 @@ const ClassicContact = () => {
                 alert('Message sent error. Please contact site administrator.');
             })
         setStatus("Submitted");
-
-
     }
-
-
     // end of new code
-    // const [user, setUser] = useState({
-    //     name: '',
-    //     firstName: '',
-    //     lastName: '',
-    //     role: '',
-    //     email: '',
-    //     password: '',
-    //     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-    // })
 
-    // const fullName = user.firstName + ' ' + user.lastName
-    // const onChange = (e) => {
-    //     setUser({ ...user, [e.target.name]: e.target.value })
-    // }
-
-    // const onSubmit = async (e) => {
-    //     e.preventDefault()
-
-    //     axios
-    //         .post('http://localhost:8081/api/users', user)
-    //         .then((res) => {
-    //             setUser({
-    //                 name: fullName,
-    //                 firstName: '',
-    //                 lastName: '',
-    //                 role: '',
-    //                 email: '',
-    //                 password: '',
-    //                 addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-    //             })
-    //             navigate('/login')
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }
-
-    // const navigate = useNavigate()
-    // const toSignup = () => {
-    //     localStorage.removeItem('token')
-    //     navigate('/Signup')
-    // }
     //#region Define the state for create registration modal
 
     const [showPrivacy, setShowPrivacy] = useState(false)

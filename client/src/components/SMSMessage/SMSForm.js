@@ -9,21 +9,16 @@ function SendSMSMessage(props) {
 
     const navigate = useNavigate()
 
-    //iniitial state for mobile phone
+    //initial state for mobile phone
     const [mobilePhone, setMobilePhone] = useState('')
     //deconstruct mobile phone
     const { cellphone } = mobilePhone
-
     //visit ID of patient selected from props
     const visitID = props.visitID
-
-
-
     //initial state of the message
     const [smsMessage, setSMSMassage] = useState({
         to: '',
         body: '',
-
     })
 
     //on change method to update the value from the jsx object
@@ -81,7 +76,6 @@ function SendSMSMessage(props) {
                 {/* <h5 className="createPageHeader">Send a reminder to patient</h5> */}
                 <div className="createRoleModalBody">
                     <form onSubmit={onSubmit} noValidate >
-                        {/* onSubmit={onSubmit} */}
                         <div className="form-grid-containers modalContainer">
                             <div className="div-items">
                                 <div className="forms-group">
