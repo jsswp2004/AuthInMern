@@ -466,7 +466,7 @@ export default function ShowVisitList() {
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
   //#endregion
   //#region to hide navbar
-  const [showNav, setShowNav] = useState(true);
+  const [showNav, setShowNav] = useState(false);
   function toggleNav() {
     setShowNav(!showNav);
   }

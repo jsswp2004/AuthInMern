@@ -1,5 +1,5 @@
 //#region Imports
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import backward from '../shared/images/backward.jpg'
 import forward from '../shared/images/forward.jpg'
@@ -55,10 +55,15 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
 import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
+import SMSMessagesModal from '../SMSMessage/SMSForm'
+import ReactToPrint from 'react-to-print';
 //#endregion
 
 export default function ClinicVisit() {
   // const userx = useContext(UserContext);
+  // Component to print
+  const componentToPrintRef = useRef();
+
   //#region for alert declaration
   // const alert = useAlert()
   //#endregion
@@ -139,6 +144,41 @@ export default function ClinicVisit() {
   let startOfTheWeekDate = startOfWeek(newdate)
   let startOfTheWeekEndOfMonth = endOfMonth(startOfTheWeekDate).getDate()
   //#endregion
+  //#region for SMS Modal
+  const SMSMessageModal = () => (
+    <>
+      <Modal show={showSMSMessage} onHide={handleSMSMessageClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Send a reminder</Modal.Title>
+          <Button variant="secondary" onClick={handleShowSMSMessageClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <SMSMessagesModal visitID={visitID} />
+        </Modal.Body>
+      </Modal>
+    </>
+  )
+
+  //Function to display create visit from registration modal
+  function displayShowSMSMessageModal() {
+    return <SMSMessageModal />
+  }
+
+  //Define the state for edit visit from registration modal 
+  const [showSMSMessage, setShowSMSMessage] = useState(false)
+  const handleSMSMessageClose = () => setShowSMSMessage(false)
+  const handleSMSMessageShow = () => {
+    setShowSMSMessage(true)
+  }
+
+  const handleShowSMSMessageClick = (e) => {
+    e.preventDefault()
+    setShowSMSMessage(false)
+  }
+
+  //#endregion 
   //#region for Visit Details Modal
   const ShowDetailVisitModal = () => (
     <>
@@ -1421,7 +1461,7 @@ export default function ClinicVisit() {
 
   //#endregion
   //#region to hide navbar
-  const [showNav, setShowNav] = useState(true);
+  const [showNav, setShowNav] = useState(false);
   function toggleNav() {
     setShowNav(!showNav);
   }
@@ -1441,7 +1481,7 @@ export default function ClinicVisit() {
           </button>
         </div>
         <div className="item3">
-          <div className="grid_calendar">
+          <div ref={componentToPrintRef} className="grid_calendar">
             <div className="itemCalendar1 ">
               {/* <div style={{ display: 'flex' }}> */}
               {/* className="month-indicator item3C" */}
@@ -1584,15 +1624,23 @@ export default function ClinicVisit() {
                     <i className="fa fa-search" aria-hidden="true"></i>
                   </a>
                 </div>
+                <div>
+                  <ReactToPrint
+                    trigger={() => <button className='searchButton'><i className="fa fa-print" aria-hidden="true" title='Print'></i></button>}
+                    content={() => componentToPrintRef.current}
+                  />
+                </div>
               </div>
+
               {/* search end */}
-              {/* </div> */}
+
             </div>
+
             <div>{displayVisitMonthlyModal()}</div>
             <div>{displayDeleteRegistrationModal()}</div>
             <div>{displayEditVisitModal()}</div>
             <div>{displayDetailVisitModal()}</div>
-
+            <div>{displayShowSMSMessageModal()}</div>
             <div className="itemCalendar2">
 
               {/* monthly */}
@@ -2821,6 +2869,14 @@ export default function ClinicVisit() {
                                 {pt.addedDate}
                               </StyledTableCell>
                               <StyledTableCell align="left">
+                                <button className='btn btn-info btn-sm'
+                                  onClick={() => { handleSMSMessageShow(pt._id) }}
+                                >
+                                  <i className="fa fa-commenting-o"
+                                    aria-hidden="true"
+                                    title='Send message'></i>
+
+                                </button>
                                 <button
                                   className="btn btn-primary btn-sm"
                                   onClick={() => { handleEditVisitShow(pt._id) }}>

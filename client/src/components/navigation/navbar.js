@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar() {
 
-  const [show, setShow] = useState(false)
+  // const [show, setShow] = useState(false)
   // const userx = useContext(UserContext);
   const userRole = useContext(RoleContext);
   // console.log(userRole[0])

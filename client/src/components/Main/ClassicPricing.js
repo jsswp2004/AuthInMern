@@ -143,7 +143,6 @@ const ClassicHome = () => {
                         <button className="btn btn-primary btnWidth">Get Started with Basic</button>
 
                     </div>
-                    {/* <div style={{ alignSelf: 'baseline', height: "400px", justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap' }}> */}
                     <div className="pricingContainerRectangleBackground2">
                         <div>
                             <p className="textInPage h6 pricingTextBold">
@@ -219,23 +218,31 @@ const ClassicHome = () => {
                         <p className="pricingTextSize30 ">BASIC</p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Process Analysis
+                            {' '}Schedule Management
                         </p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Schedule Management
-                        </p>                  <p className="pricingTextSize10">
-                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}Time Tracking
-                        </p>                  <p className="pricingTextSize10">
+                        </p>
+                        <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}Retention Metrics
-                        </p>                  <p className="pricingTextSize10">
+                        </p>
+                        <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}Reports
-                        </p>                  <p className="pricingTextSize10">
+                        </p>
+                        <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}Email Integration
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}SMS Reminders
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Patient Self-scheduling Portal
                         </p>
 
                     </div>
@@ -243,10 +250,6 @@ const ClassicHome = () => {
                         <p className="pricingTextSize30 ">PRO</p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Process Analysis
-                        </p>
-                        <p className="pricingTextSize10">
-                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}Schedule Management
                         </p>                  <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
@@ -264,19 +267,24 @@ const ClassicHome = () => {
                         </p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Real-time Collaboration
+                            {' '}SMS Reminders
                         </p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Automated Workflows
+                            {' '}Automated SMS and Email Reminders
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Real-time Collaboration Support
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Patient Self-scheduling Portal
                         </p>
                     </div>
                     <div style={{ width: '15%' }}>
                         <p className="pricingTextSize30 ">BUSINESS</p>
-                        <p className="pricingTextSize10">
-                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Process Analysis
-                        </p>
+
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}Schedule Management
@@ -296,19 +304,35 @@ const ClassicHome = () => {
                         </p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Real-time Collaboration
+                            {' '}SMS Reminders
                         </p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
-                            {' '}Automated Workflows
+                            {' '}Automated SMS and Email Reminders
                         </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Real-time Collaboration Support
+                        </p>
+                        {/* <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Automated Workflows
+                        </p> */}
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}Analytics
                         </p>
                         <p className="pricingTextSize10">
                             <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Process Analysis
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
                             {' '}SLA Management
+                        </p>
+                        <p className="pricingTextSize10">
+                            <i className="fa fa-star fa-sm" aria-hidden="true" style={{ color: 'blue' }}></i>
+                            {' '}Patient Self-scheduling Portal
                         </p>
                     </div>
                 </div>

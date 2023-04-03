@@ -35,11 +35,11 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 export default function ShowRecordList() {
   // const [patientIDx, setPatientIDx] = useState('')
-  const toEditReg = (pt) => {
-    // localStorage.removeItem('token')
-    // setPatientIDx(pt._id)
-    navigate(`/editPatient/${patientID}`)
-  }
+  // const toEditReg = (pt) => {
+  // localStorage.removeItem('token')
+  // setPatientIDx(pt._id)
+  //   navigate(`/editPatient/${patientID}`)
+  // }
   //color theme
   // const theme = createTheme({
   //   palette: {
@@ -47,7 +47,7 @@ export default function ShowRecordList() {
   //   },
   // });
   //#region Define the state for create registration modal
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => {
@@ -449,7 +449,7 @@ export default function ShowRecordList() {
   }
   //#endregion
   //#region to hide navbar
-  const [showNav, setShowNav] = useState(true);
+  const [showNav, setShowNav] = useState(false);
   function toggleNav() {
     setShowNav(!showNav);
   }

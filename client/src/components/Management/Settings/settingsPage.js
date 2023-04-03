@@ -10,7 +10,7 @@ import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
 
 const ShowSettings = () => {
   //#region to hide navbar
-  const [showNav, setShowNav] = useState(true);
+  const [showNav, setShowNav] = useState(false);
   function toggleNav() {
     setShowNav(!showNav);
   }

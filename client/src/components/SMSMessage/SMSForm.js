@@ -63,8 +63,11 @@ function SendSMSMessage(props) {
                     body: '',
                 })
                 console.log('Message successful!')
+                // let result = res.json();
+                alert('Message sent successfully');
                 // Push to /
-                navigate('/clinicVisit')
+                // navigate('/clinicVisit')
+                navigate(-1)
             })
             .catch((err) => {
                 console.log('Error in Sending a message!')
