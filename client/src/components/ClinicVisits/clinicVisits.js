@@ -64,6 +64,41 @@ export default function ClinicVisit() {
   // const userx = useContext(UserContext);
   // Component to print
   const componentToPrintRef = useRef();
+  //local storage to pull curresnt user name and role
+  const useremail = localStorage.getItem('email')
+  const [currentUser, setCurrentUser] = useState([{
+    _id: '',
+    // email: '',
+    facilityID: '',
+    role: '',
+    firstName: '',
+  }])
+
+  useEffect(() => {
+
+    // localStorage.setItem('firstName', currentUser.firstName)
+    axios
+      // localStorage.setItem('role')
+      .get(`http://localhost:8081/api/users`)
+      .then((response) => {
+        const data = response.data
+        setCurrentUser(data.find((user) => user.email === useremail))
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+
+  }, [useremail])
+  const { _id, facilityID, role, firstName } = currentUser
+  console.log(currentUser, _id, facilityID, role, firstName)
+  // localStorage.setItem('role', role)
+
+  //setting local storage for role
+  useEffect(() => {
+    localStorage.setItem('role', role)
+    localStorage.setItem('firstName', firstName)
+  }
+    , [firstName, role])
 
   //#region for alert declaration
   // const alert = useAlert()

@@ -4,17 +4,17 @@ import React, { useContext, useState } from 'react'
 // import axios from 'axios' useState, useEffect, UserContext
 import 'bootstrap/dist/css/bootstrap.css'
 // import { RoleContext } from '../../App'
-import { RoleContext } from '../Login/index'
+import { RoleContext } from '../../App'
 // C:\Users\jsswp\github\AuthInMern\client\src\components\Login\index.jsx
 
 import { Link } from 'react-router-dom'
 
 
 export default function Navbar() {
-
+  const userRole = localStorage.getItem('role')
   // const [show, setShow] = useState(false)
   // const userx = useContext(UserContext);
-  const userRole = useContext(RoleContext);
+  // const userRole = useContext(RoleContext);
   // console.log(userRole)
   return (
     <div id="navbarSupportedContent">

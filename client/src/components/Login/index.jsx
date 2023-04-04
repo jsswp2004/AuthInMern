@@ -18,13 +18,13 @@ const Login = () => {
   const [rolex, setRolex] = useState({ role: '' })
   const [error, setError] = useState('')
   const userData = data.email
-  const userRole = rolex.role
+  const userRole = data.role
   // const { role } = userRole
   // const [user, setUser] = useState()
   // const [currentUser, setCurrentUser] = useState([])
   // const loggedUserRole = currentUser.map((user) => user.role)
   // const loggedUserFirstName = currentUser.map((user) => user.firstName)
-  console.log(userData, userRole)
+  // console.log(userData, rolex.role)
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value })
   }
@@ -58,9 +58,11 @@ const Login = () => {
       .get(`http://localhost:8081/api/users`)
       .then((response) => {
         const data = response.data
-        setRolex(data.filter((user) => user.email === userData))
+        setRolex(data.find((user) => user.email === userData))
+        // (data.find((user) => user.email === useremail))
         console.log(data)
       })
+      // .includes((user) => user.email === userData)
       .catch((error) => {
         console.log('Error from user list')
       })

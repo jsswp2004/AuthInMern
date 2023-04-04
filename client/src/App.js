@@ -34,33 +34,36 @@ import TestStaffTable from './components/TestFolder/testStaffTable01'
 import CreateSchedule from './components/Management/StaffSchedules/createSchedule'
 import EditSchedule from './components/Management/StaffSchedules/editSchedule'
 import ShowPatientVisitList from './components/PatientVisit/showPatientVisitList'
-import { RoleContext } from './components/Login'
+// import { RoleContext } from './components/Login/index'
 
 // export const UserContext = createContext();
 //these contexts are created here  while user context is created in login page
-// export const RoleContext = createContext();
+export const RoleContext = createContext();
 export const FirstNameContext = createContext();
 export const FacilityContext = createContext();
 
 
 function App() {
   const user = localStorage.getItem('token')
-  const useremail = localStorage.getItem('email')
+  // const useremail = localStorage.getItem('email')
+
+  // localStorage.setItem('email', data.email)
   // const userFacility = localStorage.getItem('facilityID')
 
   // this variable is used to pass the user email to the child components from login page
   // let userData = useremail
   // console.log(userData)
   // const [currentUser, setCurrentUser] = useState([])
-  const [currentUser, setCurrentUser] = useState([{
-    _id: '',
-    // email: '',
-    facilityID: '',
-    role: '',
-    firstName: '',
-  }])
-  const value = useContext(RoleContext);
-  console.log(value)
+  // const [currentUser, setCurrentUser] = useState([{
+  //   _id: '',
+  //   // email: '',
+  //   facilityID: '',
+  //   role: '',
+  //   firstName: '',
+  // }])
+  // localStorage.setItem('role', currentUser.role)
+  // const userRole = localStorage.setItem('role', currentUser.role)
+  // console.log(currentUser.role)
   // console.log(currentUser._id, currentUser.facilityID, currentUser.role, currentUser.firstName)
   // const loggedUserRole = currentUser.map((user) => user.role)
   // const loggedUserID = currentUser.map((user) => user._id)
@@ -72,30 +75,26 @@ function App() {
 
 
   // console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0], userFacility[0])
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8081/api/users`)
-      .then((response) => {
-        const data = response.data
-        setCurrentUser(data.find((user) => user.email === useremail))
-      })
-      .catch((error) => {
-        console.log('Error from user list')
-      })
-  }, [useremail])
+  // useEffect(() => {
+
+  //   // localStorage.setItem('firstName', currentUser.firstName)
+  //   axios
+  //     .get(`http://localhost:8081/api/users`)
+  //     .then((response) => {
+  //       const data = response.data
+  //       setCurrentUser(data.find((user) => user.email === useremail))
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from user list')
+  //     })
+
+  // }, [useremail])
   return (
 
 
-    // <BrowserRouter>
-
-
     // <RoleContext.Provider value={currentUser.role}>
-    //   <FirstNameContext.Provider value={currentUser.firstName}>
-    //     <FacilityContext.Provider value={currentUser.facilityID}>
-
-    // { user && <Route path="/patientlist" exact element={<PatientList />} />}
-
-    <Routes>
+    // {/* <FirstNameContext.Provider value={currentUser.firstName}> */ }
+    < Routes >
       <Route path="/" exact element={<Main />} />
       <Route path="/about" exact element={<About />} />
       <Route path="/contact" exact element={<Contact />} />
@@ -134,13 +133,10 @@ function App() {
       {user && <Route path="/createSchedule" exact element={<CreateSchedule />} />}
       {user && <Route path="/editSchedule/:id" exact element={<EditSchedule />} />}
       {user && <Route path="/showPatientVisitList/:id" exact element={<ShowPatientVisitList />} />}
-    </Routes>
+    </Routes >
 
-    //     </FacilityContext.Provider>
-    //   </FirstNameContext.Provider>
+    // {/* </FirstNameContext.Provider> */ }
     // </RoleContext.Provider>
-
-    // </BrowserRouter>
 
   )
 }

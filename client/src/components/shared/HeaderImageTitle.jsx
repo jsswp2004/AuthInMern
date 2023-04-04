@@ -1,5 +1,6 @@
 import React from 'react'
 import { FirstNameContext } from '../../App'
+
 import logo from './images/logoPOWER.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
@@ -9,15 +10,19 @@ import { useContext } from 'react'
 // const UserContext = createContext();
 // import Home from "../pages/Home.page"
 function HeaderImageTitle() {
-
-  const userFirstName = useContext(FirstNameContext);
+  const userFirstName = localStorage.getItem('firstName')
+  // const userFirstName = useContext(FirstNameContext);
   let navigate = useNavigate()
   const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
     localStorage.removeItem('email')
+    localStorage.removeItem('firstName')
+    localStorage.removeItem('role')
     navigate('/')
   }
+
+  // const userRole = localStorage.getItem('role')
 
   return (
     <nav className="navbar1">
