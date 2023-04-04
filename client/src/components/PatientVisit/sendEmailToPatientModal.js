@@ -8,14 +8,14 @@ import { useNavigate } from 'react-router-dom'
 // import TermsOfService from './TermsOfService'
 // import PrivacyPolicy from './PrivacyPolicy'
 // import { format } from 'date-fns'
-import { FacilityContext } from "../../App";
+// import { FacilityContext } from "../../App";
 import axios from 'axios'
 
 function SendEmailMessage(props) {
     // use navigate to redirect to a page
     const navigate = useNavigate();
     // use facility context to get facility data
-    const facilityName = useContext(FacilityContext);
+    // const facilityName = useContext(FacilityContext);
     //initial state for patient email
     const [patientEmailAddress, setPatientEmailAddress] = useState('')
     //deconstruct patient email
@@ -98,7 +98,7 @@ function SendEmailMessage(props) {
                                             className="form-control"
                                             type="text"
                                             id="name"
-                                            value={facilityName}
+                                        // value={facilityName}
                                         // onChange={onChange}
                                         // className={styles.formControl}
                                         />

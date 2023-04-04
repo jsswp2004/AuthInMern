@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 // import { format } from 'date-fns'
 // import axios from 'axios' useState, useEffect, UserContext
 import 'bootstrap/dist/css/bootstrap.css'
-import { RoleContext } from '../../App'
+import { RoleContext } from '../Login'
 
 import { Link } from 'react-router-dom'
 
@@ -46,7 +46,10 @@ export default function Navbar() {
           </li> */}
 
 
-          <li id="link" className="body_navbarlist" style={{ display: userRole[0] === 'Admin' ? 'inline' : 'none' }} >
+          <li id="link" className="body_navbarlist" style={{
+            display: userRole === 'Admin' ? 'inline' : 'none'
+          }} >
+            {/* style={{ display: userRole[0] === 'Admin' ? 'inline' : 'none' }} */}
 
             <Link to="/settingsPage">Manage Settings</Link>
           </li>

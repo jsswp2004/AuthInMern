@@ -1,5 +1,5 @@
 import React from 'react'
-import { FirstNameContext } from '../../App'
+// import { FirstNameContext } from '../../App'
 import logo from './images/logoPOWER.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
@@ -10,7 +10,7 @@ import { useContext } from 'react'
 // import Home from "../pages/Home.page"
 function HeaderImageTitle() {
 
-  const userFirstName = useContext(FirstNameContext);
+  // const userFirstName = useContext(FirstNameContext);
   let navigate = useNavigate()
   const handleLogout = () => {
     localStorage.removeItem('token')
@@ -34,7 +34,7 @@ function HeaderImageTitle() {
 
       <ul className="navigation">
         <span className="navbar_listHeaderGreeting">
-          Welcome {userFirstName}!
+          {/* Welcome {userFirstName}! */}
         </span>
         {/* <li id="link" className="navbar_list">
             <Link to="/createPatient">Registration</Link>

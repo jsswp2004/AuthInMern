@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
@@ -16,6 +16,7 @@ const Login = () => {
   // let userData = useremail
   const [data, setData] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
+  const userData = data.email
   // const [user, setUser] = useState()
   // const [currentUser, setCurrentUser] = useState([])
   // const loggedUserRole = currentUser.map((user) => user.role)
@@ -47,63 +48,75 @@ const Login = () => {
       }
     }
   }
+  const [role, setRole] = useState({ role: '' })
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/users`)
+      .then((response) => {
+        const data = response.data
+        setRole(data.filter((user) => user.email === userData))
+      })
+      .catch((error) => {
+        console.log('Error from user list')
+      })
+  }, [userData])
 
   return (
-    // <UserContext.Provider value={userData}>
-    //   <RoleContext.Provider value={loggedUserRole}>
-    //     <FirstNameContext.Provider value={loggedUserFirstName}>
-    <div className="grid_container_home">
-      <div className="item1_home">
-        <HeaderMain />
-      </div>
-      <div className="item3_home">
-        <div className={styles.login_container}>
-          <div className={styles.login_form_container}>
-            <div className={styles.left}>
-              <form className={styles.form_container} onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '30px' }} >
-                  <HeaderLogo />
+    <UserContext.Provider value={userData}>
+      <RoleContext.Provider value={role}>
+        {/* //     <FirstNameContext.Provider value={loggedUserFirstName}>  */}
+        <div className="grid_container_home">
+          <div className="item1_home">
+            <HeaderMain />
+          </div>
+          <div className="item3_home">
+            <div className={styles.login_container}>
+              <div className={styles.login_form_container}>
+                <div className={styles.left}>
+                  <form className={styles.form_container} onSubmit={handleSubmit}>
+                    <div style={{ marginBottom: '30px' }} >
+                      <HeaderLogo />
+                    </div>
+                    <h5>Login to Your Account</h5>
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      name="email"
+                      onChange={handleChange}
+                      value={data.email}
+                      required
+                      className={styles.input}
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      onChange={handleChange}
+                      value={data.password}
+                      required
+                      className={styles.input}
+                    />
+                    {error && <div className={styles.error_msg}>{error}</div>}
+                    <button type="submit" className={styles.green_btn}>
+                      Sign In
+                    </button>
+                  </form>
                 </div>
-                <h5>Login to Your Account</h5>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  onChange={handleChange}
-                  value={data.email}
-                  required
-                  className={styles.input}
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  onChange={handleChange}
-                  value={data.password}
-                  required
-                  className={styles.input}
-                />
-                {error && <div className={styles.error_msg}>{error}</div>}
-                <button type="submit" className={styles.green_btn}>
-                  Sign In
-                </button>
-              </form>
-            </div>
-            <div className={styles.right}>
-              <h1>New Here?</h1>
-              <Link to="/signup">
-                <button type="button" className={styles.white_btn}>
-                  Sign Up
-                </button>
-              </Link>
+                <div className={styles.right}>
+                  <h1>New Here?</h1>
+                  <Link to="/signup">
+                    <button type="button" className={styles.white_btn}>
+                      Sign Up
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div >
-    //     </FirstNameContext.Provider>
-    //   </RoleContext.Provider>
-    // </UserContext.Provider>
+        {/* //     </FirstNameContext.Provider> */}
+      </RoleContext.Provider>
+    </UserContext.Provider>
 
   )
 }
