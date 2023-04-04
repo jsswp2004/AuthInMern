@@ -50,6 +50,7 @@ function UpdateVisitInfo(props) {
       })
   }, [])
 
+  //visit id value from props
   const visitID = props.visitID
   const navigate = useNavigate()
 
@@ -97,14 +98,16 @@ function UpdateVisitInfo(props) {
   }, [visitID])
 
   const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate } = visit
-
+  console.log(medicalRecordNumber)
   //pull patient record to determine registration
   const [patientRecord, setPatientRecord] = useState([])
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/records/')
       .then((response) => {
-        setPatientRecord(response.data)
+        setPatientRecord(response.data).filter((patient) => {
+          return patient.medicalRecordNumber === medicalRecordNumber
+        })
 
       })//.includes(medicalRecordNumber)
       .catch((error) => {
@@ -118,7 +121,13 @@ function UpdateVisitInfo(props) {
     // console.log(patient)
     // console.log(medicalRecordNumber)
   })
-  console.log(selectedRecord === '0' ? 'true' : 'false', selectedRecord.length)
+  // const selectedRecord = patientRecord.find((patient) => patient.medicalRecordNumber === medicalRecordNumber
+  //   // console.log(patient)
+  //   // console.log(medicalRecordNumber)
+  // )
+  // console.log(selectedRecord === '0' ? 'true' : 'false', selectedRecord.length)
+  console.log(patientRecord)
+
 
   //pull visits to know available hours in a day
   const [getVisits, setGetVisits] = useState([])
@@ -181,7 +190,7 @@ function UpdateVisitInfo(props) {
     window.location.close()
   }
 
-
+  console.log(data)
   return (
     <div className="grid_containers">
       <div className="item3">

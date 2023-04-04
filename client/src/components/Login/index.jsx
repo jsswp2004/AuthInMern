@@ -68,59 +68,59 @@ const Login = () => {
 
   return (
     // <UserContext.Provider value={userData}>
-    // {/* <RoleContext.Provider value={userRole}> */}
-    // {/* //     <FirstNameContext.Provider value={loggedUserFirstName}>  */}
-    <div className="grid_container_home">
-      <div className="item1_home">
-        <HeaderMain />
-      </div>
-      <div className="item3_home">
-        <div className={styles.login_container}>
-          <div className={styles.login_form_container}>
-            <div className={styles.left}>
-              <form className={styles.form_container} onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '30px' }} >
-                  <HeaderLogo />
-                </div>
-                <h5>Login to Your Account</h5>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  onChange={handleChange}
-                  value={data.email}
-                  required
-                  className={styles.input}
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  onChange={handleChange}
-                  value={data.password}
-                  required
-                  className={styles.input}
-                />
-                {error && <div className={styles.error_msg}>{error}</div>}
-                <button type="submit" className={styles.green_btn}>
-                  Sign In
-                </button>
-              </form>
-            </div>
-            <div className={styles.right}>
-              <h1>New Here?</h1>
-              <Link to="/signup">
-                <button type="button" className={styles.white_btn}>
-                  Sign Up
-                </button>
-              </Link>
+    <RoleContext.Provider value={userRole}>
+      {/* //     <FirstNameContext.Provider value={loggedUserFirstName}>  */}
+      <div className="grid_container_home">
+        <div className="item1_home">
+          <HeaderMain />
+        </div>
+        <div className="item3_home">
+          <div className={styles.login_container}>
+            <div className={styles.login_form_container}>
+              <div className={styles.left}>
+                <form className={styles.form_container} onSubmit={handleSubmit}>
+                  <div style={{ marginBottom: '30px' }} >
+                    <HeaderLogo />
+                  </div>
+                  <h5>Login to Your Account</h5>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleChange}
+                    value={data.email}
+                    required
+                    className={styles.input}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    onChange={handleChange}
+                    value={data.password}
+                    required
+                    className={styles.input}
+                  />
+                  {error && <div className={styles.error_msg}>{error}</div>}
+                  <button type="submit" className={styles.green_btn}>
+                    Sign In
+                  </button>
+                </form>
+              </div>
+              <div className={styles.right}>
+                <h1>New Here?</h1>
+                <Link to="/signup">
+                  <button type="button" className={styles.white_btn}>
+                    Sign Up
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    // {/* //     </FirstNameContext.Provider> */}
-    // {/* </RoleContext.Provider> */}
+      {/* //     </FirstNameContext.Provider> */}
+    </RoleContext.Provider>
     // {/* </UserContext.Provider> */}
 
   )

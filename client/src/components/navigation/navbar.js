@@ -3,7 +3,9 @@ import React, { useContext, useState } from 'react'
 // import { format } from 'date-fns'
 // import axios from 'axios' useState, useEffect, UserContext
 import 'bootstrap/dist/css/bootstrap.css'
-import { RoleContext } from '../../App'
+// import { RoleContext } from '../../App'
+import { RoleContext } from '../Login/index'
+// C:\Users\jsswp\github\AuthInMern\client\src\components\Login\index.jsx
 
 import { Link } from 'react-router-dom'
 
