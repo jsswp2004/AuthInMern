@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 // import { format } from 'date-fns'
 // import axios from 'axios' useState, useEffect, UserContext
 import 'bootstrap/dist/css/bootstrap.css'
-import { RoleContext } from '../Login'
+import { RoleContext } from '../../App'
 
 import { Link } from 'react-router-dom'
 
@@ -13,7 +13,7 @@ export default function Navbar() {
   // const [show, setShow] = useState(false)
   // const userx = useContext(UserContext);
   const userRole = useContext(RoleContext);
-  // console.log(userRole[0])
+  // console.log(userRole)
   return (
     <div id="navbarSupportedContent">
       <div className="header-bodynavbar">
