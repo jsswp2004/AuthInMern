@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
@@ -32,6 +32,7 @@ const CreateUser = () => {
     email: '',
     password: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    facilityID: 'Generic Clinic',
   })
 
   const fullName = user.firstName + ' ' + user.lastName
@@ -53,6 +54,7 @@ const CreateUser = () => {
           email: '',
           password: '',
           addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          facilityID: 'Generic Clinic',
         })
         navigate('/login')
       })
@@ -65,7 +67,7 @@ const CreateUser = () => {
     <div>
       <h1>Create User</h1>
       <form onSubmit={onSubmit}>
-      <div className={styles.formGroup}>
+        <div className={styles.formGroup}>
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -97,13 +99,6 @@ const CreateUser = () => {
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="role">Role</label>
-          {/* <input
-            type="text"
-            name="role"
-            value={user.role}
-            onChange={onChange}
-            className={styles.formControl}
-          /> */}
           <select
             key={role._id}
             name="role"
@@ -145,6 +140,16 @@ const CreateUser = () => {
             type="text"
             name="addedDate"
             value={user.addedDate}
+            onChange={onChange}
+            className={styles.formControl}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="addedDate">Added Date</label>
+          <input
+            type="text"
+            name="facilityID"
+            value={user.facilityID}
             onChange={onChange}
             className={styles.formControl}
           />

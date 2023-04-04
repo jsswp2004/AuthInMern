@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams,useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
@@ -16,12 +16,12 @@ const CreatePatientFromVisit = (props) => {
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-  
+
   // Define the state with useState hook
   const navigate = useNavigate()
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
-    visitNumber:'',
+    visitNumber: '',
     lastName: '',
     middleName: '',
     visitDate: '',
@@ -102,7 +102,7 @@ const CreatePatientFromVisit = (props) => {
 
   // console.log(record)
   //calculate age
-  
+
   const birthDate = new Date(record.dateOfBirth)
   // let clientAge = visit.age
   record.age = today.getFullYear() - birthDate.getFullYear()
@@ -142,18 +142,18 @@ const CreatePatientFromVisit = (props) => {
     }
 
     axios
-    .post('http://localhost:8081/api/visits', data2)
-    .then((res) => {
+      .post('http://localhost:8081/api/visits', data2)
+      .then((res) => {
 
 
-      // Push to /
-      navigate('/patientlist')
-      
-    })
-    .catch((err) => {
-      console.log('Error in CreatePatientFromVisit!')
-    })
-    
+        // Push to /
+        navigate('/patientlist')
+
+      })
+      .catch((err) => {
+        console.log('Error in CreatePatientFromVisit!')
+      })
+
 
     axios
       .post('http://localhost:8081/api/records', data)
@@ -162,12 +162,12 @@ const CreatePatientFromVisit = (props) => {
 
         // Push to /
         //navigate('/patientlist')
-        
+
       })
       .catch((err) => {
         console.log('Error in CreatePatientFromVisit!')
       })
-    
+
     const visit2 = {
       medicalRecordNumber: data2.medicalRecordNumber,
       visitNumber: data2.visitNumber,
@@ -180,22 +180,22 @@ const CreatePatientFromVisit = (props) => {
       provider: visit.provider,
       addedDate: visit.addedDate,
     }
-    
-      axios
+
+    axios
       .put(`http://localhost:8081/api/visits/${id}`, visit2)
       .then((res) => {
 
 
         // Push to /
         navigate('/patientlist')
-        
+
       })
       .catch((err) => {
         console.log('Error in CreatePatientFromVisit!')
       })
   }
 
-  
+
   // console.log(data2)
   //Race
   const racevalues = Race
@@ -252,7 +252,7 @@ const CreatePatientFromVisit = (props) => {
                       type="text"
                       className="form-control"
                       name="firstName"
-                      value={visit.firstName}
+                      // value={visit.firstName}
                       // defaultValue={record.firstName}
                       onChange={onChange}
                     />
@@ -358,7 +358,7 @@ const CreatePatientFromVisit = (props) => {
                       onChange={onChange}
                     >
                       {languagevalues.map((languageval) => (
-                        <option key={languageval.value}  value={languageval.value}>
+                        <option key={languageval.value} value={languageval.value}>
                           {languageval.label}
                         </option>
                       ))}
@@ -384,7 +384,7 @@ const CreatePatientFromVisit = (props) => {
                     className="form-control"
                     name="email"
                     placeholder='Enter email'
-                    value={visit.email}                    
+                    value={visit.email}
                     onChange={onChange}
                   />
                 </div>

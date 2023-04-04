@@ -12,6 +12,7 @@ function EditUserModal(props) {
     password: '',
     addedDate: '',
     lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+    facilityID: 'Generic Clinic',
   })
 
   const UserID = props.userID
@@ -49,6 +50,7 @@ function EditUserModal(props) {
           password: res.data.password,
           addedDate: res.data.addedDate,
           lastUpdated: res.data.lastUpdated,
+          facilityID: res.data.facilityID,
         })
       })
       .catch((err) => {
@@ -73,6 +75,7 @@ function EditUserModal(props) {
       password: user.password,
       addedDate: user.addedDate,
       lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+      facilityID: user.facilityID,
     }
 
     axios
@@ -169,6 +172,17 @@ function EditUserModal(props) {
                       type="text"
                       name="lastUpdated"
                       value={user.lastUpdated}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="facilityID">Facility
+                    <input
+                      type="text"
+                      name="facililtyID"
+                      value={user.facilityID}
                       onChange={handleChange}
                       className="form-control"
                     />

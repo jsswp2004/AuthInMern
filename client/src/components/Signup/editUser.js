@@ -24,6 +24,7 @@ function EditUser(props) {
     email: '',
     password: '',
     addedDate: '',
+    facilityID: '',
   })
   const { id } = useParams()
   const navigate = useNavigate()
@@ -63,6 +64,7 @@ function EditUser(props) {
       email: user.email,
       password: user.password,
       addedDate: user.addedDate,
+      facilityID: user.facilityID,
     }
     const url = `http://localhost:8081/api/users/${id}`
     axios

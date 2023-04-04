@@ -56,7 +56,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
 import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
 import SMSMessagesModal from '../SMSMessage/SMSForm'
-import EmailMessagesModal from '../PatientVisit/sendEmailToPatient'
+import EmailMessagesModal from '../PatientVisit/sendEmailToPatientModal'
 import ReactToPrint from 'react-to-print';
 //#endregion
 

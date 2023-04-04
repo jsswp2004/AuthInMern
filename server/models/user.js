@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
 	addedDate: { type: String, required: true },
 	password: { type: String, required: true },
 	lastUpdated: { type: String, required: false },
+	facilityID: { type: String, required: false },
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -33,6 +34,7 @@ const validate = (data) => {
 		addedDate: Joi.string().required().label("Added Date"),
 		password: passwordComplexity().required().label("Password"),
 		lastUpdated: Joi.string().label('Last Updated'),
+		facilityID: Joi.string().label('Facility ID'),
 	});
 	return schema.validate(data);
 };

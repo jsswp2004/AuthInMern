@@ -26,7 +26,7 @@ import LastPageIcon from '@mui/icons-material/LastPage'
 import EditVisitModal from '../Scheduling/editVisitModal'
 import DetailVisitModal from './detailsPatientVisitModal'
 import SMSMessagesModal from '../SMSMessage/SMSForm'
-import EmailMessagesModal from '../PatientVisit/sendEmailToPatient'
+import EmailMessagesModal from './sendEmailToPatientModal'
 import { Link } from 'react-router-dom'
 import * as XLSX from "xlsx"
 import themeDesign from '../Functions/theme'

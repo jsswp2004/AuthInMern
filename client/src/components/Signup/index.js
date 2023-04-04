@@ -38,6 +38,7 @@ const Signup = () => {
     email: '',
     password: '',
     addedDate: dateAdded,
+    facilityID: 'Generic Clinic',
   })
 
   const [error, setError] = useState('')
@@ -118,15 +119,6 @@ const Signup = () => {
                   onChange={handleChange}
                   className={styles.input}
                 />
-                {/* <input
-              type="text"
-              placeholder="Role"
-              name="role"
-              onChange={handleChange}
-              value={data.role}
-              required
-              className={styles.input}
-            /> */}
                 <select
                   key={rolex.role}
                   placeholder="Select Role"
@@ -169,6 +161,15 @@ const Signup = () => {
                   value={dateAdded}
                   required
                   readOnly
+                  className={styles.input}
+                />
+                <input
+                  type="text"
+                  // placeholder="Role"
+                  name="facilityID"
+                  onChange={handleChange}
+                  value={data.facilityID}
+                  // required
                   className={styles.input}
                 />
                 {error && <div className={styles.error_msg}>{error}</div>}
