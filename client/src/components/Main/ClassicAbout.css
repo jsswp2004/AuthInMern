@@ -212,7 +212,7 @@
   font-weight: bold;
 }
 .pricingTextSize50 {
-  font-size: 50px;
+  font-size: 3vw;
   /* var(--font-size-15xl); */
   margin: 0;
 }
@@ -589,7 +589,7 @@ hr {
 }
 
 .textInPageh6 {
-  font-size: 1vw;
+  /* font-size: 1vw; */
   line-height: normal;
   margin: 5px;
   text-align: left;

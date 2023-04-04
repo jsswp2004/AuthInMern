@@ -113,23 +113,23 @@ const ClassicHome = () => {
 
                     <div className="pricingContainerRectangleBackground1" >
                         <div>
-                            <p className="textInPage h6 pricingTextBold">
+                            <p className="textInPageh6 pricingTextBold">
                                 BASIC
                             </p>
                         </div>
                         <div className="pricingContainerRectangleBackground2Price" >
                             <div style={{ marginTop: '5%' }}>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize10">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize10">
                                     $
                                 </p>
                             </div>
                             <div>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize50">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize50">
                                     9
                                 </p>
                             </div>
                             <div style={{ marginTop: '5%' }}>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize30">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize30">
                                     /month
                                 </p>
                             </div>
@@ -145,23 +145,23 @@ const ClassicHome = () => {
                     </div>
                     <div className="pricingContainerRectangleBackground2">
                         <div>
-                            <p className="textInPage h6 pricingTextBold">
+                            <p className="textInPageh6 pricingTextBold">
                                 PRO
                             </p>
                         </div>
                         <div className="pricingContainerRectangleBackground2Price2" >
                             <div style={{ marginTop: '5%' }}>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize10">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize10">
                                     $
                                 </p>
                             </div>
                             <div>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize50">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize50">
                                     19
                                 </p>
                             </div>
                             <div style={{ marginTop: '5%' }}>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize30">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize30">
                                     /month
                                 </p>
                             </div>
@@ -177,23 +177,23 @@ const ClassicHome = () => {
                     {/* </div> */}
                     <div className="pricingContainerRectangleBackground3">
                         <div>
-                            <p className="textInPage h6 pricingTextBold">
+                            <p className="textInPageh6 pricingTextBold">
                                 BUSINESS
                             </p>
                         </div>
                         <div className="pricingContainerRectangleBackground2Price" >
                             <div style={{ marginTop: '5%' }}>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize10">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize10">
                                     $
                                 </p>
                             </div>
                             <div>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize50">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize50">
                                     199
                                 </p>
                             </div>
                             <div style={{ marginTop: '5%' }}>
-                                <p className="textInPage h6 pricingTextBold pricingTextSize30">
+                                <p className="textInPageh6 pricingTextBold pricingTextSize30">
                                     /month
                                 </p>
                             </div>
