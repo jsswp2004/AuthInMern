@@ -566,11 +566,11 @@ export default function ShowVisitList() {
                   }}
                 >
                   {' '}
-                  <option key="Select" value="">
+                  <option key="01" value="">
                     Select Provider
                   </option>
                   {providerMD.map((doc) => (
-                    <option key={doc._id} value={doc.value}>
+                    <option key={doc.provider} value={doc.provider}>
                       {doc}
                     </option>
                   ))}

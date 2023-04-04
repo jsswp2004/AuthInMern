@@ -49,25 +49,25 @@ function App() {
 
   let userData = useremail
 
-  // const [currentUser, setCurrentUser] = useState([])
-  const [currentUser, setCurrentUser] = useState([{
-    _id: '',
-    email: '',
-    facilityID: '',
-    role: '',
-    firstName: '',
-  }])
+  const [currentUser, setCurrentUser] = useState([])
+  // const [currentUser, setCurrentUser] = useState([{
+  //   _id: '',
+  //   email: '',
+  //   facilityID: '',
+  //   role: '',
+  //   firstName: '',
+  // }])
 
-  // const loggedUserRole = currentUser.map((user) => user.role)
-  // const loggedUserID = currentUser.map((user) => user._id)
-  // const loggedUserName = currentUser.map((user) => user.name)
-  // const loggedUserFirstName = currentUser.map((user) => user.firstName)
-  // const loggedUserlastName = currentUser.map((user) => user.lastName)
-  // const userFacility = currentUser.map((user) => user.facilityID)
-  const { _id, email, facilityID, role, firstName } = currentUser[0]
+  const loggedUserRole = currentUser.map((user) => user.role)
+  const loggedUserID = currentUser.map((user) => user._id)
+  const loggedUserName = currentUser.map((user) => user.name)
+  const loggedUserFirstName = currentUser.map((user) => user.firstName)
+  const loggedUserlastName = currentUser.map((user) => user.lastName)
+  const userFacility = currentUser.map((user) => user.facilityID)
+  // const { _id, email, facilityID, role, firstName } = currentUser[0]
 
-  console.log(_id, email, facilityID, role, firstName)
-  // console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0], userFacility[0])
+  // console.log(_id, email, facilityID, role, firstName)
+  console.log(loggedUserID[0], loggedUserRole[0], loggedUserName[0], loggedUserFirstName[0], loggedUserlastName[0], userFacility[0])
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/users`)
@@ -81,14 +81,14 @@ function App() {
   }, [useremail])
   return (
     <UserContext.Provider value={userData}>
-      {/* <RoleContext.Provider value={loggedUserRole}> */}
-      <RoleContext.Provider value={role}>
+      <RoleContext.Provider value={loggedUserRole[0]}>
+        {/* <RoleContext.Provider value={role}> */}
 
-        {/* <FirstNameContext.Provider value={loggedUserFirstName}> */}
-        <FirstNameContext.Provider value={firstName}>
+        <FirstNameContext.Provider value={loggedUserFirstName[0]}>
+          {/* <FirstNameContext.Provider value={firstName}> */}
 
-          {/* <FacilityContext.Provider value={userFacility}> */}
-          <FacilityContext.Provider value={facilityID}>
+          <FacilityContext.Provider value={userFacility[0]}>
+            {/* <FacilityContext.Provider value={facilityID}> */}
 
             <Routes>
               {/* <Route path="/" exact element={<Main />} /> */}
