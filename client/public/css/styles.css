@@ -507,7 +507,7 @@ body {
   text-align: center;
   vertical-align: middle;
   /* padding: 0px 0; */
-  /* position: fixed; */
+  position: sticky;
   margin: 0px;
   display: flex;
   /* height: 34px; */
@@ -521,7 +521,7 @@ body {
   text-align: left;
   padding: 0px;
   margin: 0px;
-  /* height: calc(100vh - 60px); */
+  height: calc(100dvh);
 }
 
 .item3 {

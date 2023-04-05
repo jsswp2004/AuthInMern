@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+// import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { format, set } from 'date-fns'
+import { format } from 'date-fns'
 import axios from 'axios'
 import Input from 'react-phone-number-input/input'
 
@@ -14,7 +14,7 @@ function UpdateVisitInfo(props) {
   const [selectedHour, setSelectedHour] = useState('')
 
 
-  //create provider object
+  //#region create provider object
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -32,8 +32,8 @@ function UpdateVisitInfo(props) {
   }, [])
 
   const providerMD = attendings.map((doc) => doc.firstName + ' ' + doc.lastName)
-
-  //create event object
+  //#endregion
+  //#region create events dropdown object
   const [schedEvent, setSchedEvent] = useState([])
   const schedEvents = schedEvent.filter((event) => {
     return event.name
@@ -49,12 +49,12 @@ function UpdateVisitInfo(props) {
         console.log('Error from event list')
       })
   }, [])
-
+  //#endregion
   //visit id value from props
   const visitID = props.visitID
   const navigate = useNavigate()
 
-  //create visit object
+  //create initial STATE for visit object
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
     visitNumber: '',
@@ -71,7 +71,7 @@ function UpdateVisitInfo(props) {
   })
 
 
-
+  // pull exisiting visit info
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/visits/${visitID}`)
@@ -97,46 +97,44 @@ function UpdateVisitInfo(props) {
 
   }, [visitID])
 
+  //deconstruct visit object
   const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate } = visit
-  console.log(medicalRecordNumber)
-  //pull patient record to determine registration
-  const [patientRecord, setPatientRecord] = useState([])
-  useEffect(() => {
-    axios
-      .get('http://localhost:8081/api/records/')
-      .then((response) => {
-        setPatientRecord(response.data).filter((patient) => {
-          return patient.medicalRecordNumber === medicalRecordNumber
-        })
+  // console.log(medicalRecordNumber)
+  //pull patient record to determine registration - not needed
+  // const [patientRecord, setPatientRecord] = useState([])
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:8081/api/records/')
+  //     .then((response) => {
+  //       setPatientRecord(response.data).filter((patient) => {
+  //         return patient.medicalRecordNumber === medicalRecordNumber
+  //       })
 
-      })//.includes(medicalRecordNumber)
-      .catch((error) => {
-        console.log('Error from patient record')
-      })
-  }, [medicalRecordNumber])
-  // console.log(response.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from patient record')
+  //     })
+  // }, [medicalRecordNumber])
+
+  // const selectedRecord = patientRecord.filter((patient) => {
+  //   return patient.medicalRecordNumber === medicalRecordNumber
+  // })
+
   // console.log(patientRecord)
-  const selectedRecord = patientRecord.filter((patient) => {
-    return patient.medicalRecordNumber === medicalRecordNumber
-    // console.log(patient)
-    // console.log(medicalRecordNumber)
-  })
-  // const selectedRecord = patientRecord.find((patient) => patient.medicalRecordNumber === medicalRecordNumber
-  //   // console.log(patient)
-  //   // console.log(medicalRecordNumber)
-  // )
-  // console.log(selectedRecord === '0' ? 'true' : 'false', selectedRecord.length)
-  console.log(patientRecord)
 
 
   //pull visits to know available hours in a day
   const [getVisits, setGetVisits] = useState([])
+  console.log(getVisits)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/visits')
       .then((response) => {
         const data = response.data
         setGetVisits(data)
+        //   .filter((visit) => {
+        //   return visit.provider === selectedMD && visit.visitDate === selectedDate
+        // })
       })
       .catch((error) => {
         console.log('Error from visit list')
@@ -290,10 +288,10 @@ function UpdateVisitInfo(props) {
                     value="Update"
                     type="submit"
                     className="btn btn-success btngap "
-                    style={{ display: selectedRecord.length === 0 ? 'none' : 'inline' }}
+                  // style={{ display: selectedRecord.length === 0 ? 'none' : 'inline' }}
                   />
 
-                  <Link
+                  {/* <Link
                     className="btn btn-info"
                     to={`/createPatientFromVisit/${visitID}`}
                     style={{ display: selectedRecord.length === 0 ? 'inline' : 'none' }}
@@ -304,7 +302,7 @@ function UpdateVisitInfo(props) {
                       title="Add registration"
                     />{' '}
                     Register
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
               <div className="div-items">

@@ -1540,8 +1540,8 @@ export default function ClinicVisit() {
   //#endregion
   return (
     <div className="grid_containerx" style={{ display: 'flex', flexDirection: 'column' }}>
-      <div className="item1">
-        <Header></Header>
+      <div className="item1" style={{ position: 'sticky', width: '100%' }}>
+        <Header />
       </div>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div className="item2" style={{ display: showNav === true ? 'inline' : 'none' }} >
@@ -1553,7 +1553,7 @@ export default function ClinicVisit() {
         </div>
         <div className="item3">
           <div ref={componentToPrintRef} className="grid_calendar">
-            <div className="itemCalendar1 ">
+            <div className="itemCalendar1 " >
               {/* <div style={{ display: 'flex' }}> */}
               {/* className="month-indicator item3C" */}
               <div>
