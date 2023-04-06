@@ -96,7 +96,7 @@ export default function ClinicVisit() {
 
   }, [useremail])
   const { _id, facilityID, role, firstName } = currentUser
-  console.log(currentUser, _id, facilityID, role, firstName)
+  // console.log(currentUser, _id, facilityID, role, firstName)
   // localStorage.setItem('role', role)
 
   //setting local storage for role
@@ -1549,20 +1549,107 @@ export default function ClinicVisit() {
   }
 
   //#endregion
-  // check in and check out codes
-  const [checkIn, setCheckIn] = useState('')
+  //#region check in and check out codes
 
+  const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
-  function checkedIn() {
-    // return (<Checkbox checked onClick={() => { setCheckIn(format(new Date(), 'hh:mm:ss a')) }} />)
+  const [checkInValue, setCheckInValue] = useState(false)
+  const [checkOutValue, setCheckOutValue] = useState(false)
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8081/api/visits/${visitID}`)
+      .then((res) => {
+        setVisit({
+          medicalRecordNumber: res.data.medicalRecordNumber,
+          visitNumber: res.data.visitNumber,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          middleName: res.data.middleName,
+          email: res.data.email,
+          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          visitDate: res.data.visitDate,
+          hourOfVisit: res.data.hourOfVisit,
+          provider: res.data.provider,
+          event: res.data.event,
+          cellphone: res.data.cellphone,
+          checkIn: checkIn,
+          checkOut: checkOut,
+        })
+      })
+      .catch((err) => {
+        console.log('Error from UpdateVisitInfo')
+      })
+
+  }, [checkIn, checkOut, visitID])
+
+
+  function checkedIn(e) {
+
+    // setCheckIn(() => {
     setCheckIn(format(new Date(), 'hh:mm:ss a'))
-    // setIsChecked(!isChecked)
+    setCheckInValue(!checkInValue)
+    // })
+    setVisit({ ...visit, [e.target.name]: checkIn })
+
+    axios
+      .put(`http://localhost:8081/api/visits/${visitID}`, visit)
+      // .then((res) => {
+      // navigate(`/clinicVisit`)
+      // console.log(res.data.checkIn)
+      // })
+      .catch((err) => {
+        console.log('Error in UpdateVisitInfo!')
+      })
+
   }
+
   function checkedOut() {
     setCheckOut(format(new Date(), 'hh:mm:ss a'))
+    setCheckOutValue(!checkOutValue)
   }
+  //create initial STATE for visit object
+  const [visit, setVisit] = useState({
+    medicalRecordNumber: '',
+    visitNumber: '',
+    firstName: '',
+    lastName: '',
+    middleName: '',
+    email: '',
+    addedDate: '',
+    visitDate: '',
+    provider: '',
+    hourOfVisit: '',
+    event: '',
+    cellphone: '',
+    checkIn: '',
+    checkOut: '',
+  })
+  // console.log(visit, visitID)
 
-  // console.log('checkIn', checkIn)
+
+
+
+  // const [data, setData] = useState([])
+  // const newdata = {
+  //   medicalRecordNumber: visit.medicalRecordNumber,
+  //   visitNumber: visit.visitNumber,
+  //   firstName: visit.firstName,
+  //   lastName: visit.lastName,
+  //   middleName: visit.middleName,
+  //   email: visit.email,
+  //   addedDate: visit.addedDate,
+  //   visitDate: visit.visitDate,
+  //   hourOfVisit: visit.hourOfVisit,
+  //   provider: visit.provider,
+  //   event: visit.event,
+  //   cellphone: visit.cellphone,
+  // }
+
+  // setData(data)
+
+  // console.log('checkIn', checkIn, 'checkOut', checkOut, checkInValue)
+  //#endregion
+
 
   return (
     <div className="grid_containerx" >
@@ -1576,7 +1663,7 @@ export default function ClinicVisit() {
           <Navbar />
         </div>
         <div className="item2" >
-          <button className='btn-sm btn'> <i class="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
+          <button className='btn-sm btn'> <i className="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
           </button>
         </div>
         <div className="item3">
@@ -1617,7 +1704,7 @@ export default function ClinicVisit() {
                   onChange={viewValueChange}
                 >
                   {viewValues.map((viewval) => (
-                    <option key={viewval.value} value={viewval.value}>
+                    <option key={viewval.name} value={viewval.value}>
                       {viewval.name}
                     </option>
                   ))}
@@ -2915,8 +3002,6 @@ export default function ClinicVisit() {
                             {/* <StyledTableCell align="left">
                               Lastname
                             </StyledTableCell> */}
-
-
                             <StyledTableCell align="left">Email</StyledTableCell>
                             <StyledTableCell align="left">
                               Provider
@@ -2979,13 +3064,13 @@ export default function ClinicVisit() {
                               </StyledTableCell>
                               <StyledTableCell align="left" width={'100px'}>
                                 <div>
-                                  {/* <Checkbox checked='true' onClick={() => { setCheckIn(format(new Date(), 'hh:mm:ss a')), setIsChecked(!isChecked) }} /> */}
-                                  <Checkbox checked={checkIn.length > 0 ? true : false} onClick={checkedIn} />
+                                  {/* <Checkbox checked={checkIn.length > 0 ? true : false} onClick={checkedIn} /> */}
+                                  <Checkbox checked={checkInValue} onClick={checkedIn} />
                                 </div>
                               </StyledTableCell>
                               <StyledTableCell align="left" width={'100px'}>
                                 <div>
-                                  <Checkbox checked={checkOut.length > 0 ? true : false} onClick={checkedOut} />
+                                  <Checkbox checked={checkOutValue} onClick={checkedOut} />
                                 </div>
                               </StyledTableCell>
                               <StyledTableCell align="left" width={'250px'}>

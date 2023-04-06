@@ -33,6 +33,8 @@ const visitSchema = new mongoose.Schema({
     homePhone: { type: Number, required: false },
     cellphone: { type: Number, required: false },
     businessPhone: { type: Number, required: false },
+    checkIn: { type: String, required: false },
+    checkOut: { type: String, required: false },
 });
 
 visitSchema.methods.requestNotification = function (date) {
@@ -124,6 +126,8 @@ const validate = (data) => {
         homePhone: Joi.number().label("Home phone"),
         cellphone: Joi.number().label("Cellphone"),
         businessPhone: Joi.number().label("Business Phone"),
+        checkIn: Joi.string().label("Check In"),
+        checkOut: Joi.string().label("Check Out"),
     });
     return schema.validate(data);
 };

@@ -41,7 +41,7 @@ const Login = () => {
       localStorage.setItem('email', data.email)
       // setCurrentUser(data.email)
       // console.log(res.data)
-      window.location = '/clinicVisit'
+      window.location = '/applications'
     } catch (error) {
       if (
         error.response &&

@@ -68,6 +68,8 @@ function UpdateVisitInfo(props) {
     hourOfVisit: selectedHour,
     event: '',
     cellphone: '',
+    checkIn: '',
+    checkOut: '',
   })
 
 
@@ -89,6 +91,8 @@ function UpdateVisitInfo(props) {
           provider: res.data.provider,
           event: res.data.event,
           cellphone: res.data.cellphone,
+          checkIn: res.data.checkIn,
+          checkOut: res.data.checkOut,
         })
       })
       .catch((err) => {
