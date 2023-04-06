@@ -1,5 +1,6 @@
 //#region for imports and styling 
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -28,6 +29,7 @@ import themeDesign from '../Functions/theme'
 //#endregion
 //#region fro main component
 export default function ShowUsersList() {
+  const navigate = useNavigate()
   //#region for state and edit button 
   const [editShow, setEditShow] = useState(false)
   const handleEditClose = () => setEditShow(false)
@@ -151,6 +153,8 @@ export default function ShowUsersList() {
       .delete(`http://localhost:8081/api/users/${id}`)
       .then((response) => {
         setUsers(users.filter((el) => el._id !== id))
+        window.location.reload()
+        navigate(`/settingsPage`)
       })
       .catch((error) => {
         console.log('Unable to delete record')

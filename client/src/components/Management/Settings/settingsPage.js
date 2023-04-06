@@ -38,8 +38,9 @@ const ShowSettings = () => {
     display: setting === 'Staff Exception' ? '' : 'none',
   }
   return (
-    <div className="grid_containerx" style={{ display: 'flex', flexDirection: 'column', position: 'sticky' }}>
-      <div className="item1">
+    <div className="grid_containerx" >
+      {/* style={{ display: 'flex', flexDirection: 'column', position: 'sticky' }} */}
+      <div className="item1x">
         <Header />
       </div>
       <div style={{ display: 'flex', flexDirection: 'row' }}>

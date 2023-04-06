@@ -4,8 +4,10 @@ import { Modal, Button } from 'react-bootstrap'
 import backward from '../shared/images/backward.jpg'
 import forward from '../shared/images/forward.jpg'
 import { useAlert } from 'react-alert'
+
 import {
   format,
+  // getTime,
   getDate,
   startOfMonth,
   getDay,
@@ -19,6 +21,7 @@ import {
   isSaturday,
   isSunday,
   isWeekend,
+  parse
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
@@ -32,7 +35,9 @@ import {
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createVisitModal'
-import VisitMonthlyModal from '../Scheduling/visitModal'
+// import VisitMonthlyModal from '../Scheduling/visitModal'
+import VisitMonthlyModal from '../PatientRegistration/ShowPatientListModal'
+
 // import CreatePatientModal from '../PatientRegistration/createPatientModal'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
@@ -58,6 +63,7 @@ import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
 import SMSMessagesModal from '../SMSMessage/SMSForm'
 import EmailMessagesModal from '../PatientVisit/sendEmailToPatientModal'
 import ReactToPrint from 'react-to-print';
+import { Checkbox } from '@mui/material'
 //#endregion
 
 export default function ClinicVisit() {
@@ -329,12 +335,12 @@ export default function ClinicVisit() {
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal dialogClassName='modal-xl' show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
-        <Modal.Header onClick={() => setNewPatient(true)}>
-          <Modal.Title>
+        {/* <Modal.Header onClick={() => setNewPatient(true)}> */}
+        {/* <Modal.Title>
             Add a quick visit
 
-          </Modal.Title>
-
+          </Modal.Title> */}
+        {/* 
           <Link
             to={`/patientlist`} className="btn btn-secondary addVisitModalBtn "
           >
@@ -343,10 +349,10 @@ export default function ClinicVisit() {
               aria-hidden="true"
               title="Search patient"
             /> Search Patient
-          </Link>
+          </Link> */}
 
 
-        </Modal.Header>
+        {/* </Modal.Header> */}
         <Modal.Body style={{ display: newPatient === true ? '' : 'none' }}>
           <div
             style={{
@@ -366,9 +372,9 @@ export default function ClinicVisit() {
           {/*  */}
         </Modal.Body>
         <Modal.Footer>
-          <span style={{ textAlign: 'center' }}>
+          {/* <span style={{ textAlign: 'center' }}>
             PLEASE MAKE SURE TO REGISTER CLIENT AFTER ADDING QUICK VISIT TO SCHEDULE.
-          </span>
+          </span> */}
           <Button variant="secondary" onClick={handleMonthlyClose}>
             Close
           </Button>
@@ -1261,11 +1267,16 @@ export default function ClinicVisit() {
   const [weekendDay, setWeekendDay] = useState()
   const wekendSunday = isSunday(addDays(new Date(selectedDate), 1))
   const wekendSaturday = isSaturday(addDays(new Date(selectedDate), 1))
+
+  // 04/05/2023 temporarily turned off due to workflow issue
+  //adding of patients should be done through registration
   const handleClick = (event) => {
     var target = event.target || event.srcElement
 
     setSelectedNumber(target.innerText)
+
     handleMonthlyShow()
+
     setNewPatient(true)
 
   }
@@ -1538,9 +1549,26 @@ export default function ClinicVisit() {
   }
 
   //#endregion
+  // check in and check out codes
+  const [checkIn, setCheckIn] = useState('')
+
+  const [checkOut, setCheckOut] = useState('')
+  function checkedIn() {
+    // return (<Checkbox checked onClick={() => { setCheckIn(format(new Date(), 'hh:mm:ss a')) }} />)
+    setCheckIn(format(new Date(), 'hh:mm:ss a'))
+    // setIsChecked(!isChecked)
+  }
+  function checkedOut() {
+    setCheckOut(format(new Date(), 'hh:mm:ss a'))
+  }
+
+  // console.log('checkIn', checkIn)
+
   return (
-    <div className="grid_containerx" style={{ display: 'flex', flexDirection: 'column' }}>
-      <div className="item1" style={{ position: 'sticky', width: '100%' }}>
+    <div className="grid_containerx" >
+      {/* style={{ display: 'flex', flexDirection: 'column' }} 
+      style={{ position: 'sticky', top: '0', width: '100%' }}*/}
+      <div className="item1x" >
         <Header />
       </div>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -2870,29 +2898,37 @@ export default function ClinicVisit() {
                       >
                         <TableHead>
                           <TableRow>
+                            <StyledTableCell align="left">
+                              Visit
+                            </StyledTableCell>
+                            <StyledTableCell align="left">Time</StyledTableCell>
                             <StyledTableCell align="left">MRN</StyledTableCell>
                             <StyledTableCell align="left">
                               Visit ID
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Firstname
+                              Name
                             </StyledTableCell>
-                            <StyledTableCell align="left">
+                            {/* <StyledTableCell align="left">
                               Middlename
-                            </StyledTableCell>
-                            <StyledTableCell align="left">
+                            </StyledTableCell> */}
+                            {/* <StyledTableCell align="left">
                               Lastname
-                            </StyledTableCell>
-                            <StyledTableCell align="left">
-                              Visit Date
-                            </StyledTableCell>
-                            <StyledTableCell align="left">Time</StyledTableCell>
+                            </StyledTableCell> */}
+
+
                             <StyledTableCell align="left">Email</StyledTableCell>
                             <StyledTableCell align="left">
                               Provider
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                              Date Created
+                              Date Added
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              Check In
+                            </StyledTableCell>
+                            <StyledTableCell align="left">
+                              Check Out
                             </StyledTableCell>
                             <StyledTableCell align="left">
                               Actions
@@ -2911,36 +2947,48 @@ export default function ClinicVisit() {
                               onClick={() => handleItemClick(pt)}
                             >
                               <StyledTableCell align="left">
-                                {pt.medicalRecordNumber}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.visitNumber}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.firstName}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.middleName}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
-                                {pt.lastName}
-                              </StyledTableCell>
-                              <StyledTableCell align="left">
                                 {pt.visitDate}
                               </StyledTableCell>
                               <StyledTableCell align="left">
                                 {pt.hourOfVisit}
                               </StyledTableCell>
                               <StyledTableCell align="left">
+                                {pt.medicalRecordNumber}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.visitNumber}
+                              </StyledTableCell>
+                              <StyledTableCell align="left">
+                                {pt.firstName + ' ' + pt.lastName}
+                              </StyledTableCell>
+                              {/* <StyledTableCell align="left">
+                                {pt.middleName}
+                              </StyledTableCell> */}
+                              {/* <StyledTableCell align="left">
+                                {pt.lastName}
+                              </StyledTableCell> */}
+
+                              <StyledTableCell align="left">
                                 {pt.email}
                               </StyledTableCell>
                               <StyledTableCell align="left">
                                 {pt.provider}
                               </StyledTableCell>
-                              <StyledTableCell align="left">
+                              <StyledTableCell align="left" width={'200px'}>
                                 {pt.addedDate}
                               </StyledTableCell>
-                              <StyledTableCell align="left">
+                              <StyledTableCell align="left" width={'100px'}>
+                                <div>
+                                  {/* <Checkbox checked='true' onClick={() => { setCheckIn(format(new Date(), 'hh:mm:ss a')), setIsChecked(!isChecked) }} /> */}
+                                  <Checkbox checked={checkIn.length > 0 ? true : false} onClick={checkedIn} />
+                                </div>
+                              </StyledTableCell>
+                              <StyledTableCell align="left" width={'100px'}>
+                                <div>
+                                  <Checkbox checked={checkOut.length > 0 ? true : false} onClick={checkedOut} />
+                                </div>
+                              </StyledTableCell>
+                              <StyledTableCell align="left" width={'250px'}>
                                 <button className='btn btn-info btn-sm'
                                   onClick={() => { handleEmailMessageShow(pt._id) }}
                                 >

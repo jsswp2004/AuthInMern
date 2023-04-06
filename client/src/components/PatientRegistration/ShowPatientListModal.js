@@ -34,7 +34,6 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 //#endregion
 
 export default function ShowRecordList() {
-  const navigate = useNavigate()
   // const [patientIDx, setPatientIDx] = useState('')
   // const toEditReg = (pt) => {
   // localStorage.removeItem('token')
@@ -190,8 +189,6 @@ export default function ShowRecordList() {
       .then((response) => {
         setRecords(records.filter((el) => el._id !== id))
         setShowDelete(false)
-        window.location.reload()
-        navigate(`/patientlist`)
       })
       .catch((error) => {
         console.log('Unable to delete record')
@@ -461,20 +458,21 @@ export default function ShowRecordList() {
   //#region for returning the table
   return (
     <div className="grid_containerx" style={{ display: 'flex', flexDirection: 'column' }}>
-      <div className="item1x" >
+      {/* <div className="item1" >
         <Header />
-      </div>
+
+      </div> */}
       <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div className="item2" style={{ display: showNav === true ? 'inline' : 'none' }} >
+        {/* <div className="item2" style={{ display: showNav === true ? 'inline' : 'none' }} >
           <Navbar />
-        </div>
-        <div className="item2" >
+        </div> */}
+        {/* <div className="item2" >
           <button className='btn-sm btn'> <i className="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
           </button>
-        </div>
+        </div> */}
         <div className="item3">
           <div className="item3A">
-            <h4 className='patientListHeader'>Registered Patients</h4>
+            <h4 className='patientListHeader'>Add Patient Visit</h4>
             <div>{displayRegistrationModal()}</div>
             <div>{displayVisitFromRegistrationModal()}</div>
             <div>{displayDeleteRegistrationModal()}</div>
@@ -510,15 +508,12 @@ export default function ShowRecordList() {
           <div className="item3B" style={{ overflowY: 'auto' }}>
             <ThemeProvider theme={themeDesign}>
               <TableContainer sx={{ maxHeight: 850 }} component={Paper}>
-                <Table stickyHeader
-                  sx={{ minWidth: 650 }}
-                  size="small"
-                  aria-label="a sticky table">
+                <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a sticky table">
                   <TableHead  >
                     <TableRow>
                       <StyledTableCell align="left">MRN</StyledTableCell>
                       <StyledTableCell align="left">Firstname</StyledTableCell>
-                      {/* <StyledTableCell align="left">Middlename</StyledTableCell> */}
+                      <StyledTableCell align="left">Middlename</StyledTableCell>
                       <StyledTableCell align="left">Lastname</StyledTableCell>
                       <StyledTableCell align="left">DOB</StyledTableCell>
                       <StyledTableCell align="left">Gender</StyledTableCell>
@@ -545,9 +540,9 @@ export default function ShowRecordList() {
                         <StyledTableCell align="left" >
                           {pt.firstName}
                         </StyledTableCell>
-                        {/* <StyledTableCell align="left" >
+                        <StyledTableCell align="left" >
                           {pt.middleName}
-                        </StyledTableCell> */}
+                        </StyledTableCell>
                         <StyledTableCell align="left" >{pt.lastName}</StyledTableCell>
                         <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
                         <StyledTableCell align="left" width='200px'>
@@ -559,7 +554,7 @@ export default function ShowRecordList() {
                         <StyledTableCell align="left" width='250px'>
                           {pt.race}
                         </StyledTableCell>
-                        <StyledTableCell align="left" width='200px'>
+                        <StyledTableCell align="left" width='250px'>
                           {pt.addedDate}
                         </StyledTableCell>
                         <StyledTableCell align="left" width='250px'>
@@ -574,7 +569,7 @@ export default function ShowRecordList() {
                               />
                             </Button>
                           </Tooltip>
-                          <Tooltip title="Display patient visits">
+                          {/* <Tooltip title="Display patient visits">
                             <a
                               className="btn btn-success  btn-sm"
                               href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
@@ -583,16 +578,16 @@ export default function ShowRecordList() {
                               <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
 
                             </a>
-                          </Tooltip>
+                          </Tooltip> */}
 
-                          <Tooltip title="Edit patient">
+                          {/* <Tooltip title="Edit patient">
                             <a
                               className="btn btn-info btn-sm "
                               href={`/editPatient/${pt._id}`}
                             >
                               <EditNotificationsIcon sx={{ fontSize: 'small', color: 'white' }} />
                             </a>
-                          </Tooltip>
+                          </Tooltip> */}
                           {/* <Tooltip title="Edit patient">
                           <Button onClick={toEditReg}>
 
@@ -601,12 +596,12 @@ export default function ShowRecordList() {
                           </Button>
                         </Tooltip> */}
 
-                          <Tooltip title="Delete patient">
+                          {/* <Tooltip title="Delete patient">
                             <button onClick={handleShowDelete}
                               className="btn btn-danger  btn-sm"
                             >
                               <i className="fa fa-trash-o" aria-hidden="true" /></button>
-                          </Tooltip>
+                          </Tooltip> */}
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}

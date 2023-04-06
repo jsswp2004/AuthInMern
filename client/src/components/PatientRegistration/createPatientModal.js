@@ -107,46 +107,56 @@ const CreateRecord = (props) => {
               <div className="div-items">
                 <div className="forms-group">
                   <div className="form-group">
-                    <label htmlFor="firstName">Firstname </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="firstName"
-                      value={record.firstName.toUpperCase()}
-                      onChange={onChange}
-                    />
+                    <label htmlFor="firstName">Firstname
+                      <input
+                        type="text"
+                        placeholder='Required'
+                        className="form-control"
+                        name="firstName"
+                        value={record.firstName.toUpperCase()}
+                        onChange={onChange}
+                        required
+                      />
+                    </label>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="middleName">Middlename</label>
-                    <input
-                      type="text"
-                      name="middleName"
-                      value={record.middleName.toUpperCase()}
-                      className="form-control"
-                      onChange={onChange}
-                    />
+                    <label htmlFor="middleName">Middlename
+                      <input
+                        type="text"
+                        name="middleName"
+                        value={record.middleName.toUpperCase()}
+                        className="form-control"
+                        onChange={onChange}
+                      />
+                    </label>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="lastName">Lastname</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="lastName"
-                      value={record.lastName.toUpperCase()}
-                      onChange={onChange}
-                    />
+                    <label htmlFor="lastName">Lastname
+                      <input
+                        type="text"
+                        placeholder='Required'
+                        className="form-control"
+                        name="lastName"
+                        value={record.lastName.toUpperCase()}
+                        onChange={onChange}
+                        required
+                      />
+                    </label>
                   </div>
                 </div>
                 <div className="form-group">
                   <div className="form-group">
-                    <label htmlFor="dateOfBirth">Date of Birth</label>
-                    <input
-                      type="date"
-                      name="dateOfBirth"
-                      value={record.dateOfBirth}
-                      className="form-control"
-                      onChange={onChange}
-                    />
+                    <label htmlFor="dateOfBirth">Date of Birth
+                      <input
+                        type="date"
+                        placeholder='Required'
+                        name="dateOfBirth"
+                        value={record.dateOfBirth}
+                        className="form-control"
+                        onChange={onChange}
+                        required
+                      />
+                    </label>
                   </div>
                   <div className="form-group">
                     <label htmlFor="gender">
@@ -206,45 +216,49 @@ const CreateRecord = (props) => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    placeholder='Enter email'
-                    value={record.email}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="email">Email
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      placeholder='Enter email'
+                      value={record.email}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="address">Address</label>
-                  <input
-                    type="text"
-                    name="address"
-                    className="form-control"
-                    value={record.address}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="address">Address
+                    <input
+                      type="text"
+                      name="address"
+                      className="form-control"
+                      value={record.address}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="city">City</label>
-                  <input
-                    name="city"
-                    className="form-control"
-                    value={record.city}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="city">City
+                    <input
+                      name="city"
+                      className="form-control"
+                      value={record.city}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="zipCode">Zip Code</label>
-                  <input
-                    type="number"
-                    name="zipCode"
-                    className="form-control"
-                    value={record.zipCode}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="zipCode">Zip Code
+                    <input
+                      type="number"
+                      name="zipCode"
+                      className="form-control"
+                      value={record.zipCode}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
                   <label htmlFor="state">
@@ -266,75 +280,82 @@ const CreateRecord = (props) => {
               </div>
               <div className="div-items updateRegistrationGrp">
                 <div className="form-group">
-                  <label htmlFor="age">Age </label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="age"
-                    placeholder="Automatically generated"
-                    value={record.age}
-                    readOnly
-                    onChange={onChange}
-                  />
+                  <label htmlFor="age">Age
+                    <input
+                      type="number"
+                      className="form-control"
+                      name="age"
+                      placeholder="Automatically generated"
+                      value={record.age}
+                      readOnly
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="medicalRecordNumber">MRN </label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="medicalRecordNumber"
-                    placeholder="Automatically generated"
-                    value={record.medicalRecordNumber}
-                    readOnly
-                    onChange={onChange}
-                  />
+                  <label htmlFor="medicalRecordNumber">MRN
+                    <input
+                      type="number"
+                      className="form-control"
+                      name="medicalRecordNumber"
+                      placeholder="Automatically generated"
+                      value={record.medicalRecordNumber}
+                      readOnly
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="visitNumber">Visit Number </label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="visitNumber"
-                    placeholder="Automatically generated"
-                    value={record.visitNumber}
-                    readOnly
-                    onChange={onChange}
-                  />
+                  <label htmlFor="visitNumber">Visit Number
+                    <input
+                      type="number"
+                      className="form-control"
+                      name="visitNumber"
+                      placeholder="Automatically generated"
+                      value={record.visitNumber}
+                      readOnly
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="homePhone">Home Phone </label>
-                  <input
-                    type="phone"
-                    className="form-control"
-                    name="homePhone"
-                    // placeholder="Automatically generated"
-                    value={record.homePhone}
-                    onChange={onChange}
-                  />
+                  <label htmlFor="homePhone">Home Phone
+                    <input
+                      type="tel"
+                      className="form-control"
+                      name="homePhone"
+                      // placeholder="Automatically generated"
+                      value={record.homePhone}
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="cellphone">Cellphone </label>
-                  <input
-                    type="phone"
-                    className="form-control"
-                    name="cellphone"
-                    // placeholder="Automatically generated"
-                    value={record.cellphone}
+                  <label htmlFor="cellphone">Mobile Phone
+                    <input
+                      type="tel"
+                      placeholder='Required'
+                      className="form-control"
+                      name="cellphone"
+                      // placeholder="Automatically generated"
+                      value={record.cellphone}
+                      required
+                      onChange={onChange}
+                    />
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="businessPhone">Business Phone
+                    <input
+                      type="tel"
+                      className="form-control"
+                      name="businessPhone"
+                      // placeholder="Automatically generated"
+                      value={record.businessPhone}
 
-                    onChange={onChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="businessPhone">Business Phone </label>
-                  <input
-                    type="phone"
-                    className="form-control"
-                    name="businessPhone"
-                    // placeholder="Automatically generated"
-                    value={record.businessPhone}
-
-                    onChange={onChange}
-                  />
+                      onChange={onChange}
+                    />
+                  </label>
                 </div>
 
                 <div

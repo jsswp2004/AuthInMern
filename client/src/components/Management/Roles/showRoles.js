@@ -137,6 +137,8 @@ export default function ShowRolesList() {
       .delete(`http://localhost:8081/api/roles/${id}`)
       .then((res) => {
         setRoles(roles.filter((el) => el._id !== id))
+        window.location.reload()
+        navigate(`/settingsPage`)
         console.log('Role successfully deleted!')
       })
       .catch((error) => {

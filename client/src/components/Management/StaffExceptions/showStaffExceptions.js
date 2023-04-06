@@ -27,7 +27,7 @@ import * as XLSX from "xlsx";
 import themeDesign from '../../Functions/theme'
 
 const ShowExceptionsList = () => {
-
+  const navigate = useNavigate()
   //Define the exception Modal state
   const [exceptionShow, setExceptionShow] = useState(false)
   const handleExceptionClose = () => setExceptionShow(false)
@@ -187,6 +187,8 @@ const ShowExceptionsList = () => {
       .delete(`http://localhost:8081/api/exceptions/${id}`)
       .then((res) => {
         setExceptions(exceptions.filter((el) => el._id !== id))
+        window.location.reload()
+        navigate(`/settingsPage`)
         console.log('Exception successfully deleted!')
       })
       .catch((error) => {

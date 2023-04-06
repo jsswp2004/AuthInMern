@@ -207,6 +207,7 @@ function UpdateVisitInfo(props) {
                         name="firstName"
                         value={visit.firstName}
                         onChange={onChange}
+                        readOnly
                       />
                     </label>
                   </div>
@@ -221,6 +222,7 @@ function UpdateVisitInfo(props) {
                         value={visit.middleName}
                         className="form-control"
                         onChange={onChange}
+                        readOnly
                       />
                     </label>
                   </div>
@@ -233,6 +235,7 @@ function UpdateVisitInfo(props) {
                         name="lastName"
                         value={visit.lastName}
                         onChange={onChange}
+                        readOnly
                       />
                     </label>
                   </div>
@@ -245,22 +248,13 @@ function UpdateVisitInfo(props) {
                         className="form-control"
                         value={visit.email}
                         onChange={onChange}
+                        readOnly
                       />
                     </label>
                   </div>
                   <div>
                     <label htmlFor="cellphone">
                       Cellphone
-                      {/* <input
-                        type="text"
-                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                        name="cellphone"
-                        className="form-control"
-                        value={visit.cellphone}
-                        onChange={onChange}
-                      />
-                    */}
-
                       <Input
                         className="form-control"
                         Country='US'

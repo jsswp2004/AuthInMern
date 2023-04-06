@@ -30,10 +30,11 @@ import EmailMessagesModal from './sendEmailToPatientModal'
 import { Link } from 'react-router-dom'
 import * as XLSX from "xlsx"
 import themeDesign from '../Functions/theme'
+import { useNavigate } from 'react-router-dom'
 //#endregion
 
 export default function ShowVisitList() {
-
+  const navigate = useNavigate()
   //#region for state definition
   const [regDate, setRegFilterDate] = useState('')
   const [selectMD, setSelectMD] = useState('')
@@ -55,8 +56,6 @@ export default function ShowVisitList() {
   //#region Define patient ID for create visit from registration modal
   const [visitID, setVisitID] = useState('')
   //#endregion
-
-
   //#region for SMS Modal
   const SMSMessageModal = () => (
     <>
@@ -92,8 +91,6 @@ export default function ShowVisitList() {
   }
 
   //#endregion
-
-
   //#region for Email to Patient Modal
   const EmailMessageModal = () => (
     <>
@@ -129,10 +126,6 @@ export default function ShowVisitList() {
   }
 
   //#endregion
-
-
-
-
   //#region for Visit Details Modal
   const ShowDetailVisitModal = () => (
     <>
@@ -263,6 +256,8 @@ export default function ShowVisitList() {
       .delete(`http://localhost:8081/api/visits/${id}`)
       .then((response) => {
         setVisits(visits.filter((el) => el._id !== id))
+        window.location.reload()
+        navigate(`/visitlist`)
       })
       .catch((error) => {
         console.log('Unable to delete visit')
@@ -509,8 +504,9 @@ export default function ShowVisitList() {
 
   //#endregion
   return (
-    <div className="grid_containerx" style={{ height: '100px', display: 'flex', flexDirection: 'column' }}  >
-      <div className="item1">
+    <div className="grid_containerx"   >
+      {/* style={{ height: '100px', display: 'flex', flexDirection: 'column' }} */}
+      <div className="item1x">
         <Header />
       </div>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -523,12 +519,18 @@ export default function ShowVisitList() {
         </div>
 
         <div className="item3" >
-
           <div className="item3A">
-            <div className="left filter_navbarLeft">
-              <h4 className='patientListHeader'>Visit List</h4>
-            </div>
-            <div className="right searchLabel filter_navbarRight">
+            {/* <div className="left filter_navbarLeft"> */}
+            <h4 className='patientListHeader'>Visit List</h4>
+            {/* </div> */}
+            {/* <div className="right searchLabel filter_navbarRight"> */}
+            <div>{displayEditVisitModal()}</div>
+            <div>{displayDetailVisitModal()}</div>
+            <div>{displayDeleteRegistrationModal()}</div>
+            <div>{displayShowSMSMessageModal()}</div>
+            <div>{displayShowEmailMessageModal()}</div>
+            <div className="searchLabel">
+
               <button className='btn btn-success  btn-sm'
                 onClick={handleDownloadExcel}
               >
@@ -589,28 +591,24 @@ export default function ShowVisitList() {
               </label>
             </div>
           </div>
-          <div>{displayEditVisitModal()}</div>
-          <div>{displayDetailVisitModal()}</div>
-          <div>{displayDeleteRegistrationModal()}</div>
-          <div>{displayShowSMSMessageModal()}</div>
-          <div>{displayShowEmailMessageModal()}</div>
+
           <div className="item3B" style={{ overflowY: 'auto' }}>
             <ThemeProvider theme={themeDesign}>
               <TableContainer component={Paper}>
                 <Table stickyHeader
                   sx={{ minWidth: 650 }}
                   size="small"
-                  aria-label="a dense table"
+                  aria-label="a sticky table"
                 >
                   <TableHead>
                     <TableRow>
                       <StyledTableCell align="left">MRN</StyledTableCell>
-                      <StyledTableCell align="left">Visit Number</StyledTableCell>
+                      <StyledTableCell align="left">Visit ID</StyledTableCell>
                       <StyledTableCell align="left">Firstname</StyledTableCell>
-                      <StyledTableCell align="left">Middlename</StyledTableCell>
+                      {/* <StyledTableCell align="left">Middlename</StyledTableCell> */}
                       <StyledTableCell align="left">Lastname</StyledTableCell>
-                      <StyledTableCell align="left">Visit Date</StyledTableCell>
-                      <StyledTableCell align="left">Hour of visit</StyledTableCell>
+                      <StyledTableCell align="left">Visit</StyledTableCell>
+                      <StyledTableCell align="left">Time</StyledTableCell>
                       <StyledTableCell align="left">Email</StyledTableCell>
                       <StyledTableCell align="left">Provider</StyledTableCell>
                       <StyledTableCell align="left">Date Added</StyledTableCell>
@@ -637,9 +635,9 @@ export default function ShowVisitList() {
                         <StyledTableCell align="left">
                           {pt.firstName}
                         </StyledTableCell>
-                        <StyledTableCell align="left">
+                        {/* <StyledTableCell align="left">
                           {pt.middleName}
-                        </StyledTableCell>
+                        </StyledTableCell> */}
                         <StyledTableCell align="left">
                           {pt.lastName}
                         </StyledTableCell>
@@ -656,7 +654,7 @@ export default function ShowVisitList() {
                         <StyledTableCell align="left" width={'200px'}>
                           {pt.addedDate}
                         </StyledTableCell>
-                        <StyledTableCell align="left" width={'200px'}>
+                        <StyledTableCell align="left" width={'250px'}>
                           <button className='btn btn-info btn-sm'
                             onClick={() => { handleEmailMessageShow(pt._id) }}
                           >

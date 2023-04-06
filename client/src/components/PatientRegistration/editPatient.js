@@ -127,9 +127,10 @@ function UpdateRecordInfo(props) {
   const statevalues = States
   return (
     <div className="grid_container">
-      <div className="item1">
-        <Header style={{ position: 'sticky' }} />
+      <div className="item1" >
+        <Header />
       </div>
+      {/* <div className="item1zzz"> */}
       <div className="item2">
         <Navbar />
       </div>
@@ -387,6 +388,7 @@ function UpdateRecordInfo(props) {
           </div>
         </div>
       </div>
+      {/* </div> */}
     </div>
   )
 }
