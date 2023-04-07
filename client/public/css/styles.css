@@ -52,6 +52,57 @@ body {
   padding: 3px;
 }
 
+.ApplicationHome {
+  display: flex;
+  /* flex-flow: row wrap; */
+  /*flex-direction: column;*/
+  justify-content: center;
+  align-items: center;
+  height: calc(100dvh - 100px);
+  /* width: 100%; */
+  /* background-color: #535353; */
+  /* color: white; */
+  /* font-size: 2rem;
+  font-weight: 700;*/
+  text-align: center;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-self: center;
+  align-content: center;
+  /* padding-top: 700px; */
+  /* margin: 0px;
+  margin: auto;
+  width: 60%; */
+  /* border: 3px solid #73AD21; */
+  /* padding: 10px; */
+  /* margin: 0;
+  position: absolute; */
+  /* padding-top: 20%; */
+  /* left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  /* margin-left: 30px; */
+  /* margin-right: 30px; */
+  /* background-image: url(./shared/images/aboutPageDoc.jpg); */
+}
+
+.AppBtn {
+  width: 10dvw;
+  /* height: 20dvh; */
+  height: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.AppBtnIcon {
+  width: 10dvw;
+  height: 20dvh;
+  /* margin-top: 40px; */
+  /* padding-top: 30px;
+  padding-bottom: 30px; */
+}
+
 .HomeGreeting {
   display: flex;
   /* flex-flow: row wrap; */

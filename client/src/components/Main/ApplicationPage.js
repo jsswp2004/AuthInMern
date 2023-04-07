@@ -425,6 +425,31 @@ export default function ShowRecordList() {
             <div className="item1x" >
                 <Header />
             </div>
+            <div className='ApplicationHome' >
+
+                {/* POEHR Scheduling */}
+                <Link className='btn btn-primary AppBtn'
+                    to={`/clinicVisit`}
+                >
+                    SCHEDULING
+                    <br />
+                    <i
+                        className="fa fa-calendar fa-4x"
+                        aria-hidden="true"
+                        title="Scheduling"
+                    />
+                </Link>
+
+                <div className='btn btn-primary AppBtn' >
+                    REGISTRATION
+                    <br />
+                    <i
+                        className="fa fa-pencil fa-4x"
+                        aria-hidden="true"
+                        title="Scheduling"
+                    />
+                </div>
+            </div>
 
         </div>
     )

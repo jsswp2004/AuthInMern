@@ -1268,8 +1268,7 @@ export default function ClinicVisit() {
   const wekendSunday = isSunday(addDays(new Date(selectedDate), 1))
   const wekendSaturday = isSaturday(addDays(new Date(selectedDate), 1))
 
-  // 04/05/2023 temporarily turned off due to workflow issue
-  //adding of patients should be done through registration
+
   const handleClick = (event) => {
     var target = event.target || event.srcElement
 
@@ -2826,12 +2825,18 @@ export default function ClinicVisit() {
                     backgroundColor: isScheduled(WeekDayDate2) ? isWeekend(addDays(new Date(WeekDayDate2), 1)) || isException(WeekDayDate2) ? '#ffdbe6' : '#ebfcec' : 'white',
                   }}>
                     <li className="calendar-item weekday">
-                      <div>
+                      <div
+                        onClick={() => {
+                          setViewValue('Daily');
+                          setShowDateValue(new Date(currentYear, monthIndex,
+                            startOfTheWeek + 1 > startOfTheWeekEndOfMonth && startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
+                              ? startOfTheWeek + 1 - startOfTheWeekEndOfMonth
+                              : startOfTheWeek + 1))
+                        }}
+                      >
                         MON
                         <span style={{
                           float: 'right', marginRight: '10px',
-
-
                         }}
 
                         >
@@ -2852,7 +2857,15 @@ export default function ClinicVisit() {
                     height: '100%',
                     backgroundColor: isScheduled(WeekDayDate3) ? isWeekend(addDays(new Date(WeekDayDate3), 1)) || isException(WeekDayDate3) ? '#ffdbe6' : '#ebfcec' : 'white',
                   }} >
-                    <li className="calendar-item weekday">
+                    <li className="calendar-item weekday"
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex,
+                          startOfTheWeek + 2 > startOfTheWeekEndOfMonth && startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 2))
+                      }}
+                    >
                       <div>
                         TUE
                         <span style={{ float: 'right', marginRight: '10px' }}>
@@ -2871,7 +2884,14 @@ export default function ClinicVisit() {
                     height: '100%',
                     backgroundColor: isScheduled(WeekDayDate4) ? isWeekend(addDays(new Date(WeekDayDate4), 1)) || isException(WeekDayDate4) ? '#ffdbe6' : '#ebfcec' : 'white',
                   }}>
-                    <li className="calendar-item weekday">
+                    <li className="calendar-item weekday"
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex,
+                          startOfTheWeek + 3 > startOfTheWeekEndOfMonth && startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 3))
+                      }}>
                       <div>
                         WED
                         <span style={{ float: 'right', marginRight: '10px' }}>
@@ -2898,7 +2918,14 @@ export default function ClinicVisit() {
                     height: '100%',
                     backgroundColor: isScheduled(WeekDayDate5) ? isWeekend(addDays(new Date(WeekDayDate5), 1)) || isException(WeekDayDate5) ? '#ffdbe6' : '#ebfcec' : 'white',
                   }}>
-                    <li className="calendar-item weekday">
+                    <li className="calendar-item weekday"
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex,
+                          startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 4))
+                      }}>
                       <div>
                         THU
                         <span style={{ float: 'right', marginRight: '10px' }}>
@@ -2918,7 +2945,15 @@ export default function ClinicVisit() {
                     height: '100%',
                     backgroundColor: isScheduled(WeekDayDate6) ? isWeekend(addDays(new Date(WeekDayDate6), 1)) || isException(WeekDayDate6) ? '#ffdbe6' : '#ebfcec' : 'white',
                   }}>
-                    <li className="calendar-item weekday">
+                    <li className="calendar-item weekday"
+                      onClick={() => {
+                        setViewValue('Daily');
+                        setShowDateValue(new Date(currentYear, monthIndex,
+                          startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 5))
+                      }}
+                    >
                       <div>
                         FRI
                         <span style={{ float: 'right', marginRight: '10px' }}>
