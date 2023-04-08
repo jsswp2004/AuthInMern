@@ -1,13 +1,13 @@
 :root {
-  --body-margin: 10px;
+  --body-margin: 0px;
 }
 body {
   margin: var(--body-margin);
   min-width: 600px;
 }
-/* #root {
-  height: 100vh;
-} */
+#root {
+  height: 100%;
+}
 
 /*Main page css*/
 .HomepageGreeting {
@@ -555,6 +555,7 @@ body {
 .grid_containerx {
   display: flex;
   flex-direction: column;
+  height: calc(100dvh);
 }
 .grid_containerzz {
   display: flex;
@@ -601,7 +602,7 @@ body {
   text-align: left;
   padding: 0px;
   margin: 0px;
-  height: calc(100dvh);
+  /* height: calc(100dvh-90px); */
 }
 .item2zz {
   grid-area: menu;
@@ -611,7 +612,8 @@ body {
   text-align: left;
   padding: 0px;
   margin: 0px;
-  height: calc(100dvh);
+  /* height: calc(100dvh); */
+  height: calc(100dvh-100px);
 }
 
 .item3 {
@@ -623,6 +625,7 @@ body {
   margin-top: 0px;
   margin-left: 0px;
   width: 100%;
+  height: calc(100dvh-100px);
   /* background-color: rgba(255, 255, 255, 0.8); */
   background-color: white;
   padding-left: 1px;
@@ -696,7 +699,7 @@ body {
   row-gap: 0px;
   background-color: #eeeeee;
   padding: 0px;
-  height: calc(100vh - 10px);
+  height: calc(100dvh - 10px);
 }
 
 .item3_grid_item1 {

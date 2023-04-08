@@ -460,11 +460,12 @@ export default function ShowRecordList() {
   //#endregion
   //#region for returning the table
   return (
-    <div className="grid_containerx" style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className="grid_containerx" >
+      {/* style={{ display: 'flex', flexDirection: 'column' }} */}
       <div className="item1x" >
         <Header />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', flexGrow: '1' }}>
         <div className="item2" style={{ display: showNav === true ? 'inline' : 'none' }} >
           <Navbar />
         </div>

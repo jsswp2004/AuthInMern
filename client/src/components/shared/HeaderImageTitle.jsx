@@ -45,7 +45,7 @@ function HeaderImageTitle() {
             <Link to="/createPatient">Registration</Link>
           </li> */}
         <li id="link" className="navbar_list">
-          <Link to="/patientlist">Home</Link>
+          <Link to="/applications">Home</Link>
         </li>
 
         {/* <li id="link" className="navbar_list">

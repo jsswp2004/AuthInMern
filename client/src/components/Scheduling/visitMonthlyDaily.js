@@ -174,7 +174,7 @@ const VisitMonthDaily = (props) => {
             <li>{props.visit.email}</li>
             <li>Provider: {props.visit.provider}</li>
             <li>Event: {props.visit.event}</li>
-            <li>{'cellphone'}</li>
+            <li>Mobile Phone:{props.visit.cellphone}</li>
 
           </ul>
         </div>
