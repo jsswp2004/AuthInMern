@@ -509,7 +509,7 @@ export default function ShowVisitList() {
       <div className="item1x">
         <Header />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', flexGrow: '1' }}>
         <div className="item2" style={{ display: showNav === true ? 'inline' : 'none' }}>
           <Navbar />
         </div>
@@ -517,7 +517,6 @@ export default function ShowVisitList() {
           <button className='btn-sm btn'> <i className="fa fa-exchange fa-sm fawhite" aria-hidden="true" onClick={toggleNav} title='Toggle navigation' ></i>
           </button>
         </div>
-
         <div className="item3" >
           <div className="item3A">
             {/* <div className="left filter_navbarLeft"> */}
@@ -591,7 +590,6 @@ export default function ShowVisitList() {
               </label>
             </div>
           </div>
-
           <div className="item3B" style={{ overflowY: 'auto' }}>
             <ThemeProvider theme={themeDesign}>
               <TableContainer component={Paper}>
