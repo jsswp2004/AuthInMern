@@ -38,9 +38,9 @@ function HeaderImageTitle() {
       </div>
 
       <ul className="navigation">
-        <span className="navbar_listHeaderGreeting">
+        {/* <span className="navbar_listHeaderGreeting">
           Welcome {userFirstName}!
-        </span>
+        </span> */}
         {/* <li id="link" className="navbar_list">
             <Link to="/createPatient">Registration</Link>
           </li> */}
