@@ -2949,9 +2949,9 @@ export default function ClinicVisit() {
                       onClick={() => {
                         setViewValue('Daily');
                         setShowDateValue(new Date(currentYear, monthIndex,
-                          startOfTheWeek + 5 > startOfTheWeekEndOfMonth && startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
-                            ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
-                            : startOfTheWeek + 5))
+                          startOfTheWeek + 4 > startOfTheWeekEndOfMonth && startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                            ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
+                            : startOfTheWeek + 4))
                       }}
                     >
                       <div>

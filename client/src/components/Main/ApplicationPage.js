@@ -428,7 +428,7 @@ export default function ShowRecordList() {
             <div className='ApplicationHome' >
 
                 {/* POEHR Scheduling */}
-                <Link className='btn btn-secondary AppBtn'
+                <Link className='btn btn-primary AppBtn'
                     to={`/clinicVisit`}
                 >
                     SCHEDULING
