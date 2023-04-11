@@ -568,6 +568,12 @@ body {
   overflow-y: auto;
 }
 
+.item2and3Conatainer {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
 .item1 {
   grid-area: header;
   grid-column: 1 / span all;

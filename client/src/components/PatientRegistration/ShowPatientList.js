@@ -465,7 +465,7 @@ export default function ShowRecordList() {
       <div className="item1x" >
         <Header />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row', flexGrow: '1' }}>
+      <div className='item2and3Conatainer'>
         <div className="item2" style={{ display: showNav === true ? 'inline' : 'none' }} >
           <Navbar />
         </div>

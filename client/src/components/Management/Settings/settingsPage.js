@@ -43,7 +43,7 @@ const ShowSettings = () => {
       <div className="item1x">
         <Header />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div className='item2and3Conatainer'>
         <div className="item2" style={{ display: showNav === true ? 'inline' : 'none', height: '100dvh' }}>
           <Navbar />
         </div>
