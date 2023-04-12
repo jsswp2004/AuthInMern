@@ -103,7 +103,21 @@ const ShowSettings = () => {
                     />
                     <span className="settingCheckboxCheckmark"></span>
                   </label>
+                  <div className='form-control'>
+                    <h5 className="createPageHeader settingsTitle">Upload Dictionaries</h5>
+                    <label className="settingCheckboxContainer">
+                      Staff Exceptions
+                      <input
+                        type="radio"
+                        onClick={() => setSetting('Staff Exception')}
+                        name="radio"
+                      />
+                      <span className="settingCheckboxCheckmark"></span>
+                    </label>
+
+                  </div>
                 </div>
+
               </div>
             </div>
             <div className="roleItemContainerBoxRight">
