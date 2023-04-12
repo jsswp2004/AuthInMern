@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 import HeaderMain from '../shared/HeaderMain'
 import HeaderLogo from '../shared/HeaderLogo'
+import BodyLogo from '../shared/BodyLogo'
 
 // export const UserContext = createContext();
 export const RoleContext = createContext();
@@ -82,7 +83,7 @@ const Login = () => {
               <div className={styles.left}>
                 <form className={styles.form_container} onSubmit={handleSubmit}>
                   <div style={{ marginBottom: '30px' }} >
-                    <HeaderLogo />
+                    <BodyLogo />
                   </div>
                   <h5>Login to Your Account</h5>
                   <input
