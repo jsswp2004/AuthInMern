@@ -334,7 +334,7 @@ export default function ClinicVisit() {
   const [modalDisplay, setModalDisplay] = useState('visit')
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
-      <Modal dialogClassName='modal-xl' show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
+      <Modal style={{ height: '90dvh', overflowY: 'auto' }} dialogClassName='modal-lg' show={showMonthly} onHide={handleMonthlyClose} size="lg" centered>
         {/* <Modal.Header onClick={() => setNewPatient(true)}> */}
         {/* <Modal.Title>
             Add a quick visit

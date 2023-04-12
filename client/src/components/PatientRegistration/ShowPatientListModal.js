@@ -426,7 +426,7 @@ export default function ShowRecordList() {
 
 
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(20)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -513,13 +513,13 @@ export default function ShowRecordList() {
                     <TableRow>
                       <StyledTableCell align="left">MRN</StyledTableCell>
                       <StyledTableCell align="left">Firstname</StyledTableCell>
-                      <StyledTableCell align="left">Middlename</StyledTableCell>
+                      {/* <StyledTableCell align="left">Middlename</StyledTableCell> */}
                       <StyledTableCell align="left">Lastname</StyledTableCell>
                       <StyledTableCell align="left">DOB</StyledTableCell>
                       <StyledTableCell align="left">Gender</StyledTableCell>
                       <StyledTableCell align="left">Age</StyledTableCell>
                       <StyledTableCell align="left">Race</StyledTableCell>
-                      <StyledTableCell align="left">Date Added</StyledTableCell>
+                      {/* <StyledTableCell align="left">Date Added</StyledTableCell> */}
                       <StyledTableCell align="left">Actions</StyledTableCell>
                     </TableRow>
                   </TableHead>
@@ -540,9 +540,9 @@ export default function ShowRecordList() {
                         <StyledTableCell align="left" >
                           {pt.firstName}
                         </StyledTableCell>
-                        <StyledTableCell align="left" >
+                        {/* <StyledTableCell align="left" >
                           {pt.middleName}
-                        </StyledTableCell>
+                        </StyledTableCell> */}
                         <StyledTableCell align="left" >{pt.lastName}</StyledTableCell>
                         <StyledTableCell align="left">{pt.dateOfBirth}</StyledTableCell>
                         <StyledTableCell align="left" width='200px'>
@@ -554,9 +554,9 @@ export default function ShowRecordList() {
                         <StyledTableCell align="left" width='250px'>
                           {pt.race}
                         </StyledTableCell>
-                        <StyledTableCell align="left" width='250px'>
+                        {/* <StyledTableCell align="left" width='250px'>
                           {pt.addedDate}
-                        </StyledTableCell>
+                        </StyledTableCell> */}
                         <StyledTableCell align="left" width='250px'>
                           <Tooltip title="Create visit schedule">
                             <Button
