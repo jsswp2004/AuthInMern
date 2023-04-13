@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import styles from './styles.module.css'
 import HeaderMain from '../shared/HeaderMain'
-import HeaderLogo from '../shared/HeaderLogo'
+import BodyLogo from '../shared/BodyLogo'
 
 export const UserContext = createContext()
 
@@ -87,7 +87,7 @@ const Signup = () => {
             <div className={styles.right}>
               <form className={styles.form_container} onSubmit={handleSubmit}>
                 <div style={{ marginBottom: '30px' }} >
-                  <HeaderLogo />
+                  <BodyLogo />
                 </div>
                 <h1>Create Account</h1>
 

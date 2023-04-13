@@ -431,170 +431,171 @@ export default function ShowVisitList() {
     //#endregion
 
     return (
-        <div className="grid_container" style={{ height: '100px' }}>
-            <div className="item1">
+        <div className="grid_containerx" style={{ height: '100px' }}>
+            <div className="item1x">
                 <Header />
             </div>
-            <div className="item2">
-                <Navbar />
-            </div>
-
-            <div className="item3" >
-
-                <div className="item3A">
-                    <div className="left filter_navbarLeft">
-                        <h4 className='patientListHeader'>Patient Visits</h4>
-                    </div>
-                    <div className="right filter_navbarlist searchLabel">
-                        <span className="filter_search-label filterTitle">Filter: </span>
-                        <label className="filter_search-label">
-                            Visit Date:
-                            <input
-                                type="date"
-                                className="filter__search-input"
-                                id="registrationDateFilter"
-                                value={regDate}
-                                onChange={(newValue) => {
-                                    setRegFilterDate(newValue.target.value)
-                                }}
-                            />
-                        </label>
-                        <label className="filter_search-label">
-                            {' '}
-                            Provider:
-                            <select
-                                key={visits.provider}
-                                className="filter__search-input"
-                                name="provider"
-                                value={visits.provider}
-                                onChange={(e) => {
-                                    setSelectMD(e.target.value)
-                                }}
-                            >
-                                {' '}
-                                <option key="Select" value="">
-                                    Select Provider
-                                </option>
-                                {providerMD.map((doc) => (
-                                    <option key={doc._id} value={doc.value}>
-                                        {doc}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                    </div>
-                    {/* .filter_navbar */}
-                    <div className="right searchLabel filter_navbarRight">
-                        <button className='btn btn-success  btn-sm'
-                            onClick={handleDownloadExcel}
-                        >
-                            {/* className='btn btn-success btn-sm' */}
-                            <i
-                                className="fa fa-file-excel-o"
-                                aria-hidden="true"
-                                title="Export to Excel"
-                            />
-                        </button>
-                        <label htmlFor="search" className=" filter_search-label">
-                            Search :{' '}
-                            <input
-                                className="searchInput"
-                                id="search"
-                                type="text"
-                                placeholder="Type here to search"
-                                onChange={handleChange}
-                                value={searchInput}
-                            />
-                        </label>
-                    </div>
+            <div className='item2and3Conatainer'>
+                <div className="item2">
+                    <Navbar />
                 </div>
-                <div>{displayEditVisitModal()}</div>
-                <div>{displayDetailVisitModal()}</div>
-                <div>{displayDeleteRegistrationModal()}</div>
 
-                <div className="item3B" style={{ overflowY: 'auto' }}>
-                    <ThemeProvider theme={themeDesign}>
-                        <TableContainer component={Paper}>
-                            <Table
-                                sx={{ minWidth: 650 }}
-                                size="small"
-                                aria-label="a dense table"
+                <div className="item3" >
+
+                    <div className="item3A">
+                        <div className="left filter_navbarLeft">
+                            <h4 className='patientListHeader'>Patient Visits</h4>
+                        </div>
+                        <div className="right filter_navbarlist searchLabel">
+                            <span className="filter_search-label filterTitle">Filter: </span>
+                            <label className="filter_search-label">
+                                Visit Date:
+                                <input
+                                    type="date"
+                                    className="filter__search-input"
+                                    id="registrationDateFilter"
+                                    value={regDate}
+                                    onChange={(newValue) => {
+                                        setRegFilterDate(newValue.target.value)
+                                    }}
+                                />
+                            </label>
+                            <label className="filter_search-label">
+                                {' '}
+                                Provider:
+                                <select
+                                    key={visits.provider}
+                                    className="filter__search-input"
+                                    name="provider"
+                                    value={visits.provider}
+                                    onChange={(e) => {
+                                        setSelectMD(e.target.value)
+                                    }}
+                                >
+                                    {' '}
+                                    <option key="Select" value="">
+                                        Select Provider
+                                    </option>
+                                    {providerMD.map((doc) => (
+                                        <option key={doc._id} value={doc.value}>
+                                            {doc}
+                                        </option>
+                                    ))}
+                                </select>
+                            </label>
+                        </div>
+                        {/* .filter_navbar */}
+                        <div className="right searchLabel filter_navbarRight">
+                            <button className='btn btn-success  btn-sm'
+                                onClick={handleDownloadExcel}
                             >
-                                <TableHead>
-                                    <TableRow>
-                                        <StyledTableCell align="left">MRN</StyledTableCell>
-                                        <StyledTableCell align="left">Visit Number</StyledTableCell>
-                                        <StyledTableCell align="left">Firstname</StyledTableCell>
-                                        <StyledTableCell align="left">Middlename</StyledTableCell>
-                                        <StyledTableCell align="left">Lastname</StyledTableCell>
-                                        <StyledTableCell align="left">Visit Date</StyledTableCell>
-                                        <StyledTableCell align="left">Hour of visit</StyledTableCell>
-                                        <StyledTableCell align="left">Email</StyledTableCell>
-                                        <StyledTableCell align="left">Provider</StyledTableCell>
-                                        <StyledTableCell align="left">Date Added</StyledTableCell>
-                                        <StyledTableCell align="left">Actions</StyledTableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {(rowsPerPage > 0
-                                        ? filteredData.slice(
-                                            page * rowsPerPage,
-                                            page * rowsPerPage + rowsPerPage,
-                                        )
-                                        : filteredData
-                                    ).map((pt) => (
-                                        <StyledTableRow key={pt._id}
-                                            onClick={() => handleItemClick(pt)}
-                                        >
-                                            <StyledTableCell align="left">
-                                                {pt.medicalRecordNumber}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.visitNumber}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.firstName}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.middleName}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.lastName}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.visitDate}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.hourOfVisit}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">{pt.email}</StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.provider}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
-                                                {pt.addedDate}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">
+                                {/* className='btn btn-success btn-sm' */}
+                                <i
+                                    className="fa fa-file-excel-o"
+                                    aria-hidden="true"
+                                    title="Export to Excel"
+                                />
+                            </button>
+                            <label htmlFor="search" className=" filter_search-label">
+                                Search :{' '}
+                                <input
+                                    className="searchInput"
+                                    id="search"
+                                    type="text"
+                                    placeholder="Type here to search"
+                                    onChange={handleChange}
+                                    value={searchInput}
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div>{displayEditVisitModal()}</div>
+                    <div>{displayDetailVisitModal()}</div>
+                    <div>{displayDeleteRegistrationModal()}</div>
 
-                                                <button
-                                                    className="btn btn-primary btn-sm"
-                                                    onClick={() => { handleEditVisitShow(pt._id) }}>
-                                                    <i
-                                                        className="fa fa-edit"
-                                                        aria-hidden="true"
-                                                        title='edit visit'
-                                                    />
-                                                </button>
-                                                <button
-                                                    className="btn btn-success btn-sm"
-                                                    onClick={() => { handleDetailVisitShow(pt._id) }}>
-                                                    <i
-                                                        className="fa fa-pencil-square-o"
-                                                        aria-hidden="true"
-                                                        title='Visit details'
-                                                    />
-                                                </button>
-                                                {/* <Link className="btn btn-success btn-m "
+                    <div className="item3B" style={{ overflowY: 'auto' }}>
+                        <ThemeProvider theme={themeDesign}>
+                            <TableContainer component={Paper}>
+                                <Table
+                                    sx={{ minWidth: 650 }}
+                                    size="small"
+                                    aria-label="a dense table"
+                                >
+                                    <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell align="left">MRN</StyledTableCell>
+                                            <StyledTableCell align="left">Visit Number</StyledTableCell>
+                                            <StyledTableCell align="left">Firstname</StyledTableCell>
+                                            <StyledTableCell align="left">Middlename</StyledTableCell>
+                                            <StyledTableCell align="left">Lastname</StyledTableCell>
+                                            <StyledTableCell align="left">Visit Date</StyledTableCell>
+                                            <StyledTableCell align="left">Hour of visit</StyledTableCell>
+                                            <StyledTableCell align="left">Email</StyledTableCell>
+                                            <StyledTableCell align="left">Provider</StyledTableCell>
+                                            <StyledTableCell align="left">Date Added</StyledTableCell>
+                                            <StyledTableCell align="left">Actions</StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {(rowsPerPage > 0
+                                            ? filteredData.slice(
+                                                page * rowsPerPage,
+                                                page * rowsPerPage + rowsPerPage,
+                                            )
+                                            : filteredData
+                                        ).map((pt) => (
+                                            <StyledTableRow key={pt._id}
+                                                onClick={() => handleItemClick(pt)}
+                                            >
+                                                <StyledTableCell align="left">
+                                                    {pt.medicalRecordNumber}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.visitNumber}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.firstName}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.middleName}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.lastName}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.visitDate}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.hourOfVisit}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">{pt.email}</StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.provider}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+                                                    {pt.addedDate}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">
+
+                                                    <button
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={() => { handleEditVisitShow(pt._id) }}>
+                                                        <i
+                                                            className="fa fa-edit"
+                                                            aria-hidden="true"
+                                                            title='edit visit'
+                                                        />
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-success btn-sm"
+                                                        onClick={() => { handleDetailVisitShow(pt._id) }}>
+                                                        <i
+                                                            className="fa fa-pencil-square-o"
+                                                            aria-hidden="true"
+                                                            title='Visit details'
+                                                        />
+                                                    </button>
+                                                    {/* <Link className="btn btn-success btn-m "
                                                     to={`/detailsVisit/${pt._id}`}
                                                 >
                                                     <i
@@ -603,59 +604,61 @@ export default function ShowVisitList() {
                                                         aria-hidden="true"
                                                     />
                                                 </Link> */}
-                                                <button
-                                                    className="btn btn-danger btn-sm"
-                                                    onClick={handleShowDelete}
-                                                >
-                                                    <i
-                                                        title="delete visit"
-                                                        className="fa fa-trash-o"
-                                                        aria-hidden="true"
-                                                    />
-                                                </button>
-                                            </StyledTableCell>
-                                        </StyledTableRow>
-                                    ))}
-                                    {emptyRows > 0 && (
-                                        <StyledTableRow
-                                            style={{
-                                                height: 53 * emptyRows,
-                                            }}
-                                        >
-                                            <StyledTableCell colSpan={6} />
-                                        </StyledTableRow>
-                                    )}
-                                </TableBody>
-                                <TableFooter>
-                                    <TableRow>
-                                        <TablePagination
-                                            // style={{float:'right'}}
-                                            rowsPerPageOptions={[
-                                                5,
-                                                15,
-                                                25,
-                                                { label: 'All', value: -1 },
-                                            ]}
-                                            colSpan={12}
-                                            count={filteredData.length}
-                                            rowsPerPage={rowsPerPage}
-                                            page={page}
-                                            SelectProps={{
-                                                inputProps: {
-                                                    'aria-label': 'rows per page',
-                                                },
-                                                native: true,
-                                            }}
-                                            onPageChange={handleChangePage}
-                                            onRowsPerPageChange={handleChangeRowsPerPage}
-                                            ActionsComponent={TablePaginationActions}
-                                        />
-                                    </TableRow>
-                                </TableFooter>
-                            </Table>
-                        </TableContainer>
-                    </ThemeProvider>
+                                                    <button
+                                                        className="btn btn-danger btn-sm"
+                                                        onClick={handleShowDelete}
+                                                    >
+                                                        <i
+                                                            title="delete visit"
+                                                            className="fa fa-trash-o"
+                                                            aria-hidden="true"
+                                                        />
+                                                    </button>
+                                                </StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        {emptyRows > 0 && (
+                                            <StyledTableRow
+                                                style={{
+                                                    height: 53 * emptyRows,
+                                                }}
+                                            >
+                                                <StyledTableCell colSpan={6} />
+                                            </StyledTableRow>
+                                        )}
+                                    </TableBody>
+                                    <TableFooter>
+                                        <TableRow>
+                                            <TablePagination
+                                                // style={{float:'right'}}
+                                                rowsPerPageOptions={[
+                                                    5,
+                                                    15,
+                                                    25,
+                                                    { label: 'All', value: -1 },
+                                                ]}
+                                                colSpan={12}
+                                                count={filteredData.length}
+                                                rowsPerPage={rowsPerPage}
+                                                page={page}
+                                                SelectProps={{
+                                                    inputProps: {
+                                                        'aria-label': 'rows per page',
+                                                    },
+                                                    native: true,
+                                                }}
+                                                onPageChange={handleChangePage}
+                                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                                ActionsComponent={TablePaginationActions}
+                                            />
+                                        </TableRow>
+                                    </TableFooter>
+                                </Table>
+                            </TableContainer>
+                        </ThemeProvider>
+                    </div>
                 </div>
+
             </div>
         </div>
     )
