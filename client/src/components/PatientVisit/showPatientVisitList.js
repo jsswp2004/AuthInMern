@@ -39,7 +39,7 @@ export default function ShowVisitList() {
     const [regDate, setRegFilterDate] = useState('')
     const [selectMD, setSelectMD] = useState('')
     const [visits, setVisits] = useState([])
-    console.log(id, visits)
+    // console.log(id, visits)
     //#endregion
     //#region captures and sets value of the search input text
     const [searchInput, setSearchInput] = useState('')
@@ -176,6 +176,7 @@ export default function ShowVisitList() {
             .then((res) => {
                 setVisits(res.data)
                 // setVisits(visits.filter((el) => el.medicalRecordNumber === id))
+                // console.log(res.data.medicalRecordNumber)
             })
             .catch((err) => {
                 console.log('Error from ShowVisitList')
@@ -271,11 +272,11 @@ export default function ShowVisitList() {
     //     .sort((a, b) => (a.visitDate + a.hourOfVisit < b.visitDate + b.hourOfVisit ? 1 : -1))
     // .includes(id)
     // { medicalRecordNumber } = visits
-    var filteredData = visits
+    var filteredData = visits.filter((visit) => visit.medicalRecordNumber === id.toString())
     // .filter(
     // (visit) =>
     //     visit.medicalRecordNumber === id.toString()
-    // console.log(visit.medicalRecordNumber)
+    // console.log(filteredVisits)
 
     // )
     //[0].filter((el) => el.medicalRecordNumber === id.toString())//.find((visit) => visit.medicalRecordNumber === id.toString())
@@ -283,7 +284,7 @@ export default function ShowVisitList() {
     // const mrn = id
     // const filterVisit = visits.find((visit) => visit.medicalRecordNumber === mrn.toString())
     // console.log(filteredData.filter((el) => el.medicalRecordNumber === id.toString()))
-    console.log(filteredData)
+    // console.log(filteredData)
 
     //#endregion
     //#region table functions
@@ -555,11 +556,11 @@ export default function ShowVisitList() {
                                     </TableHead>
                                     <TableBody>
                                         {(rowsPerPage > 0
-                                            ? filteredData.slice(
+                                            ? filteredVisits.slice(
                                                 page * rowsPerPage,
                                                 page * rowsPerPage + rowsPerPage,
                                             )
-                                            : filteredData
+                                            : filteredVisits
                                         ).map((pt) => (
                                             <StyledTableRow key={pt._id}
                                                 onClick={() => handleItemClick(pt)}
@@ -655,7 +656,7 @@ export default function ShowVisitList() {
                                                     { label: 'All', value: -1 },
                                                 ]}
                                                 colSpan={12}
-                                                count={filteredData.length}
+                                                count={filteredVisits.length}
                                                 rowsPerPage={rowsPerPage}
                                                 page={page}
                                                 SelectProps={{
