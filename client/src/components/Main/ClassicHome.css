@@ -107,16 +107,20 @@
 .homeIntros-Image {
   margin-top: 5%;
   border-radius: 280px;
-  width: 50%;
-  height: 750px;
-  max-width: 100%;
-  background-image: url("/public/image@3x.png");
+  /* width: 10px; */
+  height: 70dvh;
+  /* max-width: 100%; */
+  background-image: url("../shared/images/image@3x.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left;
   font-family: var(--font-arial);
   flex-grow: 1;
   flex-shrink: 3;
+  /* border: 10px solid darkgray; */
+  /* border-color: darkgray; */
+  /* border-style: solid; */
+  /* box-shadow: 5px 10px #888888; */
 }
 /* end of flex container */
 
