@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import Navbar from '../../navigation/navbar'
 import Header from '../../shared/Header'
 import ShowUsers from '../../Signup/showUsers'
@@ -6,9 +7,59 @@ import ShowRoles from '../Roles/showRoles'
 import ShowEvents from '../Events/showEvents'
 import ShowStaffSchedules from '../StaffSchedules/showStaffSchedules'
 import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
-
+import { Modal, Button } from 'react-bootstrap'
+import UploadRole from '../Roles/uploadRoleModal'
 
 const ShowSettings = () => {
+  //#region for modal functions
+  const navigate = useNavigate()
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    setShow(false)
+    navigate('/settingsPage')
+  }
+
+  // const handleEditClick = (e) => {
+  //   e.preventDefault()
+  //   setEditShow(false)
+  // }
+  //#endregion
+  //#region  Define the modal state with useState hook
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+
+  //#endregion
+  //#region for role upload modal
+  const UploadRoleModal = () => (
+    <>
+      <Modal show={show} onHide={handleClose} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Upload Roles</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <UploadRole />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+
+  function displayUploadRoleModal() {
+    return <UploadRoleModal />
+  }
+
+  //#endregion
+
   //#region to hide navbar
   const [showNav, setShowNav] = useState(false);
   function toggleNav() {
@@ -106,10 +157,10 @@ const ShowSettings = () => {
                   <div className='form-control'>
                     <h5 className="createPageHeader settingsTitle">Upload Dictionaries</h5>
                     <label className="settingCheckboxContainer">
-                      Staff Exceptions
+                      Roles
                       <input
                         type="radio"
-                        onClick={() => setSetting('Staff Exception')}
+                        onClick={() => handleShow()}
                         name="radio"
                       />
                       <span className="settingCheckboxCheckmark"></span>
@@ -119,6 +170,7 @@ const ShowSettings = () => {
                 </div>
 
               </div>
+              <div>{displayUploadRoleModal()}</div>
             </div>
             <div className="roleItemContainerBoxRight">
               <div style={displayRolesSetting}>

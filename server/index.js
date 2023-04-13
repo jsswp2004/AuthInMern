@@ -16,6 +16,7 @@ const exceptionRoutes = require("./routes/exceptions")
 const emailRoutes = require("./routes/emails");
 const smsRoutes = require("./routes/smsMessages");
 const nodemailer = require("nodemailer");
+const fileUpload = require('express-fileupload');
 
 require('dotenv').config()
 
@@ -30,6 +31,9 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
+
+//file upload
+app.use(fileUpload());
 
 // routes
 app.use("/api/users", userRoutes);
