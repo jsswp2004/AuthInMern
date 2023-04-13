@@ -580,9 +580,8 @@ export default function ShowRecordList() {
                               className="btn btn-success  btn-sm"
                               href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                             >
-
                               <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
-
+                              {console.log(pt.medicalRecordNumber)}
                             </a>
                           </Tooltip>
 

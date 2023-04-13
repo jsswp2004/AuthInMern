@@ -57,7 +57,7 @@ export default function ShowVisitList() {
     //#region Define patient ID for create visit from registration modal
     const [visitID, setVisitID] = useState('')
     //#endregion
-    //#region for Visit Details Modal
+    //#region for Visit Details Modal 
     const ShowDetailVisitModal = () => (
         <>
             <Modal show={showDetailVisit} onHide={handleDetailVisitClose} size="lg" centered>
@@ -96,7 +96,7 @@ export default function ShowVisitList() {
         setDetailVisitShow(false)
     }
 
-    //#endRegion
+    //#endRegion 
     //#region Edit Visit Modal from Registration
     const ShowEditVisitModal = () => (
         <>
@@ -268,6 +268,10 @@ export default function ShowVisitList() {
             }
         })
         .sort((a, b) => (a.visitDate + a.hourOfVisit < b.visitDate + b.hourOfVisit ? 1 : -1))
+    // .includes(id)
+    const mrn = id
+    const filterVisit = visits.find((visit) => visit.medicalRecordNumber === mrn)
+    console.log(filterVisit)
     //#endregion
     //#region table functions
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
