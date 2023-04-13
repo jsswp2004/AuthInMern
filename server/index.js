@@ -44,7 +44,7 @@ app.use("/api/schedules", scheduleRoutes);
 app.use("/api/exceptions", exceptionRoutes);
 app.use("/api/emails", emailRoutes);
 app.use("/api/messages", smsRoutes);
-app.get("/api/template", templateRoutes);
+// app.use("/api/template", templateRoutes);
 
 
 const contactEmail = nodemailer.createTransport({
