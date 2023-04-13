@@ -175,6 +175,7 @@ export default function ShowVisitList() {
             .get('http://localhost:8081/api/visits')
             .then((res) => {
                 setVisits(res.data)
+                // setVisits(visits.filter((el) => el.medicalRecordNumber === id))
             })
             .catch((err) => {
                 console.log('Error from ShowVisitList')
@@ -222,56 +223,68 @@ export default function ShowVisitList() {
         }
     })
 
-    var filteredData = filterDateRegistration
-        .filter((visit) => {
-            if (searchInput === '') {
-                return visit
-            } else {
-                return (
-                    visit.medicalRecordNumber
-                        .toString()
-                        .toLowerCase()
-                        .includes(id.toLowerCase()) ||
-                    visit.visitNumber
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase()) ||
-                    visit.firstName
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase()) ||
-                    visit.middleName
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase()) ||
-                    visit.lastName
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase()) ||
-                    visit.hourOfVisit
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase()) ||
-                    visit.email
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase()) ||
-                    visit.provider
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase()) ||
-                    visit.addedDate
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchInput.toLowerCase())
-                )
-            }
-        })
-        .sort((a, b) => (a.visitDate + a.hourOfVisit < b.visitDate + b.hourOfVisit ? 1 : -1))
+    // var filteredData = filterDateRegistration
+    //     .filter((visit) => {
+    //         if (searchInput === '') {
+    //             return visit
+    //         } else {
+    //             return (
+    //                 visit.medicalRecordNumber
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(id.toLowerCase()) ||
+    //                 visit.visitNumber
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase()) ||
+    //                 visit.firstName
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase()) ||
+    //                 visit.middleName
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase()) ||
+    //                 visit.lastName
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase()) ||
+    //                 visit.hourOfVisit
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase()) ||
+    //                 visit.email
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase()) ||
+    //                 visit.provider
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase()) ||
+    //                 visit.addedDate
+    //                     .toString()
+    //                     .toLowerCase()
+    //                     .includes(searchInput.toLowerCase())
+    //             )
+    //         }
+    //     })
+    //     .sort((a, b) => (a.visitDate + a.hourOfVisit < b.visitDate + b.hourOfVisit ? 1 : -1))
     // .includes(id)
-    const mrn = id
-    const filterVisit = visits.find((visit) => visit.medicalRecordNumber === mrn)
-    console.log(filterVisit)
+    // { medicalRecordNumber } = visits
+    var filteredData = visits
+    // .filter(
+    // (visit) =>
+    //     visit.medicalRecordNumber === id.toString()
+    // console.log(visit.medicalRecordNumber)
+
+    // )
+    //[0].filter((el) => el.medicalRecordNumber === id.toString())//.find((visit) => visit.medicalRecordNumber === id.toString())
+    // { medicalRecordNumber } = visits
+    // const mrn = id
+    // const filterVisit = visits.find((visit) => visit.medicalRecordNumber === mrn.toString())
+    // console.log(filteredData.filter((el) => el.medicalRecordNumber === id.toString()))
+    console.log(filteredData)
+
     //#endregion
     //#region table functions
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
