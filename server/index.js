@@ -15,6 +15,7 @@ const scheduleRoutes = require("./routes/schedules")
 const exceptionRoutes = require("./routes/exceptions")
 const emailRoutes = require("./routes/emails");
 const smsRoutes = require("./routes/smsMessages");
+const templateRoutes = require("./routes/template");
 const nodemailer = require("nodemailer");
 
 require('dotenv').config()
@@ -43,6 +44,8 @@ app.use("/api/schedules", scheduleRoutes);
 app.use("/api/exceptions", exceptionRoutes);
 app.use("/api/emails", emailRoutes);
 app.use("/api/messages", smsRoutes);
+app.get("/api/template", templateRoutes);
+
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
