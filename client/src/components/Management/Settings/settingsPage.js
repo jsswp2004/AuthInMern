@@ -156,7 +156,7 @@ const ShowSettings = () => {
                   </label>
                   <div className='form-control'>
                     <h5 className="createPageHeader settingsTitle">Upload Dictionaries</h5>
-                    <label className="settingCheckboxContainer">
+                    {/* <label className="settingCheckboxContainer">
                       Roles
                       <input
                         type="radio"
@@ -164,7 +164,8 @@ const ShowSettings = () => {
                         name="radio"
                       />
                       <span className="settingCheckboxCheckmark"></span>
-                    </label>
+                    </label> */}
+                    <a href='/uploadRole'>Roles</a>
 
                   </div>
                 </div>

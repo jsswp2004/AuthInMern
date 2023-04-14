@@ -2,7 +2,24 @@
 
 const express = require('express')
 const router = express.Router()
-const { Role, validate } = require('../models/role')
+const { Role, validate } = require('../models/role');
+const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
+const json2csv = require('json2csv').parse;
+
+exports.get = function (req, res) {
+  var fields = [
+    'name.firstName',
+    'name.lastName',
+    'biography',
+    'twitter',
+    'facebook',
+    'linkedin'
+  ];
+  var csv = json2csv({ data: '', fields: fields });
+  res.set("Content-Disposition", "attachment;filename=authors.csv");
+  res.set("Content-Type", "application/octet-stream");
+  res.send(csv);
+};
 
 // @route GET api/roles/test
 // @description tests roles route
@@ -61,8 +78,12 @@ router.delete('/:id', (req, res) => {
     .catch((err) => res.status(404).json({ error: 'No such a role' }))
 })
 
+// router.get('/', function (req, res) {
+//   res.sendFile(__dirname + 'uploadRoleModal.js');
+// });
+
 router.get('/', function (req, res) {
-  res.sendFile(__dirname + 'uploadRoleModal.js');
+  res.sendFile(__dirname + '/uploadRole');
 });
 
 module.exports = router

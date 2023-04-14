@@ -26,6 +26,7 @@ import Pricing from './components/Main/Pricing'
 import ClinicVisit from './components/ClinicVisits/clinicVisits'
 // import RolesList from './components/Management/Roles/showRolesList'
 import CreateRole from './components/Management/Roles/createRole'
+import UploadRole from './components/Management/Roles/uploadRoleModal'
 import EditRole from './components/Management/Roles/editRole'
 import ManageSettings from './components/Management/Settings/settingsPage'
 import CreateEvent from './components/Management/Events/createEvent'
@@ -123,6 +124,7 @@ function App() {
       {/* {user && <Route path="/rolesList" exact element={<RolesList />} />} */}
       {/* {user && <Route path="/" exact element={<Navigate replace to="/login" />} />} */}
       {user && <Route path="/createRole" exact element={<CreateRole />} />}
+      {user && <Route path="/uploadRole" exact element={<UploadRole />} />}
       {user && <Route path="/editRole/:id" exact element={<EditRole />} />}
       {user && <Route path="/settingsPage" exact element={<ManageSettings />} />}
       {user && <Route path="/createPatientFromVisit/:id" exact element={<CreatePatientFromVisit />} />}

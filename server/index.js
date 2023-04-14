@@ -18,6 +18,7 @@ const smsRoutes = require("./routes/smsMessages");
 const templateRoutes = require("./routes/template");
 const nodemailer = require("nodemailer");
 const fileUpload = require('express-fileupload');
+const json2csv = require('json2csv').parse;
 
 require('dotenv').config()
 
@@ -50,6 +51,24 @@ app.use("/api/emails", emailRoutes);
 app.use("/api/messages", smsRoutes);
 // app.use("/api/template", templateRoutes);
 
+
+// app.get('/', function (req, res) {
+//     res.sendFile(__dirname + '/uploadRole');
+// });
+exports.get = function (req, res) {
+    var fields = [
+        'name.firstName',
+        'name.lastName',
+        'biography',
+        'twitter',
+        'facebook',
+        'linkedin'
+    ];
+    var csv = json2csv({ data: '', fields: fields });
+    res.set("Content-Disposition", "attachment;filename=authors.csv");
+    res.set("Content-Type", "application/octet-stream");
+    res.send(csv);
+};
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
