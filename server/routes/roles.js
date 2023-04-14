@@ -5,6 +5,7 @@ const router = express.Router()
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
 const json2csv = require('json2csv').parse;
+const template = require('./uploadRole.js');
 
 exports.get = function (req, res) {
   var fields = [
@@ -20,6 +21,9 @@ exports.get = function (req, res) {
   res.set("Content-Type", "application/octet-stream");
   res.send(csv);
 };
+
+router.get('/template', template.get);
+router.post('/', upload.post);
 
 // @route GET api/roles/test
 // @description tests roles route

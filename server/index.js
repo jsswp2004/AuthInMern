@@ -19,6 +19,8 @@ const templateRoutes = require("./routes/template");
 const nodemailer = require("nodemailer");
 const fileUpload = require('express-fileupload');
 const json2csv = require('json2csv').parse;
+// const template = require('./template.js');
+// app.get('/template', template.get);
 
 require('dotenv').config()
 
