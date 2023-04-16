@@ -15,10 +15,11 @@ const scheduleRoutes = require("./routes/schedules")
 const exceptionRoutes = require("./routes/exceptions")
 const emailRoutes = require("./routes/emails");
 const smsRoutes = require("./routes/smsMessages");
-const templateRoutes = require("./routes/template");
+// const templateRoutes = require("./routes/template");
 const nodemailer = require("nodemailer");
-const fileUpload = require('express-fileupload');
-const json2csv = require('json2csv').parse;
+const upload = require('express-fileupload');
+// const json2csv = require('json2csv').parse;
+
 // const template = require('./template.js');
 // app.get('/template', template.get);
 
@@ -31,13 +32,18 @@ connection();
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 
+
 // pino
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
+app.use(upload());
+
+// json2csv
+// app.use(json2csv);
 
 //file upload
-app.use(fileUpload());
+// app.use(fileUpload());
 
 // routes
 app.use("/api/users", userRoutes);
@@ -57,20 +63,20 @@ app.use("/api/messages", smsRoutes);
 // app.get('/', function (req, res) {
 //     res.sendFile(__dirname + '/uploadRole');
 // });
-exports.get = function (req, res) {
-    var fields = [
-        'name.firstName',
-        'name.lastName',
-        'biography',
-        'twitter',
-        'facebook',
-        'linkedin'
-    ];
-    var csv = json2csv({ data: '', fields: fields });
-    res.set("Content-Disposition", "attachment;filename=authors.csv");
-    res.set("Content-Type", "application/octet-stream");
-    res.send(csv);
-};
+// exports.get = function (req, res) {
+//     var fields = [
+//         'name.firstName',
+//         'name.lastName',
+//         'biography',
+//         'twitter',
+//         'facebook',
+//         'linkedin'
+//     ];
+//     var csv = json2csv({ data: '', fields: fields });
+//     res.set("Content-Disposition", "attachment;filename=authors.csv");
+//     res.set("Content-Type", "application/octet-stream");
+//     res.send(csv);
+// };
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',

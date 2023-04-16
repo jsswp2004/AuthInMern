@@ -4,26 +4,43 @@ const express = require('express')
 const router = express.Router()
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
-const json2csv = require('json2csv').parse;
-const template = require('./uploadRole.js');
 
-exports.get = function (req, res) {
-  var fields = [
-    'name.firstName',
-    'name.lastName',
-    'biography',
-    'twitter',
-    'facebook',
-    'linkedin'
-  ];
-  var csv = json2csv({ data: '', fields: fields });
-  res.set("Content-Disposition", "attachment;filename=authors.csv");
-  res.set("Content-Type", "application/octet-stream");
-  res.send(csv);
-};
 
-router.get('/template', template.get);
-router.post('/', upload.post);
+//ROUTE DEFINE
+router.post('/', async function (req, res) {
+  try {
+    // IN REQ.FILES.”YOUR_FILE_NAME” WILL BE PRESENT
+    const file = req.files;
+    const bodyData = req.body;
+    // console.log(file);
+    // console.log(bodyData);
+    res.status(200).send({
+      message: 'FILE RECEIVED!',
+    });
+  } catch (error) {
+    res.send('ERROR');
+  }
+});
+// const json2csv = require('json2csv').parse;
+// const template = require('./uploadRole.js');
+
+// exports.get = function (req, res) {
+//   var fields = [
+//     'name.firstName',
+//     'name.lastName',
+//     'biography',
+//     'twitter',
+//     'facebook',
+//     'linkedin'
+//   ];
+//   var csv = json2csv({ data: '', fields: fields });
+//   res.set("Content-Disposition", "attachment;filename=authors.csv");
+//   res.set("Content-Type", "application/octet-stream");
+//   res.send(csv);
+// };
+
+// router.get('/template', template.get);
+// router.post('/', upload.post);
 
 // @route GET api/roles/test
 // @description tests roles route
