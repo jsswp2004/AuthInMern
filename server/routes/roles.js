@@ -7,20 +7,20 @@ const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
 
 
 //ROUTE DEFINE
-router.post('/', async function (req, res) {
-  try {
-    // IN REQ.FILES.”YOUR_FILE_NAME” WILL BE PRESENT
-    const file = req.files;
-    const bodyData = req.body;
-    // console.log(file);
-    // console.log(bodyData);
-    res.status(200).send({
-      message: 'FILE RECEIVED!',
-    });
-  } catch (error) {
-    res.send('ERROR');
-  }
-});
+// router.post('/', async function (req, res) {
+//   try {
+//     // IN REQ.FILES.”YOUR_FILE_NAME” WILL BE PRESENT
+//     const file = req.files;
+//     const bodyData = req.body;
+//     // console.log(file);
+//     // console.log(bodyData);
+//     res.status(200).send({
+//       message: 'FILE RECEIVED!',
+//     });
+//   } catch (error) {
+//     res.send('ERROR');
+//   }
+// });
 // const json2csv = require('json2csv').parse;
 // const template = require('./uploadRole.js');
 
@@ -103,8 +103,8 @@ router.delete('/:id', (req, res) => {
 //   res.sendFile(__dirname + 'uploadRoleModal.js');
 // });
 
-router.get('/', function (req, res) {
-  res.sendFile(__dirname + '/uploadRole');
-});
+// router.get('/', function (req, res) {
+//   res.sendFile(__dirname + '/uploadRole');
+// });
 
 module.exports = router

@@ -17,7 +17,7 @@ const emailRoutes = require("./routes/emails");
 const smsRoutes = require("./routes/smsMessages");
 // const templateRoutes = require("./routes/template");
 const nodemailer = require("nodemailer");
-const upload = require('express-fileupload');
+// const upload = require('express-fileupload');
 // const json2csv = require('json2csv').parse;
 
 // const template = require('./template.js');
@@ -37,7 +37,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
-app.use(upload());
+// app.use(upload());
 
 // json2csv
 // app.use(json2csv);
