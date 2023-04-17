@@ -58,7 +58,7 @@ app.use("/api/exceptions", exceptionRoutes);
 app.use("/api/emails", emailRoutes);
 app.use("/api/messages", smsRoutes);
 // app.use("/api/template", templateRoutes);
-
+app.use('/uploads', express.static('uploads'));
 
 // app.get('/', function (req, res) {
 //     res.sendFile(__dirname + '/uploadRole');

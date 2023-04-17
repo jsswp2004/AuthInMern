@@ -2,10 +2,72 @@
 
 const express = require('express')
 const router = express.Router()
+// new 4/17
+const multer = require('multer');
+const mongoose = require('mongoose');
+const uuid = require('uuid');
+
+// end of new
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
 
+// Code for multer 4/17
+const DIR = './uploads';
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, uuid() + '-' + fileName)
+  }
+});
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "text/csv" || file.mimetype == "text/csv" || file.mimetype == "text/csv") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only csv format allowed!'));
+    }
+  }
+});
+// end for multer
 
+// code for new 4/17
+router.post('/', upload.single('name'), (req, res, next) => {
+
+  // router.post('/uploadRole', upload.single('name'), (req, res, next) => {
+  const url = req.protocol + '://' + req.get('host')
+  const role = new Role({
+    _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+    name: req.body.name,
+    addedDate: req.body.addedDate,
+    lastUpdated: req.body.lastUpdated,
+    // profileRole: url + '/uploads/' + req.file.filename
+  });
+  user.save().then(result => {
+    res.status(201).json({
+      message: "User registered successfully!",
+      userCreated: {
+        _id: result._id,
+        // profileImg: result.profileImg
+        name: result.name,
+        addedDate: result.addedDate,
+        lastUpdated: result.lastUpdated,
+      }
+    })
+    console.log('User registered successfully!')
+  }).catch(err => {
+    console.log(err),
+      res.status(500).json({
+        error: err
+      });
+  })
+})
+
+//end for new 
 //ROUTE DEFINE
 // router.post('/', async function (req, res) {
 //   try {

@@ -98,7 +98,7 @@ const UploadRole = (props) => {
       <div className="item3">
 
         <div className="createRoleModalBody">
-          <div className="App">
+          {/* <div className="App">
             <input type="file" name="file" onChange={onChange} />
             <div>
               <button onClick={onSubmit}>Submit</button>
@@ -118,7 +118,21 @@ const UploadRole = (props) => {
                 <p>Select a file</p>
               </div>
             )}
+          </div> */}
+          <div className="container">
+            <div className="row">
+              <form>
+                <h3>React File Upload</h3>
+                <div className="form-group">
+                  <input type="file" />
+                </div>
+                <div className="form-group">
+                  <button className="btn btn-primary" type="submit">Upload</button>
+                </div>
+              </form>
+            </div>
           </div>
+
           {/* <p>Use the form below to upload a list of roles.
             Click <a href="/template">here</a> for an example template.</p> */}
           {/* <form noValidate onSubmit={onSubmit}>

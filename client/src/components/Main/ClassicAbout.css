@@ -403,6 +403,24 @@ hr {
   /* align-self: center; */
   /* flex-wrap: wrap; */
 }
+.aboutIntrosTeam-Image-Charlina {
+  /* border-radius: 50px; */
+  width: 100px;
+  height: 100px;
+  /* max-width: 100%; */
+  background-image: url("/src/components/shared/images/Charlina_Profile.jpeg");
+  background-size: 120px 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: var(--font-arial);
+  /* flex-grow: 1; */
+  /* flex-shrink: 3; */
+  box-shadow: 10px 10px 10px #888888;
+  border-radius: 280px;
+  /* align-content: center; */
+  /* align-self: center; */
+  /* flex-wrap: wrap; */
+}
 .aboutIntrosTeam-Image-Jess {
   /* border-radius: 50px; */
   width: 100px;

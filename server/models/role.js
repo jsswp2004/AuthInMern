@@ -7,7 +7,11 @@ const roleSchema = new mongoose.Schema({
     name: { type: String, required: true },
     addedDate: { type: String, required: true },
     lastUpdated: { type: String, required: false },
-});
+},
+    //added 4/17 for upload
+    {
+        collection: 'roles'
+    });
 
 
 const Role = mongoose.model("role", roleSchema);
