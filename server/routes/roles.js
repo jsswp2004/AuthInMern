@@ -47,9 +47,9 @@ router.post('/', upload.single('name'), (req, res, next) => {
     lastUpdated: req.body.lastUpdated,
     // profileRole: url + '/uploads/' + req.file.filename
   });
-  user.save().then(result => {
+  role.save().then(result => {
     res.status(201).json({
-      message: "User registered successfully!",
+      message: "Role registered successfully!",
       userCreated: {
         _id: result._id,
         // profileImg: result.profileImg
@@ -58,7 +58,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
         lastUpdated: result.lastUpdated,
       }
     })
-    console.log('User registered successfully!')
+    console.log('Role registered successfully!')
   }).catch(err => {
     console.log(err),
       res.status(500).json({

@@ -121,10 +121,10 @@ const UploadRole = (props) => {
           </div> */}
           <div className="container">
             <div className="row">
-              <form>
+              <form onSubmit={onSubmit}>
                 <h3>React File Upload</h3>
                 <div className="form-group">
-                  <input type="file" />
+                  <input type="file" onChange={onChange} />
                 </div>
                 <div className="form-group">
                   <button className="btn btn-primary" type="submit">Upload</button>
