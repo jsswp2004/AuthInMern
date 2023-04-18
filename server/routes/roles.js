@@ -12,7 +12,7 @@ const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
 
 // Code for multer 4/17
-const DIR = './uploads';
+const DIR = './upload';
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);

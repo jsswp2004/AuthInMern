@@ -17,55 +17,58 @@ const UploadRole = (props) => {
   const onSubmit = (e) => {
     e.preventDefault()
     // HANDLING FILE AS SENDING FILE INTO BACKEND
-    if (!isFilePicked) return;
+    // if (!isFilePicked) return;
     const formData = new FormData();
-    formData.append("File", selectedFile);
+    formData.append("name", selectedFile);
     // ALSO ADD RANDOM VALUE IF YOU WANT LIKE STRING , OBJECT OR      ARRAY
-    formData.append("roleDetail", {
-      //needs to change to match the backend
-      name: '',
-      addedDate: '',
-    });
+    // formData.append("roleDetail", {
+    //   //needs to change to match the backend
+    //   name: '',
+    //   addedDate: '',
+    // });
     // API CALL
-    fetch("http://localhost:8081/", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Success:", result);
+    // fetch("http://localhost:8081/", {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((response) => response.json())
+    //   .then((result) => {
+    //     console.log("Success:", result);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
+    // };
+    axios
+      .post('http://localhost:8081/api/roles', formData, {
+      }).then(res => {
+        console.log(res);
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
-  // axios
-  //   .post('http://localhost:8081/api/roles', role)
-  //   .then((res) => {
-  //     setRole({
-  //       name: '',
-  //       addedDate: format(new Date(), 'yyyy-MM-dd'),
-  //     })
-  //     // window.location.reload()
-  //     // setShow(false)
-  //     // Push to /
-  //     // navigate('/settingsPage')
-  //   })
-  //   .then((result) => {
-  //     console.log("Success:", result);
-  //   })
-  //   .catch((err) => {
-  //     // console.log('Error in CreateRole!')
-  //     console.error("Error:", err);
-  //   })
-  // }
+    //   .then((res) => {
+    //     setRole({
+    //       name: '',
+    //       addedDate: format(new Date(), 'yyyy-MM-dd'),
+    //     })
+    //     // window.location.reload()
+    //     // setShow(false)
+    //     // Push to /
+    //     // navigate('/settingsPage')
+    //   })
+    //   .then((result) => {
+    //     console.log("Success:", result);
+    //   })
+    //   .catch((err) => {
+    //     // console.log('Error in CreateRole!')
+    //     console.error("Error:", err);
+    //   })
+    // }
 
-  //
-  // const navigate = useNavigate()
-  // const [role, setRole] = useState({
-  //   name: '',
-  //   addedDate: format(new Date(), 'yyyy-MM-dd'),
-  // })
+    //
+    // const navigate = useNavigate()
+    // const [role, setRole] = useState({
+    //   name: '',
+    //   addedDate: format(new Date(), 'yyyy-MM-dd'),
+  };
 
 
 

@@ -97,3 +97,9 @@ contactEmail.verify((error) => {
 
 const port = process.env.PORT || 8081;
 app.listen(port, console.log(`Listening on port ${port}...`));
+app.use((req, res, next) => {
+    // Error goes via `next()` method
+    setImmediate(() => {
+        next(new Error('Something went wrong'));
+    });
+});
