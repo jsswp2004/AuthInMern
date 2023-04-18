@@ -58,6 +58,9 @@ router.post('/', upload.single('name'), (req, res, next) => {
         addedDate: result.addedDate,
         lastUpdated: result.lastUpdated,
       }
+      // roleCreated: {
+      //   result
+      // }
     })
     console.log('Role registered successfully!')
   }).catch(err => {
@@ -66,6 +69,13 @@ router.post('/', upload.single('name'), (req, res, next) => {
         error: err
       });
   })
+
+  // Role.create(req.body)
+  //   .then((role) => res.json({ msg: 'Role added successfully' }))
+  //   .catch((err) =>
+  //     res.status(400).json({ error: 'Unable to add this role' }),
+  //   )
+
 })
 
 //end for new 
