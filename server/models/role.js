@@ -18,8 +18,12 @@ const Role = mongoose.model("role", roleSchema);
 
 const validate = (data) => {
     const schema = Joi.object({
-        name: Joi.string().required().label("Name"),
-        addedDate: Joi.string().required().label("Added Date"),
+        // name: Joi.string().required().label("Name"),
+        name: Joi.string().label("Name"),
+
+        addedDate: Joi.string().label("Added Date"),
+        // addedDate: Joi.string().required().label("Added Date"),
+
         lastUpdated: Joi.string().label('Last Updated'),
     });
     return schema.validate(data);

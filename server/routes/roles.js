@@ -5,7 +5,8 @@ const router = express.Router()
 // new 4/17
 const multer = require('multer');
 const mongoose = require('mongoose');
-const uuid = require('uuid');
+// const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 // end of new
 const { Role, validate } = require('../models/role');
@@ -19,7 +20,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.toLowerCase().split(' ').join('-');
-    cb(null, uuid() + '-' + fileName)
+    cb(null, uuidv4() + '-' + fileName)
   }
 });
 var upload = multer({
