@@ -4,8 +4,12 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
 const roleSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    addedDate: { type: String, required: true },
+    // name: { type: String, required: true },
+    name: { type: String, required: false },
+
+    // addedDate: { type: String, required: true },
+    addedDate: { type: String, required: false },
+
     lastUpdated: { type: String, required: false },
 },
     //added 4/17 for upload
