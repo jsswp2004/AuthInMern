@@ -20,6 +20,11 @@ const UploadRole = (props) => {
     // if (!isFilePicked) return;
     const formData = new FormData();
     formData.append("name", selectedFile);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
     // ALSO ADD RANDOM VALUE IF YOU WANT LIKE STRING , OBJECT OR      ARRAY
     // formData.append("roleDetail", {
     //   //needs to change to match the backend
@@ -40,8 +45,8 @@ const UploadRole = (props) => {
     //   });
     // };
     axios
-      .post('http://localhost:8081/api/roles', formData, {
-      }).then(res => {
+      .post('http://localhost:8081/api/roles', formData, config
+      ).then(res => {
         console.log(res);
       })
     //   .then((res) => {
@@ -125,10 +130,12 @@ const UploadRole = (props) => {
           <div className="container">
             <div className="row">
               <form onSubmit={onSubmit}>
-                <h3>React File Upload</h3>
+                <h3>Roles File Upload</h3>
                 <div className="form-group">
                   <input type="file" onChange={onChange} />
+
                 </div>
+                {console.log(setSelectedFile)}
                 <div className="form-group">
                   <button className="btn btn-primary" type="submit">Upload</button>
                 </div>

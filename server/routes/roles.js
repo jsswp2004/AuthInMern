@@ -48,6 +48,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
     lastUpdated: req.body.lastUpdated,
     // profileRole: url + '/uploads/' + req.file.filename
   });
+  console.log(role)
   role.save().then(result => {
     res.status(201).json({
       message: "Role registered successfully!",
