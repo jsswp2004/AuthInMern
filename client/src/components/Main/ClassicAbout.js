@@ -138,7 +138,11 @@ const ClassicHome = () => {
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', width: '120px', height: '220px' }}>
                             <div className="aboutIntrosTeam-Image"></div>
-                            <p className="aboutIntros-TeamContainer1" ><b>Jemimah Salvacion</b> Chief Product Officer</p>
+                            <p className="aboutIntros-TeamContainer1" ><b>Jannah Salvacion</b> Chief Product Officer</p>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '5%', width: '120px', height: '220px' }}>
+                            <div className="aboutIntrosTeam-Image"></div>
+                            <p className="aboutIntros-TeamContainer1" ><b>Danielle Bishop</b> Director, Process Management</p>
                         </div>
                     </div>
 
