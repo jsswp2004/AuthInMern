@@ -14,8 +14,10 @@ const UploadRole = (props) => {
     e.target.files[0] && setIsFilePicked(true);
   }
 
+  const navigate = useNavigate()
   const onSubmit = (e) => {
     e.preventDefault()
+
     // HANDLING FILE AS SENDING FILE INTO BACKEND
     // if (!isFilePicked) return;
     const formData = new FormData();
@@ -49,6 +51,7 @@ const UploadRole = (props) => {
       ).then(res => {
         console.log(res);
       })
+    navigate('/settingsPage')
     //   .then((res) => {
     //     setRole({
     //       name: '',

@@ -7,11 +7,11 @@ const multer = require('multer');
 const mongoose = require('mongoose');
 // const uuid = require('uuid');
 const { v4: uuidv4 } = require('uuid');
-
+const csvtojson = require('csvtojson')
 // end of new
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
-
+const csvFilePath = `${__dirname}/ + req.file.filename`;
 // Code for multer 4/17
 const DIR = './upload';
 const storage = multer.diskStorage({
@@ -40,37 +40,71 @@ var upload = multer({
 router.post('/', upload.single('name'), (req, res, next) => {
 
   // router.post('/uploadRole', upload.single('name'), (req, res, next) => {
-  const url = req.protocol + '://' + req.get('host')
-  const role = new Role({
-    _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-    name: req.body.name,
-    addedDate: req.body.addedDate,
-    lastUpdated: req.body.lastUpdated,
-    // profileRole: url + '/uploads/' + req.file.filename
-  });
-  console.log(role)
-  role.save().then(result => {
-    res.status(201).json({
-      message: "Role registered successfully!",
-      userCreated: {
-        _id: result._id,
-        // profileImg: result.profileImg
-        name: result.name,
-        addedDate: result.addedDate,
-        lastUpdated: result.lastUpdated,
-      }
-      // roleCreated: {
-      //   result
-      // }
-    })
-    console.log('Role registered successfully!')
-  }).catch(err => {
-    console.log(err),
-      res.status(500).json({
-        error: err
-      });
-  })
+  // const url = req.protocol + '://' + req.get('host')
 
+  //old working
+  // const role = new Role({
+  //   _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+  //   name: req.body.name,
+  //   addedDate: req.body.addedDate,
+  //   lastUpdated: req.body.lastUpdated,
+  // });
+  // // console.log(role)
+  // role.save().then(result => {
+  //   res.status(201).json({
+  //     message: "Role registered successfully!",
+  //     userCreated: {
+  //       _id: result._id,
+  //       name: result.name,
+  //       addedDate: result.addedDate,
+  //       lastUpdated: result.lastUpdated,
+  //     }
+  //   })
+  //   console.log('Role registered successfully!')
+  // }).catch(err => {
+  //   console.log(err),
+  //     res.status(500).json({
+  //       error: err
+  //     });
+  // })
+  //end old working
+
+  //new -- define file path
+  importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
+  // importFile(csvFilePath);
+  // importFile(DIR);
+
+  // importFile(req.file.filename);${__dirname}
+  // importFile(`${__dirname} + req.file.filename`);
+
+
+  function importFile(filePath) {
+    //  Read Excel File to Json Data
+    var arrayToInsert = [];
+    csvtojson().fromFile(filePath).then(source => {
+      // Fetching the all data from each row
+      for (var i = 0; i < source.length; i++) {
+        console.log(source[i]["name"])
+        var singleRow = {
+          _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+          name: source[i]["name"],
+          addedDate: source[i]["addedDate"],
+          lastUpdated: source[i]["lastUpdated"],
+        };
+        console.log(singleRow)
+        arrayToInsert.push(singleRow);
+      }
+      //inserting into the table roles
+      Role.insertMany(arrayToInsert, (err, result) => {
+        if (err) console.log(err);
+        if (result) {
+          console.log("File imported successfully.");
+          res.redirect('/')
+        }
+      });
+    });
+  }
+  //end of new
   // Role.create(req.body)
   //   .then((role) => res.json({ msg: 'Role added successfully' }))
   //   .catch((err) =>
