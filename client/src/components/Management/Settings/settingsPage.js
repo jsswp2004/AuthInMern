@@ -4,6 +4,8 @@ import Navbar from '../../navigation/navbar'
 import Header from '../../shared/Header'
 import ShowUsers from '../../Signup/showUsers'
 import ShowRoles from '../Roles/showRoles'
+import UploadRoles from '../Roles/uploadRoleModal'
+
 import ShowEvents from '../Events/showEvents'
 import ShowStaffSchedules from '../StaffSchedules/showStaffSchedules'
 import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
@@ -88,6 +90,9 @@ const ShowSettings = () => {
   const displayStaffExceptionSetting = {
     display: setting === 'Staff Exception' ? '' : 'none',
   }
+  const displayUploadRoleSetting = {
+    display: setting === 'Upload Roles' ? '' : 'none',
+  }
   return (
     <div className="grid_containerx" >
       {/* style={{ display: 'flex', flexDirection: 'column', position: 'sticky' }} */}
@@ -166,6 +171,15 @@ const ShowSettings = () => {
                       <span className="settingCheckboxCheckmark"></span>
                     </label> */}
                     <a href='/uploadRole'>Roles</a>
+                    <label className="settingCheckboxContainer">
+                      Roles
+                      <input
+                        type="radio"
+                        onClick={() => setSetting('Upload Roles')}
+                        name="radio"
+                      />
+                      <span className="settingCheckboxCheckmark"></span>
+                    </label>
 
                   </div>
                 </div>
@@ -198,6 +212,11 @@ const ShowSettings = () => {
               <div style={displayStaffExceptionSetting}>
                 <div className="card-body table-responsive p-0">
                   <ShowStaffExceptions />
+                </div>
+              </div>
+              <div style={displayUploadRoleSetting}>
+                <div className="card-body table-responsive p-0">
+                  <UploadRole />
                 </div>
               </div>
             </div>
