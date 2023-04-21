@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 
 import axios from 'axios'
 
-const UploadRole = (props) => {
+const UploadEvent = (props) => {
 
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
@@ -47,7 +47,7 @@ const UploadRole = (props) => {
     //   });
     // };
     axios
-      .post('http://localhost:8081/api/roles', formData, config
+      .post('http://localhost:8081/api/events', formData, config
       ).then(res => {
         console.log(res);
       })
@@ -133,7 +133,7 @@ const UploadRole = (props) => {
           <div className="container">
             <div className="row">
               <form onSubmit={onSubmit}>
-                <h3>Roles Upload</h3>
+                <h3>Events Upload</h3>
                 <div className="form-group">
                   <input type="file" onChange={onChange} />
 
@@ -187,4 +187,4 @@ const UploadRole = (props) => {
   )
 }
 
-export default UploadRole
+export default UploadEvent

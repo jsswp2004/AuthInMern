@@ -11,6 +11,7 @@ import ShowStaffSchedules from '../StaffSchedules/showStaffSchedules'
 import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
 import { Modal, Button } from 'react-bootstrap'
 import UploadRole from '../Roles/uploadRoleModal'
+import UploadEvent from '../Events/uploadEventModal'
 
 const ShowSettings = () => {
   //#region for modal functions
@@ -92,6 +93,9 @@ const ShowSettings = () => {
   }
   const displayUploadRoleSetting = {
     display: setting === 'Upload Roles' ? '' : 'none',
+  }
+  const displayUploadEventSetting = {
+    display: setting === 'Upload Events' ? '' : 'none',
   }
   return (
     <div className="grid_containerx" >
@@ -180,6 +184,15 @@ const ShowSettings = () => {
                       />
                       <span className="settingCheckboxCheckmark"></span>
                     </label>
+                    <label className="settingCheckboxContainer">
+                      Events
+                      <input
+                        type="radio"
+                        onClick={() => setSetting('Upload Events')}
+                        name="radio"
+                      />
+                      <span className="settingCheckboxCheckmark"></span>
+                    </label>
 
                   </div>
                 </div>
@@ -217,6 +230,11 @@ const ShowSettings = () => {
               <div style={displayUploadRoleSetting}>
                 <div className="card-body table-responsive p-0">
                   <UploadRole />
+                </div>
+              </div>
+              <div style={displayUploadEventSetting}>
+                <div className="card-body table-responsive p-0">
+                  <UploadEvent />
                 </div>
               </div>
             </div>
