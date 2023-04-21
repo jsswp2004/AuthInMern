@@ -130,21 +130,21 @@ const UploadRole = (props) => {
               </div>
             )}
           </div> */}
-          <div className="container">
-            <div className="row">
-              <form onSubmit={onSubmit}>
-                <h3>Roles Upload</h3>
-                <div className="form-group">
-                  <input type="file" onChange={onChange} />
+          {/* <div className="container"> */}
+          <div className="item2and3Conatainer">
+            <form onSubmit={onSubmit}>
+              <h3>Roles Upload</h3>
+              <div className="form-group">
+                <input type="file" onChange={onChange} />
 
-                </div>
-                {console.log(setSelectedFile)}
-                <div className="form-group">
-                  <button className="btn btn-primary" type="submit">Upload</button>
-                </div>
-              </form>
-            </div>
+              </div>
+              {console.log(setSelectedFile)}
+              <div className="form-group">
+                <button className="btn btn-primary" type="submit">Upload</button>
+              </div>
+            </form>
           </div>
+          {/* </div> */}
 
           {/* <p>Use the form below to upload a list of roles.
             Click <a href="/template">here</a> for an example template.</p> */}

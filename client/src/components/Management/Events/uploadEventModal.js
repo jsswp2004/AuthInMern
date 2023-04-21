@@ -130,25 +130,25 @@ const UploadEvent = (props) => {
               </div>
             )}
           </div> */}
-          <div className="container">
-            <div className="row">
-              <form onSubmit={onSubmit}>
-                <h3>Events Upload</h3>
-                <div className="form-group">
-                  <input type="file" onChange={onChange} />
+          <div className="item2and3Conatainer">
+            {/* <div className="row"> */}
+            <form onSubmit={onSubmit}>
+              <h3>Events Upload</h3>
+              <div className="form-group">
+                <input type="file" onChange={onChange} />
 
-                </div>
-                {console.log(setSelectedFile)}
-                <div className="form-group">
-                  <button className="btn btn-primary" type="submit">Upload</button>
-                </div>
-              </form>
-            </div>
+              </div>
+              {console.log(setSelectedFile)}
+              <div className="form-group">
+                <button className="btn btn-primary" type="submit">Upload</button>
+              </div>
+            </form>
           </div>
+        </div>
 
-          {/* <p>Use the form below to upload a list of roles.
+        {/* <p>Use the form below to upload a list of roles.
             Click <a href="/template">here</a> for an example template.</p> */}
-          {/* <form noValidate onSubmit={onSubmit}>
+        {/* <form noValidate onSubmit={onSubmit}>
             <div className="form-group">
               <label htmlFor="name">Role
                 <input
@@ -173,7 +173,7 @@ const UploadEvent = (props) => {
               </div>
             </div>
           </form> */}
-          {/* <form action="/" method="POST" encType="multipart/form-data">
+        {/* <form action="/" method="POST" encType="multipart/form-data">
 
             <label for="roleName">
               <input className="form-control roleInput" type="file" id="roleName" name="file" accept="*.csv" />
@@ -181,8 +181,8 @@ const UploadEvent = (props) => {
             <br /><br />
             <input className='btn btn-info' type="submit" value="Upload Authors" />
           </form> */}
-        </div>
       </div>
+      {/* </div> */}
     </div>
   )
 }
