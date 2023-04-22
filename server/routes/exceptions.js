@@ -3,6 +3,84 @@
 const express = require('express')
 const router = express.Router()
 const { Exception, validate } = require('../models/exception')
+const { format } = require('date-fns')
+//codes for upload 
+const multer = require('multer');
+const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
+const csvtojson = require('csvtojson')
+
+// Code for multer 4/17
+const DIR = './upload';
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, uuidv4() + '-' + fileName)
+  }
+});
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/msword") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only csv format allowed!'));
+    }
+  }
+});
+// end for multer
+
+// code for new 4/17 for upload
+router.post('/', upload.single('name'), (req, res, next) => {
+  //new -- define file path
+  importFile('./upload/' + req.file.filename);
+  function importFile(filePath) {
+    //  Read Excel File to Json Data
+    var arrayToInsert = [];
+    csvtojson().fromFile(filePath).then(source => {
+      // Fetching the all data from each row
+      for (var i = 0; i < source.length; i++) {
+        console.log(source[i]["name"])
+        var singleRow = {
+          _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+          providerID: source[i]["providerID"],
+          provider: source[i]["provider"],
+          startDate: source[i]["startDate"],
+          endDate: source[i]["endDate"],
+          amStartTime: source[i]["amStartTime"],
+          amEndTime: source[i]["amEndTime"],
+          pmStartTime: source[i]["pmStartTime"],
+          pmEndTime: source[i]["pmEndTime"],
+          exceptionMon: source[i]["exceptionMon"],
+          exceptionTues: source[i]["exceptionTues"],
+          exceptionWed: source[i]["exceptionWed"],
+          exceptionThurs: source[i]["exceptionThurs"],
+          exceptionFri: source[i]["exceptionFri"],
+          addedDate: source[i]["addedDate"],
+          // lastUpdated: source[i]["lastUpdated"],
+          lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+
+        };
+        console.log(singleRow)
+        arrayToInsert.push(singleRow);
+      }
+      //inserting into the table roles
+      Exception.insertMany(arrayToInsert, (err, result) => {
+        if (err) console.log(err);
+        if (result) {
+          console.log("File imported successfully.");
+          res.redirect('/')
+        }
+      });
+    });
+  }
+  //end of new
+
+})
 
 // @route GET api/exceptions/test
 // @description tests exceptions route
