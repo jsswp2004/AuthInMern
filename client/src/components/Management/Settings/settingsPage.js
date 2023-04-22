@@ -4,22 +4,25 @@ import Navbar from '../../navigation/navbar'
 import Header from '../../shared/Header'
 import ShowUsers from '../../Signup/showUsers'
 import ShowRoles from '../Roles/showRoles'
-import UploadRoles from '../Roles/uploadRoleModal'
-
 import ShowEvents from '../Events/showEvents'
 import ShowStaffSchedules from '../StaffSchedules/showStaffSchedules'
 import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
 import { Modal, Button } from 'react-bootstrap'
 import UploadRole from '../Roles/uploadRoleModal'
 import UploadEvent from '../Events/uploadEventModal'
+import UploadSchedule from '../StaffSchedules/uploadScheduleModal'
 
 const ShowSettings = () => {
-  //#region for modal functions
+  //#region for navigate
   const navigate = useNavigate()
+  //#endregion
+  //#region for modal functions
 
   const handleClick = (e) => {
     e.preventDefault()
-    setShow(false)
+    setShowRole(false)
+    setShowEvent(false)
+    setShowSchedule(false)
     navigate('/settingsPage')
   }
 
@@ -29,16 +32,29 @@ const ShowSettings = () => {
   // }
   //#endregion
   //#region  Define the modal state with useState hook
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  //role modal
+  const [showRole, setShowRole] = useState(false)
+  const handleCloseRole = () => setShowRole(false)
+  const handleShowRole = () => setShowRole(true)
+  //event modal
+  const [showEvent, setShowEvent] = useState(false)
+  const handleCloseEvent = () => setShowEvent(false)
+  const handleShowEvent = () => setShowEvent(true)
+  //schedule modal
+  const [showSchedule, setShowSchedule] = useState(false)
+  const handleCloseSchedule = () => setShowSchedule(false)
+  const handleShowSchedule = () => setShowSchedule(true)
+  //exception modal
+  const [showException, setShowException] = useState(false)
+  const handleCloseException = () => setShowException(false)
+  const handleShowException = () => setShowException(true)
 
 
   //#endregion
   //#region for role upload modal
   const UploadRoleModal = () => (
     <>
-      <Modal show={show} onHide={handleClose} size="med" centered>
+      <Modal show={showRole} onHide={handleCloseRole} size="med" centered>
         <Modal.Header>
           <Modal.Title>Upload Roles</Modal.Title>
           <Button variant="secondary" onClick={handleClick}>
@@ -59,6 +75,62 @@ const ShowSettings = () => {
 
   function displayUploadRoleModal() {
     return <UploadRoleModal />
+  }
+
+  //#endregion
+
+  //#region for event upload modal
+  const UploadEventModal = () => (
+    <>
+      <Modal show={showEvent} onHide={handleCloseEvent} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Upload Events</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <UploadRole />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+
+  function displayUploadEventModal() {
+    return <UploadEventModal />
+  }
+
+  //#endregion
+
+  //#region for event upload modal
+  const UploadScheduleModal = () => (
+    <>
+      <Modal show={showSchedule} onHide={handleCloseSchedule} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Upload Schedules</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <UploadSchedule />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+    </>
+  )
+
+  function displayUploadScheduleModal() {
+    return <UploadScheduleModal />
   }
 
   //#endregion
@@ -163,18 +235,37 @@ const ShowSettings = () => {
                     />
                     <span className="settingCheckboxCheckmark"></span>
                   </label>
+                  {/* upload section  */}
                   <div className='form-control'>
                     <h5 className="createPageHeader settingsTitle">Upload Dictionaries</h5>
-                    {/* <label className="settingCheckboxContainer">
+                    <label className="settingCheckboxContainer">
                       Roles
                       <input
                         type="radio"
-                        onClick={() => handleShow()}
+                        onClick={() => handleShowRole()}
                         name="radio"
                       />
                       <span className="settingCheckboxCheckmark"></span>
-                    </label> */}
-                    <a href='/uploadRole'>Roles</a>
+                    </label>
+                    <label className="settingCheckboxContainer">
+                      Events
+                      <input
+                        type="radio"
+                        onClick={() => handleShowEvent()}
+                        name="radio"
+                      />
+                      <span className="settingCheckboxCheckmark"></span>
+                    </label>
+                    <label className="settingCheckboxContainer">
+                      Schedules
+                      <input
+                        type="radio"
+                        onClick={() => handleShowSchedule()}
+                        name="radio"
+                      />
+                      <span className="settingCheckboxCheckmark"></span>
+                    </label>
+                    {/* <a href='/uploadRole'>Roles</a>
                     <label className="settingCheckboxContainer">
                       Roles
                       <input
@@ -192,13 +283,15 @@ const ShowSettings = () => {
                         name="radio"
                       />
                       <span className="settingCheckboxCheckmark"></span>
-                    </label>
+                    </label> */}
 
                   </div>
                 </div>
 
               </div>
               <div>{displayUploadRoleModal()}</div>
+              <div>{displayUploadEventModal()}</div>
+              <div>{displayUploadScheduleModal()}</div>
             </div>
             <div className="roleItemContainerBoxRight">
               <div style={displayRolesSetting}>

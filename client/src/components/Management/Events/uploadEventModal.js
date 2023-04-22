@@ -52,7 +52,7 @@ const UploadEvent = (props) => {
         window.location.reload()
       })
       .catch((err) => {
-        console.log('Error in UploadEventSchedule!')
+        console.log('Error in uploading events!')
       })
     navigate('/settingsPage')
     //   .then((res) => {

@@ -19,7 +19,7 @@ const UploadRole = (props) => {
     e.preventDefault()
 
     // HANDLING FILE AS SENDING FILE INTO BACKEND
-    // if (!isFilePicked) return;
+    if (!isFilePicked) return;
     const formData = new FormData();
     formData.append("name", selectedFile);
     const config = {
@@ -50,6 +50,12 @@ const UploadRole = (props) => {
       .post('http://localhost:8081/api/roles', formData, config
       ).then(res => {
         console.log(res);
+        // Push to /
+        // navigate('/settingsPage')
+        window.location.reload()
+      })
+      .catch((err) => {
+        console.log('Error in uploading roles!')
       })
     navigate('/settingsPage')
     //   .then((res) => {
@@ -133,12 +139,12 @@ const UploadRole = (props) => {
           {/* <div className="container"> */}
           <div className="item2and3Conatainer">
             <form onSubmit={onSubmit}>
-              <h3>Roles Upload</h3>
+              {/* <h3>Roles Upload</h3> */}
               <div className="form-group">
-                <input type="file" onChange={onChange} />
+                <input className="form-control roleInput" type="file" onChange={onChange} />
 
               </div>
-              {console.log(setSelectedFile)}
+              {/* {console.log(setSelectedFile)} */}
               <div className="form-group">
                 <button className="btn btn-primary" type="submit">Upload</button>
               </div>

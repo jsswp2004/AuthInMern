@@ -43,8 +43,9 @@ function HeaderImageMain() {
           {/* width: '100px' */}
           <i class="fa fa-sign-in" aria-hidden="true" title='Log in'></i>
         </button>
-        <button className='btn btn-success mainHeaderBtn' onClick={toSignup} style={{ padding: '0', width: '100px', margin: '5px' }}>
-          Signup
+        <button className='btn btn-success btn-sm' onClick={toSignup} style={{ padding: '0', margin: '5px' }}>
+          {/* Signup */}
+          <i class="fa fa-user-plus" aria-hidden="true" title='Sign Up'></i>
         </button>
       </ul>
     </nav>

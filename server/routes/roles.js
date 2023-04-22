@@ -2,16 +2,15 @@
 
 const express = require('express')
 const router = express.Router()
-// new 4/17
+// new 4/17 for upload
 const multer = require('multer');
 const mongoose = require('mongoose');
-// const uuid = require('uuid');
 const { v4: uuidv4 } = require('uuid');
 const csvtojson = require('csvtojson')
 // end of new
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
-const csvFilePath = `${__dirname}/ + req.file.filename`;
+// const csvFilePath = `${__dirname}/ + req.file.filename`;
 // Code for multer 4/17
 const DIR = './upload';
 const storage = multer.diskStorage({

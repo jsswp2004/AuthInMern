@@ -3,7 +3,70 @@
 const express = require('express')
 const router = express.Router()
 const { Event, validate } = require('../models/event')
+//codes for upload 
+const multer = require('multer');
+const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
+const csvtojson = require('csvtojson')
 
+// Code for multer 4/17
+const DIR = './upload';
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, uuidv4() + '-' + fileName)
+  }
+});
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/msword") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only csv format allowed!'));
+    }
+  }
+});
+// end for multer
+// code for new 4/17 for upload
+router.post('/', upload.single('name'), (req, res, next) => {
+  //new -- define file path
+  importFile('./upload/' + req.file.filename);
+  function importFile(filePath) {
+    //  Read Excel File to Json Data
+    var arrayToInsert = [];
+    csvtojson().fromFile(filePath).then(source => {
+      // Fetching the all data from each row
+      for (var i = 0; i < source.length; i++) {
+        console.log(source[i]["name"])
+        var singleRow = {
+          _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+          name: source[i]["name"],
+          addedDate: source[i]["addedDate"],
+          lastUpdated: source[i]["lastUpdated"],
+        };
+        console.log(singleRow)
+        arrayToInsert.push(singleRow);
+      }
+      //inserting into the table roles
+      Event.insertMany(arrayToInsert, (err, result) => {
+        if (err) console.log(err);
+        if (result) {
+          console.log("File imported successfully.");
+          res.redirect('/')
+        }
+      });
+    });
+  }
+  //end of new
+
+})
+
+//end for new 
 // @route GET api/events/test
 // @description tests events route
 // @access Public
@@ -18,7 +81,7 @@ router.get('/', (req, res) => {
     // .limit('10')
     .catch((err) =>
       res.status(404).json({ noeventsfound: 'No Events found' }),
-  )
+    )
   // .shellBatchSize = 200
 })
 
