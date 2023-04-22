@@ -11,6 +11,7 @@ import { Modal, Button } from 'react-bootstrap'
 import UploadRole from '../Roles/uploadRoleModal'
 import UploadEvent from '../Events/uploadEventModal'
 import UploadSchedule from '../StaffSchedules/uploadScheduleModal'
+import UploadException from '../StaffExceptions/uploadExceptionModal'
 
 const ShowSettings = () => {
   //#region for navigate
@@ -23,13 +24,10 @@ const ShowSettings = () => {
     setShowRole(false)
     setShowEvent(false)
     setShowSchedule(false)
+    setShowException(false)
     navigate('/settingsPage')
   }
 
-  // const handleEditClick = (e) => {
-  //   e.preventDefault()
-  //   setEditShow(false)
-  // }
   //#endregion
   //#region  Define the modal state with useState hook
   //role modal
@@ -51,6 +49,7 @@ const ShowSettings = () => {
 
 
   //#endregion
+
   //#region for role upload modal
   const UploadRoleModal = () => (
     <>
@@ -90,7 +89,7 @@ const ShowSettings = () => {
           </Button>
         </Modal.Header>
         <Modal.Body>
-          <UploadRole />
+          <UploadEvent />
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClick}>
@@ -107,7 +106,7 @@ const ShowSettings = () => {
 
   //#endregion
 
-  //#region for event upload modal
+  //#region for schedule upload modal
   const UploadScheduleModal = () => (
     <>
       <Modal show={showSchedule} onHide={handleCloseSchedule} size="med" centered>
@@ -134,6 +133,30 @@ const ShowSettings = () => {
   }
 
   //#endregion
+
+  //#region for exception upload modal
+  const UploadExceptionModal = () => (
+    <>
+      <Modal show={showException} onHide={handleCloseException} size="med" centered>
+        <Modal.Header>
+          <Modal.Title>Upload Exceptions</Modal.Title>
+          <Button variant="secondary" onClick={handleClick}>
+            Close
+          </Button>
+        </Modal.Header>
+        <Modal.Body>
+          <UploadException />
+        </Modal.Body>
+      </Modal>
+    </>
+  )
+
+  function displayUploadExceptionModal() {
+    return <UploadExceptionModal />
+  }
+
+  //#endregion
+
 
   //#region to hide navbar
   const [showNav, setShowNav] = useState(false);
@@ -163,12 +186,12 @@ const ShowSettings = () => {
   const displayStaffExceptionSetting = {
     display: setting === 'Staff Exception' ? '' : 'none',
   }
-  const displayUploadRoleSetting = {
-    display: setting === 'Upload Roles' ? '' : 'none',
-  }
-  const displayUploadEventSetting = {
-    display: setting === 'Upload Events' ? '' : 'none',
-  }
+  // const displayUploadRoleSetting = {
+  //   display: setting === 'Upload Roles' ? '' : 'none',
+  // }
+  // const displayUploadEventSetting = {
+  //   display: setting === 'Upload Events' ? '' : 'none',
+  // }
   return (
     <div className="grid_containerx" >
       {/* style={{ display: 'flex', flexDirection: 'column', position: 'sticky' }} */}
@@ -265,6 +288,15 @@ const ShowSettings = () => {
                       />
                       <span className="settingCheckboxCheckmark"></span>
                     </label>
+                    <label className="settingCheckboxContainer">
+                      Exceptions
+                      <input
+                        type="radio"
+                        onClick={() => handleShowException()}
+                        name="radio"
+                      />
+                      <span className="settingCheckboxCheckmark"></span>
+                    </label>
                     {/* <a href='/uploadRole'>Roles</a>
                     <label className="settingCheckboxContainer">
                       Roles
@@ -292,6 +324,7 @@ const ShowSettings = () => {
               <div>{displayUploadRoleModal()}</div>
               <div>{displayUploadEventModal()}</div>
               <div>{displayUploadScheduleModal()}</div>
+              <div>{displayUploadExceptionModal()}</div>
             </div>
             <div className="roleItemContainerBoxRight">
               <div style={displayRolesSetting}>
@@ -320,7 +353,8 @@ const ShowSettings = () => {
                   <ShowStaffExceptions />
                 </div>
               </div>
-              <div style={displayUploadRoleSetting}>
+              {/* // code below is not used */}
+              {/* <div style={displayUploadRoleSetting}>
                 <div className="card-body table-responsive p-0">
                   <UploadRole />
                 </div>
@@ -329,7 +363,7 @@ const ShowSettings = () => {
                 <div className="card-body table-responsive p-0">
                   <UploadEvent />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
