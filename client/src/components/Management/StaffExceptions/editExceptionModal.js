@@ -73,6 +73,7 @@ function EditException(props) {
           addedDate: res.data.addedDate,
           lastUpdated: res.data.lastUpdated,
         })
+        setExceptionMondayCheckedValue(res.data.exceptionMon === 'Mon' ? true : false)
         // console.log('res.data.addedDate', res.data.addedDate)
       })
       .catch((err) => {
@@ -91,14 +92,14 @@ function EditException(props) {
   //4/22/2023 this is try out code for checkbox 
   const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
   console.log(exceptionMon)
-
+  const xxxx = exceptionMon === 'Mon' ? true : false
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
-  const [exceptionMonday, setExceptionMonday] = useState(false)
+  const [exceptionMonday, setExceptionMonday] = useState(xxxx)
 
-  console.log(exceptionMonday)
+
   // const [exceptionMonday, setExceptionMonday] = useState('')
   // const [checkOut, setCheckOut] = useState('')
-  // const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
+  const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
   // const [checkOutValue, setCheckOutValue] = useState(false)
 
   function setExceptionForMonday(e) {
@@ -109,9 +110,10 @@ function EditException(props) {
 
   }
 
+  console.log(exceptionMonday, exceptionMondayCheckedValue)
 
   //End of 4/22/2023 this is try out code for checkbox
-  const xxxx = exceptionMon === 'Mon' ? true : false
+
 
   console.log(xxxx)
 
@@ -209,7 +211,7 @@ function EditException(props) {
                       type="checkbox"
                       // onClick={() => setExceptionDay1('Mon')}
                       onChange={() => setExceptionMonday(!exceptionMonday)}
-                      checked={exceptionMonday}
+                      checked={exceptionMondayCheckedValue}
                       // onClick={() => setExceptionForMonday()}
                       name="exceptionDays"
                       value={exception.exceptionMon}
