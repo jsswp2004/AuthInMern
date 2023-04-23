@@ -92,7 +92,9 @@ function EditException(props) {
   const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
   console.log(exceptionMon)
 
-  const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
+  // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
+  const [exceptionMonday, setExceptionMonday] = useState(false)
+
   console.log(exceptionMonday)
   // const [exceptionMonday, setExceptionMonday] = useState('')
   // const [checkOut, setCheckOut] = useState('')
@@ -205,7 +207,9 @@ function EditException(props) {
                     Mondays
                     <input
                       type="checkbox"
-                      onClick={() => setExceptionDay1('Mon')}
+                      // onClick={() => setExceptionDay1('Mon')}
+                      onChange={() => setExceptionMonday(!exceptionMonday)}
+                      checked={exceptionMonday}
                       // onClick={() => setExceptionForMonday()}
                       name="exceptionDays"
                       value={exception.exceptionMon}
