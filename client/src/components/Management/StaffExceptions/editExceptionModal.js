@@ -47,16 +47,10 @@ function EditException(props) {
   //   console.log(ref.current.value);
   // };
 
-  // const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
-  // console.log(exception.exceptionMon)
+
 
   const DrID = props.providerID
 
-  const [exceptionMon1, setExceptionDay1] = useState(' ')
-  const [exceptionTues1, setExceptionDay2] = useState(' ')
-  const [exceptionWed1, setExceptionDay3] = useState(' ')
-  const [exceptionThurs1, setExceptionDay4] = useState(' ')
-  const [exceptionFri1, setExceptionDay5] = useState(' ')
 
   useEffect(() => {
     axios
@@ -87,10 +81,43 @@ function EditException(props) {
   }, [DrID])
 
 
+  const [exceptionMon1, setExceptionDay1] = useState(' ')
+  const [exceptionTues1, setExceptionDay2] = useState(' ')
+  const [exceptionWed1, setExceptionDay3] = useState(' ')
+  const [exceptionThurs1, setExceptionDay4] = useState(' ')
+  const [exceptionFri1, setExceptionDay5] = useState(' ')
+
+
+  //4/22/2023 this is try out code for checkbox 
+  const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
+  console.log(exceptionMon)
+
+  const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
+  console.log(exceptionMonday)
+  // const [exceptionMonday, setExceptionMonday] = useState('')
+  // const [checkOut, setCheckOut] = useState('')
+  // const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
+  // const [checkOutValue, setCheckOutValue] = useState(false)
+
+  function setExceptionForMonday(e) {
+    // setExceptionDay1(e.target.value)
+    // setExceptionMondayCheckedValue(!exceptionMondayCheckedValue)
+    setExceptionMonday(!exceptionMonday)
+
+
+  }
+
+
+  //End of 4/22/2023 this is try out code for checkbox
+  const xxxx = exceptionMon === 'Mon' ? true : false
+
+  console.log(xxxx)
+
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
     // setDefaultAmStartTime(e.target.value)
   }
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -179,8 +206,16 @@ function EditException(props) {
                     <input
                       type="checkbox"
                       onClick={() => setExceptionDay1('Mon')}
+                      // onClick={() => setExceptionForMonday()}
                       name="exceptionDays"
                       value={exception.exceptionMon}
+                    // checked
+                    // checked={exceptionMonday}
+                    // checked={exceptionMon === 'Mon' ? true : false}
+                    // defaultChecked={exceptionMon === 'Mon' ? true : exceptionMonday}
+                    // defaultChecked={xxxx}
+
+
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
