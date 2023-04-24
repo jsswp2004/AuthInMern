@@ -47,7 +47,7 @@ function EditException(props) {
   //   console.log(ref.current.value);
   // };
 
-
+  // console.log(exception.exceptionMon)
 
   const DrID = props.providerID
 
@@ -90,8 +90,9 @@ function EditException(props) {
 
 
   //4/22/2023 this is try out code for checkbox 
+  //4/24/2023 note: try to pull exception objection as a prop
   const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
-  console.log(exceptionMon)
+  // console.log(exceptionMon)
   const xxxx = exceptionMon === 'Mon' ? true : false
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
   const [exceptionMonday, setExceptionMonday] = useState(xxxx)
