@@ -210,11 +210,13 @@ function EditException(props) {
                     <input
                       type="checkbox"
                       // onClick={() => setExceptionDay1('Mon')}
+                      // onClick={() => setExceptionDay1('Mon')}
+
                       onChange={() => setExceptionMonday(!exceptionMonday)}
                       checked={exceptionMondayCheckedValue}
                       // onClick={() => setExceptionForMonday()}
                       name="exceptionDays"
-                      value={exception.exceptionMon}
+                      value={exceptionMondayCheckedValue === true ? 'Mon' : exception.exceptionMon}
                     // checked
                     // checked={exceptionMonday}
                     // checked={exceptionMon === 'Mon' ? true : false}
