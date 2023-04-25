@@ -89,34 +89,6 @@ function EditException(props) {
   const [exceptionFri1, setExceptionDay5] = useState(' ')
 
 
-  //4/22/2023 this is try out code for checkbox 
-  //4/24/2023 note: try to pull exception objection as a prop
-  const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
-  // console.log(exceptionMon)
-  const xxxx = exceptionMon === 'Mon' ? true : false
-  // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
-  const [exceptionMonday, setExceptionMonday] = useState(xxxx)
-
-  console.log(xxxx)
-  // const [exceptionMonday, setExceptionMonday] = useState('')
-  // const [checkOut, setCheckOut] = useState('')
-  const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
-  // const [checkOutValue, setCheckOutValue] = useState(false)
-
-  function setExceptionForMonday(e) {
-    // setExceptionDay1(e.target.value)
-    // setExceptionMondayCheckedValue(!exceptionMondayCheckedValue)
-    setExceptionMonday(!exceptionMonday)
-
-
-  }
-
-  console.log(exceptionMonday, exceptionMondayCheckedValue)
-
-  //End of 4/22/2023 this is try out code for checkbox
-
-
-  console.log(xxxx)
 
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
@@ -156,6 +128,35 @@ function EditException(props) {
         console.log('Error in EditException!')
       })
   }
+
+  //4/22/2023 this is try out code for checkbox 
+  //4/24/2023 note: try to pull exception objection as a prop
+  const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
+  // console.log(exceptionMon)
+  const xxxx = exceptionMon === 'Mon' ? true : false
+  // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
+  const [exceptionMonday, setExceptionMonday] = useState(xxxx)
+
+  console.log(xxxx)
+  // const [exceptionMonday, setExceptionMonday] = useState('')
+  // const [checkOut, setCheckOut] = useState('')
+  const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
+  // const [checkOutValue, setCheckOutValue] = useState(false)
+
+  function setExceptionForMonday(e) {
+    // setExceptionDay1(e.target.value)
+    // setExceptionMondayCheckedValue(!exceptionMondayCheckedValue)
+    setExceptionMonday(!exceptionMonday)
+
+
+  }
+
+  console.log(exceptionMonday, exceptionMondayCheckedValue)
+
+  //End of 4/22/2023 this is try out code for checkbox
+
+
+  console.log(xxxx)
 
   return (
     <div className="grid_containers">
