@@ -4,6 +4,9 @@ import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
 function EditException(props) {
+
+
+
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -107,7 +110,7 @@ function EditException(props) {
       amEndTime: exception.amEndTime,//.length > 0 ? exception.amEndTime : '12:00',
       pmStartTime: exception.pmStartTime,//.length > 0 ? exception.pmStartTime : '13:00',
       pmEndTime: exception.pmEndTime,//.length > 0 ? exception.pmEndTime : '18:00',
-      exceptionMon: exception.exceptionMon,//exceptionMonday === true ? 'Mon' : '',
+      exceptionMon: exceptionMon1, //exception.exceptionMon,//exceptionMonday === true ? 'Mon' : '',
       exceptionTues: exceptionTues1,
       exceptionWed: exceptionWed1,
       exceptionThurs: exceptionThurs1,
@@ -133,13 +136,13 @@ function EditException(props) {
   //4/24/2023 note: try to pull exception objection as a prop
   const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
   // console.log(exceptionMon)
-  const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
+  // const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
-  const [exceptionMonday, setExceptionMonday] = useState(exception.exceptionMon === 'Mon' ? 'true' : 'false')
-  const [exceptionTuesday, setExceptionTuesday] = useState(exception.exceptionTues === 'Tue' ? 'true' : 'false')
+  // const [exceptionMonday, setExceptionMonday] = useState(exception.exceptionMon === 'Mon' ? 'true' : 'false')
+  // const [exceptionTuesday, setExceptionTuesday] = useState(exception.exceptionTues === 'Tue' ? 'true' : 'false')
 
 
-  console.log(exceptionMonday)
+  // console.log(exceptionMonday)
   // const [exceptionMonday, setExceptionMonday] = useState('')
   // const [checkOut, setCheckOut] = useState('')
   // const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
@@ -158,7 +161,7 @@ function EditException(props) {
   //End of 4/22/2023 this is try out code for checkbox
 
 
-  console.log(xxxx)
+  // console.log(xxxx)
 
   // const exceptionMondayValue = useRef();
 
@@ -169,16 +172,48 @@ function EditException(props) {
   // }, [exceptionMonday]);
 
   // console.log(exceptionMondayValue)
-  function toggleMonday(value) {
-    return exceptionMonday === 'true' ? value = 'Mon' : value = ''
+  // function toggleMonday(value) {
+  //   return value = exceptionMonday === 'true' ? setExceptionDay1('Mon') : setExceptionDay1('')
+  // }
+  const toggleMonday = () => {
+    exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
   }
 
-  function toggleTuesday(value) {
-    return exceptionTuesday === 'true' ? value =
-      'Tue' : value = ''
+  const toggleTuesday = () => {
+    exceptionTues === 'Tues' ? setExceptionDay2('') : setExceptionDay2('Tue')
   }
-  // console.log(value)
-  console.log(exceptionMonday)
+
+  const toggleWednesday = () => {
+    exceptionWed === 'Wed' ? setExceptionDay3('') : setExceptionDay3('Wed')
+  }
+
+  const toggleThursday = () => {
+    exceptionThurs === 'Thurs' ? setExceptionDay4('') : setExceptionDay4('Thurs')
+  }
+  const toggleFriday = () => {
+    exceptionFri === 'Fri' ? setExceptionDay5('') : setExceptionDay5('Fri')
+  }
+
+  //first render sample code to skip first render (do not delete)
+  // const afterFirstRender = useRef(false);
+  // const [visible, setVisible] = useState(false);
+  // const handleToggle = () => {
+  //   setVisible((current) => !current);
+  // };
+  // useEffect(() => {
+  //   if (!afterFirstRender.current) {
+  //     afterFirstRender.current = true;
+  //     return;
+  //   }
+
+  //   if (visible) {
+  //     axios.post('https://example.com/stats/name/show').then(() => {
+  //       console.log('Stats updated successfully')
+  //     });
+  //   }
+  // }, [visible]);
+
+  //end first render
   return (
     <div className="grid_containers">
       <div className="item3">
@@ -221,80 +256,77 @@ function EditException(props) {
                     </select>
                   </label>
                 </div>
-                <div>
+                {/* <div>
                   <label><b>Exception Days:</b></label>
                   <br />
                   <span>{exception.exceptionMon}{' '}{exception.exceptionTues}{' '}{exception.exceptionWed}{' '}{exception.exceptionThurs}{' '}{exception.exceptionFri}</span>
                   <br />
+                </div> */}
+                <div className="form-group">
                   <label><b>Change to:</b></label>
                   <br />
+                </div>
+                <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Mondays
                     <input
                       //ref={exceptionMondayValue}
                       type="checkbox"
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
-                      // onClick={() => setExceptionDay1(toggleMonday)}
-                      onClick={() => setExceptionDay1('Mon')}
-
-                      // onChange={(e) => setExceptionMonday(e.target.checked)}
-                      // onChange={() => setExceptionMonday(!exceptionMonday)}
-
-                      // checked={exceptionMonday}
-                      // checked={exceptionMon === 'Mon' ? true : false}
-                      // onClick={() => setExceptionForMonday()}
+                      onClick={toggleMonday}
                       name="exceptionDaysMon"
-                      // value={exceptionMonday === 'true' ? 'Mon' : ''}
                       value={exception.exceptionMon}
-
-
-                    // checked
-                    // checked={exceptionMonday}
-                    // checked={exceptionMon === 'Mon' ? true : false}
-                    // defaultChecked={exceptionMon === 'Mon' ? true : exceptionMonday}
-                    // defaultChecked={xxxx}
-
-
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
+                </div>
+                <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Tuesdays
                     <input
                       Checked={exceptionTues === 'Tue' ? 'true' : 'false'}
                       type="checkbox"
-                      onClick={() => setExceptionDay2('Tue')}
+                      onClick={toggleTuesday}
                       name="exceptionDaysTues"
                       value={exception.exceptionTues}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
+                </div>
+                <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Wednesdays
                     <input
+                      Checked={exceptionWed === 'Wed' ? 'true' : 'false'}
                       type="checkbox"
-                      onClick={() => setExceptionDay3('Wed')}
-                      name="exceptionDays"
+                      onClick={toggleWednesday}
+                      name="exceptionDaysWed"
                       value={exception.exceptionWed}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
+                </div>
+                <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Thursdays
                     <input
+                      Checked={exceptionThurs === 'Thurs' ? 'true' : 'false'}
                       type="checkbox"
-                      onClick={() => setExceptionDay4('Thu')}
-                      name="exceptionDays"
+                      onClick={toggleThursday}
+                      name="exceptionDaysThurs"
                       value={exception.exceptionThurs}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
+                </div>
+                <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Fridays
                     <input
+                      Checked={exceptionFri === 'Fri' ? 'true' : 'false'}
                       type="checkbox"
-                      onClick={() => setExceptionDay5('Fri')}
-                      name="exceptionDays"
+                      onClick={toggleFriday}
+                      name="exceptionDaysFri"
                       value={exception.exceptionFri}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
@@ -425,6 +457,16 @@ function EditException(props) {
               </div>
             </div>
           </form>
+
+
+
+          {/* --this is a sample code for toggling (do not erase)
+          <p>Test</p>
+          <div>
+            <button onClick={handleToggle}>Show name</button>
+            {visible && <p style={{ color: 'blue' }}>Coding Beauty</p>}
+            {!visible && <p style={{ color: 'red' }}>Coding Beauty</p>}
+          </div> */}
         </div>
       </div>
     </div>
