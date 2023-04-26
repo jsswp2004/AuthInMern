@@ -84,12 +84,12 @@ function EditException(props) {
       })
   }, [DrID])
 
-
-  const [exceptionMon1, setExceptionDay1] = useState(' ')
-  const [exceptionTues1, setExceptionDay2] = useState(' ')
-  const [exceptionWed1, setExceptionDay3] = useState(' ')
-  const [exceptionThurs1, setExceptionDay4] = useState(' ')
-  const [exceptionFri1, setExceptionDay5] = useState(' ')
+  const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
+  const [exceptionMon1, setExceptionDay1] = useState(exceptionMon)
+  const [exceptionTues1, setExceptionDay2] = useState(exceptionTues)
+  const [exceptionWed1, setExceptionDay3] = useState(exceptionWed)
+  const [exceptionThurs1, setExceptionDay4] = useState(exceptionThurs)
+  const [exceptionFri1, setExceptionDay5] = useState(exceptionFri)
 
 
 
@@ -134,7 +134,7 @@ function EditException(props) {
 
   //4/22/2023 this is try out code for checkbox 
   //4/24/2023 note: try to pull exception objection as a prop
-  const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
+
   // console.log(exceptionMon)
   // const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
@@ -275,6 +275,7 @@ function EditException(props) {
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
                       onClick={toggleMonday}
                       name="exceptionDaysMon"
+                      id="exceptionDaysMon"
                       value={exception.exceptionMon}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
@@ -288,6 +289,7 @@ function EditException(props) {
                       type="checkbox"
                       onClick={toggleTuesday}
                       name="exceptionDaysTues"
+                      id="exceptionDaysTues"
                       value={exception.exceptionTues}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
