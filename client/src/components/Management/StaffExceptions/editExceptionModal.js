@@ -175,10 +175,15 @@ function EditException(props) {
   // function toggleMonday(value) {
   //   return value = exceptionMonday === 'true' ? setExceptionDay1('Mon') : setExceptionDay1('')
   // }
+  // const [visibleMon, setVisibleMon] = useState(false)
   const toggleMonday = () => {
+    // visibleMon &&
     exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
+    // exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
+    // alert('Value of exceptionMon is ' + exceptionMon)
   }
-
+  console.log(exceptionMon1, exceptionTues1)
+  // alert('Value of exceptionMon1 is ' + exceptionMon1)
   const toggleTuesday = () => {
     exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
   }
@@ -269,11 +274,13 @@ function EditException(props) {
                 <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Mondays
+                    {/* {alert('Value of exceptionMon1 is ' + exceptionMon1)} */}
                     <input
                       //ref={exceptionMondayValue}
                       type="checkbox"
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
                       onClick={toggleMonday}
+                      // onChange={e => setVisibleMon(!visibleMon)}
                       name="exceptionDaysMon"
                       id="exceptionDaysMon"
                       value={exception.exceptionMon}
@@ -292,7 +299,7 @@ function EditException(props) {
                       id="exceptionDaysTues"
                       value={exception.exceptionTues}
                     />
-                    {console.log(toggleTuesday)}
+                    {/* {console.log(toggleTuesday)} */}
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                 </div>
