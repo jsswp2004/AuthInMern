@@ -133,11 +133,11 @@ function EditException(props) {
   //4/24/2023 note: try to pull exception objection as a prop
   const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
   // console.log(exceptionMon)
-  const xxxx = exceptionMon === 'Mon' ? true : false
+  const xxxx = exception.exceptionMon === 'Mon' ? true : false
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
   const [exceptionMonday, setExceptionMonday] = useState(xxxx)
 
-  console.log(xxxx)
+  // console.log(xxxx)
   // const [exceptionMonday, setExceptionMonday] = useState('')
   // const [checkOut, setCheckOut] = useState('')
   const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
@@ -158,6 +158,15 @@ function EditException(props) {
 
   console.log(xxxx)
 
+  // const exceptionMondayValue = useRef();
+
+  // useEffect(function () {
+  //   setTimeout(() => {
+  //     exceptionMondayValue.current = exceptionMonday //.textContent = "Updated Text"
+  //   }, 1000); // Update the content of the element after 2seconds 
+  // }, [exceptionMonday]);
+
+  // console.log(exceptionMondayValue)
   return (
     <div className="grid_containers">
       <div className="item3">
@@ -210,17 +219,21 @@ function EditException(props) {
                   <label className="scheduleCheckboxContainer">
                     Mondays
                     <input
+                      //ref={exceptionMondayValue}
                       type="checkbox"
                       // onClick={() => setExceptionDay1('Mon')}
                       // onClick={() => setExceptionDay1('Mon')}
 
-                      onChange={() => setExceptionMonday(!exceptionMonday)}
+                      onChange={(e) => setExceptionMonday(e.target.checked)}
                       // onClick={() => setExceptionMonday(!exceptionMonday)}
 
                       checked={exceptionMonday}
+                      // checked={exceptionMon === 'Mon' ? true : false}
                       // onClick={() => setExceptionForMonday()}
                       name="exceptionDays"
-                      value={exceptionMondayCheckedValue === true ? 'Mon' : exception.exceptionMon}
+                      // value={exceptionMondayCheckedValue === true ? 'Mon' : exception.exceptionMon}
+                      value={exception.exceptionMon}
+
                     // checked
                     // checked={exceptionMonday}
                     // checked={exceptionMon === 'Mon' ? true : false}
