@@ -180,7 +180,7 @@ function EditException(props) {
   }
 
   const toggleTuesday = () => {
-    exceptionTues === 'Tues' ? setExceptionDay2('') : setExceptionDay2('Tue')
+    exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
   }
 
   const toggleWednesday = () => {
@@ -292,6 +292,7 @@ function EditException(props) {
                       id="exceptionDaysTues"
                       value={exception.exceptionTues}
                     />
+                    {console.log(toggleTuesday)}
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                 </div>
