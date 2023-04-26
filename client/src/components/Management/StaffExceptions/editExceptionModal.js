@@ -107,7 +107,7 @@ function EditException(props) {
       amEndTime: exception.amEndTime,//.length > 0 ? exception.amEndTime : '12:00',
       pmStartTime: exception.pmStartTime,//.length > 0 ? exception.pmStartTime : '13:00',
       pmEndTime: exception.pmEndTime,//.length > 0 ? exception.pmEndTime : '18:00',
-      exceptionMon: exceptionMonday === true ? 'Mon' : '',
+      exceptionMon: exception.exceptionMon,//exceptionMonday === true ? 'Mon' : '',
       exceptionTues: exceptionTues1,
       exceptionWed: exceptionWed1,
       exceptionThurs: exceptionThurs1,
@@ -135,9 +135,11 @@ function EditException(props) {
   // console.log(exceptionMon)
   const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
-  const [exceptionMonday, setExceptionMonday] = useState(xxxx)
+  const [exceptionMonday, setExceptionMonday] = useState(exception.exceptionMon === 'Mon' ? 'true' : 'false')
+  const [exceptionTuesday, setExceptionTuesday] = useState(exception.exceptionTues === 'Tue' ? 'true' : 'false')
 
-  console.log(xxxx)
+
+  console.log(exceptionMonday)
   // const [exceptionMonday, setExceptionMonday] = useState('')
   // const [checkOut, setCheckOut] = useState('')
   // const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
@@ -169,6 +171,11 @@ function EditException(props) {
   // console.log(exceptionMondayValue)
   function toggleMonday(value) {
     return exceptionMonday === 'true' ? value = 'Mon' : value = ''
+  }
+
+  function toggleTuesday(value) {
+    return exceptionTuesday === 'true' ? value =
+      'Tue' : value = ''
   }
   // console.log(value)
   console.log(exceptionMonday)
@@ -228,10 +235,10 @@ function EditException(props) {
                       type="checkbox"
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
                       // onClick={() => setExceptionDay1(toggleMonday)}
-                      // onClick={() => setExceptionDay1('Mon')}
+                      onClick={() => setExceptionDay1('Mon')}
 
                       // onChange={(e) => setExceptionMonday(e.target.checked)}
-                      onChange={() => setExceptionMonday(!exceptionMonday)}
+                      // onChange={() => setExceptionMonday(!exceptionMonday)}
 
                       // checked={exceptionMonday}
                       // checked={exceptionMon === 'Mon' ? true : false}
@@ -254,6 +261,7 @@ function EditException(props) {
                   <label className="scheduleCheckboxContainer">
                     Tuesdays
                     <input
+                      Checked={exceptionTues === 'Tue' ? 'true' : 'false'}
                       type="checkbox"
                       onClick={() => setExceptionDay2('Tue')}
                       name="exceptionDaysTues"
