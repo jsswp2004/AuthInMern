@@ -170,17 +170,17 @@ function EditException(props) {
   //     exceptionMondayValue.current = exceptionMonday //.textContent = "Updated Text"
   //   }, 1000); // Update the content of the element after 2seconds 
   // }, [exceptionMonday]);
-  const xx = xxxx === 'true' ? true : false
+  const xx = exceptionMon === 'Mon'
   console.log(xx)
   // function toggleMonday(value) {
   //   return value = exceptionMonday === 'true' ? setExceptionDay1('Mon') : setExceptionDay1('')
   // }
   // const afterFirstRender = useRef(false);
-  const [visibleMon, setVisibleMon] = useState(xx.toString())
-  console.log('1', visibleMon)
+  const [visibleMon, setVisibleMon] = useState((e) => e = xx)
+  // console.log('1', visibleMon)
   const toggleMonday = () => {
-    // setVisibleMon((current) => !current)
-    // setVisibleMon(exceptionMon === 'Mon' ? 'true' : 'false')
+    setVisibleMon((current) => !current)
+    // setVisibleMon(xx)
     if (exceptionMon === 'Mon') {
       setExceptionDay1('')
     } else {
@@ -196,10 +196,10 @@ function EditException(props) {
   // console.log('2', visibleMon)
   // console.log(xxxx, visibleMon, afterFirstRender)
   useEffect(() => {
-    // if (!afterFirstRender.current) {
-    //   // afterFirstRender.current = true;
-    //   return;
-    // }
+    if (!afterFirstRender.current) {
+      // afterFirstRender.current = true;
+      return;
+    }
     if (visibleMon) {
       // axios.post('https://example.com/stats/name/views').then(() => {
       //   console.log('Updated stats successfully.')
@@ -209,7 +209,7 @@ function EditException(props) {
     else {
       setExceptionDay1('')
     }
-  }, []);
+  }, [visibleMon]);
   // console.log(visibleMon)
   // alert('Value of exceptionMon1 is ' + exceptionMon1)
   const toggleTuesday = () => {
@@ -228,7 +228,8 @@ function EditException(props) {
   }
 
   //first render sample code to skip first render (do not delete)
-  // const afterFirstRender = useRef(false);
+  const afterFirstRender = useRef(false);
+  console.log('afterFirstRender', afterFirstRender, exceptionMon1)
   // const [visible, setVisible] = useState(false);
   // const handleToggle = () => {
   //   setVisible((current) => !current);
@@ -239,7 +240,7 @@ function EditException(props) {
   //     return;
   //   }
 
-  //   if (visible) {
+  //   if (visibleMon) {
   //     axios.post('https://example.com/stats/name/show').then(() => {
   //       console.log('Stats updated successfully')
   //     });
@@ -312,7 +313,7 @@ function EditException(props) {
                       name="exceptionDaysMon"
                       id="exceptionDaysMon"
                       value={exception.exceptionMon}
-                      onChange={onChange}
+                    // onChange={onChange}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
