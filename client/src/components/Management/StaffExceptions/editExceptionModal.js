@@ -106,17 +106,17 @@ function EditException(props) {
       provider: exception.provider,
       startDate: exception.startDate,
       endDate: exception.endDate,
-      amStartTime: exception.amStartTime,//.length > 0 ? exception.amStartTime : '09:00',
-      amEndTime: exception.amEndTime,//.length > 0 ? exception.amEndTime : '12:00',
-      pmStartTime: exception.pmStartTime,//.length > 0 ? exception.pmStartTime : '13:00',
-      pmEndTime: exception.pmEndTime,//.length > 0 ? exception.pmEndTime : '18:00',
-      exceptionMon: exceptionMon1, //exception.exceptionMon,//exceptionMonday === true ? 'Mon' : '',
+      amStartTime: exception.amStartTime,
+      amEndTime: exception.amEndTime,
+      pmStartTime: exception.pmStartTime,
+      pmEndTime: exception.pmEndTime,
+      exceptionMon: exceptionMon1,
       exceptionTues: exceptionTues1,
       exceptionWed: exceptionWed1,
       exceptionThurs: exceptionThurs1,
       exceptionFri: exceptionFri1,
-      addedDate: exception.addedDate,// format( new Date(), 'yyyy-MM-dd'),// 
-      lastUpdated: format(new Date(), 'yyyy-MM-dd'), //exception.lastUpdated,
+      addedDate: exception.addedDate,
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'),
     }
     // console.log(exception.addedDate)
     axios
@@ -135,8 +135,8 @@ function EditException(props) {
   //4/22/2023 this is try out code for checkbox 
   //4/24/2023 note: try to pull exception objection as a prop
 
-  // console.log(exceptionMon)
-  // const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
+  console.log(exceptionMon)
+  const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
   // const [exceptionMonday, setExceptionMonday] = useState(exception.exceptionMon === 'Mon' ? 'true' : 'false')
   // const [exceptionTuesday, setExceptionTuesday] = useState(exception.exceptionTues === 'Tue' ? 'true' : 'false')
@@ -161,7 +161,7 @@ function EditException(props) {
   //End of 4/22/2023 this is try out code for checkbox
 
 
-  // console.log(xxxx)
+  console.log(xxxx)
 
   // const exceptionMondayValue = useRef();
 
@@ -170,19 +170,47 @@ function EditException(props) {
   //     exceptionMondayValue.current = exceptionMonday //.textContent = "Updated Text"
   //   }, 1000); // Update the content of the element after 2seconds 
   // }, [exceptionMonday]);
-
-  // console.log(exceptionMondayValue)
+  const xx = xxxx === 'true' ? true : false
+  console.log(xx)
   // function toggleMonday(value) {
   //   return value = exceptionMonday === 'true' ? setExceptionDay1('Mon') : setExceptionDay1('')
   // }
-  // const [visibleMon, setVisibleMon] = useState(false)
+  // const afterFirstRender = useRef(false);
+  const [visibleMon, setVisibleMon] = useState(xx.toString())
+  console.log('1', visibleMon)
   const toggleMonday = () => {
+    // setVisibleMon((current) => !current)
+    // setVisibleMon(exceptionMon === 'Mon' ? 'true' : 'false')
+    if (exceptionMon === 'Mon') {
+      setExceptionDay1('')
+    } else {
+      setExceptionDay1('Mon')
+    }
+
+
     // visibleMon &&
-    exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
-    // exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
+    // exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
+    // || exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
     // alert('Value of exceptionMon is ' + exceptionMon)
   }
-  console.log(exceptionMon1, exceptionTues1)
+  // console.log('2', visibleMon)
+  // console.log(xxxx, visibleMon, afterFirstRender)
+  useEffect(() => {
+    // if (!afterFirstRender.current) {
+    //   // afterFirstRender.current = true;
+    //   return;
+    // }
+    if (visibleMon) {
+      // axios.post('https://example.com/stats/name/views').then(() => {
+      //   console.log('Updated stats successfully.')
+      // });
+      setExceptionDay1('Mon')
+    }
+    else {
+      setExceptionDay1('')
+    }
+  }, []);
+  // console.log(visibleMon)
   // alert('Value of exceptionMon1 is ' + exceptionMon1)
   const toggleTuesday = () => {
     exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
@@ -284,6 +312,7 @@ function EditException(props) {
                       name="exceptionDaysMon"
                       id="exceptionDaysMon"
                       value={exception.exceptionMon}
+                      onChange={onChange}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
