@@ -178,15 +178,25 @@ function EditException(props) {
   // const afterFirstRender = useRef(false);
   const [visibleMon, setVisibleMon] = useState((e) => e = xx)
   // console.log('1', visibleMon)
-  const toggleMonday = () => {
+  const ToggleMonday = () => {
     setVisibleMon((current) => !current)
-    // setVisibleMon(xx)
     if (exceptionMon === 'Mon') {
       setExceptionDay1('')
     } else {
       setExceptionDay1('Mon')
     }
-
+    useEffect(() => {
+      // if (!afterFirstRender.current) {
+      //   // afterFirstRender.current = true;
+      //   return;
+      // }
+      if (visibleMon) {
+        setExceptionDay1('Mon')
+      }
+      else {
+        setExceptionDay1('')
+      }
+    }, []);
 
     // visibleMon &&
     // exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
@@ -195,21 +205,7 @@ function EditException(props) {
   }
   // console.log('2', visibleMon)
   // console.log(xxxx, visibleMon, afterFirstRender)
-  useEffect(() => {
-    if (!afterFirstRender.current) {
-      // afterFirstRender.current = true;
-      return;
-    }
-    if (visibleMon) {
-      // axios.post('https://example.com/stats/name/views').then(() => {
-      //   console.log('Updated stats successfully.')
-      // });
-      setExceptionDay1('Mon')
-    }
-    else {
-      setExceptionDay1('')
-    }
-  }, [visibleMon]);
+
   // console.log(visibleMon)
   // alert('Value of exceptionMon1 is ' + exceptionMon1)
   const toggleTuesday = () => {
@@ -308,12 +304,11 @@ function EditException(props) {
                       //ref={exceptionMondayValue}
                       type="checkbox"
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
-                      onClick={toggleMonday}
-                      // onChange={e => setVisibleMon(!visibleMon)}
+                      onClick={ToggleMonday}
                       name="exceptionDaysMon"
                       id="exceptionDaysMon"
                       value={exception.exceptionMon}
-                    // onChange={onChange}
+                      onChange={onChange}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
