@@ -176,34 +176,47 @@ function EditException(props) {
   //   return value = exceptionMonday === 'true' ? setExceptionDay1('Mon') : setExceptionDay1('')
   // }
   // const afterFirstRender = useRef(false);
-  const [visibleMon, setVisibleMon] = useState((e) => e = xx)
-  // console.log('1', visibleMon)
-  const ToggleMonday = () => {
+  const [visibleMon, setVisibleMon] = useState(() => exceptionMon === 'Mon' ? true : false)
+  console.log('1', visibleMon)
+  const toggleMonday = () => {
     setVisibleMon((current) => !current)
-    if (exceptionMon === 'Mon') {
-      setExceptionDay1('')
-    } else {
-      setExceptionDay1('Mon')
-    }
-    useEffect(() => {
-      // if (!afterFirstRender.current) {
-      //   // afterFirstRender.current = true;
-      //   return;
-      // }
-      if (visibleMon) {
-        setExceptionDay1('Mon')
-      }
-      else {
-        setExceptionDay1('')
-      }
-    }, []);
-
-    // visibleMon &&
-    // exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
-    // || exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
+    // if (exceptionMon === 'Mon') {
+    //   setExceptionDay1('')
+    // } else {
+    //   setExceptionDay1('Mon')
+    // }
+    // if (visibleMon) {
+    //   setExceptionDay1('Mon')
+    // }
+    // else {
+    //   setExceptionDay1('')
+    // }
     // alert('Value of exceptionMon is ' + exceptionMon)
+    exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
   }
-  // console.log('2', visibleMon)
+
+  // const mondayChange = () => {
+  //   if (visibleMon) {
+  //     setExceptionDay1('Mon')
+  //   }
+  //   else {
+  //     setExceptionDay1('')
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   // if (!afterFirstRender.current) {
+  //   //   // afterFirstRender.current = true;
+  //   //   return;
+  //   // }
+  //   if (visibleMon) {
+  //     setExceptionDay1('Mon')
+  //   }
+  //   else {
+  //     setExceptionDay1('')
+  //   }
+  // }, [visibleMon]);
+  console.log('2', visibleMon)
   // console.log(xxxx, visibleMon, afterFirstRender)
 
   // console.log(visibleMon)
@@ -253,8 +266,8 @@ function EditException(props) {
               className="form-grid-containers"
               style={{ display: 'flex', columnGap: '10px' }}
             >
-              <div className="form-group">
-                <div>
+              <div >
+                <div className="form-group">
                   <label style={{ display: 'none' }}>
                     Provider ID
                     <input
@@ -304,11 +317,11 @@ function EditException(props) {
                       //ref={exceptionMondayValue}
                       type="checkbox"
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
-                      onClick={ToggleMonday}
+                      onClick={toggleMonday}
                       name="exceptionDaysMon"
                       id="exceptionDaysMon"
                       value={exception.exceptionMon}
-                      onChange={onChange}
+                    // onChange={mondayChange}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
@@ -319,7 +332,7 @@ function EditException(props) {
                     <input
                       Checked={exceptionTues === 'Tue' ? 'true' : 'false'}
                       type="checkbox"
-                      onClick={toggleTuesday}
+                      onChange={toggleTuesday}
                       name="exceptionDaysTues"
                       id="exceptionDaysTues"
                       value={exception.exceptionTues}
