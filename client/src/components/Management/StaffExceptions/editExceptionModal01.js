@@ -93,28 +93,7 @@ function EditException(props) {
   const [exceptionThurs1, setExceptionDay4] = useState(exceptionThurs)
   const [exceptionFri1, setExceptionDay5] = useState(exceptionFri)
 
-  function toggleMonday() {
-    // exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
-    exceptionMon === 'Mon' ? setException('') : setExceptionDay1('Mon')
 
-    // exceptionMon === 'Mon' ? exception.exceptionMon = '' : exception.exceptionMon = 'Mon'
-  }
-  // console.log(exceptionMon === 'Mon' ? exception.exceptionMon = '' : exception.exceptionMon = 'Mon')
-
-  const toggleTuesday = () => {
-    exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
-  }
-
-  const toggleWednesday = () => {
-    exceptionWed === 'Wed' ? setExceptionDay3('') : setExceptionDay3('Wed')
-  }
-
-  const toggleThursday = () => {
-    exceptionThurs === 'Thurs' ? setExceptionDay4('') : setExceptionDay4('Thurs')
-  }
-  const toggleFriday = () => {
-    exceptionFri === 'Fri' ? setExceptionDay5('') : setExceptionDay5('Fri')
-  }
 
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
@@ -159,7 +138,7 @@ function EditException(props) {
   //4/24/2023 note: try to pull exception objection as a prop
 
   // console.log(exceptionMon)
-  // const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
+  const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
   // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
   // const [exceptionMonday, setExceptionMonday] = useState(exception.exceptionMon === 'Mon' ? 'true' : 'false')
   // const [exceptionTuesday, setExceptionTuesday] = useState(exception.exceptionTues === 'Tue' ? 'true' : 'false')
@@ -184,7 +163,7 @@ function EditException(props) {
   //End of 4/22/2023 this is try out code for checkbox
 
 
-  // console.log(xxxx)
+  console.log(xxxx)
 
   // const exceptionMondayValue = useRef();
 
@@ -193,23 +172,76 @@ function EditException(props) {
   //     exceptionMondayValue.current = exceptionMonday //.textContent = "Updated Text"
   //   }, 1000); // Update the content of the element after 2seconds 
   // }, [exceptionMonday]);
-  // const xx = exceptionMon === 'Mon'
-  // console.log(xx)
+  const xx = exceptionMon === 'Mon'
+  console.log(xx)
   // function toggleMonday(value) {
   //   return value = exceptionMonday === 'true' ? setExceptionDay1('Mon') : setExceptionDay1('')
   // }
   // const afterFirstRender = useRef(false);
   // const [visibleMon, setVisibleMon] = useState(() => exceptionMon === 'Mon' ? true : false)
   // console.log('1', visibleMon)
-  // const toggleMonday = () => {
-  //   exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
+  const toggleMonday = () => {
+    // setVisibleMon((current) => !current)
+    // if (exceptionMon === 'Mon') {
+    //   setExceptionDay1('')
+    // } else {
+    //   setExceptionDay1('Mon')
+    // }
+    // if (visibleMon) {
+    //   setExceptionDay1('Mon')
+    // }
+    // else {
+    //   setExceptionDay1('')
+    // }
+    // alert('Value of exceptionMon is ' + exceptionMon)
+    exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
+    // exceptionMon === 'Mon' ? exception.exceptionMon = '' : exception.exceptionMon = 'Mon'
+  }
+  console.log(exceptionMon === 'Mon' ? exception.exceptionMon = '' : exception.exceptionMon = 'Mon')
+  // const mondayChange = () => {
+  //   if (visibleMon) {
+  //     setExceptionDay1('Mon')
+  //   }
+  //   else {
+  //     setExceptionDay1('')
+  //   }
   // }
 
+  // useEffect(() => {
+  //   // if (!afterFirstRender.current) {
+  //   //   // afterFirstRender.current = true;
+  //   //   return;
+  //   // }
+  //   if (visibleMon) {
+  //     setExceptionDay1('Mon')
+  //   }
+  //   else {
+  //     setExceptionDay1('')
+  //   }
+  // }, [visibleMon]);
+  // console.log('2', visibleMon)
+  // console.log(xxxx, visibleMon, afterFirstRender)
 
+  // console.log(visibleMon)
+  // alert('Value of exceptionMon1 is ' + exceptionMon1)
+  const toggleTuesday = () => {
+    exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
+  }
+
+  const toggleWednesday = () => {
+    exceptionWed === 'Wed' ? setExceptionDay3('') : setExceptionDay3('Wed')
+  }
+
+  const toggleThursday = () => {
+    exceptionThurs === 'Thurs' ? setExceptionDay4('') : setExceptionDay4('Thurs')
+  }
+  const toggleFriday = () => {
+    exceptionFri === 'Fri' ? setExceptionDay5('') : setExceptionDay5('Fri')
+  }
 
   //first render sample code to skip first render (do not delete)
-  // const afterFirstRender = useRef(false);
-  // console.log('afterFirstRender', afterFirstRender, exceptionMon1)
+  const afterFirstRender = useRef(false);
+  console.log('afterFirstRender', afterFirstRender, exceptionMon1)
   // const [visible, setVisible] = useState(false);
   // const handleToggle = () => {
   //   setVisible((current) => !current);
@@ -285,6 +317,7 @@ function EditException(props) {
                     Mondays
                     {/* {alert('Value of exceptionMon1 is ' + exceptionMon1)} */}
                     <input
+                      //ref={exceptionMondayValue}                      
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
                       type="checkbox"
                       onClick={toggleMonday}
@@ -302,7 +335,7 @@ function EditException(props) {
                     <input
                       Checked={exceptionTues === 'Tue' ? 'true' : 'false'}
                       type="checkbox"
-                      onClick={toggleTuesday}
+                      onChange={toggleTuesday}
                       name="exceptionDaysTues"
                       id="exceptionDaysTues"
                       value={exception.exceptionTues}
