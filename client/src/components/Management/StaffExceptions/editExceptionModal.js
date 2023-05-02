@@ -113,14 +113,18 @@ function EditException(props) {
   const [exceptionThurs1, setExceptionDay4] = useState(exceptionThurs)
   const [exceptionFri1, setExceptionDay5] = useState(exceptionFri)
 
-  // const [isMondayChecked, setIsMondayChecked] = useState(prevExceptionMon.current === 'Mon' ? true : false)
-  const isMondayChecked = exceptionMon === 'Mon' ? 'true' : 'false'
+  const [isMondayChecked, setIsMondayChecked] = useState('')
+  useEffect(() => {
+    setIsMondayChecked(exceptionMon === 'Mon' ? 'true' : 'false')
+  }, [exceptionMon])
+
+  // const isMondayChecked = exceptionMon === 'Mon' ? 'true' : 'false'
   const isTuesdayChecked = exceptionTues === 'Tue' ? 'true' : 'false'
   const isWednesdayChecked = exceptionWed === 'Wed' ? 'true' : 'false'
   const isThursdayChecked = exceptionThurs === 'Thurs' ? 'true' : 'false'
   const isFridayChecked = exceptionFri === 'Fri' ? 'true' : 'false'
 
-
+  console.log('isMondayChecked', isMondayChecked, exceptionMon)
 
   function toggleMonday() {
     exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
@@ -325,8 +329,8 @@ function EditException(props) {
                     Mondays
                     {/* {alert('Value of exceptionMon1 is ' + exceptionMon1)} */}
                     <input
-                      Checked={isMondayChecked}
-                      // Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
+                      // Checked={isMondayChecked}
+                      Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
                       // checked={isMondayChecked === 'true' ? true : false}
                       // checked={exceptionMon === 'Mon' ? true : false}
                       type="checkbox"
