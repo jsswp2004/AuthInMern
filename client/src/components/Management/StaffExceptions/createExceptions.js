@@ -113,6 +113,7 @@ const CreateException = (props) => {
       exceptionThurs: exceptionThurs,
       exceptionFri: exceptionFri,
       addedDate: format(new Date(), 'yyyy-MM-dd'),
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'),
     }
 
     axios
@@ -133,6 +134,7 @@ const CreateException = (props) => {
           exceptionThurs: '',
           exceptionFri: '',
           addedDate: format(new Date(), 'yyyy-MM-dd'),
+          lastUpdated: format(new Date(), 'yyyy-MM-dd'),
         })
 
         // Push to /
