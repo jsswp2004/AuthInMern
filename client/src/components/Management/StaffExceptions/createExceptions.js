@@ -39,6 +39,7 @@ const CreateException = (props) => {
     exceptionThurs: '',
     exceptionFri: '',
     addedDate: format(new Date(), 'yyyy-MM-dd'),
+    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const [defaultAmStartTime, setDefaultAmStartTime] = useState('09:00')
