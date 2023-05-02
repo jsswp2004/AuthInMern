@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
-// import { is } from 'date-fns/locale'
+import { is } from 'date-fns/locale'
 
 function EditException(props) {
 
@@ -47,6 +47,13 @@ function EditException(props) {
     }
   )
 
+  // const [defaultAmStartTime, setDefaultAmStartTime] = useState('09:00')
+  // const ref = useRef(null);
+  // const handleClick = () => {
+  //   console.log(ref.current.value);
+  // };
+
+  // console.log(exception.exceptionMon)
 
   const DrID = props.providerID
 
@@ -72,6 +79,8 @@ function EditException(props) {
           addedDate: res.data.addedDate,
           lastUpdated: res.data.lastUpdated,
         })
+        // setExceptionMondayCheckedValue(res.data.exceptionMon === 'Mon' ? true : false)
+        // console.log('res.data.addedDate', res.data.addedDate)
       })
       .catch((err) => {
         console.log('Error from EditException')
@@ -105,11 +114,20 @@ function EditException(props) {
   const [exceptionFri1, setExceptionDay5] = useState(exceptionFri)
 
   const [isMondayChecked, setIsMondayChecked] = useState('')
+  // useEffect(() => {
+  //   setIsMondayChecked(exceptionMon === 'Mon' ? 'true' : 'false')
+  // }, [exceptionMon])
+
+  // const isMondayChecked = exceptionMon === 'Mon' ? 'true' : 'false'
+  // const isTuesdayChecked = exceptionTues === 'Tue' ? 'true' : 'false'
   const [isTuesdayChecked, setIsTuesdayChecked] = useState('')
   const [isWednesdayChecked, setIsWednesdayChecked] = useState('')
   const [isThursdayChecked, setIsThursdayChecked] = useState('')
   const [isFridayChecked, setIsFridayChecked] = useState('')
 
+  // const isWednesdayChecked = exceptionWed === 'Wed' ? 'true' : 'false'
+  // const isThursdayChecked = exceptionThurs === 'Thurs' ? 'true' : 'false'
+  // const isFridayChecked = exceptionFri === 'Fri' ? 'true' : 'false'
 
   console.log('isMondayChecked', isMondayChecked, exceptionMon)
   console.log('isTuesdayChecked', isTuesdayChecked, exceptionTues)
@@ -120,25 +138,37 @@ function EditException(props) {
   function toggleMonday() {
     exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
     setIsMondayChecked(!isMondayChecked)
-  }
+    // isMondayChecked = !isMondayChecked
+    // setIsMondayChecked(!isMondayChecked)
+    // exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
 
+    // exceptionMon === 'Mon' ? exception.exceptionMon = '' : exception.exceptionMon = 'Mon'
+  }
+  // useEffect(() => {
+  //   exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
+  // }
+  //   , [exceptionMon])
+  // console.log(isMondayChecked)
+  // console.log(exceptionMon1)
+  // const toggleTuesday = () => {
   function toggleTuesday() {
     exceptionTues === 'Tue' ? setExceptionDay2('') : setExceptionDay2('Tue')
     setIsTuesdayChecked(!isTuesdayChecked)
 
   }
 
-
+  // const toggleWednesday = () => {
   function toggleWednesday() {
     exceptionWed === 'Wed' ? setExceptionDay3('') : setExceptionDay3('Wed')
     setIsWednesdayChecked(!isWednesdayChecked)
   }
 
+  // const toggleThursday = () => {
   function toggleThursday() {
     exceptionThurs === 'Thurs' ? setExceptionDay4('') : setExceptionDay4('Thurs')
     setIsThursdayChecked(!isThursdayChecked)
   }
-
+  // const toggleFriday = () => {
   function toggleFriday() {
     exceptionFri === 'Fri' ? setExceptionDay5('') : setExceptionDay5('Fri')
     setIsFridayChecked(!isFridayChecked)
@@ -168,8 +198,15 @@ function EditException(props) {
       lastUpdated: exception.lastUpdated,
       [e.target.name]: e.target.value
     })
-
+    // setDefaultAmStartTime(e.target.value)
   }
+
+
+
+  // const onMondayChange = (e) => {
+  //   setExceptionDay1(e => e.exceptionMon = 'Mon')
+  //   // setDefaultAmStartTime(e.target.value)
+  // }
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -183,7 +220,7 @@ function EditException(props) {
       amEndTime: exception.amEndTime,
       pmStartTime: exception.pmStartTime,
       pmEndTime: exception.pmEndTime,
-      exceptionMon: isMondayChecked ? exceptionMon1 : exceptionMon,
+      exceptionMon: isMondayChecked ? exceptionMon1 : exceptionMon, //exception.exceptionMon, //isMondayChecked === 'true' ? exceptionMon1 : exceptionMon,
       exceptionTues: isTuesdayChecked ? exceptionTues1 : exceptionTues,
       exceptionWed: isWednesdayChecked ? exceptionWed1 : exceptionWed,
       exceptionThurs: isThursdayChecked ? exceptionThurs1 : exceptionThurs,
@@ -205,6 +242,79 @@ function EditException(props) {
       })
   }
 
+  //4/22/2023 this is try out code for checkbox 
+  //4/24/2023 note: try to pull exception objection as a prop
+
+  // console.log(exceptionMon)
+  // const xxxx = exceptionMon === 'Mon' ? 'true' : 'false'
+  // const [exceptionMonday, setExceptionMonday] = useState(exceptionMon !== null ? true : false)
+  // const [exceptionMonday, setExceptionMonday] = useState(exception.exceptionMon === 'Mon' ? 'true' : 'false')
+  // const [exceptionTuesday, setExceptionTuesday] = useState(exception.exceptionTues === 'Tue' ? 'true' : 'false')
+
+
+  // console.log(exceptionMonday)
+  // const [exceptionMonday, setExceptionMonday] = useState('')
+  // const [checkOut, setCheckOut] = useState('')
+  // const [exceptionMondayCheckedValue, setExceptionMondayCheckedValue] = useState(false)
+  // const [checkOutValue, setCheckOutValue] = useState(false)
+
+  // function setExceptionForMonday(e) {
+  //   // setExceptionDay1(e.target.value)
+  //   // setExceptionMondayCheckedValue(!exceptionMondayCheckedValue)
+  //   setExceptionMonday(!exceptionMonday)
+  //   exception.exceptionMon = 'Mon'
+
+  // }
+
+  // console.log(exceptionMonday, exceptionMondayCheckedValue)
+
+  //End of 4/22/2023 this is try out code for checkbox
+
+
+  // console.log(xxxx)
+
+  // const exceptionMondayValue = useRef();
+
+  // useEffect(function () {
+  //   setTimeout(() => {
+  //     exceptionMondayValue.current = exceptionMonday //.textContent = "Updated Text"
+  //   }, 1000); // Update the content of the element after 2seconds 
+  // }, [exceptionMonday]);
+  // const xx = exceptionMon === 'Mon'
+  // console.log(xx)
+  // function toggleMonday(value) {
+  //   return value = exceptionMonday === 'true' ? setExceptionDay1('Mon') : setExceptionDay1('')
+  // }
+  // const afterFirstRender = useRef(false);
+  // const [visibleMon, setVisibleMon] = useState(() => exceptionMon === 'Mon' ? true : false)
+  // console.log('1', visibleMon)
+  // const toggleMonday = () => {
+  //   exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
+  // }
+
+
+
+  //first render sample code to skip first render (do not delete)
+  // const afterFirstRender = useRef(false);
+  // console.log('afterFirstRender', afterFirstRender, exceptionMon1)
+  // const [visible, setVisible] = useState(false);
+  // const handleToggle = () => {
+  //   setVisible((current) => !current);
+  // };
+  // useEffect(() => {
+  //   if (!afterFirstRender.current) {
+  //     afterFirstRender.current = true;
+  //     return;
+  //   }
+
+  //   if (visibleMon) {
+  //     axios.post('https://example.com/stats/name/show').then(() => {
+  //       console.log('Stats updated successfully')
+  //     });
+  //   }
+  // }, [visible]);
+
+  //end first render
   return (
     <div className="grid_containers">
       <div className="item3">
@@ -260,13 +370,22 @@ function EditException(props) {
                 <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Mondays
+                    {/* {alert('Value of exceptionMon1 is ' + exceptionMon1)} */}
                     <input
+                      // checked={isMondayChecked}
                       Checked={exceptionMon === 'Mon' ? 'true' : 'false'}
+                      // checked={isMondayChecked === 'true' ? true : false}
+                      // checked={exceptionMon === 'Mon' ? true : false}
                       type="checkbox"
                       onClick={toggleMonday}
+                      // onChange={() => toggleMonday}
+                      // onChange={onMondayChange}
                       name="exceptionDaysMon"
                       id="exceptionDaysMon"
+                      //value={exceptionMon1}
                       value={exception.exceptionMon}
+
+                    // onChange={mondayChange}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
@@ -276,12 +395,14 @@ function EditException(props) {
                     Tuesdays
                     <input
                       Checked={exceptionTues === 'Tue' ? 'true' : 'false'}
+                      // Checked={isTuesdayChecked}
                       type="checkbox"
                       onClick={toggleTuesday}
                       name="exceptionDaysTues"
                       id="exceptionDaysTues"
                       value={exception.exceptionTues}
                     />
+                    {/* {console.log(toggleTuesday)} */}
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                 </div>
