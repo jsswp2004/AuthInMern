@@ -37,7 +37,7 @@ var upload = multer({
 // code for new 4/17 for upload
 router.post('/', upload.single('name'), (req, res, next) => {
   //new -- define file path
-  importFile('./upload/' + req.file.filename);
+  importFile('./upload' + req.file.filename);
   function importFile(filePath) {
     //  Read Excel File to Json Data
     var arrayToInsert = [];
