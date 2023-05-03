@@ -6,8 +6,6 @@ import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
 function EditException(props) {
 
-
-
   const [userMD, setUserMD] = useState([])
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
@@ -191,7 +189,7 @@ function EditException(props) {
       addedDate: exception.addedDate,
       lastUpdated: format(new Date(), 'yyyy-MM-dd'),
     }
-    console.log(exceptionMon1 === '' ? exceptionMon : exceptionMon1)
+    // console.log(exceptionMon1 === '' ? exceptionMon : exceptionMon1)
     axios
       .put(`http://localhost:8081/api/exceptions/${props.providerID}`, data)
       .then((res) => {

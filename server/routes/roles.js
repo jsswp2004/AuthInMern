@@ -69,11 +69,11 @@ router.post('/', upload.single('name'), (req, res, next) => {
   //end old working
 
   //new -- define file path
-  importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
+  importFile('./upload/' + req.file.originalname); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
   // importFile(csvFilePath);
   // importFile(DIR);
 
-  // importFile(req.file.filename);${__dirname}
+  // importFile(req.file.filename);//${__dirname}
   // importFile(`${__dirname} + req.file.filename`);
 
 
@@ -103,7 +103,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
       });
     });
   }
-  //end of new
+  // end of new
   // Role.create(req.body)
   //   .then((role) => res.json({ msg: 'Role added successfully' }))
   //   .catch((err) =>
