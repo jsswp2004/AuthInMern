@@ -110,7 +110,7 @@ router.get('/:id', (req, res) => {
 // @route GET api/exceptions
 // @description add/save exception
 // @access Public
-router.post('/', (req, res) => {
+router.post('/create', (req, res) => {
   Exception.create(req.body)
     .then((exception) => res.json({ msg: 'Exception added successfully' }))
     .catch((err) =>
