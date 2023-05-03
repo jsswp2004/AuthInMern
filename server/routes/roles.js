@@ -43,7 +43,7 @@ router.post('/upload', upload.single('name'), (req, res, next) => {
   // importFile(csvFilePath);
   // importFile(DIR);
 
-  // importFile(req.file.filename);${__dirname}
+  // importFile(req.file.filename);//${__dirname}
   // importFile(`${__dirname} + req.file.filename`);
 
 
@@ -73,7 +73,7 @@ router.post('/upload', upload.single('name'), (req, res, next) => {
       });
     });
   }
-  //end of new
+  // end of new
   // Role.create(req.body)
   //   .then((role) => res.json({ msg: 'Role added successfully' }))
   //   .catch((err) =>
