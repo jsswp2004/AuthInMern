@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import axios from 'axios'
 
 const UploadStaffException = (props) => {
-    const [selectedFile, setSelectedFile] = useState();
+    const [selectedFile, setSelectedFile] = useState('');
     const [isFilePicked, setIsFilePicked] = useState(false);
 
     const onChange = (e) => {
@@ -51,7 +51,7 @@ const UploadStaffException = (props) => {
             <div className="item3">
                 {/* <h5 className="createPageHeader">Create Schedule</h5> */}
                 <div className="createRoleModalBody">
-                    {/* <label className="createPageHeader">Create Schedule</label> */}
+                    {/* <label className="createPageHeader">Create Schedule</label>  enctype="multipart/form-data" method='post'*/}
                     <form noValidate onSubmit={onSubmit} className='formModal'>
                         <div className="form-group">
                             <input className="form-control roleInput" type="file" onChange={onChange} />
