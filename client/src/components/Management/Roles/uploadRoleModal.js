@@ -138,7 +138,7 @@ const UploadRole = (props) => {
           </div> */}
           {/* <div className="container"> */}
           <div className="item2and3Conatainer">
-            <form onSubmit={onSubmit}  enctype="multipart/form-data" method='post'>
+            <form onSubmit={onSubmit} encType="multipart/form-data" method='post'>
               {/* <h3>Roles Upload</h3> */}
               <div className="form-group">
                 <input className="form-control roleInput" type="file" onChange={onChange} />

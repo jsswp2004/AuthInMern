@@ -11,7 +11,7 @@ const { v4: uuidv4 } = require('uuid');
 const csvtojson = require('csvtojson')
 
 // Code for multer 4/17
-const DIR = './upload';
+const DIR = './upload/';
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
-    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/msword") {
+    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || file.mimetype == "application/msword") {
       cb(null, true);
     } else {
       cb(null, false);
@@ -35,9 +35,9 @@ var upload = multer({
 // end for multer
 
 // code for new 4/17 for upload
-router.post('/', upload.single('name'), (req, res, next) => {
+router.post('/upload', upload.single('name'), (req, res, next) => {
   //new -- define file path
-  importFile('./upload' + req.file.filename);
+  importFile('/upload/' + req.file.originalname);
   function importFile(filePath) {
     //  Read Excel File to Json Data
     var arrayToInsert = [];
@@ -110,7 +110,7 @@ router.get('/:id', (req, res) => {
 // @route GET api/exceptions
 // @description add/save exception
 // @access Public
-router.post('/create', (req, res) => {
+router.post('/', (req, res) => {
   Exception.create(req.body)
     .then((exception) => res.json({ msg: 'Exception added successfully' }))
     .catch((err) =>

@@ -60,24 +60,6 @@ app.use("/api/messages", smsRoutes);
 // app.use("/api/template", templateRoutes);
 app.use('/upload', express.static('upload'));
 
-// app.get('/', function (req, res) {
-//     res.sendFile(__dirname + '/uploadRole');
-// });
-// exports.get = function (req, res) {
-//     var fields = [
-//         'name.firstName',
-//         'name.lastName',
-//         'biography',
-//         'twitter',
-//         'facebook',
-//         'linkedin'
-//     ];
-//     var csv = json2csv({ data: '', fields: fields });
-//     res.set("Content-Disposition", "attachment;filename=authors.csv");
-//     res.set("Content-Type", "application/octet-stream");
-//     res.send(csv);
-// };
-
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
     auth: {
