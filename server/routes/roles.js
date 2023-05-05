@@ -42,12 +42,12 @@ router.post('/', upload.single('name'), (req, res, next) => {
   // const url = req.protocol + '://' + req.get('host')
 
   //old working
-  // const role = new Role({
-  //   _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-  //   name: req.body.name,
-  //   addedDate: req.body.addedDate,
-  //   lastUpdated: req.body.lastUpdated,
-  // });
+  const role = new Role({
+    _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+    name: req.body.name,
+    addedDate: req.body.addedDate,
+    lastUpdated: req.body.lastUpdated,
+  });
   // console.log(role)
   //5/04
   // role.save()
