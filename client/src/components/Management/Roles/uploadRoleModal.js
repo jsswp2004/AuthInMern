@@ -7,11 +7,11 @@ import axios from 'axios'
 const UploadRole = (props) => {
 
   const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
+  // const [isFilePicked, setIsFilePicked] = useState(false);
 
   const onChange = (e) => {
     setSelectedFile(e.target.files[0]);
-    e.target.files[0] && setIsFilePicked(true);
+    // e.target.files[0] && setIsFilePicked(true);
   }
 
   const navigate = useNavigate()
@@ -19,12 +19,12 @@ const UploadRole = (props) => {
     e.preventDefault()
 
     // HANDLING FILE AS SENDING FILE INTO BACKEND
-    if (!isFilePicked) return;
+    // if (!isFilePicked) return;
     const formData = new FormData();
     formData.append("name", selectedFile);
     const config = {
       headers: {
-        'content-type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data'
       }
     };
 

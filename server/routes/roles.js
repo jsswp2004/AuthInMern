@@ -36,67 +36,73 @@ var upload = multer({
 // end for multer
 
 // code for new 4/17
-router.post('/upload', upload.single('name'), (req, res, next) => {
+router.post('/', upload.single('name'), (req, res, next) => {
 
   // router.post('/uploadRole', upload.single('name'), (req, res, next) => {
-  const url = req.protocol + '://' + req.get('host')
+  // const url = req.protocol + '://' + req.get('host')
 
   //old working
-  const role = new Role({
-    _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-    name: req.body.name,
-    addedDate: req.body.addedDate,
-    lastUpdated: req.body.lastUpdated,
-  });
+  // const role = new Role({
+  //   _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+  //   name: req.body.name,
+  //   addedDate: req.body.addedDate,
+  //   lastUpdated: req.body.lastUpdated,
+  // });
   // console.log(role)
-  role.save().then(result => {
-    res.status(201).json({
-      message: "Role registered successfully!",
-      userCreated: {
-        _id: result._id,
-        name: result.name,
-        addedDate: result.addedDate,
-        lastUpdated: result.lastUpdated,
-      }
-    })
-    console.log('Role registered successfully!')
-  }).catch(err => {
-    console.log(err),
-      res.status(500).json({
-        error: err
-      });
-  })
+  //5/04
+  // role.save()
+  //   .then(response => console.log(response))
+  //   .catch(err => console.error(err));
+
+
+  // role.save().then(result => {
+  //   res.status(201).json({
+  //     message: "Role registered successfully!",
+  //     userCreated: {
+  //       _id: result._id,
+  //       name: result.name,
+  //       addedDate: result.addedDate,
+  //       lastUpdated: result.lastUpdated,
+  //     }
+  //   })
+  //   console.log('Role registered successfully!')
+  // }).catch(err => {
+  //   console.log(err),
+  //     res.status(500).json({
+  //       error: err
+  //     });
+  // })
   //end old working
 
   //new -- define file path
-  // importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
+  importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
 
-  // function importFile(filePath) {
-  //   //  Read Excel File to Json Data
-  //   var arrayToInsert = [];
-  //   csvtojson().fromFile(filePath).then(source => {
-  //     // Fetching the all data from each row
-  //     for (var i = 0; i < source.length; i++) {
-  //       console.log(source[i]["name"])
-  //       var singleRow = {
-  //         _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-  //         name: source[i]["name"],
-  //         addedDate: source[i]["addedDate"],
-  //         lastUpdated: source[i]["lastUpdated"],
-  //       };
-  //       console.log(singleRow)
-  //       arrayToInsert.push(singleRow);
-  //     }
-  //     //inserting into the table roles
-  //     Role.insertMany(arrayToInsert, (err, result) => {
-  //       if (err) console.log(err);
-  //       if (result) {
-  //         console.log("File imported successfully.");
-  //         res.redirect('/')
-  //       }
-  //     });
-  //   });
-  // }
+  function importFile(filePath) {
+    //  Read Excel File to Json Data
+    var arrayToInsert = [];
+    csvtojson().fromFile(filePath).then(source => {
+      // Fetching the all data from each row
+      for (var i = 0; i < source.length; i++) {
+        console.log(source[i]["name"])
+        var singleRow = {
+          _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+          name: source[i]["name"],
+          addedDate: source[i]["addedDate"],
+          lastUpdated: source[i]["lastUpdated"],
+        };
+        console.log(singleRow)
+        arrayToInsert.push(singleRow);
+      }
+      //inserting into the table roles
+      Role.insertMany(arrayToInsert, (err, result) => {
+        if (err) console.log(err);
+        if (result) {
+          console.log("File imported successfully.");
+          res.redirect('/')
+        }
+      });
+    });
+  }
   //end of new
 
 

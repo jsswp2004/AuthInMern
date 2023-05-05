@@ -31,8 +31,6 @@ connection();
 // middlewares 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
-
-
 // pino
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -58,7 +56,13 @@ app.use("/api/exceptions", exceptionRoutes);
 app.use("/api/emails", emailRoutes);
 app.use("/api/messages", smsRoutes);
 // app.use("/api/template", templateRoutes);
-app.use('/upload', express.static('upload'));
+//app.use('/upload', express.static('upload'));
+//new upload code 5/04
+app.use('/upload', express.static('./upload'));
+
+// app.get('/posts', (req, res) => { });
+
+// app.post('/submit', (req, res) => { });
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
@@ -79,12 +83,12 @@ contactEmail.verify((error) => {
 
 const port = process.env.PORT || 8081;
 app.listen(port, console.log(`Listening on port ${port}...`));
-app.use((req, res, next) => {
-    // Error goes via `next()` method
-    setImmediate(() => {
-        next(new Error('Something went wrong'));
-    });
-});
+// app.use((req, res, next) => {
+//     // Error goes via `next()` method
+//     setImmediate(() => {
+//         next(new Error('Something went wrong'));
+//     });
+// });
 
 //added 5/3
 app.use(function (err, req, res, next) {
