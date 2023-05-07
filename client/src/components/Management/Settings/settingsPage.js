@@ -12,6 +12,7 @@ import UploadRole from '../Roles/uploadRoleModal'
 import UploadEvent from '../Events/uploadEventModal'
 import UploadSchedule from '../StaffSchedules/uploadScheduleModal'
 import UploadException from '../StaffExceptions/uploadExceptionModal'
+import { Link } from "react-router-dom";
 
 const ShowSettings = () => {
   //#region for navigate
@@ -53,7 +54,8 @@ const ShowSettings = () => {
   //#region for role upload modal
   const UploadRoleModal = () => (
     <>
-      <Modal show={showRole} onHide={handleCloseRole} size="med" centered>
+      {/* <Route path='/upload'> */}
+      <Modal show={showRole} onHide={handleCloseRole} size="med" centered >
         <Modal.Header>
           <Modal.Title>Upload Roles</Modal.Title>
           <Button variant="secondary" onClick={handleClick}>
@@ -69,6 +71,7 @@ const ShowSettings = () => {
           </Button>
         </Modal.Footer> */}
       </Modal>
+      {/* </Route> */}
     </>
   )
 
@@ -269,6 +272,16 @@ const ShowSettings = () => {
                         name="radio"
                       />
                       <span className="settingCheckboxCheckmark"></span>
+                      <Link
+                        to={`/uploadRole`} className="btn btn-secondary addVisitModalBtn "
+                      >
+                        {/* <i
+                          className="fas fa-laptop-medical fa-sm"
+                          aria-hidden="true"
+                          title="Search patient"
+                        /> */}
+                        Roles
+                      </Link>
                     </label>
                     <label className="settingCheckboxContainer">
                       Events

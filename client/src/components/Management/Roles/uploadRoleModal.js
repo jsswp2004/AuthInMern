@@ -7,11 +7,11 @@ import axios from 'axios'
 const UploadRole = (props) => {
 
   const [selectedFile, setSelectedFile] = useState();
-  // const [isFilePicked, setIsFilePicked] = useState(false);
+  const [isFilePicked, setIsFilePicked] = useState(false);
 
   const onChange = (e) => {
     setSelectedFile(e.target.files[0]);
-    // e.target.files[0] && setIsFilePicked(true);
+    e.target.files[0] && setIsFilePicked(true);
   }
 
   const navigate = useNavigate()
@@ -19,21 +19,20 @@ const UploadRole = (props) => {
     e.preventDefault()
 
     // HANDLING FILE AS SENDING FILE INTO BACKEND
-    // if (!isFilePicked) return;
+    if (!isFilePicked) return;
     const formData = new FormData();
     formData.append("name", selectedFile);
     const config = {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'content-type': 'multipart/form-data'
       }
     };
 
     axios
-      .post('http://localhost:8081/api/roles', formData, config
+      .post('http://localhost:8081/api/roles/', formData, config
       ).then(res => {
         console.log(res);
-        // Push to /
-        // navigate('/settingsPage')
+        window.location.close()
         window.location.reload()
       })
       .catch((err) => {
@@ -71,8 +70,9 @@ const UploadRole = (props) => {
           </div> */}
           {/* <div className="container"> */}
           <div className="item2and3Conatainer">
-            <form onSubmit={onSubmit} encType="multipart/form-data" method='post'>
-              {/* <h3>Roles Upload</h3> */}
+            {/* added action 5/5*/}
+            <form action='uploadRole' noValidate onSubmit={onSubmit} className='formModal' >
+              {/* method='post'<h3>Roles Upload</h3> encType="multipart/form-data"*/}
               <div className="form-group">
                 <input className="form-control roleInput" type="file" onChange={onChange} />
 

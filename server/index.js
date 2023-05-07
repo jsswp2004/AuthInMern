@@ -56,9 +56,11 @@ app.use("/api/exceptions", exceptionRoutes);
 app.use("/api/emails", emailRoutes);
 app.use("/api/messages", smsRoutes);
 // app.use("/api/template", templateRoutes);
-//app.use('/upload', express.static('upload'));
+app.use('/upload', express.static('upload'));
 //new upload code 5/04
-app.use('/upload', express.static('./upload'));
+// app.use('/upload', express.static('./upload'));
+// app.use('/uploadRoleForm', express.static('./upload'));
+
 
 // app.get('/posts', (req, res) => { });
 

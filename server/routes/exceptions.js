@@ -1,5 +1,4 @@
-// routes/api/exceptions.js
-
+// routes/api/exceptions.jsconst express = require('express')
 const express = require('express')
 const router = express.Router()
 const { Exception, validate } = require('../models/exception')
@@ -37,7 +36,7 @@ var upload = multer({
 // code for new 4/17 for upload
 router.post('/upload', upload.single('name'), (req, res, next) => {
   //new -- define file path
-  importFile('/upload/' + req.file.originalname);
+  importFile('./upload/' + req.file.originalname);
   function importFile(filePath) {
     //  Read Excel File to Json Data
     var arrayToInsert = [];

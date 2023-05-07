@@ -1,3 +1,5 @@
+// routes/api/roles.js
+
 const express = require('express')
 const router = express.Router()
 // new 4/17 for upload
@@ -5,7 +7,7 @@ const multer = require('multer');
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const csvtojson = require('csvtojson')
-// end of new 4/17
+// end of new
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
 // const csvFilePath = `${__dirname}/ + req.file.filename`;
@@ -23,7 +25,7 @@ const storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {
-    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || file.mimetype == "application/msword") {
+    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/msword") {
       cb(null, true);
     } else {
       cb(null, false);
@@ -32,10 +34,47 @@ var upload = multer({
   }
 });
 // end for multer
-// console.log('Test', upload)
 
 // code for new 4/17
-router.post('/', upload.single('name'), (req, res, next) => {
+router.post('/upload', upload.single('name'), (req, res, next) => {
+
+  // router.post('/uploadRole', upload.single('name'), (req, res, next) => {
+  // const url = req.protocol + '://' + req.get('host')
+
+  //old working
+  const role = new Role({
+    _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+    name: req.body.name,
+    addedDate: req.body.addedDate,
+    lastUpdated: req.body.lastUpdated,
+  });
+  // console.log(role)
+  //5/04
+  // role.save()
+  //   .then(response => console.log(response))
+  //   .catch(err => console.error(err));
+
+
+  // role.save().then(result => {
+  //   res.status(201).json({
+  //     message: "Role registered successfully!",
+  //     userCreated: {
+  //       _id: result._id,
+  //       name: result.name,
+  //       addedDate: result.addedDate,
+  //       lastUpdated: result.lastUpdated,
+  //     }
+  //   })
+  //   console.log('Role registered successfully!')
+  // }).catch(err => {
+  //   console.log(err),
+  //     res.status(500).json({
+  //       error: err
+  //     });
+  // })
+  //end old working
+
+  //new -- define file path
   importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
 
   function importFile(filePath) {
@@ -54,6 +93,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
         console.log(singleRow)
         arrayToInsert.push(singleRow);
       }
+      //inserting into the table roles
       Role.insertMany(arrayToInsert, (err, result) => {
         if (err) console.log(err);
         if (result) {
@@ -63,21 +103,47 @@ router.post('/', upload.single('name'), (req, res, next) => {
       });
     });
   }
+  //end of new
+
 
 })
 
 //end for new 
+//ROUTE DEFINE
+// router.post('/', async function (req, res) {
+//   try {
+//     // IN REQ.FILES.”YOUR_FILE_NAME” WILL BE PRESENT
+//     const file = req.files;
+//     const bodyData = req.body;
+//     // console.log(file);
+//     // console.log(bodyData);
+//     res.status(200).send({
+//       message: 'FILE RECEIVED!',
+//     });
+//   } catch (error) {
+//     res.send('ERROR');
+//   }
+// });
+// const json2csv = require('json2csv').parse;
+// const template = require('./uploadRole.js');
 
-// @route GET api/roles
-// @description add/save role
-// @access Public
-router.post('/', (req, res) => {
-  Role.create(req.body)
-    .then((role) => res.json({ msg: 'Role added successfully' }))
-    .catch((err) =>
-      res.status(400).json({ error: 'Unable to add this role' }),
-    )
-})
+// exports.get = function (req, res) {
+//   var fields = [
+//     'name.firstName',
+//     'name.lastName',
+//     'biography',
+//     'twitter',
+//     'facebook',
+//     'linkedin'
+//   ];
+//   var csv = json2csv({ data: '', fields: fields });
+//   res.set("Content-Disposition", "attachment;filename=authors.csv");
+//   res.set("Content-Type", "application/octet-stream");
+//   res.send(csv);
+// };
+
+// router.get('/template', template.get);
+// router.post('/', upload.post);
 
 // @route GET api/roles/test
 // @description tests roles route
@@ -89,6 +155,7 @@ router.get('/test', (req, res) => res.send('role route testing!'))
 // @access Public
 router.get('/', (req, res) => {
   Role.find()
+
     .then((roles) => res.json(roles))
     .catch((err) =>
       res.status(404).json({ norolesfound: 'No Roles found' }),
@@ -104,6 +171,16 @@ router.get('/:id', (req, res) => {
     .catch((err) => res.status(404).json({ norecordfound: 'No Role found' }))
 })
 
+// @route GET api/roles
+// @description add/save role
+// @access Public
+router.post('/', (req, res) => {
+  Role.create(req.body)
+    .then((role) => res.json({ msg: 'Role added successfully' }))
+    .catch((err) =>
+      res.status(400).json({ error: 'Unable to add this role' }),
+    )
+})
 
 // @route GET api/roles/:id
 // @description Update role
