@@ -32,7 +32,7 @@ var upload = multer({
   }
 });
 // end for multer
-console.log('Test', upload.length)
+console.log('Test', upload)
 
 if (upload.length > 0) {
 
