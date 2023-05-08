@@ -272,16 +272,16 @@ const ShowSettings = () => {
                         name="radio"
                       />
                       <span className="settingCheckboxCheckmark"></span>
-                      <Link
+                      {/* <Link
                         to={`/uploadRole`} className="btn btn-secondary addVisitModalBtn "
                       >
                         {/* <i
                           className="fas fa-laptop-medical fa-sm"
                           aria-hidden="true"
                           title="Search patient"
-                        /> */}
-                        Roles
-                      </Link>
+                        /> 
+                      Roles
+                    </Link> */}
                     </label>
                     <label className="settingCheckboxContainer">
                       Events
@@ -381,7 +381,7 @@ const ShowSettings = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
