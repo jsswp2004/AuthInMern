@@ -50,13 +50,14 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/records", recordRoutes);
 app.use("/api/visits", visitRoutes);
 app.use("/api/roles", roleRoutes);
+app.use("/api/roles/upload", roleRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/schedules", scheduleRoutes);
 app.use("/api/exceptions", exceptionRoutes);
 app.use("/api/emails", emailRoutes);
 app.use("/api/messages", smsRoutes);
 // app.use("/api/template", templateRoutes);
-app.use('/upload', express.static('upload'));
+// app.use('/upload', express.static('upload'));
 //new upload code 5/04
 // app.use('/upload', express.static('./upload'));
 // app.use('/uploadRoleForm', express.static('./upload'));

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const { format } = require('date-fns')
 // new 4/17 for upload
 const multer = require('multer');
 const mongoose = require('mongoose');
@@ -32,9 +33,9 @@ var upload = multer({
   }
 });
 // end for multer
-console.log('Test', upload.length)
+console.log('Test', upload)
 
-if (upload.length > 0) {
+if (upload.status !== 'error') {
 
   // code for new 4/17
   router.post('/', upload.single('name'), (req, res, next) => {
@@ -51,7 +52,7 @@ if (upload.length > 0) {
             _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
             name: source[i]["name"],
             addedDate: source[i]["addedDate"],
-            lastUpdated: source[i]["lastUpdated"],
+            lastUpdated: format(new Date(), 'yyyy-MM-dd'),
           };
           console.log(singleRow)
           arrayToInsert.push(singleRow);
@@ -60,14 +61,15 @@ if (upload.length > 0) {
           if (err) console.log(err);
           if (result) {
             console.log("File imported successfully.");
-            res.redirect('/')
+            // res.redirect('/')
           }
         });
       });
-      next();
+      // next();
     }
 
   })
+  console.log(upload)
 } else {
   router.post('/', (req, res) => {
     Role.create(req.body)
@@ -78,9 +80,50 @@ if (upload.length > 0) {
   })
 }
 
+//end for new
+
+// router.post('/', upload.single('name'), (req, res, next) => {
+//   importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
+
+//   function importFile(filePath) {
+//     //  Read Excel File to Json Data
+//     var arrayToInsert = [];
+//     csvtojson().fromFile(filePath).then(source => {
+//       // Fetching the all data from each row
+//       for (var i = 0; i < source.length; i++) {
+//         console.log(source[i]["name"])
+//         var singleRow = {
+//           _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+//           name: source[i]["name"],
+//           addedDate: source[i]["addedDate"],
+//           // lastUpdated: source[i]["lastUpdated"],
+//           lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+//         };
+//         console.log(singleRow)
+//         arrayToInsert.push(singleRow);
+//       }
+//       Role.insertMany(arrayToInsert, (err, result) => {
+//         if (err) console.log(err);
+//         if (result) {
+//           console.log("File imported successfully.");
+//           // res.redirect('/')
+//         }
+//       });
+//     });
+//     // next();
+//   }
+
+// })
+// console.log(upload)
 
 
-//end for new 
+// router.post('/', (req, res) => {
+//   Role.create(req.body)
+//     .then((role) => res.json({ msg: 'Role added successfully' }))
+//     .catch((err) =>
+//       res.status(400).json({ error: 'Unable to add this role' }),
+//     )
+// })
 
 // @route GET api/roles
 // @description add/save role

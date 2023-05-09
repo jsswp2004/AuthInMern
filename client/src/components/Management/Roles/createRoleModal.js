@@ -9,6 +9,7 @@ const CreateRole = (props) => {
   const [role, setRole] = useState({
     name: '',
     addedDate: format(new Date(), 'yyyy-MM-dd'),
+    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const onChange = (e) => {
@@ -23,7 +24,8 @@ const CreateRole = (props) => {
       .then((res) => {
         setRole({
           name: '',
-          addedDate: '',
+          addedDate: format(new Date(), 'yyyy-MM-dd'),
+          lastUpdated: format(new Date(), 'yyyy-MM-dd'),
         })
         window.location.reload()
         // setShow(false)

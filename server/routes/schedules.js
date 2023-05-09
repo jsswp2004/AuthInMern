@@ -11,7 +11,7 @@ const { v4: uuidv4 } = require('uuid');
 const csvtojson = require('csvtojson')
 
 // Code for multer 4/17
-const DIR = './upload';
+const DIR = './upload/';
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);
