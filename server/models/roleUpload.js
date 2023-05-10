@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
-const roleSchema = new mongoose.Schema({
+const uploadSchema = new mongoose.Schema({
     // name: { type: String, required: true },
     name: { type: String, required: false },
 
@@ -18,7 +18,7 @@ const roleSchema = new mongoose.Schema({
     });
 
 
-const Role = mongoose.model("role", roleSchema);
+const Upload = mongoose.model("upload", uploadSchema);
 
 const validate = (data) => {
     const schema = Joi.object({
@@ -33,6 +33,6 @@ const validate = (data) => {
     return schema.validate(data);
 };
 
-module.exports = { Role, validate };
+module.exports = { Upload, validate };
 
 

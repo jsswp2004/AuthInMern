@@ -10,6 +10,7 @@ const clientRoutes = require("./routes/clients");
 const recordRoutes = require("./routes/records");
 const visitRoutes = require("./routes/visits");
 const roleRoutes = require("./routes/roles");
+const roleUploadRoutes = require("./routes/roleUpload");
 const eventRoutes = require("./routes/events");
 const scheduleRoutes = require("./routes/schedules")
 const exceptionRoutes = require("./routes/exceptions")
@@ -50,7 +51,7 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/records", recordRoutes);
 app.use("/api/visits", visitRoutes);
 app.use("/api/roles", roleRoutes);
-app.use("/api/roles/upload", roleRoutes);
+app.use("/api/roleUpload", roleUploadRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/schedules", scheduleRoutes);
 app.use("/api/exceptions", exceptionRoutes);
