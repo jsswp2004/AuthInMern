@@ -45,12 +45,13 @@ var upload = multer({
   }
 });
 // end for multer
-// console.log('Test', upload)
+console.log('Test', upload.status)
 
-// if (upload != undefined) {
+// router.route('/').
 
 // code for new 4/17
-//   router.post('/upload', upload.single('name'), (req, res, next) => {
+// if (upload.status != undefined) {
+//   router.post('/', upload.single('name'), (req, res, next) => {
 //     importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
 
 //     function importFile(filePath) {
@@ -84,7 +85,7 @@ var upload = multer({
 //   // console.log(upload)
 // } else {
 //   router.post('/', (req, res) => {
-//     req.file.filename == ''
+//     req.file.filename = 'test'
 //     Role.create(req.body)
 //       .then((role) => res.json({ msg: 'Role added successfully' }))
 //       .catch((err) =>
@@ -95,7 +96,7 @@ var upload = multer({
 
 //end for new
 
-router.post('/upload', upload.single('name'), (req, res, next) => {
+router.post('/', upload.single('name'), (req, res, next) => {
   importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
 
   function importFile(filePath) {
@@ -127,16 +128,16 @@ router.post('/upload', upload.single('name'), (req, res, next) => {
   }
 
 })
-// console.log(upload)
+// // console.log(upload)
 
 
-router.post('/', (req, res) => {
-  Role.create(req.body)
-    .then((role) => res.json({ msg: 'Role added successfully' }))
-    .catch((err) =>
-      res.status(400).json({ error: 'Unable to add this role' }),
-    )
-})
+// router.post('/', (req, res) => {
+//   Role.create(req.body)
+//     .then((role) => res.json({ msg: 'Role added successfully' }))
+//     .catch((err) =>
+//       res.status(400).json({ error: 'Unable to add this role' }),
+//     )
+// })
 
 // @route GET api/roles
 // @description add/save role
