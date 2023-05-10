@@ -35,7 +35,7 @@ var upload = multer({
 // end for multer
 console.log('Test', upload)
 
-if (upload.status !== 'error') {
+if (upload.status != undefined) {
 
   // code for new 4/17
   router.post('/', upload.single('name'), (req, res, next) => {
@@ -72,6 +72,7 @@ if (upload.status !== 'error') {
   console.log(upload)
 } else {
   router.post('/', (req, res) => {
+    // req.file.filename = ''
     Role.create(req.body)
       .then((role) => res.json({ msg: 'Role added successfully' }))
       .catch((err) =>
