@@ -45,7 +45,7 @@ var upload = multer({
   }
 });
 // end for multer
-console.log('Test', upload)
+// console.log('Test', upload)
 
 if (upload != undefined) {
 
@@ -63,7 +63,7 @@ if (upload != undefined) {
           var singleRow = {
             _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
             name: source[i]["name"],
-            addedDate: source[i]["addedDate"],
+            addedDate: format(new Date(), 'yyyy-MM-dd'),// source[i]["addedDate"],
             lastUpdated: format(new Date(), 'yyyy-MM-dd'),
           };
           console.log(singleRow)
@@ -84,7 +84,7 @@ if (upload != undefined) {
   // console.log(upload)
 } else {
   router.post('/', (req, res) => {
-    // req.file.filename = ''
+    req.file.filename == ''
     Role.create(req.body)
       .then((role) => res.json({ msg: 'Role added successfully' }))
       .catch((err) =>
