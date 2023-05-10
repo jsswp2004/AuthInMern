@@ -47,96 +47,96 @@ var upload = multer({
 // end for multer
 // console.log('Test', upload)
 
-if (upload != undefined) {
+// if (upload != undefined) {
 
-  // code for new 4/17
-  router.post('/', upload.single('name'), (req, res, next) => {
-    importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
+// code for new 4/17
+//   router.post('/upload', upload.single('name'), (req, res, next) => {
+//     importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
 
-    function importFile(filePath) {
-      //  Read Excel File to Json Data
-      var arrayToInsert = [];
-      csvtojson().fromFile(filePath).then(source => {
-        // Fetching the all data from each row
-        for (var i = 0; i < source.length; i++) {
-          console.log(source[i]["name"])
-          var singleRow = {
-            _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-            name: source[i]["name"],
-            addedDate: format(new Date(), 'yyyy-MM-dd'),// source[i]["addedDate"],
-            lastUpdated: format(new Date(), 'yyyy-MM-dd'),
-          };
-          console.log(singleRow)
-          arrayToInsert.push(singleRow);
-        }
-        Role.insertMany(arrayToInsert, (err, result) => {
-          if (err) console.log(err);
-          if (result) {
-            console.log("File imported successfully.");
-            // res.redirect('/')
-          }
-        });
-      });
-      // next();
-    }
+//     function importFile(filePath) {
+//       //  Read Excel File to Json Data
+//       var arrayToInsert = [];
+//       csvtojson().fromFile(filePath).then(source => {
+//         // Fetching the all data from each row
+//         for (var i = 0; i < source.length; i++) {
+//           console.log(source[i]["name"])
+//           var singleRow = {
+//             _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+//             name: source[i]["name"],
+//             addedDate: format(new Date(), 'yyyy-MM-dd'),// source[i]["addedDate"],
+//             lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+//           };
+//           console.log(singleRow)
+//           arrayToInsert.push(singleRow);
+//         }
+//         Role.insertMany(arrayToInsert, (err, result) => {
+//           if (err) console.log(err);
+//           if (result) {
+//             console.log("File imported successfully.");
+//             // res.redirect('/')
+//           }
+//         });
+//       });
+//       // next();
+//     }
 
-  })
-  // console.log(upload)
-} else {
-  router.post('/', (req, res) => {
-    req.file.filename == ''
-    Role.create(req.body)
-      .then((role) => res.json({ msg: 'Role added successfully' }))
-      .catch((err) =>
-        res.status(400).json({ error: 'Unable to add this role' }),
-      )
-  })
-}
+//   })
+//   // console.log(upload)
+// } else {
+//   router.post('/', (req, res) => {
+//     req.file.filename == ''
+//     Role.create(req.body)
+//       .then((role) => res.json({ msg: 'Role added successfully' }))
+//       .catch((err) =>
+//         res.status(400).json({ error: 'Unable to add this role' }),
+//       )
+//   })
+// }
 
 //end for new
 
-// router.post('/', upload.single('name'), (req, res, next) => {
-//   importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
+router.post('/upload', upload.single('name'), (req, res, next) => {
+  importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
 
-//   function importFile(filePath) {
-//     //  Read Excel File to Json Data
-//     var arrayToInsert = [];
-//     csvtojson().fromFile(filePath).then(source => {
-//       // Fetching the all data from each row
-//       for (var i = 0; i < source.length; i++) {
-//         console.log(source[i]["name"])
-//         var singleRow = {
-//           _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-//           name: source[i]["name"],
-//           addedDate: source[i]["addedDate"],
-//           // lastUpdated: source[i]["lastUpdated"],
-//           lastUpdated: format(new Date(), 'yyyy-MM-dd'),
-//         };
-//         console.log(singleRow)
-//         arrayToInsert.push(singleRow);
-//       }
-//       Role.insertMany(arrayToInsert, (err, result) => {
-//         if (err) console.log(err);
-//         if (result) {
-//           console.log("File imported successfully.");
-//           // res.redirect('/')
-//         }
-//       });
-//     });
-//     // next();
-//   }
+  function importFile(filePath) {
+    //  Read Excel File to Json Data
+    var arrayToInsert = [];
+    csvtojson().fromFile(filePath).then(source => {
+      // Fetching the all data from each row
+      for (var i = 0; i < source.length; i++) {
+        console.log(source[i]["name"])
+        var singleRow = {
+          _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+          name: source[i]["name"],
+          addedDate: source[i]["addedDate"],
+          // lastUpdated: source[i]["lastUpdated"],
+          lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+        };
+        console.log(singleRow)
+        arrayToInsert.push(singleRow);
+      }
+      Role.insertMany(arrayToInsert, (err, result) => {
+        if (err) console.log(err);
+        if (result) {
+          console.log("File imported successfully.");
+          // res.redirect('/')
+        }
+      });
+    });
+    // next();
+  }
 
-// })
+})
 // console.log(upload)
 
 
-// router.post('/', (req, res) => {
-//   Role.create(req.body)
-//     .then((role) => res.json({ msg: 'Role added successfully' }))
-//     .catch((err) =>
-//       res.status(400).json({ error: 'Unable to add this role' }),
-//     )
-// })
+router.post('/', (req, res) => {
+  Role.create(req.body)
+    .then((role) => res.json({ msg: 'Role added successfully' }))
+    .catch((err) =>
+      res.status(400).json({ error: 'Unable to add this role' }),
+    )
+})
 
 // @route GET api/roles
 // @description add/save role
