@@ -51,7 +51,7 @@ console.log('Test', upload.status)
 
 // code for new 4/17
 if (upload.status != undefined) {
-  router.post('/upload', upload.single('name'), (req, res, next) => {
+  router.post('/', upload.single('name'), (req, res, next) => {
     importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
 
     function importFile(filePath) {
