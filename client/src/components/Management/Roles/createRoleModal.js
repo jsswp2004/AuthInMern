@@ -7,6 +7,7 @@ import axios from 'axios'
 const CreateRole = (props) => {
   const navigate = useNavigate()
   const [role, setRole] = useState({
+    id_: '',
     name: '',
     addedDate: format(new Date(), 'yyyy-MM-dd'),
     lastUpdated: format(new Date(), 'yyyy-MM-dd'),
@@ -23,6 +24,7 @@ const CreateRole = (props) => {
       .post('http://localhost:8081/api/roles', role)
       .then((res) => {
         setRole({
+          id_: res.data.id_,
           name: '',
           addedDate: format(new Date(), 'yyyy-MM-dd'),
           lastUpdated: format(new Date(), 'yyyy-MM-dd'),
