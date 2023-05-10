@@ -9,6 +9,7 @@ const csvtojson = require('csvtojson')
 // end of new 4/17
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
+// const FileName = require('../upload/generic_role_list_report.csv')
 // const csvFilePath = `${__dirname}/ + req.file.filename`;
 // Code for multer 4/17
 const DIR = './upload/';
@@ -16,14 +17,25 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, DIR);
   },
+
   filename: function (req, file, cb) {
-    const fileName = file.originalname.toLowerCase().split(' ').join('-');
-    cb(null, uuidv4() + '-' + fileName);
+    // const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    // cb(null, uuidv4() + '-' + fileName);
+    if (file.originalname.length > 0) {
+      const fileName = file.originalname.toLowerCase().split(' ').join('-');
+      cb(null, uuidv4() + '-' + fileName);
+    } else {
+      // const fileName = 'Test';
+      cb(null, '');
+    }
   }
 });
+console.log('filename', storage.filename)
 var upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {
+    // if (file.originalname.length > 0) {
+
     if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || file.mimetype == "application/msword") {
       cb(null, true);
     } else {
@@ -35,7 +47,7 @@ var upload = multer({
 // end for multer
 console.log('Test', upload)
 
-if (upload.status != undefined) {
+if (upload != undefined) {
 
   // code for new 4/17
   router.post('/', upload.single('name'), (req, res, next) => {
@@ -69,7 +81,7 @@ if (upload.status != undefined) {
     }
 
   })
-  console.log(upload)
+  // console.log(upload)
 } else {
   router.post('/', (req, res) => {
     // req.file.filename = ''
