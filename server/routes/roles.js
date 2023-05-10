@@ -33,9 +33,11 @@ var upload = multer({
   }
 });
 // end for multer
-console.log('Test', upload)
+console.log('Test', upload.status)
 
-if (upload.status !== 'error') {
+// router.route('/').
+
+if (upload.status != undefined) {
 
   // code for new 4/17
   router.post('/', upload.single('name'), (req, res, next) => {

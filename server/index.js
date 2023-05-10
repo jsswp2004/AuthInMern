@@ -50,7 +50,27 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/records", recordRoutes);
 app.use("/api/visits", visitRoutes);
 app.use("/api/roles", roleRoutes);
-app.use("/api/roles/upload", roleRoutes);
+// app.use("/api/roles/upload", roleRoutes);
+// app.route('/api/roles/upload').post((req, res, next) => {
+//     console.log(req.body);
+//     console.log(req.files);
+//     if (!req.files) {
+//         return res.status(500).send({ msg: "file is not found" })
+//     }
+//     // accessing the file
+//     const myFile = req.files.file;
+//     console.log(myFile);
+//     //  mv() method places the file inside public directory
+//     myFile.mv(`${__dirname}/upload/${myFile.name}`, function (err) {
+//         if (err) {
+//             console.log(err)
+//             return res.status(500).send({ msg: "Error occured" });
+//         }
+//         // returing the response with file path and name
+//         return res.send({ name: myFile.name, path: `/${myFile.name}` });
+//     });
+// })
+
 app.use("/api/events", eventRoutes);
 app.use("/api/schedules", scheduleRoutes);
 app.use("/api/exceptions", exceptionRoutes);
