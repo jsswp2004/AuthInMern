@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { format } from 'date-fns'
+// import { format } from 'date-fns'
 
 import axios from 'axios'
 
@@ -74,7 +74,7 @@ const UploadRole = (props) => {
           {/* <div className="container"> */}
           <div className="item2and3Conatainer">
             {/* added action 5/5*/}
-            <form noValidate onSubmit={onSubmit} className='formModal' >
+            <form noValidate onSubmit={onSubmit} className='formModal' action='/' method='post'>
               {/* method='post'<h3>Roles Upload</h3> encType="multipart/form-data"*/}
               <div className="form-group">
                 <input className="form-control roleInput" type="file" onChange={onChange} />

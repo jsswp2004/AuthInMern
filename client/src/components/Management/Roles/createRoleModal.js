@@ -43,7 +43,7 @@ const CreateRole = (props) => {
     <div className="grid_containers">
       <div className="item3">
         <div className="createRoleModalBody">
-          <form noValidate onSubmit={onSubmit}>
+          <form noValidate onSubmit={onSubmit} action='/create' method='post'>
             <div className="form-group">
               <label htmlFor="name">Role
                 <input

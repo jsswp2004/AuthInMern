@@ -131,13 +131,13 @@ router.post('/', upload.single('name'), (req, res, next) => {
 // // console.log(upload)
 
 
-// router.post('/', (req, res) => {
-//   Role.create(req.body)
-//     .then((role) => res.json({ msg: 'Role added successfully' }))
-//     .catch((err) =>
-//       res.status(400).json({ error: 'Unable to add this role' }),
-//     )
-// })
+router.post('/', (req, res) => {
+  Role.create(req.body)
+    .then((role) => res.json({ msg: 'Role added successfully' }))
+    .catch((err) =>
+      res.status(400).json({ error: 'Unable to add this role' }),
+    )
+})
 
 // @route GET api/roles
 // @description add/save role
