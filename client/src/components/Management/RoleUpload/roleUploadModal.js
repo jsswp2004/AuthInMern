@@ -54,7 +54,7 @@ const RoleUpload = (props) => {
 
           <div className="item2and3Conatainer">
 
-            <form action='/upload' noValidate onSubmit={onSubmit} className='formModal' >
+            <form noValidate onSubmit={onSubmit} className='formModal' >
               {/* method='post'<h3>Roles Upload</h3> encType="multipart/form-data"*/}
               <div className="form-group">
                 <input className="form-control roleInput" type="file" onChange={onChange} />

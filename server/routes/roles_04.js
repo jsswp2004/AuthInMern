@@ -43,7 +43,56 @@ var upload = multer({
   }
 });
 // end for multer
-// console.log('Test', upload.status)
+console.log('Test', upload.status)
+
+// router.route('/').
+
+// code for new 4/17
+// if (upload.status != undefined) {
+//   router.post('/', upload.single('name'), (req, res, next) => {
+//     importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
+
+//     function importFile(filePath) {
+//       //  Read Excel File to Json Data
+//       var arrayToInsert = [];
+//       csvtojson().fromFile(filePath).then(source => {
+//         // Fetching the all data from each row
+//         for (var i = 0; i < source.length; i++) {
+//           console.log(source[i]["name"])
+//           var singleRow = {
+//             _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+//             name: source[i]["name"],
+//             addedDate: format(new Date(), 'yyyy-MM-dd'),// source[i]["addedDate"],
+//             lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+//           };
+//           console.log(singleRow)
+//           arrayToInsert.push(singleRow);
+//         }
+//         Role.insertMany(arrayToInsert, (err, result) => {
+//           if (err) console.log(err);
+//           if (result) {
+//             console.log("File imported successfully.");
+//             // res.redirect('/')
+//           }
+//         });
+//       });
+//       // next();
+//     }
+
+//   })
+//   // console.log(upload)
+// } else {
+//   router.post('/', (req, res) => {
+//     req.file.filename = 'test'
+//     Role.create(req.body)
+//       .then((role) => res.json({ msg: 'Role added successfully' }))
+//       .catch((err) =>
+//         res.status(400).json({ error: 'Unable to add this role' }),
+//       )
+//   })
+// }
+
+//end for new
 
 router.post('/', upload.single('name'), (req, res, next) => {
   if (req.file) {
@@ -57,7 +106,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
       csvtojson().fromFile(filePath).then(source => {
         // Fetching the all data from each row
         for (var i = 0; i < source.length; i++) {
-          // console.log(source[i]["name"])
+          console.log(source[i]["name"])
           var singleRow = {
             _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
             name: source[i]["name"],
