@@ -17,15 +17,10 @@ const storage = multer.diskStorage({
   },
 
   filename: function (req, file, cb) {
-    if (file.originalname.length > 0) {
-      const fileName = file.originalname.toLowerCase().split(' ').join('-');
-      cb(null, uuidv4() + '-' + fileName);
-    } else {
-      cb(null, '');
-    }
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, uuidv4() + '-' + fileName);
   }
 });
-console.log('filename', storage.filename)
 var upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {
@@ -41,8 +36,6 @@ var upload = multer({
 
 router.post('/', upload.single('name'), (req, res, next) => {
   if (req.file) {
-    // console.log(req.file)
-
     importFile('./upload/' + req.file.filename);
     function importFile(filePath) {
       //  Read Excel File to Json Data
@@ -58,7 +51,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
             // lastUpdated: source[i]["lastUpdated"],
             lastUpdated: format(new Date(), 'yyyy-MM-dd'),
           };
-          console.log(singleRow)
+          // console.log(singleRow)
           arrayToInsert.push(singleRow);
         }
         Role.insertMany(arrayToInsert, (err, result) => {
@@ -69,7 +62,6 @@ router.post('/', upload.single('name'), (req, res, next) => {
           }
         });
       });
-      // next();
     }
   }
   else {

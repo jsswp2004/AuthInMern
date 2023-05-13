@@ -34,35 +34,44 @@ var upload = multer({
 // end for multer
 // code for new 4/17 for upload
 router.post('/', upload.single('name'), (req, res, next) => {
-  //new -- define file path
-  importFile('./upload/' + req.file.filename);
-  function importFile(filePath) {
-    //  Read Excel File to Json Data
-    var arrayToInsert = [];
-    csvtojson().fromFile(filePath).then(source => {
-      // Fetching the all data from each row
-      for (var i = 0; i < source.length; i++) {
-        console.log(source[i]["name"])
-        var singleRow = {
-          _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-          name: source[i]["name"],
-          addedDate: source[i]["addedDate"],
-          lastUpdated: source[i]["lastUpdated"],
-        };
-        console.log(singleRow)
-        arrayToInsert.push(singleRow);
-      }
-      //inserting into the table roles
-      Event.insertMany(arrayToInsert, (err, result) => {
-        if (err) console.log(err);
-        if (result) {
-          console.log("File imported successfully.");
-          res.redirect('/')
+  if (req.file) {
+    importFile('./upload/' + req.file.filename);
+    function importFile(filePath) {
+      //  Read Excel File to Json Data
+      var arrayToInsert = [];
+      csvtojson().fromFile(filePath).then(source => {
+        // Fetching the all data from each row
+        for (var i = 0; i < source.length; i++) {
+          console.log(source[i]["name"])
+          var singleRow = {
+            _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+            name: source[i]["name"],
+            addedDate: source[i]["addedDate"],
+            lastUpdated: source[i]["lastUpdated"],
+          };
+          // console.log(singleRow)
+          arrayToInsert.push(singleRow);
         }
+        //inserting into the table roles
+        Event.insertMany(arrayToInsert, (err, result) => {
+          if (err) console.log(err);
+          if (result) {
+            console.log("File imported successfully.");
+            res.redirect('/')
+          }
+        });
       });
-    });
+    }
   }
-  //end of new
+  else {
+    // router.post('/', (req, res) => {
+    Event.create(req.body)
+      .then((event) => res.json({ msg: 'Event added successfully' }))
+      .catch((err) =>
+        res.status(400).json({ error: 'Unable to add this event' }),
+      )
+    // })
+  }
 
 })
 
@@ -97,13 +106,7 @@ router.get('/:id', (req, res) => {
 // @route GET api/events
 // @description add/save event
 // @access Public
-router.post('/', (req, res) => {
-  Event.create(req.body)
-    .then((event) => res.json({ msg: 'Event added successfully' }))
-    .catch((err) =>
-      res.status(400).json({ error: 'Unable to add this event' }),
-    )
-})
+
 
 // @route GET api/events/:id
 // @description Update event
