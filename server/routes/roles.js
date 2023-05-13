@@ -9,8 +9,6 @@ const csvtojson = require('csvtojson')
 // end of new 4/17
 const { Role, validate } = require('../models/role');
 const { TaskRouterGrant } = require('twilio/lib/jwt/AccessToken');
-// const FileName = require('../upload/generic_role_list_report.csv')
-// const csvFilePath = `${__dirname}/ + req.file.filename`;
 // Code for multer 4/17
 const DIR = './upload/';
 const storage = multer.diskStorage({
@@ -23,7 +21,6 @@ const storage = multer.diskStorage({
       const fileName = file.originalname.toLowerCase().split(' ').join('-');
       cb(null, uuidv4() + '-' + fileName);
     } else {
-      // const fileName = 'Test';
       cb(null, '');
     }
   }
@@ -32,8 +29,6 @@ console.log('filename', storage.filename)
 var upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {
-    // if (file.originalname.length > 0) {
-
     if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || file.mimetype == "application/msword") {
       cb(null, true);
     } else {
@@ -43,14 +38,12 @@ var upload = multer({
   }
 });
 // end for multer
-// console.log('Test', upload.status)
 
 router.post('/', upload.single('name'), (req, res, next) => {
   if (req.file) {
     // console.log(req.file)
 
-    importFile('./upload/' + req.file.filename); //'1c3e3cd6-63f9-4d4b-95b3-ec8a4eb8391e-role_list_report.csv');
-
+    importFile('./upload/' + req.file.filename);
     function importFile(filePath) {
       //  Read Excel File to Json Data
       var arrayToInsert = [];
@@ -61,7 +54,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
           var singleRow = {
             _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
             name: source[i]["name"],
-            addedDate: source[i]["addedDate"],
+            addedDate: format(new Date(), 'yyyy-MM-dd'), //source[i]["addedDate"],
             // lastUpdated: source[i]["lastUpdated"],
             lastUpdated: format(new Date(), 'yyyy-MM-dd'),
           };
@@ -88,21 +81,6 @@ router.post('/', upload.single('name'), (req, res, next) => {
   }
 
 })
-// // console.log(upload)
-
-
-// router.post('/', (req, res) => {
-//   Role.create(req.body)
-//     .then((role) => res.json({ msg: 'Role added successfully' }))
-//     .catch((err) =>
-//       res.status(400).json({ error: 'Unable to add this role' }),
-//     )
-// })
-
-// @route GET api/roles
-// @description add/save role
-// @access Public
-
 
 // @route GET api/roles/test
 // @description tests roles route
