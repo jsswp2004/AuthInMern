@@ -18,7 +18,7 @@ const uploadSchema = new mongoose.Schema({
     });
 
 
-const Upload = mongoose.model("upload", uploadSchema);
+const Upload = mongoose.model("roleUpload", uploadSchema);
 
 const validate = (data) => {
     const schema = Joi.object({
