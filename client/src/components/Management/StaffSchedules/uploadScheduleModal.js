@@ -17,7 +17,6 @@ const UploadStaffSchedule = (props) => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-
         // HANDLING FILE AS SENDING FILE INTO BACKEND
         if (!isFilePicked) return;
         const formData = new FormData();

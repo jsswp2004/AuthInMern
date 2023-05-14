@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const UploadRole = (props) => {
-
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 

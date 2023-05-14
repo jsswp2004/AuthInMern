@@ -1,5 +1,3 @@
-// routes/api/schedules.js
-
 const express = require('express')
 const router = express.Router()
 const { Schedule, validate } = require('../models/schedule')
@@ -24,7 +22,7 @@ const storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
-    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/msword") {
+    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || file.mimetype == "application/msword") {
       cb(null, true);
     } else {
       cb(null, false);
@@ -36,49 +34,77 @@ var upload = multer({
 
 // code for new 4/17 for upload
 router.post('/', upload.single('name'), (req, res, next) => {
-  //new -- define file path
-  importFile('./upload/' + req.file.filename);
-  function importFile(filePath) {
-    //  Read Excel File to Json Data
-    var arrayToInsert = [];
-    csvtojson().fromFile(filePath).then(source => {
-      // Fetching the all data from each row
-      for (var i = 0; i < source.length; i++) {
-        console.log(source[i]["name"])
-        var singleRow = {
-          _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
-          providerID: source[i]["providerID"],
-          provider: source[i]["provider"],
-          startDate: source[i]["startDate"],
-          endDate: source[i]["endDate"],
-          amStartTime: source[i]["amStartTime"],
-          amEndTime: source[i]["amEndTime"],
-          pmStartTime: source[i]["pmStartTime"],
-          pmEndTime: source[i]["pmEndTime"],
-          scheduledMon: source[i]["scheduledMon"],
-          scheduledTues: source[i]["scheduledTues"],
-          scheduledWed: source[i]["scheduledWed"],
-          scheduledThurs: source[i]["scheduledThurs"],
-          scheduledFri: source[i]["scheduledFri"],
-          addedDate: source[i]["addedDate"],
-          // lastUpdated: source[i]["lastUpdated"],
-          lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+  if (req.file) {
+    importFile('./upload/' + req.file.filename);
+    function importFile(filePath) {
+      //  Read Excel File to Json Data
+      var arrayToInsert = [];
+      csvtojson().fromFile(filePath).then(source => {
+        // Fetching the all data from each row
+        for (var i = 0; i < source.length; i++) {
+          // console.log(source[i]["name"])
+          var singleRow = {
+            _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
+            providerID: source[i]["providerID"],
+            provider: source[i]["provider"],
+            startDate: source[i]["startDate"],
+            endDate: source[i]["endDate"],
+            amStartTime: source[i]["amStartTime"],
+            amEndTime: source[i]["amEndTime"],
+            pmStartTime: source[i]["pmStartTime"],
+            pmEndTime: source[i]["pmEndTime"],
+            scheduledMon: source[i]["scheduledMon"],
+            scheduledTues: source[i]["scheduledTues"],
+            scheduledWed: source[i]["scheduledWed"],
+            scheduledThurs: source[i]["scheduledThurs"], // == 'NULL' ? "" : source[i]["scheduledThurs"],
+            scheduledFri: source[i]["scheduledFri"],
+            addedDate: format(new Date(), 'yyyy-MM-dd'),  //source[i]["addedDate"],
+            // lastUpdated: source[i]["lastUpdated"],
+            lastUpdated: format(new Date(), 'yyyy-MM-dd'),
 
-        };
-        console.log(singleRow)
-        arrayToInsert.push(singleRow);
-      }
-      //inserting into the table roles
-      Schedule.insertMany(arrayToInsert, (err, result) => {
-        if (err) console.log(err);
-        if (result) {
-          console.log("File imported successfully.");
-          res.redirect('/')
+          };
+          // console.log(singleRow.scheduledThurs)
+          var rawValue = {
+            _id: singleRow._id,
+            providerID: singleRow.providerID,
+            provider: singleRow.provider,
+            startDate: singleRow.startDate,
+            endDate: singleRow.endDate,
+            amStartTime: singleRow.amStartTime,
+            amEndTime: singleRow.amEndTime,
+            pmStartTime: singleRow.pmStartTime,
+            pmEndTime: singleRow.pmEndTime,
+            scheduledMon: singleRow.scheduledMon,
+            scheduledTues: singleRow.scheduledTues,
+            scheduledWed: singleRow.scheduledWed,
+            scheduledThurs: singleRow.scheduledThurs !== NULL ? singleRow.scheduledThurs : "",
+            scheduledFri: singleRow.scheduledFri,
+            addedDate: singleRow.addedDate,
+            // lastUpdated: singleRow.lastUpdated,
+            lastUpdated: singleRow.lastUpdated,
+          }
+          // arrayToInsert.push(singleRow);
+          arrayToInsert.push(rawValue);
+
         }
+        //inserting into the table roles
+        Schedule.insertMany(arrayToInsert, (err, result) => {
+          if (err) console.log(err);
+          if (result) {
+            console.log("File imported successfully.");
+            // res.redirect('/')
+          }
+        });
       });
-    });
+    }
   }
-  //end of new
+  else {
+    Schedule.create(req.body)
+      .then((schedule) => res.json({ msg: 'Schedule added successfully' }))
+      .catch((err) =>
+        res.status(400).json({ error: 'Unable to add this schedule' }),
+      )
+  }
 
 })
 // @route GET api/schedules/test
@@ -109,13 +135,13 @@ router.get('/:id', (req, res) => {
 // @route GET api/schedules
 // @description add/save schedule
 // @access Public
-router.post('/', (req, res) => {
-  Schedule.create(req.body)
-    .then((schedule) => res.json({ msg: 'Schedule added successfully' }))
-    .catch((err) =>
-      res.status(400).json({ error: 'Unable to add this schedule' }),
-    )
-})
+// router.post('/', (req, res) => {
+//   Schedule.create(req.body)
+//     .then((schedule) => res.json({ msg: 'Schedule added successfully' }))
+//     .catch((err) =>
+//       res.status(400).json({ error: 'Unable to add this schedule' }),
+//     )
+// })
 
 // @route GET api/schedules/:id
 // @description Update schedule

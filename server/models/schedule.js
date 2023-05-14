@@ -18,7 +18,8 @@ const scheduleSchema = new mongoose.Schema({
   scheduledFri: { type: String, required: true },
   addedDate: { type: String, required: true },
   lastUpdated: { type: String, required: false },
-})
+},
+  { collection: 'schedules' });
 
 const Schedule = mongoose.model('schedule', scheduleSchema)
 

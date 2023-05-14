@@ -180,8 +180,8 @@ const ShowSchedulesList = () => {
       .delete(`http://localhost:8081/api/schedules/${id}`)
       .then((res) => {
         setSchedules(schedules.filter((el) => el._id !== id))
-        window.location.reload()
-        navigate(`/settingsPage`)
+        // window.location.reload()
+        // navigate(`/settingsPage`)
         console.log('Schedule successfully deleted!')
       })
       .catch((error) => {
