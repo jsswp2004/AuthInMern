@@ -77,7 +77,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
             scheduledMon: singleRow.scheduledMon,
             scheduledTues: singleRow.scheduledTues,
             scheduledWed: singleRow.scheduledWed,
-            scheduledThurs: singleRow.scheduledThurs !== NULL ? singleRow.scheduledThurs : "",
+            scheduledThurs: singleRow.scheduledThurs != '' ? singleRow.scheduledThurs : "",
             scheduledFri: singleRow.scheduledFri,
             addedDate: singleRow.addedDate,
             // lastUpdated: singleRow.lastUpdated,
