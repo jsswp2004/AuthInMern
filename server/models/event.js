@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 // const jwt = require("jsonwebtoken");
 const Joi = require("joi");
-const passwordComplexity = require("joi-password-complexity");
+// const passwordComplexity = require("joi-password-complexity");
 
 const eventSchema = new mongoose.Schema({
     name: { type: String, required: true },
     addedDate: { type: String, required: true },
     lastUpdated: { type: String, required: false },
-});
+},
+    //added 4/17 for upload
+    {
+        collection: 'events'
+    });
 
 
 const Event = mongoose.model("event", eventSchema);

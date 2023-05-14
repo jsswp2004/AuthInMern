@@ -8,7 +8,7 @@ const CreateEvent = (props) => {
   const navigate = useNavigate()
   const [event, setEvent] = useState({
     name: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    addedDate: format(new Date(), 'yyyy-MM-dd'),
   })
 
   const onChange = (e) => {
@@ -22,12 +22,18 @@ const CreateEvent = (props) => {
       .post('http://localhost:8081/api/events', event)
       .then((res) => {
         setEvent({
+          id_: res.data.id_,
           name: '',
           addedDate: '',
+          lastUpdated: format(new Date(), 'yyyy-MM-dd'),
         })
         // setShow(false)
         // Push to /
-        navigate(-1)
+        // navigate(-1)
+        window.location.reload()
+        // setShow(false)
+        // Push to /
+        navigate('/settingsPage')
       })
       .catch((err) => {
         console.log('Error in CreateEvent!')

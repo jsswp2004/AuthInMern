@@ -160,8 +160,8 @@ export default function ShowEventsList() {
       .then((res) => {
         setEvents(events.filter((el) => el._id !== id))
         console.log('Event successfully deleted!')
-        window.location.reload()
-        navigate(`/settingsPage`)
+        // window.location.reload()
+        // navigate(`/settingsPage`)
       })
       .catch((error) => {
         console.log('Unable to delete visit')

@@ -1,14 +1,12 @@
-// routes/api/events.js
-
 const express = require('express')
 const router = express.Router()
+const { format } = require('date-fns')
 const { Event, validate } = require('../models/event')
 //codes for upload 
 const multer = require('multer');
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 const csvtojson = require('csvtojson')
-
 // Code for multer 4/17
 const DIR = './upload';
 const storage = multer.diskStorage({
@@ -23,7 +21,7 @@ const storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
-    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/msword") {
+    if (file.mimetype == "text/csv" || file.mimetype == "application/vnd.ms-excel" || file.mimetype == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || file.mimetype == "application/msword") {
       cb(null, true);
     } else {
       cb(null, false);
@@ -46,8 +44,10 @@ router.post('/', upload.single('name'), (req, res, next) => {
           var singleRow = {
             _id: new mongoose.Types.ObjectId(), //-- need to be added to my database
             name: source[i]["name"],
-            addedDate: source[i]["addedDate"],
-            lastUpdated: source[i]["lastUpdated"],
+            // addedDate: source[i]["addedDate"],
+            addedDate: format(new Date(), 'yyyy-MM-dd'),
+            // lastUpdated: source[i]["lastUpdated"],
+            lastUpdated: format(new Date(), 'yyyy-MM-dd'),
           };
           // console.log(singleRow)
           arrayToInsert.push(singleRow);
@@ -57,7 +57,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
           if (err) console.log(err);
           if (result) {
             console.log("File imported successfully.");
-            res.redirect('/')
+            // res.redirect('/')
           }
         });
       });
@@ -102,11 +102,6 @@ router.get('/:id', (req, res) => {
     .then((event) => res.json(event))
     .catch((err) => res.status(404).json({ norecordfound: 'No Event found' }))
 })
-
-// @route GET api/events
-// @description add/save event
-// @access Public
-
 
 // @route GET api/events/:id
 // @description Update event
