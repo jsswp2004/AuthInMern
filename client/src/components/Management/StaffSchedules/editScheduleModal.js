@@ -123,104 +123,117 @@ function EditSchedule(props) {
               className="form-grid-containers"
               style={{ display: 'flex', columnGap: '10px' }}
             >
-              <div className="form-group">
-                <div>
-                  <label style={{ display: 'none' }}>
-                    Provider ID
-                    <input
-                      type="text"
-                      className="form-control scheduleInput"
-                      name="providerID"
-                      value={schedule.providerID}
-                      onChange={onChange}
-                    />
-                  </label>
-                  <label htmlFor="provider">
-                    Provider
-                    <select
-                      key={schedule.provider}
-                      className="form-control select"
-                      name="provider"
-                      value={schedule.provider}
-                      onChange={onChange}
-                    >
-                      {' '}
-                      <option key="0" value="Select Provider">
-                        Select Provider
-                      </option>
-                      {providerMD.map((doc) => (
-                        <option key={doc._id} value={doc.name}>
-                          {doc}
+              <div >
+                <div className="form-group">
+                  <div>
+                    <label style={{ display: 'none' }}>
+                      Provider ID
+                      <input
+                        type="text"
+                        className="form-control scheduleInput"
+                        name="providerID"
+                        value={schedule.providerID}
+                        onChange={onChange}
+                      />
+                    </label>
+                    <label htmlFor="provider">
+                      Provider
+                      <select
+                        key={schedule.provider}
+                        className="form-control select"
+                        name="provider"
+                        value={schedule.provider}
+                        onChange={onChange}
+                      >
+                        {' '}
+                        <option key="0" value="Select Provider">
+                          Select Provider
                         </option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-                <div>
-                  <label><b>Scheduled Days:</b></label>
+                        {providerMD.map((doc) => (
+                          <option key={doc._id} value={doc.name}>
+                            {doc}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                  <div>
+                    {/* <label><b>Scheduled Days:</b></label>
                   <br />
                   <span>{schedule.scheduledMon}{' '}{schedule.scheduledTues}{' '}{schedule.scheduledWed}{' '}{schedule.scheduledThurs}{' '}{schedule.scheduledFri}</span>
-                  <br />
-                  <label><b>Change to:</b></label>
-                  <br />
-                  <label className="scheduleCheckboxContainer">
-                    Mondays
-                    <input
-                      id='Mon'
-                      type="checkbox"
+                  <br /> */}
+                    <div className="form-group">
+                      <label><b>Change to:</b></label>
+                      <br />
+                    </div>
+                    <div className="form-group">
+                      <label className="scheduleCheckboxContainer">
+                        Mondays
+                        <input
+                          id='Mon'
+                          type="checkbox"
 
-                      onClick={() => setScheduleDay1('Mon')}
-                      name="Mon"
-                      value={schedule.scheduledMon}
-                    />
-                    <span className="scheduleCheckboxCheckmark"></span>
-                  </label>
-                  <label className="scheduleCheckboxContainer">
-                    Tuesdays
-                    <input
-                      id='Tue'
-                      type="checkbox"
-                      onClick={() => { setScheduleDay2('Tue') }}
-                      name="Tue"
-                      value={schedule.scheduledTues}
-                    />
-                    <span className="scheduleCheckboxCheckmark"></span>
-                  </label>
+                          onClick={() => setScheduleDay1('Mon')}
+                          name="Mon"
+                          value={schedule.scheduledMon}
+                        />
+                        <span className="scheduleCheckboxCheckmark"></span>
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label className="scheduleCheckboxContainer">
+                        Tuesdays
+                        <input
+                          id='Tue'
+                          type="checkbox"
+                          onClick={() => { setScheduleDay2('Tue') }}
+                          name="Tue"
+                          value={schedule.scheduledTues}
+                        />
+                        <span className="scheduleCheckboxCheckmark"></span>
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label className="scheduleCheckboxContainer">
+                        Wednesdays
 
-                  <label className="scheduleCheckboxContainer">
-                    Wednesdays
-
-                    <input
-                      id='Wed'
-                      type="checkbox"
-                      onClick={() => setScheduleDay3('Wed')}
-                      name="Wed"
-                      value={schedule.scheduledWed}
-                    />
-                    <span className="scheduleCheckboxCheckmark"></span>
-                  </label>
-                  <label className="scheduleCheckboxContainer">
-                    Thursdays
-                    <input
-                      id='Thu'
-                      type="checkbox"
-                      onClick={() => setScheduleDay4('Thu')}
-                      name="Thu"
-                      value={schedule.scheduledThurs}
-                    />
-                    <span className="scheduleCheckboxCheckmark"></span>
-                  </label>
-                  <label className="scheduleCheckboxContainer">
-                    Fridays
-                    <input
-                      id='Fri'
-                      type="checkbox"
-                      onClick={() => setScheduleDay5('Fri')}
-                      name="Fri"
-                      value={schedule.scheduledFri}
-                    />
-                    <span className="scheduleCheckboxCheckmark"></span>
-                  </label>
+                        <input
+                          id='Wed'
+                          type="checkbox"
+                          onClick={() => setScheduleDay3('Wed')}
+                          name="Wed"
+                          value={schedule.scheduledWed}
+                        />
+                        <span className="scheduleCheckboxCheckmark"></span>
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label className="scheduleCheckboxContainer">
+                        Thursdays
+                        <input
+                          id='Thu'
+                          type="checkbox"
+                          onClick={() => setScheduleDay4('Thu')}
+                          name="Thu"
+                          value={schedule.scheduledThurs}
+                        />
+                        <span className="scheduleCheckboxCheckmark"></span>
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label className="scheduleCheckboxContainer">
+                        Fridays
+                        <input
+                          id='Fri'
+                          type="checkbox"
+                          onClick={() => setScheduleDay5('Fri')}
+                          name="Fri"
+                          value={schedule.scheduledFri}
+                        />
+                        <span className="scheduleCheckboxCheckmark"></span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="form-group">
