@@ -303,7 +303,8 @@ const ShowSettings = () => {
                       />
                       <span className="settingCheckboxCheckmark"></span>
                     </label>
-                    <label className="settingCheckboxContainer">
+                    {/* hidden to make sure if this is necessary */}
+                    <label className="settingCheckboxContainer" hidden>
                       Exceptions
                       <input
                         type="radio"

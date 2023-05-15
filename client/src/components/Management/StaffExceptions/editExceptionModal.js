@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { format } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
-// import { is } from 'date-fns/locale'
+
 
 function EditException(props) {
 
@@ -92,7 +92,7 @@ function EditException(props) {
     // console.log(prevExceptionMon.current)
     // console.log(exceptionMon)
   }, [exceptionFri, exceptionMon, exceptionThurs, exceptionTues, exceptionWed])
-  console.log('prevExceptionMon', prevExceptionMon, exception.exceptionMon)
+  // console.log('prevExceptionMon', prevExceptionMon, exception.exceptionMon)
   //end
 
 
@@ -109,11 +109,11 @@ function EditException(props) {
   const [isFridayChecked, setIsFridayChecked] = useState('')
 
 
-  console.log('isMondayChecked', isMondayChecked, exceptionMon)
-  console.log('isTuesdayChecked', isTuesdayChecked, exceptionTues)
-  console.log('isWednesdayChecked', isWednesdayChecked, exceptionWed)
-  console.log('isThursdayChecked', isThursdayChecked, exceptionThurs)
-  console.log('isFridayChecked', isFridayChecked, exceptionFri)
+  // console.log('isMondayChecked', isMondayChecked, exceptionMon)
+  // console.log('isTuesdayChecked', isTuesdayChecked, exceptionTues)
+  // console.log('isWednesdayChecked', isWednesdayChecked, exceptionWed)
+  // console.log('isThursdayChecked', isThursdayChecked, exceptionThurs)
+  // console.log('isFridayChecked', isFridayChecked, exceptionFri)
 
   function toggleMonday() {
     exceptionMon === 'Mon' ? setExceptionDay1('') : setExceptionDay1('Mon')
