@@ -3,14 +3,14 @@ const mongoose = require('mongoose')
 const Joi = require('joi')
 
 const scheduleSchema = new mongoose.Schema({
-  providerID: { type: String, required: true },
-  provider: { type: String, required: true },
-  startDate: { type: String, required: true },
-  endDate: { type: String, required: true },
-  amStartTime: { type: String, required: true },
-  amEndTime: { type: String, required: true },
-  pmStartTime: { type: String, required: true },
-  pmEndTime: { type: String, required: true },
+  providerID: { type: String, required: false },
+  provider: { type: String, required: false },
+  startDate: { type: String, required: false },
+  endDate: { type: String, required: false },
+  amStartTime: { type: String, required: false },
+  amEndTime: { type: String, required: false },
+  pmStartTime: { type: String, required: false },
+  pmEndTime: { type: String, required: false },
   scheduledMon: { type: String, required: false },
   scheduledTues: { type: String, required: false },
   scheduledWed: { type: String, required: false },

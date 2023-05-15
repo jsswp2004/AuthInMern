@@ -77,7 +77,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
             scheduledMon: singleRow.scheduledMon,
             scheduledTues: singleRow.scheduledTues,
             scheduledWed: singleRow.scheduledWed,
-            scheduledThurs: singleRow.scheduledThurs != '' ? singleRow.scheduledThurs : "",
+            scheduledThurs: singleRow.scheduledThurs, //!= '' ? singleRow.scheduledThurs : "",
             scheduledFri: singleRow.scheduledFri,
             addedDate: singleRow.addedDate,
             // lastUpdated: singleRow.lastUpdated,
@@ -85,6 +85,7 @@ router.post('/', upload.single('name'), (req, res, next) => {
           }
           // arrayToInsert.push(singleRow);
           arrayToInsert.push(rawValue);
+          console.log(rawValue)
 
         }
         //inserting into the table roles
