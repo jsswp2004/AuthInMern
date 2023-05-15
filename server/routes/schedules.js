@@ -11,7 +11,7 @@ const csvtojson = require('csvtojson')
 // Code for multer 4/17
 const DIR = './upload/';
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: function (req, file, cb) {
     cb(null, DIR);
   },
   filename: (req, file, cb) => {
@@ -83,9 +83,11 @@ router.post('/', upload.single('name'), (req, res, next) => {
             // lastUpdated: singleRow.lastUpdated,
             lastUpdated: singleRow.lastUpdated,
           }
-          // arrayToInsert.push(singleRow);
-          arrayToInsert.push(rawValue);
-          console.log(rawValue)
+          arrayToInsert.push(singleRow);
+          // arrayToInsert.push(rawValue);
+          // console.log(rawValue)
+          console.log(singleRow)
+
 
         }
         //inserting into the table roles

@@ -50,8 +50,9 @@ router.post('/', upload.single('name'), (req, res, next) => {
             // lastUpdated: source[i]["lastUpdated"],
             lastUpdated: format(new Date(), 'yyyy-MM-dd'),
           };
-          // console.log(singleRow)
+          console.log(singleRow)
           arrayToInsert.push(singleRow);
+
         }
         Role.insertMany(arrayToInsert, (err, result) => {
           if (err) console.log(err);
