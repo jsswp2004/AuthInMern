@@ -176,6 +176,8 @@ function UpdateVisitInfo(props) {
       provider: visit.provider,
       event: visit.event,
       cellphone: visit.cellphone,
+      checkIn: visit.checkIn,
+      checkOut: visit.checkOut,
     }
 
     setData(data)
@@ -416,7 +418,6 @@ function UpdateVisitInfo(props) {
                       onChange={onChange}
                     />
                     <div className='hour-flex'>
-
                       <div className='hour-flex_Item' onClick={() => setSelectedHour('09:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#AA336A' : '#90EE90' }}>9:00</div>
                       <div className='hour-flex_Item' onClick={() => setSelectedHour('09:15')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:15') ? '#AA336A' : '#90EE90' }}>9:15</div>
                       <div className='hour-flex_Item' onClick={() => setSelectedHour('09:30')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:30') ? '#AA336A' : '#90EE90' }}>9:30</div>
@@ -456,7 +457,19 @@ function UpdateVisitInfo(props) {
                     </div>
                   </label>
                 </div>
-
+                <div className="form-group">
+                  <label htmlFor="checkIn">
+                    Check In
+                    <input
+                      type="checkbox"
+                      name="CheckIn"
+                      className="form-control"
+                      value={visit.checkIn}
+                      onChange={onChange}
+                      readOnly
+                    />
+                  </label>
+                </div>
 
 
               </div>

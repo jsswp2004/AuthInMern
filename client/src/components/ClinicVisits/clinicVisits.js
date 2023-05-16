@@ -1551,8 +1551,8 @@ export default function ClinicVisit() {
   //#endregion
   //#region check in and check out codes
 
-  const [checkInTime, setCheckIn] = useState('')
-  const [checkOutTime, setCheckOut] = useState('')
+  const [checkInTime, setCheckInTime] = useState('')
+  const [checkOutTime, setCheckOutTime] = useState('')
   const [checkInValue, setCheckInValue] = useState(false)
   const [checkOutValue, setCheckOutValue] = useState(false)
   useEffect(() => {
@@ -1586,7 +1586,7 @@ export default function ClinicVisit() {
   function checkedIn(e) {
 
     // setCheckIn(() => {
-    setCheckIn(format(new Date(), 'hh:mm:ss a'))
+    setCheckInTime(format(new Date(), 'hh:mm:ss a'))
     setCheckInValue(!checkInValue)
     // })
     setVisit({ ...visit, [e.target.name]: checkInTime })
@@ -1600,7 +1600,7 @@ export default function ClinicVisit() {
   }
 
   function checkedOut(e) {
-    setCheckOut(format(new Date(), 'hh:mm:ss a'))
+    setCheckOutTime(format(new Date(), 'hh:mm:ss a'))
     setCheckOutValue(!checkOutValue)
     setVisit({ ...visit, [e.target.name]: checkOutTime })
 
@@ -1610,6 +1610,8 @@ export default function ClinicVisit() {
         console.log('Error in UpdateVisitInfo!')
       })
   }
+
+  console.log(checkInTime, checkOutTime)
   //create initial STATE for visit object
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
@@ -3048,12 +3050,12 @@ export default function ClinicVisit() {
                             <StyledTableCell align="left">
                               Date Added
                             </StyledTableCell>
-                            <StyledTableCell align="left">
+                            {/* <StyledTableCell align="left">
                               Check In
                             </StyledTableCell>
                             <StyledTableCell align="left">
                               Check Out
-                            </StyledTableCell>
+                            </StyledTableCell> */}
                             <StyledTableCell align="left">
                               Actions
                             </StyledTableCell>
@@ -3101,9 +3103,8 @@ export default function ClinicVisit() {
                               <StyledTableCell align="left" width={'200px'}>
                                 {pt.addedDate}
                               </StyledTableCell>
-                              <StyledTableCell align="left" width={'100px'}>
-                                <div>
-                                  {/* <Checkbox checked={checkIn.length > 0 ? true : false} onClick={checkedIn} /> */}
+                              {/* <StyledTableCell align="left" width={'100px'}>
+                                <div>                              
                                   <Checkbox checked={checkInValue} onClick={checkedIn} />
                                 </div>
                               </StyledTableCell>
@@ -3111,7 +3112,7 @@ export default function ClinicVisit() {
                                 <div>
                                   <Checkbox checked={checkOutValue} onClick={checkedOut} />
                                 </div>
-                              </StyledTableCell>
+                              </StyledTableCell> */}
                               <StyledTableCell align="left" width={'250px'}>
                                 <button className='btn btn-info btn-sm'
                                   onClick={() => { handleEmailMessageShow(pt._id) }}
