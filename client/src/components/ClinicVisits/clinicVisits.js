@@ -144,7 +144,8 @@ export default function ClinicVisit() {
         console.log('Error from ShowVisitList')
       })
   }, [])
-
+  const { checkIn, checkOut } = visits
+  console.log(checkIn, checkOut)
   //#endregion
   //#region code for calendar view select dropdown
   const [selectViewValue, setViewValue] = React.useState('Monthly')
@@ -1550,8 +1551,8 @@ export default function ClinicVisit() {
   //#endregion
   //#region check in and check out codes
 
-  const [checkIn, setCheckIn] = useState('')
-  const [checkOut, setCheckOut] = useState('')
+  const [checkInTime, setCheckIn] = useState('')
+  const [checkOutTime, setCheckOut] = useState('')
   const [checkInValue, setCheckInValue] = useState(false)
   const [checkOutValue, setCheckOutValue] = useState(false)
   useEffect(() => {
@@ -1571,15 +1572,15 @@ export default function ClinicVisit() {
           provider: res.data.provider,
           event: res.data.event,
           cellphone: res.data.cellphone,
-          checkIn: checkIn,
-          checkOut: checkOut,
+          checkIn: checkInTime,
+          checkOut: checkOutTime,
         })
       })
       .catch((err) => {
         console.log('Error from UpdateVisitInfo')
       })
 
-  }, [checkIn, checkOut, visitID])
+  }, [checkInTime, checkOutTime, visitID])
 
 
   function checkedIn(e) {
@@ -1588,23 +1589,26 @@ export default function ClinicVisit() {
     setCheckIn(format(new Date(), 'hh:mm:ss a'))
     setCheckInValue(!checkInValue)
     // })
-    setVisit({ ...visit, [e.target.name]: checkIn })
+    setVisit({ ...visit, [e.target.name]: checkInTime })
 
     axios
       .put(`http://localhost:8081/api/visits/${visitID}`, visit)
-      // .then((res) => {
-      // navigate(`/clinicVisit`)
-      // console.log(res.data.checkIn)
-      // })
       .catch((err) => {
         console.log('Error in UpdateVisitInfo!')
       })
 
   }
 
-  function checkedOut() {
+  function checkedOut(e) {
     setCheckOut(format(new Date(), 'hh:mm:ss a'))
     setCheckOutValue(!checkOutValue)
+    setVisit({ ...visit, [e.target.name]: checkOutTime })
+
+    axios
+      .put(`http://localhost:8081/api/visits/${visitID}`, visit)
+      .catch((err) => {
+        console.log('Error in UpdateVisitInfo!')
+      })
   }
   //create initial STATE for visit object
   const [visit, setVisit] = useState({

@@ -226,7 +226,7 @@ const CreateException = (props) => {
                     Thursdays
                     <input
                       type="checkbox"
-                      onClick={() => setExceptionDay4('Thu')}
+                      onClick={() => setExceptionDay4('Thurs')}
                       name="scheduleDays"
                       value={exception.exceptionThurs}
                     />

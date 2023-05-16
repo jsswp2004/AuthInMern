@@ -194,7 +194,7 @@ const CreateSchedule = (props) => {
                     Thursdays
                     <input
                       type="checkbox"
-                      onClick={() => setScheduleDay4('Thu')}
+                      onClick={() => setScheduleDay4('Thurs')}
                       name="scheduledDays"
                       value={schedule.scheduledThurs}
                     />

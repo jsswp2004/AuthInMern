@@ -61,10 +61,10 @@ function EditSchedule(props) {
           amEndTime: res.data.amEndTime,
           pmStartTime: res.data.pmStartTime,
           pmEndTime: res.data.pmEndTime,
-          scheduledMon: res.data.scheduleMon,
-          scheduledTues: res.data.scheduleTues,
-          scheduledWed: res.data.scheduleWed,
-          scheduledThurs: res.data.scheduleThurs,
+          scheduledMon: res.data.scheduledMon,
+          scheduledTues: res.data.scheduledTues,
+          scheduledWed: res.data.scheduledWed,
+          scheduledThurs: res.data.scheduledThurs,
           scheduledFri: res.data.scheduledFri,
           addedDate: res.data.addedDate,
           lastUpdated: res.data.lastUpdated,
@@ -118,25 +118,25 @@ function EditSchedule(props) {
 
 
   function toggleMonday() {
-    scheduledMon === 'Mon' ? setScheduleDay1(' ') : setScheduleDay1('Mon')
+    scheduledMon === 'Mon' ? setScheduleDay1('') : setScheduleDay1('Mon')
     setIsMondayChecked(!isMondayChecked)
 
   }
 
   function toggleTuesday() {
-    scheduledTues === 'Tue' ? setScheduleDay2(' ') : setScheduleDay2('Tue')
+    scheduledTues === 'Tue' ? setScheduleDay2('') : setScheduleDay2('Tue')
     setIsTuesdayChecked(!isTuesdayChecked)
   }
   function toggleWednesday() {
-    scheduledWed === 'Wed' ? setScheduleDay3(' ') : setScheduleDay3('Wed')
+    scheduledWed === 'Wed' ? setScheduleDay3('') : setScheduleDay3('Wed')
     setIsWednesdayChecked(!isWednesdayChecked)
   }
   function toggleThursday() {
-    scheduledThurs === 'Thurs' ? setScheduleDay4(' ') : setScheduleDay4('Thurs')
+    scheduledThurs === 'Thurs' ? setScheduleDay4('') : setScheduleDay4('Thurs')
     setIsThursdayChecked(!isThursdayChecked)
   }
   function toggleFriday() {
-    scheduledFri === 'Fri' ? setScheduleDay5(' ') : setScheduleDay5('Fri')
+    scheduledFri === 'Fri' ? setScheduleDay5('') : setScheduleDay5('Fri')
     setIsFridayChecked(!isFridayChecked)
   }
 
@@ -252,7 +252,7 @@ function EditSchedule(props) {
                       <label className="scheduleCheckboxContainer">
                         Mondays
                         <input
-                          Checked={scheduledMon === 'Mon' ? true : false}
+                          Checked={scheduledMon === 'Mon' ? 'true' : 'false'}
                           id='Mon'
                           type="checkbox"
                           onClick={toggleMonday}
@@ -267,7 +267,7 @@ function EditSchedule(props) {
                       <label className="scheduleCheckboxContainer">
                         Tuesdays
                         <input
-                          Checked={scheduledTues === 'Tues' ? true : false}
+                          Checked={scheduledTues === 'Tue' ? 'true' : 'false'}
                           id='Tue'
                           type="checkbox"
                           onClick={toggleTuesday}
@@ -283,7 +283,7 @@ function EditSchedule(props) {
                         Wednesdays
 
                         <input
-                          Checked={scheduledWed === 'Wed' ? true : false}
+                          Checked={scheduledWed === 'Wed' ? 'true' : 'false'}
                           id='Wed'
                           type="checkbox"
                           onClick={toggleWednesday}
@@ -298,7 +298,7 @@ function EditSchedule(props) {
                       <label className="scheduleCheckboxContainer">
                         Thursdays
                         <input
-                          Checked={scheduledThurs === 'Thu' ? true : false}
+                          Checked={scheduledThurs === 'Thurs' ? 'true' : 'false'}
                           id='Thu'
                           type="checkbox"
                           onClick={toggleThursday}
@@ -313,7 +313,7 @@ function EditSchedule(props) {
                       <label className="scheduleCheckboxContainer">
                         Fridays
                         <input
-                          Checked={scheduledFri === 'Fri' ? true : false}
+                          Checked={scheduledFri === 'Fri' ? 'true' : 'false'}
                           id='Fri'
                           type="checkbox"
                           onClick={toggleFriday}
