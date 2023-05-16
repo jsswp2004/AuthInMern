@@ -102,8 +102,8 @@ function UpdateVisitInfo(props) {
   }, [visitID])
 
   //deconstruct visit object
-  const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate } = visit
-  // console.log(medicalRecordNumber)
+  const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate, checkIn, checkOut } = visit
+  console.log(medicalRecordNumber, checkIn, checkOut)
   //pull patient record to determine registration - not needed
   // const [patientRecord, setPatientRecord] = useState([])
   // useEffect(() => {
@@ -153,10 +153,47 @@ function UpdateVisitInfo(props) {
   })
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
+  //checkout , checkin methods
+  const [isCheckedIn, setIsCheckedIn] = useState('')
+  const [checkInTime, setCheckInTime] = useState('')
+  const [isCheckedOut, setIsCheckedOut] = useState('')
+  const [checkOutTime, setCheckOutTime] = useState('')
+  // console.log(checkIn === '' ? 'false' : 'true')
+  function toggleCheckIn() {
+    checkIn === '' ? setCheckInTime(format(new Date(), 'yyy-MM-dd')) : setCheckInTime('')
+    setIsCheckedIn(!isCheckedIn)
+  }
+
+  function toggleCheckOut() {
+    checkOut === '' ? setCheckOutTime(format(new Date(), 'yyy-MM-dd')) : setCheckOutTime('')
+    setIsCheckedOut(!isCheckedOut)
+  }
+
 
   const onChange = (e) => {
-    setVisit({ ...visit, [e.target.name]: e.target.value })
+    // setVisit({ ...visit, [e.target.name]: e.target.value })
+    setVisit({
+      medicalRecordNumber: setMedicalRecordNumber,
+      visitNumber: setVisitNumber,
+      firstName: visit.firstName,
+      lastName: visit.lastName,
+      middleName: visit.middleName,
+      email: visit.email,
+      addedDate: visit.addedDate,
+      visitDate: visit.visitDate,
+      hourOfVisit: visit.hourOfVisit,
+      provider: visit.provider,
+      event: visit.event,
+      cellphone: visit.cellphone,
+      // checkIn: visit.checkIn,
+      // checkIn: checkInTime,
+      // checkOut: visit.checkOut,
+      // checkOut: checkOutTime,
+      [e.target.name]: e.target.value,
+    })
+
   }
+
 
   const [data, setData] = useState([])
 
@@ -176,8 +213,11 @@ function UpdateVisitInfo(props) {
       provider: visit.provider,
       event: visit.event,
       cellphone: visit.cellphone,
-      checkIn: visit.checkIn,
-      checkOut: visit.checkOut,
+      // checkIn: visit.checkIn,
+      checkIn: checkInTime,
+      // checkOut: visit.checkOut,
+      checkOut: checkOutTime,
+
     }
 
     setData(data)
@@ -194,7 +234,8 @@ function UpdateVisitInfo(props) {
     window.location.close()
   }
 
-  console.log(data)
+
+
   return (
     <div className="grid_containers">
       <div className="item3">
@@ -458,16 +499,30 @@ function UpdateVisitInfo(props) {
                   </label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="checkIn">
-                    Check In
+                  <label htmlFor="checkIn" className="scheduleCheckboxContainer">
+                    Check In:  {checkIn}
                     <input
+                      Checked={checkIn === '' ? 'false' : 'true'}
                       type="checkbox"
                       name="CheckIn"
-                      className="form-control"
                       value={visit.checkIn}
-                      onChange={onChange}
-                      readOnly
+                      // onChange={onChange}
+                      onClick={toggleCheckIn}
+
                     />
+                    <span className="scheduleCheckboxCheckmark"></span>
+                  </label>
+                  <label htmlFor="checkIn" className="scheduleCheckboxContainer">
+                    Check Out:  {checkOut}
+                    <input
+                      Checked={checkOut === '' ? 'false' : 'true'}
+                      type="checkbox"
+                      onClick={toggleCheckOut}
+                      // onClick={() => setScheduleDay4('Thu')}
+                      name="CheckOut"
+                      value={visit.checkOut}
+                    />
+                    <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                 </div>
 
