@@ -25,49 +25,51 @@ function EditSchedule(props) {
 
   const hourValues = Hour
 
-  const [schedule, setSchedule] = useState({
-    providerID: '',
-    provider: 'Select Doctor',
-    startDate: '',
-    endDate: '',
-    amStartTime: '',
-    amEndTime: '',
-    pmStartTime: '',
-    pmEndTime: '',
-    scheduledMon: '',
-    scheduledTues: '',
-    scheduledWed: '',
-    scheduledThurs: '',
-    scheduledFri: '',
-    addedDate: format(new Date(), 'yyyy-MM-dd'),
-    lastUpdated: format(new Date(), 'yyyy-MM-dd'),
-  })
+  const [schedule, setSchedule] = useState(
+    {
+      providerID: '',
+      provider: 'Select Doctor',
+      startDate: '',
+      endDate: '',
+      amStartTime: '',
+      amEndTime: '',
+      pmStartTime: '',
+      pmEndTime: '',
+      scheduledMon: '',
+      scheduledTues: '',
+      scheduledWed: '',
+      scheduledThurs: '',
+      scheduledFri: '',
+      addedDate: format(new Date(), 'yyyy-MM-dd'),
+      lastUpdated: format(new Date(), 'yyyy-MM-dd'),
+    }
+  )
 
 
   const DrID = props.providerID
-
-
+  console.log('DrID', DrID)
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/schedules/${DrID}`)
       .then((res) => {
-        // setSchedule({
-        //   providerID: res.data.providerID,
-        //   provider: res.data.provider,
-        //   startDate: res.data.startDate,
-        //   endDate: res.data.endDate,
-        //   amStartTime: res.data.amStartTime,
-        //   amEndTime: res.data.amEndTime,
-        //   pmStartTime: res.data.pmStartTime,
-        //   pmEndTime: res.data.pmEndTime,
-        //   scheduledMon: res.data.scheduleMon,
-        //   scheduledTues: res.data.scheduleTues,
-        //   scheduledWed: res.data.scheduleWed,
-        //   scheduledThurs: res.data.scheduleThurs,
-        //   scheduledFri: res.data.scheduledFri,
-        //   addedDate: res.data.addedDate,
-        // })
-        setSchedule(res.data)
+        setSchedule({
+          providerID: res.data.providerID,
+          provider: res.data.provider,
+          startDate: res.data.startDate,
+          endDate: res.data.endDate,
+          amStartTime: res.data.amStartTime,
+          amEndTime: res.data.amEndTime,
+          pmStartTime: res.data.pmStartTime,
+          pmEndTime: res.data.pmEndTime,
+          scheduledMon: res.data.scheduleMon,
+          scheduledTues: res.data.scheduleTues,
+          scheduledWed: res.data.scheduleWed,
+          scheduledThurs: res.data.scheduleThurs,
+          scheduledFri: res.data.scheduledFri,
+          addedDate: res.data.addedDate,
+          lastUpdated: res.data.lastUpdated,
+        })
+        // setSchedule(res.data)
       })
       .catch((err) => {
         console.log('Error from EditSchedule')
@@ -81,6 +83,8 @@ function EditSchedule(props) {
   const prevScheduledWed = useRef()
   const prevScheduledThurs = useRef()
   const prevScheduledFri = useRef()
+
+
   useEffect(() => {
     prevScheduledMon.current = scheduledMon
     prevScheduledTues.current = scheduledTues
@@ -88,13 +92,12 @@ function EditSchedule(props) {
     prevScheduledThurs.current = scheduledThurs
     prevScheduledFri.current = scheduledFri
   }, [scheduledMon, scheduledTues, scheduledWed, scheduledThurs, scheduledFri])
-
   // const [scheduleMon, setScheduleDay1] = useState(' ')
   // const [scheduleTues, setScheduleDay2] = useState(' ')
   // const [scheduleWed, setScheduleDay3] = useState(' ')
   // const [scheduleThurs, setScheduleDay4] = useState(' ')
   // const [scheduleFri, setScheduleDay5] = useState(' ')
-
+  console.log('scheduledMon', scheduledMon)
   const [scheduledMon1, setScheduleDay1] = useState(scheduledMon)
   const [scheduledTues1, setScheduleDay2] = useState(scheduledTues)
   const [scheduledWed1, setScheduleDay3] = useState(scheduledWed)
@@ -107,10 +110,19 @@ function EditSchedule(props) {
   const [isThursdayChecked, setIsThursdayChecked] = useState('')
   const [isFridayChecked, setIsFridayChecked] = useState('')
 
+
+
+
+
+
+
+
   function toggleMonday() {
     scheduledMon === 'Mon' ? setScheduleDay1(' ') : setScheduleDay1('Mon')
     setIsMondayChecked(!isMondayChecked)
+
   }
+
   function toggleTuesday() {
     scheduledTues === 'Tue' ? setScheduleDay2(' ') : setScheduleDay2('Tue')
     setIsTuesdayChecked(!isTuesdayChecked)

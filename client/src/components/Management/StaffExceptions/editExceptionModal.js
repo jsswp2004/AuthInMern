@@ -71,12 +71,14 @@ function EditException(props) {
           lastUpdated: res.data.lastUpdated,
         })
       })
+
       .catch((err) => {
         console.log('Error from EditException')
       })
   }, [DrID])
 
   const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
+  console.log('exceptionMon', exceptionMon)
   //tracking previouys val;ue using useRef
   const prevExceptionMon = useRef()
   const prevExceptionTues = useRef()
