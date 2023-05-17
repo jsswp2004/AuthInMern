@@ -2178,3 +2178,9 @@ tfoot > .MuiTableFooter-root {
 .formEditPatient {
   height: 100%;
 }
+
+/* download styles */
+.btn-download {
+  width: 120px;
+  margin-bottom: 10px;
+}

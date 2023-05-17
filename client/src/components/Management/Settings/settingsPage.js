@@ -10,7 +10,7 @@ import ShowStaffExceptions from '../StaffExceptions/showStaffExceptions'
 import { Modal, Button } from 'react-bootstrap'
 import UploadRole from '../Roles/uploadRoleModal'
 // import UploadRole from '../RoleUpload/roleUploadModal'
-
+import * as XLSX from "xlsx"
 import UploadEvent from '../Events/uploadEventModal'
 import UploadSchedule from '../StaffSchedules/uploadScheduleModal'
 import UploadException from '../StaffExceptions/uploadExceptionModal'
@@ -197,6 +197,103 @@ const ShowSettings = () => {
   // const displayUploadEventSetting = {
   //   display: setting === 'Upload Events' ? '' : 'none',
   // }
+  // download templates
+
+  const roles = []
+  const events = []
+  const schedules = []
+  const handleDownloadRoleExcel = (e) => {
+    const rowRecords = roles.filter((record) => {
+      return record
+    })
+    const rows = rowRecords.map((e) =>
+    ({
+      _id: e._id,
+      name: e.name,
+      addedDate: e.addedDate,
+      lastUpdated: e.lastUpdated,
+    }))
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Records");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ['_id', 'name', 'addedDate', 'lastUpdated'],
+    ]);
+
+    XLSX.writeFile(workbook, "Roles_Template.csv", { compression: true });
+
+  }
+
+  const handleDownloadEventExcel = (e) => {
+    const rowRecords = events.filter((record) => {
+      return record
+    })
+    const rows = rowRecords.map((e) =>
+    ({
+      _id: e._id,
+      name: e.name,
+      addedDate: e.addedDate,
+      lastUpdated: e.lastUpdated,
+    }))
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Records");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ['_id', 'name', 'addedDate', 'lastUpdated'],
+    ]);
+
+    XLSX.writeFile(workbook, "Events_Template.csv", { compression: true });
+
+  }
+
+  const handleDownloadScheduleExcel = (e) => {
+    const rowRecords = schedules.filter((record) => {
+      return record
+    })
+    const rows = rowRecords.map((e) =>
+    ({
+      providerID: '',
+      provider: '',
+      startDate: '',
+      endDate: '',
+      amStartTime: '',
+      amEndTime: '',
+      pmStartTime: '',
+      pmEndTime: '',
+      scheduledMon: '',
+      scheduledTues: '',
+      scheduledWed: '',
+      scheduledThurs: '',
+      scheduledFri: '',
+      addedDate: '',
+
+    }))
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Records");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      ['providerID', 'provider', 'startDate', 'endDate', 'amStartTime', 'amEndTime', 'pmStartTime', 'pmEndTime', 'scheduledMon', 'scheduledTues', 'scheduledWed', 'scheduledThurs', 'scheduledFri', 'addedDate'],
+
+    ]);
+
+    XLSX.writeFile(workbook, "Schedules_Template.csv", { compression: true });
+
+  }
   return (
     <div className="grid_containerx" >
       {/* style={{ display: 'flex', flexDirection: 'column', position: 'sticky' }} */}
@@ -263,9 +360,36 @@ const ShowSettings = () => {
                     />
                     <span className="settingCheckboxCheckmark"></span>
                   </label>
-                  {/* upload section  */}
+                  {/* download section  */}
                   <div className='form-control'>
-                    <h5 className="createPageHeader settingsTitle">Upload Dictionaries</h5>
+                    <h6 className="createPageHeader settingsTitle">Download Templates</h6>
+                    {/* <button className='btn btn-success btn-sm'
+                      onClick={handleDownloadExcel}
+                    >
+                      <i
+                        className="fa fa-file-excel-o"
+                        aria-hidden="true"
+                        title="Export to Excel"
+                      />
+                    </button> */}
+                    <button
+                      onClick={handleDownloadRoleExcel}
+                      className='btn btn-sm btn-info btn-download'
+                    >
+                      Roles</button>
+                    <button
+                      onClick={handleDownloadEventExcel}
+                      className='btn btn-sm btn-info btn-download'
+                    >Events</button>
+                    <button
+                      onClick={handleDownloadScheduleExcel}
+                      className='btn btn-sm btn-info btn-download'
+                    >Schedules</button>
+
+                    {/* </div> */}
+                    {/* upload section  */}
+                    {/* <div className='form-control'> */}
+                    <h6 className="createPageHeader settingsTitle">Upload Dictionaries</h6>
                     <label className="settingCheckboxContainer">
                       Roles
                       <input
@@ -384,7 +508,7 @@ const ShowSettings = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 
