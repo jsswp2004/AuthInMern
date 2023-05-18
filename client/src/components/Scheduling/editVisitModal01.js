@@ -6,11 +6,11 @@ import axios from 'axios'
 import Input from 'react-phone-number-input/input'
 
 function UpdateVisitInfo(props) {
-  //#region autocreate medical record number
+  //autocreate medical record number
   const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
-  //#endregion
+
   const [selectedHour, setSelectedHour] = useState('')
 
 
@@ -50,11 +50,11 @@ function UpdateVisitInfo(props) {
       })
   }, [])
   //#endregion
-  //#region visit id value from props
+  //visit id value from props
   const visitID = props.visitID
   const navigate = useNavigate()
-  //#endregion
-  //#region create initial STATE for visit object
+
+  //create initial STATE for visit object
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
     visitNumber: '',
@@ -100,10 +100,33 @@ function UpdateVisitInfo(props) {
       })
 
   }, [visitID])
-  //#endregion
+
   //deconstruct visit object
   const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate, checkIn, checkOut } = visit
   console.log(medicalRecordNumber, checkIn, checkOut)
+  //pull patient record to determine registration - not needed
+  // const [patientRecord, setPatientRecord] = useState([])
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:8081/api/records/')
+  //     .then((response) => {
+  //       setPatientRecord(response.data).filter((patient) => {
+  //         return patient.medicalRecordNumber === medicalRecordNumber
+  //       })
+
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error from patient record')
+  //     })
+  // }, [medicalRecordNumber])
+
+  // const selectedRecord = patientRecord.filter((patient) => {
+  //   return patient.medicalRecordNumber === medicalRecordNumber
+  // })
+
+  // console.log(patientRecord)
+
+
   //pull visits to know available hours in a day
   const [getVisits, setGetVisits] = useState([])
   console.log(getVisits)
@@ -142,9 +165,7 @@ function UpdateVisitInfo(props) {
   }
 
   function toggleCheckOut() {
-    // checkOut === '' ? setCheckOutTime(format(new Date(), 'yyy-MM-dd')) : setCheckOutTime('')
-    setCheckOutTime(format(new Date(), 'yyy-MM-dd'))
-
+    checkOut === '' ? setCheckOutTime(format(new Date(), 'yyy-MM-dd')) : setCheckOutTime('')
     setIsCheckedOut(!isCheckedOut)
   }
 
@@ -165,9 +186,9 @@ function UpdateVisitInfo(props) {
       event: visit.event,
       cellphone: visit.cellphone,
       // checkIn: visit.checkIn,
-      checkIn: checkInTime,
+      // checkIn: checkInTime,
       // checkOut: visit.checkOut,
-      checkOut: checkOutTime,
+      // checkOut: checkOutTime,
       [e.target.name]: e.target.value,
     })
 
@@ -494,14 +515,12 @@ function UpdateVisitInfo(props) {
                   <label htmlFor="checkIn" className="scheduleCheckboxContainer">
                     Check Out:  {checkOut}
                     <input
-                      checked={checkOut === '' ? false : true}
+                      Checked={checkOut === '' ? 'false' : 'true'}
                       type="checkbox"
                       onClick={toggleCheckOut}
                       // onClick={() => setScheduleDay4('Thu')}
                       name="CheckOut"
-                      // value={visit.checkOut}
-                      value={checkOutTime}
-
+                      value={visit.checkOut}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
