@@ -154,9 +154,9 @@ function UpdateVisitInfo(props) {
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
   //checkout , checkin methods
-  const [isCheckedIn, setIsCheckedIn] = useState('')
+  const [isCheckedIn, setIsCheckedIn] = useState(checkIn === '' ? 'false' : 'true')
   const [checkInTime, setCheckInTime] = useState('')
-  const [isCheckedOut, setIsCheckedOut] = useState('')
+  const [isCheckedOut, setIsCheckedOut] = useState(checkOut === '' ? 'false' : 'true')
   const [checkOutTime, setCheckOutTime] = useState('')
   // console.log(checkIn === '' ? 'false' : 'true')
   function toggleCheckIn() {
