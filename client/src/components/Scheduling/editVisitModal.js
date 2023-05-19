@@ -133,22 +133,22 @@ function UpdateVisitInfo(props) {
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
   //checkout , checkin methods
-  const [isCheckedIn, setIsCheckedIn] = useState(checkIn === '' ? false : true)
+  const [isCheckedIn, setIsCheckedIn] = useState(checkIn.length > 0 ? true : false)
   const [checkInTime, setCheckInTime] = useState(checkIn)
   const [isCheckedOut, setIsCheckedOut] = useState(checkOut === '' ? 'false' : 'true')
   const [checkOutTime, setCheckOutTime] = useState('')
   const [checkInDisplay, setCheckInDisplay] = useState(checkInValue.length > 0 ? false : true)
   const [checkOutDisplay, setCheckOutDisplay] = useState(checkOut === '' ? 'inline' : 'none')
 
-  console.log(checkInDisplay)
+  console.log(isCheckedIn, checkIn)
   function toggleCheckIn() {
-    setCheckInTime(checkInValue.length > 0 ? '' : format(new Date(), 'yyy-MM-dd HH:mm:ss'))
+    setCheckInTime(checkInValue.length > 0 ? '' : format(new Date(), 'HH:mm:ss'))
     setIsCheckedIn(!isCheckedIn)
     setCheckInDisplay(!checkInDisplay)
   }
 
   function toggleCheckOut() {
-    setCheckOutTime(format(new Date(), 'yyy-MM-dd HH:mm:ss'))
+    setCheckOutTime(format(new Date(), 'HH:mm:ss'))
     setIsCheckedOut(!isCheckedOut)
     setCheckOutDisplay(!checkOutDisplay)
   }
@@ -485,9 +485,9 @@ function UpdateVisitInfo(props) {
                 </div>
                 <div className="form-group">
                   <label htmlFor="checkIn" className="scheduleCheckboxContainer">
-                    Check In:
-                    {/* {checkInValue} */}
-                    <span style={{ display: checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span>
+                    Check In: &nbsp;
+                    {checkIn}
+                    {/* <span style={{ display: checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span> */}
                     {/* <span style={{ display: checkInValue.length > 0 ? 'inline' : 'none' }}>{checkInTime}</span> */}
 
                     {/* <span onClick={setCheckInDisplay} style={{ display: checkInDisplay }}>{checkInTime}</span> */}
@@ -505,7 +505,8 @@ function UpdateVisitInfo(props) {
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                   <label htmlFor="checkOut" className="scheduleCheckboxContainer">
-                    Check Out: <span style={{ display: checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span>
+                    Check Out: &nbsp;
+                    <span style={{ display: checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span>
 
                     {/* {checkOut} */}
 
