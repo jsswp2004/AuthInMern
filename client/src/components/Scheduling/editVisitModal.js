@@ -106,9 +106,10 @@ function UpdateVisitInfo(props) {
   const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate, checkIn, checkOut } = visit
   console.log(medicalRecordNumber, checkIn, checkOut)
   const checkInValue = checkIn
+  const checkOutValue = checkOut
   //pull visits to know available hours in a day
   const [getVisits, setGetVisits] = useState([])
-  console.log(checkInValue)
+  // console.log(checkInValue)
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/visits')
@@ -135,10 +136,10 @@ function UpdateVisitInfo(props) {
   //checkout , checkin methods
   const [isCheckedIn, setIsCheckedIn] = useState(checkIn.length > 0 ? true : false)
   const [checkInTime, setCheckInTime] = useState(checkIn)
-  const [isCheckedOut, setIsCheckedOut] = useState(checkOut === '' ? 'false' : 'true')
-  const [checkOutTime, setCheckOutTime] = useState('')
-  const [checkInDisplay, setCheckInDisplay] = useState(checkInValue.length > 0 ? false : true)
-  const [checkOutDisplay, setCheckOutDisplay] = useState(checkOut === '' ? 'inline' : 'none')
+  const [isCheckedOut, setIsCheckedOut] = useState(checkOut.length > 0 ? true : false)
+  const [checkOutTime, setCheckOutTime] = useState(checkOut)
+  const [checkInDisplay, setCheckInDisplay] = useState(checkInValue.length > 0 ? true : false)
+  const [checkOutDisplay, setCheckOutDisplay] = useState(checkOutValue.length > 0 ? true : false)
 
   console.log(isCheckedIn, checkIn)
   function toggleCheckIn() {
@@ -148,7 +149,8 @@ function UpdateVisitInfo(props) {
   }
 
   function toggleCheckOut() {
-    setCheckOutTime(format(new Date(), 'HH:mm:ss'))
+    // setCheckOutTime(format(new Date(), 'HH:mm:ss'))
+    setCheckOutTime(checkOutValue.length > 0 ? '' : format(new Date(), 'HH:mm:ss'))
     setIsCheckedOut(!isCheckedOut)
     setCheckOutDisplay(!checkOutDisplay)
   }
@@ -506,12 +508,13 @@ function UpdateVisitInfo(props) {
                   </label>
                   <label htmlFor="checkOut" className="scheduleCheckboxContainer">
                     Check Out: &nbsp;
-                    <span style={{ display: checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span>
+                    {checkOut}
+                    {/* <span style={{ display: checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span> */}
 
                     {/* {checkOut} */}
 
                     <input
-                      Checked={checkOut === '' ? 'false' : 'true'}
+                      Checked={checkOutValue.length > 0 ? 'true' : 'false'}
                       type="checkbox"
                       onClick={toggleCheckOut}
                       name="CheckOut"
