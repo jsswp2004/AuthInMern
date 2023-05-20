@@ -134,7 +134,9 @@ function UpdateVisitInfo(props) {
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
   //checkout , checkin methods
-  const [isCheckedIn, setIsCheckedIn] = useState(checkIn.length > 0 ? true : false)
+  // const [isCheckedIn, setIsCheckedIn] = useState(checkIn.length > 0 ? true : false)
+  const [isCheckedIn, setIsCheckedIn] = useState(false)
+
   const [checkInTime, setCheckInTime] = useState(checkIn)
   const [isCheckedOut, setIsCheckedOut] = useState(checkOut.length > 0 ? true : false)
   const [checkOutTime, setCheckOutTime] = useState(checkOut)
@@ -172,9 +174,9 @@ function UpdateVisitInfo(props) {
       provider: visit.provider,
       event: visit.event,
       cellphone: visit.cellphone,
-      // checkIn: visit.checkIn,
+      checkIn: visit.checkIn,
       // checkIn: checkInTime,
-      // checkOut: visit.checkOut,
+      checkOut: visit.checkOut,
       // checkOut: checkOutTime,
       [e.target.name]: e.target.value,
     })
@@ -489,6 +491,7 @@ function UpdateVisitInfo(props) {
                   <label htmlFor="checkIn" className="scheduleCheckboxContainer">
                     Check In: &nbsp;
                     {checkIn}
+                    {/* {checkIn.length > 0 ? checkIn : 'No Check In'} */}
                     {/* <span style={{ display: checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span> */}
                     {/* <span style={{ display: checkInValue.length > 0 ? 'inline' : 'none' }}>{checkInTime}</span> */}
 
@@ -496,13 +499,14 @@ function UpdateVisitInfo(props) {
                     {/* <span >{checkInTime}</span> */}
 
                     <input
-                      Checked={checkInValue.length > 0 ? 'true' : 'false'}
+                      Checked={checkInValue === '' ? 'true' : 'false'}
                       type="checkbox"
                       onClick={toggleCheckIn}
                       name="CheckIn"
                       id='checkIn'
                       value={checkInTime}
                     // value={checkIn}
+                    // onChange={onChange}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
