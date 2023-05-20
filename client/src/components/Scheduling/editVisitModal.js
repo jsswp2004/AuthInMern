@@ -105,11 +105,11 @@ function UpdateVisitInfo(props) {
   //deconstruct visit object
   const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate, checkIn, checkOut } = visit
   console.log(medicalRecordNumber, checkIn, checkOut)
-  const checkInValue = checkIn
-  const checkOutValue = checkOut
+  const checkInValue = checkIn === undefined ? 0 : checkIn
+  const checkOutValue = checkOut === undefined ? 0 : checkOut
   //pull visits to know available hours in a day
   const [getVisits, setGetVisits] = useState([])
-  // console.log(checkInValue)
+  // console.log(checkInValue.toString(), 'checkInValue')
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/visits')
@@ -133,32 +133,31 @@ function UpdateVisitInfo(props) {
   })
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
-  //checkout , checkin methods
-  // const [isCheckedIn, setIsCheckedIn] = useState(checkIn.length > 0 ? true : false)
   const [isCheckedIn, setIsCheckedIn] = useState(false)
+  const [isCheckedOut, setIsCheckedOut] = useState(false)
 
   const [checkInTime, setCheckInTime] = useState(checkIn)
-  const [isCheckedOut, setIsCheckedOut] = useState(checkOut.length > 0 ? true : false)
   const [checkOutTime, setCheckOutTime] = useState(checkOut)
-  const [checkInDisplay, setCheckInDisplay] = useState(checkInValue.length > 0 ? true : false)
-  const [checkOutDisplay, setCheckOutDisplay] = useState(checkOutValue.length > 0 ? true : false)
 
-  console.log(isCheckedIn, checkIn)
+  const checkInDisplayValue = checkInValue.toString().length > 0 ? 1 : 0
+  const checkOutDisplayValue = checkOutValue.toString().length > 0 ? 1 : 0
+
+  const [checkInDisplay, setCheckInDisplay] = useState(checkInDisplayValue === 1 ? true : false)
+  const [checkOutDisplay, setCheckOutDisplay] = useState(checkOutDisplayValue === 1 ? true : false)
+
   function toggleCheckIn() {
-    setCheckInTime(checkInValue.length > 0 ? '' : format(new Date(), 'HH:mm:ss'))
+    setCheckInTime(format(new Date(), 'HH:mm:ss'))
     setIsCheckedIn(!isCheckedIn)
     setCheckInDisplay(!checkInDisplay)
   }
 
   function toggleCheckOut() {
-    // setCheckOutTime(format(new Date(), 'HH:mm:ss'))
-    setCheckOutTime(checkOutValue.length > 0 ? '' : format(new Date(), 'HH:mm:ss'))
+    setCheckOutTime(format(new Date(), 'HH:mm:ss'))
     setIsCheckedOut(!isCheckedOut)
     setCheckOutDisplay(!checkOutDisplay)
   }
 
-  console.log(checkInTime, checkInDisplay)
-  // , checkInTime, checkOutTime, isCheckedIn, isCheckedOut, checkInDisplay
+
   const onChange = (e) => {
     // setVisit({ ...visit, [e.target.name]: e.target.value })
     setVisit({
@@ -175,9 +174,7 @@ function UpdateVisitInfo(props) {
       event: visit.event,
       cellphone: visit.cellphone,
       checkIn: visit.checkIn,
-      // checkIn: checkInTime,
       checkOut: visit.checkOut,
-      // checkOut: checkOutTime,
       [e.target.name]: e.target.value,
     })
 
@@ -488,37 +485,28 @@ function UpdateVisitInfo(props) {
                   </label>
                 </div>
                 <div className="form-group">
+                  <span className="form-label">Checked in : {checkIn}</span>
+                  <br />
+                  <span className="form-label">Checked out : {checkOut}</span>
+                  <br />
+                  <br />
+                  <span ><b>Update: </b></span>
                   <label htmlFor="checkIn" className="scheduleCheckboxContainer">
                     Check In: &nbsp;
-                    {checkIn}
-                    {/* {checkIn.length > 0 ? checkIn : 'No Check In'} */}
-                    {/* <span style={{ display: checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span> */}
-                    {/* <span style={{ display: checkInValue.length > 0 ? 'inline' : 'none' }}>{checkInTime}</span> */}
-
-                    {/* <span onClick={setCheckInDisplay} style={{ display: checkInDisplay }}>{checkInTime}</span> */}
-                    {/* <span >{checkInTime}</span> */}
-
+                    <span style={{ display: checkInValue !== '' && checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span> &nbsp;
                     <input
-                      Checked={checkInValue === '' ? 'true' : 'false'}
                       type="checkbox"
                       onClick={toggleCheckIn}
                       name="CheckIn"
                       id='checkIn'
                       value={checkInTime}
-                    // value={checkIn}
-                    // onChange={onChange}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                   <label htmlFor="checkOut" className="scheduleCheckboxContainer">
                     Check Out: &nbsp;
-                    {checkOut}
-                    {/* <span style={{ display: checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span> */}
-
-                    {/* {checkOut} */}
-
+                    <span style={{ display: checkOutValue !== '' && checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span> &nbsp;
                     <input
-                      Checked={checkOutValue.length > 0 ? 'true' : 'false'}
                       type="checkbox"
                       onClick={toggleCheckOut}
                       name="CheckOut"

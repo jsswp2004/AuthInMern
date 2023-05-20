@@ -2035,6 +2035,7 @@ tfoot > .MuiTableFooter-root {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  /* border-color: #2196f3; */
 }
 
 /* Hide the browser's default radio button */
@@ -2052,6 +2053,9 @@ tfoot > .MuiTableFooter-root {
   width: 20px;
   background-color: #eee;
   border-radius: 20%;
+  border-color: #2196f3;
+  border-style: solid;
+  border-width: 1px;
 }
 
 /* On mouse-over, add a grey background color */
