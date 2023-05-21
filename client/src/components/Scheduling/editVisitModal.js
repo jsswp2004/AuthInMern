@@ -8,9 +8,9 @@ import { is } from 'date-fns/locale'
 
 function UpdateVisitInfo(props) {
   //#region autocreate medical record number
-  const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
+  // const setMedicalRecordNumber = Math.floor(100000 + Math.random() * 900000)
   //autocreate visit number
-  const setVisitNumber = Math.floor(1 + Math.random() * 99999)
+  // const setVisitNumber = Math.floor(1 + Math.random() * 99999)
   //#endregion
   const [selectedHour, setSelectedHour] = useState('')
 
@@ -58,7 +58,7 @@ function UpdateVisitInfo(props) {
   //#region create initial STATE for visit object
   const [visit, setVisit] = useState({
     medicalRecordNumber: '',
-    visitNumber: '',
+    visitNumber: visitID,
     firstName: '',
     lastName: '',
     middleName: '',
@@ -86,7 +86,7 @@ function UpdateVisitInfo(props) {
           lastName: res.data.lastName,
           middleName: res.data.middleName,
           email: res.data.email,
-          addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          addedDate: res.data.addedDate, //format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
           visitDate: res.data.visitDate,
           hourOfVisit: res.data.hourOfVisit,
           provider: res.data.provider,
@@ -161,8 +161,8 @@ function UpdateVisitInfo(props) {
   const onChange = (e) => {
     // setVisit({ ...visit, [e.target.name]: e.target.value })
     setVisit({
-      medicalRecordNumber: setMedicalRecordNumber,
-      visitNumber: setVisitNumber,
+      medicalRecordNumber: visit.medicalRecordNumber,
+      visitNumber: visit.visitNumber,
       firstName: visit.firstName,
       lastName: visit.lastName,
       middleName: visit.middleName,
@@ -173,8 +173,8 @@ function UpdateVisitInfo(props) {
       provider: visit.provider,
       event: visit.event,
       cellphone: visit.cellphone,
-      checkIn: visit.checkIn,
-      checkOut: visit.checkOut,
+      // checkIn: visit.checkIn,
+      // checkOut: visit.checkOut,
       [e.target.name]: e.target.value,
     })
 
@@ -187,8 +187,8 @@ function UpdateVisitInfo(props) {
     e.preventDefault()
 
     const data = {
-      medicalRecordNumber: setMedicalRecordNumber,
-      visitNumber: setVisitNumber,
+      medicalRecordNumber: visit.medicalRecordNumber,
+      visitNumber: visit.visitNumber,
       firstName: visit.firstName,
       lastName: visit.lastName,
       middleName: visit.middleName,
@@ -200,9 +200,9 @@ function UpdateVisitInfo(props) {
       event: visit.event,
       cellphone: visit.cellphone,
       // checkIn: visit.checkIn,
-      checkIn: checkInTime,
+      checkIn: checkInTime === '' ? visit.checkIn : checkInTime,
       // checkOut: visit.checkOut,
-      checkOut: checkOutTime,
+      checkOut: checkOutTime === '' ? visit.checkOut : checkOutTime,
 
     }
 
@@ -493,19 +493,24 @@ function UpdateVisitInfo(props) {
                   <span ><b>Update: </b></span>
                   <label htmlFor="checkIn" className="scheduleCheckboxContainer">
                     Check In: &nbsp;
-                    <span style={{ display: checkInValue !== '' && checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span> &nbsp;
+                    {/* <span style={{ display: checkInValue !== '' && checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span> &nbsp; */}
+                    <span style={{ display: checkInDisplay === true ? 'inline' : 'none' }}>{checkInTime}</span> &nbsp;
+
                     <input
                       type="checkbox"
                       onClick={toggleCheckIn}
                       name="CheckIn"
                       id='checkIn'
+                      // value={checkInValue !== '' ? checkInTime : checkInValue}
                       value={checkInTime}
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
                   <label htmlFor="checkOut" className="scheduleCheckboxContainer">
                     Check Out: &nbsp;
-                    <span style={{ display: checkOutValue !== '' && checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span> &nbsp;
+                    {/* <span style={{ display: checkOutValue !== '' && checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span> &nbsp; */}
+                    <span style={{ display: checkOutDisplay === true ? 'inline' : 'none' }}>{checkOutTime}</span> &nbsp;
+
                     <input
                       type="checkbox"
                       onClick={toggleCheckOut}
