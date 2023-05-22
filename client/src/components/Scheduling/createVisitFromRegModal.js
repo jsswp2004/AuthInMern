@@ -29,6 +29,9 @@ const CreateVisitFromReg = (props) => {
     state: '',
     email: '',
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+    homePhone: '',
+    cellphone: '',
+    businessPhone: '',
   })
   // const { id } = useParams()
   const patientID = props.patientID
@@ -79,6 +82,8 @@ const CreateVisitFromReg = (props) => {
     cellphone,
     businessPhone,
   } = record
+
+  console.log(cellphone)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
 
@@ -204,7 +209,7 @@ const CreateVisitFromReg = (props) => {
       provider: visit.provider,
       event: visit.event,
       homePhone: visit.homePhone,
-      cellphone: visit.cellphone,
+      cellphone: cellphone,
       businessPhone: visit.businessPhone,
     }
     axios
@@ -281,10 +286,10 @@ const CreateVisitFromReg = (props) => {
                       Cellphone
                       <input
                         type="text"
-                        name="email"
+                        name="cellphone"
                         className="form-control"
-                        defaultValue={cellphone}
-                        // value={visit.email}
+                        // defaultValue={cellphone}
+                        value={visit.cellphone}
                         onChange={onChange}
                       />
                     </label>

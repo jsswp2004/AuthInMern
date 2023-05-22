@@ -103,8 +103,8 @@ function UpdateVisitInfo(props) {
   }, [visitID])
   //#endregion
   //deconstruct visit object
-  const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate, checkIn, checkOut } = visit
-  console.log(medicalRecordNumber, checkIn, checkOut)
+  const { medicalRecordNumber, visitNumber, firstName, lastName, middleName, email, addedDate, cellphone, checkIn, checkOut } = visit
+  console.log(medicalRecordNumber, checkIn, checkOut, cellphone)
   const checkInValue = checkIn === undefined ? 0 : checkIn
   const checkOutValue = checkOut === undefined ? 0 : checkOut
   //pull visits to know available hours in a day
@@ -288,19 +288,22 @@ function UpdateVisitInfo(props) {
                   <div>
                     <label htmlFor="cellphone">
                       Cellphone
-                      <Input
+                      <input
+                        type='tel'
+                        name="cellphone"
                         className="form-control"
                         Country='US'
-                        international
+                        // international
                         withCountryCallingCode
                         placeholder="Enter phone number"
                         value={visit.cellphone}
-                        onChange={(value) => {
-                          setVisit({ ...visit, cellphone: value })
-                        }}
+                        // onChange={(value) => {
+                        //   setVisit({ ...visit, cellphone: value })
+                        // }}
+                        onChange={onChange}
                       >
 
-                      </Input>
+                      </input>
                     </label>
                   </div>
                 </div>
