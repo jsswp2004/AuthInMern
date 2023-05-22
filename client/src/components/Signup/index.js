@@ -5,6 +5,8 @@ import { format } from 'date-fns'
 import styles from './styles.module.css'
 import HeaderMain from '../shared/HeaderMain'
 import BodyLogo from '../shared/BodyLogo'
+import StripeCheckoutButton from '../Stripe/stripeButton';
+
 
 export const UserContext = createContext()
 
@@ -67,6 +69,7 @@ const Signup = () => {
     }
     // setUserID(data)
   }
+  const totalPrice = 58;
 
   return (
     <div className="grid_container_home">
@@ -177,9 +180,21 @@ const Signup = () => {
                   Sign Up
                 </button>
               </form>
+              <div className={styles.form_container}>
+                <header className="App-header">
+                  <h5>Make Stripe Payment @ Freaky Jolly</h5>
+                  <p>
+                    Pay Total of $ {totalPrice}
+                  </p>
+                  <p>
+                    <StripeCheckoutButton price={totalPrice} />
+                  </p>
+                </header></div>
             </div>
           </div>
+
         </div>
+
       </div>
     </div>
   )
