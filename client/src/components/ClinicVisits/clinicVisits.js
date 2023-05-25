@@ -7,7 +7,6 @@ import { useAlert } from 'react-alert'
 
 import {
   format,
-  // getTime,
   getDate,
   startOfMonth,
   getDay,
@@ -21,7 +20,6 @@ import {
   isSaturday,
   isSunday,
   isWeekend,
-  parse
 } from 'date-fns'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-datepicker'
@@ -35,11 +33,7 @@ import {
 } from '../listDictionaries/listData/listDictionariesData'
 import axios from 'axios'
 import CreateVisitModal from '../Scheduling/createVisitModal'
-// import VisitMonthlyModal from '../Scheduling/visitModal'
 import VisitMonthlyModal from '../PatientRegistration/ShowPatientListModal'
-
-// import CreatePatientModal from '../PatientRegistration/createPatientModal'
-import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -63,14 +57,13 @@ import DetailVisitModal from '../PatientVisit/detailsPatientVisitModal'
 import SMSMessagesModal from '../SMSMessage/SMSForm'
 import EmailMessagesModal from '../PatientVisit/sendEmailToPatientModal'
 import ReactToPrint from 'react-to-print';
-import { Checkbox } from '@mui/material'
 //#endregion
 
 export default function ClinicVisit() {
   // const userx = useContext(UserContext);
   // Component to print
   const componentToPrintRef = useRef();
-  //local storage to pull curresnt user name and role
+  //#region local storage to pull curresnt user name and role
   const useremail = localStorage.getItem('email')
   const [currentUser, setCurrentUser] = useState([{
     _id: '',
@@ -81,10 +74,7 @@ export default function ClinicVisit() {
   }])
 
   useEffect(() => {
-
-    // localStorage.setItem('firstName', currentUser.firstName)
     axios
-      // localStorage.setItem('role')
       .get(`http://localhost:8081/api/users`)
       .then((response) => {
         const data = response.data
@@ -105,7 +95,7 @@ export default function ClinicVisit() {
     localStorage.setItem('firstName', firstName)
   }
     , [firstName, role])
-
+  //#endregion
   //#region for alert declaration
   // const alert = useAlert()
   //#endregion
@@ -116,6 +106,7 @@ export default function ClinicVisit() {
   const attendings = userMD.filter((user) => {
     return user.role.toString().toLowerCase().includes('attending')
   })
+  console.log(selectExceptionMD)
 
   useEffect(() => {
     axios
@@ -160,23 +151,15 @@ export default function ClinicVisit() {
   //#endregion
   //#region base date values for calendar
   const [showDateValue, setShowDateValue] = useState(new Date())
-  // const [showDateValue2, setShowDateValue2] = useState(new Date())
-  //changes value of date when clicked on daily calendar
-  // function dailyShowDateChange(e) {
-  //   setShowDateValue2(e)
-  // }
-  // console.log(showDateValue2)
-
-
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
   let newdate = new Date(showDateValue)
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex].value
   let startOfTheMonth = startOfMonth(new Date(showDateValue))
   const currentYear = newdate.getFullYear()
-  let startOfTheMonthDayNumber = getDay(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  let startOfTheMonthDay = getDate(startOfMonth(showDateValue)) // moment(startOfTheMonth).day()
-  let endOfTheMonthDay = getDate(endOfMonth(showDateValue)) // moment(startOfTheMonth).day()
+  let startOfTheMonthDayNumber = getDay(startOfMonth(showDateValue))
+  let startOfTheMonthDay = getDate(startOfMonth(showDateValue))
+  let endOfTheMonthDay = getDate(endOfMonth(showDateValue))
   const gridWeekly = {
     fontSize: '14px',
     height: 'calc(100vh - 132px)',
@@ -1405,6 +1388,7 @@ export default function ClinicVisit() {
   //#region for pulling the exceptions based on selected provider 
   const [staffExceptions, setStaffExceptions] = useState([])
   const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+  console.log('exceptionMD', exceptionMD)
   const {
     exceptionMon: exceptionMons,
     exceptionTues: exceptionTue,
@@ -1419,8 +1403,10 @@ export default function ClinicVisit() {
     const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
     const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
     const isException = isDayException && isExcept ? true : false
+    console.log(exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'))
     return isException
   }
+
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/exceptions')

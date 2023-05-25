@@ -51,49 +51,18 @@ const CreateException = (props) => {
 
   const onChange = (e) => {
     setException({ ...exception, [e.target.name]: e.target.value })
-    // setDefaultAmStartTime(e.target.value)
-    // setDefaultAmEndTime(e.target.value)
-    // setDefaultPmStartTime(e.target.value)
-    // setDefaultPmEndTime(e.target.value)
+
   }
-  // const onAmStartChange = (e) => {
-  //   setDefaultAmStartTime({ ...exception.amStartTime, [e.target.name]: e.target.value })
-  // }
-  // const onAMEndChange = (e) => {
-  //   setException({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultAmStartTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultAmEndTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultPmStartTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultPmEndTime({ ...exception, [e.target.name]: e.target.value })
-  //   // setSelectedMD(exception.provider.name)
-  // }
-  // const onPmStartChange = (e) => {
-  //   setException({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultAmStartTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultAmEndTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultPmStartTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultPmEndTime({ ...exception, [e.target.name]: e.target.value })
-  //   // setSelectedMD(exception.provider.name)
-  // }
-  // const onPmEndChange = (e) => {
-  //   setException({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultAmStartTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultAmEndTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultPmStartTime({ ...exception, [e.target.name]: e.target.value })
-  //   setDefaultPmEndTime({ ...exception, [e.target.name]: e.target.value })
-  //   // setSelectedMD(exception.provider.name)
-  // }
+
 
   const providerSelected = attendings.find((user) => user.name === exception.provider)
-  // console.log(providerSelected)
-  // const { _id, name } = providerSelected
+
   const [exceptionMon, setExceptionDay1] = useState(' ')
   const [exceptionTues, setExceptionDay2] = useState(' ')
   const [exceptionWed, setExceptionDay3] = useState(' ')
   const [exceptionThurs, setExceptionDay4] = useState(' ')
   const [exceptionFri, setExceptionDay5] = useState(' ')
-  // console.log(exception.startDate)
-  // console.log(providerSelected._id)
+
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -226,7 +195,7 @@ const CreateException = (props) => {
                     Thursdays
                     <input
                       type="checkbox"
-                      onClick={() => setExceptionDay4('Thurs')}
+                      onClick={() => setExceptionDay4('Thur')}
                       name="scheduleDays"
                       value={exception.exceptionThurs}
                     />

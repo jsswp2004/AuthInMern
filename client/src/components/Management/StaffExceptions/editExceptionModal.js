@@ -135,7 +135,7 @@ function EditException(props) {
   }
 
   function toggleThursday() {
-    exceptionThurs === 'Thurs' ? setExceptionDay4('') : setExceptionDay4('Thurs')
+    exceptionThurs === 'Thurs' ? setExceptionDay4('') : setExceptionDay4('Thur')
     setIsThursdayChecked(!isThursdayChecked)
   }
 

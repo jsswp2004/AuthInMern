@@ -131,6 +131,8 @@ function UpdateVisitInfo(props) {
   const filteredVisitsWithMD = getVisits.filter((visit) => {
     return visit.provider === selectedMD && visit.visitDate === selectedDate
   })
+
+  console.log(hourOfVisit)
   const filteredVisitsWithMDAndDate = filteredVisitsWithMD.map((doc) => doc.hourOfVisit)
 
   const [isCheckedIn, setIsCheckedIn] = useState(false)
@@ -195,7 +197,8 @@ function UpdateVisitInfo(props) {
       email: visit.email,
       addedDate: visit.addedDate,
       visitDate: visit.visitDate,
-      hourOfVisit: visit.hourOfVisit,
+      // hourOfVisit: visit.hourOfVisit,
+      hourOfVisit: selectedHour,
       provider: visit.provider,
       event: visit.event,
       cellphone: visit.cellphone,
