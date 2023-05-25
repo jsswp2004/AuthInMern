@@ -1387,7 +1387,9 @@ export default function ClinicVisit() {
   //#endregion
   //#region for pulling the exceptions based on selected provider 
   const [staffExceptions, setStaffExceptions] = useState([])
-  const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+  // const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+  const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+
   console.log('exceptionMD', exceptionMD)
   const {
     exceptionMon: exceptionMons,
@@ -1397,13 +1399,13 @@ export default function ClinicVisit() {
     exceptionFri: exceptionFris,
     // providerID: selectedExceptionMDID,
     startDate: selectedExceptionMDStart,
-    endDate: selectedExceptionMDEnd } = exceptionMD[0] === undefined ? 'Test User' : exceptionMD[0]
-
+    endDate: selectedExceptionMDEnd } = exceptionMD[1] //=== undefined ? 'Test User' : exceptionMD[1]
+  console.log('exceptions', exceptionMD[1])
   function isException(dateItem) {
     const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
     const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
     const isException = isDayException && isExcept ? true : false
-    console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
+    // console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
     return isException
   }
 
@@ -2611,7 +2613,9 @@ export default function ClinicVisit() {
                         </span>
                       </div>
                       {visitListMonthlyDay26()}
+                      <span>{isException(MonthDayDate26)}</span>
                     </div>
+
                     <div className="monthDayTitleChild"
                       style={{
                         pointerEvents: isWeekend(addDays(new Date(MonthDayDate27), 1)) ? 'none' : 'auto',
