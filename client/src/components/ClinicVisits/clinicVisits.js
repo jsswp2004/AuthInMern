@@ -1403,7 +1403,7 @@ export default function ClinicVisit() {
     const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
     const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
     const isException = isDayException && isExcept ? true : false
-    console.log(exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'))
+    console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
     return isException
   }
 
