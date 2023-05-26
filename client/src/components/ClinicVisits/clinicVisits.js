@@ -1407,12 +1407,13 @@ export default function ClinicVisit() {
     exceptionFri: exceptionFris,
     startDate: selectedExceptionMDStart,
     endDate: selectedExceptionMDEnd } = exceptionMD[1] === undefined ? 'Test User' : exceptionMD[1]
+  console.log('exceptionMD', exceptionMD.findLast((doc) => doc.provider === selectExceptionMD))
   // console.log('exceptionMon', exceptionMons, exceptionTue, exceptionWeds, exceptionThur, exceptionFris)
   const exceptionValue = [exceptionMons, exceptionTue, exceptionWeds, exceptionThur, exceptionFris]
-  console.log('exceptionValue', exceptionValue)
+  console.log('exceptionValue', exceptionValue.includes('Mon') ? true : false, exceptionValue)
 
   // console.log('exceptions', exceptionMD[0])
-  console.log('exceptions', exceptionMD.includes(exceptionMons) ? true : false)
+  // console.log('exceptions', exceptionMD.includes(exceptionMons) ? true : false)
   function isException(dateItem) {
     const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
     const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
