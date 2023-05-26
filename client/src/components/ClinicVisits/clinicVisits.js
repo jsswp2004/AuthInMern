@@ -1387,20 +1387,32 @@ export default function ClinicVisit() {
   //#endregion
   //#region for pulling the exceptions based on selected provider 
   const [staffExceptions, setStaffExceptions] = useState([])
-  // const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
-  const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+  const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+  // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
 
   console.log('exceptionMD', exceptionMD)
+  // const {
+  //   exceptionMon: exceptionMons,
+  //   exceptionTues: exceptionTue,
+  //   exceptionWed: exceptionWeds,
+  //   exceptionThurs: exceptionThur,
+  //   exceptionFri: exceptionFris,
+  //   startDate: selectedExceptionMDStart,
+  //   endDate: selectedExceptionMDEnd } = exceptionMD[1] === undefined ? 'Test User' : exceptionMD[1]
   const {
     exceptionMon: exceptionMons,
     exceptionTues: exceptionTue,
     exceptionWed: exceptionWeds,
     exceptionThurs: exceptionThur,
     exceptionFri: exceptionFris,
-    // providerID: selectedExceptionMDID,
     startDate: selectedExceptionMDStart,
-    endDate: selectedExceptionMDEnd } = exceptionMD[1] //=== undefined ? 'Test User' : exceptionMD[1]
-  console.log('exceptions', exceptionMD[1])
+    endDate: selectedExceptionMDEnd } = exceptionMD[1] === undefined ? 'Test User' : exceptionMD[1]
+  // console.log('exceptionMon', exceptionMons, exceptionTue, exceptionWeds, exceptionThur, exceptionFris)
+  const exceptionValue = [exceptionMons, exceptionTue, exceptionWeds, exceptionThur, exceptionFris]
+  console.log('exceptionValue', exceptionValue)
+
+  // console.log('exceptions', exceptionMD[0])
+  console.log('exceptions', exceptionMD.includes(exceptionMons) ? true : false)
   function isException(dateItem) {
     const isDayException = exceptionMons === format(addDays(new Date(dateItem), 1), 'iii') || exceptionTue === format(addDays(new Date(dateItem), 1), 'iii') || exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii') || exceptionThur === format(addDays(new Date(dateItem), 1), 'iii') || exceptionFris === format(addDays(new Date(dateItem), 1), 'iii') ? true : false
     const isExcept = dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd ? true : false
