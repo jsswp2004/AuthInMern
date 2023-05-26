@@ -1,0 +1,5 @@
+{
+  "application.experimental.rendererProfiling": true,
+  "CodeGPT.model": "gpt-4",
+  "github.copilot.editor.enableAutoCompletions": true
+}
