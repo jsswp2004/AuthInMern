@@ -1387,10 +1387,10 @@ export default function ClinicVisit() {
   //#endregion
   //#region for pulling the exceptions based on selected provider 
   const [staffExceptions, setStaffExceptions] = useState([])
-  const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+  const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD) //&& doc.startDate >= selectedDate && doc.endDate >= selectedDate)
   // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
 
-  console.log('exceptionMD', exceptionMD)
+  console.log('exceptionMD', exceptionMD, selectedDate)
   // const {
   //   exceptionMon: exceptionMons,
   //   exceptionTues: exceptionTue,
