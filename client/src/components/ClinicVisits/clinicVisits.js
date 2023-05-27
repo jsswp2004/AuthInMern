@@ -137,7 +137,7 @@ export default function ClinicVisit() {
       });
   }, []);
   const { checkIn, checkOut } = visits;
-  console.log(checkIn, checkOut);
+  // console.log(checkIn, checkOut);
   //#endregion
   //#region code for calendar view select dropdown
   const [selectViewValue, setViewValue] = React.useState("Monthly");
@@ -1397,7 +1397,7 @@ export default function ClinicVisit() {
     (doc) => doc.provider === selectExceptionMD
   ); // && (getMonth(new Date(doc.startDate)) + 1  >= getMonth(new Date(dateSelected)) + 1 && getMonth(new Date(doc.endDate)) + 1 <= getMonth(new Date(dateSelected))))
   // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
-  const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1;
+  // const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1;
   // const getDatesInRange = (min, max) => Array((max-min)/86400000).fill(0).map((_, i) => new Date((new Date()).setDate(min.getDate() + i)))
   const exceptionDatesArray = exceptionMD.map((a) => a.startDate);
   // console.log("exceptionDatesArray", exceptionDatesArray);
@@ -1440,24 +1440,24 @@ export default function ClinicVisit() {
   // console.log(getDatesInRange(new Date(selectedExceptionMDStart), new Date(selectedExceptionMDEnd)))
   // console.log('exceptions', exceptionMD[0])
   // console.log('exceptions', exceptionMD.includes(exceptionMons) ? true : false)
-  function isException(dateItem) {
-    const isDayException =
-      exceptionMons === format(addDays(new Date(dateItem), 1), "iii") ||
-      exceptionTue === format(addDays(new Date(dateItem), 1), "iii") ||
-      exceptionWeds === format(addDays(new Date(dateItem), 1), "iii") ||
-      exceptionThur === format(addDays(new Date(dateItem), 1), "iii") ||
-      exceptionFris === format(addDays(new Date(dateItem), 1), "iii")
-        ? true
-        : false;
+  function isException(datetime) {
+    // const isDayException = dateItem
+    //   exceptionMons === format(addDays(new Date(dateItem), 1), "iii") ||
+    //   exceptionTue === format(addDays(new Date(dateItem), 1), "iii") ||
+    //   exceptionWeds === format(addDays(new Date(dateItem), 1), "iii") ||
+    //   exceptionThur === format(addDays(new Date(dateItem), 1), "iii") ||
+    //   exceptionFris === format(addDays(new Date(dateItem), 1), "iii")
+    //     ? true
+    //     : false;
     // const isExcept =
     //   dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd
     //     ? true
     //     : false;
-    const includedInExceptionDatesArray = exceptionDatesArray.includes(
-      selectedExceptionMDStart
-    );
+    const includedInExceptionDatesArray =
+      exceptionDatesArray.includes(datetime);
     const isException =
-      isDayException && includedInExceptionDatesArray ? true : false;
+      // isDayException &&
+      includedInExceptionDatesArray ? true : false;
     // isExcept console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
     return isException;
   }
@@ -1895,7 +1895,7 @@ export default function ClinicVisit() {
       });
   }
 
-  console.log(checkInTime, checkOutTime);
+  // console.log(checkInTime, checkOutTime);
   //create initial STATE for visit object
   const [visit, setVisit] = useState({
     medicalRecordNumber: "",
@@ -3491,6 +3491,7 @@ export default function ClinicVisit() {
                       </div>
                       {visitListMonthlyDay25()}
                     </div>
+
                     <div
                       className="monthDayTitleChild"
                       style={{
