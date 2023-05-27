@@ -373,7 +373,7 @@ export default function ClinicVisit() {
               // email={email}
               visitDate={selectedDate}
               provider={provider}
-              // hourOfVisit={hourOfVisit}
+            // hourOfVisit={hourOfVisit}
             />
           </div>
           {/*  */}
@@ -1393,15 +1393,17 @@ export default function ClinicVisit() {
   //#endregion
   //#region for pulling the exceptions based on selected provider
   const [staffExceptions, setStaffExceptions] = useState([]);
+  //code to filter staffExceptions based on selected provider
   const exceptionMD = staffExceptions.filter(
     (doc) => doc.provider === selectExceptionMD
   ); // && (getMonth(new Date(doc.startDate)) + 1  >= getMonth(new Date(dateSelected)) + 1 && getMonth(new Date(doc.endDate)) + 1 <= getMonth(new Date(dateSelected))))
   // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
   // const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1;
   // const getDatesInRange = (min, max) => Array((max-min)/86400000).fill(0).map((_, i) => new Date((new Date()).setDate(min.getDate() + i)))
+  //code to create array of dates between start and end date
   const exceptionDatesArray = exceptionMD.map((a) => a.startDate);
-  // console.log("exceptionDatesArray", exceptionDatesArray);
-  // console.log("month", exceptionMonthOfDate);
+  console.log("exceptionDatesArray", exceptionDatesArray);
+
 
   // const {
   //   exceptionMon: exceptionMons,
@@ -1453,11 +1455,11 @@ export default function ClinicVisit() {
     //   dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd
     //     ? true
     //     : false;
-    const includedInExceptionDatesArray =
-      exceptionDatesArray.includes(datetime);
-    const isException =
-      // isDayException &&
-      includedInExceptionDatesArray ? true : false;
+    // const includedInExceptionDatesArray =
+    // exceptionDatesArray.includes(datetime);
+    // const isException =
+    // isDayException &&
+    // includedInExceptionDatesArray ? true : false;
     // isExcept console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
     return isException;
   }
@@ -1710,6 +1712,8 @@ export default function ClinicVisit() {
     ),
     "yyyy-MM-dd"
   );
+  console.log("MonthDayDate26", MonthDayDate26);
+  console.log("included?", exceptionDatesArray.includes(MonthDayDate26));
   const MonthDayDate27 = format(
     new Date(
       currentYear,
@@ -1754,10 +1758,10 @@ export default function ClinicVisit() {
   function isScheduled(dateItem) {
     const isDayScheduled =
       scheduledMons === format(addDays(new Date(dateItem), 1), "iii") ||
-      scheduledTue === format(addDays(new Date(dateItem), 1), "iii") ||
-      scheduledWeds === format(addDays(new Date(dateItem), 1), "iii") ||
-      scheduledThur === format(addDays(new Date(dateItem), 1), "iii") ||
-      scheduledFris === format(addDays(new Date(dateItem), 1), "iii")
+        scheduledTue === format(addDays(new Date(dateItem), 1), "iii") ||
+        scheduledWeds === format(addDays(new Date(dateItem), 1), "iii") ||
+        scheduledThur === format(addDays(new Date(dateItem), 1), "iii") ||
+        scheduledFris === format(addDays(new Date(dateItem), 1), "iii")
         ? true
         : false;
     const isSchedule =
@@ -2013,10 +2017,10 @@ export default function ClinicVisit() {
                       selectViewValue === "Monthly"
                         ? setShowDateValue(addDays(showDateValue, -31))
                         : selectViewValue === "Weekly"
-                        ? setShowDateValue(addDays(showDateValue, -7))
-                        : selectViewValue === "Daily"
-                        ? setShowDateValue(addDays(showDateValue, -1))
-                        : setShowDateValue(showDateValue)
+                          ? setShowDateValue(addDays(showDateValue, -7))
+                          : selectViewValue === "Daily"
+                            ? setShowDateValue(addDays(showDateValue, -1))
+                            : setShowDateValue(showDateValue)
                     }
                   ></img>
                 </div>
@@ -2029,10 +2033,10 @@ export default function ClinicVisit() {
                       selectViewValue === "Monthly"
                         ? setShowDateValue(addMonths(showDateValue, 1))
                         : selectViewValue === "Weekly"
-                        ? setShowDateValue(addWeeks(showDateValue, 1))
-                        : selectViewValue === "Daily"
-                        ? setShowDateValue(addDays(showDateValue, 1))
-                        : setShowDateValue(showDateValue)
+                          ? setShowDateValue(addWeeks(showDateValue, 1))
+                          : selectViewValue === "Daily"
+                            ? setShowDateValue(addDays(showDateValue, 1))
+                            : setShowDateValue(showDateValue)
                     }
                   ></img>
                 </div>
@@ -2140,9 +2144,9 @@ export default function ClinicVisit() {
                   </div>
                   <div
                     className="weekDayTitleChild"
-                    // onClick={() => {
-                    //   alert.show('Oh look, an alert!')
-                    // }}
+                  // onClick={() => {
+                  //   alert.show('Oh look, an alert!')
+                  // }}
                   >
                     Mon
                   </div>
@@ -3444,12 +3448,13 @@ export default function ClinicVisit() {
                         )
                           ? "none"
                           : "auto",
-                        backgroundColor: isScheduled(MonthDayDate25)
-                          ? isWeekend(addDays(new Date(MonthDayDate25), 1)) ||
-                            isException(MonthDayDate25)
-                            ? "#ffdbe6"
-                            : "#ebfcec"
-                          : "white",
+                        // backgroundColor: isScheduled(MonthDayDate25)
+                        //   ? isWeekend(addDays(new Date(MonthDayDate25), 1)) ||
+                        //     isException(MonthDayDate25)
+                        //     ? "#ffdbe6"
+                        //     : "#ebfcec"
+                        //   : "white",
+                        backgroundColor: isScheduled(MonthDayDate25) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate25), 1)) ? "white" : "white",
                       }}
                     >
                       <div
@@ -3500,12 +3505,19 @@ export default function ClinicVisit() {
                         )
                           ? "none"
                           : "auto",
-                        backgroundColor: isScheduled(MonthDayDate26)
-                          ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ||
-                            isException(MonthDayDate26)
-                            ? "#ffdbe6"
-                            : "#ebfcec"
-                          : "white",
+                        // backgroundColor: isScheduled(MonthDayDate26)
+                        //   ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ||
+                        //     isException(MonthDayDate26)
+                        //     ? "#ffdbe6"
+                        //     : "#ebfcec"
+                        //   : "white",
+                        backgroundColor: isScheduled(MonthDayDate26) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate26), 1)) ? "white" : "white",
+                        // ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ||
+                        //   isException(MonthDayDate26)
+                        //   ? "#ffdbe6"
+                        // :
+
+
                       }}
                     >
                       <div
@@ -3556,12 +3568,13 @@ export default function ClinicVisit() {
                         )
                           ? "none"
                           : "auto",
-                        backgroundColor: isScheduled(MonthDayDate27)
-                          ? isWeekend(addDays(new Date(MonthDayDate27), 1)) ||
-                            isException(MonthDayDate27)
-                            ? "#ffdbe6"
-                            : "#ebfcec"
-                          : "white",
+                        // backgroundColor: isScheduled(MonthDayDate27)
+                        //   ? isWeekend(addDays(new Date(MonthDayDate27), 1)) ||
+                        //     isException(MonthDayDate27)
+                        //     ? "#ffdbe6"
+                        //     : "#ebfcec"
+                        //   : "white",
+                        backgroundColor: isScheduled(MonthDayDate27) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate27), 1)) ? "white" : "white",
                       }}
                     >
                       <div
@@ -3611,12 +3624,13 @@ export default function ClinicVisit() {
                         )
                           ? "none"
                           : "auto",
-                        backgroundColor: isScheduled(MonthDayDate28)
-                          ? isWeekend(addDays(new Date(MonthDayDate28), 1)) ||
-                            isException(MonthDayDate28)
-                            ? "#ffdbe6"
-                            : "#ebfcec"
-                          : "white",
+                        // backgroundColor: isScheduled(MonthDayDate28)
+                        //   ? isWeekend(addDays(new Date(MonthDayDate28), 1)) ||
+                        //     isException(MonthDayDate28)
+                        //     ? "#ffdbe6"
+                        //     : "#ebfcec"
+                        //   : "white",
+                        backgroundColor: isScheduled(MonthDayDate28) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate28), 1)) ? "white" : "white",
                       }}
                     >
                       <div
@@ -3670,12 +3684,13 @@ export default function ClinicVisit() {
                           startOfTheMonthDay + 28 > endOfTheMonthDay
                             ? "none"
                             : "inline",
-                        backgroundColor: isScheduled(MonthDayDate29)
-                          ? isWeekend(addDays(new Date(MonthDayDate29), 1)) ||
-                            isException(MonthDayDate29)
-                            ? "#ffdbe6"
-                            : "#ebfcec"
-                          : "white",
+                        // backgroundColor: isScheduled(MonthDayDate29)
+                        //   ? isWeekend(addDays(new Date(MonthDayDate29), 1)) ||
+                        //     isException(MonthDayDate29)
+                        //     ? "#ffdbe6"
+                        //     : "#ebfcec"
+                        //   : "white",
+                        backgroundColor: isScheduled(MonthDayDate29) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate29), 1)) ? "white" : "white",
                       }}
                     >
                       <div
@@ -3894,7 +3909,7 @@ export default function ClinicVisit() {
                               currentYear,
                               monthIndex,
                               startOfTheWeek + 1 > startOfTheWeekEndOfMonth &&
-                              startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
+                                startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
                                 ? startOfTheWeek + 1 - startOfTheWeekEndOfMonth
                                 : startOfTheWeek + 1
                             )
@@ -3909,7 +3924,7 @@ export default function ClinicVisit() {
                           }}
                         >
                           {startOfTheWeek + 1 > startOfTheWeekEndOfMonth &&
-                          startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
+                            startOfTheWeek + 1 - startOfTheWeekEndOfMonth >= 1
                             ? startOfTheWeek + 1 - startOfTheWeekEndOfMonth
                             : startOfTheWeek + 1}
                         </span>
@@ -3940,7 +3955,7 @@ export default function ClinicVisit() {
                             currentYear,
                             monthIndex,
                             startOfTheWeek + 2 > startOfTheWeekEndOfMonth &&
-                            startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
+                              startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
                               ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
                               : startOfTheWeek + 2
                           )
@@ -3951,7 +3966,7 @@ export default function ClinicVisit() {
                         TUE
                         <span style={{ float: "right", marginRight: "10px" }}>
                           {startOfTheWeek + 2 > startOfTheWeekEndOfMonth &&
-                          startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
+                            startOfTheWeek + 2 - startOfTheWeekEndOfMonth >= 1
                             ? startOfTheWeek + 2 - startOfTheWeekEndOfMonth
                             : startOfTheWeek + 2}
                         </span>
@@ -3982,7 +3997,7 @@ export default function ClinicVisit() {
                             currentYear,
                             monthIndex,
                             startOfTheWeek + 3 > startOfTheWeekEndOfMonth &&
-                            startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
+                              startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
                               ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
                               : startOfTheWeek + 3
                           )
@@ -3993,7 +4008,7 @@ export default function ClinicVisit() {
                         WED
                         <span style={{ float: "right", marginRight: "10px" }}>
                           {startOfTheWeek + 3 > startOfTheWeekEndOfMonth &&
-                          startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
+                            startOfTheWeek + 3 - startOfTheWeekEndOfMonth >= 1
                             ? startOfTheWeek + 3 - startOfTheWeekEndOfMonth
                             : startOfTheWeek + 3}
                           {/* {console.log(startOfTheWeek
@@ -4032,7 +4047,7 @@ export default function ClinicVisit() {
                             currentYear,
                             monthIndex,
                             startOfTheWeek + 4 > startOfTheWeekEndOfMonth &&
-                            startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                              startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
                               ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
                               : startOfTheWeek + 4
                           )
@@ -4043,7 +4058,7 @@ export default function ClinicVisit() {
                         THU
                         <span style={{ float: "right", marginRight: "10px" }}>
                           {startOfTheWeek + 4 > startOfTheWeekEndOfMonth &&
-                          startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                            startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
                             ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
                             : startOfTheWeek + 4}
                         </span>
@@ -4075,7 +4090,7 @@ export default function ClinicVisit() {
                             currentYear,
                             monthIndex,
                             startOfTheWeek + 4 > startOfTheWeekEndOfMonth &&
-                            startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
+                              startOfTheWeek + 4 - startOfTheWeekEndOfMonth >= 1
                               ? startOfTheWeek + 4 - startOfTheWeekEndOfMonth
                               : startOfTheWeek + 4
                           )
@@ -4086,7 +4101,7 @@ export default function ClinicVisit() {
                         FRI
                         <span style={{ float: "right", marginRight: "10px" }}>
                           {startOfTheWeek + 5 > startOfTheWeekEndOfMonth &&
-                          startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
+                            startOfTheWeek + 5 - startOfTheWeekEndOfMonth >= 1
                             ? startOfTheWeek + 5 - startOfTheWeekEndOfMonth
                             : startOfTheWeek + 5}
                         </span>
@@ -4115,7 +4130,7 @@ export default function ClinicVisit() {
                         SAT
                         <span style={{ float: "right", marginRight: "10px" }}>
                           {startOfTheWeek + 6 > startOfTheWeekEndOfMonth &&
-                          startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
+                            startOfTheWeek + 6 - startOfTheWeekEndOfMonth >= 1
                             ? startOfTheWeek + 6 - startOfTheWeekEndOfMonth
                             : startOfTheWeek + 6}
                         </span>
@@ -4153,7 +4168,7 @@ export default function ClinicVisit() {
                         sx={{ minWidth: 650 }}
                         size="small"
                         aria-label="a dense table"
-                        // className='table-striped'
+                      // className='table-striped'
                       >
                         <TableHead>
                           <TableRow>
@@ -4195,9 +4210,9 @@ export default function ClinicVisit() {
                         <TableBody>
                           {(rowsPerPage > 0
                             ? filterDataWithDate.slice(
-                                page * rowsPerPage,
-                                page * rowsPerPage + rowsPerPage
-                              )
+                              page * rowsPerPage,
+                              page * rowsPerPage + rowsPerPage
+                            )
                             : filterDataWithDate
                           ).map((pt) => (
                             <StyledTableRow
