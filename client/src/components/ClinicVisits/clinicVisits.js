@@ -20,6 +20,7 @@ import {
   isSaturday,
   isSunday,
   isWeekend,
+  parseISO,
 } from "date-fns";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DatePicker from "react-datepicker";
@@ -1394,14 +1395,39 @@ export default function ClinicVisit() {
   //#region for pulling the exceptions based on selected provider
   const [staffExceptions, setStaffExceptions] = useState([]);
   //code to filter staffExceptions based on selected provider
+  const startOfMonthCurrentSelectedDate = format(startOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
   const exceptionMD = staffExceptions.filter(
-    (doc) => doc.provider === selectExceptionMD
+    (doc) => doc.provider === selectExceptionMD && doc.startDate >= startOfMonthCurrentSelectedDate //format(new Date(), "yyyy-MM-dd")
   ); // && (getMonth(new Date(doc.startDate)) + 1  >= getMonth(new Date(dateSelected)) + 1 && getMonth(new Date(doc.endDate)) + 1 <= getMonth(new Date(dateSelected))))
   // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
   // const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1;
   // const getDatesInRange = (min, max) => Array((max-min)/86400000).fill(0).map((_, i) => new Date((new Date()).setDate(min.getDate() + i)))
+
+  console.log("startOfMonthCurrentSelectedDate", startOfMonthCurrentSelectedDate);
   //code to create array of dates between start and end date
-  const exceptionDatesArray = exceptionMD.map((a) => a.startDate);
+  // const exceptionDatesArray = exceptionMD.map((a) => a.startDate);
+  const exceptionStartDate = exceptionMD.map((a) => a.startDate);
+  const exceptionEndDate = exceptionMD.map((a) => a.endDate);
+  console.log("exceptionStartDate", exceptionStartDate)
+
+
+  // const startDate = format(new Date(exceptionStartDate), "yyyy-MM-dd");
+  const startDate = parseISO(exceptionStartDate[0], "yyyy-MM-dd", new Date());
+
+  const endDate = parseISO(exceptionEndDate[0], "yyyy-MM-dd", new Date());
+
+  const exceptionDatesArray = Array.from({ length: (endDate - startDate) / (1000 * 60 * 60 * 24) + 1 }, (_, i) => {
+    const d = new Date(startDate);
+    d.setDate(startDate.getDate() + i);
+    return format(new Date(d), "yyyy-MM-dd");
+  });
+  console.log(startDate, endDate)
+  console.log(exceptionDatesArray);
+
+  // const arrayLength = exceptionDatesArray.length;
+  // const exceptionDays = new Array(7).fill(startOfWeek).map(
+  //   (day, idx) => day.add(idx, "day").format("dddd, MMMM D YYYY")
+  // );
   console.log("exceptionDatesArray", exceptionDatesArray);
 
 
@@ -1455,13 +1481,13 @@ export default function ClinicVisit() {
     //   dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd
     //     ? true
     //     : false;
-    // const includedInExceptionDatesArray =
-    // exceptionDatesArray.includes(datetime);
+    const includedInExceptionDatesArray =
+      exceptionDatesArray.includes(datetime);
     // const isException =
     // isDayException &&
     // includedInExceptionDatesArray ? true : false;
     // isExcept console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
-    return isException;
+    return includedInExceptionDatesArray;
   }
 
   useEffect(() => {
@@ -1713,7 +1739,7 @@ export default function ClinicVisit() {
     "yyyy-MM-dd"
   );
   console.log("MonthDayDate26", MonthDayDate26);
-  console.log("included?", exceptionDatesArray.includes(MonthDayDate26));
+  console.log("included?", exceptionDatesArray.includes(MonthDayDate26), isException(MonthDayDate26));
   const MonthDayDate27 = format(
     new Date(
       currentYear,
@@ -2173,7 +2199,7 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate1) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate1), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate1), 1)) ? "white" : isException(MonthDayDate1) ? "#ffdbe6" : isScheduled(MonthDayDate1) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2225,7 +2251,9 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate2) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate2), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate2) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate2), 1)) ? "white" : "white",
+                        // backgroundColor: isException(MonthDayDate2) ? "#ffdbe6" : isWeekend(addDays(new Date(MonthDayDate2), 1)) ? "white" : isScheduled(MonthDayDate2) ? "#ebfcec" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate2), 1)) ? "white" : isException(MonthDayDate2) ? "#ffdbe6" : isScheduled(MonthDayDate2) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2277,7 +2305,9 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate3) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate3), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate3) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate3), 1)) ? "white" : "white",
+                        // backgroundColor: isException(MonthDayDate3) ? "#ffdbe6" : isWeekend(addDays(new Date(MonthDayDate3), 1)) ? "white" : isScheduled(MonthDayDate3) ? "#ebfcec" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate3), 1)) ? "white" : isException(MonthDayDate3) ? "#ffdbe6" : isScheduled(MonthDayDate3) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2329,7 +2359,9 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate4) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate4), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate4) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate4), 1)) ? "white" : "white",
+                        // backgroundColor: isException(MonthDayDate4) ? "#ffdbe6" : isWeekend(addDays(new Date(MonthDayDate4), 1)) ? "white" : isScheduled(MonthDayDate4) ? "#ebfcec" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate4), 1)) ? "white" : isException(MonthDayDate4) ? "#ffdbe6" : isScheduled(MonthDayDate4) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2381,7 +2413,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate5) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate5), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate5) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate5), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate5), 1)) ? "white" : isException(MonthDayDate5) ? "#ffdbe6" : isScheduled(MonthDayDate5) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2433,7 +2466,9 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate6) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate6), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate6) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate6), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate6), 1)) ? "white" : isException(MonthDayDate6) ? "#ffdbe6" : isScheduled(MonthDayDate6) ? "#ebfcec" : "white",
+
                       }}
                     >
                       <div
@@ -2485,7 +2520,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate7) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate7), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate7) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate7), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate7), 1)) ? "white" : isException(MonthDayDate7) ? "#ffdbe6" : isScheduled(MonthDayDate7) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2537,7 +2573,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate8) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate8), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate8) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate8), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate8), 1)) ? "white" : isException(MonthDayDate8) ? "#ffdbe6" : isScheduled(MonthDayDate8) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2589,7 +2626,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate9) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate9), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate9) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate9), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate9), 1)) ? "white" : isException(MonthDayDate9) ? "#ffdbe6" : isScheduled(MonthDayDate9) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2641,7 +2679,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate10) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate10), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate10) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate10), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate10), 1)) ? "white" : isException(MonthDayDate10) ? "#ffdbe6" : isScheduled(MonthDayDate10) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2694,7 +2733,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate11) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate11), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate11) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate11), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate11), 1)) ? "white" : isException(MonthDayDate11) ? "#ffdbe6" : isScheduled(MonthDayDate11) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2750,7 +2790,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate12) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate12), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate12) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate12), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate12), 1)) ? "white" : isException(MonthDayDate12) ? "#ffdbe6" : isScheduled(MonthDayDate12) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2806,7 +2847,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate13) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate13), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate13) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate13), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate13), 1)) ? "white" : isException(MonthDayDate13) ? "#ffdbe6" : isScheduled(MonthDayDate13) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2862,7 +2904,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate14) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate14), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate14) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate14), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate14), 1)) ? "white" : isException(MonthDayDate14) ? "#ffdbe6" : isScheduled(MonthDayDate14) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2918,7 +2961,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate15) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate15), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate15) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate15), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate15), 1)) ? "white" : isException(MonthDayDate15) ? "#ffdbe6" : isScheduled(MonthDayDate15) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -2974,7 +3018,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate16) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate16), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate16) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate16), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate16), 1)) ? "white" : isException(MonthDayDate16) ? "#ffdbe6" : isScheduled(MonthDayDate16) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3030,7 +3075,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate17) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate17), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate17) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate17), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate17), 1)) ? "white" : isException(MonthDayDate17) ? "#ffdbe6" : isScheduled(MonthDayDate17) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3086,7 +3132,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate18) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate18), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate18) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate18), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate18), 1)) ? "white" : isException(MonthDayDate18) ? "#ffdbe6" : isScheduled(MonthDayDate18) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3142,7 +3189,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate19) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate19), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate19) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate19), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate19), 1)) ? "white" : isException(MonthDayDate19) ? "#ffdbe6" : isScheduled(MonthDayDate19) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3198,7 +3246,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate20) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate20), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate20) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate20), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate20), 1)) ? "white" : isException(MonthDayDate20) ? "#ffdbe6" : isScheduled(MonthDayDate20) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3254,7 +3303,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate21) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate21), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate21) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate21), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate21), 1)) ? "white" : isException(MonthDayDate21) ? "#ffdbe6" : isScheduled(MonthDayDate21) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3310,7 +3360,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate22) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate22), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate22) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate22), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate22), 1)) ? "white" : isException(MonthDayDate22) ? "#ffdbe6" : isScheduled(MonthDayDate22) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3366,7 +3417,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate23) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate23), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate23) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate23), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate23), 1)) ? "white" : isException(MonthDayDate23) ? "#ffdbe6" : isScheduled(MonthDayDate23) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3422,7 +3474,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate24) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate24), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate24) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate24), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate24), 1)) ? "white" : isException(MonthDayDate24) ? "#ffdbe6" : isScheduled(MonthDayDate24) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3478,7 +3531,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate25) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate25), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate25) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate25), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate25), 1)) ? "white" : isException(MonthDayDate25) ? "#ffdbe6" : isScheduled(MonthDayDate25) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3535,7 +3589,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate26) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate26), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate26) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate26), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate26), 1)) ? "white" : isException(MonthDayDate26) ? "#ffdbe6" : isScheduled(MonthDayDate26) ? "#ebfcec" : "white",
                         // ? isWeekend(addDays(new Date(MonthDayDate26), 1)) ||
                         //   isException(MonthDayDate26)
                         //   ? "#ffdbe6"
@@ -3598,7 +3653,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate27) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate27), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate27) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate27), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate27), 1)) ? "white" : isException(MonthDayDate27) ? "#ffdbe6" : isScheduled(MonthDayDate27) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3654,7 +3710,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate28) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate28), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate28) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate28), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate28), 1)) ? "white" : isException(MonthDayDate28) ? "#ffdbe6" : isScheduled(MonthDayDate28) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3714,7 +3771,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate29) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate29), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate29) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate29), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate29), 1)) ? "white" : isException(MonthDayDate29) ? "#ffdbe6" : isScheduled(MonthDayDate29) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3774,7 +3832,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate30) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate30), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate30) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate30), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate30), 1)) ? "white" : isException(MonthDayDate30) ? "#ffdbe6" : isScheduled(MonthDayDate30) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
@@ -3834,7 +3893,8 @@ export default function ClinicVisit() {
                         //     ? "#ffdbe6"
                         //     : "#ebfcec"
                         //   : "white",
-                        backgroundColor: isScheduled(MonthDayDate31) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate31), 1)) ? "white" : "white",
+                        // backgroundColor: isScheduled(MonthDayDate31) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate31), 1)) ? "white" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate31), 1)) ? "white" : isException(MonthDayDate31) ? "#ffdbe6" : isScheduled(MonthDayDate31) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
