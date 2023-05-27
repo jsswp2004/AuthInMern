@@ -152,6 +152,7 @@ export default function ClinicVisit() {
   //#region base date values for calendar
   const [showDateValue, setShowDateValue] = useState(new Date())
   const dateSelected = format(showDateValue, 'yyyy-MM-dd')
+  // console.log(format(showDateValue, 'yyyy-MM-dd'), dateSelected)
   let newdate = new Date(showDateValue)
   let monthIndex = newdate.getMonth()
   let monthName = monthNames[monthIndex].value
@@ -1387,10 +1388,13 @@ export default function ClinicVisit() {
   //#endregion
   //#region for pulling the exceptions based on selected provider 
   const [staffExceptions, setStaffExceptions] = useState([])
-  const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD) //&& doc.startDate >= selectedDate && doc.endDate >= selectedDate)
+  const exceptionMD = staffExceptions.filter((doc) => doc.provider === selectExceptionMD) // && (getMonth(new Date(doc.startDate)) + 1  >= getMonth(new Date(dateSelected)) + 1 && getMonth(new Date(doc.endDate)) + 1 <= getMonth(new Date(dateSelected))))
   // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
+const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1
+// const getDatesInRange = (min, max) => Array((max-min)/86400000).fill(0).map((_, i) => new Date((new Date()).setDate(min.getDate() + i)))
 
-  console.log('exceptionMD', exceptionMD, selectedDate)
+  console.log('month', exceptionMonthOfDate)
+  console.log('staffExceptions', staffExceptions)
   // const {
   //   exceptionMon: exceptionMons,
   //   exceptionTues: exceptionTue,
@@ -1411,7 +1415,7 @@ export default function ClinicVisit() {
   // console.log('exceptionMon', exceptionMons, exceptionTue, exceptionWeds, exceptionThur, exceptionFris)
   const exceptionValue = [exceptionMons, exceptionTue, exceptionWeds, exceptionThur, exceptionFris]
   console.log('exceptionValue', exceptionValue.includes('Mon') ? true : false, exceptionValue)
-
+  // console.log(getDatesInRange(new Date(selectedExceptionMDStart), new Date(selectedExceptionMDEnd)))
   // console.log('exceptions', exceptionMD[0])
   // console.log('exceptions', exceptionMD.includes(exceptionMons) ? true : false)
   function isException(dateItem) {
@@ -2626,7 +2630,7 @@ export default function ClinicVisit() {
                         </span>
                       </div>
                       {visitListMonthlyDay26()}
-                      <span>{isException(MonthDayDate26)}</span>
+                      
                     </div>
 
                     <div className="monthDayTitleChild"
