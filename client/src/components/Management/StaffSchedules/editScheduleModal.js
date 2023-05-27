@@ -132,7 +132,7 @@ function EditSchedule(props) {
     setIsWednesdayChecked(!isWednesdayChecked)
   }
   function toggleThursday() {
-    scheduledThurs === 'Thurs' ? setScheduleDay4('') : setScheduleDay4('Thurs')
+    scheduledThurs === 'Thurs' ? setScheduleDay4('') : setScheduleDay4('Thu')
     setIsThursdayChecked(!isThursdayChecked)
   }
   function toggleFriday() {
