@@ -1399,8 +1399,9 @@ export default function ClinicVisit() {
   // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
   const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1;
   // const getDatesInRange = (min, max) => Array((max-min)/86400000).fill(0).map((_, i) => new Date((new Date()).setDate(min.getDate() + i)))
-
-  console.log("month", exceptionMonthOfDate);
+  const exceptionDatesArray = exceptionMD.map((a) => a.startDate);
+  // console.log("exceptionDatesArray", exceptionDatesArray);
+  // console.log("month", exceptionMonthOfDate);
 
   // const {
   //   exceptionMon: exceptionMons,
@@ -1418,24 +1419,24 @@ export default function ClinicVisit() {
     exceptionFri: exceptionFris,
     startDate: selectedExceptionMDStart,
     endDate: selectedExceptionMDEnd,
-  } = exceptionMD; //[1] === undefined ? "Test User" : exceptionMD[1];
-  console.log(
-    "exceptionMD",
-    selectedExceptionMDStart //startDate //.findLast((doc) => doc.provider === selectExceptionMD)
-  );
+  } = exceptionMD[1] === undefined ? "Test User" : exceptionMD[1];
+  // console.log(
+  //   "exceptionDatesArray",
+  //   exceptionDatesArray.includes(selectedExceptionMDStart) //startDate //.findLast((doc) => doc.provider === selectExceptionMD)
+  // );
   // console.log('exceptionMon', exceptionMons, exceptionTue, exceptionWeds, exceptionThur, exceptionFris)
-  const exceptionValue = [
-    exceptionMons,
-    exceptionTue,
-    exceptionWeds,
-    exceptionThur,
-    exceptionFris,
-  ];
-  console.log(
-    "exceptionValue",
-    exceptionValue.includes("Mon") ? true : false,
-    exceptionValue
-  );
+  // const exceptionValue = [
+  //   exceptionMons,
+  //   exceptionTue,
+  //   exceptionWeds,
+  //   exceptionThur,
+  //   exceptionFris,
+  // ];
+  // console.log(
+  //   "exceptionValue",
+  //   exceptionValue.includes("Mon") ? true : false,
+  //   exceptionValue
+  // );
   // console.log(getDatesInRange(new Date(selectedExceptionMDStart), new Date(selectedExceptionMDEnd)))
   // console.log('exceptions', exceptionMD[0])
   // console.log('exceptions', exceptionMD.includes(exceptionMons) ? true : false)
@@ -1448,12 +1449,16 @@ export default function ClinicVisit() {
       exceptionFris === format(addDays(new Date(dateItem), 1), "iii")
         ? true
         : false;
-    const isExcept =
-      dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd
-        ? true
-        : false;
-    const isException = isDayException && isExcept ? true : false;
-    // console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
+    // const isExcept =
+    //   dateItem >= selectedExceptionMDStart && dateItem <= selectedExceptionMDEnd
+    //     ? true
+    //     : false;
+    const includedInExceptionDatesArray = exceptionDatesArray.includes(
+      selectedExceptionMDStart
+    );
+    const isException =
+      isDayException && includedInExceptionDatesArray ? true : false;
+    // isExcept console.log(isDayException, exceptionMons === format(addDays(new Date(dateItem), 1), 'iii'), exceptionTue === format(addDays(new Date(dateItem), 1), 'iii'), exceptionWeds === format(addDays(new Date(dateItem), 1), 'iii'), exceptionThur === format(addDays(new Date(dateItem), 1), 'iii'), exceptionFris === format(addDays(new Date(dateItem), 1), 'iii'))
     return isException;
   }
 
