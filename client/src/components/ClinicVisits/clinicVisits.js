@@ -1421,8 +1421,8 @@ export default function ClinicVisit() {
     d.setDate(startDate.getDate() + i);
     return format(new Date(d), "yyyy-MM-dd");
   });
-  console.log(startDate, endDate)
-  console.log(exceptionDatesArray);
+  // console.log(startDate, endDate)
+  // console.log(exceptionDatesArray);
 
   // const arrayLength = exceptionDatesArray.length;
   // const exceptionDays = new Array(7).fill(startOfWeek).map(
@@ -1738,8 +1738,8 @@ export default function ClinicVisit() {
     ),
     "yyyy-MM-dd"
   );
-  console.log("MonthDayDate26", MonthDayDate26);
-  console.log("included?", exceptionDatesArray.includes(MonthDayDate26), isException(MonthDayDate26));
+  // console.log("MonthDayDate26", MonthDayDate26);
+  // console.log("included?", exceptionDatesArray.includes(MonthDayDate26), isException(MonthDayDate26));
   const MonthDayDate27 = format(
     new Date(
       currentYear,
