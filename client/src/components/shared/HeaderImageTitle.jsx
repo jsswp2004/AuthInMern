@@ -1,7 +1,9 @@
 import React from 'react'
 import { FirstNameContext } from '../../App'
 
-import logo from './images/logoPOWER.png'
+// import logo from './images/logoPOWER.png'
+import logo from './images/logoPOWER2.jpg'
+
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 // import { UserContext } from '../contexts/user.context'

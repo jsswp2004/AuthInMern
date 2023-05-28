@@ -1,5 +1,6 @@
 import React from 'react'
-import logo from './images/logoPOWER.png'
+// import logo from './images/logoPOWER.png'
+import logo from './images/logoPOWER2.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 function HeaderImageMain() {
 

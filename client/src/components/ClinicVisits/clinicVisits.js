@@ -1965,7 +1965,7 @@ export default function ClinicVisit() {
 
   // console.log('checkIn', checkIn, 'checkOut', checkOut, checkInValue)
   //#endregion
-
+  // console.log(visit)
   return (
     <div className="grid_containerx">
       {/* style={{ display: 'flex', flexDirection: 'column' }} 
@@ -2193,12 +2193,6 @@ export default function ClinicVisit() {
                           ? "none"
                           : "auto",
                         gridColumnStart: startOfTheMonthDayNumber + 1,
-                        // backgroundColor: isScheduled(MonthDayDate1)
-                        //   ? isWeekend(addDays(new Date(MonthDayDate1), 1)) ||
-                        //     isException(MonthDayDate1)
-                        //     ? "#ffdbe6"
-                        //     : "#ebfcec"
-                        //   : "white",
                         backgroundColor: isWeekend(addDays(new Date(MonthDayDate1), 1)) ? "white" : isException(MonthDayDate1) ? "#ffdbe6" : isScheduled(MonthDayDate1) ? "#ebfcec" : "white",
                       }}
                     >
@@ -2235,7 +2229,8 @@ export default function ClinicVisit() {
                           </div>
                         </span>
                       </div>
-                      <div>{visitListMonthlyDay1()}</div>
+                      {/* <div style={{ display: selectExceptionMD === visit.provider ? 'inline' : 'none' }}>{visitListMonthlyDay1()}</div> */}
+                      {visitListMonthlyDay1()}
                     </div>
                     <div
                       className="monthDayTitleChild"
