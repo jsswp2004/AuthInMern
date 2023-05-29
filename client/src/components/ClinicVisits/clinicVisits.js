@@ -491,6 +491,7 @@ export default function ClinicVisit() {
   const visitMonthlyDay1 = visits.filter((el) => {
     return el.visitDate.toString().toLowerCase().includes(monthlyDay);
   });
+  console.log(visitMonthlyDay1)
 
   function visitListMonthlyDay1() {
     return [...visitMonthlyDay1]
@@ -1403,12 +1404,12 @@ export default function ClinicVisit() {
   // const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1;
   // const getDatesInRange = (min, max) => Array((max-min)/86400000).fill(0).map((_, i) => new Date((new Date()).setDate(min.getDate() + i)))
 
-  console.log("startOfMonthCurrentSelectedDate", startOfMonthCurrentSelectedDate);
+  // console.log("startOfMonthCurrentSelectedDate", startOfMonthCurrentSelectedDate);
   //code to create array of dates between start and end date
   // const exceptionDatesArray = exceptionMD.map((a) => a.startDate);
   const exceptionStartDate = exceptionMD.map((a) => a.startDate);
   const exceptionEndDate = exceptionMD.map((a) => a.endDate);
-  console.log("exceptionStartDate", exceptionStartDate)
+  // console.log("exceptionStartDate", exceptionStartDate)
 
 
   // const startDate = format(new Date(exceptionStartDate), "yyyy-MM-dd");
@@ -1428,7 +1429,7 @@ export default function ClinicVisit() {
   // const exceptionDays = new Array(7).fill(startOfWeek).map(
   //   (day, idx) => day.add(idx, "day").format("dddd, MMMM D YYYY")
   // );
-  console.log("exceptionDatesArray", exceptionDatesArray);
+  // console.log("exceptionDatesArray", exceptionDatesArray);
 
 
   // const {
@@ -1439,15 +1440,15 @@ export default function ClinicVisit() {
   //   exceptionFri: exceptionFris,
   //   startDate: selectedExceptionMDStart,
   //   endDate: selectedExceptionMDEnd } = exceptionMD[1] === undefined ? 'Test User' : exceptionMD[1]
-  const {
-    exceptionMon: exceptionMons,
-    exceptionTues: exceptionTue,
-    exceptionWed: exceptionWeds,
-    exceptionThurs: exceptionThur,
-    exceptionFri: exceptionFris,
-    startDate: selectedExceptionMDStart,
-    endDate: selectedExceptionMDEnd,
-  } = exceptionMD[1] === undefined ? "Test User" : exceptionMD[1];
+  // const {
+  //   exceptionMon: exceptionMons,
+  //   exceptionTues: exceptionTue,
+  //   exceptionWed: exceptionWeds,
+  //   exceptionThurs: exceptionThur,
+  //   exceptionFri: exceptionFris,
+  //   startDate: selectedExceptionMDStart,
+  //   endDate: selectedExceptionMDEnd,
+  // } = exceptionMD[1] === undefined ? "Test User" : exceptionMD[1];
   // console.log(
   //   "exceptionDatesArray",
   //   exceptionDatesArray.includes(selectedExceptionMDStart) //startDate //.findLast((doc) => doc.provider === selectExceptionMD)
