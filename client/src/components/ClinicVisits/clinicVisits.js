@@ -344,12 +344,12 @@ export default function ClinicVisit() {
         size="lg"
         centered
       >
-        {/* <Modal.Header onClick={() => setNewPatient(true)}> */}
-        {/* <Modal.Title>
+        <Modal.Header onClick={() => setNewPatient(true)}>
+          {/* <Modal.Title>
             Add a quick visit
 
           </Modal.Title> */}
-        {/* 
+          {/* 
           <Link
             to={`/patientlist`} className="btn btn-secondary addVisitModalBtn "
           >
@@ -359,8 +359,10 @@ export default function ClinicVisit() {
               title="Search patient"
             /> Search Patient
           </Link> */}
-
-        {/* </Modal.Header> */}
+          <Button style={{ float: 'right' }} variant="secondary" onClick={handleMonthlyClose}>
+            Close
+          </Button>
+        </Modal.Header>
         <Modal.Body style={{ display: newPatient === true ? "" : "none" }}>
           <div
             style={{
@@ -376,6 +378,9 @@ export default function ClinicVisit() {
               provider={provider}
             // hourOfVisit={hourOfVisit}
             />
+            {/* <Button variant="secondary" onClick={handleMonthlyClose}>
+              Close
+            </Button> */}
           </div>
           {/*  */}
         </Modal.Body>
@@ -383,9 +388,9 @@ export default function ClinicVisit() {
           {/* <span style={{ textAlign: 'center' }}>
             PLEASE MAKE SURE TO REGISTER CLIENT AFTER ADDING QUICK VISIT TO SCHEDULE.
           </span> */}
-          <Button variant="secondary" onClick={handleMonthlyClose}>
+          {/* <Button variant="secondary" onClick={handleMonthlyClose}>
             Close
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     ) : null;
