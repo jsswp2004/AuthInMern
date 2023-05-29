@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect, createContext, useRef } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
@@ -11,8 +11,9 @@ import StripeCheckoutButton from '../Stripe/stripeButton';
 export const UserContext = createContext()
 
 const Signup = () => {
+
+
   //Define the state
-  // const [userID, setUserID] = useState('')
   const [rolex, setRoles] = useState([])
   const roles = rolex.filter((role) => {
     return role.name.toString().toLowerCase()
@@ -43,6 +44,7 @@ const Signup = () => {
     facilityID: 'Generic Clinic',
   })
 
+
   const [error, setError] = useState('')
 
   const handleChange = (e) => {
@@ -50,6 +52,11 @@ const Signup = () => {
 
   }
 
+  const { email } = data
+  const emailRef = useRef()
+  useEffect(() => {
+    emailRef.current = email
+  }, [email])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -88,108 +95,114 @@ const Signup = () => {
               </Link>
             </div>
             <div className={styles.right}>
-              <form className={styles.form_container} onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '30px' }} >
-                  <BodyLogo />
-                </div>
-                <h1>Create Account</h1>
+              <div style={{ marginBottom: '5px' }} >
+                <BodyLogo />
+              </div>
+              <h5>Create Account</h5>
+              <div style={{ display: 'flex' }}>
 
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  name="firstName"
-                  onChange={handleChange}
-                  value={data.firstName}
-                  required
-                  className={styles.input}
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  name="lastName"
-                  onChange={handleChange}
-                  value={data.lastName}
-                  required
-                  className={styles.input}
-                />
-                <input
-                  display="none"
-                  type="text"
-                  placeholder="Full Name (optional)"
-                  name="name"
-                  defaultValue={data.firstName + '' + data.lastName}
-                  value={data.name}
-                  onChange={handleChange}
-                  className={styles.input}
-                />
-                <select
-                  key={rolex.role}
-                  placeholder="Select Role"
-                  name="role"
-                  className="form-control select"
-                  value={data.role}
-                  onChange={handleChange}
-                >
-                  <option key="0" value="">
-                    Select Role
-                  </option>
-                  {userRoles.map((role) => (
-                    <option key={role._id} value={role.name}>
-                      {role}
+                <form className={styles.form_container} onSubmit={handleSubmit}>
+
+
+
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    name="firstName"
+                    onChange={handleChange}
+                    value={data.firstName}
+                    required
+                    className={styles.input}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    name="lastName"
+                    onChange={handleChange}
+                    value={data.lastName}
+                    required
+                    className={styles.input}
+                  />
+                  <input
+                    display="none"
+                    type="text"
+                    placeholder="Full Name (optional)"
+                    name="name"
+                    defaultValue={data.firstName + '' + data.lastName}
+                    value={data.name}
+                    onChange={handleChange}
+                    className={styles.input}
+                  />
+                  <select
+                    key={rolex.role}
+                    placeholder="Select Role"
+                    name="role"
+                    className="form-control select"
+                    value={data.role}
+                    onChange={handleChange}
+                  >
+                    <option key="0" value="">
+                      Select Role
                     </option>
-                  ))}
-                </select>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  onChange={handleChange}
-                  value={data.email}
-                  required
-                  className={styles.input}
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  onChange={handleChange}
-                  value={data.password}
-                  required
-                  className={styles.input}
-                />
-                <input
-                  type="text"
-                  name="dateAdded"
-                  onChange={handleChange}
-                  value={dateAdded}
-                  required
-                  readOnly
-                  className={styles.input}
-                />
-                <input
-                  type="text"
-                  // placeholder="Role"
-                  name="facilityID"
-                  onChange={handleChange}
-                  value={data.facilityID}
-                  // required
-                  className={styles.input}
-                />
-                {error && <div className={styles.error_msg}>{error}</div>}
-                <button type="submit" className={styles.green_btn}>
-                  Sign Up
-                </button>
-              </form>
-              <div className={styles.form_container}>
-                <header className="App-header">
-                  <h5>Make Stripe Payment @ Freaky Jolly</h5>
+                    {userRoles.map((role) => (
+                      <option key={role._id} value={role.name}>
+                        {role}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleChange}
+                    value={data.email}
+                    required
+                    className={styles.input}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    onChange={handleChange}
+                    value={data.password}
+                    required
+                    className={styles.input}
+                  />
+                  <input
+                    type="text"
+                    name="dateAdded"
+                    onChange={handleChange}
+                    value={dateAdded}
+                    required
+                    readOnly
+                    className={styles.input}
+                  />
+                  <input
+                    type="text"
+                    // placeholder="Role"
+                    name="facilityID"
+                    onChange={handleChange}
+                    value={data.facilityID}
+                    // required
+                    className={styles.input}
+                  />
+                  {error && <div className={styles.error_msg}>{error}</div>}
+                  <button type="submit" className={styles.green_btn}>
+                    Sign Up
+                  </button>
+                </form>
+                <div className={styles.form_container}>
+                  {/* <header className="App-header"> */}
+                  <h5 style={{ textAlign: 'center' }}>Make Stripe Payment to POEHR, Inc.</h5>
                   <p>
                     Pay Total of $ {totalPrice}
                   </p>
                   <p>
-                    <StripeCheckoutButton price={totalPrice} />
+                    <StripeCheckoutButton email={data.email} price={totalPrice} />
                   </p>
-                </header></div>
+                  {/* </header> */}
+                </div>
+              </div>
             </div>
           </div>
 

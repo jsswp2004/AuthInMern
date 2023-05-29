@@ -1,6 +1,8 @@
 // stripe.button.component.jsx
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import logo from '../shared/images/logoPOWER3.png'
+//'./images/logoPOWER3.png'
 
 const StripeCheckoutButton = ({ price }) => {
     const priceForStripe = price * 100;
@@ -14,10 +16,11 @@ const StripeCheckoutButton = ({ price }) => {
     return (
         <StripeCheckout
             label='Pay Now'
-            name='Freaky Jolly Co.'
+            name='POEHR, Inc.' // the pop-in header title
             billingAddress
             shippingAddress
-            image='https://www.freakyjolly.com/wp-content/uploads/2020/04/fj-logo.png'
+            // image='https://www.freakyjolly.com/wp-content/uploads/2020/04/fj-logo.png'
+            image={logo}
             description={`Your total is $${price}`}
             amount={priceForStripe}
             panelLabel='Pay Now'

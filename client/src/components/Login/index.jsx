@@ -5,6 +5,10 @@ import styles from './styles.module.css'
 import HeaderMain from '../shared/HeaderMain'
 import HeaderLogo from '../shared/HeaderLogo'
 import BodyLogo from '../shared/BodyLogo'
+// import BodyLogo from '../shared/images/logoPOWER3.png'
+// import BodyLogo from '../../components/shared/images/logoPOWER3.png'
+
+
 
 // export const UserContext = createContext();
 export const RoleContext = createContext();
