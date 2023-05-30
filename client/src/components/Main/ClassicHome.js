@@ -96,18 +96,29 @@ const ClassicHome = () => {
                     </b>
                     <div className="homeIntros-TextContainer2">
                         <p className="textInPage">
-                            Features real-time scheduling, automated reminders, patient
-                            self-scheduling, and reminder options with robust reporting
-                            capabilities to enhance operational efficiency and patient experience.
+                            Our system features real-time scheduling, automated reminders, and patient self-scheduling options. With robust reporting capabilities, it enhances both operational efficiency and the patient experience.
+                        </p>
+                        <br />
+                        <p className="textInPage">
+                            Getting started with POEHR Scheduling is as easy as 1-2-3.
+                            <br />
+                            <br />
+                            <span> First, register and create an account to start your 7-day free trial. After the trial period ends, you’ll automatically be enrolled in our basic subscription package, but you can change your subscription at any time. </span>
+                            <br />
+                            <br />
+                            <span> Second, add your patients to the system by easily uploading your existing data. </span>
+                            <br />
+                            <br />
+                            <span> Finally, schedule appointments with ease. It’s that simple!</span>
                         </p>
                     </div>
                     <div className="homeIntros-TextContainerBtns">
                         <button className='btn  btn-primary btnMaxWidth ' onClick={toSignup} >
                             Try for free
                         </button>
-                        <button className="btn btn-secondary btnMaxWidth" >
+                        {/* <button className="btn btn-secondary btnMaxWidth" >
                             See how it works
-                        </button>
+                        </button> */}
                     </div>
                     <div className="homeIntros-TextContainerTrusted">
                         <b >
@@ -213,16 +224,16 @@ const ClassicHome = () => {
                     <div className="joinCommunity-TextContainer2">
                         <div className="joinCommunityContainerText">
                             <div className="textInPageh6"><h4>Step 1</h4></div>
-                            <div className="textInPageh6">Create an account. You only need to provide your</div>
-                            <div className="textInPageh6">email address and choose a password.</div>
+                            <div className="textInPageh6">First, register and create an account to start your 7-day free trial. </div>
+                            <div className="textInPageh6">After the trial period ends, you’ll automatically be enrolled in our basic subscription package, but you can change your subscription at any time.</div>
 
                             <div className="textInPageh6"><h4>Step 2</h4></div>
                             <div className="textInPageh6">
-                                Set up your profile and provide a way for us to contact you.
+                                Second, add your patients to the system by easily uploading your existing data.
                             </div>
                             <div className="textInPageh6"><h4>Step 3</h4></div>
                             <div className="textInPageh6">
-                                Poof! you are now ready to schedule smart
+                                Finally, schedule appointments with ease. It’s that simple!
 
                             </div>
                             <div className="textInPageh6">
@@ -335,9 +346,17 @@ const ClassicHome = () => {
                     <div>
                         <b className="services-stylestyle3tagh5">Services</b>
                         <div className="service-stylestyle3taguis-3">Patient Management</div>
-                        <div className="service-stylestyle3taguis-2">Service 2</div>
-                        <div className="service-stylestyle3taguis-1">Service 3</div>
-                        <div className="service-stylestyle3taguis-">Service 4</div>
+                        <div className="service-stylestyle3taguis-2">Time Tracking</div>
+                        <div className="service-stylestyle3taguis-1">Retention Metrics</div>
+                        <div className="service-stylestyle3taguis-">Reports</div>
+                        <div className="service-stylestyle3taguis-">Email Integration</div>
+                        <div className="service-stylestyle3taguis-">SMS Reminders</div>
+                        <div className="service-stylestyle3taguis-">Reports</div>
+                        <div className="service-stylestyle3taguis-">Automated SMS and Email Reminders</div>
+                        <div className="service-stylestyle3taguis-">Real - time Collaboration Support</div>
+                        <div className="service-stylestyle3taguis-">Patient Self - scheduling Portal</div>
+                        <div className="service-stylestyle3taguis-">Process Analysis</div>
+                        <div className="service-stylestyle3taguis-">SLA Management</div>
                     </div>
                     <div>
                         <b className="products-stylestyle3tagh5">Products</b>
@@ -369,3 +388,4 @@ const ClassicHome = () => {
 };
 
 export default ClassicHome;
+
