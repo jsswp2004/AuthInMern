@@ -236,9 +236,9 @@ const ClassicHome = () => {
                                 Finally, schedule appointments with ease. It’s that simple!
 
                             </div>
-                            <div className="textInPageh6">
+                            {/* <div className="textInPageh6">
                                 with optimized operations
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -361,9 +361,9 @@ const ClassicHome = () => {
                     <div>
                         <b className="products-stylestyle3tagh5">Products</b>
                         <div className="product-stylestyle3taguis-3">POEHR Scheduling</div>
-                        <div className="product-stylestyle3taguis-2">Product 2</div>
-                        <div className="product-stylestyle3taguis-1">Product 3</div>
-                        <div className="product-stylestyle3taguis-">Product 4</div>
+                        <div className="product-stylestyle3taguis-2">POEHR Registration (Coming Soon)</div>
+                        {/* <div className="product-stylestyle3taguis-1">Product 3</div>
+                        <div className="product-stylestyle3taguis-">Product 4</div> */}
                     </div>
                     <div>
                         <b className="resources-stylestyle3tagh">Resources</b>
