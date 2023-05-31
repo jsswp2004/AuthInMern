@@ -1402,9 +1402,12 @@ export default function ClinicVisit() {
   const [staffExceptions, setStaffExceptions] = useState([]);
   //code to filter staffExceptions based on selected provider
   const startOfMonthCurrentSelectedDate = format(startOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
+  const endOfMonthCurrentSelectedDate = format(endOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
+
   const exceptionMD = staffExceptions.filter(
-    (doc) => doc.provider === selectExceptionMD && doc.startDate >= startOfMonthCurrentSelectedDate //format(new Date(), "yyyy-MM-dd")
-  ); // && (getMonth(new Date(doc.startDate)) + 1  >= getMonth(new Date(dateSelected)) + 1 && getMonth(new Date(doc.endDate)) + 1 <= getMonth(new Date(dateSelected))))
+    (doc) => doc.provider === selectExceptionMD && (doc.startDate >= startOfMonthCurrentSelectedDate)// && doc.startDate <= endOfMonthCurrentSelectedDate)  //format(new Date(), "yyyy-MM-dd")
+  );
+  // && (getMonth(new Date(doc.startDate)) + 1  >= getMonth(new Date(dateSelected)) + 1 && getMonth(new Date(doc.endDate)) + 1 <= getMonth(new Date(dateSelected))))
   // const exceptionMD = staffExceptions === [] ? 'Test User' : staffExceptions.filter((doc) => doc.provider === selectExceptionMD)
   // const exceptionMonthOfDate = getMonth(new Date(dateSelected)) + 1;
   // const getDatesInRange = (min, max) => Array((max-min)/86400000).fill(0).map((_, i) => new Date((new Date()).setDate(min.getDate() + i)))
@@ -1428,7 +1431,12 @@ export default function ClinicVisit() {
     return format(new Date(d), "yyyy-MM-dd");
   });
   // console.log(startDate, endDate)
-  // console.log(exceptionDatesArray);
+  console.log('exceptionStartDate', exceptionStartDate);
+  console.log('exceptionDatesArray', exceptionDatesArray);
+  console.log('exceptionMD', exceptionMD);
+  console.log('exceptionMD length', exceptionMD.length);
+
+
 
   // const arrayLength = exceptionDatesArray.length;
   // const exceptionDays = new Array(7).fill(startOfWeek).map(
