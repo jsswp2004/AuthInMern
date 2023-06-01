@@ -1414,7 +1414,11 @@ export default function ClinicVisit() {
 
   // console.log("startOfMonthCurrentSelectedDate", startOfMonthCurrentSelectedDate);
   //code to create array of dates between start and end date
-  // const exceptionDatesArray = exceptionMD.map((a) => a.startDate);
+  const exceptionFirstDayOfMonth = exceptionMD.map((a) => a.firstDayOfMonth);
+  console.log("exceptionFirstDayOfMonth", exceptionFirstDayOfMonth);
+  const exceptionTwelfthDayOfMonth = exceptionMD.map((a) => a.twelfthDayOfMonth);
+  console.log("exceptionTwelfthDayOfMonth", exceptionTwelfthDayOfMonth.includes('true'));
+  // const { firsDayOfMonth, lastDayOfMonth } = exceptionMD;
   const exceptionStartDate = exceptionMD.map((a) => a.startDate);
   const exceptionEndDate = exceptionMD.map((a) => a.endDate);
   // console.log("exceptionStartDate", exceptionStartDate)
@@ -1496,7 +1500,8 @@ export default function ClinicVisit() {
     //     ? true
     //     : false;
     const includedInExceptionDatesArray =
-      exceptionDatesArray.includes(datetime);
+      // exceptionDatesArray.includes(datetime);
+      exceptionTwelfthDayOfMonth.includes('true') ? 'true' : 'false';
     // const isException =
     // isDayException &&
     // includedInExceptionDatesArray ? true : false;
