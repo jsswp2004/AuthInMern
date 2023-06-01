@@ -1501,6 +1501,7 @@ export default function ClinicVisit() {
     //     : false;
     const includedInExceptionDatesArray =
       // exceptionDatesArray.includes(datetime);
+      // format(addDays(new Date(dateItem), 1), "dd") &&
       exceptionTwelfthDayOfMonth.includes('true') ? 'true' : 'false';
     // const isException =
     // isDayException &&
