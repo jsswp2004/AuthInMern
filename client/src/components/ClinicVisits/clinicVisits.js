@@ -1400,10 +1400,10 @@ export default function ClinicVisit() {
   //#endregion
   //#region for pulling the exceptions based on selected provider
   const [staffExceptions, setStaffExceptions] = useState([]);
-  //code to filter staffExceptions based on selected provider
+
   const startOfMonthCurrentSelectedDate = format(startOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
   const endOfMonthCurrentSelectedDate = format(endOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
-
+  //filter exceptions based on selected provider
   const exceptionMD = staffExceptions.filter(
     (doc) => doc.provider === selectExceptionMD && (doc.startDate >= startOfMonthCurrentSelectedDate)// && doc.startDate <= endOfMonthCurrentSelectedDate)  //format(new Date(), "yyyy-MM-dd")
   );
