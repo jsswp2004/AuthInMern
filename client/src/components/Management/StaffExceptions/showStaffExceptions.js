@@ -427,7 +427,7 @@ const ShowExceptionsList = () => {
                     <StyledTableCell align="left">AM End</StyledTableCell>
                     <StyledTableCell align="left">PM Start</StyledTableCell>
                     <StyledTableCell align="left">PM End</StyledTableCell>
-                    <StyledTableCell align="left">Exception Days</StyledTableCell>
+                    {/* <StyledTableCell align="left">Exception Days</StyledTableCell> */}
                     {/* <StyledTableCell align="left">Date Created</StyledTableCell> */}
                     <StyledTableCell align="left">Actions</StyledTableCell>
                   </TableRow>
@@ -464,13 +464,13 @@ const ShowExceptionsList = () => {
                       <StyledTableCell align="left">
                         {exception.pmEndTime}
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      {/* <StyledTableCell align="left">
                         {exception.exceptionMon + ' '}{' '}
                         {exception.exceptionTues + ' '}
                         {exception.exceptionWed + ' '}{' '}
                         {exception.exceptionThurs + ' '}
                         {exception.exceptionFri + ' '}
-                      </StyledTableCell>
+                      </StyledTableCell> */}
                       <StyledTableCell align="left" width='250px'>
                         <button className='btn btn-info  btn-sm'
                           onClick={handleEditShow}

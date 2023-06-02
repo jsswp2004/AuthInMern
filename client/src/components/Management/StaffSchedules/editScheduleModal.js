@@ -132,7 +132,7 @@ function EditSchedule(props) {
     setIsWednesdayChecked(!isWednesdayChecked)
   }
   function toggleThursday() {
-    scheduledThurs === 'Thurs' ? setScheduleDay4('') : setScheduleDay4('Thu')
+    scheduledThurs === 'Thu' ? setScheduleDay4('') : setScheduleDay4('Thu')
     setIsThursdayChecked(!isThursdayChecked)
   }
   function toggleFriday() {
@@ -298,7 +298,7 @@ function EditSchedule(props) {
                       <label className="scheduleCheckboxContainer">
                         Thursdays
                         <input
-                          Checked={scheduledThurs === 'Thurs' ? 'true' : 'false'}
+                          Checked={scheduledThurs === 'Thu' ? 'true' : 'false'}
                           id='Thu'
                           type="checkbox"
                           onClick={toggleThursday}
