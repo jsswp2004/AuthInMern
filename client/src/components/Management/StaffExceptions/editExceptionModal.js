@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import axios from 'axios'
 import { Hour } from '../../listDictionaries/listData/listDictionariesData'
 
@@ -263,6 +263,19 @@ function EditException(props) {
     })
 
   }
+  const { startDate, endDate } = exception
+  const startExceptionDate = parseISO(startDate, "yyyy-MM-dd", new Date());
+
+  const endExceptionDate = parseISO(endDate, "yyyy-MM-dd", new Date());
+
+  // console.log(startExceptionDate, endExceptionDate)
+  const exceptionDatesArray = Array.from({ length: (endExceptionDate - startExceptionDate) / (1000 * 60 * 60 * 24) + 1 }, (_, i) => {
+    const d = new Date(startExceptionDate);
+    d.setDate(startExceptionDate.getDate() + i);
+    return format(new Date(d), "dd");
+  });
+
+  console.log(exceptionDatesArray)
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -272,37 +285,37 @@ function EditException(props) {
       provider: exception.provider,
       startDate: exception.startDate,
       endDate: exception.endDate,
-      firstDayOfMonth: exception.firstDayOfMonth,
-      secondDayOfMonth: exception.secondDayOfMonth,
-      thirdDayOfMonth: exception.thirdDayOfMonth,
-      fourthDayOfMonth: exception.fourthDayOfMonth,
-      fifthDayOfMonth: exception.fifthDayOfMonth,
-      sixthDayOfMonth: exception.sixthDayOfMonth,
-      seventhDayOfMonth: exception.seventhDayOfMonth,
-      eighthDayOfMonth: exception.eighthDayOfMonth,
-      ninthDayOfMonth: exception.ninthDayOfMonth,
-      tenthDayOfMonth: exception.tenthDayOfMonth,
-      eleventhDayOfMonth: exception.eleventhDayOfMonth,
-      twelfthDayOfMonth: exception.twelfthDayOfMonth,
-      thirteenthDayOfMonth: exception.thirteenthDayOfMonth,
-      fourteenthDayOfMonth: exception.fourteenthDayOfMonth,
-      fifteenthDayOfMonth: exception.fifteenthDayOfMonth,
-      sixteenthDayOfMonth: exception.sixteenthDayOfMonth,
-      seventeenthDayOfMonth: exception.seventeenthDayOfMonth,
-      eighteenthDayOfMonth: exception.eighteenthDayOfMonth,
-      nineteenthDayOfMonth: exception.nineteenthDayOfMonth,
-      twentiethDayOfMonth: exception.twentiethDayOfMonth,
-      twentyFirstDayOfMonth: exception.twentyFirstDayOfMonth,
-      twentySecondDayOfMonth: exception.twentySecondDayOfMonth,
-      twentyThirdDayOfMonth: exception.twentyThirdDayOfMonth,
-      twentyFourthDayOfMonth: exception.twentyFourthDayOfMonth,
-      twentyFifthDayOfMonth: exception.twentyFifthDayOfMonth,
-      twentySixthDayOfMonth: exception.twentySixthDayOfMonth,
-      twentySeventhDayOfMonth: exception.twentySeventhDayOfMonth,
-      twentyEighthDayOfMonth: exception.twentyEighthDayOfMonth,
-      twentyNinthDayOfMonth: exception.twentyNinthDayOfMonth,
-      thirtiethDayOfMonth: exception.thirtiethDayOfMonth,
-      thirtyFirstDayOfMonth: exception.thirtyFirstDayOfMonth,
+      firstDayOfMonth: exceptionDatesArray.includes('01') ? 'true' : 'false',
+      secondDayOfMonth: exceptionDatesArray.includes('02') ? 'true' : 'false',
+      thirdDayOfMonth: exceptionDatesArray.includes('03') ? 'true' : 'false',
+      fourthDayOfMonth: exceptionDatesArray.includes('04') ? 'true' : 'false',
+      fifthDayOfMonth: exceptionDatesArray.includes('05') ? 'true' : 'false',
+      sixthDayOfMonth: exceptionDatesArray.includes('06') ? 'true' : 'false',
+      seventhDayOfMonth: exceptionDatesArray.includes('07') ? 'true' : 'false',
+      eighthDayOfMonth: exceptionDatesArray.includes('08') ? 'true' : 'false',
+      ninthDayOfMonth: exceptionDatesArray.includes('09') ? 'true' : 'false',
+      tenthDayOfMonth: exceptionDatesArray.includes('10') ? 'true' : 'false',
+      eleventhDayOfMonth: exceptionDatesArray.includes('11') ? 'true' : 'false',
+      twelfthDayOfMonth: exceptionDatesArray.includes('12') ? 'true' : 'false',
+      thirteenthDayOfMonth: exceptionDatesArray.includes('13') ? 'true' : 'false',
+      fourteenthDayOfMonth: exceptionDatesArray.includes('14') ? 'true' : 'false',
+      fifteenthDayOfMonth: exceptionDatesArray.includes('15') ? 'true' : 'false',
+      sixteenthDayOfMonth: exceptionDatesArray.includes('16') ? 'true' : 'false',
+      seventeenthDayOfMonth: exceptionDatesArray.includes('17') ? 'true' : 'false',
+      eighteenthDayOfMonth: exceptionDatesArray.includes('18') ? 'true' : 'false',
+      nineteenthDayOfMonth: exceptionDatesArray.includes('19') ? 'true' : 'false',
+      twentiethDayOfMonth: exceptionDatesArray.includes('20') ? 'true' : 'false',
+      twentyFirstDayOfMonth: exceptionDatesArray.includes('21') ? 'true' : 'false',
+      twentySecondDayOfMonth: exceptionDatesArray.includes('22') ? 'true' : 'false',
+      twentyThirdDayOfMonth: exceptionDatesArray.includes('23') ? 'true' : 'false',
+      twentyFourthDayOfMonth: exceptionDatesArray.includes('24') ? 'true' : 'false',
+      twentyFifthDayOfMonth: exceptionDatesArray.includes('25') ? 'true' : 'false',
+      twentySixthDayOfMonth: exceptionDatesArray.includes('26') ? 'true' : 'false',
+      twentySeventhDayOfMonth: exceptionDatesArray.includes('27') ? 'true' : 'false',
+      twentyEighthDayOfMonth: exceptionDatesArray.includes('28') ? 'true' : 'false',
+      twentyNinthDayOfMonth: exceptionDatesArray.includes('29') ? 'true' : 'false',
+      thirtiethDayOfMonth: exceptionDatesArray.includes('30') ? 'true' : 'false',
+      thirtyFirstDayOfMonth: exceptionDatesArray.includes('31') ? 'true' : 'false',
       amStartTime: exception.amStartTime,
       amEndTime: exception.amEndTime,
       pmStartTime: exception.pmStartTime,

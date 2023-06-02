@@ -3276,7 +3276,7 @@ export default function ClinicVisit() {
                         //     : "#ebfcec"
                         //   : "white",
                         // backgroundColor: isScheduled(MonthDayDate17) ? "#ebfcec" : isWeekend(addDays(new Date(MonthDayDate17), 1)) ? "white" : "white",
-                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate17), 1)) ? "white" : isException17()(MonthDayDate17) ? "#ffdbe6" : isScheduled(MonthDayDate17) ? "#ebfcec" : "white",
+                        backgroundColor: isWeekend(addDays(new Date(MonthDayDate17), 1)) ? "white" : isException17() ? "#ffdbe6" : isScheduled(MonthDayDate17) ? "#ebfcec" : "white",
                       }}
                     >
                       <div
