@@ -31,6 +31,37 @@ function EditException(props) {
       provider: 'Select Doctor',
       startDate: '',
       endDate: '',
+      firstDayOfMonth: '',
+      secondDayOfMonth: '',
+      thirdDayOfMonth: '',
+      fourthDayOfMonth: '',
+      fifthDayOfMonth: '',
+      sixthDayOfMonth: '',
+      seventhDayOfMonth: '',
+      eighthDayOfMonth: '',
+      ninthDayOfMonth: '',
+      tenthDayOfMonth: '',
+      eleventhDayOfMonth: '',
+      twelfthDayOfMonth: '',
+      thirteenthDayOfMonth: '',
+      fourteenthDayOfMonth: '',
+      fifteenthDayOfMonth: '',
+      sixteenthDayOfMonth: '',
+      seventeenthDayOfMonth: '',
+      eighteenthDayOfMonth: '',
+      nineteenthDayOfMonth: '',
+      twentiethDayOfMonth: '',
+      twentyFirstDayOfMonth: '',
+      twentySecondDayOfMonth: '',
+      twentyThirdDayOfMonth: '',
+      twentyFourthDayOfMonth: '',
+      twentyFifthDayOfMonth: '',
+      twentySixthDayOfMonth: '',
+      twentySeventhDayOfMonth: '',
+      twentyEighthDayOfMonth: '',
+      twentyNinthDayOfMonth: '',
+      thirtiethDayOfMonth: '',
+      thirtyFirstDayOfMonth: '',
       amStartTime: '',
       amEndTime: '',
       pmStartTime: '',
@@ -58,6 +89,37 @@ function EditException(props) {
           provider: res.data.provider,
           startDate: res.data.startDate,
           endDate: res.data.endDate,
+          firstDayOfMonth: res.data.firstDayOfMonth,
+          secondDayOfMonth: res.data.secondDayOfMonth,
+          thirdDayOfMonth: res.data.thirdDayOfMonth,
+          fourthDayOfMonth: res.data.fourthDayOfMonth,
+          fifthDayOfMonth: res.data.fifthDayOfMonth,
+          sixthDayOfMonth: res.data.sixthDayOfMonth,
+          seventhDayOfMonth: res.data.seventhDayOfMonth,
+          eighthDayOfMonth: res.data.eighthDayOfMonth,
+          ninthDayOfMonth: res.data.ninthDayOfMonth,
+          tenthDayOfMonth: res.data.tenthDayOfMonth,
+          eleventhDayOfMonth: res.data.eleventhDayOfMonth,
+          twelfthDayOfMonth: res.data.twelfthDayOfMonth,
+          thirteenthDayOfMonth: res.data.thirteenthDayOfMonth,
+          fourteenthDayOfMonth: res.data.fourteenthDayOfMonth,
+          fifteenthDayOfMonth: res.data.fifteenthDayOfMonth,
+          sixteenthDayOfMonth: res.data.sixteenthDayOfMonth,
+          seventeenthDayOfMonth: res.data.seventeenthDayOfMonth,
+          eighteenthDayOfMonth: res.data.eighteenthDayOfMonth,
+          nineteenthDayOfMonth: res.data.nineteenthDayOfMonth,
+          twentiethDayOfMonth: res.data.twentiethDayOfMonth,
+          twentyFirstDayOfMonth: res.data.twentyFirstDayOfMonth,
+          twentySecondDayOfMonth: res.data.twentySecondDayOfMonth,
+          twentyThirdDayOfMonth: res.data.twentyThirdDayOfMonth,
+          twentyFourthDayOfMonth: res.data.twentyFourthDayOfMonth,
+          twentyFifthDayOfMonth: res.data.twentyFifthDayOfMonth,
+          twentySixthDayOfMonth: res.data.twentySixthDayOfMonth,
+          twentySeventhDayOfMonth: res.data.twentySeventhDayOfMonth,
+          twentyEighthDayOfMonth: res.data.twentyEighthDayOfMonth,
+          twentyNinthDayOfMonth: res.data.twentyNinthDayOfMonth,
+          thirtiethDayOfMonth: res.data.thirtiethDayOfMonth,
+          thirtyFirstDayOfMonth: res.data.thirtyFirstDayOfMonth,
           amStartTime: res.data.amStartTime,
           amEndTime: res.data.amEndTime,
           pmStartTime: res.data.pmStartTime,
@@ -78,7 +140,7 @@ function EditException(props) {
   }, [DrID])
 
   const { exceptionMon, exceptionTues, exceptionWed, exceptionThurs, exceptionFri } = exception
-  console.log('exceptionMon', exceptionMon)
+  // console.log('exceptionMon', exceptionMon)
   //tracking previouys val;ue using useRef
   const prevExceptionMon = useRef()
   const prevExceptionTues = useRef()
@@ -155,6 +217,37 @@ function EditException(props) {
       provider: exception.provider,
       startDate: exception.startDate,
       endDate: exception.endDate,
+      firstDayOfMonth: exception.firstDayOfMonth,
+      secondDayOfMonth: exception.secondDayOfMonth,
+      thirdDayOfMonth: exception.thirdDayOfMonth,
+      fourthDayOfMonth: exception.fourthDayOfMonth,
+      fifthDayOfMonth: exception.fifthDayOfMonth,
+      sixthDayOfMonth: exception.sixthDayOfMonth,
+      seventhDayOfMonth: exception.seventhDayOfMonth,
+      eighthDayOfMonth: exception.eighthDayOfMonth,
+      ninthDayOfMonth: exception.ninthDayOfMonth,
+      tenthDayOfMonth: exception.tenthDayOfMonth,
+      eleventhDayOfMonth: exception.eleventhDayOfMonth,
+      twelfthDayOfMonth: exception.twelfthDayOfMonth,
+      thirteenthDayOfMonth: exception.thirteenthDayOfMonth,
+      fourteenthDayOfMonth: exception.fourteenthDayOfMonth,
+      fifteenthDayOfMonth: exception.fifteenthDayOfMonth,
+      sixteenthDayOfMonth: exception.sixteenthDayOfMonth,
+      seventeenthDayOfMonth: exception.seventeenthDayOfMonth,
+      eighteenthDayOfMonth: exception.eighteenthDayOfMonth,
+      nineteenthDayOfMonth: exception.nineteenthDayOfMonth,
+      twentiethDayOfMonth: exception.twentiethDayOfMonth,
+      twentyFirstDayOfMonth: exception.twentyFirstDayOfMonth,
+      twentySecondDayOfMonth: exception.twentySecondDayOfMonth,
+      twentyThirdDayOfMonth: exception.twentyThirdDayOfMonth,
+      twentyFourthDayOfMonth: exception.twentyFourthDayOfMonth,
+      twentyFifthDayOfMonth: exception.twentyFifthDayOfMonth,
+      twentySixthDayOfMonth: exception.twentySixthDayOfMonth,
+      twentySeventhDayOfMonth: exception.twentySeventhDayOfMonth,
+      twentyEighthDayOfMonth: exception.twentyEighthDayOfMonth,
+      twentyNinthDayOfMonth: exception.twentyNinthDayOfMonth,
+      thirtiethDayOfMonth: exception.thirtiethDayOfMonth,
+      thirtyFirstDayOfMonth: exception.thirtyFirstDayOfMonth,
       amStartTime: exception.amStartTime,
       amEndTime: exception.amEndTime,
       pmStartTime: exception.pmStartTime,
@@ -179,6 +272,37 @@ function EditException(props) {
       provider: exception.provider,
       startDate: exception.startDate,
       endDate: exception.endDate,
+      firstDayOfMonth: exception.firstDayOfMonth,
+      secondDayOfMonth: exception.secondDayOfMonth,
+      thirdDayOfMonth: exception.thirdDayOfMonth,
+      fourthDayOfMonth: exception.fourthDayOfMonth,
+      fifthDayOfMonth: exception.fifthDayOfMonth,
+      sixthDayOfMonth: exception.sixthDayOfMonth,
+      seventhDayOfMonth: exception.seventhDayOfMonth,
+      eighthDayOfMonth: exception.eighthDayOfMonth,
+      ninthDayOfMonth: exception.ninthDayOfMonth,
+      tenthDayOfMonth: exception.tenthDayOfMonth,
+      eleventhDayOfMonth: exception.eleventhDayOfMonth,
+      twelfthDayOfMonth: exception.twelfthDayOfMonth,
+      thirteenthDayOfMonth: exception.thirteenthDayOfMonth,
+      fourteenthDayOfMonth: exception.fourteenthDayOfMonth,
+      fifteenthDayOfMonth: exception.fifteenthDayOfMonth,
+      sixteenthDayOfMonth: exception.sixteenthDayOfMonth,
+      seventeenthDayOfMonth: exception.seventeenthDayOfMonth,
+      eighteenthDayOfMonth: exception.eighteenthDayOfMonth,
+      nineteenthDayOfMonth: exception.nineteenthDayOfMonth,
+      twentiethDayOfMonth: exception.twentiethDayOfMonth,
+      twentyFirstDayOfMonth: exception.twentyFirstDayOfMonth,
+      twentySecondDayOfMonth: exception.twentySecondDayOfMonth,
+      twentyThirdDayOfMonth: exception.twentyThirdDayOfMonth,
+      twentyFourthDayOfMonth: exception.twentyFourthDayOfMonth,
+      twentyFifthDayOfMonth: exception.twentyFifthDayOfMonth,
+      twentySixthDayOfMonth: exception.twentySixthDayOfMonth,
+      twentySeventhDayOfMonth: exception.twentySeventhDayOfMonth,
+      twentyEighthDayOfMonth: exception.twentyEighthDayOfMonth,
+      twentyNinthDayOfMonth: exception.twentyNinthDayOfMonth,
+      thirtiethDayOfMonth: exception.thirtiethDayOfMonth,
+      thirtyFirstDayOfMonth: exception.thirtyFirstDayOfMonth,
       amStartTime: exception.amStartTime,
       amEndTime: exception.amEndTime,
       pmStartTime: exception.pmStartTime,
@@ -253,7 +377,7 @@ function EditException(props) {
                   <span>{exception.exceptionMon}{' '}{exception.exceptionTues}{' '}{exception.exceptionWed}{' '}{exception.exceptionThurs}{' '}{exception.exceptionFri}</span>
                   <br />
                 </div> */}
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label><b>Change to:</b></label>
                   <br />
                 </div>
@@ -288,13 +412,6 @@ function EditException(props) {
                 <div className="form-group">
                   <label className="scheduleCheckboxContainer">
                     Wednesdays
-                    {/* <input
-                      Checked={exceptionWed === 'Wed' ? 'true' : 'false'}
-                      type="checkbox"
-                      onClick={toggleWednesday}
-                      name="exceptionDaysWed"
-                      value={exception.exceptionWed}
-                    /> */}
                     <input
                       Checked={exceptionWed === 'Wed' ? 'true' : 'false'}
                       type="checkbox"
@@ -330,7 +447,7 @@ function EditException(props) {
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
-                </div>
+                </div> */}
               </div>
               <div className="form-group">
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
