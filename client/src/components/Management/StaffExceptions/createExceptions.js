@@ -266,7 +266,7 @@ const CreateException = (props) => {
                     </select>
                   </label>
                 </div>
-                <div>
+                {/* <div>
                   <label>Exception Days:</label>
                   <label className="scheduleCheckboxContainer">
                     Mondays
@@ -319,7 +319,7 @@ const CreateException = (props) => {
                     />
                     <span className="scheduleCheckboxCheckmark"></span>
                   </label>
-                </div>
+                </div> */}
               </div>
               <div className="form-group">
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
