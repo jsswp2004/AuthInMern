@@ -83,7 +83,9 @@ const CreateVisitFromReg = (props) => {
     businessPhone,
   } = record
 
-  console.log(cellphone)
+  // console.log(cellphone)
+  const cellNumber = cellphone
+  // console.log(cellNumber)
   //autocreate visit number
   const setVisitNumber = Math.floor(1 + Math.random() * 99999)
 
@@ -100,9 +102,11 @@ const CreateVisitFromReg = (props) => {
     addedDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
     event: '',
     homePhone: '',
-    cellphone: '',
+    cellphone: cellNumber,
     businessPhone: '',
   })
+
+  // console.log(visit.cellphone)
 
   //Hour of visit
   const hourValues = Hour
@@ -288,8 +292,7 @@ const CreateVisitFromReg = (props) => {
                         type="text"
                         name="cellphone"
                         className="form-control"
-                        // defaultValue={cellphone}
-                        value={visit.cellphone}
+                        value={cellNumber}
                         onChange={onChange}
                       />
                     </label>
@@ -410,23 +413,9 @@ const CreateVisitFromReg = (props) => {
                       type="text"
                       name="hourOfVisit"
                       className="form-control"
-                      // value={visit.hourOfVisit}
                       value={selectedHour}
                       onChange={onChange}
                     />
-                    {/* <select
-                      key={visit.hourOfVisit}
-                      className="form-control select"
-                      name="hourOfVisit"
-                      value={visit.hourOfVisit}
-                      onChange={onChange}
-                    >
-                      {hourValues.map((hourval) => (
-                        <option key={hourval.value} value={hourval.value}>
-                          {hourval.label}
-                        </option>
-                      ))}
-                    </select> */}
                     <div className='hour-flex'>
 
                       <div className='hour-flex_Item' onClick={() => setSelectedHour('09:00')} style={{ backgroundColor: filteredVisitsWithMDAndDate.includes('09:00') ? '#AA336A' : '#90EE90' }}>9:00</div>

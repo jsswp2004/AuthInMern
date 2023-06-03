@@ -3,8 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { Modal, Button } from "react-bootstrap";
 import backward from "../shared/images/backward.jpg";
 import forward from "../shared/images/forward.jpg";
-import { useAlert } from "react-alert";
-
 import {
   format,
   getDate,
@@ -20,7 +18,7 @@ import {
   isSaturday,
   isSunday,
   isWeekend,
-  parseISO,
+  // parseISO,
 } from "date-fns";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DatePicker from "react-datepicker";
@@ -137,7 +135,7 @@ export default function ClinicVisit() {
         console.log("Error from ShowVisitList");
       });
   }, []);
-  const { checkIn, checkOut } = visits;
+  // const { checkIn, checkOut } = visits;
   // console.log(checkIn, checkOut);
   //#endregion
   //#region code for calendar view select dropdown
@@ -337,18 +335,18 @@ export default function ClinicVisit() {
   const VisitModalMonthly = (visit) =>
     weekendDay === false ? (
       <Modal
-        style={{ height: "90dvh", overflowY: "auto" }}
-        dialogClassName="modal-lg"
+        style={{ height: "80dvh", overflowY: "auto" }}
+        dialogClassName="modal-med"
         show={showMonthly}
         onHide={handleMonthlyClose}
         size="lg"
         centered
       >
         <Modal.Header onClick={() => setNewPatient(true)}>
-          {/* <Modal.Title>
+          <Modal.Title>
             Add a quick visit
 
-          </Modal.Title> */}
+          </Modal.Title>
           {/* 
           <Link
             to={`/patientlist`} className="btn btn-secondary addVisitModalBtn "
@@ -359,9 +357,11 @@ export default function ClinicVisit() {
               title="Search patient"
             /> Search Patient
           </Link> */}
-          <Button style={{ float: 'right' }} variant="secondary" onClick={handleMonthlyClose}>
-            Close
-          </Button>
+          <div>
+            <Button style={{ float: 'right' }} variant="secondary" onClick={handleMonthlyClose}>
+              Close
+            </Button>
+          </div>
         </Modal.Header>
         <Modal.Body style={{ display: newPatient === true ? "" : "none" }}>
           <div
@@ -1402,7 +1402,7 @@ export default function ClinicVisit() {
   const [staffExceptions, setStaffExceptions] = useState([]);
 
   const startOfMonthCurrentSelectedDate = format(startOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
-  const endOfMonthCurrentSelectedDate = format(endOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
+  // const endOfMonthCurrentSelectedDate = format(endOfMonth(new Date(dateSelected)), "yyyy-MM-dd");
   //filter exceptions based on selected provider
   const exceptionMD = staffExceptions.filter(
     (doc) => doc.provider === selectExceptionMD && (doc.startDate >= startOfMonthCurrentSelectedDate)// && doc.startDate <= endOfMonthCurrentSelectedDate)  //format(new Date(), "yyyy-MM-dd")
@@ -1447,21 +1447,21 @@ export default function ClinicVisit() {
   const exceptionThirtyFirstDayOfMonth = exceptionMD.map((a) => a.thirtyFirstDayOfMonth);
   // console.log("exceptionTwelfthDayOfMonth", exceptionTwelfthDayOfMonth.includes('true'));
   // const { firsDayOfMonth, lastDayOfMonth } = exceptionMD;
-  const exceptionStartDate = exceptionMD.map((a) => a.startDate);
-  const exceptionEndDate = exceptionMD.map((a) => a.endDate);
+  // const exceptionStartDate = exceptionMD.map((a) => a.startDate);
+  // const exceptionEndDate = exceptionMD.map((a) => a.endDate);
   // console.log("exceptionStartDate", exceptionStartDate)
 
 
   // const startDate = format(new Date(exceptionStartDate), "yyyy-MM-dd");
-  const startDate = parseISO(exceptionStartDate[0], "yyyy-MM-dd", new Date());
+  // const startDate = parseISO(exceptionStartDate[0], "yyyy-MM-dd", new Date());
 
-  const endDate = parseISO(exceptionEndDate[0], "yyyy-MM-dd", new Date());
+  // const endDate = parseISO(exceptionEndDate[0], "yyyy-MM-dd", new Date());
 
-  const exceptionDatesArray = Array.from({ length: (endDate - startDate) / (1000 * 60 * 60 * 24) + 1 }, (_, i) => {
-    const d = new Date(startDate);
-    d.setDate(startDate.getDate() + i);
-    return format(new Date(d), "yyyy-MM-dd");
-  });
+  // const exceptionDatesArray = Array.from({ length: (endDate - startDate) / (1000 * 60 * 60 * 24) + 1 }, (_, i) => {
+  //   const d = new Date(startDate);
+  //   d.setDate(startDate.getDate() + i);
+  //   return format(new Date(d), "yyyy-MM-dd");
+  // });
   // console.log(startDate, endDate)
   // console.log('exceptionStartDate', exceptionStartDate);
   // console.log('exceptionDatesArray', exceptionDatesArray);
@@ -2074,10 +2074,10 @@ export default function ClinicVisit() {
   //#endregion
   //#region check in and check out codes
 
-  const [checkInTime, setCheckInTime] = useState("");
-  const [checkOutTime, setCheckOutTime] = useState("");
-  const [checkInValue, setCheckInValue] = useState(false);
-  const [checkOutValue, setCheckOutValue] = useState(false);
+  // const [checkInTime, setCheckInTime] = useState("");
+  // const [checkOutTime, setCheckOutTime] = useState("");
+  // const [checkInValue, setCheckInValue] = useState(false);
+  // const [checkOutValue, setCheckOutValue] = useState(false);
   useEffect(() => {
     axios
       .get(`http://localhost:8081/api/visits/${visitID}`)
@@ -2095,40 +2095,40 @@ export default function ClinicVisit() {
           provider: res.data.provider,
           event: res.data.event,
           cellphone: res.data.cellphone,
-          checkIn: checkInTime,
-          checkOut: checkOutTime,
+          checkIn: res.data.checkInTime,//checkInTime,
+          checkOut: res.data.checkOutTime,
         });
       })
       .catch((err) => {
         console.log("Error from UpdateVisitInfo");
       });
-  }, [checkInTime, checkOutTime, visitID]);
+  }, [visitID]);
+  //checkInTime, checkOutTime,
+  // function checkedIn(e) {
+  //   // setCheckIn(() => {
+  //   setCheckInTime(format(new Date(), "hh:mm:ss a"));
+  //   setCheckInValue(!checkInValue);
+  //   // })
+  //   setVisit({ ...visit, [e.target.name]: checkInTime });
 
-  function checkedIn(e) {
-    // setCheckIn(() => {
-    setCheckInTime(format(new Date(), "hh:mm:ss a"));
-    setCheckInValue(!checkInValue);
-    // })
-    setVisit({ ...visit, [e.target.name]: checkInTime });
+  //   axios
+  //     .put(`http://localhost:8081/api/visits/${visitID}`, visit)
+  //     .catch((err) => {
+  //       console.log("Error in UpdateVisitInfo!");
+  //     });
+  // }
 
-    axios
-      .put(`http://localhost:8081/api/visits/${visitID}`, visit)
-      .catch((err) => {
-        console.log("Error in UpdateVisitInfo!");
-      });
-  }
+  // function checkedOut(e) {
+  //   setCheckOutTime(format(new Date(), "hh:mm:ss a"));
+  //   setCheckOutValue(!checkOutValue);
+  //   setVisit({ ...visit, [e.target.name]: checkOutTime });
 
-  function checkedOut(e) {
-    setCheckOutTime(format(new Date(), "hh:mm:ss a"));
-    setCheckOutValue(!checkOutValue);
-    setVisit({ ...visit, [e.target.name]: checkOutTime });
-
-    axios
-      .put(`http://localhost:8081/api/visits/${visitID}`, visit)
-      .catch((err) => {
-        console.log("Error in UpdateVisitInfo!");
-      });
-  }
+  //   axios
+  //     .put(`http://localhost:8081/api/visits/${visitID}`, visit)
+  //     .catch((err) => {
+  //       console.log("Error in UpdateVisitInfo!");
+  //     });
+  // }
 
   // console.log(checkInTime, checkOutTime);
   //create initial STATE for visit object

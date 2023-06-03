@@ -120,6 +120,8 @@ const PatientDetails = (props) => {
                   <th>Time</th>
                   <th>Physician</th>
                   <th>Cellphone</th>
+                  <th>Checked in</th>
+                  <th>Checked out</th>
                 </tr>
                 <tr>
                   <td>
@@ -170,6 +172,22 @@ const PatientDetails = (props) => {
                       Cellphone:{' '}
                       <Text style={styles.text}>
                         {props.visit.cellphone}
+                      </Text>
+                    </Text>
+                  </td>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Checked in:{' '}
+                      <Text style={styles.text}>
+                        {props.visit.checkIn}
+                      </Text>
+                    </Text>
+                  </td>
+                  <td>
+                    <Text style={styles.subtitle}>
+                      Checked out:{' '}
+                      <Text style={styles.text}>
+                        {props.visit.checkOut}
                       </Text>
                     </Text>
                   </td>

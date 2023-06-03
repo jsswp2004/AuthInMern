@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { format } from 'date-fns'
 import axios from 'axios'
 import Navbar from '../navigation/navbar'
@@ -18,6 +18,8 @@ function UpdateVisitInfo(props) {
     visitDate: '',
     provider: '',
     cellphone: '',
+    checkIn: '',
+    checkOut: '',
   })
 
   const { id } = useParams()
@@ -39,6 +41,8 @@ function UpdateVisitInfo(props) {
           hourOfVisit: res.data.hourOfVisit,
           provider: res.data.provider,
           cellphone: res.data.cellphone,
+          checkIn: res.data.checkIn,
+          checkOut: res.data.checkOut,
         })
       })
       .catch((err) => {

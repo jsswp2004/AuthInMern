@@ -581,7 +581,7 @@ export default function ShowRecordList() {
                               href={`/showPatientVisitList/${pt.medicalRecordNumber}`}
                             >
                               <LocalHospitalIcon sx={{ fontSize: 'small', color: 'white' }} />
-                              {console.log(pt.medicalRecordNumber)}
+                              {/* {console.log(pt.medicalRecordNumber)} */}
                             </a>
                           </Tooltip>
 

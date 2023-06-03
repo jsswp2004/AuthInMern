@@ -17,6 +17,8 @@ function UpdateVisitInfo(props) {
         visitDate: '',
         provider: '',
         cellphone: '',
+        checkIn: '',
+        checkOut: '',
     })
 
     const { id } = useParams()
@@ -38,12 +40,14 @@ function UpdateVisitInfo(props) {
                     hourOfVisit: res.data.hourOfVisit,
                     provider: res.data.provider,
                     cellphone: res.data.cellphone,
+                    checkIn: res.data.checkIn,
+                    checkOut: res.data.checkOut,
                 })
             })
             .catch((err) => {
                 console.log('Error from UpdateVisitInfo')
             })
-    }, [id])
+    }, [id, visitID])
 
 
     return (

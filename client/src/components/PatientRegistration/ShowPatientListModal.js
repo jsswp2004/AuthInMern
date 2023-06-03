@@ -472,7 +472,7 @@ export default function ShowRecordList() {
         </div> */}
         <div className="item3">
           <div className="item3A">
-            <h4 className='patientListHeader'>Add Patient Visit</h4>
+            <h5 className='patientListHeader'>Patient List</h5>
             <div>{displayRegistrationModal()}</div>
             <div>{displayVisitFromRegistrationModal()}</div>
             <div>{displayDeleteRegistrationModal()}</div>
