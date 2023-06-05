@@ -174,10 +174,10 @@ const Register = () => {
                                         ))}
                                     </select>
                                     <input
-                                        display="none"
-                                        type="phone"
+                                        // display="none"
+                                        type="tel"
                                         placeholder="Phone Number"
-                                        name="name"
+                                        name="phoneNumber"
                                         value={data.phoneNumber}
                                         onChange={handleChange}
                                         className={styles.input}
@@ -240,8 +240,8 @@ const Register = () => {
                                         Sign Up
                                     </button>
                                 </form>
-                                <div className={styles.form_container}>
-                                    {/* <header className="App-header"> */}
+                                {/* <div className={styles.form_container}>
+                        
                                     <h5 style={{ textAlign: 'center' }}>Make Stripe Payment to POEHR, Inc.</h5>
                                     <p>
                                         Pay Total of $ {totalPrice} today for your 7 days free trial.
@@ -255,8 +255,8 @@ const Register = () => {
                                     <p>
                                         <StripeCheckoutButton email={data.email} price={totalPrice} />
                                     </p>
-                                    {/* </header> */}
-                                </div>
+                                  
+                                </div> */}
                             </div>
                         </div>
                     </div>
