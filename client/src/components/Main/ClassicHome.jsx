@@ -14,6 +14,10 @@ const ClassicHome = () => {
         localStorage.removeItem('token')
         navigate('/Signup')
     }
+    const toAccount = () => {
+        localStorage.removeItem('token')
+        navigate('/Account')
+    }
     //#region Define the state for create registration modal
 
     const [showPrivacy, setShowPrivacy] = useState(false)
@@ -113,7 +117,7 @@ const ClassicHome = () => {
                         </p>
                     </div>
                     <div className="homeIntros-TextContainerBtns">
-                        <button className='btn  btn-primary btnMaxWidth ' onClick={toSignup} >
+                        <button className='btn  btn-primary btnMaxWidth ' onClick={toAccount} >
                             Try for free
                         </button>
                         {/* <button className="btn btn-secondary btnMaxWidth" >
@@ -140,7 +144,7 @@ const ClassicHome = () => {
                                 <p className="textInPageh6">Join our community and experience the benefits today!</p>
 
                             </b>
-                            <button className='btn  btn-primary  ' onClick={toSignup} >
+                            <button className='btn  btn-primary  ' onClick={toAccount} >
                                 Try for free
                             </button>
                         </div>
@@ -164,7 +168,7 @@ const ClassicHome = () => {
                                 <p className="textInPage">with us</p>
                             </b>
                         </div>
-                        <button className='btn  btn-primary' onClick={toSignup} >
+                        <button className='btn  btn-primary' onClick={toAccount} >
                             Try now
                         </button>
                     </div>
@@ -191,7 +195,7 @@ const ClassicHome = () => {
                                 <p className="textInPage">Cost saving in a smart way</p>
                             </b>
                         </div>
-                        <button className='btn  btn-primary' onClick={toSignup} >
+                        <button className='btn  btn-primary' onClick={toAccount} >
                             Try now
                         </button>
                     </div>
@@ -216,7 +220,7 @@ const ClassicHome = () => {
                             <p className="textInPageh6">scheduling operations.</p>
                         </div>
                         <div style={{ marginBottom: '20px' }}>
-                            <button className='btn  btn-primary' onClick={toSignup} >
+                            <button className='btn  btn-primary' onClick={toAccount} >
                                 Try for free
                             </button>
                         </div>

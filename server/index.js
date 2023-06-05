@@ -4,6 +4,7 @@ const pino = require('express-pino-logger')();
 const app = express();
 const cors = require("cors");
 const connection = require("./db");
+const accountRoutes = require("./routes/accounts");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const clientRoutes = require("./routes/clients");
@@ -45,6 +46,7 @@ app.use(pino);
 // app.use(fileUpload());
 
 // routes
+app.use("/api/accounts", accountRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/clients", clientRoutes);
