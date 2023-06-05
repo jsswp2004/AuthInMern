@@ -91,8 +91,8 @@ const Register = () => {
         }
         // setUserID(data)
     }
-    const totalPrice = 0;
-    const totalPrice2 = 7;
+    // const totalPrice = 0;
+    // const totalPrice2 = 7;
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = () => {
@@ -161,6 +161,7 @@ const Register = () => {
                                         required
                                         className={styles.input}
                                     />
+                                    {/* <select placeholder="Admin" name="role" class="form-control select"></select> */}
                                     <select
                                         key={rolex.role}
                                         placeholder="Admin"
