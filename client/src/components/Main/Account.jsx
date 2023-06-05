@@ -9,6 +9,7 @@ import StripeCheckoutButton from '../Stripe/stripeButton';
 import {
     States
 } from '../listDictionaries/listData/listDictionariesData'
+import { is } from 'date-fns/locale'
 
 export const UserContext = createContext()
 
@@ -92,7 +93,11 @@ const Register = () => {
     }
     const totalPrice = 0;
     const totalPrice2 = 7;
+    const [isChecked, setIsChecked] = useState(false);
 
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+    };
     return (
         <div className="grid_container_home">
             <div className="item1_home">
@@ -216,13 +221,54 @@ const Register = () => {
                                             </option>
                                         ))}
                                     </select> */}
-
+                                    <input
+                                        type="text"
+                                        name="country"
+                                        placeholder='United States'
+                                        onChange={handleChange}
+                                        value={data.country}
+                                        required
+                                        readOnly
+                                        className={styles.input}
+                                    />
+                                    <label >
+                                        <input
+                                            type="checkbox"
+                                            name="termsAndConditions"
+                                            onChange={handleCheckboxChange}
+                                            value={data.termsAndConditions}
+                                            required
+                                            checked={isChecked}
+                                            className={styles.input}
+                                        />
+                                        I have read and agree to the terms and conditions.
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="captcha"
+                                            onChange={handleChange}
+                                            value={data.captcha}
+                                            required
+                                            className={styles.input}
+                                        />
+                                        I am not a robot.
+                                    </label>
                                     <input
                                         type="text"
                                         name="dateAdded"
                                         onChange={handleChange}
                                         value={dateAdded}
-                                        required
+                                        // required
+                                        readOnly
+                                        className={styles.input}
+                                    />
+                                    <input
+                                        type="text"
+                                        name="lastUpdated"
+                                        onChange={handleChange}
+                                        value={data.lastUpdated}
+                                        // required
                                         readOnly
                                         className={styles.input}
                                     />
