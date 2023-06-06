@@ -107,222 +107,191 @@ const Register = () => {
             </div>
             <div className="item3_home">
                 <div className={styles.signup_container}>
-                    <div className={styles.signup_form_container}>
-                        <div style={{ columnSpan: 'all' }}>
-                            <div style={{ marginBottom: '5px' }} >
-                                <BodyLogo />
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                        <div style={{ alignSelf: 'center', justifyContent: 'center' }}>
+                            <BodyLogo style={{ alignSelf: 'center' }} />
+                            <div style={{ marginBottom: '5px', justifyContent: 'center', textAlign: 'center' }} >
+                                <h5>Register</h5>
                             </div>
-                            <h5>Register an Account</h5>
-                        </div>
 
-                        <div className={styles2.left}>
-                            <div style={{ display: 'flex' }}>
-
-                                <form className={styles.form_container} onSubmit={handleSubmit}>
-                                    <input
-                                        type="text"
-                                        placeholder="Name"
-                                        name="name"
-                                        onChange={handleChange}
-                                        value={data.name}
-                                        required
-                                        className={styles.input}
-                                    />
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        name="email"
-                                        onChange={handleChange}
-                                        value={data.email}
-                                        required
-                                        className={styles.input}
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        name="password"
-                                        onChange={handleChange}
-                                        value={data.password}
-                                        required
-                                        className={styles.input}
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder="Company Name"
-                                        name="companyName"
-                                        onChange={handleChange}
-                                        value={data.companyName}
-                                        required
-                                        className={styles.input}
-                                    />
-                                    <select
-                                        key={rolex.role}
-                                        placeholder="Admin"
-                                        name="role"
-                                        className="form-control select"
-                                        value={data.role}
-                                        onChange={handleChange}
-                                    >
-                                        <option key="0" value="">
-                                            Select Role
-                                        </option>
-                                        {userRoles.map((role) => (
-                                            <option key={role._id} value={role.name}>
-                                                {role}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <input
-                                        // display="none"
-                                        type="tel"
-                                        placeholder="Phone Number"
-                                        name="phoneNumber"
-                                        value={data.phoneNumber}
-                                        onChange={handleChange}
-                                        className={styles.input}
-                                    />
-
-                                    <select
-                                        key={selectedState.name}
-                                        placeholder="Select State"
-                                        name="state"
-                                        className="form-control select"
-                                        value={data.state}
-                                        onChange={handleChange}
-                                    >
-                                        <option key="0" value="">
-                                            Select State
-                                        </option>
-                                        {statevalues.map((stateval) => (
-                                            <option key={stateval.value} value={stateval.value}>{stateval.name}</option>
-                                        ))}
-                                    </select>
-
-                                    <input
-                                        type="text"
-                                        name="country"
-                                        placeholder='United States'
-                                        onChange={handleChange}
-                                        value={data.country}
-                                        required
-                                        readOnly
-                                        className={styles.input}
-                                    />
-
-
-
-                                    <button type="submit" className={styles.green_btn}>
-                                        Sign Up
-                                    </button>
-                                </form>
-
-                            </div>
                         </div>
                         <div className={styles.right}>
-
                             <div style={{ display: 'flex' }}>
-
-                                <form className={styles.form_container} onSubmit={handleSubmit}>
-
-
-
-
-
-                                    <input
-                                        type="text"
-                                        placeholder="Company Name"
-                                        name="companyName"
-                                        onChange={handleChange}
-                                        value={data.companyName}
-                                        required
-                                        className={styles.input}
-                                    />
-                                    {/* <select placeholder="Admin" name="role" class="form-control select"></select> */}
-
-
-
-
-
-                                    <label >
+                                <form style={{ display: 'flex', flexDirection: 'row' }} onSubmit={handleSubmit}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: '10px' }}>
                                         <input
-                                            type="checkbox"
-                                            name="termsAndConditions"
-                                            onChange={handleCheckboxChange}
-                                            value={data.termsAndConditions}
-                                            required
-                                            checked={isChecked}
-                                            className={styles.input}
-                                        />
-                                        I have read and agree to the terms and conditions.
-                                    </label>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            name="captcha"
+                                            type="text"
+                                            placeholder="Name"
+                                            name="name"
                                             onChange={handleChange}
-                                            value={data.captcha}
+                                            value={data.name}
                                             required
                                             className={styles.input}
                                         />
-                                        I am not a robot.
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="dateAdded"
-                                        onChange={handleChange}
-                                        value={dateAdded}
-                                        // required
-                                        readOnly
-                                        className={styles.input}
-                                    />
-                                    <input
-                                        type="text"
-                                        name="lastUpdated"
-                                        onChange={handleChange}
-                                        value={data.lastUpdated}
-                                        // required
-                                        readOnly
-                                        className={styles.input}
-                                    />
-                                    <input
-                                        type="text"
-                                        // placeholder="Role"
-                                        name="facilityID"
-                                        onChange={handleChange}
-                                        value={data.facilityID}
-                                        // required
-                                        className={styles.input}
-                                    />
-                                    {error && <div className={styles.error_msg}>{error}</div>}
-                                    <button type="submit" className={styles.green_btn}>
-                                        Sign Up
-                                    </button>
-                                </form>
-                                {/* <div className={styles.form_container}>
-                        
-                                    <h5 style={{ textAlign: 'center' }}>Make Stripe Payment to POEHR, Inc.</h5>
-                                    <p>
-                                        Pay Total of $ {totalPrice} today for your 7 days free trial.
-                                    </p>
-                                    <p>
-                                        You will be charged $ {totalPrice2} after your trial period
-                                        <br />
-                                        and every month for your (designated) subscription.
-                                    </p>
+                                        <input
+                                            type="email"
+                                            placeholder="Email"
+                                            name="email"
+                                            onChange={handleChange}
+                                            value={data.email}
+                                            required
+                                            className={styles.input}
+                                        />
+                                        <input
+                                            type="password"
+                                            placeholder="Password"
+                                            name="password"
+                                            onChange={handleChange}
+                                            value={data.password}
+                                            required
+                                            className={styles.input}
+                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="Company Name"
+                                            name="companyName"
+                                            onChange={handleChange}
+                                            value={data.companyName}
+                                            required
+                                            className={styles.input}
+                                        />
+                                        <select
+                                            key={rolex.role}
+                                            placeholder="Admin"
+                                            name="role"
+                                            // className="form-control select"
+                                            className={styles.input}
+                                            value={data.role}
+                                            onChange={handleChange}
+                                        >
+                                            <option key="0" value="">
+                                                Select Role
+                                            </option>
+                                            {userRoles.map((role) => (
+                                                <option key={role._id} value={role.name}>
+                                                    {role}
+                                                </option>
+                                            ))}
+                                        </select>
 
-                                    <p>
-                                        <StripeCheckoutButton email={data.email} price={totalPrice} />
-                                    </p>
-                                  
-                                </div> */}
+
+                                        <select
+                                            key={selectedState.name}
+                                            placeholder="Select State"
+                                            name="state"
+                                            className={styles.input}
+                                            value={data.state}
+                                            onChange={handleChange}
+                                        >
+                                            <option key="0" value="">
+                                                Select State
+                                            </option>
+                                            {statevalues.map((stateval) => (
+                                                <option key={stateval.value} value={stateval.value}>{stateval.name}</option>
+                                            ))}
+                                        </select>
+
+                                        <input
+                                            type="text"
+                                            name="country"
+                                            placeholder='United States'
+                                            onChange={handleChange}
+                                            value={data.country}
+                                            required
+                                            readOnly
+                                            className={styles.input}
+                                        />
+
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'column', margin: '10px' }}>
+                                        <input
+                                            type="text"
+                                            placeholder="Company Name"
+                                            name="companyName"
+                                            onChange={handleChange}
+                                            value={data.companyName}
+                                            required
+                                            className={styles.input}
+                                        />
+                                        <input
+                                            type="tel"
+                                            placeholder="Phone Number"
+                                            name="phoneNumber"
+                                            value={data.phoneNumber}
+                                            onChange={handleChange}
+                                            className={styles.input}
+                                        />
+
+                                        <input
+                                            type="text"
+                                            name="dateAdded"
+                                            onChange={handleChange}
+                                            value={dateAdded}
+                                            // required
+                                            readOnly
+                                            className={styles.input}
+                                        />
+                                        <input
+                                            type="text"
+                                            name="lastUpdated"
+                                            onChange={handleChange}
+                                            value={data.lastUpdated}
+                                            // required
+                                            readOnly
+                                            className={styles.input}
+                                        />
+                                        <input
+                                            type="text"
+                                            // placeholder="Role"
+                                            name="facilityID"
+                                            onChange={handleChange}
+                                            value={data.facilityID}
+                                            // required
+                                            className={styles.input}
+                                        />
+
+                                        <label >
+                                            <input
+                                                type="checkbox"
+                                                id='termsAndConditions'
+                                                name="termsAndConditions"
+                                                onChange={handleCheckboxChange}
+                                                value={data.termsAndConditions}
+                                                required
+                                                checked={isChecked}
+                                            // className={styles.input}
+                                            />
+                                            &nbsp;I have read and agree to the terms and conditions.
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name="captcha"
+                                                onChange={handleChange}
+                                                value={data.captcha}
+                                                required
+                                            // className={styles.input}
+                                            />
+                                            &nbsp;I am not a robot.
+                                        </label>
+                                        {error && <div className={styles.error_msg}>{error}</div>}
+                                        <button type="submit" className={styles.green_btn}>
+                                            Sign Up
+                                        </button>
+                                    </div>
+
+                                </form>
+
                             </div>
+
+
                         </div>
                     </div>
 
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 
