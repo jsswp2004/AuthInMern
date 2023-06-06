@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import styles from '../Signup/styles.module.css'
+import styles2 from './styles.module.css'
+
 import HeaderMain from '../shared/HeaderMain'
 import BodyLogo from '../shared/BodyLogo'
 import StripeCheckoutButton from '../Stripe/stripeButton';
@@ -106,25 +108,17 @@ const Register = () => {
             <div className="item3_home">
                 <div className={styles.signup_container}>
                     <div className={styles.signup_form_container}>
-                        {/* <div className={styles.left}>
-                            <h1>Welcome Back</h1>
-                            <Link to="/login">
-                                <button type="button" className={styles.white_btn}>
-                                    Sign in
-                                </button>
-                            </Link>
-                        </div> */}
-                        <div className={styles.right}>
+                        <div style={{ columnSpan: 'all' }}>
                             <div style={{ marginBottom: '5px' }} >
                                 <BodyLogo />
                             </div>
                             <h5>Register an Account</h5>
+                        </div>
+
+                        <div className={styles2.left}>
                             <div style={{ display: 'flex' }}>
 
                                 <form className={styles.form_container} onSubmit={handleSubmit}>
-
-
-
                                     <input
                                         type="text"
                                         placeholder="Name"
@@ -161,7 +155,6 @@ const Register = () => {
                                         required
                                         className={styles.input}
                                     />
-                                    {/* <select placeholder="Admin" name="role" class="form-control select"></select> */}
                                     <select
                                         key={rolex.role}
                                         placeholder="Admin"
@@ -205,23 +198,6 @@ const Register = () => {
                                         ))}
                                     </select>
 
-                                    {/* <select
-                                        key={rolex.role}
-                                        placeholder="Admin"
-                                        name="country"
-                                        className="form-control select"
-                                        value={data.country}
-                                        onChange={handleChange}
-                                    >
-                                        <option key="0" value="">
-                                            Select Country
-                                        </option>
-                                        {userRoles.map((role) => (
-                                            <option key={role._id} value={role.name}>
-                                                {role}
-                                            </option>
-                                        ))}
-                                    </select> */}
                                     <input
                                         type="text"
                                         name="country"
@@ -232,6 +208,41 @@ const Register = () => {
                                         readOnly
                                         className={styles.input}
                                     />
+
+
+
+                                    <button type="submit" className={styles.green_btn}>
+                                        Sign Up
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div className={styles.right}>
+
+                            <div style={{ display: 'flex' }}>
+
+                                <form className={styles.form_container} onSubmit={handleSubmit}>
+
+
+
+
+
+                                    <input
+                                        type="text"
+                                        placeholder="Company Name"
+                                        name="companyName"
+                                        onChange={handleChange}
+                                        value={data.companyName}
+                                        required
+                                        className={styles.input}
+                                    />
+                                    {/* <select placeholder="Admin" name="role" class="form-control select"></select> */}
+
+
+
+
+
                                     <label >
                                         <input
                                             type="checkbox"
