@@ -41,6 +41,17 @@ export const monthNames = [
   // 'November',
   // 'December',
 ]
+
+//Registration role date codes
+export const RegistrationRoles = [
+  { label: 'Administrator', value: 'Administrator' },
+  { label: 'CEO', value: 'CEO' },
+  { label: 'CFO', value: 'CFO' },
+  { label: 'Manager', value: 'Manager' },
+  { label: 'Director', value: 'Directo' },
+  { label: 'Owner', value: 'Owner' },
+  { label: 'Other', value: 'Other' },
+]
 //days code
 export const days = [
   1,
