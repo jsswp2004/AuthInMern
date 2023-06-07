@@ -9,13 +9,15 @@ import HeaderMain from '../shared/HeaderMain'
 import BodyLogo from '../shared/BodyLogo'
 import StripeCheckoutButton from '../Stripe/stripeButton';
 import {
-    States
+    States,
+    RegistrationRoles
 } from '../listDictionaries/listData/listDictionariesData'
 import { is } from 'date-fns/locale'
 
 export const UserContext = createContext()
 
 const Register = () => {
+    // Define STates
     const statevalues = States
     const [selectedState, setSelectedState] = useState('')
 
@@ -24,7 +26,17 @@ const Register = () => {
     }
 
 
-    //Define the state
+
+    // RegistrationRoles
+
+    //Define the Role
+
+    const rolevalues = RegistrationRoles
+    const [selectedRole, setSelectedRole] = useState('')
+    const handleRoleChange = (e) => {
+        setSelectedRole(e.target.value)
+    }
+
     const [rolex, setRoles] = useState([])
     const roles = rolex.filter((role) => {
         return role.name.toString().toLowerCase()
@@ -45,6 +57,8 @@ const Register = () => {
 
     const navigate = useNavigate()
     const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+    const lastUpdate = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+
     const [data, setData] = useState({
 
         name: '',
@@ -58,6 +72,7 @@ const Register = () => {
         termsAndConditions: '',
         captcha: '',
         addedDate: dateAdded,
+        lastUpdated: lastUpdate,
         facilityID: 'Generic Clinic',
     })
 
@@ -69,7 +84,7 @@ const Register = () => {
 
     }
 
-    const { email } = data
+    const { email, lastUpdated } = data
     const emailRef = useRef()
     useEffect(() => {
         emailRef.current = email
@@ -146,16 +161,7 @@ const Register = () => {
                                             required
                                             className={styles.input}
                                         />
-                                        <input
-                                            type="text"
-                                            placeholder="Company Name"
-                                            name="companyName"
-                                            onChange={handleChange}
-                                            value={data.companyName}
-                                            required
-                                            className={styles.input}
-                                        />
-                                        <select
+                                        {/* <select
                                             key={rolex.role}
                                             placeholder="Admin"
                                             name="role"
@@ -172,7 +178,24 @@ const Register = () => {
                                                     {role}
                                                 </option>
                                             ))}
+                                        </select> */}
+
+                                        <select
+                                            key={selectedRole.label}
+                                            placeholder="Select Role"
+                                            name="role"
+                                            className={styles.input}
+                                            value={data.role}
+                                            onChange={handleChange}
+                                        >
+                                            <option key="0" value="">
+                                                Select Role
+                                            </option>
+                                            {rolevalues.map((roleval) => (
+                                                <option key={roleval.value} value={roleval.value}>{roleval.label}</option>
+                                            ))}
                                         </select>
+
 
 
                                         <select
@@ -198,7 +221,7 @@ const Register = () => {
                                             onChange={handleChange}
                                             value={data.country}
                                             required
-                                            readOnly
+                                            // readOnly
                                             className={styles.input}
                                         />
 
