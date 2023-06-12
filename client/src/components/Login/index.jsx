@@ -5,8 +5,8 @@ import styles from './styles.module.css'
 import HeaderMain from '../shared/HeaderMain'
 import HeaderLogo from '../shared/HeaderLogo'
 import BodyLogo from '../shared/BodyLogo'
-// import BodyLogo from '../shared/images/logoPOWER3.png'
-// import BodyLogo from '../../components/shared/images/logoPOWER3.png'
+// import BodyLogo from '../shared/images/logoPOWER4.png'
+// import BodyLogo from '../../components/shared/images/logoPOWER4.png'
 
 
 

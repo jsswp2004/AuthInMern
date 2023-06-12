@@ -25,8 +25,6 @@ const Register = () => {
         setSelectedState(e.target.value)
     }
 
-
-
     // RegistrationRoles
 
     //Define the Role
@@ -161,24 +159,6 @@ const Register = () => {
                                             required
                                             className={styles.input}
                                         />
-                                        {/* <select
-                                            key={rolex.role}
-                                            placeholder="Admin"
-                                            name="role"
-                                            // className="form-control select"
-                                            className={styles.input}
-                                            value={data.role}
-                                            onChange={handleChange}
-                                        >
-                                            <option key="0" value="">
-                                                Select Role
-                                            </option>
-                                            {userRoles.map((role) => (
-                                                <option key={role._id} value={role.name}>
-                                                    {role}
-                                                </option>
-                                            ))}
-                                        </select> */}
 
                                         <select
                                             key={selectedRole.label}
@@ -195,8 +175,6 @@ const Register = () => {
                                                 <option key={roleval.value} value={roleval.value}>{roleval.label}</option>
                                             ))}
                                         </select>
-
-
 
                                         <select
                                             key={selectedState.name}
@@ -278,10 +256,11 @@ const Register = () => {
                                                 type="checkbox"
                                                 id='termsAndConditions'
                                                 name="termsAndConditions"
-                                                onChange={handleCheckboxChange}
-                                                value={data.termsAndConditions}
+                                                onChange={handleChange}
+                                                value={isChecked}
                                                 required
-                                                checked={isChecked}
+                                                onClick={handleCheckboxChange}
+                                            // checked={isChecked}
                                             // className={styles.input}
                                             />
                                             &nbsp;I have read and agree to the terms and conditions.
@@ -291,8 +270,9 @@ const Register = () => {
                                                 type="checkbox"
                                                 name="captcha"
                                                 onChange={handleChange}
-                                                value={data.captcha}
+                                                value={isChecked}
                                                 required
+                                                onClick={handleCheckboxChange}
                                             // className={styles.input}
                                             />
                                             &nbsp;I am not a robot.

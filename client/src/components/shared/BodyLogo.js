@@ -1,4 +1,4 @@
-import logo from './images/logoPOWER3.png'
+import logo from './images/logoPOWER4.png'
 
 export default function bodyLogo() {
 
