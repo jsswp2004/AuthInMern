@@ -113,6 +113,10 @@ const Register = () => {
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
     };
+
+
+
+
     return (
         <div className="grid_container_home">
             <div className="item1_home">
@@ -129,6 +133,7 @@ const Register = () => {
 
                         </div>
                         <div className={styles.right}>
+
                             <div style={{ display: 'flex' }}>
                                 <form style={{ display: 'flex', flexDirection: 'row' }} onSubmit={handleSubmit}>
                                     <div style={{ display: 'flex', flexDirection: 'column', margin: '10px' }}>

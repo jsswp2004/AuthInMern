@@ -40,6 +40,20 @@ const Register = () => {
             })
     }, [])
 
+    //this is code for strip button
+    useEffect(() => {
+        const script = document.createElement('script');
+
+        script.src = "https://js.stripe.com/v3/buy-button.js";
+        script.async = true;
+
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        }
+    }, []);
+
     const navigate = useNavigate()
     const dateAdded = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
     const [data, setData] = useState({
@@ -98,18 +112,23 @@ const Register = () => {
             <div className="item1_home">
                 <HeaderMain />
             </div>
+            {/* <script async
+                                src="https://js.stripe.com/v3/buy-button.js">
+                            </script> */}
+
+
             <div className="item3_home">
                 <div className={styles.signup_container}>
                     <div className={styles.signup_form_container}>
 
                         <div className={styles.right}>
-                            <div style={{ marginBottom: '5px' }} >
+                            {/* <div style={{ marginBottom: '5px' }} >
                                 <BodyLogo />
-                            </div>
-                            <h5>Payment</h5>
+                            </div> */}
+                            {/* <h5>Payment</h5> */}
                             <div style={{ display: 'flex' }}>
                                 <div className={styles.form_container}>
-                                    <h5 style={{ textAlign: 'center' }}>Make Stripe Payment to POEHR, Inc.</h5>
+                                    {/* <h5 style={{ textAlign: 'center' }}>Make Stripe Payment to POEHR, Inc.</h5>
                                     <p>
                                         Pay Total of $ {totalPrice} today for your 7 days free trial.
                                     </p>
@@ -121,7 +140,12 @@ const Register = () => {
 
                                     <p>
                                         <StripeCheckoutButton email={data.email} price={totalPrice} />
-                                    </p>
+                                    </p> */}
+                                    <stripe-buy-button
+                                        buy-button-id="buy_btn_1NR3nNFfk7zi0PnMZTnJlmbX"
+                                        publishable-key="pk_test_51NAPxIFfk7zi0PnM7LYWqLVLIQwDr9FuQzQl5QEstme535leiUQeopQcJdErTlRQISIKSI0wjOt1zuqi9aKAwGgZ00lXn84J3k"
+                                    >
+                                    </stripe-buy-button>
                                 </div>
                             </div>
                         </div>
