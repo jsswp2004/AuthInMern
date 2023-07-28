@@ -9,7 +9,11 @@ import StripeCheckoutButton from '../Stripe/stripeButton';
 import {
     States
 } from '../listDictionaries/listData/listDictionariesData'
+import { loadStripe } from "@stripe/stripe-js";
 
+const publishableKey = 'pk_test_51NAPxIFfk7zi0PnM7LYWqLVLIQwDr9FuQzQl5QEstme535leiUQeopQcJdErTlRQISIKSI0wjOt1zuqi9aKAwGgZ00lXn84J3k';
+
+const stripePromise = loadStripe(publishableKey);
 export const UserContext = createContext()
 
 const Register = () => {
