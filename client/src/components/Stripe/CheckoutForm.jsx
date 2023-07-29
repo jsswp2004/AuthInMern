@@ -1,7 +1,7 @@
-import React from "react";
-import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
+// import React from "react";
+// import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
 
-import CardSection from "./CardSection";
+// import CardSection from "./CardSection";
 
 // class CheckoutForm extends React.Component {
 //     handleSubmit = async event => {
@@ -87,4 +87,13 @@ const CheckoutForm = ({ stripe, elements }) => {
     );
 }
 
-export default CheckoutForm;
+// export default CheckoutForm;
+export default function InjectedCheckoutForm() {
+    return (
+        <ElementsConsumer>
+            {({ stripe, elements }) => (
+                <CheckoutForm stripe={stripe} elements={elements} />
+            )}
+        </ElementsConsumer>
+    );
+}
