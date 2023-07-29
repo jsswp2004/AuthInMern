@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import styles from '../Signup/styles.module.css'
 import HeaderMain from '../shared/HeaderMain'
+import CheckOut from '../Stripe/CheckOutForm'
+import { Elements } from "@stripe/react-stripe-js";
 import BodyLogo from '../shared/BodyLogo'
 import StripeCheckoutButton from '../Stripe/stripeButton';
 import {
@@ -145,11 +147,15 @@ const Register = () => {
                                     <p>
                                         <StripeCheckoutButton email={data.email} price={totalPrice} />
                                     </p> */}
-                                    <stripe-buy-button
+                                    {/* <stripe-buy-button
                                         buy-button-id="buy_btn_1NR3nNFfk7zi0PnMZTnJlmbX"
                                         publishable-key="pk_test_51NAPxIFfk7zi0PnM7LYWqLVLIQwDr9FuQzQl5QEstme535leiUQeopQcJdErTlRQISIKSI0wjOt1zuqi9aKAwGgZ00lXn84J3k"
                                     >
-                                    </stripe-buy-button>
+                                    </stripe-buy-button> */}
+
+                                    <Elements stripe={stripePromise}>
+                                        <CheckOut />
+                                    </Elements>
                                 </div>
                             </div>
                         </div>
