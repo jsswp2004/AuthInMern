@@ -73,16 +73,18 @@ const CheckoutForm = ({ stripe, elements }) => {
 
     return (
         <div>
-            <div className="product-info">
+            <div>
                 <h3 className="product-title">POEHR Scheduling</h3>
                 <h4 className="product-price">$19</h4>
             </div>
-            <form onSubmit={handleSubmit}>
-                <CardSection />
-                <button disabled={!stripe} className="btn-pay">
-                    Buy Now
-                </button>
-            </form>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <CardSection />
+                    <button disabled={!stripe} className="btn btn-primary btnWidth">
+                        Buy Now
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

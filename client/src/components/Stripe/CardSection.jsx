@@ -27,8 +27,7 @@ function CardSection() {
     return (
         <div>
             <label>
-                Card Information
-
+                <h5>Card Information</h5>
             </label>
             <CardElement options={CARD_ELEMENT_OPTIONS} />
         </div>

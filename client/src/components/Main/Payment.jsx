@@ -12,6 +12,7 @@ import {
     States
 } from '../listDictionaries/listData/listDictionariesData'
 import { loadStripe } from "@stripe/stripe-js";
+// import BodyLogo from '../../components/shared/BodyLogo'
 
 const publishableKey = 'pk_test_51NAPxIFfk7zi0PnM7LYWqLVLIQwDr9FuQzQl5QEstme535leiUQeopQcJdErTlRQISIKSI0wjOt1zuqi9aKAwGgZ00lXn84J3k';
 
@@ -124,14 +125,16 @@ const Register = () => {
 
 
             <div className="item3_home">
+
                 <div className={styles.signup_container}>
+
                     <div className={styles.signup_form_container}>
 
                         <div className={styles.right}>
-                            {/* <div style={{ marginBottom: '5px' }} >
+                            <div style={{ marginBottom: '5px' }} >
                                 <BodyLogo />
-                            </div> */}
-                            {/* <h5>Payment</h5> */}
+                            </div>
+                            <h5>Payment</h5>
                             <div style={{ display: 'flex' }}>
                                 <div className={styles.form_container}>
                                     {/* <h5 style={{ textAlign: 'center' }}>Make Stripe Payment to POEHR, Inc.</h5>
