@@ -74,8 +74,8 @@ const CheckoutForm = ({ stripe, elements }) => {
     return (
         <div>
             <div className="product-info">
-                <h3 className="product-title">Apple MacBook Pro</h3>
-                <h4 className="product-price">$999</h4>
+                <h3 className="product-title">POEHR Scheduling</h3>
+                <h4 className="product-price">$19</h4>
             </div>
             <form onSubmit={handleSubmit}>
                 <CardSection />

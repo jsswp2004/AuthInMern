@@ -5,7 +5,7 @@ const CARD_ELEMENT_OPTIONS = {
     hidePostalCode: true,
     style: {
         base: {
-            iconColor: "rgb(240, 57, 122)",
+            iconColor: "rgb(0.00,0.00,1.00)",
             color: "rgb(240, 57, 122)",
             fontSize: "16px",
             fontFamily: '"Open Sans", sans-serif',
@@ -25,10 +25,13 @@ const CARD_ELEMENT_OPTIONS = {
 
 function CardSection() {
     return (
-        <label>
-            Card Information
+        <div>
+            <label>
+                Card Information
+
+            </label>
             <CardElement options={CARD_ELEMENT_OPTIONS} />
-        </label>
+        </div>
     );
 }
 
