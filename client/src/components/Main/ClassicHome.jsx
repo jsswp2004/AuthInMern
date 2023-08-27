@@ -18,6 +18,11 @@ const ClassicHome = () => {
         localStorage.removeItem('token')
         navigate('/Account')
     }
+
+    const toPricing = () => {
+        localStorage.removeItem('token')
+        navigate('/pricing')
+    }
     //#region Define the state for create registration modal
 
     const [showPrivacy, setShowPrivacy] = useState(false)
@@ -116,18 +121,19 @@ const ClassicHome = () => {
                             <span> Finally, schedule appointments with ease. It’s that simple!</span>
                         </p>
                     </div>
-                    <div className="homeIntros-TextContainerBtns">
-                        <button className='btn  btn-primary btnMaxWidth ' onClick={toAccount} >
-                            Try for free
-                        </button>
-                        {/* <button className="btn btn-secondary btnMaxWidth" >
-                            See how it works
-                        </button> */}
-                    </div>
+
                     <div className="homeIntros-TextContainerTrusted">
                         <b >
                             Trusted by providers and patients alike.
                         </b>
+                    </div>
+                    <div className="homeIntros-TextContainerBtns">
+                        <button className='btn  btn-primary btnMaxWidth ' onClick={toPricing} >
+                            Check Pricing
+                        </button>
+                        {/* <button className="btn btn-secondary btnMaxWidth" >
+                            See how it works
+                        </button> */}
                     </div>
 
                 </div>
@@ -145,7 +151,7 @@ const ClassicHome = () => {
 
                             </b>
                             <button className='btn  btn-primary  ' onClick={toAccount} >
-                                Try for free
+                                Register
                             </button>
                         </div>
 
@@ -169,7 +175,7 @@ const ClassicHome = () => {
                             </b>
                         </div>
                         <button className='btn  btn-primary' onClick={toAccount} >
-                            Try now
+                            Register
                         </button>
                     </div>
                 </div>
@@ -233,7 +239,7 @@ const ClassicHome = () => {
 
                             <div className="textInPageh6"><h4>Step 2</h4></div>
                             <div className="textInPageh6">
-                                Second, add your patients to the system by easily uploading your existing data.
+                                Second, add your patients, providers, events to the system by easily uploading your existing data.
                             </div>
                             <div className="textInPageh6"><h4>Step 3</h4></div>
                             <div className="textInPageh6">
