@@ -128,7 +128,7 @@ const Register = () => {
                         <div style={{ alignSelf: 'center', justifyContent: 'center' }}>
                             <BodyLogo style={{ alignSelf: 'center' }} />
                             <div style={{ marginBottom: '5px', justifyContent: 'center', textAlign: 'center' }} >
-                                <h5>Register</h5>
+                                <h5>Registration</h5>
                             </div>
 
                         </div>
