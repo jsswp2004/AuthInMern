@@ -13,6 +13,11 @@ const ClassicHome = () => {
         localStorage.removeItem('token')
         navigate('/Signup')
     }
+    //navigate to account registration
+    const toAccount = () => {
+        localStorage.removeItem('token')
+        navigate('/Account')
+    }
     //#region Define the state for create registration modal
 
     const [showPrivacy, setShowPrivacy] = useState(false)
@@ -125,7 +130,7 @@ const ClassicHome = () => {
                             </div>
                             <div>
                                 <p className="textInPageh6 pricingTextBold pricingTextSize50">
-                                    9
+                                    299
                                 </p>
                             </div>
                             <div style={{ marginTop: '5%' }}>
@@ -136,11 +141,11 @@ const ClassicHome = () => {
                         </div>
                         <div>
                             <p className="textInPage h6 aboutIntros-TextContainerWidth">
-                                For individuals and small
-                                teams
+                                For small practice clinics and
+                                independent practitioners
                             </p>
                         </div>
-                        <button className="btn btn-primary btnWidth">Get Started with Basic</button>
+                        <button className="btn btn-primary btnWidth" onClick={toAccount}>Get Started with Basic</button>
 
                     </div>
                     <div className="pricingContainerRectangleBackground2">
@@ -157,7 +162,7 @@ const ClassicHome = () => {
                             </div>
                             <div>
                                 <p className="textInPageh6 pricingTextBold pricingTextSize50">
-                                    19
+                                    599
                                 </p>
                             </div>
                             <div style={{ marginTop: '5%' }}>
@@ -169,7 +174,7 @@ const ClassicHome = () => {
 
                         <div>
                             <p className="textInPage h6 aboutIntros-TextContainerWidth">
-                                For startups and growing businesses
+                                For growing clinics and businesses
                             </p>
                         </div>
                         <button className="btn btn-primary btnWidth">Get Started with Pro</button>
@@ -189,7 +194,7 @@ const ClassicHome = () => {
                             </div>
                             <div>
                                 <p className="textInPageh6 pricingTextBold pricingTextSize50">
-                                    199
+                                    999
                                 </p>
                             </div>
                             <div style={{ marginTop: '5%' }}>
